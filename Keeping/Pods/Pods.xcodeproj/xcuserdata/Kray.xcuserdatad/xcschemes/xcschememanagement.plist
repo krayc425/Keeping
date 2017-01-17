@@ -14,12 +14,37 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>BATabBarController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>DZNEmptyDataSet.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>DateTools.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>FMDB.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FSCalendar.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MBProgressHUD.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Masonry.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -32,7 +57,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>157391F9AA1132BC03AEBC48EC636E46</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>400650D541291046A2E19E6946024BC6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5437890023F30CA85DFCA260CA914D48</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>586F2DFA9BDCC6675C2546793A69E5CC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8642CC820CE8C5B88C113D7F47AF4BC3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B18AF8BBC7D1170E06A0CE395DA535B9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -47,12 +97,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DF880A7BBC8CC3F13B3C8A1B5D0F5FC3</key>
+		<key>D936F53D40C60AC15D109712499C00EC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FFA806D998155D4128335CC3639B4679</key>
+		<key>DF880A7BBC8CC3F13B3C8A1B5D0F5FC3</key>
 		<dict>
 			<key>primary</key>
 			<true/>

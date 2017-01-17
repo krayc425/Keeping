@@ -1,0 +1,1 @@
+../../../BATabBarController/BATabBarController/Classes/BATabBarBadge.h

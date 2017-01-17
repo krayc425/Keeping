@@ -7,9 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2429CBD41E2DF5E60027DD37 /* KPTodayTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2429CBD31E2DF5E60027DD37 /* KPTodayTableViewController.m */; };
+		2429CBD71E2DF6080027DD37 /* KPTaskTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2429CBD61E2DF6080027DD37 /* KPTaskTableViewController.m */; };
+		2429CBDD1E2DF61B0027DD37 /* KPSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2429CBDC1E2DF61B0027DD37 /* KPSettingsTableViewController.m */; };
+		2429CBE81E2E499A0027DD37 /* KPSeparatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2429CBE71E2E499A0027DD37 /* KPSeparatorView.m */; };
+		2429CBEA1E2E49A60027DD37 /* KPSeparatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2429CBE91E2E49A60027DD37 /* KPSeparatorView.xib */; };
+		2429CBEE1E2E4A9B0027DD37 /* KPTodayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2429CBEC1E2E4A9B0027DD37 /* KPTodayTableViewCell.m */; };
+		2429CBEF1E2E4A9B0027DD37 /* KPTodayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2429CBED1E2E4A9B0027DD37 /* KPTodayTableViewCell.xib */; };
+		2429CBF31E2E4E750027DD37 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2429CBF21E2E4E750027DD37 /* Utilities.m */; };
+		2429CBF81E2E571A0027DD37 /* 方正书宋简体.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2429CBF71E2E571A0027DD37 /* 方正书宋简体.ttf */; };
+		2429CBFB1E2E5D510027DD37 /* KPTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2429CBFA1E2E5D510027DD37 /* KPTabBarViewController.m */; };
+		2429CBFE1E2E61430027DD37 /* KPCalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2429CBFD1E2E61430027DD37 /* KPCalViewController.m */; };
 		249AE3171E2DEE7700F704F8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 249AE3161E2DEE7700F704F8 /* main.m */; };
 		249AE31A1E2DEE7700F704F8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 249AE3191E2DEE7700F704F8 /* AppDelegate.m */; };
-		249AE31D1E2DEE7700F704F8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 249AE31C1E2DEE7700F704F8 /* ViewController.m */; };
 		249AE3201E2DEE7700F704F8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 249AE31E1E2DEE7700F704F8 /* Main.storyboard */; };
 		249AE3231E2DEE7700F704F8 /* Keeping.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 249AE3211E2DEE7700F704F8 /* Keeping.xcdatamodeld */; };
 		249AE3251E2DEE7700F704F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 249AE3241E2DEE7700F704F8 /* Assets.xcassets */; };
@@ -18,12 +28,29 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2429CBD21E2DF5E60027DD37 /* KPTodayTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPTodayTableViewController.h; sourceTree = "<group>"; };
+		2429CBD31E2DF5E60027DD37 /* KPTodayTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPTodayTableViewController.m; sourceTree = "<group>"; };
+		2429CBD51E2DF6080027DD37 /* KPTaskTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPTaskTableViewController.h; sourceTree = "<group>"; };
+		2429CBD61E2DF6080027DD37 /* KPTaskTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPTaskTableViewController.m; sourceTree = "<group>"; };
+		2429CBDB1E2DF61B0027DD37 /* KPSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPSettingsTableViewController.h; sourceTree = "<group>"; };
+		2429CBDC1E2DF61B0027DD37 /* KPSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPSettingsTableViewController.m; sourceTree = "<group>"; };
+		2429CBE61E2E499A0027DD37 /* KPSeparatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPSeparatorView.h; sourceTree = "<group>"; };
+		2429CBE71E2E499A0027DD37 /* KPSeparatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPSeparatorView.m; sourceTree = "<group>"; };
+		2429CBE91E2E49A60027DD37 /* KPSeparatorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KPSeparatorView.xib; sourceTree = "<group>"; };
+		2429CBEB1E2E4A9B0027DD37 /* KPTodayTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPTodayTableViewCell.h; sourceTree = "<group>"; };
+		2429CBEC1E2E4A9B0027DD37 /* KPTodayTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPTodayTableViewCell.m; sourceTree = "<group>"; };
+		2429CBED1E2E4A9B0027DD37 /* KPTodayTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KPTodayTableViewCell.xib; sourceTree = "<group>"; };
+		2429CBF11E2E4E750027DD37 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
+		2429CBF21E2E4E750027DD37 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
+		2429CBF71E2E571A0027DD37 /* 方正书宋简体.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "方正书宋简体.ttf"; sourceTree = "<group>"; };
+		2429CBF91E2E5D510027DD37 /* KPTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPTabBarViewController.h; sourceTree = "<group>"; };
+		2429CBFA1E2E5D510027DD37 /* KPTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPTabBarViewController.m; sourceTree = "<group>"; };
+		2429CBFC1E2E61430027DD37 /* KPCalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPCalViewController.h; sourceTree = "<group>"; };
+		2429CBFD1E2E61430027DD37 /* KPCalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPCalViewController.m; sourceTree = "<group>"; };
 		249AE3121E2DEE7700F704F8 /* Keeping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Keeping.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		249AE3161E2DEE7700F704F8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		249AE3181E2DEE7700F704F8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		249AE3191E2DEE7700F704F8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		249AE31B1E2DEE7700F704F8 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		249AE31C1E2DEE7700F704F8 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		249AE31F1E2DEE7700F704F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		249AE3221E2DEE7700F704F8 /* Keeping.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Keeping.xcdatamodel; sourceTree = "<group>"; };
 		249AE3241E2DEE7700F704F8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -46,6 +73,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2429CBF01E2E4AA20027DD37 /* Today */ = {
+			isa = PBXGroup;
+			children = (
+				2429CBD21E2DF5E60027DD37 /* KPTodayTableViewController.h */,
+				2429CBD31E2DF5E60027DD37 /* KPTodayTableViewController.m */,
+				2429CBEB1E2E4A9B0027DD37 /* KPTodayTableViewCell.h */,
+				2429CBEC1E2E4A9B0027DD37 /* KPTodayTableViewCell.m */,
+				2429CBED1E2E4A9B0027DD37 /* KPTodayTableViewCell.xib */,
+			);
+			name = Today;
+			sourceTree = "<group>";
+		};
+		2429CBF41E2E53C50027DD37 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				2429CBDB1E2DF61B0027DD37 /* KPSettingsTableViewController.h */,
+				2429CBDC1E2DF61B0027DD37 /* KPSettingsTableViewController.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		2429CBF51E2E53CF0027DD37 /* Cal */ = {
+			isa = PBXGroup;
+			children = (
+				2429CBFC1E2E61430027DD37 /* KPCalViewController.h */,
+				2429CBFD1E2E61430027DD37 /* KPCalViewController.m */,
+			);
+			name = Cal;
+			sourceTree = "<group>";
+		};
+		2429CBF61E2E53D30027DD37 /* Task */ = {
+			isa = PBXGroup;
+			children = (
+				2429CBD51E2DF6080027DD37 /* KPTaskTableViewController.h */,
+				2429CBD61E2DF6080027DD37 /* KPTaskTableViewController.m */,
+			);
+			name = Task;
+			sourceTree = "<group>";
+		};
 		249AE3091E2DEE7700F704F8 = {
 			isa = PBXGroup;
 			children = (
@@ -69,8 +135,17 @@
 			children = (
 				249AE3181E2DEE7700F704F8 /* AppDelegate.h */,
 				249AE3191E2DEE7700F704F8 /* AppDelegate.m */,
-				249AE31B1E2DEE7700F704F8 /* ViewController.h */,
-				249AE31C1E2DEE7700F704F8 /* ViewController.m */,
+				2429CBF91E2E5D510027DD37 /* KPTabBarViewController.h */,
+				2429CBFA1E2E5D510027DD37 /* KPTabBarViewController.m */,
+				2429CBF01E2E4AA20027DD37 /* Today */,
+				2429CBF61E2E53D30027DD37 /* Task */,
+				2429CBF51E2E53CF0027DD37 /* Cal */,
+				2429CBF41E2E53C50027DD37 /* Settings */,
+				2429CBE61E2E499A0027DD37 /* KPSeparatorView.h */,
+				2429CBE71E2E499A0027DD37 /* KPSeparatorView.m */,
+				2429CBE91E2E49A60027DD37 /* KPSeparatorView.xib */,
+				2429CBF11E2E4E750027DD37 /* Utilities.h */,
+				2429CBF21E2E4E750027DD37 /* Utilities.m */,
 				249AE31E1E2DEE7700F704F8 /* Main.storyboard */,
 				249AE3241E2DEE7700F704F8 /* Assets.xcassets */,
 				249AE3261E2DEE7700F704F8 /* LaunchScreen.storyboard */,
@@ -84,6 +159,7 @@
 		249AE3151E2DEE7700F704F8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2429CBF71E2E571A0027DD37 /* 方正书宋简体.ttf */,
 				249AE3161E2DEE7700F704F8 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -167,9 +243,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2429CBEF1E2E4A9B0027DD37 /* KPTodayTableViewCell.xib in Resources */,
 				249AE3281E2DEE7700F704F8 /* LaunchScreen.storyboard in Resources */,
 				249AE3251E2DEE7700F704F8 /* Assets.xcassets in Resources */,
 				249AE3201E2DEE7700F704F8 /* Main.storyboard in Resources */,
+				2429CBF81E2E571A0027DD37 /* 方正书宋简体.ttf in Resources */,
+				2429CBEA1E2E49A60027DD37 /* KPSeparatorView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,10 +307,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				249AE31D1E2DEE7700F704F8 /* ViewController.m in Sources */,
+				2429CBFE1E2E61430027DD37 /* KPCalViewController.m in Sources */,
 				249AE31A1E2DEE7700F704F8 /* AppDelegate.m in Sources */,
 				249AE3171E2DEE7700F704F8 /* main.m in Sources */,
+				2429CBEE1E2E4A9B0027DD37 /* KPTodayTableViewCell.m in Sources */,
+				2429CBD41E2DF5E60027DD37 /* KPTodayTableViewController.m in Sources */,
+				2429CBFB1E2E5D510027DD37 /* KPTabBarViewController.m in Sources */,
+				2429CBF31E2E4E750027DD37 /* Utilities.m in Sources */,
+				2429CBDD1E2DF61B0027DD37 /* KPSettingsTableViewController.m in Sources */,
+				2429CBD71E2DF6080027DD37 /* KPTaskTableViewController.m in Sources */,
 				249AE3231E2DEE7700F704F8 /* Keeping.xcdatamodeld in Sources */,
+				2429CBE81E2E499A0027DD37 /* KPSeparatorView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
