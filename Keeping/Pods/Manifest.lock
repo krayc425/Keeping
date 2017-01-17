@@ -1,0 +1,18 @@
+PODS:
+  - Appirater (2.1.2)
+  - DateTools (1.7.0)
+  - MBProgressHUD (1.0.0)
+
+DEPENDENCIES:
+  - Appirater
+  - DateTools
+  - MBProgressHUD
+
+SPEC CHECKSUMS:
+  Appirater: f1c9e53e8b612193e6256144f6a0fd2e31f4340d
+  DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+
+PODFILE CHECKSUM: cefd6a337db4c34ae9acd353ccfb250f7efd3e2b
+
+COCOAPODS: 1.1.1
