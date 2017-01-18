@@ -9,6 +9,9 @@
 #import "KPTodayTableViewController.h"
 #import "KPSeparatorView.h"
 #import "KPTodayTableViewCell.h"
+#import "Utilities.h"
+#import "TaskManager.h"
+#import "Task.h"
 
 @interface KPTodayTableViewController ()
 
@@ -18,6 +21,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.progressLabel setFont:[UIFont fontWithName:[Utilities getFont] size:40.0f]];
     /*
      NSArray *fontFamilies = [UIFont familyNames];
      for (int i = 0; i < [fontFamilies count]; i++){
@@ -26,6 +31,14 @@
      NSLog (@"%@: %@", fontFamily, fontNames);
      }
      */
+    self.unfinishedTaskArr = [[NSMutableArray alloc] init];
+    self.finishedTaskArr = [[NSMutableArray alloc] init];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    self.unfinishedTaskArr = [[TaskManager shareInstance] getTasks];
+    [self.progressLabel setText:[NSString stringWithFormat:@"%lu / %lu", (unsigned long)self.finishedTaskArr.count, ((unsigned long)self.finishedTaskArr.count + (unsigned long)self.unfinishedTaskArr.count)]];
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,10 +52,15 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if(section == 0){
-        return 1;
-    }else{
-        return 3;
+    switch (section) {
+        case 0:
+            return 1;
+        case 1:
+            return [self.unfinishedTaskArr count];
+        case 2:
+            return [self.finishedTaskArr count];
+        default:
+            return 0;
     }
 }
 
@@ -56,7 +74,7 @@
         }
         return view;
     }else{
-        return [UIView new];
+        return [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     }
 }
 
@@ -64,7 +82,7 @@
     if(section!= 0){
         return 20.0f;
     }else{
-        return 0.1f;
+        return 0.00001f;
     }
 }
 
@@ -73,20 +91,37 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 0.1f;
+    return 0.00001f;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(indexPath.section != 3){
-        static NSString *cellIdentifier = @"KPTodayTableViewCell";
-        UINib *nib = [UINib nibWithNibName:@"KPTodayTableViewCell" bundle:nil];
-        [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
-        KPTodayTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-        
-        
-        return cell;
-    }else{
-        return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    switch (indexPath.section) {
+        case 1:
+        {
+            static NSString *cellIdentifier = @"KPTodayTableViewCell";
+            UINib *nib = [UINib nibWithNibName:@"KPTodayTableViewCell" bundle:nil];
+            [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
+            KPTodayTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+            
+            Task *t = self.unfinishedTaskArr[indexPath.row];
+            [cell.taskNameLabel setText:t.name];
+            
+            return cell;
+        }
+        case 2:
+        {
+            static NSString *cellIdentifier = @"KPTodayTableViewCell";
+            UINib *nib = [UINib nibWithNibName:@"KPTodayTableViewCell" bundle:nil];
+            [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
+            KPTodayTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+            
+            Task *t = self.finishedTaskArr[indexPath.row];
+            [cell.taskNameLabel setText:t.name];
+            
+            return cell;
+        }
+        default:
+            return [super tableView:tableView cellForRowAtIndexPath:indexPath];
     }
 }
 
@@ -94,7 +129,7 @@
     if(indexPath.section == 0){
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];
     }else{
-        return 44;
+        return 60;
     }
 }
 

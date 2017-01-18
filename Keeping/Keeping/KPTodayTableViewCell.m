@@ -7,18 +7,18 @@
 //
 
 #import "KPTodayTableViewCell.h"
+#import "Utilities.h"
 
 @implementation KPTodayTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    
+    [self.taskNameLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end

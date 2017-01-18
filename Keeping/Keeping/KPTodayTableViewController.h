@@ -10,4 +10,9 @@
 
 @interface KPTodayTableViewController : UITableViewController
 
+@property (nonnull, nonatomic) IBOutlet UILabel *progressLabel;
+
+@property (nonnull, nonatomic) NSMutableArray *unfinishedTaskArr;
+@property (nonnull, nonatomic) NSMutableArray *finishedTaskArr;
+
 @end

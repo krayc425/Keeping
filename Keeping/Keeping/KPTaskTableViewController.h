@@ -10,4 +10,8 @@
 
 @interface KPTaskTableViewController : UITableViewController
 
+@property (nonnull, nonatomic) NSMutableArray *taskArr;
+
+- (void)addAction:(_Nonnull id)senders;
+
 @end

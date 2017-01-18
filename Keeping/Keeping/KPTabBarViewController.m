@@ -20,6 +20,9 @@
     
     self.delegate = self;
     
+    self.kpTodayTableViewController = self.viewControllers[0];
+    self.kpTabBarViewController = self.viewControllers[1];
+    
     [self.navigationItem setTitle:@"今日"];
     
     //设置底下 item
@@ -32,6 +35,11 @@
     [[self.tabBar.items objectAtIndex:2] setImage:[UIImage imageNamed:@""]];
     [[self.tabBar.items objectAtIndex:3] setTitle:@"设置"];
     [[self.tabBar.items objectAtIndex:3] setImage:[UIImage imageNamed:@""]];
+    
+    NSDictionary *dicTab = @{NSFontAttributeName:[UIFont fontWithName:[Utilities getFont] size:10.0],NSForegroundColorAttributeName: [Utilities getColor]};
+    for(UITabBarItem *item in self.tabBar.items){
+        [item setTitleTextAttributes:dicTab forState:UIControlStateNormal];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,7 +62,7 @@
         {
             [self.navigationItem setTitle:@"任务"];
             
-            UIBarButtonItem *addItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:nil action:nil];
+            UIBarButtonItem *addItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_ADD"] style:UIBarButtonItemStylePlain target:self.kpTabBarViewController action:@selector(addAction:)];
             self.navigationItem.rightBarButtonItems = @[addItem];
         }
             break;

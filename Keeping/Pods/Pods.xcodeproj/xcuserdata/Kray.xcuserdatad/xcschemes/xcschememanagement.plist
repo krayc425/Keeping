@@ -39,6 +39,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>HSDatePickerViewController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MBProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -58,6 +63,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>157391F9AA1132BC03AEBC48EC636E46</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>393E98B51C8250F669DF3491148AB7E9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,12 +92,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B18AF8BBC7D1170E06A0CE395DA535B9</key>
+		<key>B36F6D48026E14827529F787D63D61B8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B36F6D48026E14827529F787D63D61B8</key>
+		<key>C42630B2C5CE9EBC52F895E367A87286</key>
 		<dict>
 			<key>primary</key>
 			<true/>

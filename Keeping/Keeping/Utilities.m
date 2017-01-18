@@ -11,7 +11,7 @@
 @implementation Utilities
 
 + (UIColor *)getColor{
-    return [UIColor colorWithRed:193.0/255.0 green:85.0/255.0 blue:76.0/255.0 alpha:1.0];
+    return [UIColor blackColor];
 }
 
 + (NSString *)getFont{

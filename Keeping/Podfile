@@ -10,4 +10,5 @@ target 'Keeping' do
   pod 'DZNEmptyDataSet'
   pod 'FSCalendar'
   pod 'FMDB'
+  pod 'HSDatePickerViewController'
 end

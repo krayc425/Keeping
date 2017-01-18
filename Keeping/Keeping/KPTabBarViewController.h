@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class KPTodayTableViewController;
+@class KPTaskTableViewController;
+
 @interface KPTabBarViewController : UITabBarController <UITabBarControllerDelegate>
+
+@property (nonatomic, nonnull) KPTodayTableViewController *kpTodayTableViewController;
+@property (nonatomic, nonnull) KPTabBarViewController *kpTabBarViewController;
 
 @end

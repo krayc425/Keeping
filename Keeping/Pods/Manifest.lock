@@ -8,6 +8,7 @@ PODS:
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
   - FSCalendar (2.5.1)
+  - HSDatePickerViewController (1.0.4)
   - Masonry (1.0.2)
   - MBProgressHUD (1.0.0)
 
@@ -18,6 +19,7 @@ DEPENDENCIES:
   - DZNEmptyDataSet
   - FMDB
   - FSCalendar
+  - HSDatePickerViewController
   - MBProgressHUD
 
 SPEC CHECKSUMS:
@@ -27,9 +29,10 @@ SPEC CHECKSUMS:
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   FSCalendar: 8efeb4b92240937204165c7743f4375923112fb5
+  HSDatePickerViewController: 5a72b71f8c3b10e76f2c28a898f8572b551432a6
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
 
-PODFILE CHECKSUM: 62c67aedab764a687739dfac8d286fbafb5d029d
+PODFILE CHECKSUM: 8cc6450fce998e2aaeee86872b7c6d29ce577168
 
 COCOAPODS: 1.1.1

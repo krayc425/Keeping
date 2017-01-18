@@ -10,4 +10,6 @@
 
 @interface KPTodayTableViewCell : UITableViewCell
 
+@property (nonatomic, nonnull) IBOutlet UILabel *taskNameLabel;
+
 @end
