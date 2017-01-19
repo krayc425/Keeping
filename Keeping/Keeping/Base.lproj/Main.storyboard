@@ -14,7 +14,7 @@
         <scene sceneID="do5-em-2mj">
             <objects>
                 <navigationController storyboardIdentifier="KPNavigationViewController" id="BIL-fh-dCv" userLabel="KPNavigationViewController" customClass="KPNavigationViewController" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="drc-Be-qV6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="drc-Be-qV6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -98,16 +98,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qlz-Dg-diP">
-                                                    <rect key="frame" x="5" y="5" width="365" height="49.5"/>
+                                                    <rect key="frame" x="13" y="5" width="349" height="49"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="Qlz-Dg-diP" secondAttribute="trailing" constant="5" id="635-jE-7ZS"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Qlz-Dg-diP" secondAttribute="trailing" constant="5" id="635-jE-7ZS"/>
                                                 <constraint firstItem="Qlz-Dg-diP" firstAttribute="top" secondItem="4Vp-e7-ZsZ" secondAttribute="top" constant="5" id="UEa-vv-Iqt"/>
-                                                <constraint firstItem="Qlz-Dg-diP" firstAttribute="leading" secondItem="4Vp-e7-ZsZ" secondAttribute="leading" constant="5" id="dfh-D6-Cum"/>
+                                                <constraint firstItem="Qlz-Dg-diP" firstAttribute="leading" secondItem="4Vp-e7-ZsZ" secondAttribute="leadingMargin" constant="5" id="dfh-D6-Cum"/>
                                                 <constraint firstAttribute="bottom" secondItem="Qlz-Dg-diP" secondAttribute="bottom" constant="5" id="exA-2T-16a"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -124,10 +124,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Od0-xR-YS7">
-                                                    <rect key="frame" x="10" y="10" width="355" height="39.5"/>
+                                                    <rect key="frame" x="18" y="10" width="339" height="39"/>
                                                     <subviews>
-                                                        <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mnf-G5-UgL">
-                                                            <rect key="frame" x="0.0" y="0.0" width="40" height="39.5"/>
+                                                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mnf-G5-UgL">
+                                                            <rect key="frame" x="0.0" y="0.0" width="39" height="39"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="Mnf-G5-UgL" secondAttribute="height" id="tIJ-bX-bJ1"/>
                                                             </constraints>
@@ -136,8 +136,8 @@
                                                                 <action selector="selectWeekdayAction:" destination="BJK-5m-mbd" eventType="touchUpInside" id="j1O-JU-RUs"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rBy-qm-Jjq">
-                                                            <rect key="frame" x="46" y="0.0" width="39" height="39.5"/>
+                                                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rBy-qm-Jjq">
+                                                            <rect key="frame" x="44" y="0.0" width="39" height="39"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="rBy-qm-Jjq" secondAttribute="height" id="jF0-Ze-EdP"/>
                                                             </constraints>
@@ -146,8 +146,8 @@
                                                                 <action selector="selectWeekdayAction:" destination="BJK-5m-mbd" eventType="touchUpInside" id="MCS-Kh-yt5"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dfj-cl-TBG">
-                                                            <rect key="frame" x="91.5" y="0.0" width="39.5" height="39.5"/>
+                                                        <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dfj-cl-TBG">
+                                                            <rect key="frame" x="88" y="0.0" width="39" height="39"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="dfj-cl-TBG" secondAttribute="height" id="O0Y-TY-cQv"/>
                                                             </constraints>
@@ -156,8 +156,8 @@
                                                                 <action selector="selectWeekdayAction:" destination="BJK-5m-mbd" eventType="touchUpInside" id="sFG-Vg-E7t"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KTM-JO-Vnl">
-                                                            <rect key="frame" x="137.5" y="0.0" width="39" height="39.5"/>
+                                                        <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KTM-JO-Vnl">
+                                                            <rect key="frame" x="132" y="0.0" width="39" height="39"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="KTM-JO-Vnl" secondAttribute="height" id="eiS-f9-oDo"/>
                                                             </constraints>
@@ -166,8 +166,8 @@
                                                                 <action selector="selectWeekdayAction:" destination="BJK-5m-mbd" eventType="touchUpInside" id="o7e-ne-BcY"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rnY-Qu-5Rq">
-                                                            <rect key="frame" x="182.5" y="0.0" width="40" height="39.5"/>
+                                                        <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rnY-Qu-5Rq">
+                                                            <rect key="frame" x="176" y="0.0" width="39" height="39"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="rnY-Qu-5Rq" secondAttribute="height" multiplier="1:1" id="nwU-1C-Jz2"/>
                                                             </constraints>
@@ -176,8 +176,8 @@
                                                                 <action selector="selectWeekdayAction:" destination="BJK-5m-mbd" eventType="touchUpInside" id="rce-ub-9Y0"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xcp-hn-KK8">
-                                                            <rect key="frame" x="228.5" y="0.0" width="39.5" height="39.5"/>
+                                                        <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xcp-hn-KK8">
+                                                            <rect key="frame" x="220" y="0.0" width="39" height="39"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="Xcp-hn-KK8" secondAttribute="height" multiplier="1:1" id="VwG-q1-7gq"/>
                                                             </constraints>
@@ -186,8 +186,8 @@
                                                                 <action selector="selectWeekdayAction:" destination="BJK-5m-mbd" eventType="touchUpInside" id="eGu-QV-lEh"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chg-92-zz4">
-                                                            <rect key="frame" x="274" y="0.0" width="39.5" height="39.5"/>
+                                                        <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chg-92-zz4">
+                                                            <rect key="frame" x="264" y="0.0" width="39" height="39"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="chg-92-zz4" secondAttribute="height" id="DQf-Gs-xXw"/>
                                                             </constraints>
@@ -197,7 +197,7 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yFs-dP-CSN">
-                                                            <rect key="frame" x="324" y="4" width="31" height="31.5"/>
+                                                            <rect key="frame" x="308" y="4" width="31" height="31"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="yFs-dP-CSN" secondAttribute="height" multiplier="1:1" id="bGt-bs-an9"/>
                                                             </constraints>
@@ -211,8 +211,8 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="Od0-xR-YS7" secondAttribute="bottom" constant="10" id="2E4-8J-NCq"/>
-                                                <constraint firstItem="Od0-xR-YS7" firstAttribute="leading" secondItem="XVT-eQ-p6H" secondAttribute="leading" constant="10" id="Sfq-hy-VLn"/>
-                                                <constraint firstAttribute="trailing" secondItem="Od0-xR-YS7" secondAttribute="trailing" constant="10" id="mxC-PI-NeJ"/>
+                                                <constraint firstItem="Od0-xR-YS7" firstAttribute="leading" secondItem="XVT-eQ-p6H" secondAttribute="leadingMargin" constant="10" id="Sfq-hy-VLn"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Od0-xR-YS7" secondAttribute="trailing" constant="10" id="mxC-PI-NeJ"/>
                                                 <constraint firstItem="Od0-xR-YS7" firstAttribute="top" secondItem="XVT-eQ-p6H" secondAttribute="top" constant="10" id="rGB-ns-6rk"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -229,20 +229,20 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="无" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tS1-03-99c">
-                                                    <rect key="frame" x="10" y="19.5" width="17.5" height="21"/>
+                                                    <rect key="frame" x="18" y="19" width="18" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="14C-Sq-hSc">
-                                                    <rect key="frame" x="316" y="14.5" width="51" height="31"/>
+                                                    <rect key="frame" x="308" y="14" width="51" height="31"/>
                                                 </switch>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="tS1-03-99c" firstAttribute="leading" secondItem="gbb-Nh-biY" secondAttribute="leading" constant="10" id="8Vq-uU-pse"/>
+                                                <constraint firstItem="tS1-03-99c" firstAttribute="leading" secondItem="gbb-Nh-biY" secondAttribute="leadingMargin" constant="10" id="8Vq-uU-pse"/>
                                                 <constraint firstItem="tS1-03-99c" firstAttribute="centerY" secondItem="gbb-Nh-biY" secondAttribute="centerY" id="DBS-AI-JHc"/>
                                                 <constraint firstItem="14C-Sq-hSc" firstAttribute="centerY" secondItem="gbb-Nh-biY" secondAttribute="centerY" id="YLU-51-dy1"/>
-                                                <constraint firstAttribute="trailing" secondItem="14C-Sq-hSc" secondAttribute="trailing" constant="10" id="ePl-XL-yvp"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="14C-Sq-hSc" secondAttribute="trailing" constant="10" id="ePl-XL-yvp"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -258,14 +258,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="无" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nqZ-qW-YzY">
-                                                    <rect key="frame" x="10" y="19.5" width="17.5" height="21"/>
+                                                    <rect key="frame" x="18" y="19" width="18" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="nqZ-qW-YzY" firstAttribute="leading" secondItem="XXd-ed-AkM" secondAttribute="leading" constant="10" id="OoG-n6-Bnb"/>
+                                                <constraint firstItem="nqZ-qW-YzY" firstAttribute="leading" secondItem="XXd-ed-AkM" secondAttribute="leadingMargin" constant="10" id="OoG-n6-Bnb"/>
                                                 <constraint firstItem="nqZ-qW-YzY" firstAttribute="centerY" secondItem="XXd-ed-AkM" secondAttribute="centerY" id="tww-Kf-PTY"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -285,6 +285,7 @@
                         <outlet property="taskNameField" destination="Qlz-Dg-diP" id="Qy5-wV-JUJ"/>
                         <outlet property="weekDayStack" destination="Od0-xR-YS7" id="KJq-9y-GP9"/>
                         <segue destination="1yY-U5-MZt" kind="show" identifier="appSegue" id="NZ0-Vh-D8q"/>
+                        <segue destination="J9r-f3-dn1" kind="show" identifier="reminderSegue" id="R0T-cM-iTL"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u7g-z8-sMZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -318,6 +319,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jAi-KQ-7Qo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2650" y="-1617"/>
+        </scene>
+        <!--KPReminderViewController-->
+        <scene sceneID="6v2-UX-KKJ">
+            <objects>
+                <viewController storyboardIdentifier="KPReminderViewController" id="J9r-f3-dn1" userLabel="KPReminderViewController" customClass="KPReminderViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jIC-ap-gXT"/>
+                        <viewControllerLayoutGuide type="bottom" id="DmP-4L-bYj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5gW-dW-fwU">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sex-eU-UK9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1822" y="-849"/>
         </scene>
         <!--KPCalViewController-->
         <scene sceneID="zJX-OK-Dk2">
@@ -377,7 +397,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="给我们打分" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uBJ-gp-zRi">
-                                                    <rect key="frame" x="18" y="11.5" width="87" height="21"/>
+                                                    <rect key="frame" x="18" y="11" width="87" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -397,7 +417,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提交意见或建议" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1k-PM-ahV">
-                                                    <rect key="frame" x="18" y="11.5" width="121.5" height="21"/>
+                                                    <rect key="frame" x="18" y="11" width="122" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -417,13 +437,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="版本号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9aS-Hp-CQQ">
-                                                    <rect key="frame" x="18" y="11.5" width="52" height="21"/>
+                                                    <rect key="frame" x="18" y="11" width="52" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zQa-Fr-G3D">
-                                                    <rect key="frame" x="315" y="11.5" width="42" height="21"/>
+                                                    <rect key="frame" x="315" y="11" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -473,7 +493,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6p5-7J-dTY">
-                                                    <rect key="frame" x="166.5" y="49.5" width="42" height="21"/>
+                                                    <rect key="frame" x="167" y="50" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>

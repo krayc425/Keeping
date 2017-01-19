@@ -13,6 +13,4 @@
 @property (nonatomic, nonnull) IBOutlet UILabel *nameLabel;
 @property (nonatomic, nonnull) IBOutlet UILabel *daysLabel;
 
-@property (nonnull, nonatomic) IBOutlet UILabel *accessoryLabel;
-
 @end

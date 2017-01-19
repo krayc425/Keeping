@@ -17,5 +17,8 @@
 - (BOOL)addTask:(Task *_Nonnull)task;
 - (BOOL)deleteTask:(int)id;
 - (NSMutableArray *_Nonnull)getTasks;
+- (NSMutableArray *_Nonnull)getTodayTasks;
+- (NSMutableArray *_Nonnull)getTasksOfDate:(NSDate *_Nonnull)date;
+- (BOOL)punchForTask:(Task *_Nonnull)task;
 
 @end

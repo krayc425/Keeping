@@ -7,6 +7,7 @@
 //
 
 #import "Utilities.h"
+#import "DateTools.h"
 
 @implementation Utilities
 

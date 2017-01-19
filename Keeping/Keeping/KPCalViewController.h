@@ -9,8 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "FSCalendar.h"
 
-@interface KPCalViewController : UIViewController <FSCalendarDataSource, FSCalendarDelegate>
+@interface KPCalViewController : UIViewController <FSCalendarDataSource, FSCalendarDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (nonnull, nonatomic) FSCalendar *calendar;
+@property (nonnull, nonatomic) UITableView *taskTableView;
+
+@property (nonnull, nonatomic) NSDate *selectedDate;
+@property (nonnull, nonatomic) NSMutableArray *taskArr;
 
 @end

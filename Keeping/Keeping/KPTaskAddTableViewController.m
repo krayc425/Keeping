@@ -12,6 +12,7 @@
 #import "TaskManager.h"
 #import "UIView+MJAlertView.h"
 #import "KPSchemeManager.h"
+#import "DateTools.h"
 
 @interface KPTaskAddTableViewController ()
 
@@ -61,6 +62,9 @@
     if([self.taskNameField.text isEqualToString:@""]){
         return NO;
     }
+    if([self.selectedWeekdayArr count] <= 0){
+        return NO;
+    }
     return YES;
 }
 
@@ -91,7 +95,6 @@
     if(![self checkCompleted]){
         [UIView addMJNotifierWithText:@"信息填写不完整" dismissAutomatically:YES];
     }else{
-    
         Task *task = [Task new];
         task.name = self.taskNameField.text;
         task.appScheme = self.selectedApp;
@@ -105,31 +108,35 @@
         }];
         task.reminderDays = self.selectedWeekdayArr;
         
+        task.reminderTime = self.reminderTime;
+        
+//        NSDate *date = [NSDate date];
+//        NSInteger year = date.year;
+//        NSInteger month = date.month;
+//        NSInteger day = date.day;
+//        NSInteger hour = date.hour;
+//        NSInteger minute= date.minute;
+//        NSInteger second = date.second;
+//        NSLog(@"year: %ld, month: %ld, day %ld, H %ld M %ld S %ld",
+//              (long)year, (long)month, (long)day, (long)hour, (long)minute, (long)second);
+        
+        NSDate *addDate = [NSDate dateWithYear:[[NSDate date] year] month:[[NSDate date] month] day:[[NSDate date] day]];
+        task.addDate = addDate;
+        
+        task.punchDateArr = [[NSMutableArray alloc] init];
+        
         [[TaskManager shareInstance] addTask:task];
         
         [UIView addMJNotifierWithText:@"添加成功" dismissAutomatically:YES];
-
     }
 }
 
 - (void)showReminderPickerAction:(id)sender{
-    HSDatePickerViewController *hsdpvc = [[HSDatePickerViewController alloc] init];
-    
-    NSDateFormatter* fmt = [[NSDateFormatter alloc] init];
-    fmt.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
-    fmt.dateFormat = @"ccc HH mm";
-    [hsdpvc setDateFormatter:fmt];
-    
-    [hsdpvc setConfirmButtonTitle:@"OK"];
-    [hsdpvc setBackButtonTitle:@"Back"];
-    
-    [self presentViewController:hsdpvc animated:YES completion:nil];
-}
-
-#pragma mark - HSDatePickerViewControllerDelegate
-
-- (void)hsDatePickerPickedDate:(NSDate *)date{
-    NSLog(@"%@", [date description]);
+    if(![self.reminderSwitch isOn]){
+        [self.reminderLabel setText:@"无"];
+    }else{
+        [self performSegueWithIdentifier:@"reminderSegue" sender:nil];
+    }
 }
 
 #pragma mark - Table view data source
@@ -193,6 +200,9 @@
         if(self.selectedApp != NULL){
             [kpstvc setSelectedPath:[NSIndexPath indexPathForRow:[[KPSchemeManager getSchemeArr] indexOfObject:self.selectedApp] inSection:0]];
         }
+    }else if([segue.identifier isEqualToString:@"reminderSegue"]){
+        KPReminderViewController *kprvc = (KPReminderViewController *)[segue destinationViewController];
+        kprvc.delegate = self;
     }
 }
 
@@ -208,6 +218,17 @@
         [self.appNameLabel setText:self.selectedApp.allKeys[0]];
         [self.tableView reloadData];
     }
+}
+
+#pragma mark - Reminder Delegate
+
+- (void)passTime:(NSDate *)date{
+    self.reminderTime = date;
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"HH:mm"];
+    NSString *currentDateStr = [dateFormatter stringFromDate:date];
+    [self.reminderLabel setText:currentDateStr];
+    [self.tableView reloadData];
 }
 
 @end

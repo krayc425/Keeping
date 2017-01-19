@@ -2,37 +2,37 @@ PODS:
   - Appirater (2.1.2)
   - BATabBarController (0.1.3):
     - Masonry
+  - BEMCheckBox (1.2.1)
   - DateTools (1.7.0)
   - DZNEmptyDataSet (1.8.1)
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
   - FSCalendar (2.5.1)
-  - HSDatePickerViewController (1.0.4)
   - Masonry (1.0.2)
   - MBProgressHUD (1.0.0)
 
 DEPENDENCIES:
   - Appirater
   - BATabBarController
+  - BEMCheckBox
   - DateTools
   - DZNEmptyDataSet
   - FMDB
   - FSCalendar
-  - HSDatePickerViewController
   - MBProgressHUD
 
 SPEC CHECKSUMS:
   Appirater: f1c9e53e8b612193e6256144f6a0fd2e31f4340d
   BATabBarController: b198a0530fff9233450ed35f43a96431e0815d31
+  BEMCheckBox: 264b8b72aa92adbfefa265cc58a0cdb86b207b9f
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   FSCalendar: 8efeb4b92240937204165c7743f4375923112fb5
-  HSDatePickerViewController: 5a72b71f8c3b10e76f2c28a898f8572b551432a6
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
 
-PODFILE CHECKSUM: 8cc6450fce998e2aaeee86872b7c6d29ce577168
+PODFILE CHECKSUM: fa93d8187352a9f1ceac94bad6f49ba493efa97d
 
 COCOAPODS: 1.1.1

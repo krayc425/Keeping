@@ -43,7 +43,7 @@ static DBManager* _instance = nil;
     if ([self.db open]){
     //4.创表
         BOOL result = [self.db executeUpdate:
-                       @"CREATE TABLE IF NOT EXISTS t_task (id integer PRIMARY KEY AUTOINCREMENT, name text NOT NULL, appScheme text, reminderDays text)"];
+                       @"CREATE TABLE IF NOT EXISTS t_task (id integer PRIMARY KEY AUTOINCREMENT, name text NOT NULL, appScheme text, reminderDays text, addDate date NOT NULL, reminderTime date, punchDateArr text)"];
         if (result){
             NSLog(@"创建表成功");
         }

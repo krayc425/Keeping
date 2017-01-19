@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KPTodayTableViewCell.h"
 
-@interface KPTodayTableViewController : UITableViewController
+@interface KPTodayTableViewController : UITableViewController <CheckTaskDelegate>
 
 @property (nonnull, nonatomic) IBOutlet UILabel *progressLabel;
 

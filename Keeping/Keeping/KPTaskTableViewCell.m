@@ -16,7 +16,6 @@
     
     [self.nameLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
     [self.daysLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
-    [self.accessoryLabel setFont:[UIFont fontWithName:[Utilities getFont] size:12.0f]];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

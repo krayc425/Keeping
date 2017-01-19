@@ -12,6 +12,7 @@
 #import "Utilities.h"
 #import "TaskManager.h"
 #import "Task.h"
+#import "DateUtil.h"
 
 @interface KPTodayTableViewController ()
 
@@ -31,13 +32,26 @@
      NSLog (@"%@: %@", fontFamily, fontNames);
      }
      */
-    self.unfinishedTaskArr = [[NSMutableArray alloc] init];
-    self.finishedTaskArr = [[NSMutableArray alloc] init];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    self.unfinishedTaskArr = [[TaskManager shareInstance] getTasks];
+    [self loadTasks];
+}
+
+- (void)loadTasks{
+    self.unfinishedTaskArr = [[NSMutableArray alloc] init];
+    self.finishedTaskArr = [[NSMutableArray alloc] init];
+    NSMutableArray *taskArr = [[TaskManager shareInstance] getTodayTasks];
+    for (Task *task in taskArr) {
+        if([task.punchDateArr containsObject:[DateUtil transformDate:[NSDate date]]]){
+            [self.finishedTaskArr addObject:task];
+        }else{
+            [self.unfinishedTaskArr addObject:task];
+        }
+    }
+    
     [self.progressLabel setText:[NSString stringWithFormat:@"%lu / %lu", (unsigned long)self.finishedTaskArr.count, ((unsigned long)self.finishedTaskArr.count + (unsigned long)self.unfinishedTaskArr.count)]];
+    
     [self.tableView reloadData];
 }
 
@@ -65,24 +79,44 @@
 }
 
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if(section != 0){
-        KPSeparatorView *view = [[[NSBundle mainBundle] loadNibNamed:@"KPSeparatorView" owner:nil options:nil] lastObject];
-        if(section == 1){
-            [view setText:@"未完成"];
-        }else if(section == 2){
-            [view setText:@"已完成"];
+    switch (section) {
+        case 1:
+        {
+            if([self.unfinishedTaskArr count] == 0){
+                return [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+            }else{
+                KPSeparatorView *view = [[[NSBundle mainBundle] loadNibNamed:@"KPSeparatorView" owner:nil options:nil] lastObject];
+                [view setText:@"未完成"];
+                return view;
+            }
         }
-        return view;
-    }else{
-        return [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+        case 2:
+        {
+            KPSeparatorView *view = [[[NSBundle mainBundle] loadNibNamed:@"KPSeparatorView" owner:nil options:nil] lastObject];
+            [view setText:@"已完成"];
+            return view;
+        }
+        default:
+            return [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if(section!= 0){
-        return 20.0f;
-    }else{
-        return 0.00001f;
+    switch (section) {
+        case 1:
+        {
+            if([self.unfinishedTaskArr count] == 0){
+                return 0.00001f;
+            }else{
+                return 20.0f;
+            }
+        }
+        case 2:
+        {
+             return 20.0f;
+        }
+        default:
+            return 0.00001f;
     }
 }
 
@@ -97,17 +131,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
         case 1:
-        {
-            static NSString *cellIdentifier = @"KPTodayTableViewCell";
-            UINib *nib = [UINib nibWithNibName:@"KPTodayTableViewCell" bundle:nil];
-            [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
-            KPTodayTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-            
-            Task *t = self.unfinishedTaskArr[indexPath.row];
-            [cell.taskNameLabel setText:t.name];
-            
-            return cell;
-        }
         case 2:
         {
             static NSString *cellIdentifier = @"KPTodayTableViewCell";
@@ -115,8 +138,27 @@
             [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
             KPTodayTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
             
-            Task *t = self.finishedTaskArr[indexPath.row];
+            Task *t;
+            if(indexPath.section == 1){
+                t = self.unfinishedTaskArr[indexPath.row];
+                
+                cell.delegate = self;
+                [cell setIsFinished:NO];
+            }else{
+                t = self.finishedTaskArr[indexPath.row];
+                
+                [cell setIsFinished:YES];
+            }
             [cell.taskNameLabel setText:t.name];
+            
+            if(t.appScheme != NULL){
+                NSDictionary *d = t.appScheme;
+                NSString *s = d.allKeys[0];
+                [cell.accessoryLabel setText:[NSString stringWithFormat:@"启动 %@", s]];
+                [cell.accessoryLabel setHidden:NO];
+            }else{
+                [cell.accessoryLabel setHidden:YES];
+            }
             
             return cell;
         }
@@ -143,50 +185,23 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if(indexPath.section != 0){
+        Task *t = self.unfinishedTaskArr[indexPath.row];
+        if(t.appScheme != NULL){
+            NSString *s = t.appScheme.allValues[0];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:s]];
+        }
+    }
+    
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+#pragma mark - Check Delegate
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+- (void)checkTask:(UITableViewCell *)cell{
+    NSIndexPath *path = [self.tableView indexPathForCell:cell];
+    [[TaskManager shareInstance] punchForTask:self.unfinishedTaskArr[path.row]];
+    [self loadTasks];
 }
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

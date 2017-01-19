@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>BEMCheckBox.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>DZNEmptyDataSet.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -35,11 +40,6 @@
 			<false/>
 		</dict>
 		<key>FSCalendar.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>HSDatePickerViewController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -62,12 +62,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>157391F9AA1132BC03AEBC48EC636E46</key>
+		<key>107FC511B01CDA14F01A7A647152DEB8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>393E98B51C8250F669DF3491148AB7E9</key>
+		<key>157391F9AA1132BC03AEBC48EC636E46</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,11 +97,6 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C42630B2C5CE9EBC52F895E367A87286</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>CBBC8921BA1356CA84C7AE46DBCDDC17</key>
 		<dict>
 			<key>primary</key>
@@ -113,6 +108,11 @@
 			<true/>
 		</dict>
 		<key>DF880A7BBC8CC3F13B3C8A1B5D0F5FC3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EB45B596956280F7CDB991777576580C</key>
 		<dict>
 			<key>primary</key>
 			<true/>

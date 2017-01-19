@@ -21,6 +21,6 @@
 
 @property (nonatomic, nonnull) id<SchemeDelegate> delegate;
 
-@property (nonatomic) NSIndexPath *selectedPath;
+@property (nonatomic, nullable) NSIndexPath *selectedPath;
 
 @end

@@ -30,6 +30,7 @@
 		249AE3231E2DEE7700F704F8 /* Keeping.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 249AE3211E2DEE7700F704F8 /* Keeping.xcdatamodeld */; };
 		249AE3251E2DEE7700F704F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 249AE3241E2DEE7700F704F8 /* Assets.xcassets */; };
 		249AE3281E2DEE7700F704F8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 249AE3261E2DEE7700F704F8 /* LaunchScreen.storyboard */; };
+		24DCF18A1E3094050097C250 /* DateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DCF1891E3094050097C250 /* DateUtil.m */; };
 		24F2A0C31E2F371B00F30FB1 /* UIView+MJAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F2A0C21E2F371B00F30FB1 /* UIView+MJAlertView.m */; };
 		24F2A0CB1E2F383A00F30FB1 /* KPTaskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24F2A0C91E2F383A00F30FB1 /* KPTaskTableViewCell.xib */; };
 		24F2A0CE1E2F38C700F30FB1 /* KPTaskTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F2A0CD1E2F38C700F30FB1 /* KPTaskTableViewCell.m */; };
@@ -38,6 +39,22 @@
 		24F2A0D71E2F482100F30FB1 /* KPSchemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F2A0D61E2F482100F30FB1 /* KPSchemeManager.m */; };
 		24F2A0DB1E2F489100F30FB1 /* KPSchemeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F2A0D91E2F489100F30FB1 /* KPSchemeTableViewCell.m */; };
 		24F2A0DC1E2F489100F30FB1 /* KPSchemeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24F2A0DA1E2F489100F30FB1 /* KPSchemeTableViewCell.xib */; };
+		24F2A0F41E2F7B6E00F30FB1 /* Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F2A0E31E2F7B6E00F30FB1 /* Categories.m */; };
+		24F2A0F51E2F7B6E00F30FB1 /* checkmark_icon_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 24F2A0E51E2F7B6E00F30FB1 /* checkmark_icon_white.png */; };
+		24F2A0F61E2F7B6E00F30FB1 /* checkmark_icon_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 24F2A0E61E2F7B6E00F30FB1 /* checkmark_icon_white@2x.png */; };
+		24F2A0F71E2F7B6E00F30FB1 /* picker_wheel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 24F2A0E71E2F7B6E00F30FB1 /* picker_wheel@2x.png */; };
+		24F2A0F81E2F7B6E00F30FB1 /* picker_wheel_ip4.png in Resources */ = {isa = PBXBuildFile; fileRef = 24F2A0E81E2F7B6E00F30FB1 /* picker_wheel_ip4.png */; };
+		24F2A0F91E2F7B6E00F30FB1 /* picker_wheel_ip4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 24F2A0E91E2F7B6E00F30FB1 /* picker_wheel_ip4@2x.png */; };
+		24F2A0FA1E2F7B6E00F30FB1 /* round_backarrow_big-high.png in Resources */ = {isa = PBXBuildFile; fileRef = 24F2A0EA1E2F7B6E00F30FB1 /* round_backarrow_big-high.png */; };
+		24F2A0FB1E2F7B6E00F30FB1 /* round_backarrow_big-high@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 24F2A0EB1E2F7B6E00F30FB1 /* round_backarrow_big-high@2x.png */; };
+		24F2A0FC1E2F7B6E00F30FB1 /* round_backarrow_big.png in Resources */ = {isa = PBXBuildFile; fileRef = 24F2A0EC1E2F7B6E00F30FB1 /* round_backarrow_big.png */; };
+		24F2A0FD1E2F7B6E00F30FB1 /* round_backarrow_big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 24F2A0ED1E2F7B6E00F30FB1 /* round_backarrow_big@2x.png */; };
+		24F2A0FE1E2F7B6E00F30FB1 /* schedule_image_moon-high.png in Resources */ = {isa = PBXBuildFile; fileRef = 24F2A0EE1E2F7B6E00F30FB1 /* schedule_image_moon-high.png */; };
+		24F2A0FF1E2F7B6E00F30FB1 /* schedule_image_moon-high@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 24F2A0EF1E2F7B6E00F30FB1 /* schedule_image_moon-high@2x.png */; };
+		24F2A1001E2F7B6E00F30FB1 /* schedule_image_sun-high.png in Resources */ = {isa = PBXBuildFile; fileRef = 24F2A0F01E2F7B6E00F30FB1 /* schedule_image_sun-high.png */; };
+		24F2A1011E2F7B6E00F30FB1 /* schedule_image_sun-high@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 24F2A0F11E2F7B6E00F30FB1 /* schedule_image_sun-high@2x.png */; };
+		24F2A1021E2F7B6E00F30FB1 /* KPTimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F2A0F31E2F7B6E00F30FB1 /* KPTimePicker.m */; };
+		24F2A1061E2F7CBC00F30FB1 /* KPReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F2A1051E2F7CBC00F30FB1 /* KPReminderViewController.m */; };
 		AA046577A8286B52DB0532E7 /* libPods-Keeping.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58B3856F487D477013388BEE /* libPods-Keeping.a */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +97,8 @@
 		249AE3241E2DEE7700F704F8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		249AE3271E2DEE7700F704F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		249AE3291E2DEE7700F704F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		24DCF1881E3094050097C250 /* DateUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateUtil.h; sourceTree = "<group>"; };
+		24DCF1891E3094050097C250 /* DateUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateUtil.m; sourceTree = "<group>"; };
 		24F2A0C11E2F371B00F30FB1 /* UIView+MJAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJAlertView.h"; sourceTree = "<group>"; };
 		24F2A0C21E2F371B00F30FB1 /* UIView+MJAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJAlertView.m"; sourceTree = "<group>"; };
 		24F2A0C91E2F383A00F30FB1 /* KPTaskTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KPTaskTableViewCell.xib; sourceTree = "<group>"; };
@@ -94,6 +113,25 @@
 		24F2A0D81E2F489100F30FB1 /* KPSchemeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPSchemeTableViewCell.h; sourceTree = "<group>"; };
 		24F2A0D91E2F489100F30FB1 /* KPSchemeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPSchemeTableViewCell.m; sourceTree = "<group>"; };
 		24F2A0DA1E2F489100F30FB1 /* KPSchemeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KPSchemeTableViewCell.xib; sourceTree = "<group>"; };
+		24F2A0E21E2F7B6E00F30FB1 /* Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Categories.h; sourceTree = "<group>"; };
+		24F2A0E31E2F7B6E00F30FB1 /* Categories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Categories.m; sourceTree = "<group>"; };
+		24F2A0E51E2F7B6E00F30FB1 /* checkmark_icon_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark_icon_white.png; sourceTree = "<group>"; };
+		24F2A0E61E2F7B6E00F30FB1 /* checkmark_icon_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkmark_icon_white@2x.png"; sourceTree = "<group>"; };
+		24F2A0E71E2F7B6E00F30FB1 /* picker_wheel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picker_wheel@2x.png"; sourceTree = "<group>"; };
+		24F2A0E81E2F7B6E00F30FB1 /* picker_wheel_ip4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = picker_wheel_ip4.png; sourceTree = "<group>"; };
+		24F2A0E91E2F7B6E00F30FB1 /* picker_wheel_ip4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picker_wheel_ip4@2x.png"; sourceTree = "<group>"; };
+		24F2A0EA1E2F7B6E00F30FB1 /* round_backarrow_big-high.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "round_backarrow_big-high.png"; sourceTree = "<group>"; };
+		24F2A0EB1E2F7B6E00F30FB1 /* round_backarrow_big-high@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "round_backarrow_big-high@2x.png"; sourceTree = "<group>"; };
+		24F2A0EC1E2F7B6E00F30FB1 /* round_backarrow_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = round_backarrow_big.png; sourceTree = "<group>"; };
+		24F2A0ED1E2F7B6E00F30FB1 /* round_backarrow_big@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "round_backarrow_big@2x.png"; sourceTree = "<group>"; };
+		24F2A0EE1E2F7B6E00F30FB1 /* schedule_image_moon-high.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "schedule_image_moon-high.png"; sourceTree = "<group>"; };
+		24F2A0EF1E2F7B6E00F30FB1 /* schedule_image_moon-high@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "schedule_image_moon-high@2x.png"; sourceTree = "<group>"; };
+		24F2A0F01E2F7B6E00F30FB1 /* schedule_image_sun-high.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "schedule_image_sun-high.png"; sourceTree = "<group>"; };
+		24F2A0F11E2F7B6E00F30FB1 /* schedule_image_sun-high@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "schedule_image_sun-high@2x.png"; sourceTree = "<group>"; };
+		24F2A0F21E2F7B6E00F30FB1 /* KPTimePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPTimePicker.h; sourceTree = "<group>"; };
+		24F2A0F31E2F7B6E00F30FB1 /* KPTimePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPTimePicker.m; sourceTree = "<group>"; };
+		24F2A1041E2F7CBC00F30FB1 /* KPReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPReminderViewController.h; sourceTree = "<group>"; };
+		24F2A1051E2F7CBC00F30FB1 /* KPReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPReminderViewController.m; sourceTree = "<group>"; };
 		58B3856F487D477013388BEE /* libPods-Keeping.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Keeping.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		90B7675F597B76B950B77B8B /* Pods-Keeping.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keeping.release.xcconfig"; path = "Pods/Target Support Files/Pods-Keeping/Pods-Keeping.release.xcconfig"; sourceTree = "<group>"; };
 		D878305BCC1A269899CF1ACC /* Pods-Keeping.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keeping.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Keeping/Pods-Keeping.debug.xcconfig"; sourceTree = "<group>"; };
@@ -153,6 +191,8 @@
 				24699EFC1E2F161F0092FBED /* KPTaskAddTableViewController.h */,
 				24699EFD1E2F161F0092FBED /* KPTaskAddTableViewController.m */,
 				24F2A0DD1E2F489500F30FB1 /* Scheme */,
+				24F2A1041E2F7CBC00F30FB1 /* KPReminderViewController.h */,
+				24F2A1051E2F7CBC00F30FB1 /* KPReminderViewController.m */,
 			);
 			name = Task;
 			sourceTree = "<group>";
@@ -205,10 +245,7 @@
 				2429CBE61E2E499A0027DD37 /* KPSeparatorView.h */,
 				2429CBE71E2E499A0027DD37 /* KPSeparatorView.m */,
 				2429CBE91E2E49A60027DD37 /* KPSeparatorView.xib */,
-				24F2A0C11E2F371B00F30FB1 /* UIView+MJAlertView.h */,
-				24F2A0C21E2F371B00F30FB1 /* UIView+MJAlertView.m */,
-				2429CBF11E2E4E750027DD37 /* Utilities.h */,
-				2429CBF21E2E4E750027DD37 /* Utilities.m */,
+				24DCF18B1E30940C0097C250 /* Utilities */,
 				249AE31E1E2DEE7700F704F8 /* Main.storyboard */,
 				249AE3241E2DEE7700F704F8 /* Assets.xcassets */,
 				24699F041E2F23C60092FBED /* Navigation.xcassets */,
@@ -223,10 +260,23 @@
 		249AE3151E2DEE7700F704F8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				24F2A1031E2F7B7700F30FB1 /* MJAlertView */,
+				24F2A0E11E2F7B6E00F30FB1 /* KPTimePicker */,
 				2429CBF71E2E571A0027DD37 /* 方正书宋简体.ttf */,
 				249AE3161E2DEE7700F704F8 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		24DCF18B1E30940C0097C250 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				24DCF1881E3094050097C250 /* DateUtil.h */,
+				24DCF1891E3094050097C250 /* DateUtil.m */,
+				2429CBF11E2E4E750027DD37 /* Utilities.h */,
+				2429CBF21E2E4E750027DD37 /* Utilities.m */,
+			);
+			name = Utilities;
 			sourceTree = "<group>";
 		};
 		24F2A0DD1E2F489500F30FB1 /* Scheme */ = {
@@ -241,6 +291,47 @@
 				24F2A0DA1E2F489100F30FB1 /* KPSchemeTableViewCell.xib */,
 			);
 			name = Scheme;
+			sourceTree = "<group>";
+		};
+		24F2A0E11E2F7B6E00F30FB1 /* KPTimePicker */ = {
+			isa = PBXGroup;
+			children = (
+				24F2A0E21E2F7B6E00F30FB1 /* Categories.h */,
+				24F2A0E31E2F7B6E00F30FB1 /* Categories.m */,
+				24F2A0E41E2F7B6E00F30FB1 /* Images */,
+				24F2A0F21E2F7B6E00F30FB1 /* KPTimePicker.h */,
+				24F2A0F31E2F7B6E00F30FB1 /* KPTimePicker.m */,
+			);
+			path = KPTimePicker;
+			sourceTree = "<group>";
+		};
+		24F2A0E41E2F7B6E00F30FB1 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				24F2A0E51E2F7B6E00F30FB1 /* checkmark_icon_white.png */,
+				24F2A0E61E2F7B6E00F30FB1 /* checkmark_icon_white@2x.png */,
+				24F2A0E71E2F7B6E00F30FB1 /* picker_wheel@2x.png */,
+				24F2A0E81E2F7B6E00F30FB1 /* picker_wheel_ip4.png */,
+				24F2A0E91E2F7B6E00F30FB1 /* picker_wheel_ip4@2x.png */,
+				24F2A0EA1E2F7B6E00F30FB1 /* round_backarrow_big-high.png */,
+				24F2A0EB1E2F7B6E00F30FB1 /* round_backarrow_big-high@2x.png */,
+				24F2A0EC1E2F7B6E00F30FB1 /* round_backarrow_big.png */,
+				24F2A0ED1E2F7B6E00F30FB1 /* round_backarrow_big@2x.png */,
+				24F2A0EE1E2F7B6E00F30FB1 /* schedule_image_moon-high.png */,
+				24F2A0EF1E2F7B6E00F30FB1 /* schedule_image_moon-high@2x.png */,
+				24F2A0F01E2F7B6E00F30FB1 /* schedule_image_sun-high.png */,
+				24F2A0F11E2F7B6E00F30FB1 /* schedule_image_sun-high@2x.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		24F2A1031E2F7B7700F30FB1 /* MJAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				24F2A0C11E2F371B00F30FB1 /* UIView+MJAlertView.h */,
+				24F2A0C21E2F371B00F30FB1 /* UIView+MJAlertView.m */,
+			);
+			name = MJAlertView;
 			sourceTree = "<group>";
 		};
 		3B36A3747ED818A6EEF990CE /* Frameworks */ = {
@@ -323,14 +414,27 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24F2A0F91E2F7B6E00F30FB1 /* picker_wheel_ip4@2x.png in Resources */,
+				24F2A0FE1E2F7B6E00F30FB1 /* schedule_image_moon-high.png in Resources */,
+				24F2A0F51E2F7B6E00F30FB1 /* checkmark_icon_white.png in Resources */,
 				2429CBEF1E2E4A9B0027DD37 /* KPTodayTableViewCell.xib in Resources */,
 				24F2A0CB1E2F383A00F30FB1 /* KPTaskTableViewCell.xib in Resources */,
 				249AE3281E2DEE7700F704F8 /* LaunchScreen.storyboard in Resources */,
+				24F2A1001E2F7B6E00F30FB1 /* schedule_image_sun-high.png in Resources */,
 				249AE3251E2DEE7700F704F8 /* Assets.xcassets in Resources */,
+				24F2A1011E2F7B6E00F30FB1 /* schedule_image_sun-high@2x.png in Resources */,
+				24F2A0FC1E2F7B6E00F30FB1 /* round_backarrow_big.png in Resources */,
+				24F2A0FF1E2F7B6E00F30FB1 /* schedule_image_moon-high@2x.png in Resources */,
+				24F2A0F61E2F7B6E00F30FB1 /* checkmark_icon_white@2x.png in Resources */,
+				24F2A0F71E2F7B6E00F30FB1 /* picker_wheel@2x.png in Resources */,
+				24F2A0FD1E2F7B6E00F30FB1 /* round_backarrow_big@2x.png in Resources */,
 				249AE3201E2DEE7700F704F8 /* Main.storyboard in Resources */,
 				24F2A0DC1E2F489100F30FB1 /* KPSchemeTableViewCell.xib in Resources */,
 				24699F051E2F23C60092FBED /* Navigation.xcassets in Resources */,
+				24F2A0FA1E2F7B6E00F30FB1 /* round_backarrow_big-high.png in Resources */,
 				2429CBF81E2E571A0027DD37 /* 方正书宋简体.ttf in Resources */,
+				24F2A0FB1E2F7B6E00F30FB1 /* round_backarrow_big-high@2x.png in Resources */,
+				24F2A0F81E2F7B6E00F30FB1 /* picker_wheel_ip4.png in Resources */,
 				2429CBEA1E2E49A60027DD37 /* KPSeparatorView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -392,15 +496,18 @@
 			files = (
 				24F2A0D41E2F481000F30FB1 /* KPSchemeTableViewController.m in Sources */,
 				24F2A0DB1E2F489100F30FB1 /* KPSchemeTableViewCell.m in Sources */,
+				24F2A1021E2F7B6E00F30FB1 /* KPTimePicker.m in Sources */,
 				24699F031E2F213D0092FBED /* KPNavigationViewController.m in Sources */,
 				2429CBFE1E2E61430027DD37 /* KPCalViewController.m in Sources */,
 				2436F8271E2F2C4B00C2984A /* TaskManager.m in Sources */,
+				24DCF18A1E3094050097C250 /* DateUtil.m in Sources */,
 				24F2A0D11E2F3F1800F30FB1 /* DBManager.m in Sources */,
 				249AE31A1E2DEE7700F704F8 /* AppDelegate.m in Sources */,
 				249AE3171E2DEE7700F704F8 /* main.m in Sources */,
 				24F2A0D71E2F482100F30FB1 /* KPSchemeManager.m in Sources */,
 				2429CBEE1E2E4A9B0027DD37 /* KPTodayTableViewCell.m in Sources */,
 				2429CBD41E2DF5E60027DD37 /* KPTodayTableViewController.m in Sources */,
+				24F2A0F41E2F7B6E00F30FB1 /* Categories.m in Sources */,
 				2429CBFB1E2E5D510027DD37 /* KPTabBarViewController.m in Sources */,
 				2429CBF31E2E4E750027DD37 /* Utilities.m in Sources */,
 				24699EFE1E2F161F0092FBED /* KPTaskAddTableViewController.m in Sources */,
@@ -409,6 +516,7 @@
 				2429CBD71E2DF6080027DD37 /* KPTaskTableViewController.m in Sources */,
 				24F2A0CE1E2F38C700F30FB1 /* KPTaskTableViewCell.m in Sources */,
 				24F2A0C31E2F371B00F30FB1 /* UIView+MJAlertView.m in Sources */,
+				24F2A1061E2F7CBC00F30FB1 /* KPReminderViewController.m in Sources */,
 				249AE3231E2DEE7700F704F8 /* Keeping.xcdatamodeld in Sources */,
 				2429CBE81E2E499A0027DD37 /* KPSeparatorView.m in Sources */,
 			);

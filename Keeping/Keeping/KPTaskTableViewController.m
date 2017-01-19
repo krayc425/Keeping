@@ -13,6 +13,8 @@
 #import "KPTaskTableViewCell.h"
 #import "UIScrollView+EmptyDataSet.h"
 #import "Utilities.h"
+#import "DateTools.h"
+#import "DateUtil.h"
 
 @interface KPTaskTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
@@ -56,13 +58,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    Task *t = self.taskArr[indexPath.row];
-    if(t.appScheme != NULL){
-        NSString *s = t.appScheme.allValues[0];
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:s]];
-    }
-    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -78,26 +73,30 @@
     Task *t = self.taskArr[indexPath.row];
     [cell.nameLabel setText:t.name];
     
-    if(t.appScheme != NULL){
-        NSDictionary *d = t.appScheme;
-        NSString *s = d.allKeys[0];
-        [cell.accessoryLabel setText:[NSString stringWithFormat:@"去 %@", s]];
-        [cell.accessoryLabel setHidden:NO];
-    }else{
-        [cell.accessoryLabel setHidden:YES];
-    }
-    
+    NSString *reminderDayStr = @"";
     if([t.reminderDays count] > 0){
         NSArray *arr = t.reminderDays;
-        NSString *s = @"";
         for (NSNumber *i in arr) {
-            s = [s stringByAppendingString:[NSString stringWithFormat:@"星期 %d, ", [i intValue]]];
+            reminderDayStr = [reminderDayStr stringByAppendingString:[NSString stringWithFormat:@"%@, ", [DateUtil getWeekdayStr:[i intValue]]]];
         }
-        [cell.daysLabel setText:[s substringToIndex:s.length - 2]];
+        reminderDayStr = [reminderDayStr substringToIndex:reminderDayStr.length - 2];
         [cell.daysLabel setHidden:NO];
     }else{
         [cell.daysLabel setHidden:YES];
     }
+    
+    NSString *reminderTimeStr = @"";
+    if(t.reminderTime != NULL){
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"HH:mm"];
+        reminderTimeStr = [reminderTimeStr stringByAppendingString:@", "];
+        reminderTimeStr = [reminderTimeStr stringByAppendingString:[dateFormatter stringFromDate:t.reminderTime]];
+    }
+    
+    [cell.daysLabel setText:[reminderDayStr stringByAppendingString:reminderTimeStr]];
+    
+    NSString *dateStr =  [t.addDate formattedDateWithFormat:@"YYYY/MM/dd HH:mm:ss"];
+    NSLog(@"add date %@", [t.addDate description]);
     
     return cell;
 }
@@ -130,10 +129,7 @@
 
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
     if([segue.identifier isEqualToString:@"addTaskSegue"]){
         
     }

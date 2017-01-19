@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'C42630B2C5CE9EBC52F895E367A87286'
-               BlueprintName = 'HSDatePickerViewController'
+               BlueprintIdentifier = '107FC511B01CDA14F01A7A647152DEB8'
+               BlueprintName = 'BEMCheckBox'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libHSDatePickerViewController.a'>
+               BuildableName = 'libBEMCheckBox.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
