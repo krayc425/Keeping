@@ -14,4 +14,6 @@
 
 + (NSString *)transformDate:(NSDate *)date;
 
++ (NSString *)getTodayDate;
+
 @end

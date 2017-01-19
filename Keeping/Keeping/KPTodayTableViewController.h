@@ -11,6 +11,7 @@
 
 @interface KPTodayTableViewController : UITableViewController <CheckTaskDelegate>
 
+@property (nonnull, nonatomic) IBOutlet UILabel *dateLabel;
 @property (nonnull, nonatomic) IBOutlet UILabel *progressLabel;
 
 @property (nonnull, nonatomic) NSMutableArray *unfinishedTaskArr;

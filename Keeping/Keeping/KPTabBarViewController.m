@@ -21,7 +21,7 @@
     self.delegate = self;
     
     self.kpTodayTableViewController = self.viewControllers[0];
-    self.kpTabBarViewController = self.viewControllers[1];
+    self.kpTaskTableViewController = self.viewControllers[1];
     
     [self.navigationItem setTitle:@"今日"];
     
@@ -31,7 +31,7 @@
     [[self.tabBar.items objectAtIndex:0] setImage:[UIImage imageNamed:@""]];
     [[self.tabBar.items objectAtIndex:1] setTitle:@"任务"];
     [[self.tabBar.items objectAtIndex:1] setImage:[UIImage imageNamed:@""]];
-    [[self.tabBar.items objectAtIndex:2] setTitle:@"日历"];
+    [[self.tabBar.items objectAtIndex:2] setTitle:@"统计"];
     [[self.tabBar.items objectAtIndex:2] setImage:[UIImage imageNamed:@""]];
     [[self.tabBar.items objectAtIndex:3] setTitle:@"设置"];
     [[self.tabBar.items objectAtIndex:3] setImage:[UIImage imageNamed:@""]];
@@ -62,7 +62,7 @@
         {
             [self.navigationItem setTitle:@"任务"];
             
-            UIBarButtonItem *addItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_ADD"] style:UIBarButtonItemStylePlain target:self.kpTabBarViewController action:@selector(addAction:)];
+            UIBarButtonItem *addItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_ADD"] style:UIBarButtonItemStylePlain target:self.kpTaskTableViewController action:@selector(addAction:)];
             self.navigationItem.rightBarButtonItems = @[addItem];
         }
             break;

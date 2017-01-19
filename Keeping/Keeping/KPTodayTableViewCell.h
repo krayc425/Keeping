@@ -14,7 +14,7 @@
 /**
  此方为必须实现的协议方法，用来传值
  */
-- (void)checkTask:(UITableViewCell *)cell;
+- (void)checkTask:(UITableViewCell *_Nonnull)cell;
 
 @end
 

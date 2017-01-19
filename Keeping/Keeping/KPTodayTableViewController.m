@@ -24,6 +24,7 @@
     [super viewDidLoad];
     
     [self.progressLabel setFont:[UIFont fontWithName:[Utilities getFont] size:40.0f]];
+    [self.dateLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
     /*
      NSArray *fontFamilies = [UIFont familyNames];
      for (int i = 0; i < [fontFamilies count]; i++){
@@ -35,6 +36,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    [self.dateLabel setText:[DateUtil getTodayDate]];
     [self loadTasks];
 }
 
@@ -187,7 +189,12 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if(indexPath.section != 0){
-        Task *t = self.unfinishedTaskArr[indexPath.row];
+        Task *t;
+        if(indexPath.section == 1){
+            t = self.unfinishedTaskArr[indexPath.row];
+        }else if(indexPath.section == 2){
+            t = self.finishedTaskArr[indexPath.row];
+        }
         if(t.appScheme != NULL){
             NSString *s = t.appScheme.allValues[0];
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:s]];

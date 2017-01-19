@@ -9,6 +9,7 @@
 #import "KPSchemeTableViewController.h"
 #import "KPSchemeManager.h"
 #import "KPSchemeTableViewCell.h"
+#import "Utilities.h"
 
 @interface KPSchemeTableViewController ()
 
@@ -19,6 +20,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationItem setTitle:@"选择 APP"];
+    
+    [self.insLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,29 +39,53 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[KPSchemeManager getSchemeArr] count];
+    if(section == 0){
+        return [[KPSchemeManager getSchemeArr] count];
+    }else{
+        return 1;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellIdentifier = @"KPSchemeTableViewCell";
-    UINib *nib = [UINib nibWithNibName:@"KPSchemeTableViewCell" bundle:nil];
-    [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
-    KPSchemeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    
-    NSDictionary *dict = [[KPSchemeManager getSchemeArr] objectAtIndex:indexPath.row];
-    [cell.appNameLabel setText:dict.allKeys[0]];
-    
-    if(indexPath == self.selectedPath){
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    if(indexPath.section == 0){
+        static NSString *cellIdentifier = @"KPSchemeTableViewCell";
+        UINib *nib = [UINib nibWithNibName:@"KPSchemeTableViewCell" bundle:nil];
+        [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
+        KPSchemeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+        
+        NSDictionary *dict = [[KPSchemeManager getSchemeArr] objectAtIndex:indexPath.row];
+        [cell.appNameLabel setText:dict.allKeys[0]];
+        
+        if(indexPath == self.selectedPath){
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }else{
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
+        
+        return cell;
     }else{
-        cell.accessoryType = UITableViewCellAccessoryNone;
+        return [super tableView:tableView cellForRowAtIndexPath:indexPath];
     }
-    
-    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(indexPath.section == 1){
+        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    }else{
+        return 44;
+    }
+}
+
+- (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0) {
+        return 10;
+    }else{
+        return [super tableView:tableView indentationLevelForRowAtIndexPath:indexPath];
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

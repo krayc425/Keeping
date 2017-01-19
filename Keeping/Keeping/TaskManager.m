@@ -190,4 +190,9 @@ static TaskManager* _instance = nil;
     return taskArr;
 }
 
+- (NSNumber *)punchNumberOfTask:(Task *)task{
+    
+    return [NSNumber numberWithBool:-1];
+}
+
 @end

@@ -17,6 +17,7 @@
 @property (nonnull, nonatomic) IBOutlet UILabel *reminderLabel;
 @property (nonnull, nonatomic) IBOutlet UISwitch *reminderSwitch;
 @property (nonnull, nonatomic) IBOutlet UILabel *appNameLabel;
+@property (nonnull, nonatomic) IBOutlet UIButton *allButton;
 
 @property (nonnull, nonatomic) NSMutableArray *selectedWeekdayArr;
 @property (nonatomic, nullable) NSDictionary *selectedApp;

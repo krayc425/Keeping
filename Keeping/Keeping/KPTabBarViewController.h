@@ -14,6 +14,6 @@
 @interface KPTabBarViewController : UITabBarController <UITabBarControllerDelegate>
 
 @property (nonatomic, nonnull) KPTodayTableViewController *kpTodayTableViewController;
-@property (nonatomic, nonnull) KPTabBarViewController *kpTabBarViewController;
+@property (nonatomic, nonnull) KPTaskTableViewController *kpTaskTableViewController;
 
 @end

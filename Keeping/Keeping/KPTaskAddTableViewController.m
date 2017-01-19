@@ -34,6 +34,7 @@
     //提醒开关
     [self.reminderSwitch setOn:NO];
     [self.reminderSwitch setTintColor:[Utilities getColor]];
+    [self.reminderSwitch setOnTintColor:[Utilities getColor]];
     [self.reminderSwitch addTarget:self action:@selector(showReminderPickerAction:) forControlEvents:UIControlEventValueChanged];
     //星期几选项按钮
     for(UIButton *button in self.weekDayStack.subviews){
@@ -85,10 +86,37 @@
     }
     buttonImg = [buttonImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [btn setBackgroundImage:buttonImg forState:UIControlStateNormal];
+    
+    if([self.selectedWeekdayArr count] > 0){
+        [self.allButton setTitle:@"清空" forState: UIControlStateNormal];
+    }else{
+        [self.allButton setTitle:@"全选" forState: UIControlStateNormal];
+    }
 }
 
 - (IBAction)selectAllWeekdayAction:(id)sender{
-    
+    UIButton *btn = (UIButton *)sender;
+    if([btn.titleLabel.text isEqualToString:@"全选"]){
+        [self.allButton setTitle:@"清空" forState: UIControlStateNormal];
+        for(UIButton *button in self.weekDayStack.subviews){
+            if(button.tag != -1){
+                NSNumber *tag = [NSNumber numberWithInteger:button.tag];
+                if(![self.selectedWeekdayArr containsObject:tag]){
+                    [self selectWeekdayAction:button];
+                }
+            }
+        }
+    }else if([btn.titleLabel.text isEqualToString:@"清空"]){
+        [self.allButton setTitle:@"全选" forState: UIControlStateNormal];
+        for(UIButton *button in self.weekDayStack.subviews){
+            if(button.tag != -1){
+                NSNumber *tag = [NSNumber numberWithInteger:button.tag];
+                if([self.selectedWeekdayArr containsObject:tag]){
+                    [self selectWeekdayAction:button];
+                }
+            }
+        }
+    }
 }
 
 - (void)doneAction:(id)sender{
@@ -223,11 +251,16 @@
 #pragma mark - Reminder Delegate
 
 - (void)passTime:(NSDate *)date{
-    self.reminderTime = date;
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"HH:mm"];
-    NSString *currentDateStr = [dateFormatter stringFromDate:date];
-    [self.reminderLabel setText:currentDateStr];
+    if(date == nil){
+        [self.reminderSwitch setOn:NO animated:YES];
+        [self.reminderLabel setText:@"无"];
+    }else{
+        self.reminderTime = date;
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"HH:mm"];
+        NSString *currentDateStr = [dateFormatter stringFromDate:date];
+        [self.reminderLabel setText:currentDateStr];
+    }
     [self.tableView reloadData];
 }
 

@@ -76,10 +76,20 @@
     NSString *reminderDayStr = @"";
     if([t.reminderDays count] > 0){
         NSArray *arr = t.reminderDays;
-        for (NSNumber *i in arr) {
-            reminderDayStr = [reminderDayStr stringByAppendingString:[NSString stringWithFormat:@"%@, ", [DateUtil getWeekdayStr:[i intValue]]]];
+        
+        if([arr isEqualToArray:@[@(1),@(2),@(3),@(4),@(5),@(6),@(7)]]){
+            reminderDayStr = @"每天";
+        }else if([arr isEqualToArray:@[@(2),@(3),@(4),@(5),@(6)]]){
+            reminderDayStr = @"工作日";
+        }else if([arr isEqualToArray:@[@(1),@(7)]]){
+            reminderDayStr = @"周末";
+        } else{
+            for (NSNumber *i in arr) {
+                reminderDayStr = [reminderDayStr stringByAppendingString:[NSString stringWithFormat:@"%@, ", [DateUtil getWeekdayStr:[i intValue]]]];
+            }
+            reminderDayStr = [reminderDayStr substringToIndex:reminderDayStr.length - 2];
         }
-        reminderDayStr = [reminderDayStr substringToIndex:reminderDayStr.length - 2];
+        
         [cell.daysLabel setHidden:NO];
     }else{
         [cell.daysLabel setHidden:YES];
@@ -96,7 +106,7 @@
     [cell.daysLabel setText:[reminderDayStr stringByAppendingString:reminderTimeStr]];
     
     NSString *dateStr =  [t.addDate formattedDateWithFormat:@"YYYY/MM/dd HH:mm:ss"];
-    NSLog(@"add date %@", [t.addDate description]);
+    
     
     return cell;
 }

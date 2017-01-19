@@ -27,28 +27,12 @@
 #pragma mark - Date Delegate
 
 - (void)timePicker:(KPTimePicker*)timePicker selectedDate:(NSDate *)date{
-    NSInteger hour = date.hour;
-    NSInteger minute = date.minute;
-    NSLog(@"%@", [NSString stringWithFormat:@"%ld:%ld", (long)hour, (long)minute]);
-//    [self.reminderLabel setText:[NSString stringWithFormat:@"%ld:%ld", (long)hour, (long)minute]];
     [self.delegate passTime:date];
-//    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -8,13 +8,12 @@
 
 #import "KPCalViewController.h"
 #import "UIScrollView+EmptyDataSet.h"
-#import "KPTaskTableViewCell.h"
 #import "Task.h"
 #import "TaskManager.h"
 #import "Utilities.h"
 #import "DateTools.h"
 #import "DateUtil.h"
-#import "KPTodayTableViewCell.h"
+#import "KPCalTaskTableViewCell.h"
 
 @interface KPCalViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
@@ -27,26 +26,26 @@
     view.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.view = view;
     
-    FSCalendar *calendar = [[FSCalendar alloc] initWithFrame:CGRectMake(0, 64, view.frame.size.width, 300)];
-    calendar.dataSource = self;
-    calendar.delegate = self;
-    calendar.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:calendar];
-    self.calendar = calendar;
-    
+    self.calendar = [[FSCalendar alloc] initWithFrame:CGRectMake(0, 64, view.frame.size.width, 300)];
+    self.calendar.dataSource = self;
+    self.calendar.delegate = self;
+    self.calendar.backgroundColor = [UIColor whiteColor];
     self.calendar.appearance.headerDateFormat = @"yyyy年MM月";
     self.calendar.appearance.caseOptions = FSCalendarCaseOptionsHeaderUsesUpperCase | FSCalendarCaseOptionsWeekdayUsesSingleUpperCase;
+    self.calendar.appearance.titleFont = [UIFont fontWithName:[Utilities getFont] size:10.0];
+    self.calendar.appearance.headerTitleFont = [UIFont fontWithName:[Utilities getFont] size:15.0];
+    self.calendar.appearance.weekdayFont = [UIFont fontWithName:[Utilities getFont] size:10.0];
+    self.calendar.appearance.subtitleFont = [UIFont fontWithName:[Utilities getFont] size:10.0];
+    [self.view addSubview:self.calendar];
     
-    self.taskTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 300 + 64, view.frame.size.width, view.frame.size.height - 300 - 64 - 44) style:UITableViewStyleGrouped];
+    self.taskTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 300 + 64, view.frame.size.width, view.frame.size.height - 300 - 64 - 44 - 6) style:UITableViewStyleGrouped];
     self.taskTableView.delegate = self;
     self.taskTableView.dataSource = self;
     self.taskTableView.backgroundColor = [UIColor whiteColor];
-    
     self.taskTableView.emptyDataSetSource = self;
     self.taskTableView.emptyDataSetDelegate = self;
     self.taskTableView.tableHeaderView = [UIView new];
     self.taskTableView.tableFooterView = [UIView new];
-    
     [self.view addSubview:self.taskTableView];
 }
 
@@ -87,16 +86,21 @@
     return 60.0f;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.00001f;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 0.00001f;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellIdentifier = @"KPTodayTableViewCell";
-    UINib *nib = [UINib nibWithNibName:@"KPTodayTableViewCell" bundle:nil];
+    static NSString *cellIdentifier = @"KPCalTaskTableViewCell";
+    UINib *nib = [UINib nibWithNibName:@"KPCalTaskTableViewCell" bundle:nil];
     [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
-    KPTodayTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    KPCalTaskTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     
     Task *t = [self.taskArr objectAtIndex:indexPath.row];
-    
-    //TODO: cell userinteraction?
-    [cell setUserInteractionEnabled:NO];
     
     if([t.punchDateArr containsObject:[DateUtil transformDate:self.selectedDate]]){
         [cell setIsFinished:YES];
@@ -105,14 +109,7 @@
     }
     [cell.taskNameLabel setText:t.name];
     
-    if(t.appScheme != NULL){
-        NSDictionary *d = t.appScheme;
-        NSString *s = d.allKeys[0];
-        [cell.accessoryLabel setText:[NSString stringWithFormat:@"启动 %@", s]];
-        [cell.accessoryLabel setHidden:NO];
-    }else{
-        [cell.accessoryLabel setHidden:YES];
-    }
+    [cell.punchDaysLabel setText:[NSString stringWithFormat:@"已完成 %lu 天", (unsigned long)[t.punchDateArr count]]];
     
     return cell;
 }

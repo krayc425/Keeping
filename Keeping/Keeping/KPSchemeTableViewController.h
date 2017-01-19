@@ -23,4 +23,6 @@
 
 @property (nonatomic, nullable) NSIndexPath *selectedPath;
 
+@property (nonatomic, nonnull) IBOutlet UILabel *insLabel;
+
 @end
