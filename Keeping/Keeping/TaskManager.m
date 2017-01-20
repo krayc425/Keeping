@@ -89,6 +89,11 @@ static TaskManager* _instance = nil;
             ];
 }
 
+//TODO
+- (BOOL)updateTask:(Task *_Nonnull)task{
+    return YES;
+}
+
 - (BOOL)deleteTask:(Task *_Nonnull)task{
     [UNManager deleteLocalizedUserNotification:task];
     return [[[DBManager shareInstance] getDB] executeUpdate:

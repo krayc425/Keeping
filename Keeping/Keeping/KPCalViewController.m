@@ -38,7 +38,6 @@
     self.calendar.backgroundColor = [UIColor whiteColor];
     self.calendar.appearance.headerMinimumDissolvedAlpha = 0;
     self.calendar.appearance.headerDateFormat = @"yyyy年MM月";
-    self.calendar.appearance.caseOptions = FSCalendarCaseOptionsHeaderUsesUpperCase | FSCalendarCaseOptionsWeekdayUsesSingleUpperCase;
     self.calendar.appearance.titleFont = [UIFont fontWithName:[Utilities getFont] size:12.0];
     self.calendar.appearance.headerTitleFont = [UIFont fontWithName:[Utilities getFont] size:15.0];
     self.calendar.appearance.weekdayFont = [UIFont fontWithName:[Utilities getFont] size:15.0];

@@ -46,8 +46,10 @@
             [button.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0]];
         }
     }
-    self.selectedWeekdayArr = [[NSMutableArray alloc] init];
     
+    self.selectedWeekdayArr = [[NSMutableArray alloc] init];
+//    [self.selectedWeekdayArr addObject:[NSNumber numberWithInteger:[[NSDate date] weekday]]];
+//    [self loadTasksOfWeekdays:self.selectedWeekdayArr];
     [self selectAllWeekDay];
 }
 

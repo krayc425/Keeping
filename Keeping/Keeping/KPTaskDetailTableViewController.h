@@ -8,9 +8,21 @@
 
 #import <UIKit/UIKit.h>
 #import "Task.h"
+#import "FSCalendar.h"
 
-@interface KPTaskDetailTableViewController : UITableViewController
+@interface KPTaskDetailTableViewController : UITableViewController <FSCalendarDataSource, FSCalendarDelegate>
 
 @property (nonnull, nonatomic) Task *task;
+
+@property (nonnull, nonatomic) IBOutlet UITextField *taskNameField;
+@property (nonnull, nonatomic) IBOutlet UIStackView *weekDayStack;
+@property (nonnull, nonatomic) IBOutlet UIButton *allButton;
+
+@property (nonnull, nonatomic) NSMutableArray *selectedWeekdayArr;
+
+@property (nonnull, nonatomic) IBOutlet FSCalendar *calendar;
+@property (nonnull, nonatomic) UIButton *previousButton;
+@property (nonnull, nonatomic) UIButton *nextButton;
+@property (nonnull, nonatomic) NSCalendar *gregorian;
 
 @end

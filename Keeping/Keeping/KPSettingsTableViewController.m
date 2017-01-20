@@ -7,8 +7,7 @@
 //
 
 #import "KPSettingsTableViewController.h"
-
-#define APP_ID @""
+#import "Utilities.h"
 
 @interface KPSettingsTableViewController ()
 
@@ -58,6 +57,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if(indexPath.section == 1 && indexPath.row == 0){
+        [self scoreApp];
+    }else if(indexPath.section == 1 && indexPath.row == 1){
+        [self sendBugEmail];
+    }
 }
 
 #pragma mark - Send Email
@@ -79,7 +83,7 @@
     MFMailComposeViewController *wMailViewController = [[MFMailComposeViewController alloc] init];
     wMailViewController.mailComposeDelegate = self;
     
-    NSString *title = [NSString stringWithFormat:@"Keeping Feedbacks"];
+    NSString *title = [NSString stringWithFormat:@"Keeping! Feedbacks"];
     [wMailViewController setSubject:title];
     
     [wMailViewController setToRecipients:[NSArray arrayWithObject:@"krayc@foxmail.com"]];
@@ -88,7 +92,7 @@
     NSString *phoneModel  = [[UIDevice currentDevice] model];
     NSString *appVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     
-    NSString *emailBody = [NSMutableString stringWithFormat:@"Keeping\n\nBug提交:\n\n意见或建议:\n\n您的大名:\n\n"];
+    NSString *emailBody = [NSMutableString stringWithFormat:@"Keeping!\n\nBug提交:\n\n意见或建议:\n\n您的大名:\n\n"];
     emailBody = [emailBody stringByAppendingString: @"Phone Model:"];
     emailBody = [emailBody stringByAppendingString: phoneModel.description];
     emailBody = [emailBody stringByAppendingString: @"\niOS Version:"];
@@ -139,7 +143,7 @@
 #pragma mark - Go to Score
 
 - (void)scoreApp{
-    NSString *str = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%@",APP_ID];
+    NSString *str = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%@", [Utilities getAPPID]];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]
                                        options:@{}
                              completionHandler:nil];

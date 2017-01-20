@@ -7,20 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KPSchemeTableViewController.h"
-#import "KPReminderViewController.h"
 
-@interface KPTaskAddTableViewController : UITableViewController <SchemeDelegate, ReminderDelegate>
+@interface KPTaskAddTableViewController : UITableViewController
 
 @property (nonnull, nonatomic) IBOutlet UITextField *taskNameField;
 @property (nonnull, nonatomic) IBOutlet UIStackView *weekDayStack;
-@property (nonnull, nonatomic) IBOutlet UILabel *reminderLabel;
-@property (nonnull, nonatomic) IBOutlet UISwitch *reminderSwitch;
-@property (nonnull, nonatomic) IBOutlet UILabel *appNameLabel;
 @property (nonnull, nonatomic) IBOutlet UIButton *allButton;
 
 @property (nonnull, nonatomic) NSMutableArray *selectedWeekdayArr;
-@property (nonatomic, nullable) NSDictionary *selectedApp;
-@property (nonatomic, nullable) NSDate *reminderTime;
 
 @end
