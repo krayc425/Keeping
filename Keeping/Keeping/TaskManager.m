@@ -190,9 +190,17 @@ static TaskManager* _instance = nil;
     return taskArr;
 }
 
-- (NSNumber *)punchNumberOfTask:(Task *)task{
-    
-    return [NSNumber numberWithBool:-1];
+- (int)totalPunchNumberOfTask:(Task *)task{
+    NSDate *date = task.addDate;
+    NSArray *weekDays = task.reminderDays;
+    int count = 0;
+    while (date.day != [[[NSDate date] dateByAddingDays:1] day] ) {
+        if([weekDays containsObject:@(date.weekday)]){
+            count++;
+        }
+        date = [date dateByAddingDays:1];
+    }
+    return count;
 }
 
 @end

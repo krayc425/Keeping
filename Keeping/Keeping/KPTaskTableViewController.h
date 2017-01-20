@@ -12,6 +12,11 @@
 
 @property (nonnull, nonatomic) NSMutableArray *taskArr;
 
+@property (nonnull, nonatomic) IBOutlet UIStackView *weekDayStack;
+@property (nonnull, nonatomic) NSMutableArray *selectedWeekdayArr;
+@property (nonnull, nonatomic) IBOutlet UIButton *allButton;
+
 - (void)addAction:(_Nonnull id)senders;
+- (void)editAction:(_Nonnull id)senders;
 
 @end

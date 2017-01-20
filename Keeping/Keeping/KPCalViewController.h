@@ -12,6 +12,12 @@
 @interface KPCalViewController : UIViewController <FSCalendarDataSource, FSCalendarDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (nonnull, nonatomic) FSCalendar *calendar;
+@property (nonnull, nonatomic) UIButton *previousButton;
+@property (nonnull, nonatomic) UIButton *nextButton;
+@property (nonnull, nonatomic) NSCalendar *gregorian;
+- (void)previousClicked:(_Nonnull id)sender;
+- (void)nextClicked:(_Nonnull id)sender;
+
 @property (nonnull, nonatomic) UITableView *taskTableView;
 
 @property (nonnull, nonatomic) NSDate *selectedDate;

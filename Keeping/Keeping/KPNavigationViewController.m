@@ -18,10 +18,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSDictionary *dicNav = @{NSFontAttributeName:[UIFont fontWithName:[Utilities getFont] size:22.0],NSForegroundColorAttributeName: [UIColor blackColor]};
+    NSDictionary *dicNav = @{
+                             NSFontAttributeName:[UIFont fontWithName:[Utilities getFont] size:22.0],
+                             NSForegroundColorAttributeName: [UIColor whiteColor]
+                             };
     self.navigationBar.titleTextAttributes = dicNav;
     
-    [self.navigationBar setTintColor:[Utilities getColor]];
+    [self.navigationBar setTintColor:[UIColor whiteColor]];
+    [self.navigationBar setBarTintColor:[Utilities getColor]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,6 +41,10 @@
 
 - (void)back{
     [self popViewControllerAnimated:YES];
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
 }
 
 /*

@@ -21,4 +21,6 @@
 - (NSMutableArray *_Nonnull)getTasksOfDate:(NSDate *_Nonnull)date;
 - (BOOL)punchForTask:(Task *_Nonnull)task;
 
+- (int)totalPunchNumberOfTask:(Task *_Nonnull)task;
+
 @end

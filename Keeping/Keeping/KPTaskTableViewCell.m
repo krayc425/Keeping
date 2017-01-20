@@ -16,6 +16,10 @@
     
     [self.nameLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
     [self.daysLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
+    [self.totalDayLabel setFont:[UIFont fontWithName:[Utilities getFont] size:12.0f]];
+    
+    [self.progressView setBackgroundStrokeColor:[UIColor groupTableViewBackgroundColor]];
+    [self.progressView setProgressStrokeColor:[Utilities getColor]];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -12,10 +12,11 @@
 @implementation KPSeparatorView
 
 - (void)drawRect:(CGRect)rect {
-    // Drawing code
     [self.textLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0]];
+    [self.textLabel setTextColor:[Utilities getColor]];
     
-    [[UIColor lightGrayColor] setFill];
+    [[Utilities getColor] setFill];
+    [[Utilities getColor] setStroke];
     
     float y = self.frame.size.height / 2;
     float xLeft1 = 10.0;

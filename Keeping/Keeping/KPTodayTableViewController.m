@@ -25,6 +25,7 @@
     
     [self.progressLabel setFont:[UIFont fontWithName:[Utilities getFont] size:40.0f]];
     [self.dateLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
+    
     /*
      NSArray *fontFamilies = [UIFont familyNames];
      for (int i = 0; i < [fontFamilies count]; i++){
@@ -33,6 +34,8 @@
      NSLog (@"%@: %@", fontFamily, fontNames);
      }
      */
+    
+    self.tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -88,6 +91,7 @@
                 return [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
             }else{
                 KPSeparatorView *view = [[[NSBundle mainBundle] loadNibNamed:@"KPSeparatorView" owner:nil options:nil] lastObject];
+                view.backgroundColor = [UIColor clearColor];
                 [view setText:@"未完成"];
                 return view;
             }
@@ -95,6 +99,7 @@
         case 2:
         {
             KPSeparatorView *view = [[[NSBundle mainBundle] loadNibNamed:@"KPSeparatorView" owner:nil options:nil] lastObject];
+            view.backgroundColor = [UIColor clearColor];
             [view setText:@"已完成"];
             return view;
         }
@@ -173,7 +178,7 @@
     if(indexPath.section == 0){
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];
     }else{
-        return 60;
+        return 70;
     }
 }
 

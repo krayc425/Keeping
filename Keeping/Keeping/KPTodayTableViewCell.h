@@ -21,11 +21,11 @@
 @interface KPTodayTableViewCell : UITableViewCell <BEMCheckBoxDelegate>
 
 @property (nonatomic, nonnull) id<CheckTaskDelegate> delegate;
-
+//任务名
 @property (nonatomic, nonnull) IBOutlet UILabel *taskNameLabel;
-
+//附件
 @property (nonnull, nonatomic) IBOutlet UILabel *accessoryLabel;
-
+//打钩
 @property (nonnull, nonatomic) IBOutlet BEMCheckBox *myCheckBox;
 
 - (void)setIsFinished:(BOOL)isFinished;

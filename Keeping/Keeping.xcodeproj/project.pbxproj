@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		241FB6671E31D2F300DF4D53 /* HYCircleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 241FB6661E31D2F300DF4D53 /* HYCircleProgressView.m */; };
 		2429CBD41E2DF5E60027DD37 /* KPTodayTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2429CBD31E2DF5E60027DD37 /* KPTodayTableViewController.m */; };
 		2429CBD71E2DF6080027DD37 /* KPTaskTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2429CBD61E2DF6080027DD37 /* KPTaskTableViewController.m */; };
 		2429CBDD1E2DF61B0027DD37 /* KPSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2429CBDC1E2DF61B0027DD37 /* KPSettingsTableViewController.m */; };
@@ -33,6 +34,8 @@
 		24DCF18A1E3094050097C250 /* DateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DCF1891E3094050097C250 /* DateUtil.m */; };
 		24DCF1901E30AAAA0097C250 /* KPCalTaskTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DCF18E1E30AAAA0097C250 /* KPCalTaskTableViewCell.m */; };
 		24DCF1911E30AAAA0097C250 /* KPCalTaskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24DCF18F1E30AAAA0097C250 /* KPCalTaskTableViewCell.xib */; };
+		24DCF1941E310A890097C250 /* CardsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DCF1931E310A890097C250 /* CardsView.m */; };
+		24DCF1961E31C29E0097C250 /* TabBar.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24DCF1951E31C29E0097C250 /* TabBar.xcassets */; };
 		24F2A0C31E2F371B00F30FB1 /* UIView+MJAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F2A0C21E2F371B00F30FB1 /* UIView+MJAlertView.m */; };
 		24F2A0CB1E2F383A00F30FB1 /* KPTaskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24F2A0C91E2F383A00F30FB1 /* KPTaskTableViewCell.xib */; };
 		24F2A0CE1E2F38C700F30FB1 /* KPTaskTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F2A0CD1E2F38C700F30FB1 /* KPTaskTableViewCell.m */; };
@@ -61,6 +64,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		241FB6651E31D2F300DF4D53 /* HYCircleProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYCircleProgressView.h; sourceTree = "<group>"; };
+		241FB6661E31D2F300DF4D53 /* HYCircleProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYCircleProgressView.m; sourceTree = "<group>"; };
 		2429CBD21E2DF5E60027DD37 /* KPTodayTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPTodayTableViewController.h; sourceTree = "<group>"; };
 		2429CBD31E2DF5E60027DD37 /* KPTodayTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPTodayTableViewController.m; sourceTree = "<group>"; };
 		2429CBD51E2DF6080027DD37 /* KPTaskTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPTaskTableViewController.h; sourceTree = "<group>"; };
@@ -104,6 +109,9 @@
 		24DCF18D1E30AAAA0097C250 /* KPCalTaskTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPCalTaskTableViewCell.h; sourceTree = "<group>"; };
 		24DCF18E1E30AAAA0097C250 /* KPCalTaskTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPCalTaskTableViewCell.m; sourceTree = "<group>"; };
 		24DCF18F1E30AAAA0097C250 /* KPCalTaskTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KPCalTaskTableViewCell.xib; sourceTree = "<group>"; };
+		24DCF1921E310A890097C250 /* CardsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardsView.h; sourceTree = "<group>"; };
+		24DCF1931E310A890097C250 /* CardsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardsView.m; sourceTree = "<group>"; };
+		24DCF1951E31C29E0097C250 /* TabBar.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = TabBar.xcassets; path = ../TabBar.xcassets; sourceTree = "<group>"; };
 		24F2A0C11E2F371B00F30FB1 /* UIView+MJAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJAlertView.h"; sourceTree = "<group>"; };
 		24F2A0C21E2F371B00F30FB1 /* UIView+MJAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJAlertView.m"; sourceTree = "<group>"; };
 		24F2A0C91E2F383A00F30FB1 /* KPTaskTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KPTaskTableViewCell.xib; sourceTree = "<group>"; };
@@ -255,6 +263,7 @@
 				249AE31E1E2DEE7700F704F8 /* Main.storyboard */,
 				249AE3241E2DEE7700F704F8 /* Assets.xcassets */,
 				24699F041E2F23C60092FBED /* Navigation.xcassets */,
+				24DCF1951E31C29E0097C250 /* TabBar.xcassets */,
 				249AE3261E2DEE7700F704F8 /* LaunchScreen.storyboard */,
 				249AE3291E2DEE7700F704F8 /* Info.plist */,
 				249AE3211E2DEE7700F704F8 /* Keeping.xcdatamodeld */,
@@ -266,8 +275,6 @@
 		249AE3151E2DEE7700F704F8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				24F2A1031E2F7B7700F30FB1 /* MJAlertView */,
-				24F2A0E11E2F7B6E00F30FB1 /* KPTimePicker */,
 				2429CBF71E2E571A0027DD37 /* 方正书宋简体.ttf */,
 				249AE3161E2DEE7700F704F8 /* main.m */,
 			);
@@ -288,6 +295,12 @@
 		24DCF18C1E30A07C0097C250 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				241FB6651E31D2F300DF4D53 /* HYCircleProgressView.h */,
+				241FB6661E31D2F300DF4D53 /* HYCircleProgressView.m */,
+				24DCF1921E310A890097C250 /* CardsView.h */,
+				24DCF1931E310A890097C250 /* CardsView.m */,
+				24F2A1031E2F7B7700F30FB1 /* MJAlertView */,
+				24F2A0E11E2F7B6E00F30FB1 /* KPTimePicker */,
 				2429CBE61E2E499A0027DD37 /* KPSeparatorView.h */,
 				2429CBE71E2E499A0027DD37 /* KPSeparatorView.m */,
 				2429CBE91E2E49A60027DD37 /* KPSeparatorView.xib */,
@@ -453,6 +466,7 @@
 				24F2A0FB1E2F7B6E00F30FB1 /* round_backarrow_big-high@2x.png in Resources */,
 				24F2A0F81E2F7B6E00F30FB1 /* picker_wheel_ip4.png in Resources */,
 				2429CBEA1E2E49A60027DD37 /* KPSeparatorView.xib in Resources */,
+				24DCF1961E31C29E0097C250 /* TabBar.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,8 +541,10 @@
 				2429CBD41E2DF5E60027DD37 /* KPTodayTableViewController.m in Sources */,
 				24F2A0F41E2F7B6E00F30FB1 /* Categories.m in Sources */,
 				2429CBFB1E2E5D510027DD37 /* KPTabBarViewController.m in Sources */,
+				241FB6671E31D2F300DF4D53 /* HYCircleProgressView.m in Sources */,
 				2429CBF31E2E4E750027DD37 /* Utilities.m in Sources */,
 				24699EFE1E2F161F0092FBED /* KPTaskAddTableViewController.m in Sources */,
+				24DCF1941E310A890097C250 /* CardsView.m in Sources */,
 				2436F82A1E2F2C5700C2984A /* Task.m in Sources */,
 				2429CBDD1E2DF61B0027DD37 /* KPSettingsTableViewController.m in Sources */,
 				2429CBD71E2DF6080027DD37 /* KPTaskTableViewController.m in Sources */,

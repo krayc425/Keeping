@@ -30,13 +30,41 @@
     self.calendar.dataSource = self;
     self.calendar.delegate = self;
     self.calendar.backgroundColor = [UIColor whiteColor];
+    self.calendar.appearance.headerMinimumDissolvedAlpha = 0;
     self.calendar.appearance.headerDateFormat = @"yyyy年MM月";
     self.calendar.appearance.caseOptions = FSCalendarCaseOptionsHeaderUsesUpperCase | FSCalendarCaseOptionsWeekdayUsesSingleUpperCase;
-    self.calendar.appearance.titleFont = [UIFont fontWithName:[Utilities getFont] size:10.0];
+    self.calendar.appearance.titleFont = [UIFont fontWithName:[Utilities getFont] size:12.0];
     self.calendar.appearance.headerTitleFont = [UIFont fontWithName:[Utilities getFont] size:15.0];
-    self.calendar.appearance.weekdayFont = [UIFont fontWithName:[Utilities getFont] size:10.0];
+    self.calendar.appearance.weekdayFont = [UIFont fontWithName:[Utilities getFont] size:15.0];
     self.calendar.appearance.subtitleFont = [UIFont fontWithName:[Utilities getFont] size:10.0];
+    self.calendar.appearance.headerTitleColor = [Utilities getColor];
+    self.calendar.appearance.weekdayTextColor = [Utilities getColor];
+    self.calendar.appearance.selectionColor = [Utilities getColor];
     [self.view addSubview:self.calendar];
+    
+    UIButton *previousButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    previousButton.frame = CGRectMake(0, 64+5, 95, 34);
+    previousButton.backgroundColor = [UIColor whiteColor];
+    previousButton.titleLabel.font = [UIFont systemFontOfSize:15];
+    [previousButton setTintColor:[Utilities getColor]];
+    UIImage *leftImg = [UIImage imageNamed:@"icon_prev"];
+    leftImg = [leftImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [previousButton setImage:leftImg forState:UIControlStateNormal];
+    [previousButton addTarget:self action:@selector(previousClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:previousButton];
+    self.previousButton = previousButton;
+    
+    UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    nextButton.frame = CGRectMake(CGRectGetWidth(self.view.frame)-95, 64+5, 95, 34);
+    nextButton.backgroundColor = [UIColor whiteColor];
+    nextButton.titleLabel.font = [UIFont systemFontOfSize:15];
+    [nextButton setTintColor:[Utilities getColor]];
+    UIImage *rightImg = [UIImage imageNamed:@"icon_next"];
+    rightImg = [rightImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [nextButton setImage:rightImg forState:UIControlStateNormal];
+    [nextButton addTarget:self action:@selector(nextClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:nextButton];
+    self.nextButton = nextButton;
     
     self.taskTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 300 + 64, view.frame.size.width, view.frame.size.height - 300 - 64 - 44 - 6) style:UITableViewStyleGrouped];
     self.taskTableView.delegate = self;
@@ -51,6 +79,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -132,6 +161,18 @@
 - (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date{
     self.selectedDate = date;
     [self loadTasks];
+}
+
+- (void)previousClicked:(id)sender{
+    NSDate *currentMonth = self.calendar.currentPage;
+    NSDate *previousMonth = [self.gregorian dateByAddingUnit:NSCalendarUnitMonth value:-1 toDate:currentMonth options:0];
+    [self.calendar setCurrentPage:previousMonth animated:YES];
+}
+
+- (void)nextClicked:(id)sender{
+    NSDate *currentMonth = self.calendar.currentPage;
+    NSDate *nextMonth = [self.gregorian dateByAddingUnit:NSCalendarUnitMonth value:1 toDate:currentMonth options:0];
+    [self.calendar setCurrentPage:nextMonth animated:YES];
 }
 
 @end
