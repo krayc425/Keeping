@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		24151C921E322D6700757A69 /* KPTaskDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24151C911E322D6700757A69 /* KPTaskDetailTableViewController.m */; };
+		24151C971E32388300757A69 /* UNManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24151C961E32388300757A69 /* UNManager.m */; };
 		241FB6671E31D2F300DF4D53 /* HYCircleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 241FB6661E31D2F300DF4D53 /* HYCircleProgressView.m */; };
 		2429CBD41E2DF5E60027DD37 /* KPTodayTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2429CBD31E2DF5E60027DD37 /* KPTodayTableViewController.m */; };
 		2429CBD71E2DF6080027DD37 /* KPTaskTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2429CBD61E2DF6080027DD37 /* KPTaskTableViewController.m */; };
@@ -64,6 +66,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		24151C901E322D6700757A69 /* KPTaskDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPTaskDetailTableViewController.h; sourceTree = "<group>"; };
+		24151C911E322D6700757A69 /* KPTaskDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPTaskDetailTableViewController.m; sourceTree = "<group>"; };
+		24151C941E32378600757A69 /* Keeping.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Keeping.entitlements; sourceTree = "<group>"; };
+		24151C951E32388300757A69 /* UNManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UNManager.h; sourceTree = "<group>"; };
+		24151C961E32388300757A69 /* UNManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNManager.m; sourceTree = "<group>"; };
 		241FB6651E31D2F300DF4D53 /* HYCircleProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYCircleProgressView.h; sourceTree = "<group>"; };
 		241FB6661E31D2F300DF4D53 /* HYCircleProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYCircleProgressView.m; sourceTree = "<group>"; };
 		2429CBD21E2DF5E60027DD37 /* KPTodayTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPTodayTableViewController.h; sourceTree = "<group>"; };
@@ -163,6 +170,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		24151C8F1E322D5700757A69 /* Add */ = {
+			isa = PBXGroup;
+			children = (
+				24F2A0DD1E2F489500F30FB1 /* Scheme */,
+				24699EFC1E2F161F0092FBED /* KPTaskAddTableViewController.h */,
+				24699EFD1E2F161F0092FBED /* KPTaskAddTableViewController.m */,
+				24F2A1041E2F7CBC00F30FB1 /* KPReminderViewController.h */,
+				24F2A1051E2F7CBC00F30FB1 /* KPReminderViewController.m */,
+			);
+			name = Add;
+			sourceTree = "<group>";
+		};
+		24151C931E322D6F00757A69 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				24151C901E322D6700757A69 /* KPTaskDetailTableViewController.h */,
+				24151C911E322D6700757A69 /* KPTaskDetailTableViewController.m */,
+			);
+			name = Detail;
+			sourceTree = "<group>";
+		};
 		2429CBF01E2E4AA20027DD37 /* Today */ = {
 			isa = PBXGroup;
 			children = (
@@ -204,11 +232,8 @@
 				24F2A0CC1E2F38C700F30FB1 /* KPTaskTableViewCell.h */,
 				24F2A0CD1E2F38C700F30FB1 /* KPTaskTableViewCell.m */,
 				24F2A0C91E2F383A00F30FB1 /* KPTaskTableViewCell.xib */,
-				24699EFC1E2F161F0092FBED /* KPTaskAddTableViewController.h */,
-				24699EFD1E2F161F0092FBED /* KPTaskAddTableViewController.m */,
-				24F2A0DD1E2F489500F30FB1 /* Scheme */,
-				24F2A1041E2F7CBC00F30FB1 /* KPReminderViewController.h */,
-				24F2A1051E2F7CBC00F30FB1 /* KPReminderViewController.m */,
+				24151C8F1E322D5700757A69 /* Add */,
+				24151C931E322D6F00757A69 /* Detail */,
 			);
 			name = Task;
 			sourceTree = "<group>";
@@ -245,12 +270,15 @@
 		249AE3141E2DEE7700F704F8 /* Keeping */ = {
 			isa = PBXGroup;
 			children = (
+				24151C941E32378600757A69 /* Keeping.entitlements */,
 				249AE3181E2DEE7700F704F8 /* AppDelegate.h */,
 				249AE3191E2DEE7700F704F8 /* AppDelegate.m */,
 				24699F011E2F213D0092FBED /* KPNavigationViewController.h */,
 				24699F021E2F213D0092FBED /* KPNavigationViewController.m */,
 				2429CBF91E2E5D510027DD37 /* KPTabBarViewController.h */,
 				2429CBFA1E2E5D510027DD37 /* KPTabBarViewController.m */,
+				24151C951E32388300757A69 /* UNManager.h */,
+				24151C961E32388300757A69 /* UNManager.m */,
 				24F2A0CF1E2F3F1800F30FB1 /* DBManager.h */,
 				24F2A0D01E2F3F1800F30FB1 /* DBManager.m */,
 				2436F82B1E2F2FC000C2984A /* TaskData */,
@@ -417,6 +445,11 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = VEBQ28K9EA;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -549,6 +582,8 @@
 				2429CBDD1E2DF61B0027DD37 /* KPSettingsTableViewController.m in Sources */,
 				2429CBD71E2DF6080027DD37 /* KPTaskTableViewController.m in Sources */,
 				24F2A0CE1E2F38C700F30FB1 /* KPTaskTableViewCell.m in Sources */,
+				24151C971E32388300757A69 /* UNManager.m in Sources */,
+				24151C921E322D6700757A69 /* KPTaskDetailTableViewController.m in Sources */,
 				24F2A0C31E2F371B00F30FB1 /* UIView+MJAlertView.m in Sources */,
 				24F2A1061E2F7CBC00F30FB1 /* KPReminderViewController.m in Sources */,
 				249AE3231E2DEE7700F704F8 /* Keeping.xcdatamodeld in Sources */,
@@ -618,7 +653,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -659,7 +694,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -671,12 +706,13 @@
 			baseConfigurationReference = D878305BCC1A269899CF1ACC /* Pods-Keeping.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Keeping/Keeping.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = VEBQ28K9EA;
 				INFOPLIST_FILE = Keeping/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = krayc.Keeping;
+				PRODUCT_BUNDLE_IDENTIFIER = com.krayc.Keeping;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -686,12 +722,13 @@
 			baseConfigurationReference = 90B7675F597B76B950B77B8B /* Pods-Keeping.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Keeping/Keeping.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = VEBQ28K9EA;
 				INFOPLIST_FILE = Keeping/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = krayc.Keeping;
+				PRODUCT_BUNDLE_IDENTIFIER = com.krayc.Keeping;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

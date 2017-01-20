@@ -10,7 +10,7 @@
 #import "Utilities.h"
 
 #define kDuration 0.5
-#define kDefaultLineWidth 4
+#define kDefaultLineWidth 2
 
 @interface HYCircleProgressView()
 

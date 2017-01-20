@@ -12,6 +12,7 @@
 #import "Utilities.h"
 #import "DateUtil.h"
 #import "DateTools.h"
+#import "UNManager.h"
 
 @implementation TaskManager
 
@@ -73,6 +74,10 @@ static TaskManager* _instance = nil;
         punchJsonStr = nil;
     }
     
+    if(task.reminderTime != nil){
+        [UNManager createLocalizedUserNotification:task];
+    }
+    
     return [[[DBManager shareInstance] getDB] executeUpdate:
             @"INSERT INTO t_task (name, appScheme, reminderDays, addDate, reminderTime, punchDateArr) VALUES (?, ?, ?, ?, ?, ?);",
             task.name,
@@ -84,10 +89,11 @@ static TaskManager* _instance = nil;
             ];
 }
 
-- (BOOL)deleteTask:(int)id{
+- (BOOL)deleteTask:(Task *_Nonnull)task{
+    [UNManager deleteLocalizedUserNotification:task];
     return [[[DBManager shareInstance] getDB] executeUpdate:
             @"delete from t_task where id = ?;",
-            @(id)];
+            @(task.id)];
 }
 
 - (void)loadTask{
@@ -124,7 +130,7 @@ static TaskManager* _instance = nil;
         
         t.addDate = [resultSet dateForColumn:@"addDate"];
         t.reminderTime = [resultSet dateForColumn:@"reminderTime"];
-
+        
         [self.taskArr addObject:t];
     }
 }

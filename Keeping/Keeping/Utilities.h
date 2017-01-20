@@ -15,4 +15,6 @@
 
 + (NSString *)getFont;
 
++ (NSString *)getAPPID;
+
 @end

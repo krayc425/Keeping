@@ -15,7 +15,7 @@
 
 + (_Nonnull instancetype)shareInstance;
 - (BOOL)addTask:(Task *_Nonnull)task;
-- (BOOL)deleteTask:(int)id;
+- (BOOL)deleteTask:(Task *_Nonnull)task;
 - (NSMutableArray *_Nonnull)getTasks;
 - (NSMutableArray *_Nonnull)getTodayTasks;
 - (NSMutableArray *_Nonnull)getTasksOfDate:(NSDate *_Nonnull)date;

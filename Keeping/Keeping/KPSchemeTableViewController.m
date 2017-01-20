@@ -21,29 +21,38 @@
     [super viewDidLoad];
     [self.navigationItem setTitle:@"选择 APP"];
     
+    [self.noneLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0]];
     [self.insLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0]];
+    
+    //隐藏返回键
+    self.navigationItem.leftBarButtonItems = @[];
+    [self.navigationItem setHidesBackButton:YES];
+    //导航栏右上角
+    UIBarButtonItem *okItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_DONE"] style:UIBarButtonItemStylePlain target:self action:@selector(doneAction:)];
+    self.navigationItem.rightBarButtonItems = @[okItem];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
-- (void)viewWillDisappear:(BOOL)animated{
-    if(self.selectedPath != NULL){
+- (void)doneAction:(id)sender{
+    if(self.selectedPath != NULL && self.selectedPath.section == 1){
         [self.delegate passScheme:[KPSchemeManager getSchemeArr][self.selectedPath.row]];
     }else{
         [self.delegate passScheme:@{@"":@""}];
     }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if(section == 0){
+    if(section == 1){
         return [[KPSchemeManager getSchemeArr] count];
     }else{
         return 1;
@@ -51,14 +60,19 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(indexPath.section == 0){
+    
+    if(indexPath.section != 2){
         static NSString *cellIdentifier = @"KPSchemeTableViewCell";
         UINib *nib = [UINib nibWithNibName:@"KPSchemeTableViewCell" bundle:nil];
         [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
         KPSchemeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
         
-        NSDictionary *dict = [[KPSchemeManager getSchemeArr] objectAtIndex:indexPath.row];
-        [cell.appNameLabel setText:dict.allKeys[0]];
+        if(indexPath.section == 1){
+            NSDictionary *dict = [[KPSchemeManager getSchemeArr] objectAtIndex:indexPath.row];
+            [cell.appNameLabel setText:dict.allKeys[0]];
+        }else{
+            cell.appNameLabel.text = @"无";
+        }
         
         if(indexPath == self.selectedPath){
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -73,7 +87,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(indexPath.section == 1){
+    if(indexPath.section != 1){
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];
     }else{
         return 44;
@@ -81,7 +95,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 0) {
+    if (indexPath.section == 1) {
         return 10;
     }else{
         return [super tableView:tableView indentationLevelForRowAtIndexPath:indexPath];
@@ -94,6 +108,9 @@
         self.selectedPath = NULL;
     }else{
         self.selectedPath = indexPath;
+    }
+    if(self.selectedPath == NULL){
+        
     }
     [tableView reloadData];
 }

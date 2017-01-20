@@ -18,6 +18,9 @@
     [self.daysLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
     [self.totalDayLabel setFont:[UIFont fontWithName:[Utilities getFont] size:12.0f]];
     
+    //
+    [self.totalDayLabel setHidden:YES];
+    
     [self.progressView setBackgroundStrokeColor:[UIColor groupTableViewBackgroundColor]];
     [self.progressView setProgressStrokeColor:[Utilities getColor]];
 }

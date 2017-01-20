@@ -60,7 +60,6 @@
 #pragma mark - UITabBarController Delegate
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
-//    NSLog(@"%lu", (unsigned long)self.selectedIndex);
     switch (self.selectedIndex) {
         case 0:
         {

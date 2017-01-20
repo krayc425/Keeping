@@ -35,7 +35,6 @@
 #define kOpenedSunAngle valForScreen(70,60)
 #define kExtraAngleForIcons 22
 
-
 #define kDefLightColor          color(69,82,104,1) //tcolor(SearchDrawerColor)
 #define kDefDarkColor           color(36,40,46,1)
 #define kDefConfirmColor        color(63,186,141,1)
@@ -55,13 +54,13 @@
 #define kGlowMiddleShowHack     0.12
 #define kBackButtonSize         52
 
-
-
 #import <QuartzCore/QuartzCore.h>
 #import "KPTimePicker.h"
 #import "Categories.h"
-@class KPTimePicker;
 
+#define TIME_INTERVAL 1
+
+@class KPTimePicker;
 
 @interface KPTimePicker () <UIGestureRecognizerDelegate>
 
@@ -83,7 +82,6 @@
 @property (nonatomic) CGFloat _lastChangedAngle;
 @property (nonatomic) CGFloat _distanceForIcons;
 
-
 @end
 @implementation KPTimePicker
 /*-(void)setDelegate:(NSObject<KPTimePickerDelegate> *)delegate{
@@ -93,7 +91,7 @@
 -(void)setPickingDate:(NSDate *)pickingDate{
     
     if(_pickingDate != pickingDate){
-        if(pickingDate) pickingDate = [pickingDate dateToNearestMinutes:10];
+        if(pickingDate) pickingDate = [pickingDate dateToNearestMinutes:TIME_INTERVAL];
         _pickingDate = pickingDate;
         [self updateForDate:pickingDate];
     }
@@ -139,7 +137,7 @@
     CGPoint velocity = [sender velocityInView:self];
     CGPoint location = [sender locationInView:self];
     CGFloat vel = fabs(velocity.y)+fabs(velocity.x);
-    NSInteger minutesPerInterval = 10;
+    NSInteger minutesPerInterval = TIME_INTERVAL;
     CGFloat angleInterval = 50;
     //NSLog(@"%f",vel);
     if(vel > 1400){
@@ -301,8 +299,9 @@
         self.confirmButton.center = self._centerPoint;
         [self.confirmButton addTarget:self action:@selector(pressedConfirmButton:) forControlEvents:UIControlEventTouchUpInside];
         //[self.confirmButton setImage:[UIImage imageNamed:@"done-selected"] forState:];
-        [self.confirmButton setImage:[UIImage imageNamed:@"checkmark_icon_white"] forState:UIControlStateNormal];
-        [self.confirmButton setImage:[UIImage imageNamed:@"checkmark_icon_white"] forState:UIControlStateHighlighted];
+//        [self.confirmButton setImage:[UIImage imageNamed:@"checkmark_icon_white"] forState:UIControlStateNormal];
+//        [self.confirmButton setImage:[UIImage imageNamed:@"checkmark_icon_white"] forState:UIControlStateHighlighted];
+        [self.confirmButton setTitle:@"完成" forState: UIControlStateNormal];
         self.confirmButton.layer.masksToBounds = YES;
         self.confirmButton.layer.cornerRadius = kDefActualSize;
         [self addSubview:self.confirmButton];

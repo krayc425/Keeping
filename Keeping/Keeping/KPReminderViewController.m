@@ -19,9 +19,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor blackColor];
-    KPTimePicker *timePicker = [[KPTimePicker alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    timePicker.delegate = self;
-    [self.view addSubview:timePicker];
+    self.timePicker = [[KPTimePicker alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    self.timePicker.delegate = self;
+    [self.view addSubview:self.timePicker];
 }
 
 #pragma mark - Date Delegate

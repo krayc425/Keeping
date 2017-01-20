@@ -53,6 +53,16 @@
     self.selectedWeekdayArr = [[NSMutableArray alloc] init];
     //APP名字标签
     [self.appNameLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0]];
+    
+    //添加手势，点击屏幕其他区域关闭键盘的操作
+    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                              action:@selector(hideKeyboard)];
+    gesture.numberOfTapsRequired = 1;
+    [self.view addGestureRecognizer:gesture];
+}
+
+- (void)hideKeyboard{
+    [self.taskNameField resignFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -155,7 +165,19 @@
         
         [[TaskManager shareInstance] addTask:task];
         
-        [UIView addMJNotifierWithText:@"添加成功" dismissAutomatically:YES];
+//        [UIView addMJNotifierWithText:@"添加成功" dismissAutomatically:YES];
+        UIAlertController *alertController =
+        [UIAlertController alertControllerWithTitle:@"新增成功"
+                                            message:nil
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction *action){
+                                                             [self.navigationController popViewControllerAnimated:YES];
+                                                         }];
+        [alertController addAction:okAction];
+        [self presentViewController:alertController animated:YES completion:nil];
+        
     }
 }
 
@@ -163,14 +185,15 @@
     if(![self.reminderSwitch isOn]){
         [self.reminderLabel setText:@"无"];
     }else{
-        [self performSegueWithIdentifier:@"reminderSegue" sender:nil];
+        NSDate *date = (NSDate *)sender;
+        [self performSegueWithIdentifier:@"reminderSegue" sender:date];
     }
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 4;
+    return 5;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -187,10 +210,13 @@
             [view setText:@"完成时间"];
             break;
         case 2:
-            [view setText:@"提醒"];
+            [view setText:@"提醒时间"];
             break;
         case 3:
             [view setText:@"选择 APP"];
+            break;
+        case 4:
+            [view setText:@"链接"];
             break;
         default:
             [view setText:@""];
@@ -213,7 +239,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+    if(indexPath.section == 2 && indexPath.row == 0){
+        [self showReminderPickerAction:[NSDate date]];
+    }
     if(indexPath.section == 3 && indexPath.row == 0){
         [self performSegueWithIdentifier:@"appSegue" sender:nil];
     }
@@ -226,11 +254,14 @@
         KPSchemeTableViewController *kpstvc = (KPSchemeTableViewController *)[segue destinationViewController];
         kpstvc.delegate = self;
         if(self.selectedApp != NULL){
-            [kpstvc setSelectedPath:[NSIndexPath indexPathForRow:[[KPSchemeManager getSchemeArr] indexOfObject:self.selectedApp] inSection:0]];
+            [kpstvc setSelectedPath:[NSIndexPath indexPathForRow:[[KPSchemeManager getSchemeArr] indexOfObject:self.selectedApp] inSection:1]];
+        }else{
+            [kpstvc setSelectedPath:[NSIndexPath indexPathForRow:0 inSection:0]];
         }
     }else if([segue.identifier isEqualToString:@"reminderSegue"]){
         KPReminderViewController *kprvc = (KPReminderViewController *)[segue destinationViewController];
         kprvc.delegate = self;
+        [kprvc.timePicker setPickingDate:(NSDate *)sender];
     }
 }
 
@@ -252,6 +283,7 @@
 
 - (void)passTime:(NSDate *)date{
     if(date == nil){
+        self.reminderTime = nil;
         [self.reminderSwitch setOn:NO animated:YES];
         [self.reminderLabel setText:@"无"];
     }else{

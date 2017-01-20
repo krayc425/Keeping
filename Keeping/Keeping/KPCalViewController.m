@@ -13,6 +13,7 @@
 #import "Utilities.h"
 #import "DateTools.h"
 #import "DateUtil.h"
+#import "CardsView.h"
 #import "KPCalTaskTableViewCell.h"
 
 @interface KPCalViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
@@ -26,7 +27,12 @@
     view.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.view = view;
     
-    self.calendar = [[FSCalendar alloc] initWithFrame:CGRectMake(0, 64, view.frame.size.width, 300)];
+    CardsView *cardView = [[CardsView alloc] initWithFrame:CGRectMake(10, 64 + 10, view.frame.size.width -20, 320)];
+    cardView.cornerRadius = 10;
+    cardView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:cardView];
+    
+    self.calendar = [[FSCalendar alloc] initWithFrame:CGRectMake(5, 5, cardView.frame.size.width - 10, 310)];
     self.calendar.dataSource = self;
     self.calendar.delegate = self;
     self.calendar.backgroundColor = [UIColor whiteColor];
@@ -40,10 +46,10 @@
     self.calendar.appearance.headerTitleColor = [Utilities getColor];
     self.calendar.appearance.weekdayTextColor = [Utilities getColor];
     self.calendar.appearance.selectionColor = [Utilities getColor];
-    [self.view addSubview:self.calendar];
+    [cardView addSubview:self.calendar];
     
     UIButton *previousButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    previousButton.frame = CGRectMake(0, 64+5, 95, 34);
+    previousButton.frame = CGRectMake(5, 5, 95, 34);
     previousButton.backgroundColor = [UIColor whiteColor];
     previousButton.titleLabel.font = [UIFont systemFontOfSize:15];
     [previousButton setTintColor:[Utilities getColor]];
@@ -51,11 +57,11 @@
     leftImg = [leftImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [previousButton setImage:leftImg forState:UIControlStateNormal];
     [previousButton addTarget:self action:@selector(previousClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:previousButton];
+    [cardView addSubview:previousButton];
     self.previousButton = previousButton;
     
     UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    nextButton.frame = CGRectMake(CGRectGetWidth(self.view.frame)-95, 64+5, 95, 34);
+    nextButton.frame = CGRectMake(CGRectGetWidth(cardView.frame)-100, 5, 95, 34);
     nextButton.backgroundColor = [UIColor whiteColor];
     nextButton.titleLabel.font = [UIFont systemFontOfSize:15];
     [nextButton setTintColor:[Utilities getColor]];
@@ -63,17 +69,21 @@
     rightImg = [rightImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [nextButton setImage:rightImg forState:UIControlStateNormal];
     [nextButton addTarget:self action:@selector(nextClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:nextButton];
+    [cardView addSubview:nextButton];
     self.nextButton = nextButton;
     
-    self.taskTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 300 + 64, view.frame.size.width, view.frame.size.height - 300 - 64 - 44 - 6) style:UITableViewStyleGrouped];
+    self.taskTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 330 + 64 + 5, view.frame.size.width, view.frame.size.height - 330 - 64 - 44 - 6) style:UITableViewStylePlain];
     self.taskTableView.delegate = self;
     self.taskTableView.dataSource = self;
-    self.taskTableView.backgroundColor = [UIColor whiteColor];
+    self.taskTableView.backgroundColor = [UIColor clearColor];
+    
+    self.taskTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.taskTableView.emptyDataSetSource = self;
     self.taskTableView.emptyDataSetDelegate = self;
     self.taskTableView.tableHeaderView = [UIView new];
+    //[[UIView alloc] initWithFrame:CGRectMake(0, 330 + 64 + 5, view.frame.size.width, 5)];
     self.taskTableView.tableFooterView = [UIView new];
+
     [self.view addSubview:self.taskTableView];
 }
 
@@ -112,15 +122,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 60.0f;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 0.00001f;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 0.00001f;
+    return 70.0f;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

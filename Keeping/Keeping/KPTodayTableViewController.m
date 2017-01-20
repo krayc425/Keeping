@@ -13,8 +13,9 @@
 #import "TaskManager.h"
 #import "Task.h"
 #import "DateUtil.h"
+#import "UIScrollView+EmptyDataSet.h"
 
-@interface KPTodayTableViewController ()
+@interface KPTodayTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
 @end
 
@@ -35,6 +36,9 @@
      }
      */
     
+    self.tableView.emptyDataSetSource = self;
+    self.tableView.emptyDataSetDelegate = self;
+    self.tableView.tableFooterView = [UIView new];
     self.tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
 }
 
@@ -58,6 +62,8 @@
     [self.progressLabel setText:[NSString stringWithFormat:@"%lu / %lu", (unsigned long)self.finishedTaskArr.count, ((unsigned long)self.finishedTaskArr.count + (unsigned long)self.unfinishedTaskArr.count)]];
     
     [self.tableView reloadData];
+    
+    [self.tableView reloadEmptyDataSet];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -98,10 +104,14 @@
         }
         case 2:
         {
-            KPSeparatorView *view = [[[NSBundle mainBundle] loadNibNamed:@"KPSeparatorView" owner:nil options:nil] lastObject];
-            view.backgroundColor = [UIColor clearColor];
-            [view setText:@"已完成"];
-            return view;
+            if([self.finishedTaskArr count] == 0){
+                return [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+            }else{
+                KPSeparatorView *view = [[[NSBundle mainBundle] loadNibNamed:@"KPSeparatorView" owner:nil options:nil] lastObject];
+                view.backgroundColor = [UIColor clearColor];
+                [view setText:@"已完成"];
+                return view;
+            }
         }
         default:
             return [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
@@ -128,7 +138,7 @@
 }
 
 - (UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    return [UIView new];
+    return [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 100)];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -214,6 +224,28 @@
     NSIndexPath *path = [self.tableView indexPathForCell:cell];
     [[TaskManager shareInstance] punchForTask:self.unfinishedTaskArr[path.row]];
     [self loadTasks];
+}
+
+
+#pragma mark -DZNEmpty Delegate
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView{
+    NSString *text = @"没有任务";
+    
+    NSDictionary *attributes = @{
+                                 NSForegroundColorAttributeName: [Utilities getColor],
+                                 NSFontAttributeName:[UIFont fontWithName:[Utilities getFont] size:20.0]
+                                 };
+    
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+- (BOOL)emptyDataSetShouldBeForcedToDisplay:(UIScrollView *)scrollView{
+    if(self.finishedTaskArr.count + self.unfinishedTaskArr.count == 0){
+        return YES;
+    }else{
+        return NO;
+    }
 }
 
 @end

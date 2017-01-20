@@ -20,4 +20,8 @@
     return @"FZSSJW--GB1-0";
 }
 
++ (NSString *)getAPPID{
+    return @"1197272196";
+}
+
 @end

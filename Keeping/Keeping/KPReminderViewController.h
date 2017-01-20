@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KPTimePicker.h"
 
 @protocol ReminderDelegate <NSObject>
 
@@ -20,5 +21,7 @@
 @interface KPReminderViewController : UIViewController
 
 @property (nonatomic, nonnull) id<ReminderDelegate> delegate;
+
+@property (nonatomic) KPTimePicker *timePicker;
 
 @end

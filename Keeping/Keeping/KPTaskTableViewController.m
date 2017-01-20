@@ -15,6 +15,7 @@
 #import "Utilities.h"
 #import "DateTools.h"
 #import "DateUtil.h"
+#import "KPTaskDetailTableViewController.h"
 
 @interface KPTaskTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
@@ -46,21 +47,23 @@
         }
     }
     self.selectedWeekdayArr = [[NSMutableArray alloc] init];
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    [self loadTasksOfWeekdays:@[@(1),@(2),@(3),@(4),@(5),@(6),@(7)]];
-    [self.tableView reloadData];
+    
+    [self selectAllWeekDay];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [self loadTasksOfWeekdays:self.selectedWeekdayArr];
+}
+
 - (void)loadTasksOfWeekdays:(NSArray *)weekDays{
     self.taskArr = [[TaskManager shareInstance] getTasks];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"ANY SELF.reminderDays in %@", weekDays];
     self.taskArr = [NSMutableArray arrayWithArray:[self.taskArr filteredArrayUsingPredicate:predicate]];
+    
     [self.tableView reloadData];
 }
 
@@ -76,8 +79,9 @@
     UIButton *btn = (UIButton *)sender;
     UIImage *buttonImg;
     NSNumber *tag = [NSNumber numberWithInteger:btn.tag];
-    //包含
+    
     if([self.selectedWeekdayArr containsObject:tag]){
+        //包含
         buttonImg = [UIImage imageNamed:@"CIRCLE_BORDER"];
         [self.selectedWeekdayArr removeObject:tag];
         [btn setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
@@ -102,23 +106,31 @@
 - (IBAction)selectAllWeekdayAction:(id)sender{
     UIButton *btn = (UIButton *)sender;
     if([btn.titleLabel.text isEqualToString:@"全选"]){
-        [self.allButton setTitle:@"清空" forState: UIControlStateNormal];
-        for(UIButton *button in self.weekDayStack.subviews){
-            if(button.tag != -1){
-                NSNumber *tag = [NSNumber numberWithInteger:button.tag];
-                if(![self.selectedWeekdayArr containsObject:tag]){
-                    [self selectWeekdayAction:button];
-                }
+        [self selectAllWeekDay];
+    }else if([btn.titleLabel.text isEqualToString:@"清空"]){
+        [self deselectAllWeekDay];
+    }
+}
+
+- (void)selectAllWeekDay{
+    [self.allButton setTitle:@"清空" forState: UIControlStateNormal];
+    for(UIButton *button in self.weekDayStack.subviews){
+        if(button.tag != -1){
+            NSNumber *tag = [NSNumber numberWithInteger:button.tag];
+            if(![self.selectedWeekdayArr containsObject:tag]){
+                [self selectWeekdayAction:button];
             }
         }
-    }else if([btn.titleLabel.text isEqualToString:@"清空"]){
-        [self.allButton setTitle:@"全选" forState: UIControlStateNormal];
-        for(UIButton *button in self.weekDayStack.subviews){
-            if(button.tag != -1){
-                NSNumber *tag = [NSNumber numberWithInteger:button.tag];
-                if([self.selectedWeekdayArr containsObject:tag]){
-                    [self selectWeekdayAction:button];
-                }
+    }
+}
+
+- (void)deselectAllWeekDay{
+    [self.allButton setTitle:@"全选" forState: UIControlStateNormal];
+    for(UIButton *button in self.weekDayStack.subviews){
+        if(button.tag != -1){
+            NSNumber *tag = [NSNumber numberWithInteger:button.tag];
+            if([self.selectedWeekdayArr containsObject:tag]){
+                [self selectWeekdayAction:button];
             }
         }
     }
@@ -173,22 +185,33 @@
 }
 
 - (UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    return [UIView new];
+    if(section == 0){
+        return [UIView new];
+    }else{
+        return [super tableView:tableView viewForFooterInSection:section];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 0.00001f;
+    if(section == 0){
+        return 0.00001f;
+    }else{
+        return [super tableView:tableView heightForFooterInSection:section];
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if(indexPath.section == 1){
+        [self performSegueWithIdentifier:@"detailTaskSegue" sender:indexPath];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if(indexPath.section == 0){
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];
     }else{
-        return 100;
+        return 70;
     }
 }
 
@@ -244,7 +267,7 @@
         [cell.daysLabel setText:[reminderDayStr stringByAppendingString:reminderTimeStr]];
         
 //        NSString *dateStr =  [t.addDate formattedDateWithFormat:@"YYYY/MM/dd HH:mm:ss"];
-        [cell.totalDayLabel setText:[NSString stringWithFormat:@"已添加 %ld 天", (long)[[NSDate date] daysFrom:t.addDate] + 1]];
+        [cell.totalDayLabel setText:[NSString stringWithFormat:@"已添加 %ld 天, 已完成 %lu 天", (long)[[NSDate date] daysFrom:t.addDate] + 1, (unsigned long)[t.punchDateArr count]]];
         
         int totalPunchNum = [[TaskManager shareInstance] totalPunchNumberOfTask:t];
         int punchNum = (int)[t.punchDateArr count];
@@ -268,13 +291,15 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         Task *t = self.taskArr[indexPath.row];
         
-        [[TaskManager shareInstance] deleteTask:t.id];
+        [[TaskManager shareInstance] deleteTask:t];
         
         [self.taskArr removeObject:t];
         
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
-        [self.tableView reloadData];
+        if(self.taskArr.count == 0){
+            [self.tableView reloadData];
+        }
     }
 }
 
@@ -295,6 +320,10 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([segue.identifier isEqualToString:@"addTaskSegue"]){
         
+    }else if([segue.identifier isEqualToString:@"detailTaskSegue"]){
+        KPTaskDetailTableViewController *kptdtvc = (KPTaskDetailTableViewController *)[segue destinationViewController];
+        NSIndexPath *indexPath = (NSIndexPath *)sender;
+        [kptdtvc setTask:self.taskArr[indexPath.row]];
     }
 }
 
@@ -317,11 +346,19 @@
                                  NSFontAttributeName:[UIFont fontWithName:[Utilities getFont] size:15.0]
                                  };
     
-    return [[NSAttributedString alloc] initWithString:@"添加任务" attributes:attributes];
+    return [[NSAttributedString alloc] initWithString:@"去新增任务" attributes:attributes];
 }
 
 - (void)emptyDataSet:(UIScrollView *)scrollView didTapButton:(UIButton *)button{
     [self addAction:self];
+}
+
+- (BOOL)emptyDataSetShouldBeForcedToDisplay:(UIScrollView *)scrollView{
+    if(self.taskArr.count == 0){
+        return YES;
+    }else{
+        return NO;
+    }
 }
 
 @end
