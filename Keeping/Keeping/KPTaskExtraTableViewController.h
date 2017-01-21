@@ -22,6 +22,10 @@
 
 @property (nonnull, nonatomic) IBOutlet UIImageView *selectedImgView;
 @property (nonnull, nonatomic) UIImagePickerController* picker_library_;
+@property (nonnull, nonatomic) IBOutlet UIStackView *imgButtonStack;
+@property (nonnull, nonatomic) IBOutlet UIButton *addImgButton;
+@property (nonnull, nonatomic) IBOutlet UIButton *viewImgButton;
+@property (nonnull, nonatomic) IBOutlet UIButton *deleteImgButton;
 
 @property (nonnull, nonatomic) Task *task;
 

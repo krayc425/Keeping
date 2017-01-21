@@ -41,8 +41,10 @@
     [self.appNameLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0]];
     //图片
     self.selectedImgView.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickImageViewAction)];
-    [self.selectedImgView addGestureRecognizer:tapGesture];
+    for(UIButton *button in self.imgButtonStack.subviews){
+        [button setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
+        [button.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
+    }
     
     //对星期排序
     NSMutableArray *arr = [NSMutableArray arrayWithArray:self.task.reminderDays];
@@ -53,7 +55,8 @@
         return result == NSOrderedDescending;
     }];
     self.task.reminderDays = arr;
-    //加载原始数据
+    
+    //加载原始数据（修改）
     if(self.task.id != 0){
         self.selectedApp = self.task.appScheme;
         if(self.selectedApp != NULL){
@@ -67,10 +70,16 @@
             [self.reminderLabel setText:currentDateStr];
             [self.reminderSwitch setOn:YES];
         }
-        if(self.task.image != nil){
+        if(self.task.image != NULL){
             [self.selectedImgView setImage:[UIImage imageWithData:self.task.image]];
+            [self setHasImage];
+        }else{
+            [self setNotHaveImage];
         }
         [self.tableView reloadData];
+    }else{
+        //（新增）
+        [self setNotHaveImage];
     }
 }
 
@@ -87,6 +96,7 @@
     self.task.reminderTime = self.reminderTime;
     //图片
     self.task.image = UIImagePNGRepresentation(self.selectedImgView.image);
+    
     //更新
     NSString *title;
     if(self.task.id == 0){
@@ -122,7 +132,31 @@
     }
 }
 
-- (void)modifyPic{
+#pragma mark - Pic Actions
+
+- (IBAction)deletePicAction:(id)sender{
+    if(self.selectedImgView.image == [UIImage new]){
+        return;
+    }else{
+        UIAlertController *alertController =
+        [UIAlertController alertControllerWithTitle:@"删除图片"
+                                            message:@"您确定要删除这张图片？"
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
+                                                           style:UIAlertActionStyleCancel
+                                                         handler:nil];
+        [alertController addAction:cancelAction];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"删除"
+                                                           style:UIAlertActionStyleDestructive
+                                                         handler:^(UIAlertAction *action){
+                                                             [self setNotHaveImage];
+                                                         }];
+        [alertController addAction:okAction];
+        [self presentViewController:alertController animated:YES completion:nil];
+    }
+}
+
+- (IBAction)modifyPicAction:(id)sender{
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
     imagePickerController.delegate = self;
     imagePickerController.allowsEditing = YES;
@@ -155,31 +189,62 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-- (void)clickImageViewAction{
-    [self.navigationController.navigationBar setHidden:YES];
-    //创建一个黑色背景, 初始化一个用来当做背景的View。
-    UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0, -64, self.view.frame.size.width, self.view.frame.size.height + 64)];
-    self.background = bgView;
-    [bgView setBackgroundColor:[UIColor colorWithRed:0/250.0 green:0/250.0 blue:0/250.0 alpha:1.0]];
-    
-    //创建显示图像的视图
-    //初始化要显示的图片内容的imageView
-    UIImageView *browseImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height + 64)];
-    browseImgView.contentMode = UIViewContentModeScaleAspectFit;
-    browseImgView.image = self.selectedImgView.image;
-    [bgView addSubview:browseImgView];
-    
-    browseImgView.userInteractionEnabled = YES;
-    //添加点击手势（即点击图片后退出全屏）
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeView)];
-    [browseImgView addGestureRecognizer:tapGesture];
-    
-    [self.tableView addSubview:bgView];
+- (IBAction)clickPicAction:(id)sender{
+    if(self.selectedImgView.image == [UIImage new]){
+        return;
+    }else{
+        [self.navigationController.navigationBar setHidden:YES];
+        
+        UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0, -64, self.view.frame.size.width, self.view.frame.size.height + 64)];
+        self.background = bgView;
+        [bgView setBackgroundColor:[UIColor colorWithRed:0/250.0 green:0/250.0 blue:0/250.0 alpha:1.0]];
+        
+        UIImageView *browseImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height + 64)];
+        browseImgView.contentMode = UIViewContentModeScaleAspectFit;
+        browseImgView.image = self.selectedImgView.image;
+        [bgView addSubview:browseImgView];
+        
+        browseImgView.userInteractionEnabled = YES;
+        
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeView)];
+        [browseImgView addGestureRecognizer:tapGesture];
+        
+        [self.tableView addSubview:bgView];
+    }
 }
 
 - (void)closeView{
     [self.background removeFromSuperview];
     [self.navigationController.navigationBar setHidden:NO];
+}
+
+- (UIImage *)normalizedImage:(UIImage *)img {
+    if (img.imageOrientation == UIImageOrientationUp){
+        return img;
+    }
+    UIGraphicsBeginImageContextWithOptions(img.size, NO, img.scale);
+    [img drawInRect:(CGRect){0, 0, img.size}];
+    UIImage *normalizedImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return normalizedImage;
+}
+
+- (void)setHasImage{
+    [self.addImgButton setTitle:@"更改图片" forState: UIControlStateNormal];
+    [self.viewImgButton setHidden:NO];
+    [self.deleteImgButton setHidden:NO];
+    [self.deleteImgButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [self.tableView reloadData];
+}
+
+- (void)setNotHaveImage{
+    self.task.image = NULL;
+    [self.selectedImgView setImage:NULL];
+    
+    [self.addImgButton setTitle:@"添加图片" forState: UIControlStateNormal];
+    [self.viewImgButton setHidden:YES];
+    [self.deleteImgButton setHidden:YES];
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
@@ -207,7 +272,7 @@
             [view setText:@"提醒时间"];
             break;
         case 1:
-            [view setText:@"选择 APP"];
+            [view setText:@"链接 APP"];
             break;
         case 2:
             [view setText:@"图片"];
@@ -239,9 +304,6 @@
     if(indexPath.section == 1 && indexPath.row == 0){
         [self performSegueWithIdentifier:@"appSegue" sender:nil];
     }
-    if(indexPath.section == 2 && indexPath.row == 0){
-        [self modifyPic];
-    }
 }
 
 #pragma mark - Navigation
@@ -268,12 +330,11 @@
     if([value.allKeys[0] isEqualToString:@""]){
         self.selectedApp = NULL;
         [self.appNameLabel setText:@"无"];
-        [self.tableView reloadData];
     }else{
         self.selectedApp = value;
         [self.appNameLabel setText:self.selectedApp.allKeys[0]];
-        [self.tableView reloadData];
     }
+    [self.tableView reloadData];
 }
 
 #pragma mark - Reminder Delegate
@@ -298,7 +359,8 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     [picker dismissViewControllerAnimated:YES completion:nil];
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    [self.selectedImgView setImage:image];
+    [self.selectedImgView setImage:[self normalizedImage:image]];
+    [self setHasImage];
 }
 
 @end

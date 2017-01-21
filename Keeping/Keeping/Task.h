@@ -22,12 +22,12 @@
 
 
 //跳转 app 的 scheme
-@property (nonatomic, nonnull) NSDictionary *appScheme;
+@property (nonatomic, nullable) NSDictionary *appScheme;
 //提醒时间
-@property (nonatomic, nonnull) NSDate *reminderTime;
+@property (nonatomic, nullable) NSDate *reminderTime;
 //打卡日期数组
-@property (nonatomic, nonnull) NSArray *punchDateArr;
+@property (nonatomic, nullable) NSArray *punchDateArr;
 //图片
-@property (nonatomic, nonnull) NSData *image;
+@property (nonatomic, nullable) NSData *image;
 
 @end

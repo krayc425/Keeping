@@ -435,20 +435,50 @@
                             </tableViewSection>
                             <tableViewSection id="5a2-DB-v7g">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="44" id="VkF-Ui-NrN">
-                                        <rect key="frame" x="0.0" y="227" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="100" id="VkF-Ui-NrN">
+                                        <rect key="frame" x="0.0" y="227" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VkF-Ui-NrN" id="PVH-j8-rAt">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VC3-V9-dcb">
-                                                    <rect key="frame" x="18" y="18" width="339" height="7.5"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VC3-V9-dcb">
+                                                    <rect key="frame" x="18" y="38" width="339" height="43.5"/>
                                                 </imageView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="SNL-px-h0m">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="38"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZTm-bW-r8n">
+                                                            <rect key="frame" x="0.0" y="4" width="125" height="30"/>
+                                                            <state key="normal" title="更改图片"/>
+                                                            <connections>
+                                                                <action selector="modifyPicAction:" destination="AZA-lR-CK2" eventType="touchUpInside" id="VIX-mb-KYJ"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BmR-NY-k22">
+                                                            <rect key="frame" x="125" y="4" width="125" height="30"/>
+                                                            <state key="normal" title="查看大图"/>
+                                                            <connections>
+                                                                <action selector="clickPicAction:" destination="AZA-lR-CK2" eventType="touchUpInside" id="cYp-Iy-75j"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bLe-1X-cX5">
+                                                            <rect key="frame" x="250" y="4" width="125" height="30"/>
+                                                            <state key="normal" title="删除图片"/>
+                                                            <connections>
+                                                                <action selector="deletePicAction:" destination="AZA-lR-CK2" eventType="touchUpInside" id="Tcu-wx-E4J"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="VC3-V9-dcb" secondAttribute="trailing" constant="10" id="Dex-IS-hzt"/>
-                                                <constraint firstItem="VC3-V9-dcb" firstAttribute="top" secondItem="PVH-j8-rAt" secondAttribute="topMargin" constant="10" id="ED6-NO-dgv"/>
+                                                <constraint firstItem="VC3-V9-dcb" firstAttribute="top" secondItem="PVH-j8-rAt" secondAttribute="topMargin" constant="30" id="ED6-NO-dgv"/>
+                                                <constraint firstItem="SNL-px-h0m" firstAttribute="leading" secondItem="PVH-j8-rAt" secondAttribute="leading" id="kQx-oL-RmA"/>
+                                                <constraint firstItem="SNL-px-h0m" firstAttribute="top" secondItem="PVH-j8-rAt" secondAttribute="top" id="lPg-un-wb8"/>
+                                                <constraint firstItem="VC3-V9-dcb" firstAttribute="top" secondItem="SNL-px-h0m" secondAttribute="bottom" id="m1U-Px-LYx"/>
+                                                <constraint firstAttribute="trailing" secondItem="SNL-px-h0m" secondAttribute="trailing" id="t9R-8C-UF5"/>
                                                 <constraint firstItem="VC3-V9-dcb" firstAttribute="leading" secondItem="PVH-j8-rAt" secondAttribute="leadingMargin" constant="10" id="xiv-dd-46v"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="VC3-V9-dcb" secondAttribute="bottom" constant="10" id="znN-RK-dGe"/>
                                             </constraints>
@@ -463,10 +493,14 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="addImgButton" destination="ZTm-bW-r8n" id="QXN-7F-Sr1"/>
                         <outlet property="appNameLabel" destination="u7o-LQ-uDa" id="3k0-hJ-3hf"/>
+                        <outlet property="deleteImgButton" destination="bLe-1X-cX5" id="VDz-63-bV0"/>
+                        <outlet property="imgButtonStack" destination="SNL-px-h0m" id="7iL-cX-CoQ"/>
                         <outlet property="reminderLabel" destination="x6I-IT-1gB" id="2d7-dO-e5z"/>
                         <outlet property="reminderSwitch" destination="QRM-gd-2j9" id="2ig-xF-VFH"/>
                         <outlet property="selectedImgView" destination="VC3-V9-dcb" id="4fV-8j-Mu6"/>
+                        <outlet property="viewImgButton" destination="BmR-NY-k22" id="KDL-fr-7mp"/>
                         <segue destination="1yY-U5-MZt" kind="show" identifier="appSegue" id="6IU-dM-Aai"/>
                         <segue destination="J9r-f3-dn1" kind="presentation" identifier="reminderSegue" id="CZN-JK-XJg"/>
                     </connections>

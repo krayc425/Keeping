@@ -19,6 +19,8 @@
 
 @interface KPTaskTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
+@property (nonatomic, assign) UIView *background;   //图片放大的背景
+
 @end
 
 @implementation KPTaskTableViewController
@@ -48,8 +50,6 @@
     }
     
     self.selectedWeekdayArr = [[NSMutableArray alloc] init];
-//    [self.selectedWeekdayArr addObject:[NSNumber numberWithInteger:[[NSDate date] weekday]]];
-//    [self loadTasksOfWeekdays:self.selectedWeekdayArr];
     [self selectAllWeekDay];
 }
 
@@ -136,6 +136,39 @@
             }
         }
     }
+}
+
+#pragma mark - Pop Up Image
+
+- (void)passImg:(UIImage *)img{
+    [self.navigationController.navigationBar setHidden:YES];
+    [self.tabBarController.tabBar setHidden:YES];
+    
+    //创建一个黑色背景, 初始化一个用来当做背景的View。
+    UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0, -64, self.view.frame.size.width, self.view.frame.size.height + 64)];
+    self.background = bgView;
+    [bgView setBackgroundColor:[UIColor colorWithRed:0/250.0 green:0/250.0 blue:0/250.0 alpha:1.0]];
+    
+    //创建显示图像的视图
+    //初始化要显示的图片内容的imageView
+    UIImageView *browseImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height + 64)];
+    browseImgView.contentMode = UIViewContentModeScaleAspectFit;
+    
+    browseImgView.image = img;
+    [bgView addSubview:browseImgView];
+    
+    browseImgView.userInteractionEnabled = YES;
+    //添加点击手势（即点击图片后退出全屏）
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeView)];
+    [browseImgView addGestureRecognizer:tapGesture];
+    
+    [self.tableView addSubview:bgView];
+}
+
+- (void)closeView{
+    [self.background removeFromSuperview];
+    [self.navigationController.navigationBar setHidden:NO];
+    [self.tabBarController.tabBar setHidden:NO];
 }
 
 #pragma mark - Table view data source
@@ -267,6 +300,13 @@
             reminderTimeStr = [reminderTimeStr stringByAppendingString:[dateFormatter stringFromDate:t.reminderTime]];
         }
         [cell.daysLabel setText:[reminderDayStr stringByAppendingString:reminderTimeStr]];
+        
+        if(t.image != NULL){
+            [cell.taskImgViewBtn setBackgroundImage:[UIImage imageWithData:t.image] forState:UIControlStateNormal];
+            cell.delegate = self;
+        }else{
+            [cell.taskImgViewBtn setImage:[UIImage new] forState:UIControlStateNormal];
+        }
         
 //        NSString *dateStr =  [t.addDate formattedDateWithFormat:@"YYYY/MM/dd HH:mm:ss"];
         [cell.totalDayLabel setText:[NSString stringWithFormat:@"已添加 %ld 天, 已完成 %lu 天", (long)[[NSDate date] daysFrom:t.addDate] + 1, (unsigned long)[t.punchDateArr count]]];

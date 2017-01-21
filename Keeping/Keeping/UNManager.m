@@ -40,10 +40,16 @@
         
         content.badge = @1;
         content.sound = [UNNotificationSound defaultSound];
+        
+        if(task.appScheme == NULL){
+            
+        }
+        
+        
         content.userInfo = @{
                              @"taskid" : @(task.id),
-                             @"taskapp" : task.appScheme,
-                             @"taskimage" : task.image
+                             @"taskapp" : task.appScheme == NULL ? @{} : task.appScheme,
+                             @"taskimage" : task.image == NULL ? [NSData new] : task.image
                              };
         
         UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];

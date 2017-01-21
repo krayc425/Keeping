@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KPTaskTableViewCell.h"
 
-@interface KPTaskTableViewController : UITableViewController
+@interface KPTaskTableViewController : UITableViewController <PassImgDelegate>
 
 @property (nonnull, nonatomic) NSMutableArray *taskArr;
 

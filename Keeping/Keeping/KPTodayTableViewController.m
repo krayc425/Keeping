@@ -227,7 +227,6 @@
     [self loadTasks];
 }
 
-
 #pragma mark -DZNEmpty Delegate
 
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView{

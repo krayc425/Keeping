@@ -175,7 +175,7 @@
         }
     }
     
-    if([userInfo objectForKey:@"taskapp"] != nil){
+    if(![[userInfo objectForKey:@"taskapp"] isEqual: @{}]){
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[[userInfo objectForKey:@"taskapp"] allValues][0]]];
     }
     

@@ -100,7 +100,7 @@ static TaskManager* _instance = nil;
         NSData *schemeJsonData = [NSJSONSerialization dataWithJSONObject:schemeDict options:NSJSONWritingPrettyPrinted error:&err];
         schemeJsonStr = [[NSString alloc] initWithData:schemeJsonData encoding:NSUTF8StringEncoding];
     }else{
-        schemeJsonStr = nil;
+        schemeJsonStr = NULL;
     }
     
     NSArray *daysArr = task.reminderDays;
@@ -109,7 +109,7 @@ static TaskManager* _instance = nil;
         NSData *daysJsonData = [NSJSONSerialization dataWithJSONObject:daysArr options:NSJSONWritingPrettyPrinted error:&err];
         daysJsonStr = [[NSString alloc] initWithData:daysJsonData encoding:NSUTF8StringEncoding];
     }else{
-        daysJsonStr = nil;
+        daysJsonStr = NULL;
     }
     
     NSArray *punchArr = task.punchDateArr;
@@ -118,16 +118,12 @@ static TaskManager* _instance = nil;
         NSData *punchJsonData = [NSJSONSerialization dataWithJSONObject:punchArr options:NSJSONWritingPrettyPrinted error:&err];
         punchJsonStr = [[NSString alloc] initWithData:punchJsonData encoding:NSUTF8StringEncoding];
     }else{
-        punchJsonStr = nil;
+        punchJsonStr = NULL;
     }
     
     if(task.reminderTime != nil){
         [UNManager deleteLocalizedUserNotification:task];
         [UNManager createLocalizedUserNotification:task];
-    }
-    
-    if(task.image != nil){
-        
     }
 
     return [[[DBManager shareInstance] getDB] executeUpdate:
