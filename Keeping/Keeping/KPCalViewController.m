@@ -48,7 +48,7 @@
     [cardView addSubview:self.calendar];
     
     UIButton *previousButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    previousButton.frame = CGRectMake(5, 5, 95, 34);
+    previousButton.frame = CGRectMake(5, 10, 95, 34);
     previousButton.backgroundColor = [UIColor whiteColor];
     previousButton.titleLabel.font = [UIFont systemFontOfSize:15];
     [previousButton setTintColor:[Utilities getColor]];
@@ -60,7 +60,7 @@
     self.previousButton = previousButton;
     
     UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    nextButton.frame = CGRectMake(CGRectGetWidth(cardView.frame)-100, 5, 95, 34);
+    nextButton.frame = CGRectMake(CGRectGetWidth(cardView.frame)-100, 10, 95, 34);
     nextButton.backgroundColor = [UIColor whiteColor];
     nextButton.titleLabel.font = [UIFont systemFontOfSize:15];
     [nextButton setTintColor:[Utilities getColor]];
@@ -96,7 +96,7 @@
 }
 
 - (void)loadTasks{
-    NSLog(@"Load Task on : %@", [self.selectedDate description]);
+//    NSLog(@"Load Task on : %@", [self.selectedDate description]);
     self.taskArr = [[TaskManager shareInstance] getTasksOfDate:self.selectedDate];
     [self.taskTableView reloadData];
 }
@@ -139,7 +139,7 @@
     }
     [cell.taskNameLabel setText:t.name];
     
-    [cell.punchDaysLabel setText:[NSString stringWithFormat:@"已完成 %lu 天", (unsigned long)[t.punchDateArr count]]];
+    [cell.punchDaysLabel setText:[NSString stringWithFormat:@"已完成 %lu 天, 计划完成 %d 天", (unsigned long)[t.punchDateArr count], [[TaskManager shareInstance] totalPunchNumberOfTask:t]]];
     
     return cell;
 }
@@ -174,6 +174,13 @@
     NSDate *currentMonth = self.calendar.currentPage;
     NSDate *nextMonth = [self.gregorian dateByAddingUnit:NSCalendarUnitMonth value:1 toDate:currentMonth options:0];
     [self.calendar setCurrentPage:nextMonth animated:YES];
+}
+
+- (NSString *)calendar:(FSCalendar *)calendar titleForDate:(NSDate *)date{
+    if ([self.gregorian isDateInToday:date]) {
+        return @"今";
+    }
+    return nil;
 }
 
 @end

@@ -177,16 +177,7 @@
         KPTaskExtraTableViewController *kpstvc = (KPTaskExtraTableViewController *)[segue destinationViewController];
         Task *task = [Task new];
         task.name = self.taskNameField.text;
-        
-        //排序
-        [self.selectedWeekdayArr sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-            NSNumber *n1 = (NSNumber *)obj1;
-            NSNumber *n2 = (NSNumber *)obj2;
-            NSComparisonResult result = [n1 compare:n2];
-            return result == NSOrderedDescending;
-        }];
         task.reminderDays = self.selectedWeekdayArr;
-
         kpstvc.task = task;
     }
 }

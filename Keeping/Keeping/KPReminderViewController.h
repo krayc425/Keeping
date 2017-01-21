@@ -22,6 +22,6 @@
 
 @property (nonatomic, nonnull) id<ReminderDelegate> delegate;
 
-@property (nonatomic) KPTimePicker *timePicker;
+@property (nonnull, nonatomic) KPTimePicker *timePicker;
 
 @end

@@ -36,7 +36,16 @@
     [self.reminderSwitch addTarget:self action:@selector(showReminderPickerAction:) forControlEvents:UIControlEventValueChanged];
     //APP名字标签
     [self.appNameLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0]];
-
+    
+    //对星期排序
+    NSMutableArray *arr = [NSMutableArray arrayWithArray:self.task.reminderDays];
+    [arr sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        NSNumber *n1 = (NSNumber *)obj1;
+        NSNumber *n2 = (NSNumber *)obj2;
+        NSComparisonResult result = [n1 compare:n2];
+        return result == NSOrderedDescending;
+    }];
+    self.task.reminderDays = arr;
     //加载原始数据
     if(self.task.id != 0){
         self.selectedApp = self.task.appScheme;
@@ -64,14 +73,13 @@
 
     self.task.reminderTime = self.reminderTime;
     
-    NSDate *addDate = [NSDate dateWithYear:[[NSDate date] year] month:[[NSDate date] month] day:[[NSDate date] day]];
-    self.task.addDate = addDate;
-    
-    self.task.punchDateArr = [[NSMutableArray alloc] init];
-    
+    NSLog(@"%@",self.task.name);
     
     NSString *title;
     if(self.task.id == 0){
+        NSDate *addDate = [NSDate dateWithYear:[[NSDate date] year] month:[[NSDate date] month] day:[[NSDate date] day]];
+        self.task.addDate = addDate;
+        self.task.punchDateArr = [[NSMutableArray alloc] init];
         [[TaskManager shareInstance] addTask:self.task];
         title = @"新增成功";
     }else{

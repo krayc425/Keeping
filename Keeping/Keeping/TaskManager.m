@@ -89,8 +89,52 @@ static TaskManager* _instance = nil;
             ];
 }
 
-//TODO
 - (BOOL)updateTask:(Task *_Nonnull)task{
+    
+    NSError *err = nil;
+    
+    NSDictionary *schemeDict = task.appScheme;
+    NSString *schemeJsonStr;
+    if(schemeDict != NULL){
+        NSData *schemeJsonData = [NSJSONSerialization dataWithJSONObject:schemeDict options:NSJSONWritingPrettyPrinted error:&err];
+        schemeJsonStr = [[NSString alloc] initWithData:schemeJsonData encoding:NSUTF8StringEncoding];
+    }else{
+        schemeJsonStr = nil;
+    }
+    
+    NSArray *daysArr = task.reminderDays;
+    NSString *daysJsonStr;
+    if([daysArr count] > 0 || daysArr != NULL){
+        NSData *daysJsonData = [NSJSONSerialization dataWithJSONObject:daysArr options:NSJSONWritingPrettyPrinted error:&err];
+        daysJsonStr = [[NSString alloc] initWithData:daysJsonData encoding:NSUTF8StringEncoding];
+    }else{
+        daysJsonStr = nil;
+    }
+    
+    NSArray *punchArr = task.punchDateArr;
+    NSString *punchJsonStr;
+    if([punchArr count] > 0 || punchArr != NULL){
+        NSData *punchJsonData = [NSJSONSerialization dataWithJSONObject:punchArr options:NSJSONWritingPrettyPrinted error:&err];
+        punchJsonStr = [[NSString alloc] initWithData:punchJsonData encoding:NSUTF8StringEncoding];
+    }else{
+        punchJsonStr = nil;
+    }
+    
+    if(task.reminderTime != nil){
+        [UNManager deleteLocalizedUserNotification:task];
+        [UNManager createLocalizedUserNotification:task];
+    }
+
+    return [[[DBManager shareInstance] getDB] executeUpdate:
+            @"UPDATE t_task SET name = ?, appScheme = ?, reminderDays = ?, addDate = ?, reminderTime = ?, punchDateArr = ? WHERE id = ?;",
+            task.name,
+            schemeJsonStr,
+            daysJsonStr,
+            task.addDate,
+            task.reminderTime,
+            punchJsonStr,
+            @(task.id)
+            ];
     return YES;
 }
 

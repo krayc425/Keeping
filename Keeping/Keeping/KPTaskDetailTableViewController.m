@@ -12,6 +12,8 @@
 #import "KPSeparatorView.h"
 #import "UIView+MJAlertView.h"
 #import "KPTaskExtraTableViewController.h"
+#import "DateUtil.h"
+#import "DateTools.h"
 
 @interface KPTaskDetailTableViewController ()
 
@@ -55,7 +57,12 @@
     self.calendar.appearance.subtitleFont = [UIFont fontWithName:[Utilities getFont] size:10.0];
     self.calendar.appearance.headerTitleColor = [Utilities getColor];
     self.calendar.appearance.weekdayTextColor = [Utilities getColor];
-    self.calendar.appearance.selectionColor = [Utilities getColor];
+//    self.calendar.appearance.todayColor = [UIColor whiteColor];
+//    self.calendar.appearance.titleTodayColor = [UIColor blackColor];
+    
+    self.calendar.allowsSelection = NO;
+    
+    self.gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -119,6 +126,8 @@
     }else{
         [self.allButton setTitle:@"全选" forState: UIControlStateNormal];
     }
+    
+    [self.calendar reloadData];
 }
 
 - (IBAction)selectAllWeekdayAction:(id)sender{
@@ -196,10 +205,55 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([segue.identifier isEqualToString:@"addExtraSegue"]){
         KPTaskExtraTableViewController *kpstvc = (KPTaskExtraTableViewController *)[segue destinationViewController];
+        self.task.name = self.taskNameField.text;
+        self.task.reminderDays = self.selectedWeekdayArr;
         kpstvc.task = self.task;
     }
 }
 
 #pragma mark - FSCalendar Delegate
+
+- (NSString *)calendar:(FSCalendar *)calendar titleForDate:(NSDate *)date{
+    if ([self.gregorian isDateInToday:date]) {
+        return @"今";
+    }
+    return nil;
+}
+
+- (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance fillDefaultColorForDate:(nonnull NSDate *)date{
+    //打了卡的日子
+    if([self.task.punchDateArr containsObject:[DateUtil transformDate:date]]){
+        return [Utilities getColor];
+    }
+    return appearance.borderDefaultColor;
+}
+
+- (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance titleDefaultColorForDate:(NSDate *)date{
+    //打了卡的日子
+    if([self.task.punchDateArr containsObject:[DateUtil transformDate:date]]){
+        return [UIColor whiteColor];
+    }
+    return appearance.borderDefaultColor;
+}
+
+- (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance borderDefaultColorForDate:(NSDate *)date{
+    //未来应该打卡的日子、打了卡的日子、没打卡的日子
+    if([self.task.punchDateArr containsObject:[DateUtil transformDate:date]]){
+        return [Utilities getColor];
+    }
+    if([self.task.addDate isEarlierThanOrEqualTo:date] && [self.selectedWeekdayArr containsObject:@(date.weekday)]){
+        if([[NSDate date] isEarlierThanOrEqualTo:date]){
+            return [Utilities getColor];
+        }else{
+            return [UIColor redColor];
+        }
+    }
+    return appearance.borderDefaultColor;
+}
+
+- (NSInteger)calendar:(FSCalendar *)calendar numberOfEventsForDate:(NSDate *)date{
+    //创建日期
+    return [self.task.addDate isEqualToDate:date];
+}
 
 @end

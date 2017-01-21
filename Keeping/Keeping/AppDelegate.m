@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "DBManager.h"
 #import "KPSchemeManager.h"
+#import "KPNavigationViewController.h"
+#import "KPTabBarViewController.h"
 
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
 #import <UserNotifications/UserNotifications.h>
@@ -192,8 +194,17 @@
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:s]];
     }
     
-    //2016-09-27 14:42:16.353978 UserNotificationsDemo[1765:800117] Warning: UNUserNotificationCenter delegate received call to -userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler: but the completion handler was never called.
     completionHandler(); // 系统要求执行这个方法
+}
+
+#pragma mark - 3D Touch
+
+- (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void(^)(BOOL succeeded))completionHandler{
+    if([shortcutItem.type isEqualToString:@"newTask"]){
+        KPNavigationViewController *naviVC = (KPNavigationViewController *)self.window.rootViewController;
+        KPTabBarViewController *tabBarC = (KPTabBarViewController *)[naviVC.viewControllers objectAtIndex:0];
+        [[tabBarC.viewControllers objectAtIndex:1] performSegueWithIdentifier:@"addTaskSegue" sender:nil];
+    }
 }
 
 #pragma mark - Core Data stack

@@ -38,12 +38,10 @@
         content.title = task.name;
         content.subtitle = @"";
         
-        NSLog(@"%@", [task.appScheme description]);
-        
         if(task.appScheme != NULL){
-            content.body = [NSString stringWithFormat:@"前往 %@", task.appScheme.allKeys[0]];
+            content.body = [NSString stringWithFormat:@"前往→%@", task.appScheme.allKeys[0]];
         }else{
-            content.body = @" ";
+            content.body = @"就是现在!";
         }
         
         content.badge = @1;
@@ -52,15 +50,13 @@
         
         // 创建通知标示
         NSString *requestIdentifier = [NSString stringWithFormat:@"unid%@%@",task.addDate.description,weekday];
-        
         // 创建通知请求 UNNotificationRequest 将触发条件和通知内容添加到请求中
         UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:requestIdentifier content:content trigger:trigger];
-        
         UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
         // 将通知请求 add 到 UNUserNotificationCenter
         [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
             if (!error) {
-                NSLog(@"推送已添加成功 %@ %@", requestIdentifier, request.description);
+                NSLog(@"推送已添加成功 %@", requestIdentifier);
             }
         }];
     }

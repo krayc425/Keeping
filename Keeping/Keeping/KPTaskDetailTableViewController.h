@@ -10,7 +10,7 @@
 #import "Task.h"
 #import "FSCalendar.h"
 
-@interface KPTaskDetailTableViewController : UITableViewController <FSCalendarDataSource, FSCalendarDelegate>
+@interface KPTaskDetailTableViewController : UITableViewController <FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance>
 
 @property (nonnull, nonatomic) Task *task;
 
