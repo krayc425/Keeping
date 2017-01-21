@@ -11,17 +11,23 @@
 @interface Task : NSObject
 
 @property (nonatomic) int id;
+
+
 //任务名
 @property (nonatomic, nonnull) NSString *name;
-//跳转 app 的 scheme
-@property (nonatomic, nonnull) NSDictionary *appScheme;
 //提醒的日子（星期 x）
 @property (nonatomic, nonnull) NSArray *reminderDays;
 //创建日期
 @property (nonatomic, nonnull) NSDate *addDate;
+
+
+//跳转 app 的 scheme
+@property (nonatomic, nonnull) NSDictionary *appScheme;
 //提醒时间
 @property (nonatomic, nonnull) NSDate *reminderTime;
 //打卡日期数组
 @property (nonatomic, nonnull) NSArray *punchDateArr;
+//图片
+@property (nonatomic, nonnull) NSData *image;
 
 @end

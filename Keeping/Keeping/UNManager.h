@@ -13,5 +13,6 @@
 
 + (void)createLocalizedUserNotification:(Task *)task;
 + (void)deleteLocalizedUserNotification:(Task *)task;
++ (void)printNumberOfNotifications;
 
 @end

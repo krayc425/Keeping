@@ -79,13 +79,14 @@ static TaskManager* _instance = nil;
     }
     
     return [[[DBManager shareInstance] getDB] executeUpdate:
-            @"INSERT INTO t_task (name, appScheme, reminderDays, addDate, reminderTime, punchDateArr) VALUES (?, ?, ?, ?, ?, ?);",
+            @"INSERT INTO t_task (name, appScheme, reminderDays, addDate, reminderTime, punchDateArr, image) VALUES (?, ?, ?, ?, ?, ?, ?);",
             task.name,
             schemeJsonStr,
             daysJsonStr,
             task.addDate,
             task.reminderTime,
-            punchJsonStr
+            punchJsonStr,
+            task.image
             ];
 }
 
@@ -124,15 +125,20 @@ static TaskManager* _instance = nil;
         [UNManager deleteLocalizedUserNotification:task];
         [UNManager createLocalizedUserNotification:task];
     }
+    
+    if(task.image != nil){
+        
+    }
 
     return [[[DBManager shareInstance] getDB] executeUpdate:
-            @"UPDATE t_task SET name = ?, appScheme = ?, reminderDays = ?, addDate = ?, reminderTime = ?, punchDateArr = ? WHERE id = ?;",
+            @"UPDATE t_task SET name = ?, appScheme = ?, reminderDays = ?, addDate = ?, reminderTime = ?, punchDateArr = ?, image = ? WHERE id = ?;",
             task.name,
             schemeJsonStr,
             daysJsonStr,
             task.addDate,
             task.reminderTime,
             punchJsonStr,
+            task.image,
             @(task.id)
             ];
     return YES;
@@ -179,6 +185,7 @@ static TaskManager* _instance = nil;
         
         t.addDate = [resultSet dateForColumn:@"addDate"];
         t.reminderTime = [resultSet dateForColumn:@"reminderTime"];
+        t.image = [resultSet dataForColumn:@"image"];
         
         [self.taskArr addObject:t];
     }
@@ -187,41 +194,6 @@ static TaskManager* _instance = nil;
 - (NSMutableArray *)getTasks{
     [self loadTask];
     return self.taskArr;
-}
-
-- (BOOL)punchForTask:(Task *)task{
-    FMResultSet *resultSet = [[[DBManager shareInstance] getDB] executeQuery:@"select * from t_task;"];
-    while([resultSet next]){
-        
-        int i = [resultSet intForColumn:@"id"];
-        if(i != task.id){
-            continue;
-        }
-        
-        NSString *punchJsonStr = [resultSet stringForColumn:@"punchDateArr"];
-        if(punchJsonStr != NULL){
-            NSData *punchData = [punchJsonStr dataUsingEncoding:NSUTF8StringEncoding];
-            NSMutableArray *punchArr = [[NSJSONSerialization JSONObjectWithData:punchData options:NSJSONReadingAllowFragments error:nil] mutableCopy];
-            
-            if([punchArr count] <= 0){
-                punchArr = [[NSMutableArray alloc] init];
-            }
-            
-            [punchArr addObject:[DateUtil transformDate:[NSDate date]]];
-            
-            NSError *err = nil;
-            NSString *punchJsonStr;
-            if([punchArr count] > 0 || punchArr != NULL){
-                NSData *punchJsonData = [NSJSONSerialization dataWithJSONObject:punchArr options:NSJSONWritingPrettyPrinted error:&err];
-                punchJsonStr = [[NSString alloc] initWithData:punchJsonData encoding:NSUTF8StringEncoding];
-            }else{
-                punchJsonStr = nil;
-            }
-            
-            return [[[DBManager shareInstance] getDB] executeUpdate:@"update t_task set punchDateArr = ? where id = ?;", punchJsonStr, @(task.id)];
-        }
-    }
-    return NO;
 }
 
 - (NSMutableArray *)getTodayTasks{
@@ -256,6 +228,35 @@ static TaskManager* _instance = nil;
         date = [date dateByAddingDays:1];
     }
     return count;
+}
+
+- (BOOL)punchForTaskWithID:(NSNumber *)taskid{
+    FMResultSet *resultSet = [[[DBManager shareInstance] getDB] executeQuery:@"select * from t_task where id = ?;", taskid];
+    while([resultSet next]){
+        NSString *punchJsonStr = [resultSet stringForColumn:@"punchDateArr"];
+        if(punchJsonStr != NULL){
+            NSData *punchData = [punchJsonStr dataUsingEncoding:NSUTF8StringEncoding];
+            NSMutableArray *punchArr = [[NSJSONSerialization JSONObjectWithData:punchData options:NSJSONReadingAllowFragments error:nil] mutableCopy];
+            
+            if([punchArr count] <= 0){
+                punchArr = [[NSMutableArray alloc] init];
+            }
+            
+            [punchArr addObject:[DateUtil transformDate:[NSDate date]]];
+            
+            NSError *err = nil;
+            NSString *punchJsonStr;
+            if([punchArr count] > 0 || punchArr != NULL){
+                NSData *punchJsonData = [NSJSONSerialization dataWithJSONObject:punchArr options:NSJSONWritingPrettyPrinted error:&err];
+                punchJsonStr = [[NSString alloc] initWithData:punchJsonData encoding:NSUTF8StringEncoding];
+            }else{
+                punchJsonStr = nil;
+            }
+            
+            return [[[DBManager shareInstance] getDB] executeUpdate:@"update t_task set punchDateArr = ? where id = ?;", punchJsonStr, taskid];
+        }
+    }
+    return NO;
 }
 
 @end

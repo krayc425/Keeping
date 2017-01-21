@@ -33,20 +33,34 @@ static DBManager* _instance = nil;
 }
 
 - (void)establishDB{
-    //1.数据库路径
+    //数据库路径
     NSString *doc =[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) lastObject];
     NSString *fileName = [doc stringByAppendingPathComponent:@"task.sqlite"];
-    NSLog(@"%@", doc);
-    //2.获得数据库
+    NSLog(@"DB PATH : %@", doc);
+    //获得数据库
     self.db = [FMDatabase databaseWithPath:fileName];
-    //3.使用如下语句，如果打开失败，可能是权限不足或者资源不足。通常打开完操作操作后，需要调用 close 方法来关闭数据库。在和数据库交互之前，数据库必须是打开的。如果资源或权限不足无法打开或创建数据库，都会导致打开失败。
+    //使用如下语句，如果打开失败，可能是权限不足或者资源不足。通常打开完操作操作后，需要调用 close 方法来关闭数据库。在和数据库交互之前，数据库必须是打开的。如果资源或权限不足无法打开或创建数据库，都会导致打开失败。
     if ([self.db open]){
-    //4.创表
-        BOOL result = [self.db executeUpdate:
-                       @"CREATE TABLE IF NOT EXISTS t_task (id integer PRIMARY KEY AUTOINCREMENT, name text NOT NULL, appScheme text, reminderDays text, addDate date NOT NULL, reminderTime date, punchDateArr text)"];
-        if (result){
-            NSLog(@"创建表成功");
+    //创表
+        
+        //先看有没有这张表
+        if(![self.db tableExists:@"t_task"]){
+            BOOL result = [self.db executeUpdate:
+                           @"CREATE TABLE IF NOT EXISTS t_task (id integer PRIMARY KEY AUTOINCREMENT, name text NOT NULL, appScheme text, reminderDays text, addDate date NOT NULL, reminderTime date, punchDateArr text)"];
+            if (result){
+                NSLog(@"创建表成功");
+            }
+        }else{
+            
+            //有的话，先看有没有图片选项
+            if (![self.db columnExists:@"image" inTableWithName:@"t_task"]){
+                [self.db executeUpdate:[NSString stringWithFormat:@"ALTER TABLE %@ ADD %@ blob", @"t_task", @"image"]];
+                NSLog(@"增加图片字段成功");
+            }
+            //...
+        
         }
+        
     }
 }
 

@@ -11,14 +11,17 @@
 #import "KPReminderViewController.h"
 #import "Task.h"
 
-@interface KPTaskExtraTableViewController : UITableViewController <SchemeDelegate, ReminderDelegate>
+@interface KPTaskExtraTableViewController : UITableViewController <SchemeDelegate, ReminderDelegate,  UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (nonnull, nonatomic) IBOutlet UILabel *reminderLabel;
 @property (nonnull, nonatomic) IBOutlet UISwitch *reminderSwitch;
-@property (nonnull, nonatomic) IBOutlet UILabel *appNameLabel;
-
-@property (nonatomic, nullable) NSDictionary *selectedApp;
 @property (nonatomic, nullable) NSDate *reminderTime;
+
+@property (nonnull, nonatomic) IBOutlet UILabel *appNameLabel;
+@property (nonatomic, nullable) NSDictionary *selectedApp;
+
+@property (nonnull, nonatomic) IBOutlet UIImageView *selectedImgView;
+@property (nonnull, nonatomic) UIImagePickerController* picker_library_;
 
 @property (nonnull, nonatomic) Task *task;
 

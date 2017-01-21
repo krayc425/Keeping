@@ -435,26 +435,22 @@
                             </tableViewSection>
                             <tableViewSection id="5a2-DB-v7g">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="60" id="VkF-Ui-NrN">
-                                        <rect key="frame" x="0.0" y="227" width="375" height="60"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="44" id="VkF-Ui-NrN">
+                                        <rect key="frame" x="0.0" y="227" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VkF-Ui-NrN" id="PVH-j8-rAt">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dVN-Ne-jEv">
-                                                    <rect key="frame" x="13" y="5" width="349" height="49"/>
-                                                    <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VC3-V9-dcb">
+                                                    <rect key="frame" x="18" y="18" width="339" height="7.5"/>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="dVN-Ne-jEv" firstAttribute="centerY" secondItem="PVH-j8-rAt" secondAttribute="centerY" id="FGJ-O5-eiR"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="dVN-Ne-jEv" secondAttribute="trailing" constant="5" id="Kvy-96-kR5"/>
-                                                <constraint firstItem="dVN-Ne-jEv" firstAttribute="leading" secondItem="PVH-j8-rAt" secondAttribute="leadingMargin" constant="5" id="OVz-H7-zbL"/>
-                                                <constraint firstAttribute="bottom" secondItem="dVN-Ne-jEv" secondAttribute="bottom" constant="5" id="a4d-hy-Mf6"/>
-                                                <constraint firstItem="dVN-Ne-jEv" firstAttribute="top" secondItem="PVH-j8-rAt" secondAttribute="top" constant="5" id="i3D-YN-fY0"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="VC3-V9-dcb" secondAttribute="trailing" constant="10" id="Dex-IS-hzt"/>
+                                                <constraint firstItem="VC3-V9-dcb" firstAttribute="top" secondItem="PVH-j8-rAt" secondAttribute="topMargin" constant="10" id="ED6-NO-dgv"/>
+                                                <constraint firstItem="VC3-V9-dcb" firstAttribute="leading" secondItem="PVH-j8-rAt" secondAttribute="leadingMargin" constant="10" id="xiv-dd-46v"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="VC3-V9-dcb" secondAttribute="bottom" constant="10" id="znN-RK-dGe"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -470,6 +466,7 @@
                         <outlet property="appNameLabel" destination="u7o-LQ-uDa" id="3k0-hJ-3hf"/>
                         <outlet property="reminderLabel" destination="x6I-IT-1gB" id="2d7-dO-e5z"/>
                         <outlet property="reminderSwitch" destination="QRM-gd-2j9" id="2ig-xF-VFH"/>
+                        <outlet property="selectedImgView" destination="VC3-V9-dcb" id="4fV-8j-Mu6"/>
                         <segue destination="1yY-U5-MZt" kind="show" identifier="appSegue" id="6IU-dM-Aai"/>
                         <segue destination="J9r-f3-dn1" kind="presentation" identifier="reminderSegue" id="CZN-JK-XJg"/>
                     </connections>

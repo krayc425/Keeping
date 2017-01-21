@@ -4,17 +4,17 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>AVOSCloud.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Appirater-Appirater.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>Appirater.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>BATabBarController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -49,11 +49,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Masonry.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-Keeping.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -62,6 +57,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>06EA4845750BBDAD6CAEC4F0AC205DB1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>107FC511B01CDA14F01A7A647152DEB8</key>
 		<dict>
 			<key>primary</key>
@@ -72,7 +72,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>400650D541291046A2E19E6946024BC6</key>
+		<key>28AFBC0E511B8F40FE4F8AB64E3F6F22</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -102,17 +102,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D936F53D40C60AC15D109712499C00EC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>DF880A7BBC8CC3F13B3C8A1B5D0F5FC3</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>EB45B596956280F7CDB991777576580C</key>
 		<dict>
 			<key>primary</key>
 			<true/>

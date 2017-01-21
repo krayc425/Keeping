@@ -26,6 +26,9 @@
     
     [self.navigationItem setTitle:@"任务详情"];
     self.clearsSelectionOnViewWillAppear = NO;
+    //导航栏左上角
+    UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_CANCEL"] style:UIBarButtonItemStylePlain target:self action:@selector(backAction:)];
+    self.navigationItem.leftBarButtonItems = @[cancelItem];
     //导航栏右上角
     UIBarButtonItem *okItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_NEXT"] style:UIBarButtonItemStylePlain target:self action:@selector(nextAction:)];
     self.navigationItem.rightBarButtonItems = @[okItem];
@@ -93,6 +96,10 @@
         return NO;
     }
     return YES;
+}
+
+- (void)backAction:(id)sender{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)nextAction:(id)sender{

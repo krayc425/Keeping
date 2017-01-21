@@ -24,6 +24,9 @@
     [super viewDidLoad];
     [self.navigationItem setTitle:@"新增任务"];
     self.clearsSelectionOnViewWillAppear = NO;
+    //导航栏左上角
+    UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_CANCEL"] style:UIBarButtonItemStylePlain target:self action:@selector(backAction:)];
+    self.navigationItem.leftBarButtonItems = @[cancelItem];
     //导航栏右上角
     UIBarButtonItem *okItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_NEXT"] style:UIBarButtonItemStylePlain target:self action:@selector(nextAction:)];
     self.navigationItem.rightBarButtonItems = @[okItem];
@@ -50,6 +53,8 @@
                                                                               action:@selector(hideKeyboard)];
     gesture.numberOfTapsRequired = 1;
     [self.view addGestureRecognizer:gesture];
+    
+    [self.taskNameField becomeFirstResponder];
 }
 
 - (void)hideKeyboard{
@@ -58,6 +63,10 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)backAction:(id)sender{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (BOOL)checkCompleted{

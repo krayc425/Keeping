@@ -9,8 +9,11 @@
 #import "AppDelegate.h"
 #import "DBManager.h"
 #import "KPSchemeManager.h"
+#import "TaskManager.h"
 #import "KPNavigationViewController.h"
 #import "KPTabBarViewController.h"
+#import <AVOSCloud/AVOSCloud.h>
+#import "UNManager.h"
 
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
 #import <UserNotifications/UserNotifications.h>
@@ -30,32 +33,30 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self replyPushNotificationAuthorization:application];
     
+    [AVOSCloud setApplicationId:@"sabdEOhaMdwIEc2zbKRBQk56-gzGzoHsz" clientKey:@"byONReV9r125hlRuN1mAvv9I"];
+    [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
     return YES;
 }
-
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
 }
 
-
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
-
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
 }
-
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
 }
-
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
@@ -63,6 +64,7 @@
     
     //关闭数据库
     [[DBManager shareInstance] closeDB];
+    
     [self saveContext];
 }
 
@@ -104,35 +106,25 @@
     
     //收到推送的请求
     UNNotificationRequest *request = notification.request;
-    
     //收到推送的内容
     UNNotificationContent *content = request.content;
-    
     //收到用户的基本信息
     NSDictionary *userInfo = content.userInfo;
-    
     //收到推送消息的角标
     NSNumber *badge = content.badge;
-    
     //收到推送消息body
     NSString *body = content.body;
-    
     //推送消息的声音
     UNNotificationSound *sound = content.sound;
-    
     // 推送消息的副标题
     NSString *subtitle = content.subtitle;
-    
     // 推送消息的标题
     NSString *title = content.title;
     
     if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
-        //此处省略一万行需求代码。。。。。。
         NSLog(@"iOS10 收到远程通知:%@",userInfo);
-        
     }else {
         // 判断为本地通知
-        //此处省略一万行需求代码。。。。。。
         NSLog(@"iOS10 收到本地通知:{\\\\nbody:%@，\\\\ntitle:%@,\\\\nsubtitle:%@,\\\\nbadge：%@，\\\\nsound：%@，\\\\nuserInfo：%@\\\\n}",body,title,subtitle,badge,sound,userInfo);
     }
     
@@ -140,42 +132,31 @@
     completionHandler(UNNotificationPresentationOptionBadge|
                       UNNotificationPresentationOptionSound|
                       UNNotificationPresentationOptionAlert);
-    
 }
 
 //App通知的点击事件
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler{
     //收到推送的请求
     UNNotificationRequest *request = response.notification.request;
-    
     //收到推送的内容
     UNNotificationContent *content = request.content;
-    
     //收到用户的基本信息
     NSDictionary *userInfo = content.userInfo;
-    
     //收到推送消息的角标
     NSNumber *badge = content.badge;
-    
     //收到推送消息body
     NSString *body = content.body;
-    
     //推送消息的声音
     UNNotificationSound *sound = content.sound;
-    
     // 推送消息的副标题
     NSString *subtitle = content.subtitle;
-    
     // 推送消息的标题
     NSString *title = content.title;
     
     if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         NSLog(@"iOS10 收到远程通知:%@",userInfo);
-        //此处省略一万行需求代码。。。。。。
-        
     }else {
         // 判断为本地通知
-        //此处省略一万行需求代码。。。。。。
         NSLog(@"iOS10 收到本地通知:{\\\\nbody:%@，\\\\ntitle:%@,\\\\nsubtitle:%@,\\\\nbadge：%@，\\\\nsound：%@，\\\\nuserInfo：%@\\\\n}",body,title,subtitle,badge,sound,userInfo);
     }
     
@@ -184,17 +165,21 @@
     notibadge = notibadge >= 0 ? notibadge : 0;
     [UIApplication sharedApplication].applicationIconBadgeNumber = notibadge;
     
-    NSString *s;
-    if(![content.body isEqualToString:@" "]){
-        for(NSDictionary *dict in [KPSchemeManager getSchemeArr]){
-            if([dict.allKeys[0] isEqualToString:[content.body substringFromIndex:3]]){
-                s = dict.allValues[0];
-            }
+    NSString *categoryIdentifier = response.notification.request.content.categoryIdentifier;
+    //识别需要被处理的拓展
+    if ([categoryIdentifier isEqualToString:@"taskLocalCategory"]) {
+        //识别用户点击的是哪个 action
+        if ([response.actionIdentifier isEqualToString:@"action.done"]) {
+            //打卡
+            [[TaskManager shareInstance] punchForTaskWithID:(NSNumber *)[userInfo valueForKey:@"taskid"]];
         }
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:s]];
     }
     
-    completionHandler(); // 系统要求执行这个方法
+    if([userInfo objectForKey:@"taskapp"] != nil){
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[[userInfo objectForKey:@"taskapp"] allValues][0]]];
+    }
+    
+    completionHandler(); // 系统要求执行这个方法, 不然报错
 }
 
 #pragma mark - 3D Touch

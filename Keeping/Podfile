@@ -6,9 +6,9 @@ target 'Keeping' do
   pod 'MBProgressHUD'
   pod 'Appirater'
   pod 'DateTools'
-  pod 'BATabBarController'
   pod 'DZNEmptyDataSet'
   pod 'FSCalendar'
   pod 'FMDB'
   pod 'BEMCheckBox'
+  pod 'AVOSCloud'
 end

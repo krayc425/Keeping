@@ -222,7 +222,8 @@
 
 - (void)checkTask:(UITableViewCell *)cell{
     NSIndexPath *path = [self.tableView indexPathForCell:cell];
-    [[TaskManager shareInstance] punchForTask:self.unfinishedTaskArr[path.row]];
+    Task *task = self.unfinishedTaskArr[path.row];
+    [[TaskManager shareInstance] punchForTaskWithID:@(task.id)];
     [self loadTasks];
 }
 

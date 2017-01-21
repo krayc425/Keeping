@@ -10,6 +10,7 @@
 #import "KPSchemeManager.h"
 #import "KPSchemeTableViewCell.h"
 #import "Utilities.h"
+#import <AVOSCloud/AVOSCloud.h>
 
 @interface KPSchemeTableViewController ()
 
@@ -43,6 +44,41 @@
         [self.delegate passScheme:@{@"":@""}];
     }
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)showSubmitAlert{
+   
+    UIAlertController *alertController =
+    [UIAlertController alertControllerWithTitle:@"请输入您要提交的 APP 名称"
+                                        message:nil
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addTextFieldWithConfigurationHandler:nil];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
+                                                           style:UIAlertActionStyleCancel
+                                                         handler:nil];
+    [alertController addAction:cancelAction];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction *action){
+                                                         UITextField *nameText = alertController.textFields.firstObject;
+                                                         AVObject *appNameSubmitted = [AVObject objectWithClassName:@"appNameSubmitted"];
+                                                         [appNameSubmitted setObject:[nameText text] forKey:@"appName"];
+                                                         [appNameSubmitted save];
+                                                         
+                                                         
+                                                         UIAlertController *alertController =
+                                                         [UIAlertController alertControllerWithTitle:@"提交成功"
+                                                                                             message:@"感谢您的反馈"
+                                                                                      preferredStyle:UIAlertControllerStyleAlert];
+                                                         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定"
+                                                                                                            style:UIAlertActionStyleDefault
+                                                                                                          handler:nil];
+                                                         [alertController addAction:okAction];
+                                                         [self presentViewController:alertController animated:YES completion:nil];
+                                                         
+                                                     }];
+    [alertController addAction:okAction];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 #pragma mark - Table view data source
@@ -111,6 +147,9 @@
     }
     if(self.selectedPath == NULL){
         
+    }
+    if(indexPath.section == 2){
+        [self showSubmitAlert];
     }
     [tableView reloadData];
 }
