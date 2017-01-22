@@ -16,10 +16,16 @@
 #import "DateTools.h"
 #import "DateUtil.h"
 #import "KPTaskDetailTableViewController.h"
+#import "MLKMenuPopover.h"
 
-@interface KPTaskTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
+#define MENU_POPOVER_FRAME CGRectMake(10, 44 + 9, 140, 44 * [[Utilities getTaskSortArr] count])
+
+@interface KPTaskTableViewController () <MLKMenuPopoverDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
 @property (nonatomic, assign) UIView *background;   //图片放大的背景
+
+@property (nonatomic,strong) NSArray *_Nonnull sortArray;
+@property (nonatomic,strong) MLKMenuPopover *_Nonnull menuPopover;
 
 @end
 
@@ -49,6 +55,8 @@
         }
     }
     
+    self.sortFactor = @"addDate";
+    
     self.selectedWeekdayArr = [[NSMutableArray alloc] init];
     [self selectAllWeekDay];
 }
@@ -62,9 +70,13 @@
 }
 
 - (void)loadTasksOfWeekdays:(NSArray *)weekDays{
-    self.taskArr = [[TaskManager shareInstance] getTasks];
+    
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"ANY SELF.reminderDays in %@", weekDays];
-    self.taskArr = [NSMutableArray arrayWithArray:[self.taskArr filteredArrayUsingPredicate:predicate]];
+//    self.taskArr = [NSMutableArray arrayWithArray:[[[TaskManager shareInstance] getTasks] filteredArrayUsingPredicate:predicate]];
+    //排序
+    [self.taskArr removeAllObjects];
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:self.sortFactor ascending:NO];
+    self.taskArr = [NSMutableArray arrayWithArray:[[NSMutableArray arrayWithArray:[[[TaskManager shareInstance] getTasks] filteredArrayUsingPredicate:predicate]] sortedArrayUsingDescriptors:@[sortDescriptor]]];
     
     [self.tableView reloadData];
 }
@@ -74,7 +86,12 @@
 }
 
 - (void)editAction:(id)senders{
-    NSLog(@"edit");
+    // Hide already showing popover
+    [self.menuPopover dismissMenuPopover];
+    
+    self.menuPopover = [[MLKMenuPopover alloc] initWithFrame:MENU_POPOVER_FRAME menuItems:[[Utilities getTaskSortArr] allKeys]];
+    self.menuPopover.menuPopoverDelegate = self;
+    [self.menuPopover showInView:self.navigationController.view];
 }
 
 - (IBAction)selectWeekdayAction:(id)sender{
@@ -401,6 +418,14 @@
     }else{
         return NO;
     }
+}
+
+#pragma mark - MLKMenuPopoverDelegate
+
+- (void)menuPopover:(MLKMenuPopover *)menuPopover didSelectMenuItemAtIndex:(NSInteger)selectedIndex{
+    self.sortFactor = [[Utilities getTaskSortArr] allValues][selectedIndex];
+    NSLog(@"按%@排序", self.sortFactor);
+    [self loadTasksOfWeekdays:self.selectedWeekdayArr];
 }
 
 @end

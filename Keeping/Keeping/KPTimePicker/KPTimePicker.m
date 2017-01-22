@@ -58,7 +58,7 @@
 #import "KPTimePicker.h"
 #import "Categories.h"
 
-#define TIME_INTERVAL 1
+#define TIME_INTERVAL 5
 
 @class KPTimePicker;
 

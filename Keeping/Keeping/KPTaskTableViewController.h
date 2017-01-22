@@ -17,6 +17,8 @@
 @property (nonnull, nonatomic) NSMutableArray *selectedWeekdayArr;
 @property (nonnull, nonatomic) IBOutlet UIButton *allButton;
 
+@property (nonnull, nonatomic) NSString *sortFactor;
+
 - (void)addAction:(_Nonnull id)senders;
 - (void)editAction:(_Nonnull id)senders;
 

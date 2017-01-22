@@ -12,7 +12,6 @@
 @implementation Utilities
 
 + (UIColor *)getColor{
-//    return [UIColor blackColor];
     return [UIColor colorWithRed:59.0/255.0 green:134.0/255.0 blue:207.0/255.0 alpha:1.0];
 }
 
@@ -22,6 +21,14 @@
 
 + (NSString *)getAPPID{
     return @"1197272196";
+}
+
++ (NSDictionary *)getTaskSortArr{
+    return @{
+             @"任务名" : @"name",
+             @"添加日期" : @"addDate",
+             @"提醒时间" : @"reminderTime"
+             };
 }
 
 @end

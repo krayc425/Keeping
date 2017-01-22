@@ -48,6 +48,11 @@
             [button.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0]];
         }
     }
+    if([self.selectedWeekdayArr count] > 0){
+        [self.allButton setTitle:@"清空" forState: UIControlStateNormal];
+    }else{
+        [self.allButton setTitle:@"全选" forState: UIControlStateNormal];
+    }
     
     self.calendar.dataSource = self;
     self.calendar.delegate = self;

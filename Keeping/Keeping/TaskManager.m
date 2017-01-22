@@ -238,7 +238,9 @@ static TaskManager* _instance = nil;
                 punchArr = [[NSMutableArray alloc] init];
             }
             
-            [punchArr addObject:[DateUtil transformDate:[NSDate date]]];
+            if(![punchArr containsObject:[DateUtil transformDate:[NSDate date]]]){
+                [punchArr addObject:[DateUtil transformDate:[NSDate date]]];
+            }
             
             NSError *err = nil;
             NSString *punchJsonStr;

@@ -22,6 +22,7 @@
 		2429CBF81E2E571A0027DD37 /* 方正书宋简体.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2429CBF71E2E571A0027DD37 /* 方正书宋简体.ttf */; };
 		2429CBFB1E2E5D510027DD37 /* KPTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2429CBFA1E2E5D510027DD37 /* KPTabBarViewController.m */; };
 		2429CBFE1E2E61430027DD37 /* KPCalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2429CBFD1E2E61430027DD37 /* KPCalViewController.m */; };
+		2435AF5C1E34D0D50065DC74 /* MLKMenuPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 2435AF5B1E34D0D50065DC74 /* MLKMenuPopover.m */; };
 		2436F8241E2F2C3300C2984A /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2436F8231E2F2C3300C2984A /* libsqlite3.0.tbd */; };
 		2436F8271E2F2C4B00C2984A /* TaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2436F8261E2F2C4B00C2984A /* TaskManager.m */; };
 		2436F82A1E2F2C5700C2984A /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 2436F8291E2F2C5700C2984A /* Task.m */; };
@@ -95,6 +96,8 @@
 		2429CBFA1E2E5D510027DD37 /* KPTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPTabBarViewController.m; sourceTree = "<group>"; };
 		2429CBFC1E2E61430027DD37 /* KPCalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPCalViewController.h; sourceTree = "<group>"; };
 		2429CBFD1E2E61430027DD37 /* KPCalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPCalViewController.m; sourceTree = "<group>"; };
+		2435AF5A1E34D0D50065DC74 /* MLKMenuPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLKMenuPopover.h; sourceTree = "<group>"; };
+		2435AF5B1E34D0D50065DC74 /* MLKMenuPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLKMenuPopover.m; sourceTree = "<group>"; };
 		2436F8231E2F2C3300C2984A /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		2436F8251E2F2C4B00C2984A /* TaskManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskManager.h; sourceTree = "<group>"; };
 		2436F8261E2F2C4B00C2984A /* TaskManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskManager.m; sourceTree = "<group>"; };
@@ -336,6 +339,8 @@
 		24DCF18C1E30A07C0097C250 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				2435AF5A1E34D0D50065DC74 /* MLKMenuPopover.h */,
+				2435AF5B1E34D0D50065DC74 /* MLKMenuPopover.m */,
 				241FB6651E31D2F300DF4D53 /* HYCircleProgressView.h */,
 				241FB6661E31D2F300DF4D53 /* HYCircleProgressView.m */,
 				24DCF1921E310A890097C250 /* CardsView.h */,
@@ -586,6 +591,7 @@
 				24F2A0D71E2F482100F30FB1 /* KPSchemeManager.m in Sources */,
 				2429CBEE1E2E4A9B0027DD37 /* KPTodayTableViewCell.m in Sources */,
 				2429CBD41E2DF5E60027DD37 /* KPTodayTableViewController.m in Sources */,
+				2435AF5C1E34D0D50065DC74 /* MLKMenuPopover.m in Sources */,
 				24F2A0F41E2F7B6E00F30FB1 /* Categories.m in Sources */,
 				2429CBFB1E2E5D510027DD37 /* KPTabBarViewController.m in Sources */,
 				241FB6671E31D2F300DF4D53 /* HYCircleProgressView.m in Sources */,

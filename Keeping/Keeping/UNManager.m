@@ -8,6 +8,7 @@
 
 #import "UNManager.h"
 #import "DateTools.h"
+#import "DateUtil.h"
 
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
 #import <UserNotifications/UserNotifications.h>
@@ -45,22 +46,24 @@
             
         }
         
-        
         content.userInfo = @{
                              @"taskid" : @(task.id),
                              @"taskapp" : task.appScheme == NULL ? @{} : task.appScheme,
-                             @"taskimage" : task.image == NULL ? [NSData new] : task.image
+//                             @"taskimage" : task.image == NULL ? [NSData new] : task.image
                              };
         
         UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
         
-        UNNotificationAction *doneAction = [UNNotificationAction actionWithIdentifier:@"action.done" title:@"标记为已完成" options:UNNotificationActionOptionAuthenticationRequired];
-        UNNotificationAction *cancelAction = [UNNotificationAction actionWithIdentifier:@"action.cancel" title:@"取消" options:UNNotificationActionOptionDestructive];
-        // 注册 category
-        UNNotificationCategory *notificationCategory = [UNNotificationCategory categoryWithIdentifier:@"taskLocalCategory" actions:@[doneAction, cancelAction] intentIdentifiers:@[] options:UNNotificationCategoryOptionCustomDismissAction];
-        content.categoryIdentifier = @"taskLocalCategory";
-        // 将 category 添加到通知中心
-        [center setNotificationCategories:[NSSet setWithObject:notificationCategory]];
+        //当日未完成
+//        if(![task.punchDateArr containsObject:[DateUtil transformDate:[NSDate date]]]){
+            UNNotificationAction *doneAction = [UNNotificationAction actionWithIdentifier:@"action.done" title:@"标记为已完成" options:UNNotificationActionOptionAuthenticationRequired];
+            UNNotificationAction *cancelAction = [UNNotificationAction actionWithIdentifier:@"action.cancel" title:@"取消" options:UNNotificationActionOptionDestructive];
+            // 注册 category
+            UNNotificationCategory *notificationCategory = [UNNotificationCategory categoryWithIdentifier:@"taskLocalCategory" actions:@[doneAction, cancelAction] intentIdentifiers:@[] options:UNNotificationCategoryOptionCustomDismissAction];
+            content.categoryIdentifier = @"taskLocalCategory";
+            // 将 category 添加到通知中心
+            [center setNotificationCategories:[NSSet setWithObject:notificationCategory]];
+//        }
         
         // 创建通知标示
         NSString *requestIdentifier = [NSString stringWithFormat:@"unid%@%@",task.addDate.description,weekday];
@@ -69,7 +72,7 @@
         // 将通知请求 add 到 UNUserNotificationCenter
         [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
             if (!error) {
-                NSLog(@"推送已添加成功 %@", requestIdentifier);
+                NSLog(@"推送已添加成功 %@ %@", requestIdentifier, task.reminderTime.description);
             }
         }];
     }
@@ -86,11 +89,10 @@
 }
 
 + (void)printNumberOfNotifications{
-    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
-    for(UNNotificationRequest *r in center){
-        NSLog(@"%@", r.description);
-    }
-    
+//    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+//    for(UNNotificationRequest *r in center){
+//        NSLog(@"%@", r.description);
+//    }    
 }
 
 @end

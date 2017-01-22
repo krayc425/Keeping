@@ -89,7 +89,7 @@
 
 - (void)doneAction:(id)sender{
     
-    NSLog(@"%@",self.task.name);
+    NSLog(@"%@",self.task.reminderTime);
     //app 名
     self.task.appScheme = self.selectedApp;
     //提醒时间
@@ -123,8 +123,11 @@
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
+#pragma mark - Reminder Actions
+
 - (void)showReminderPickerAction:(id)sender{
     if(![self.reminderSwitch isOn]){
+        self.reminderTime = NULL;
         [self.reminderLabel setText:@"无"];
     }else{
         NSDate *date = (NSDate *)sender;
@@ -340,8 +343,8 @@
 #pragma mark - Reminder Delegate
 
 - (void)passTime:(NSDate *)date{
-    if(date == nil){
-        self.reminderTime = nil;
+    if(date == NULL){
+        self.reminderTime = NULL;
         [self.reminderSwitch setOn:NO animated:YES];
         [self.reminderLabel setText:@"无"];
     }else{

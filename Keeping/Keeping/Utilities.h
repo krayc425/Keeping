@@ -17,4 +17,6 @@
 
 + (NSString *)getAPPID;
 
++ (NSDictionary *)getTaskSortArr;
+
 @end
