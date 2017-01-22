@@ -70,13 +70,13 @@
 }
 
 - (void)loadTasksOfWeekdays:(NSArray *)weekDays{
-    
+    self.taskArr = [[NSMutableArray alloc] init];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"ANY SELF.reminderDays in %@", weekDays];
-//    self.taskArr = [NSMutableArray arrayWithArray:[[[TaskManager shareInstance] getTasks] filteredArrayUsingPredicate:predicate]];
+    self.taskArr = [NSMutableArray arrayWithArray:[[[TaskManager shareInstance] getTasks] filteredArrayUsingPredicate:predicate]];
     //排序
-    [self.taskArr removeAllObjects];
-    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:self.sortFactor ascending:NO];
-    self.taskArr = [NSMutableArray arrayWithArray:[[NSMutableArray arrayWithArray:[[[TaskManager shareInstance] getTasks] filteredArrayUsingPredicate:predicate]] sortedArrayUsingDescriptors:@[sortDescriptor]]];
+//    [self.taskArr removeAllObjects];
+//    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:self.sortFactor ascending:NO];
+//    self.taskArr = [NSMutableArray arrayWithArray:[[NSMutableArray arrayWithArray:[[[TaskManager shareInstance] getTasks] filteredArrayUsingPredicate:predicate]] sortedArrayUsingDescriptors:@[sortDescriptor]]];
     
     [self.tableView reloadData];
 }
@@ -287,42 +287,40 @@
         Task *t = self.taskArr[indexPath.row];
         [cell.nameLabel setText:t.name];
         
-        NSString *reminderDayStr = @"";
-        if([t.reminderDays count] > 0){
-            NSArray *arr = t.reminderDays;
-            
-            if([arr isEqualToArray:@[@(1),@(2),@(3),@(4),@(5),@(6),@(7)]]){
-                reminderDayStr = @"每天";
-            }else if([arr isEqualToArray:@[@(2),@(3),@(4),@(5),@(6)]]){
-                reminderDayStr = @"工作日";
-            }else if([arr isEqualToArray:@[@(1),@(7)]]){
-                reminderDayStr = @"周末";
-            } else{
-                for (NSNumber *i in arr) {
-                    reminderDayStr = [reminderDayStr stringByAppendingString:[NSString stringWithFormat:@"%@, ", [DateUtil getWeekdayStr:[i intValue]]]];
-                }
-                reminderDayStr = [reminderDayStr substringToIndex:reminderDayStr.length - 2];
+        for(UIButton *button in cell.weekDayStack.subviews){
+            if([t.reminderDays containsObject:@(button.tag)]){
+                [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                
+                UIImage *buttonImg = [UIImage imageNamed:@"CIRCLE_FULL"];
+                buttonImg = [buttonImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+                [button setBackgroundImage:buttonImg forState:UIControlStateNormal];
+            }else{
+                [button setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
+                
+                UIImage *buttonImg = [UIImage imageNamed:@"CIRCLE_BORDER"];
+                buttonImg = [buttonImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+                [button setBackgroundImage:buttonImg forState:UIControlStateNormal];
             }
-            
-            [cell.daysLabel setHidden:NO];
-        }else{
-            [cell.daysLabel setHidden:YES];
         }
         
         NSString *reminderTimeStr = @"";
         if(t.reminderTime != NULL){
+            [cell.daysLabel setHidden:NO];
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             [dateFormatter setDateFormat:@"HH:mm"];
-            reminderTimeStr = [reminderTimeStr stringByAppendingString:@", "];
-            reminderTimeStr = [reminderTimeStr stringByAppendingString:[dateFormatter stringFromDate:t.reminderTime]];
+            reminderTimeStr = [dateFormatter stringFromDate:t.reminderTime];
+        }else{
+            [cell.daysLabel setHidden:YES];
         }
-        [cell.daysLabel setText:[reminderDayStr stringByAppendingString:reminderTimeStr]];
+        [cell.daysLabel setText:reminderTimeStr];
         
         if(t.image != NULL){
+            [cell.taskImgViewBtn setUserInteractionEnabled:YES];
             [cell.taskImgViewBtn setBackgroundImage:[UIImage imageWithData:t.image] forState:UIControlStateNormal];
             cell.delegate = self;
         }else{
-            [cell.taskImgViewBtn setImage:[UIImage new] forState:UIControlStateNormal];
+            [cell.taskImgViewBtn setUserInteractionEnabled:NO];
+            [cell.taskImgViewBtn setBackgroundImage:[UIImage new] forState:UIControlStateNormal];
         }
         
 //        NSString *dateStr =  [t.addDate formattedDateWithFormat:@"YYYY/MM/dd HH:mm:ss"];

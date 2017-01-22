@@ -21,27 +21,87 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lcf-2t-2Cr" customClass="CardsView">
                         <rect key="frame" x="10" y="5" width="300" height="59.5"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="6Ve-KO-ENb">
-                                <rect key="frame" x="10" y="10" width="42" height="39.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="6Ve-KO-ENb">
+                                <rect key="frame" x="10" y="0.0" width="170" height="54.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="TPV-JP-ZrE">
-                                        <rect key="frame" x="0.0" y="0.0" width="42" height="11.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="42" height="34.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="KFg-1W-2gl">
-                                        <rect key="frame" x="0.0" y="16.5" width="42" height="11"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="sTm-ou-tIe">
-                                        <rect key="frame" x="0.0" y="32.5" width="42" height="7"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="sBK-sY-QwO">
+                                        <rect key="frame" x="0.0" y="34.5" width="170" height="20"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ve1-Tr-LWS">
+                                                <rect key="frame" x="0.0" y="0.0" width="160" height="20"/>
+                                                <subviews>
+                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QpJ-ze-QAA">
+                                                        <rect key="frame" x="0.0" y="0.0" width="18.5" height="18"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="QpJ-ze-QAA" secondAttribute="height" id="9zn-xq-9ff"/>
+                                                        </constraints>
+                                                        <state key="normal" title="日" backgroundImage="CIRCLE_BORDER"/>
+                                                    </button>
+                                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ycb-oM-bEg">
+                                                        <rect key="frame" x="23.5" y="0.0" width="18.5" height="19"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="ycb-oM-bEg" secondAttribute="height" id="tRn-v8-7L6"/>
+                                                        </constraints>
+                                                        <state key="normal" title="一" backgroundImage="CIRCLE_BORDER"/>
+                                                    </button>
+                                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MkU-DY-0P7">
+                                                        <rect key="frame" x="47" y="0.0" width="18.5" height="18"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="MkU-DY-0P7" secondAttribute="height" id="AE8-9I-4Qp"/>
+                                                        </constraints>
+                                                        <state key="normal" title="二" backgroundImage="CIRCLE_BORDER"/>
+                                                    </button>
+                                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ex1-hI-W9p">
+                                                        <rect key="frame" x="70.5" y="0.0" width="19" height="18"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="Ex1-hI-W9p" secondAttribute="height" id="b7V-2v-X7i"/>
+                                                        </constraints>
+                                                        <state key="normal" title="三" backgroundImage="CIRCLE_BORDER"/>
+                                                    </button>
+                                                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xxe-gk-12X">
+                                                        <rect key="frame" x="94.5" y="0.0" width="18.5" height="18"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="Xxe-gk-12X" secondAttribute="height" multiplier="1:1" id="rhl-ak-xnn"/>
+                                                        </constraints>
+                                                        <state key="normal" title="四" backgroundImage="CIRCLE_BORDER"/>
+                                                    </button>
+                                                    <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="owV-Yx-u6F">
+                                                        <rect key="frame" x="118" y="0.0" width="18.5" height="19"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="owV-Yx-u6F" secondAttribute="height" multiplier="1:1" id="C50-yb-0En"/>
+                                                        </constraints>
+                                                        <state key="normal" title="五" backgroundImage="CIRCLE_BORDER"/>
+                                                    </button>
+                                                    <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="spY-ue-CPJ">
+                                                        <rect key="frame" x="141.5" y="0.0" width="18.5" height="18"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="spY-ue-CPJ" secondAttribute="height" id="d2Q-IO-iyU"/>
+                                                        </constraints>
+                                                        <state key="normal" title="六" backgroundImage="CIRCLE_BORDER"/>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="KFg-1W-2gl">
+                                                <rect key="frame" x="170" y="0.0" width="0.0" height="20"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="KFg-1W-2gl" secondAttribute="bottom" id="eZo-S3-Wdn"/>
+                                            <constraint firstAttribute="height" constant="20" id="gdP-6V-j5J"/>
+                                            <constraint firstItem="KFg-1W-2gl" firstAttribute="top" secondItem="sBK-sY-QwO" secondAttribute="top" id="tH6-dD-G0b"/>
+                                            <constraint firstAttribute="bottom" secondItem="ve1-Tr-LWS" secondAttribute="bottom" id="vb0-gy-eap"/>
+                                            <constraint firstItem="ve1-Tr-LWS" firstAttribute="top" secondItem="sBK-sY-QwO" secondAttribute="top" id="wpX-Ck-5rW"/>
+                                        </constraints>
+                                    </stackView>
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GI4-oS-7Ju" customClass="HYCircleProgressView">
@@ -67,13 +127,12 @@
                         <constraints>
                             <constraint firstItem="Qjo-ku-I5K" firstAttribute="centerY" secondItem="Lcf-2t-2Cr" secondAttribute="centerY" id="388-Jf-2hX"/>
                             <constraint firstItem="Qjo-ku-I5K" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Ve-KO-ENb" secondAttribute="trailing" constant="10" id="P0O-i8-05G"/>
-                            <constraint firstItem="6Ve-KO-ENb" firstAttribute="top" secondItem="Lcf-2t-2Cr" secondAttribute="top" constant="10" id="PSM-Sw-DbG"/>
+                            <constraint firstItem="6Ve-KO-ENb" firstAttribute="top" secondItem="Lcf-2t-2Cr" secondAttribute="top" id="PSM-Sw-DbG"/>
                             <constraint firstItem="GI4-oS-7Ju" firstAttribute="centerY" secondItem="Lcf-2t-2Cr" secondAttribute="centerY" id="TgJ-Hj-wz7"/>
                             <constraint firstAttribute="trailing" secondItem="GI4-oS-7Ju" secondAttribute="trailing" constant="10" id="W3Z-JE-Gbq"/>
                             <constraint firstItem="GI4-oS-7Ju" firstAttribute="leading" secondItem="Qjo-ku-I5K" secondAttribute="trailing" constant="10" id="WGR-zE-9vF"/>
-                            <constraint firstAttribute="bottom" secondItem="6Ve-KO-ENb" secondAttribute="bottom" constant="10" id="XfN-Ko-QSJ"/>
+                            <constraint firstAttribute="bottom" secondItem="6Ve-KO-ENb" secondAttribute="bottom" constant="5" id="XfN-Ko-QSJ"/>
                             <constraint firstItem="6Ve-KO-ENb" firstAttribute="leading" secondItem="Lcf-2t-2Cr" secondAttribute="leading" constant="10" id="dSU-SU-UPa"/>
-                            <constraint firstItem="6Ve-KO-ENb" firstAttribute="centerY" secondItem="Lcf-2t-2Cr" secondAttribute="centerY" id="v3L-nY-Eov"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -96,8 +155,11 @@
                 <outlet property="nameLabel" destination="TPV-JP-ZrE" id="ACa-av-ZXR"/>
                 <outlet property="progressView" destination="GI4-oS-7Ju" id="KMI-Gx-1zR"/>
                 <outlet property="taskImgViewBtn" destination="Qjo-ku-I5K" id="Xwf-uB-SEq"/>
-                <outlet property="totalDayLabel" destination="sTm-ou-tIe" id="nYd-nf-kdz"/>
+                <outlet property="weekDayStack" destination="ve1-Tr-LWS" id="apT-yj-jPP"/>
             </connections>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="CIRCLE_BORDER" width="106" height="106"/>
+    </resources>
 </document>

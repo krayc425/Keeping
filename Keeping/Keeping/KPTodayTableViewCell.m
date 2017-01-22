@@ -15,6 +15,7 @@
     [super awakeFromNib];
     
     [self.taskNameLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
+    [self.reminderLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
     [self.accessoryLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
     
     self.myCheckBox.delegate = self;

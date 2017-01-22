@@ -79,14 +79,15 @@ static TaskManager* _instance = nil;
     }
     
     return [[[DBManager shareInstance] getDB] executeUpdate:
-            @"INSERT INTO t_task (name, appScheme, reminderDays, addDate, reminderTime, punchDateArr, image) VALUES (?, ?, ?, ?, ?, ?, ?);",
+            @"INSERT INTO t_task (name, appScheme, reminderDays, addDate, reminderTime, punchDateArr, image, link) VALUES (?, ?, ?, ?, ?, ?, ?, ?);",
             task.name,
             schemeJsonStr,
             daysJsonStr,
             task.addDate,
             task.reminderTime,
             punchJsonStr,
-            task.image
+            task.image,
+            task.link
             ];
 }
 
@@ -125,9 +126,9 @@ static TaskManager* _instance = nil;
         [UNManager deleteLocalizedUserNotification:task];
         [UNManager createLocalizedUserNotification:task];
     }
-
+    
     return [[[DBManager shareInstance] getDB] executeUpdate:
-            @"UPDATE t_task SET name = ?, appScheme = ?, reminderDays = ?, addDate = ?, reminderTime = ?, punchDateArr = ?, image = ? WHERE id = ?;",
+            @"UPDATE t_task SET name = ?, appScheme = ?, reminderDays = ?, addDate = ?, reminderTime = ?, punchDateArr = ?, image = ?, link = ? WHERE id = ?;",
             task.name,
             schemeJsonStr,
             daysJsonStr,
@@ -135,6 +136,7 @@ static TaskManager* _instance = nil;
             task.reminderTime,
             punchJsonStr,
             task.image,
+            task.link,
             @(task.id)
             ];
     return YES;
@@ -182,6 +184,7 @@ static TaskManager* _instance = nil;
         t.addDate = [resultSet dateForColumn:@"addDate"];
         t.reminderTime = [resultSet dateForColumn:@"reminderTime"];
         t.image = [resultSet dataForColumn:@"image"];
+        t.link = [resultSet stringForColumn:@"link"];
         
         [self.taskArr addObject:t];
     }

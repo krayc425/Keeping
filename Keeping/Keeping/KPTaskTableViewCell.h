@@ -11,7 +11,7 @@
 
 @protocol PassImgDelegate <NSObject>
 
-- (void)passImg:(UIImage *)img;
+- (void)passImg:(UIImage *_Nullable)img;
 
 @end
 
@@ -20,15 +20,17 @@
 @property (nonatomic, nonnull) id<PassImgDelegate> delegate;
 //任务名
 @property (nonatomic, nonnull) IBOutlet UILabel *nameLabel;
-//哪几天要做
+//改成：时间 label
 @property (nonatomic, nonnull) IBOutlet UILabel *daysLabel;
 //已经添加了几天
 @property (nonatomic, nonnull) IBOutlet UILabel *totalDayLabel;
 //完成进度
 @property (nonatomic, nonnull) IBOutlet HYCircleProgressView *progressView;
+//要做的天数
+@property (nonnull, nonatomic) IBOutlet UIStackView *weekDayStack;
 //缩略图
 @property (nonatomic, nonnull) IBOutlet UIButton *taskImgViewBtn;
 
-- (IBAction)imgAction:(id)sender;
+- (IBAction)imgAction:(_Nonnull id)sender;
 
 @end

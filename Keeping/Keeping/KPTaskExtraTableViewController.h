@@ -27,6 +27,8 @@
 @property (nonnull, nonatomic) IBOutlet UIButton *viewImgButton;
 @property (nonnull, nonatomic) IBOutlet UIButton *deleteImgButton;
 
+@property (nonnull, nonatomic) IBOutlet UITextField *linkTextField;
+
 @property (nonnull, nonatomic) Task *task;
 
 @end

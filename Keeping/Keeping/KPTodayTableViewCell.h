@@ -23,6 +23,8 @@
 @property (nonatomic, nonnull) id<CheckTaskDelegate> delegate;
 //任务名
 @property (nonatomic, nonnull) IBOutlet UILabel *taskNameLabel;
+//提醒时间
+@property (nonatomic, nonnull) IBOutlet UILabel *reminderLabel;
 //附件
 @property (nonnull, nonatomic) IBOutlet UILabel *accessoryLabel;
 //打钩

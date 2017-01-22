@@ -38,14 +38,16 @@
     [self.reminderSwitch setOnTintColor:[Utilities getColor]];
     [self.reminderSwitch addTarget:self action:@selector(showReminderPickerAction:) forControlEvents:UIControlEventValueChanged];
     //APP名字标签
-    [self.appNameLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0]];
+    [self.appNameLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
     //图片
     self.selectedImgView.userInteractionEnabled = YES;
     for(UIButton *button in self.imgButtonStack.subviews){
         [button setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
         [button.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
     }
-    
+    //链接
+    [self.linkTextField setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
+
     //对星期排序
     NSMutableArray *arr = [NSMutableArray arrayWithArray:self.task.reminderDays];
     [arr sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
@@ -62,6 +64,7 @@
         if(self.selectedApp != NULL){
             [self.appNameLabel setText:self.selectedApp.allKeys[0]];
         }
+        
         self.reminderTime = self.task.reminderTime;
         if(self.reminderTime != NULL){
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -70,12 +73,18 @@
             [self.reminderLabel setText:currentDateStr];
             [self.reminderSwitch setOn:YES];
         }
+        
         if(self.task.image != NULL){
             [self.selectedImgView setImage:[UIImage imageWithData:self.task.image]];
             [self setHasImage];
         }else{
             [self setNotHaveImage];
         }
+        
+        NSLog(@"%@", self.task.link);
+        
+        [self.linkTextField setText:self.task.link];
+        
         [self.tableView reloadData];
     }else{
         //（新增）
@@ -88,14 +97,17 @@
 }
 
 - (void)doneAction:(id)sender{
-    
-    NSLog(@"%@",self.task.reminderTime);
+
     //app 名
     self.task.appScheme = self.selectedApp;
     //提醒时间
     self.task.reminderTime = self.reminderTime;
     //图片
     self.task.image = UIImagePNGRepresentation(self.selectedImgView.image);
+    //链接
+    self.task.link = self.linkTextField.text;       //有：文字，无：@“”
+    
+    NSLog(@"%@", self.task.link);
     
     //更新
     NSString *title;
@@ -253,7 +265,7 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -261,7 +273,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(indexPath.section == 2){
+    if(indexPath.section == 3){
         return self.view.frame.size.width;
     }else{
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];
@@ -278,6 +290,9 @@
             [view setText:@"链接 APP"];
             break;
         case 2:
+            [view setText:@"链接"];
+            break;
+        case 3:
             [view setText:@"图片"];
             break;
         default:
@@ -306,6 +321,9 @@
     }
     if(indexPath.section == 1 && indexPath.row == 0){
         [self performSegueWithIdentifier:@"appSegue" sender:nil];
+    }
+    if(indexPath.section == 3 && indexPath.row == 0){
+        [self modifyPicAction:nil];
     }
 }
 
@@ -361,7 +379,8 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     [picker dismissViewControllerAnimated:YES completion:nil];
-    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    //原图还是编辑过的图？
+    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
     [self.selectedImgView setImage:[self normalizedImage:image]];
     [self setHasImage];
 }

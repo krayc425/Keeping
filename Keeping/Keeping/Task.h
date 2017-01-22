@@ -29,5 +29,7 @@
 @property (nonatomic, nullable) NSArray *punchDateArr;
 //图片
 @property (nonatomic, nullable) NSData *image;
+//链接
+@property (nonatomic, nullable) NSString *link;
 
 @end

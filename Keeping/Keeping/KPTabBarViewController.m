@@ -73,10 +73,16 @@
         {
             [self.navigationItem setTitle:@"任务"];
             
-            UIBarButtonItem *editItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_EDIT"] style:UIBarButtonItemStylePlain target:self.kpTaskTableViewController action:@selector(editAction:)];
+            UIBarButtonItem *editItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_EDIT"]
+                                                                         style:UIBarButtonItemStylePlain
+                                                                        target:self.kpTaskTableViewController
+                                                                        action:@selector(editAction:)];
             self.navigationItem.leftBarButtonItems = @[editItem];
             
-            UIBarButtonItem *addItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_ADD"] style:UIBarButtonItemStylePlain target:self.kpTaskTableViewController action:@selector(addAction:)];
+            UIBarButtonItem *addItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_ADD"]
+                                                                        style:UIBarButtonItemStylePlain
+                                                                       target:self.kpTaskTableViewController
+                                                                       action:@selector(addAction:)];
             self.navigationItem.rightBarButtonItems = @[addItem];
         }
             break;

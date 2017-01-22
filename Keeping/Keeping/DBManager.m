@@ -46,11 +46,13 @@ static DBManager* _instance = nil;
         //先看有没有这张表
         if(![self.db tableExists:@"t_task"]){
             BOOL result = [self.db executeUpdate:
-                           @"CREATE TABLE IF NOT EXISTS t_task (id integer PRIMARY KEY AUTOINCREMENT, name text NOT NULL, appScheme text, reminderDays text, addDate date NOT NULL, reminderTime date, punchDateArr text)"];
+                           @"CREATE TABLE IF NOT EXISTS t_task (id integer PRIMARY KEY AUTOINCREMENT, name text NOT NULL, appScheme text, reminderDays text, addDate date NOT NULL, reminderTime date, punchDateArr text, image blob, link text)"];
             if (result){
                 NSLog(@"创建表成功");
             }
+            
         }else{
+            //更新数据库表
             
             //有的话，先看有没有图片选项
             if (![self.db columnExists:@"image" inTableWithName:@"t_task"]){
@@ -58,7 +60,11 @@ static DBManager* _instance = nil;
                 NSLog(@"增加图片字段成功");
             }
             //...
-        
+            if (![self.db columnExists:@"link" inTableWithName:@"t_task"]){
+                [self.db executeUpdate:[NSString stringWithFormat:@"ALTER TABLE %@ ADD %@ text", @"t_task", @"link"]];
+                NSLog(@"增加链接字段成功");
+            }
+            
         }
         
     }

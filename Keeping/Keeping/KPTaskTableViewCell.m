@@ -22,6 +22,12 @@
     
     [self.progressView setBackgroundStrokeColor:[UIColor groupTableViewBackgroundColor]];
     [self.progressView setProgressStrokeColor:[Utilities getColor]];
+    
+    for(UIButton *button in self.weekDayStack.subviews){
+        [button setTintColor:[Utilities getColor]];
+        [button.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:12.0f]];
+    }
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

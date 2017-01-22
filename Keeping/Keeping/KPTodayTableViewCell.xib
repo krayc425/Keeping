@@ -28,14 +28,25 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="任务名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X4g-mE-Nlp">
-                        <rect key="frame" x="18" y="24.5" width="52" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZ9-Ke-6hY">
-                        <rect key="frame" x="220" y="24.5" width="42" height="20.5"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="D3o-Yz-s8Z">
+                        <rect key="frame" x="18" y="12" width="52" height="46"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="任务名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X4g-mE-Nlp">
+                                <rect key="frame" x="0.0" y="0.0" width="52" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WEt-XN-3wS">
+                                <rect key="frame" x="0.0" y="25.5" width="52" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZ9-Ke-6hY">
+                        <rect key="frame" x="262" y="35" width="0.0" height="0.0"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -52,15 +63,15 @@
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstItem="X4g-mE-Nlp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="2ol-Sz-hdh"/>
+                    <constraint firstItem="D3o-Yz-s8Z" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="5eY-eD-diQ"/>
                     <constraint firstAttribute="trailingMargin" secondItem="K31-Gh-vqJ" secondAttribute="trailing" constant="10" id="5n2-k8-TLh"/>
                     <constraint firstItem="K31-Gh-vqJ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="806-5R-XCd"/>
                     <constraint firstItem="MId-YP-mlf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="F6y-hj-EM4"/>
                     <constraint firstAttribute="trailing" secondItem="MId-YP-mlf" secondAttribute="trailing" constant="10" id="HXP-1d-dF6"/>
                     <constraint firstAttribute="bottom" secondItem="MId-YP-mlf" secondAttribute="bottom" constant="5" id="Pb1-75-vNZ"/>
                     <constraint firstItem="MId-YP-mlf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="PrC-iF-slt"/>
-                    <constraint firstItem="X4g-mE-Nlp" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="WJ7-2d-XKb"/>
                     <constraint firstItem="eZ9-Ke-6hY" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="hQZ-Sy-jp5"/>
+                    <constraint firstItem="D3o-Yz-s8Z" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="v2b-vc-hD9"/>
                     <constraint firstItem="K31-Gh-vqJ" firstAttribute="leading" secondItem="eZ9-Ke-6hY" secondAttribute="trailing" constant="10" id="vMb-tb-j6U"/>
                 </constraints>
             </tableViewCellContentView>
@@ -68,6 +79,7 @@
             <connections>
                 <outlet property="accessoryLabel" destination="eZ9-Ke-6hY" id="mzU-5n-6fD"/>
                 <outlet property="myCheckBox" destination="K31-Gh-vqJ" id="acV-xM-w54"/>
+                <outlet property="reminderLabel" destination="WEt-XN-3wS" id="P7E-fG-QWo"/>
                 <outlet property="taskNameLabel" destination="X4g-mE-Nlp" id="qeO-LS-cok"/>
             </connections>
         </tableViewCell>

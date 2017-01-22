@@ -433,10 +433,36 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection id="bJg-8a-YQC">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="60" id="6ue-f0-6zT">
+                                        <rect key="frame" x="0.0" y="227" width="375" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6ue-f0-6zT" id="Pt0-H5-gVy">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NQi-KH-zm2">
+                                                    <rect key="frame" x="13" y="5" width="349" height="49"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="NQi-KH-zm2" secondAttribute="trailing" constant="5" id="6oL-JF-MBW"/>
+                                                <constraint firstItem="NQi-KH-zm2" firstAttribute="leading" secondItem="Pt0-H5-gVy" secondAttribute="leadingMargin" constant="5" id="aUo-5f-4qR"/>
+                                                <constraint firstItem="NQi-KH-zm2" firstAttribute="top" secondItem="Pt0-H5-gVy" secondAttribute="top" constant="5" id="bhD-6Z-jEC"/>
+                                                <constraint firstAttribute="bottom" secondItem="NQi-KH-zm2" secondAttribute="bottom" constant="5" id="chT-gg-OZe"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                             <tableViewSection id="5a2-DB-v7g">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="100" id="VkF-Ui-NrN">
-                                        <rect key="frame" x="0.0" y="227" width="375" height="100"/>
+                                        <rect key="frame" x="0.0" y="323" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VkF-Ui-NrN" id="PVH-j8-rAt">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
@@ -497,6 +523,7 @@
                         <outlet property="appNameLabel" destination="u7o-LQ-uDa" id="3k0-hJ-3hf"/>
                         <outlet property="deleteImgButton" destination="bLe-1X-cX5" id="VDz-63-bV0"/>
                         <outlet property="imgButtonStack" destination="SNL-px-h0m" id="7iL-cX-CoQ"/>
+                        <outlet property="linkTextField" destination="NQi-KH-zm2" id="Zi4-Mo-XIg"/>
                         <outlet property="reminderLabel" destination="x6I-IT-1gB" id="2d7-dO-e5z"/>
                         <outlet property="reminderSwitch" destination="QRM-gd-2j9" id="2ig-xF-VFH"/>
                         <outlet property="selectedImgView" destination="VC3-V9-dcb" id="4fV-8j-Mu6"/>
@@ -1020,6 +1047,6 @@
         <image name="CIRCLE_BORDER" width="106" height="106"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="y9j-iq-q91"/>
+        <segue reference="QWd-sJ-Ka8"/>
     </inferredMetricsTieBreakers>
 </document>

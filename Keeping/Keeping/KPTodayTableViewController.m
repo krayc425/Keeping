@@ -168,13 +168,37 @@
             }
             [cell.taskNameLabel setText:t.name];
             
+            [cell.accessoryLabel setText:@""];
+            [cell.accessoryLabel setHidden:YES];
             if(t.appScheme != NULL){
+                [cell.accessoryLabel setHidden:NO];
+                
                 NSDictionary *d = t.appScheme;
                 NSString *s = d.allKeys[0];
                 [cell.accessoryLabel setText:[NSString stringWithFormat:@"启动 %@", s]];
+            }
+            
+            
+            if(t.link != NULL && ![t.link isEqualToString:@""]){
                 [cell.accessoryLabel setHidden:NO];
+                
+                if(![cell.accessoryLabel.text isEqualToString:@""]){
+                    [cell.accessoryLabel setText:[cell.accessoryLabel.text stringByAppendingString:@", "]];
+                }
+                [cell.accessoryLabel setText:[cell.accessoryLabel.text stringByAppendingString:@"1 条链接"]];
+            }
+            
+            NSString *reminderTimeStr = @"";
+            if(t.reminderTime != NULL){
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setDateFormat:@"HH:mm"];
+                reminderTimeStr = [dateFormatter stringFromDate:t.reminderTime];
+                
+                [cell.reminderLabel setText:reminderTimeStr];
+                
+                [cell.reminderLabel setHidden:NO];
             }else{
-                [cell.accessoryLabel setHidden:YES];
+                [cell.reminderLabel setHidden:YES];
             }
             
             return cell;
@@ -227,7 +251,7 @@
     [self loadTasks];
 }
 
-#pragma mark -DZNEmpty Delegate
+#pragma mark - DZNEmpty Delegate
 
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView{
     NSString *text = @"没有任务";
