@@ -11,10 +11,9 @@
 
 @protocol CheckTaskDelegate <NSObject>
 
-/**
- 此方为必须实现的协议方法，用来传值
- */
 - (void)checkTask:(UITableViewCell *_Nonnull)cell;
+
+- (void)moreAction:(UITableViewCell *_Nonnull)cell withButton:(UIButton *_Nonnull)button;
 
 @end
 
@@ -25,11 +24,23 @@
 @property (nonatomic, nonnull) IBOutlet UILabel *taskNameLabel;
 //提醒时间
 @property (nonatomic, nonnull) IBOutlet UILabel *reminderLabel;
-//附件
-@property (nonnull, nonatomic) IBOutlet UILabel *accessoryLabel;
 //打钩
 @property (nonnull, nonatomic) IBOutlet BEMCheckBox *myCheckBox;
 
+
+//更多 按钮
+@property (nonnull, nonatomic) IBOutlet UIButton *moreButton;
+//子 cardview
+@property (nonnull, nonatomic) IBOutlet UIView *cardView2;
+//APP 按钮
+@property (nonnull, nonatomic) IBOutlet UIButton *appButton;    //tag = 0
+//链接 按钮
+@property (nonnull, nonatomic) IBOutlet UIButton *linkButton;   //tag = 1
+//图片 按钮
+@property (nonnull, nonatomic) IBOutlet UIButton *imageButton;  //tag = 2
+
 - (void)setIsFinished:(BOOL)isFinished;
+
+- (void)setFont;
 
 @end

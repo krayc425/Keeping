@@ -14,9 +14,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    [self.nameLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
-    [self.daysLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
-    [self.totalDayLabel setFont:[UIFont fontWithName:[Utilities getFont] size:12.0f]];
+    [self setFont];
     
     [self.totalDayLabel setHidden:YES];
     
@@ -25,9 +23,7 @@
     
     for(UIButton *button in self.weekDayStack.subviews){
         [button setTintColor:[Utilities getColor]];
-        [button.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:12.0f]];
     }
-
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -37,6 +33,16 @@
 - (IBAction)imgAction:(id)sender{
     UIButton *btn = (UIButton *)sender;
     [self.delegate passImg:btn.currentBackgroundImage];
+}
+
+- (void)setFont{
+    [self.nameLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
+    [self.daysLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
+    [self.totalDayLabel setFont:[UIFont fontWithName:[Utilities getFont] size:12.0f]];
+    
+    for(UIButton *button in self.weekDayStack.subviews){
+        [button.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:12.0f]];
+    }
 }
 
 @end

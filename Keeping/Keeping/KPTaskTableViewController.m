@@ -40,6 +40,7 @@
     self.tableView.tableFooterView = [UIView new];
     self.tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     
+    self.sortFactor = @"addDate";
     //星期几选项按钮
     for(UIButton *button in self.weekDayStack.subviews){
         [button setTintColor:[Utilities getColor]];
@@ -55,8 +56,6 @@
         }
     }
     
-    self.sortFactor = @"addDate";
-    
     self.selectedWeekdayArr = [[NSMutableArray alloc] init];
     [self selectAllWeekDay];
 }
@@ -66,6 +65,14 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    for(UIButton *button in self.weekDayStack.subviews){
+        if(button.tag != -1){
+            [button.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:18.0]];
+        }else{
+            [button.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0]];
+        }
+    }
+    
     [self loadTasksOfWeekdays:self.selectedWeekdayArr];
 }
 
@@ -281,6 +288,8 @@
         UINib *nib = [UINib nibWithNibName:@"KPTaskTableViewCell" bundle:nil];
         [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
         KPTaskTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+        
+        [cell setFont];
         
         cell.backgroundColor = [UIColor clearColor];
         

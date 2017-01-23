@@ -38,10 +38,6 @@
     self.calendar.backgroundColor = [UIColor whiteColor];
     self.calendar.appearance.headerMinimumDissolvedAlpha = 0;
     self.calendar.appearance.headerDateFormat = @"yyyy年MM月";
-    self.calendar.appearance.titleFont = [UIFont fontWithName:[Utilities getFont] size:12.0];
-    self.calendar.appearance.headerTitleFont = [UIFont fontWithName:[Utilities getFont] size:15.0];
-    self.calendar.appearance.weekdayFont = [UIFont fontWithName:[Utilities getFont] size:15.0];
-    self.calendar.appearance.subtitleFont = [UIFont fontWithName:[Utilities getFont] size:10.0];
     self.calendar.appearance.headerTitleColor = [Utilities getColor];
     self.calendar.appearance.weekdayTextColor = [Utilities getColor];
     self.calendar.appearance.selectionColor = [Utilities getColor];
@@ -102,6 +98,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    [self setFont];
     self.selectedDate = [NSDate date];
     [self loadTasks];
 }
@@ -130,6 +127,8 @@
     [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
     KPCalTaskTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     
+    [cell setFont];
+    
     Task *t = [self.taskArr objectAtIndex:indexPath.row];
     
     if([t.punchDateArr containsObject:[DateUtil transformDate:self.selectedDate]]){
@@ -142,6 +141,13 @@
     [cell.punchDaysLabel setText:[NSString stringWithFormat:@"已完成 %lu 天, 计划完成 %d 天", (unsigned long)[t.punchDateArr count], [[TaskManager shareInstance] totalPunchNumberOfTask:t]]];
     
     return cell;
+}
+
+- (void)setFont{    
+    self.calendar.appearance.titleFont = [UIFont fontWithName:[Utilities getFont] size:12.0];
+    self.calendar.appearance.headerTitleFont = [UIFont fontWithName:[Utilities getFont] size:15.0];
+    self.calendar.appearance.weekdayFont = [UIFont fontWithName:[Utilities getFont] size:15.0];
+    self.calendar.appearance.subtitleFont = [UIFont fontWithName:[Utilities getFont] size:10.0];
 }
 
 #pragma mark -DZNEmpty Delegate

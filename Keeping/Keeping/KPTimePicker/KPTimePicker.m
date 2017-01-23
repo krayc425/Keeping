@@ -292,7 +292,7 @@
         self.confirmButton = [SlowHighlightIcon buttonWithType:UIButtonTypeCustom];
         self.confirmButton.backgroundColor = [UIColor clearColor];
         [self.confirmButton setBackgroundImage:[self.confirmColor image] forState:UIControlStateHighlighted];
-        self.confirmButton.frame = CGRectMake(0, 0, kDefActualSize, kDefActualSize);
+        self.confirmButton.frame = CGRectMake(0, 0, 2*kDefActualSize, 2*kDefActualSize);
         
         //self.confirmButton.layer.borderWidth = LINE_SIZE;
         //self.confirmButton.layer.borderColor = tcolor(TextColor).CGColor;
@@ -314,10 +314,7 @@
         [self addSubview:self.timeSlider];
         
         self.backButton = [SlowHighlightIcon buttonWithType:UIButtonTypeCustom];
-        self.backButton.frame = CGRectMake(self.bounds.size.width / 2 - kBackButtonSize / 2,
-                                           self.bounds.size.height-kBackButtonSize-kBackMargin,
-                                           kBackButtonSize,
-                                           kBackButtonSize);
+        self.backButton.frame = CGRectMake(kBackMargin, self.bounds.size.height-kBackButtonSize-kBackMargin, kBackButtonSize, kBackButtonSize);
         self.backButton.autoresizingMask = (UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleTopMargin);
         [self.backButton setImage:[UIImage imageNamed:@"round_backarrow_big"] forState:UIControlStateNormal];
         [self.backButton setImage:[UIImage imageNamed:@"round_backarrow_big-high"] forState:UIControlStateHighlighted];

@@ -36,6 +36,15 @@
     [AVOSCloud setApplicationId:@"sabdEOhaMdwIEc2zbKRBQk56-gzGzoHsz" clientKey:@"byONReV9r125hlRuN1mAvv9I"];
     [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
+    //第一次启动
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]){
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
+    }
+    if([[[NSUserDefaults standardUserDefaults] valueForKey:@"font"] isEqualToString:@""]
+       || [[NSUserDefaults standardUserDefaults] valueForKey:@"font"] == NULL){
+        [[NSUserDefaults standardUserDefaults] setValue:@"FZSSJW--GB1-0" forKey:@"font"];
+    }
+    
     return YES;
 }
 

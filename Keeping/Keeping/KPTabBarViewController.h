@@ -16,4 +16,6 @@
 @property (nonatomic, nonnull) KPTodayTableViewController *kpTodayTableViewController;
 @property (nonatomic, nonnull) KPTaskTableViewController *kpTaskTableViewController;
 
+- (void)setFont;
+
 @end

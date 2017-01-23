@@ -10,4 +10,6 @@
 
 @interface KPNavigationViewController : UINavigationController
 
+- (void)setFont;
+
 @end

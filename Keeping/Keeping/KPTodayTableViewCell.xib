@@ -12,47 +12,41 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="KPTodayTableViewCell" id="KGk-i7-Jjw" customClass="KPTodayTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="KPTodayTableViewCell" id="KGk-i7-Jjw" customClass="KPTodayTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="119"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MId-YP-mlf" customClass="CardsView">
-                        <rect key="frame" x="10" y="5" width="300" height="59.5"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MId-YP-mlf" userLabel="CardView" customClass="CardsView">
+                        <rect key="frame" x="10" y="5" width="300" height="55"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="55" id="sI0-ka-31c"/>
+                        </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                 <real key="value" value="10"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="D3o-Yz-s8Z">
-                        <rect key="frame" x="18" y="12" width="52" height="46"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="任务名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X4g-mE-Nlp">
-                                <rect key="frame" x="0.0" y="0.0" width="52" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WEt-XN-3wS">
-                                <rect key="frame" x="0.0" y="25.5" width="52" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                    </stackView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZ9-Ke-6hY">
-                        <rect key="frame" x="262" y="35" width="0.0" height="0.0"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="任务名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X4g-mE-Nlp">
+                        <rect key="frame" x="18" y="22.5" width="52" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iue-6t-6A6">
+                        <rect key="frame" x="154" y="49" width="12" height="6"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="iue-6t-6A6" secondAttribute="height" multiplier="15:8" id="ESR-1L-A2h"/>
+                            <constraint firstAttribute="height" constant="6" id="Eyi-xV-3Rf"/>
+                        </constraints>
+                        <state key="normal" backgroundImage="MORE_INFO_DOWN"/>
+                    </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K31-Gh-vqJ" customClass="BEMCheckBox">
-                        <rect key="frame" x="272" y="20" width="30" height="30"/>
+                        <rect key="frame" x="272" y="17.5" width="30" height="30"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="K31-Gh-vqJ" secondAttribute="height" multiplier="1:1" id="7U4-sE-8qA"/>
@@ -60,28 +54,89 @@
                             <constraint firstAttribute="width" constant="30" id="dDn-Nv-vLJ"/>
                         </constraints>
                     </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rT9-ra-MAX" userLabel="CardView2" customClass="CardsView">
+                        <rect key="frame" x="10" y="65" width="300" height="49.5"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="36C-0s-hLK">
+                                <rect key="frame" x="5" y="5" width="290" height="39.5"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rhn-ZQ-GtI">
+                                        <rect key="frame" x="0.0" y="5" width="96.5" height="30"/>
+                                        <state key="normal" title="打开 APP"/>
+                                        <connections>
+                                            <action selector="moreAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="NVF-ba-W69"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zbz-pJ-XEK">
+                                        <rect key="frame" x="96.5" y="5" width="97" height="30"/>
+                                        <state key="normal" title="打开链接"/>
+                                        <connections>
+                                            <action selector="moreAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="s0n-Al-Dxd"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YGi-8P-wfJ">
+                                        <rect key="frame" x="193.5" y="5" width="96.5" height="30"/>
+                                        <state key="normal" title="查看图片"/>
+                                        <connections>
+                                            <action selector="moreAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Pdj-Pv-jzb"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="36C-0s-hLK" firstAttribute="leading" secondItem="rT9-ra-MAX" secondAttribute="leading" constant="5" id="CjC-Ne-Psc"/>
+                            <constraint firstAttribute="trailing" secondItem="36C-0s-hLK" secondAttribute="trailing" constant="5" id="Db6-Fo-b3h"/>
+                            <constraint firstItem="36C-0s-hLK" firstAttribute="top" secondItem="rT9-ra-MAX" secondAttribute="top" constant="5" id="bAE-ia-0fY"/>
+                            <constraint firstAttribute="bottom" secondItem="36C-0s-hLK" secondAttribute="bottom" constant="5" id="kqe-SH-CI1"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HH:mm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WEt-XN-3wS">
+                        <rect key="frame" x="204" y="22.5" width="58" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstItem="D3o-Yz-s8Z" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="5eY-eD-diQ"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="K31-Gh-vqJ" secondAttribute="trailing" constant="10" id="5n2-k8-TLh"/>
-                    <constraint firstItem="K31-Gh-vqJ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="806-5R-XCd"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="K31-Gh-vqJ" secondAttribute="trailing" constant="10" id="1ab-fc-iCz"/>
+                    <constraint firstItem="iue-6t-6A6" firstAttribute="centerX" secondItem="MId-YP-mlf" secondAttribute="centerX" id="6Q6-Fp-9CI"/>
+                    <constraint firstItem="K31-Gh-vqJ" firstAttribute="centerY" secondItem="MId-YP-mlf" secondAttribute="centerY" id="Dwu-S1-N7g"/>
                     <constraint firstItem="MId-YP-mlf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="F6y-hj-EM4"/>
                     <constraint firstAttribute="trailing" secondItem="MId-YP-mlf" secondAttribute="trailing" constant="10" id="HXP-1d-dF6"/>
-                    <constraint firstAttribute="bottom" secondItem="MId-YP-mlf" secondAttribute="bottom" constant="5" id="Pb1-75-vNZ"/>
+                    <constraint firstAttribute="bottom" secondItem="rT9-ra-MAX" secondAttribute="bottom" constant="5" id="KDi-51-cGJ"/>
+                    <constraint firstAttribute="trailing" secondItem="rT9-ra-MAX" secondAttribute="trailing" constant="10" id="LfC-1Q-GWG"/>
                     <constraint firstItem="MId-YP-mlf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="PrC-iF-slt"/>
-                    <constraint firstItem="eZ9-Ke-6hY" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="hQZ-Sy-jp5"/>
-                    <constraint firstItem="D3o-Yz-s8Z" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="v2b-vc-hD9"/>
-                    <constraint firstItem="K31-Gh-vqJ" firstAttribute="leading" secondItem="eZ9-Ke-6hY" secondAttribute="trailing" constant="10" id="vMb-tb-j6U"/>
+                    <constraint firstItem="iue-6t-6A6" firstAttribute="bottom" secondItem="MId-YP-mlf" secondAttribute="bottom" constant="-5" id="aSC-pu-fUC"/>
+                    <constraint firstItem="X4g-mE-Nlp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="cIp-FL-hY9"/>
+                    <constraint firstItem="rT9-ra-MAX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="cVC-Hp-i1h"/>
+                    <constraint firstItem="WEt-XN-3wS" firstAttribute="centerY" secondItem="MId-YP-mlf" secondAttribute="centerY" id="i29-4v-fAJ"/>
+                    <constraint firstItem="K31-Gh-vqJ" firstAttribute="leading" secondItem="WEt-XN-3wS" secondAttribute="trailing" constant="10" id="psv-IA-PQ1"/>
+                    <constraint firstItem="rT9-ra-MAX" firstAttribute="top" secondItem="MId-YP-mlf" secondAttribute="bottom" constant="5" id="t1X-1F-yAJ"/>
+                    <constraint firstItem="X4g-mE-Nlp" firstAttribute="centerY" secondItem="MId-YP-mlf" secondAttribute="centerY" id="y7T-Bs-Ma9"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
-                <outlet property="accessoryLabel" destination="eZ9-Ke-6hY" id="mzU-5n-6fD"/>
+                <outlet property="appButton" destination="rhn-ZQ-GtI" id="VH8-f0-a5Y"/>
+                <outlet property="cardView2" destination="rT9-ra-MAX" id="bpo-mA-o6N"/>
+                <outlet property="imageButton" destination="YGi-8P-wfJ" id="Wtg-AJ-yoy"/>
+                <outlet property="linkButton" destination="Zbz-pJ-XEK" id="DJa-Zz-IuU"/>
+                <outlet property="moreButton" destination="iue-6t-6A6" id="RhB-za-ovt"/>
                 <outlet property="myCheckBox" destination="K31-Gh-vqJ" id="acV-xM-w54"/>
                 <outlet property="reminderLabel" destination="WEt-XN-3wS" id="P7E-fG-QWo"/>
                 <outlet property="taskNameLabel" destination="X4g-mE-Nlp" id="qeO-LS-cok"/>
             </connections>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="MORE_INFO_DOWN" width="30" height="16"/>
+    </resources>
 </document>

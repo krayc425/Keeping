@@ -14,8 +14,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    [self.taskNameLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
-    [self.punchDaysLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
+    [self setFont];
     
     self.myCheckBox.delegate = self;
     [self.myCheckBox setOnAnimationType:BEMAnimationTypeFill];
@@ -32,6 +31,11 @@
 
 - (void)setIsFinished:(BOOL)isFinished{
     [self.myCheckBox setOn:isFinished];
+}
+
+- (void)setFont{
+    [self.taskNameLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
+    [self.punchDaysLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
 }
 
 @end

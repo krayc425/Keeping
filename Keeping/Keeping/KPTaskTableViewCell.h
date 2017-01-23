@@ -33,4 +33,6 @@
 
 - (IBAction)imgAction:(_Nonnull id)sender;
 
+- (void)setFont;
+
 @end

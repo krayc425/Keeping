@@ -36,18 +36,7 @@
     [[self.tabBar.items objectAtIndex:3] setTitle:@"设置"];
     [[self.tabBar.items objectAtIndex:3] setImage:[UIImage imageNamed:@"TAB_SETTINGS"]];
     
-    NSDictionary *dicTab = @{
-                             NSFontAttributeName:[UIFont fontWithName:[Utilities getFont] size:10.0],
-                             NSForegroundColorAttributeName: [UIColor grayColor],
-                             };
-    NSDictionary *dicTabSelected = @{
-                             NSFontAttributeName:[UIFont fontWithName:[Utilities getFont] size:10.0],
-                             NSForegroundColorAttributeName: [Utilities getColor],
-                             };
-    for(UITabBarItem *item in self.tabBar.items){
-        [item setTitleTextAttributes:dicTab forState:UIControlStateNormal];
-        [item setTitleTextAttributes:dicTabSelected forState:UIControlStateSelected];
-    }
+    [self setFont];
     
     self.tabBar.barTintColor = [UIColor whiteColor];
     self.tabBar.tintColor = [Utilities getColor];
@@ -55,6 +44,21 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)setFont{
+    NSDictionary *dicTab = @{
+                             NSFontAttributeName:[UIFont fontWithName:[Utilities getFont] size:10.0],
+                             NSForegroundColorAttributeName: [UIColor grayColor],
+                             };
+    NSDictionary *dicTabSelected = @{
+                                     NSFontAttributeName:[UIFont fontWithName:[Utilities getFont] size:10.0],
+                                     NSForegroundColorAttributeName: [Utilities getColor],
+                                     };
+    for(UITabBarItem *item in self.tabBar.items){
+        [item setTitleTextAttributes:dicTab forState:UIControlStateNormal];
+        [item setTitleTextAttributes:dicTabSelected forState:UIControlStateSelected];
+    }
 }
 
 #pragma mark - UITabBarController Delegate

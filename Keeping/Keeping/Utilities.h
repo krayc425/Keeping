@@ -14,6 +14,7 @@
 + (UIColor *)getColor;
 
 + (NSString *)getFont;
++ (NSArray *)getFontArr;
 
 + (NSString *)getAPPID;
 

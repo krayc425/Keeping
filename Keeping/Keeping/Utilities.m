@@ -16,7 +16,15 @@
 }
 
 + (NSString *)getFont{
-    return @"FZSSJW--GB1-0";
+    return [[NSUserDefaults standardUserDefaults] valueForKey:@"font"];
+}
+
++ (NSArray *)getFontArr{
+    return @[
+             @{@"方正书宋" : @"FZSSJW--GB1-0"},
+             @{@"苹方" : @"PingFangSC-Regular"},
+             @{@"黑体" : @"STHeitiSC-Light"},
+             ];
 }
 
 + (NSString *)getAPPID{

@@ -18,4 +18,6 @@
 
 - (void)setIsFinished:(BOOL)isFinished;
 
+- (void)setFont;
+
 @end

@@ -36,7 +36,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch (section) {
         case 0:
-            return 2;
+            return 1;
         case 1:
             return 3;
         default:
@@ -47,7 +47,7 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     switch (section) {
         case 0:
-            return @"";
+            return @"外观";
         case 1:
             return @"其他";
         default:

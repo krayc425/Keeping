@@ -23,6 +23,9 @@
 		2429CBFB1E2E5D510027DD37 /* KPTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2429CBFA1E2E5D510027DD37 /* KPTabBarViewController.m */; };
 		2429CBFE1E2E61430027DD37 /* KPCalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2429CBFD1E2E61430027DD37 /* KPCalViewController.m */; };
 		2435AF5C1E34D0D50065DC74 /* MLKMenuPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 2435AF5B1E34D0D50065DC74 /* MLKMenuPopover.m */; };
+		2435DBF11E35CCC300F1A96E /* KPFontTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2435DBF01E35CCC300F1A96E /* KPFontTableViewController.m */; };
+		2435DBF91E35CD5500F1A96E /* KPFontTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2435DBF71E35CD5500F1A96E /* KPFontTableViewCell.m */; };
+		2435DBFA1E35CD5500F1A96E /* KPFontTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2435DBF81E35CD5500F1A96E /* KPFontTableViewCell.xib */; };
 		2436F8241E2F2C3300C2984A /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2436F8231E2F2C3300C2984A /* libsqlite3.0.tbd */; };
 		2436F8271E2F2C4B00C2984A /* TaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2436F8261E2F2C4B00C2984A /* TaskManager.m */; };
 		2436F82A1E2F2C5700C2984A /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 2436F8291E2F2C5700C2984A /* Task.m */; };
@@ -98,6 +101,11 @@
 		2429CBFD1E2E61430027DD37 /* KPCalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPCalViewController.m; sourceTree = "<group>"; };
 		2435AF5A1E34D0D50065DC74 /* MLKMenuPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLKMenuPopover.h; sourceTree = "<group>"; };
 		2435AF5B1E34D0D50065DC74 /* MLKMenuPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLKMenuPopover.m; sourceTree = "<group>"; };
+		2435DBEF1E35CCC300F1A96E /* KPFontTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPFontTableViewController.h; sourceTree = "<group>"; };
+		2435DBF01E35CCC300F1A96E /* KPFontTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPFontTableViewController.m; sourceTree = "<group>"; };
+		2435DBF61E35CD5500F1A96E /* KPFontTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPFontTableViewCell.h; sourceTree = "<group>"; };
+		2435DBF71E35CD5500F1A96E /* KPFontTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPFontTableViewCell.m; sourceTree = "<group>"; };
+		2435DBF81E35CD5500F1A96E /* KPFontTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KPFontTableViewCell.xib; sourceTree = "<group>"; };
 		2436F8231E2F2C3300C2984A /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		2436F8251E2F2C4B00C2984A /* TaskManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskManager.h; sourceTree = "<group>"; };
 		2436F8261E2F2C4B00C2984A /* TaskManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskManager.m; sourceTree = "<group>"; };
@@ -224,6 +232,7 @@
 			children = (
 				2429CBDB1E2DF61B0027DD37 /* KPSettingsTableViewController.h */,
 				2429CBDC1E2DF61B0027DD37 /* KPSettingsTableViewController.m */,
+				2435DBF51E35CCD400F1A96E /* Font */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -252,6 +261,18 @@
 				24151C931E322D6F00757A69 /* Detail */,
 			);
 			name = Task;
+			sourceTree = "<group>";
+		};
+		2435DBF51E35CCD400F1A96E /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				2435DBEF1E35CCC300F1A96E /* KPFontTableViewController.h */,
+				2435DBF01E35CCC300F1A96E /* KPFontTableViewController.m */,
+				2435DBF61E35CD5500F1A96E /* KPFontTableViewCell.h */,
+				2435DBF71E35CD5500F1A96E /* KPFontTableViewCell.m */,
+				2435DBF81E35CD5500F1A96E /* KPFontTableViewCell.xib */,
+			);
+			name = Font;
 			sourceTree = "<group>";
 		};
 		2436F82B1E2F2FC000C2984A /* TaskData */ = {
@@ -513,6 +534,7 @@
 				24F2A0DC1E2F489100F30FB1 /* KPSchemeTableViewCell.xib in Resources */,
 				24699F051E2F23C60092FBED /* Navigation.xcassets in Resources */,
 				24F2A0FA1E2F7B6E00F30FB1 /* round_backarrow_big-high.png in Resources */,
+				2435DBFA1E35CD5500F1A96E /* KPFontTableViewCell.xib in Resources */,
 				2429CBF81E2E571A0027DD37 /* 方正书宋简体.ttf in Resources */,
 				24F2A0FB1E2F7B6E00F30FB1 /* round_backarrow_big-high@2x.png in Resources */,
 				24F2A0F81E2F7B6E00F30FB1 /* picker_wheel_ip4.png in Resources */,
@@ -595,6 +617,7 @@
 				24F2A0F41E2F7B6E00F30FB1 /* Categories.m in Sources */,
 				2429CBFB1E2E5D510027DD37 /* KPTabBarViewController.m in Sources */,
 				241FB6671E31D2F300DF4D53 /* HYCircleProgressView.m in Sources */,
+				2435DBF91E35CD5500F1A96E /* KPFontTableViewCell.m in Sources */,
 				2429CBF31E2E4E750027DD37 /* Utilities.m in Sources */,
 				24699EFE1E2F161F0092FBED /* KPTaskAddTableViewController.m in Sources */,
 				24DCF1941E310A890097C250 /* CardsView.m in Sources */,
@@ -605,6 +628,7 @@
 				24151C971E32388300757A69 /* UNManager.m in Sources */,
 				24151C921E322D6700757A69 /* KPTaskDetailTableViewController.m in Sources */,
 				24F2A0C31E2F371B00F30FB1 /* UIView+MJAlertView.m in Sources */,
+				2435DBF11E35CCC300F1A96E /* KPFontTableViewController.m in Sources */,
 				24F2A1061E2F7CBC00F30FB1 /* KPReminderViewController.m in Sources */,
 				249AE3231E2DEE7700F704F8 /* Keeping.xcdatamodeld in Sources */,
 				2429CBE81E2E499A0027DD37 /* KPSeparatorView.m in Sources */,

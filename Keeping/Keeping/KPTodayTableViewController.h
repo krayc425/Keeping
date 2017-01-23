@@ -17,4 +17,6 @@
 @property (nonnull, nonatomic) NSMutableArray *unfinishedTaskArr;
 @property (nonnull, nonatomic) NSMutableArray *finishedTaskArr;
 
+@property (nullable, nonatomic) NSIndexPath *selectedIndexPath;
+
 @end

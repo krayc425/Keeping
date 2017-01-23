@@ -14,9 +14,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    [self.taskNameLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
-    [self.reminderLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
-    [self.accessoryLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
+    [self setFont];
     
     self.myCheckBox.delegate = self;
     [self.myCheckBox setOnAnimationType:BEMAnimationTypeFill];
@@ -37,6 +35,19 @@
 - (void)setIsFinished:(BOOL)isFinished{
     [self.myCheckBox setOn:isFinished];
     [self.myCheckBox setUserInteractionEnabled:!isFinished];
+}
+
+- (IBAction)moreAction:(id)sender{
+    [self.delegate moreAction:self withButton:(UIButton *)sender];
+}
+
+- (void)setFont{
+    [self.taskNameLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
+    [self.reminderLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
+    
+    [self.appButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
+    [self.linkButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
+    [self.imageButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
 }
 
 @end
