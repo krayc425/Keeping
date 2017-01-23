@@ -140,16 +140,34 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if(self.selectedPath == indexPath){
-        self.selectedPath = NULL;
-    }else{
-        self.selectedPath = indexPath;
-    }
-    if(self.selectedPath == NULL){
-        
-    }
     if(indexPath.section == 2){
         [self showSubmitAlert];
+    }else if(indexPath.section == 1){
+        if(![[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:[[[KPSchemeManager getSchemeArr] objectAtIndex:indexPath.row] allValues][0]]]){
+            
+            UIAlertController *alertController =
+            [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"您尚未安装 %@", [[[KPSchemeManager getSchemeArr] objectAtIndex:indexPath.row] allKeys][0]]
+                                                message:nil
+                                         preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:nil];
+            [alertController addAction:okAction];
+            [self presentViewController:alertController animated:YES completion:nil];
+
+        }else{
+            if(self.selectedPath == indexPath){
+                self.selectedPath = NULL;
+            }else{
+                self.selectedPath = indexPath;
+            }
+        }
+    }else{
+        if(self.selectedPath == indexPath){
+            self.selectedPath = NULL;
+        }else{
+            self.selectedPath = indexPath;
+        }
     }
     [tableView reloadData];
 }

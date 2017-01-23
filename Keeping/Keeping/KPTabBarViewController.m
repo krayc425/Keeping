@@ -69,7 +69,12 @@
         {
             [self.navigationItem setTitle:@"今日"];
             
-            self.navigationItem.leftBarButtonItems = nil;
+            UIBarButtonItem *editItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_EDIT"]
+                                                                         style:UIBarButtonItemStylePlain
+                                                                        target:self.kpTodayTableViewController
+                                                                        action:@selector(editAction:)];
+            self.navigationItem.leftBarButtonItems = @[editItem];
+            
             self.navigationItem.rightBarButtonItems = nil;
         }
             break;

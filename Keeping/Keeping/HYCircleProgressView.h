@@ -44,4 +44,6 @@
 
 - (void)setProgress:(CGFloat)percentage animated:(BOOL)animated;
 
+- (void)setFont;
+
 @end

@@ -40,6 +40,8 @@
     [self.daysLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
     [self.totalDayLabel setFont:[UIFont fontWithName:[Utilities getFont] size:12.0f]];
     
+    [self.progressView setFont];
+    
     for(UIButton *button in self.weekDayStack.subviews){
         [button.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:12.0f]];
     }

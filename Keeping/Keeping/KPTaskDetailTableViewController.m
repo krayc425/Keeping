@@ -48,11 +48,6 @@
             [button.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0]];
         }
     }
-    if([self.selectedWeekdayArr count] > 0){
-        [self.allButton setTitle:@"清空" forState: UIControlStateNormal];
-    }else{
-        [self.allButton setTitle:@"全选" forState: UIControlStateNormal];
-    }
     
     self.calendar.dataSource = self;
     self.calendar.delegate = self;
@@ -77,6 +72,12 @@
     [self.taskNameField setText:[self.task name]];
     
     self.selectedWeekdayArr = [NSMutableArray arrayWithArray:self.task.reminderDays];
+    if([self.selectedWeekdayArr count] > 0){
+        [self.allButton setTitle:@"清空" forState: UIControlStateNormal];
+    }else{
+        [self.allButton setTitle:@"全选" forState: UIControlStateNormal];
+    }
+    
     for(NSNumber *num in self.selectedWeekdayArr){
         UIImage *buttonImg = [UIImage imageNamed:@"CIRCLE_FULL"];
         buttonImg = [buttonImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];

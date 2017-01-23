@@ -17,6 +17,7 @@
 #import "DateUtil.h"
 #import "KPTaskDetailTableViewController.h"
 #import "MLKMenuPopover.h"
+#import "KPImageViewController.h"
 
 #define MENU_POPOVER_FRAME CGRectMake(10, 44 + 9, 140, 44 * [[Utilities getTaskSortArr] count])
 
@@ -165,34 +166,7 @@
 #pragma mark - Pop Up Image
 
 - (void)passImg:(UIImage *)img{
-    [self.navigationController.navigationBar setHidden:YES];
-    [self.tabBarController.tabBar setHidden:YES];
-    
-    //创建一个黑色背景, 初始化一个用来当做背景的View。
-    UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0, -64, self.view.frame.size.width, self.view.frame.size.height + 64)];
-    self.background = bgView;
-    [bgView setBackgroundColor:[UIColor colorWithRed:0/250.0 green:0/250.0 blue:0/250.0 alpha:1.0]];
-    
-    //创建显示图像的视图
-    //初始化要显示的图片内容的imageView
-    UIImageView *browseImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height + 64)];
-    browseImgView.contentMode = UIViewContentModeScaleAspectFit;
-    
-    browseImgView.image = img;
-    [bgView addSubview:browseImgView];
-    
-    browseImgView.userInteractionEnabled = YES;
-    //添加点击手势（即点击图片后退出全屏）
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeView)];
-    [browseImgView addGestureRecognizer:tapGesture];
-    
-    [self.tableView addSubview:bgView];
-}
-
-- (void)closeView{
-    [self.background removeFromSuperview];
-    [self.navigationController.navigationBar setHidden:NO];
-    [self.tabBarController.tabBar setHidden:NO];
+    [self performSegueWithIdentifier:@"imageSegue" sender:img];
 }
 
 #pragma mark - Table view data source
@@ -384,8 +358,9 @@
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if([segue.identifier isEqualToString:@"addTaskSegue"]){
-        
+    if([segue.identifier isEqualToString:@"imageSegue"]){
+        KPImageViewController *imageVC = (KPImageViewController *)[segue destinationViewController];
+        [imageVC setImg:(UIImage *)sender];
     }else if([segue.identifier isEqualToString:@"detailTaskSegue"]){
         KPTaskDetailTableViewController *kptdtvc = (KPTaskDetailTableViewController *)[segue destinationViewController];
         NSIndexPath *indexPath = (NSIndexPath *)sender;

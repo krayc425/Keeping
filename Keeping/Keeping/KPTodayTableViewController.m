@@ -14,10 +14,9 @@
 #import "Task.h"
 #import "DateUtil.h"
 #import "UIScrollView+EmptyDataSet.h"
+#import "KPImageViewController.h"
 
 @interface KPTodayTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
-
-@property (nonatomic, assign) UIView *background;   //图片放大的背景
 
 @end
 
@@ -68,6 +67,10 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)editAction:(id)sender{
+    
 }
 
 #pragma mark - Table view data source
@@ -171,39 +174,50 @@
             }
             [cell.taskNameLabel setText:t.name];
             
+            UIImage *appImg = [UIImage imageNamed:@"TODAY_APP"];
             if(t.appScheme != NULL){
                 NSDictionary *d = t.appScheme;
                 NSString *s = d.allKeys[0];
                 [cell.appButton setTitle:[NSString stringWithFormat:@"启动%@", s] forState:UIControlStateNormal];
                 [cell.appButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
-                
                 [cell.appButton setUserInteractionEnabled:YES];
+                
+                appImg = [appImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             }else{
                 [cell.appButton setTitle:@"没有 APP" forState:UIControlStateNormal];
                 [cell.appButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
                 
                 [cell.appButton setUserInteractionEnabled:NO];
             }
+            [cell.appImg setImage:appImg];
             
+            UIImage *linkImg = [UIImage imageNamed:@"TODAY_LINK"];
             if(t.link != NULL && ![t.link isEqualToString:@""]){
                 [cell.linkButton setTitle:@"打开链接" forState:UIControlStateNormal];
                 [cell.linkButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
                 [cell.linkButton setUserInteractionEnabled:YES];
+                
+                linkImg = [linkImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             }else{
                 [cell.linkButton setTitle:@"没有链接" forState:UIControlStateNormal];
                 [cell.linkButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
                 [cell.linkButton setUserInteractionEnabled:NO];
             }
+            [cell.linkImg setImage:linkImg];
             
+            UIImage *imageImg = [UIImage imageNamed:@"TODAY_IMAGE"];
             if(t.image != NULL){
                 [cell.imageButton setTitle:@"查看图片" forState:UIControlStateNormal];
                 [cell.imageButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
                 [cell.imageButton setUserInteractionEnabled:YES];
+                
+                imageImg = [imageImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             }else{
                 [cell.imageButton setTitle:@"没有图片" forState:UIControlStateNormal];
                 [cell.imageButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
                 [cell.imageButton setUserInteractionEnabled:YES];
             }
+            [cell.imageImg setImage:imageImg];
             
             NSString *reminderTimeStr = @"";
             if(t.reminderTime != NULL){
@@ -309,7 +323,7 @@
             break;
         case 2:
         {
-            [self passImg:[UIImage imageWithData:t.image]];
+            [self performSegueWithIdentifier:@"imageSegue" sender:[UIImage imageWithData:t.image]];
         }
             break;
         default:
@@ -318,34 +332,13 @@
 
 }
 
-#pragma mark - Pop Up Image
+#pragma mark - Navigation
 
-- (void)passImg:(UIImage *)img{
-    [self.navigationController.navigationBar setHidden:YES];
-    [self.tabBarController.tabBar setHidden:YES];
-    
-    UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0, -64, self.view.frame.size.width, self.view.frame.size.height + 64)];
-    self.background = bgView;
-    [bgView setBackgroundColor:[UIColor colorWithRed:0/250.0 green:0/250.0 blue:0/250.0 alpha:1.0]];
-    
-    UIImageView *browseImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height + 64)];
-    browseImgView.contentMode = UIViewContentModeScaleAspectFit;
-    
-    browseImgView.image = img;
-    [bgView addSubview:browseImgView];
-    
-    browseImgView.userInteractionEnabled = YES;
-    
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeView)];
-    [browseImgView addGestureRecognizer:tapGesture];
-    
-    [self.tableView addSubview:bgView];
-}
-
-- (void)closeView{
-    [self.background removeFromSuperview];
-    [self.navigationController.navigationBar setHidden:NO];
-    [self.tabBarController.tabBar setHidden:NO];
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"imageSegue"]){
+        KPImageViewController *imageVC = (KPImageViewController *)[segue destinationViewController];
+        [imageVC setImg:(UIImage *)sender];
+    }
 }
 
 #pragma mark - DZNEmpty Delegate

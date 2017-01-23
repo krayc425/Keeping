@@ -24,7 +24,28 @@
 	<key>CFBundleShortVersionString</key>
 	<string>0.1</string>
 	<key>CFBundleVersion</key>
-	<string>7</string>
+	<string>8</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>sinaweibo</string>
+		<string>weixin</string>
+		<string>mqq</string>
+		<string>taobao</string>
+		<string>alipay</string>
+		<string>weico</string>
+		<string>mqqbrowser</string>
+		<string>ucbrowser</string>
+		<string>baidumap</string>
+		<string>googlechrome</string>
+		<string>youku</string>
+		<string>imeituan</string>
+		<string>wccbyihaodian</string>
+		<string>yddictproapp</string>
+		<string>zhihu</string>
+		<string>doubanradio</string>
+		<string>ntesopen</string>
+		<string>http</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>

@@ -61,7 +61,6 @@
 {
     self.progressLabel.text = @"0%";
     self.progressLabel.textAlignment = NSTextAlignmentCenter;
-    self.progressLabel.font = [UIFont fontWithName:[Utilities getFont] size:15.0f];
     [self addSubview:self.progressLabel];
     
     _backgroundLayer = [CAShapeLayer layer];
@@ -76,6 +75,10 @@
     
     [self.layer addSublayer:_backgroundLayer];
     [self.layer addSublayer:_progressLayer];
+}
+
+- (void)setFont{
+    self.progressLabel.font = [UIFont fontWithName:[Utilities getFont] size:15.0f];
 }
 
 #pragma mark - draw circleLine

@@ -29,6 +29,7 @@
 		2436F8241E2F2C3300C2984A /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2436F8231E2F2C3300C2984A /* libsqlite3.0.tbd */; };
 		2436F8271E2F2C4B00C2984A /* TaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2436F8261E2F2C4B00C2984A /* TaskManager.m */; };
 		2436F82A1E2F2C5700C2984A /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 2436F8291E2F2C5700C2984A /* Task.m */; };
+		244EB3051E3635B100D30AE3 /* KPImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 244EB3041E3635B100D30AE3 /* KPImageViewController.m */; };
 		24699EFE1E2F161F0092FBED /* KPTaskAddTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24699EFD1E2F161F0092FBED /* KPTaskAddTableViewController.m */; };
 		24699F031E2F213D0092FBED /* KPNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24699F021E2F213D0092FBED /* KPNavigationViewController.m */; };
 		24699F051E2F23C60092FBED /* Navigation.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24699F041E2F23C60092FBED /* Navigation.xcassets */; };
@@ -111,6 +112,8 @@
 		2436F8261E2F2C4B00C2984A /* TaskManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskManager.m; sourceTree = "<group>"; };
 		2436F8281E2F2C5700C2984A /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
 		2436F8291E2F2C5700C2984A /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
+		244EB3031E3635B100D30AE3 /* KPImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPImageViewController.h; sourceTree = "<group>"; };
+		244EB3041E3635B100D30AE3 /* KPImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPImageViewController.m; sourceTree = "<group>"; };
 		24699EFC1E2F161F0092FBED /* KPTaskAddTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPTaskAddTableViewController.h; sourceTree = "<group>"; };
 		24699EFD1E2F161F0092FBED /* KPTaskAddTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPTaskAddTableViewController.m; sourceTree = "<group>"; };
 		24699F011E2F213D0092FBED /* KPNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPNavigationViewController.h; sourceTree = "<group>"; };
@@ -314,6 +317,8 @@
 				24699F021E2F213D0092FBED /* KPNavigationViewController.m */,
 				2429CBF91E2E5D510027DD37 /* KPTabBarViewController.h */,
 				2429CBFA1E2E5D510027DD37 /* KPTabBarViewController.m */,
+				244EB3031E3635B100D30AE3 /* KPImageViewController.h */,
+				244EB3041E3635B100D30AE3 /* KPImageViewController.m */,
 				24151C951E32388300757A69 /* UNManager.h */,
 				24151C961E32388300757A69 /* UNManager.m */,
 				24F2A0CF1E2F3F1800F30FB1 /* DBManager.h */,
@@ -605,6 +610,7 @@
 				24F2A1021E2F7B6E00F30FB1 /* KPTimePicker.m in Sources */,
 				24699F031E2F213D0092FBED /* KPNavigationViewController.m in Sources */,
 				2429CBFE1E2E61430027DD37 /* KPCalViewController.m in Sources */,
+				244EB3051E3635B100D30AE3 /* KPImageViewController.m in Sources */,
 				2436F8271E2F2C4B00C2984A /* TaskManager.m in Sources */,
 				24DCF18A1E3094050097C250 /* DateUtil.m in Sources */,
 				24F2A0D11E2F3F1800F30FB1 /* DBManager.m in Sources */,

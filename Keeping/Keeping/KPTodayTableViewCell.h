@@ -30,6 +30,10 @@
 
 //更多 按钮
 @property (nonnull, nonatomic) IBOutlet UIButton *moreButton;
+//小图片提示
+@property (nonnull, nonatomic) IBOutlet UIImageView *appImg;
+@property (nonnull, nonatomic) IBOutlet UIImageView *linkImg;
+@property (nonnull, nonatomic) IBOutlet UIImageView *imageImg;
 //子 cardview
 @property (nonnull, nonatomic) IBOutlet UIView *cardView2;
 //APP 按钮

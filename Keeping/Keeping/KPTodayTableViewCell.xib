@@ -51,7 +51,6 @@
                         <constraints>
                             <constraint firstAttribute="width" secondItem="K31-Gh-vqJ" secondAttribute="height" multiplier="1:1" id="7U4-sE-8qA"/>
                             <constraint firstAttribute="height" constant="30" id="Rja-ef-Lwz"/>
-                            <constraint firstAttribute="width" constant="30" id="dDn-Nv-vLJ"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rT9-ra-MAX" userLabel="CardView2" customClass="CardsView">
@@ -60,7 +59,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="36C-0s-hLK">
                                 <rect key="frame" x="5" y="5" width="290" height="39.5"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rhn-ZQ-GtI">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="headTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rhn-ZQ-GtI">
                                         <rect key="frame" x="0.0" y="5" width="96.5" height="30"/>
                                         <state key="normal" title="打开 APP"/>
                                         <connections>
@@ -103,11 +102,41 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="KCu-23-9U8">
+                        <rect key="frame" x="140" y="34" width="40" height="10"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qYF-LJ-P9k">
+                                <rect key="frame" x="0.0" y="0.0" width="10" height="10"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="10" id="bEL-dR-rKy"/>
+                                    <constraint firstAttribute="width" secondItem="qYF-LJ-P9k" secondAttribute="height" multiplier="1:1" id="nWx-Hm-gyj"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OB1-fl-otB">
+                                <rect key="frame" x="15" y="0.0" width="10" height="10"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="OB1-fl-otB" secondAttribute="height" multiplier="1:1" id="RFw-yY-OCK"/>
+                                    <constraint firstAttribute="height" constant="10" id="aCo-Xs-UlS"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pWw-gS-wbu">
+                                <rect key="frame" x="30" y="0.0" width="10" height="10"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="pWw-gS-wbu" secondAttribute="height" multiplier="1:1" id="Xyn-g9-TJV"/>
+                                    <constraint firstAttribute="height" constant="10" id="sfQ-YH-K2e"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="10" id="mAX-GG-7zg"/>
+                        </constraints>
+                    </stackView>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="K31-Gh-vqJ" secondAttribute="trailing" constant="10" id="1ab-fc-iCz"/>
                     <constraint firstItem="iue-6t-6A6" firstAttribute="centerX" secondItem="MId-YP-mlf" secondAttribute="centerX" id="6Q6-Fp-9CI"/>
+                    <constraint firstItem="iue-6t-6A6" firstAttribute="centerX" secondItem="KCu-23-9U8" secondAttribute="centerX" id="D4h-ff-6lb"/>
                     <constraint firstItem="K31-Gh-vqJ" firstAttribute="centerY" secondItem="MId-YP-mlf" secondAttribute="centerY" id="Dwu-S1-N7g"/>
                     <constraint firstItem="MId-YP-mlf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="F6y-hj-EM4"/>
                     <constraint firstAttribute="trailing" secondItem="MId-YP-mlf" secondAttribute="trailing" constant="10" id="HXP-1d-dF6"/>
@@ -117,6 +146,7 @@
                     <constraint firstItem="iue-6t-6A6" firstAttribute="bottom" secondItem="MId-YP-mlf" secondAttribute="bottom" constant="-5" id="aSC-pu-fUC"/>
                     <constraint firstItem="X4g-mE-Nlp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="cIp-FL-hY9"/>
                     <constraint firstItem="rT9-ra-MAX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="cVC-Hp-i1h"/>
+                    <constraint firstItem="iue-6t-6A6" firstAttribute="top" secondItem="KCu-23-9U8" secondAttribute="bottom" constant="5" id="hjV-yV-KEH"/>
                     <constraint firstItem="WEt-XN-3wS" firstAttribute="centerY" secondItem="MId-YP-mlf" secondAttribute="centerY" id="i29-4v-fAJ"/>
                     <constraint firstItem="K31-Gh-vqJ" firstAttribute="leading" secondItem="WEt-XN-3wS" secondAttribute="trailing" constant="10" id="psv-IA-PQ1"/>
                     <constraint firstItem="rT9-ra-MAX" firstAttribute="top" secondItem="MId-YP-mlf" secondAttribute="bottom" constant="5" id="t1X-1F-yAJ"/>
@@ -126,9 +156,12 @@
             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="appButton" destination="rhn-ZQ-GtI" id="VH8-f0-a5Y"/>
+                <outlet property="appImg" destination="qYF-LJ-P9k" id="gOT-5E-Muw"/>
                 <outlet property="cardView2" destination="rT9-ra-MAX" id="bpo-mA-o6N"/>
                 <outlet property="imageButton" destination="YGi-8P-wfJ" id="Wtg-AJ-yoy"/>
+                <outlet property="imageImg" destination="pWw-gS-wbu" id="9kS-db-bTg"/>
                 <outlet property="linkButton" destination="Zbz-pJ-XEK" id="DJa-Zz-IuU"/>
+                <outlet property="linkImg" destination="OB1-fl-otB" id="KJs-6j-bJu"/>
                 <outlet property="moreButton" destination="iue-6t-6A6" id="RhB-za-ovt"/>
                 <outlet property="myCheckBox" destination="K31-Gh-vqJ" id="acV-xM-w54"/>
                 <outlet property="reminderLabel" destination="WEt-XN-3wS" id="P7E-fG-QWo"/>

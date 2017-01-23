@@ -13,10 +13,9 @@
 #import "DateTools.h"
 #import "TaskManager.h"
 #import <QuartzCore/QuartzCore.h>
+#import "KPImageViewController.h"
 
 @interface KPTaskExtraTableViewController ()
-
-@property (nonatomic, assign) UIView *background;   //图片放大的背景
 
 @end
 
@@ -208,29 +207,8 @@
     if(self.selectedImgView.image == [UIImage new]){
         return;
     }else{
-        [self.navigationController.navigationBar setHidden:YES];
-        
-        UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0, -64, self.view.frame.size.width, self.view.frame.size.height + 64)];
-        self.background = bgView;
-        [bgView setBackgroundColor:[UIColor colorWithRed:0/250.0 green:0/250.0 blue:0/250.0 alpha:1.0]];
-        
-        UIImageView *browseImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height + 64)];
-        browseImgView.contentMode = UIViewContentModeScaleAspectFit;
-        browseImgView.image = self.selectedImgView.image;
-        [bgView addSubview:browseImgView];
-        
-        browseImgView.userInteractionEnabled = YES;
-        
-        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeView)];
-        [browseImgView addGestureRecognizer:tapGesture];
-        
-        [self.tableView addSubview:bgView];
+        [self performSegueWithIdentifier:@"imageSegue" sender:self.selectedImgView.image];
     }
-}
-
-- (void)closeView{
-    [self.background removeFromSuperview];
-    [self.navigationController.navigationBar setHidden:NO];
 }
 
 - (UIImage *)normalizedImage:(UIImage *)img {
@@ -287,7 +265,7 @@
             [view setText:@"提醒时间"];
             break;
         case 1:
-            [view setText:@"链接 APP"];
+            [view setText:@"打开 APP"];
             break;
         case 2:
             [view setText:@"链接"];
@@ -342,6 +320,9 @@
         KPReminderViewController *kprvc = (KPReminderViewController *)[segue destinationViewController];
         kprvc.delegate = self;
         [kprvc.timePicker setPickingDate:(NSDate *)sender];
+    }else if([segue.identifier isEqualToString:@"imageSegue"]){
+        KPImageViewController *imageVC = (KPImageViewController *)[segue destinationViewController];
+        [imageVC setImg:(UIImage *)sender];
     }
 }
 

@@ -20,7 +20,6 @@
     
     //设置版本号
     self.versionLabel.text = [NSString stringWithFormat:@"v%@",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
-    
 }
 
 - (void)didReceiveMemoryWarning {

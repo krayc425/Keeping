@@ -19,4 +19,6 @@
 
 @property (nullable, nonatomic) NSIndexPath *selectedIndexPath;
 
+- (void)editAction:(_Nonnull id)sender;
+
 @end
