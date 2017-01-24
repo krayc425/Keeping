@@ -27,20 +27,29 @@
     view.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.view = view;
     
-    CardsView *cardView = [[CardsView alloc] initWithFrame:CGRectMake(10, 64 + 10, view.frame.size.width -20, 320)];
+    CardsView *cardView = [[CardsView alloc] initWithFrame:CGRectMake(10, 64 + 10, view.frame.size.width -20, 250)];
     cardView.cornerRadius = 10;
     cardView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:cardView];
     
-    self.calendar = [[FSCalendar alloc] initWithFrame:CGRectMake(5, 5, cardView.frame.size.width - 10, 310)];
+    self.calendar = [[FSCalendar alloc] initWithFrame:CGRectMake(5, 5, cardView.frame.size.width - 10, 240)];
     self.calendar.dataSource = self;
     self.calendar.delegate = self;
     self.calendar.backgroundColor = [UIColor whiteColor];
     self.calendar.appearance.headerMinimumDissolvedAlpha = 0;
     self.calendar.appearance.headerDateFormat = @"yyyy年MM月";
+    
     self.calendar.appearance.headerTitleColor = [Utilities getColor];
     self.calendar.appearance.weekdayTextColor = [Utilities getColor];
-    self.calendar.appearance.selectionColor = [Utilities getColor];
+//    self.calendar.appearance.selectionColor =  [UIColor clearColor];
+//    self.calendar.appearance.titleSelectionColor = [UIColor blackColor];
+//    self.calendar.appearance.borderSelectionColor = [UIColor clearColor];
+    self.calendar.appearance.todayColor = [UIColor clearColor];
+    self.calendar.appearance.titleTodayColor = [UIColor blackColor];
+//    self.calendar.appearance.todaySelectionColor = [UIColor clearColor];
+    
+    self.calendar.allowsSelection = NO;
+    
     [cardView addSubview:self.calendar];
     
     UIButton *previousButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -67,7 +76,7 @@
     [cardView addSubview:nextButton];
     self.nextButton = nextButton;
     
-    self.taskTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 330 + 64 + 5, view.frame.size.width, view.frame.size.height - 330 - 64 - 44 - 6) style:UITableViewStylePlain];
+    self.taskTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 260 + 64 + 5, view.frame.size.width, view.frame.size.height - 260 - 64 - 44 - 6) style:UITableViewStylePlain];
     self.taskTableView.delegate = self;
     self.taskTableView.dataSource = self;
     self.taskTableView.backgroundColor = [UIColor clearColor];
@@ -76,8 +85,8 @@
     self.taskTableView.emptyDataSetSource = self;
     self.taskTableView.emptyDataSetDelegate = self;
     self.taskTableView.tableHeaderView = [UIView new];
-    //[[UIView alloc] initWithFrame:CGRectMake(0, 330 + 64 + 5, view.frame.size.width, 5)];
-    self.taskTableView.tableFooterView = [UIView new];
+    self.taskTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width, 10)];
+    self.taskTableView.tableFooterView.backgroundColor = [UIColor groupTableViewBackgroundColor];
 
     [self.view addSubview:self.taskTableView];
 }
@@ -85,6 +94,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    self.task = NULL;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -92,8 +102,8 @@
 }
 
 - (void)loadTasks{
-//    NSLog(@"Load Task on : %@", [self.selectedDate description]);
-    self.taskArr = [[TaskManager shareInstance] getTasksOfDate:self.selectedDate];
+//    self.taskArr = [[TaskManager shareInstance] getTasksOfDate:self.selectedDate];
+    self.taskArr = [[TaskManager shareInstance] getTasks];
     [self.taskTableView reloadData];
 }
 
@@ -101,6 +111,13 @@
     [self setFont];
     self.selectedDate = [NSDate date];
     [self loadTasks];
+}
+
+- (void)setFont{
+    self.calendar.appearance.titleFont = [UIFont fontWithName:[Utilities getFont] size:12.0];
+    self.calendar.appearance.headerTitleFont = [UIFont fontWithName:[Utilities getFont] size:15.0];
+    self.calendar.appearance.weekdayFont = [UIFont fontWithName:[Utilities getFont] size:15.0];
+    self.calendar.appearance.subtitleFont = [UIFont fontWithName:[Utilities getFont] size:10.0];
 }
 
 #pragma mark - Table view data source
@@ -115,6 +132,17 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if([self.task isEqual:self.taskArr[indexPath.row]]){
+        self.task = NULL;
+    }else{
+        self.task = self.taskArr[indexPath.row];
+    }
+    
+    [self.calendar reloadInputViews];
+    [self.calendar reloadData];
+    
+    [self.taskTableView reloadData];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -131,6 +159,12 @@
     
     Task *t = [self.taskArr objectAtIndex:indexPath.row];
     
+    if([t isEqual:self.task]){
+        [cell setIsSelected:YES];
+    }else{
+        [cell setIsSelected:NO];
+    }
+    
     if([t.punchDateArr containsObject:[DateUtil transformDate:self.selectedDate]]){
         [cell setIsFinished:YES];
     }else{
@@ -138,19 +172,15 @@
     }
     [cell.taskNameLabel setText:t.name];
     
-    [cell.punchDaysLabel setText:[NSString stringWithFormat:@"已完成 %lu 天, 计划完成 %d 天", (unsigned long)[t.punchDateArr count], [[TaskManager shareInstance] totalPunchNumberOfTask:t]]];
+    //进度
+    int totalPunchNum = [[TaskManager shareInstance] totalPunchNumberOfTask:t];
+    int punchNum = (int)[t.punchDateArr count];
+    [cell.punchDaysLabel setText:[NSString stringWithFormat:@"已完成 %d 天, 计划完成 %d 天, 完成率 %.1f%%", punchNum, totalPunchNum, totalPunchNum == 0 ? 0 : ((float)punchNum / (float)totalPunchNum * 100.0)]];
     
     return cell;
 }
 
-- (void)setFont{    
-    self.calendar.appearance.titleFont = [UIFont fontWithName:[Utilities getFont] size:12.0];
-    self.calendar.appearance.headerTitleFont = [UIFont fontWithName:[Utilities getFont] size:15.0];
-    self.calendar.appearance.weekdayFont = [UIFont fontWithName:[Utilities getFont] size:15.0];
-    self.calendar.appearance.subtitleFont = [UIFont fontWithName:[Utilities getFont] size:10.0];
-}
-
-#pragma mark -DZNEmpty Delegate
+#pragma mark - DZNEmpty Delegate
 
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView{
     NSString *text = @"没有任务";
@@ -166,8 +196,12 @@
 #pragma mark - FSCalendar Delegate
 
 - (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date{
-    self.selectedDate = date;
-    [self loadTasks];
+//    self.selectedDate = date;
+//    [self loadTasks];
+    
+//    self.task = NULL;
+//    [self.calendar reloadInputViews];
+//    [self.calendar reloadData];
 }
 
 - (void)previousClicked:(id)sender{
@@ -187,6 +221,54 @@
         return @"今";
     }
     return nil;
+}
+
+- (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance fillDefaultColorForDate:(nonnull NSDate *)date{
+    if(self.task != NULL){
+    //打了卡的日子
+        if([self.task.punchDateArr containsObject:[DateUtil transformDate:date]]){
+            return [Utilities getColor];
+        }
+    }
+    return appearance.borderDefaultColor;
+}
+
+- (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance titleDefaultColorForDate:(NSDate *)date{
+    if(self.task != NULL){
+    //打了卡的日子
+        if([self.task.punchDateArr containsObject:[DateUtil transformDate:date]]){
+            return [UIColor whiteColor];
+        }
+    }
+    return appearance.borderDefaultColor;
+}
+
+- (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance borderDefaultColorForDate:(NSDate *)date{
+    
+    if(self.task != NULL){
+        //未来应该打卡的日子、打了卡的日子、没打卡的日子
+        if([self.task.punchDateArr containsObject:[DateUtil transformDate:date]]){
+            return [Utilities getColor];
+        }
+        if([self.task.addDate isEarlierThanOrEqualTo:date] && [self.task.reminderDays containsObject:@(date.weekday)]){
+            if([[NSDate date] isEarlierThanOrEqualTo:date]){
+                return [Utilities getColor];
+            }else{
+                return [UIColor redColor];
+            }
+        }
+    }
+    
+    return appearance.borderDefaultColor;
+}
+
+- (NSInteger)calendar:(FSCalendar *)calendar numberOfEventsForDate:(NSDate *)date{
+    if(self.task != NULL){
+        //创建日期
+        return [self.task.addDate isEqualToDate:date];
+    }else{
+        return 0;
+    }
 }
 
 @end

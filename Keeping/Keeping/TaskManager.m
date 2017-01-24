@@ -260,4 +260,35 @@ static TaskManager* _instance = nil;
     return NO;
 }
 
+- (BOOL)unpunchForTaskWithID:(NSNumber *)taskid{
+    FMResultSet *resultSet = [[[DBManager shareInstance] getDB] executeQuery:@"select * from t_task where id = ?;", taskid];
+    while([resultSet next]){
+        NSString *punchJsonStr = [resultSet stringForColumn:@"punchDateArr"];
+        if(punchJsonStr != NULL){
+            NSData *punchData = [punchJsonStr dataUsingEncoding:NSUTF8StringEncoding];
+            NSMutableArray *punchArr = [[NSJSONSerialization JSONObjectWithData:punchData options:NSJSONReadingAllowFragments error:nil] mutableCopy];
+            
+            if([punchArr count] <= 0){
+                punchArr = [[NSMutableArray alloc] init];
+            }
+            
+            if([punchArr containsObject:[DateUtil transformDate:[NSDate date]]]){
+                [punchArr removeObject:[DateUtil transformDate:[NSDate date]]];
+            }
+            
+            NSError *err = nil;
+            NSString *punchJsonStr;
+            if([punchArr count] > 0 || punchArr != NULL){
+                NSData *punchJsonData = [NSJSONSerialization dataWithJSONObject:punchArr options:NSJSONWritingPrettyPrinted error:&err];
+                punchJsonStr = [[NSString alloc] initWithData:punchJsonData encoding:NSUTF8StringEncoding];
+            }else{
+                punchJsonStr = nil;
+            }
+            
+            return [[[DBManager shareInstance] getDB] executeUpdate:@"update t_task set punchDateArr = ? where id = ?;", punchJsonStr, taskid];
+        }
+    }
+    return NO;
+}
+
 @end

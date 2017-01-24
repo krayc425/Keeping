@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "FSCalendar.h"
+#import "Task.h"
 
-@interface KPCalViewController : UIViewController <FSCalendarDataSource, FSCalendarDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface KPCalViewController : UIViewController <FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance, UITableViewDelegate, UITableViewDataSource>
 
 @property (nonnull, nonatomic) FSCalendar *calendar;
 @property (nonnull, nonatomic) UIButton *previousButton;
@@ -22,5 +23,7 @@
 
 @property (nonnull, nonatomic) NSDate *selectedDate;
 @property (nonnull, nonatomic) NSMutableArray *taskArr;
+
+@property (nullable, nonatomic) Task *task;
 
 @end

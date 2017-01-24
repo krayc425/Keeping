@@ -19,6 +19,6 @@
 
 @property (nullable, nonatomic) NSIndexPath *selectedIndexPath;
 
-- (void)editAction:(_Nonnull id)sender;
+@property (nonnull, nonatomic) NSString *sortFactor;
 
 @end

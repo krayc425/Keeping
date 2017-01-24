@@ -25,7 +25,6 @@
 
 @property (nonatomic, assign) UIView *background;   //图片放大的背景
 
-@property (nonatomic,strong) NSArray *_Nonnull sortArray;
 @property (nonatomic,strong) MLKMenuPopover *_Nonnull menuPopover;
 
 @end
@@ -38,7 +37,8 @@
     
     self.tableView.emptyDataSetSource = self;
     self.tableView.emptyDataSetDelegate = self;
-    self.tableView.tableFooterView = [UIView new];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 10)];
+    self.tableView.tableFooterView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     
     self.sortFactor = @"addDate";
@@ -81,10 +81,14 @@
     self.taskArr = [[NSMutableArray alloc] init];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"ANY SELF.reminderDays in %@", weekDays];
     self.taskArr = [NSMutableArray arrayWithArray:[[[TaskManager shareInstance] getTasks] filteredArrayUsingPredicate:predicate]];
+    
     //排序
-//    [self.taskArr removeAllObjects];
-//    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:self.sortFactor ascending:NO];
-//    self.taskArr = [NSMutableArray arrayWithArray:[[NSMutableArray arrayWithArray:[[[TaskManager shareInstance] getTasks] filteredArrayUsingPredicate:predicate]] sortedArrayUsingDescriptors:@[sortDescriptor]]];
+    NSMutableArray *sortDescriptors = [[NSMutableArray alloc] init];
+    for(NSString *str in [self.sortFactor componentsSeparatedByString:@"|"]){
+        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:str ascending:YES];
+        [sortDescriptors addObject:sortDescriptor];
+    }
+    self.taskArr = [NSMutableArray arrayWithArray:[self.taskArr sortedArrayUsingDescriptors:sortDescriptors]];
     
     [self.tableView reloadData];
 }
@@ -94,7 +98,6 @@
 }
 
 - (void)editAction:(id)senders{
-    // Hide already showing popover
     [self.menuPopover dismissMenuPopover];
     
     self.menuPopover = [[MLKMenuPopover alloc] initWithFrame:MENU_POPOVER_FRAME menuItems:[[Utilities getTaskSortArr] allKeys]];
@@ -226,11 +229,11 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    if(section == 0){
+//    if(section == 0){
         return 0.00001f;
-    }else{
-        return [super tableView:tableView heightForFooterInSection:section];
-    }
+//    }else{
+//        return [super tableView:tableView heightForFooterInSection:section];
+//    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -365,6 +368,9 @@
         KPTaskDetailTableViewController *kptdtvc = (KPTaskDetailTableViewController *)[segue destinationViewController];
         NSIndexPath *indexPath = (NSIndexPath *)sender;
         [kptdtvc setTask:self.taskArr[indexPath.row]];
+    }else if([segue.identifier isEqualToString:@"addTaskSegue"]){
+        KPTaskDetailTableViewController *kptdtvc = (KPTaskDetailTableViewController *)[segue destinationViewController];
+        [kptdtvc setTask:NULL];
     }
 }
 

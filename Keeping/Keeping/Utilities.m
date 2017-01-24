@@ -31,11 +31,12 @@
     return @"1197272196";
 }
 
+//多个排序条件用|分割，到那边再 split
 + (NSDictionary *)getTaskSortArr{
     return @{
              @"任务名" : @"name",
              @"添加日期" : @"addDate",
-             @"提醒时间" : @"reminderTime"
+             @"提醒时间" : @"reminderTime.hour|reminderTime.minute"
              };
 }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BIL-fh-dCv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BIL-fh-dCv">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -119,7 +119,6 @@
                                                             </constraints>
                                                             <state key="normal" title="日" backgroundImage="CIRCLE_BORDER"/>
                                                             <connections>
-                                                                <action selector="selectWeekdayAction:" destination="BJK-5m-mbd" eventType="touchUpInside" id="MJY-vm-mSF"/>
                                                                 <action selector="selectWeekdayAction:" destination="ztj-1T-P03" eventType="touchUpInside" id="q4w-1h-2uC"/>
                                                             </connections>
                                                         </button>
@@ -131,7 +130,6 @@
                                                             <state key="normal" title="一" backgroundImage="CIRCLE_BORDER"/>
                                                             <connections>
                                                                 <action selector="selectWeekdayAction:" destination="ztj-1T-P03" eventType="touchUpInside" id="crB-dO-fhh"/>
-                                                                <action selector="selectWeekdayAction:" destination="BJK-5m-mbd" eventType="touchUpInside" id="nBJ-Jf-aUR"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KeQ-lO-kKM">
@@ -141,7 +139,6 @@
                                                             </constraints>
                                                             <state key="normal" title="二" backgroundImage="CIRCLE_BORDER"/>
                                                             <connections>
-                                                                <action selector="selectWeekdayAction:" destination="BJK-5m-mbd" eventType="touchUpInside" id="bbJ-na-zj5"/>
                                                                 <action selector="selectWeekdayAction:" destination="ztj-1T-P03" eventType="touchUpInside" id="lP2-7v-YUS"/>
                                                             </connections>
                                                         </button>
@@ -152,7 +149,6 @@
                                                             </constraints>
                                                             <state key="normal" title="三" backgroundImage="CIRCLE_BORDER"/>
                                                             <connections>
-                                                                <action selector="selectWeekdayAction:" destination="BJK-5m-mbd" eventType="touchUpInside" id="C9a-8g-c8m"/>
                                                                 <action selector="selectWeekdayAction:" destination="ztj-1T-P03" eventType="touchUpInside" id="b4H-z4-PHB"/>
                                                             </connections>
                                                         </button>
@@ -163,7 +159,6 @@
                                                             </constraints>
                                                             <state key="normal" title="四" backgroundImage="CIRCLE_BORDER"/>
                                                             <connections>
-                                                                <action selector="selectWeekdayAction:" destination="BJK-5m-mbd" eventType="touchUpInside" id="TuH-1w-UEA"/>
                                                                 <action selector="selectWeekdayAction:" destination="ztj-1T-P03" eventType="touchUpInside" id="UNW-v7-1G0"/>
                                                             </connections>
                                                         </button>
@@ -175,7 +170,6 @@
                                                             <state key="normal" title="五" backgroundImage="CIRCLE_BORDER"/>
                                                             <connections>
                                                                 <action selector="selectWeekdayAction:" destination="ztj-1T-P03" eventType="touchUpInside" id="EgF-51-wRr"/>
-                                                                <action selector="selectWeekdayAction:" destination="BJK-5m-mbd" eventType="touchUpInside" id="J27-qE-07J"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="km6-Gr-KuP">
@@ -186,7 +180,6 @@
                                                             <state key="normal" title="六" backgroundImage="CIRCLE_BORDER"/>
                                                             <connections>
                                                                 <action selector="selectWeekdayAction:" destination="ztj-1T-P03" eventType="touchUpInside" id="6eC-P4-kc3"/>
-                                                                <action selector="selectWeekdayAction:" destination="BJK-5m-mbd" eventType="touchUpInside" id="Kyr-z4-1vp"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tb5-Gd-57o">
@@ -196,7 +189,6 @@
                                                             </constraints>
                                                             <state key="normal" title="全选"/>
                                                             <connections>
-                                                                <action selector="selectAllWeekdayAction:" destination="BJK-5m-mbd" eventType="touchUpInside" id="FYm-Tp-fTn"/>
                                                                 <action selector="selectAllWeekdayAction:" destination="ztj-1T-P03" eventType="touchUpInside" id="GHd-kH-fA3"/>
                                                             </connections>
                                                         </button>
@@ -241,343 +233,20 @@
                     <connections>
                         <outlet property="allButton" destination="tb5-Gd-57o" id="oZu-pn-tjX"/>
                         <outlet property="weekDayStack" destination="hS5-Gp-DlO" id="KVp-j2-TcL"/>
-                        <segue destination="BJK-5m-mbd" kind="show" identifier="addTaskSegue" id="LrG-uD-Las"/>
                         <segue destination="c1M-lD-w8g" kind="show" identifier="detailTaskSegue" id="tMR-sH-vNC"/>
                         <segue destination="iLS-CK-3Yi" kind="presentation" identifier="imageSegue" id="QMM-bj-IhC"/>
+                        <segue destination="c1M-lD-w8g" kind="show" identifier="addTaskSegue" id="OKd-Dw-yC7"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9DX-im-IF9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1002" y="-1621"/>
         </scene>
-        <!--KPTaskAddTableViewController-->
-        <scene sceneID="Fwl-rh-fSE">
-            <objects>
-                <tableViewController storyboardIdentifier="KPTaskAddTableViewController" id="BJK-5m-mbd" userLabel="KPTaskAddTableViewController" customClass="KPTaskAddTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="W5p-uU-2d9">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <sections>
-                            <tableViewSection id="6RM-lv-hJY">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="60" id="sEt-Gy-2uD">
-                                        <rect key="frame" x="0.0" y="35" width="375" height="60"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sEt-Gy-2uD" id="4Vp-e7-ZsZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Qlz-Dg-diP">
-                                                    <rect key="frame" x="13" y="5" width="349" height="49"/>
-                                                    <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Qlz-Dg-diP" secondAttribute="trailing" constant="5" id="635-jE-7ZS"/>
-                                                <constraint firstItem="Qlz-Dg-diP" firstAttribute="top" secondItem="4Vp-e7-ZsZ" secondAttribute="top" constant="5" id="UEa-vv-Iqt"/>
-                                                <constraint firstItem="Qlz-Dg-diP" firstAttribute="leading" secondItem="4Vp-e7-ZsZ" secondAttribute="leadingMargin" constant="5" id="dfh-D6-Cum"/>
-                                                <constraint firstAttribute="bottom" secondItem="Qlz-Dg-diP" secondAttribute="bottom" constant="5" id="exA-2T-16a"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection id="grK-MC-lts">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="60" id="YBB-vx-l06">
-                                        <rect key="frame" x="0.0" y="131" width="375" height="60"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YBB-vx-l06" id="XVT-eQ-p6H">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Od0-xR-YS7">
-                                                    <rect key="frame" x="18" y="10" width="339" height="39"/>
-                                                    <subviews>
-                                                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mnf-G5-UgL">
-                                                            <rect key="frame" x="0.0" y="2.5" width="33.5" height="34"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="Mnf-G5-UgL" secondAttribute="height" id="tIJ-bX-bJ1"/>
-                                                            </constraints>
-                                                            <state key="normal" title="日" backgroundImage="CIRCLE_BORDER"/>
-                                                            <connections>
-                                                                <action selector="selectWeekdayAction:" destination="BJK-5m-mbd" eventType="touchUpInside" id="j1O-JU-RUs"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rBy-qm-Jjq">
-                                                            <rect key="frame" x="43.5" y="2.5" width="34" height="34"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="rBy-qm-Jjq" secondAttribute="height" id="jF0-Ze-EdP"/>
-                                                            </constraints>
-                                                            <state key="normal" title="一" backgroundImage="CIRCLE_BORDER"/>
-                                                            <connections>
-                                                                <action selector="selectWeekdayAction:" destination="BJK-5m-mbd" eventType="touchUpInside" id="MCS-Kh-yt5"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dfj-cl-TBG">
-                                                            <rect key="frame" x="87.5" y="2.5" width="33.5" height="34"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="dfj-cl-TBG" secondAttribute="height" id="O0Y-TY-cQv"/>
-                                                            </constraints>
-                                                            <state key="normal" title="二" backgroundImage="CIRCLE_BORDER"/>
-                                                            <connections>
-                                                                <action selector="selectWeekdayAction:" destination="BJK-5m-mbd" eventType="touchUpInside" id="sFG-Vg-E7t"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KTM-JO-Vnl">
-                                                            <rect key="frame" x="131" y="2.5" width="33.5" height="34"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="KTM-JO-Vnl" secondAttribute="height" id="eiS-f9-oDo"/>
-                                                            </constraints>
-                                                            <state key="normal" title="三" backgroundImage="CIRCLE_BORDER"/>
-                                                            <connections>
-                                                                <action selector="selectWeekdayAction:" destination="BJK-5m-mbd" eventType="touchUpInside" id="o7e-ne-BcY"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rnY-Qu-5Rq">
-                                                            <rect key="frame" x="174.5" y="2.5" width="33.5" height="34"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="rnY-Qu-5Rq" secondAttribute="height" multiplier="1:1" id="nwU-1C-Jz2"/>
-                                                            </constraints>
-                                                            <state key="normal" title="四" backgroundImage="CIRCLE_BORDER"/>
-                                                            <connections>
-                                                                <action selector="selectWeekdayAction:" destination="BJK-5m-mbd" eventType="touchUpInside" id="rce-ub-9Y0"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xcp-hn-KK8">
-                                                            <rect key="frame" x="218" y="2.5" width="34" height="34"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="Xcp-hn-KK8" secondAttribute="height" multiplier="1:1" id="VwG-q1-7gq"/>
-                                                            </constraints>
-                                                            <state key="normal" title="五" backgroundImage="CIRCLE_BORDER"/>
-                                                            <connections>
-                                                                <action selector="selectWeekdayAction:" destination="BJK-5m-mbd" eventType="touchUpInside" id="eGu-QV-lEh"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chg-92-zz4">
-                                                            <rect key="frame" x="262" y="2.5" width="33.5" height="34"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="chg-92-zz4" secondAttribute="height" id="DQf-Gs-xXw"/>
-                                                            </constraints>
-                                                            <state key="normal" title="六" backgroundImage="CIRCLE_BORDER"/>
-                                                            <connections>
-                                                                <action selector="selectWeekdayAction:" destination="BJK-5m-mbd" eventType="touchUpInside" id="PPG-Tm-cWJ"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yFs-dP-CSN">
-                                                            <rect key="frame" x="305.5" y="2.5" width="33.5" height="34"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="yFs-dP-CSN" secondAttribute="height" multiplier="1:1" id="bGt-bs-an9"/>
-                                                            </constraints>
-                                                            <state key="normal" title="全选"/>
-                                                            <connections>
-                                                                <action selector="selectAllWeekdayAction:" destination="BJK-5m-mbd" eventType="touchUpInside" id="dzQ-8Z-SG9"/>
-                                                            </connections>
-                                                        </button>
-                                                    </subviews>
-                                                </stackView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="Od0-xR-YS7" secondAttribute="bottom" constant="10" id="2E4-8J-NCq"/>
-                                                <constraint firstItem="Od0-xR-YS7" firstAttribute="leading" secondItem="XVT-eQ-p6H" secondAttribute="leadingMargin" constant="10" id="Sfq-hy-VLn"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Od0-xR-YS7" secondAttribute="trailing" constant="10" id="mxC-PI-NeJ"/>
-                                                <constraint firstItem="Od0-xR-YS7" firstAttribute="top" secondItem="XVT-eQ-p6H" secondAttribute="top" constant="10" id="rGB-ns-6rk"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="BJK-5m-mbd" id="IMG-Ja-DBi"/>
-                            <outlet property="delegate" destination="BJK-5m-mbd" id="gtu-Ih-rfy"/>
-                        </connections>
-                    </tableView>
-                    <connections>
-                        <outlet property="allButton" destination="yFs-dP-CSN" id="OkH-zO-Udz"/>
-                        <outlet property="taskNameField" destination="Qlz-Dg-diP" id="Qy5-wV-JUJ"/>
-                        <outlet property="weekDayStack" destination="Od0-xR-YS7" id="KJq-9y-GP9"/>
-                        <segue destination="AZA-lR-CK2" kind="show" identifier="addExtraSegue" id="QWd-sJ-Ka8"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="u7g-z8-sMZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1926" y="-1621"/>
-        </scene>
-        <!--KPTaskExtraTableViewController-->
-        <scene sceneID="jwg-UW-4ub">
-            <objects>
-                <tableViewController storyboardIdentifier="KPTaskExtraTableViewController" id="AZA-lR-CK2" userLabel="KPTaskExtraTableViewController" customClass="KPTaskExtraTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="ZjQ-uA-68s">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <sections>
-                            <tableViewSection id="nda-rF-Jiv">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="60" id="ClH-vx-gaL">
-                                        <rect key="frame" x="0.0" y="35" width="375" height="60"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ClH-vx-gaL" id="lui-4O-CzQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="无" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x6I-IT-1gB">
-                                                    <rect key="frame" x="18" y="19" width="18" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QRM-gd-2j9">
-                                                    <rect key="frame" x="308" y="14" width="51" height="31"/>
-                                                </switch>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="x6I-IT-1gB" firstAttribute="leading" secondItem="lui-4O-CzQ" secondAttribute="leadingMargin" constant="10" id="71M-T3-XDT"/>
-                                                <constraint firstItem="x6I-IT-1gB" firstAttribute="centerY" secondItem="lui-4O-CzQ" secondAttribute="centerY" id="LFC-li-ERd"/>
-                                                <constraint firstItem="QRM-gd-2j9" firstAttribute="centerY" secondItem="lui-4O-CzQ" secondAttribute="centerY" id="S9m-ph-nrh"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="QRM-gd-2j9" secondAttribute="trailing" constant="10" id="s6y-SW-S84"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection id="IZM-KB-ZnX">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="60" id="zBC-Qc-px1">
-                                        <rect key="frame" x="0.0" y="131" width="375" height="60"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zBC-Qc-px1" id="RK1-Po-t0p">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="59.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="无" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u7o-LQ-uDa">
-                                                    <rect key="frame" x="18" y="19" width="18" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="u7o-LQ-uDa" firstAttribute="centerY" secondItem="RK1-Po-t0p" secondAttribute="centerY" id="Chg-Yf-LOu"/>
-                                                <constraint firstItem="u7o-LQ-uDa" firstAttribute="leading" secondItem="RK1-Po-t0p" secondAttribute="leadingMargin" constant="10" id="EUD-wz-cHm"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection id="bJg-8a-YQC">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="60" id="6ue-f0-6zT">
-                                        <rect key="frame" x="0.0" y="227" width="375" height="60"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6ue-f0-6zT" id="Pt0-H5-gVy">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入带有 http:// 前缀的网址" textAlignment="center" minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="NQi-KH-zm2">
-                                                    <rect key="frame" x="13" y="5" width="349" height="49"/>
-                                                    <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="NQi-KH-zm2" secondAttribute="trailing" constant="5" id="6oL-JF-MBW"/>
-                                                <constraint firstItem="NQi-KH-zm2" firstAttribute="leading" secondItem="Pt0-H5-gVy" secondAttribute="leadingMargin" constant="5" id="aUo-5f-4qR"/>
-                                                <constraint firstItem="NQi-KH-zm2" firstAttribute="top" secondItem="Pt0-H5-gVy" secondAttribute="top" constant="5" id="bhD-6Z-jEC"/>
-                                                <constraint firstAttribute="bottom" secondItem="NQi-KH-zm2" secondAttribute="bottom" constant="5" id="chT-gg-OZe"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection id="5a2-DB-v7g">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="100" id="VkF-Ui-NrN">
-                                        <rect key="frame" x="0.0" y="323" width="375" height="100"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VkF-Ui-NrN" id="PVH-j8-rAt">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VC3-V9-dcb">
-                                                    <rect key="frame" x="18" y="38" width="339" height="44"/>
-                                                </imageView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="SNL-px-h0m">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="38"/>
-                                                    <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZTm-bW-r8n">
-                                                            <rect key="frame" x="0.0" y="4" width="125" height="30"/>
-                                                            <state key="normal" title="更改图片"/>
-                                                            <connections>
-                                                                <action selector="modifyPicAction:" destination="AZA-lR-CK2" eventType="touchUpInside" id="VIX-mb-KYJ"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BmR-NY-k22">
-                                                            <rect key="frame" x="125" y="4" width="125" height="30"/>
-                                                            <state key="normal" title="查看大图"/>
-                                                            <connections>
-                                                                <action selector="clickPicAction:" destination="AZA-lR-CK2" eventType="touchUpInside" id="cYp-Iy-75j"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bLe-1X-cX5">
-                                                            <rect key="frame" x="250" y="4" width="125" height="30"/>
-                                                            <state key="normal" title="删除图片"/>
-                                                            <connections>
-                                                                <action selector="deletePicAction:" destination="AZA-lR-CK2" eventType="touchUpInside" id="Tcu-wx-E4J"/>
-                                                            </connections>
-                                                        </button>
-                                                    </subviews>
-                                                </stackView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="VC3-V9-dcb" secondAttribute="trailing" constant="10" id="Dex-IS-hzt"/>
-                                                <constraint firstItem="VC3-V9-dcb" firstAttribute="top" secondItem="PVH-j8-rAt" secondAttribute="topMargin" constant="30" id="ED6-NO-dgv"/>
-                                                <constraint firstItem="SNL-px-h0m" firstAttribute="leading" secondItem="PVH-j8-rAt" secondAttribute="leading" id="kQx-oL-RmA"/>
-                                                <constraint firstItem="SNL-px-h0m" firstAttribute="top" secondItem="PVH-j8-rAt" secondAttribute="top" id="lPg-un-wb8"/>
-                                                <constraint firstItem="VC3-V9-dcb" firstAttribute="top" secondItem="SNL-px-h0m" secondAttribute="bottom" id="m1U-Px-LYx"/>
-                                                <constraint firstAttribute="trailing" secondItem="SNL-px-h0m" secondAttribute="trailing" id="t9R-8C-UF5"/>
-                                                <constraint firstItem="VC3-V9-dcb" firstAttribute="leading" secondItem="PVH-j8-rAt" secondAttribute="leadingMargin" constant="10" id="xiv-dd-46v"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="VC3-V9-dcb" secondAttribute="bottom" constant="10" id="znN-RK-dGe"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="AZA-lR-CK2" id="vYf-7y-iz4"/>
-                            <outlet property="delegate" destination="AZA-lR-CK2" id="LTr-9E-SwU"/>
-                        </connections>
-                    </tableView>
-                    <connections>
-                        <outlet property="addImgButton" destination="ZTm-bW-r8n" id="QXN-7F-Sr1"/>
-                        <outlet property="appNameLabel" destination="u7o-LQ-uDa" id="3k0-hJ-3hf"/>
-                        <outlet property="deleteImgButton" destination="bLe-1X-cX5" id="VDz-63-bV0"/>
-                        <outlet property="imgButtonStack" destination="SNL-px-h0m" id="7iL-cX-CoQ"/>
-                        <outlet property="linkTextField" destination="NQi-KH-zm2" id="Zi4-Mo-XIg"/>
-                        <outlet property="reminderLabel" destination="x6I-IT-1gB" id="2d7-dO-e5z"/>
-                        <outlet property="reminderSwitch" destination="QRM-gd-2j9" id="2ig-xF-VFH"/>
-                        <outlet property="selectedImgView" destination="VC3-V9-dcb" id="4fV-8j-Mu6"/>
-                        <outlet property="viewImgButton" destination="BmR-NY-k22" id="KDL-fr-7mp"/>
-                        <segue destination="1yY-U5-MZt" kind="show" identifier="appSegue" id="6IU-dM-Aai"/>
-                        <segue destination="J9r-f3-dn1" kind="presentation" identifier="reminderSegue" id="CZN-JK-XJg"/>
-                        <segue destination="iLS-CK-3Yi" kind="presentation" identifier="imageSegue" id="q0b-ay-TRM"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HqO-J7-n4X" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2849" y="-1618"/>
-        </scene>
         <!--KPTaskDetailTableViewController-->
         <scene sceneID="s1j-Ej-AEu">
             <objects>
                 <tableViewController storyboardIdentifier="KPTaskDetailTableViewController" id="c1M-lD-w8g" userLabel="KPTaskDetailTableViewController" customClass="KPTaskDetailTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="CTP-E3-aB5">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="CTP-E3-aB5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -588,10 +257,10 @@
                                         <rect key="frame" x="0.0" y="35" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yJP-xW-taU" id="Qe1-9P-dWS">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xzi-N6-pHp">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Xzi-N6-pHp">
                                                     <rect key="frame" x="13" y="5" width="349" height="49"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -614,7 +283,7 @@
                                         <rect key="frame" x="0.0" y="131" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0bg-Hs-ZGx" id="cmW-jc-2dj">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Wmp-EN-j6p">
@@ -628,7 +297,6 @@
                                                             <state key="normal" title="日" backgroundImage="CIRCLE_BORDER"/>
                                                             <connections>
                                                                 <action selector="selectWeekdayAction:" destination="c1M-lD-w8g" eventType="touchUpInside" id="hrV-xq-Cdj"/>
-                                                                <action selector="selectWeekdayAction:" destination="BJK-5m-mbd" eventType="touchUpInside" id="jV0-3V-ZeT"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fb2-dA-hsP">
@@ -638,7 +306,6 @@
                                                             </constraints>
                                                             <state key="normal" title="一" backgroundImage="CIRCLE_BORDER"/>
                                                             <connections>
-                                                                <action selector="selectWeekdayAction:" destination="BJK-5m-mbd" eventType="touchUpInside" id="f9Z-mI-oje"/>
                                                                 <action selector="selectWeekdayAction:" destination="c1M-lD-w8g" eventType="touchUpInside" id="ybu-of-Nhy"/>
                                                             </connections>
                                                         </button>
@@ -649,7 +316,6 @@
                                                             </constraints>
                                                             <state key="normal" title="二" backgroundImage="CIRCLE_BORDER"/>
                                                             <connections>
-                                                                <action selector="selectWeekdayAction:" destination="BJK-5m-mbd" eventType="touchUpInside" id="2wd-5A-unn"/>
                                                                 <action selector="selectWeekdayAction:" destination="c1M-lD-w8g" eventType="touchUpInside" id="a9Z-za-7T1"/>
                                                             </connections>
                                                         </button>
@@ -660,7 +326,6 @@
                                                             </constraints>
                                                             <state key="normal" title="三" backgroundImage="CIRCLE_BORDER"/>
                                                             <connections>
-                                                                <action selector="selectWeekdayAction:" destination="BJK-5m-mbd" eventType="touchUpInside" id="XQo-Om-Gar"/>
                                                                 <action selector="selectWeekdayAction:" destination="c1M-lD-w8g" eventType="touchUpInside" id="xPS-ug-tZB"/>
                                                             </connections>
                                                         </button>
@@ -672,7 +337,6 @@
                                                             <state key="normal" title="四" backgroundImage="CIRCLE_BORDER"/>
                                                             <connections>
                                                                 <action selector="selectWeekdayAction:" destination="c1M-lD-w8g" eventType="touchUpInside" id="spf-fw-Dpr"/>
-                                                                <action selector="selectWeekdayAction:" destination="BJK-5m-mbd" eventType="touchUpInside" id="uBJ-8v-f5h"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UGP-fl-zRy">
@@ -682,7 +346,6 @@
                                                             </constraints>
                                                             <state key="normal" title="五" backgroundImage="CIRCLE_BORDER"/>
                                                             <connections>
-                                                                <action selector="selectWeekdayAction:" destination="BJK-5m-mbd" eventType="touchUpInside" id="Ick-sx-2zq"/>
                                                                 <action selector="selectWeekdayAction:" destination="c1M-lD-w8g" eventType="touchUpInside" id="RJP-8J-DBJ"/>
                                                             </connections>
                                                         </button>
@@ -694,7 +357,6 @@
                                                             <state key="normal" title="六" backgroundImage="CIRCLE_BORDER"/>
                                                             <connections>
                                                                 <action selector="selectWeekdayAction:" destination="c1M-lD-w8g" eventType="touchUpInside" id="0Yl-wC-fs5"/>
-                                                                <action selector="selectWeekdayAction:" destination="BJK-5m-mbd" eventType="touchUpInside" id="cI7-5W-bvV"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iq5-8X-4O2">
@@ -704,8 +366,7 @@
                                                             </constraints>
                                                             <state key="normal" title="全选"/>
                                                             <connections>
-                                                                <action selector="selectAllWeekdayAction:" destination="BJK-5m-mbd" eventType="touchUpInside" id="VUv-vL-hmN"/>
-                                                                <action selector="selectAllWeekdayAction:" destination="c1M-lD-w8g" eventType="touchUpInside" id="vmS-0Y-ad0"/>
+                                                                <action selector="selectAllWeekdayAction:" destination="c1M-lD-w8g" eventType="touchUpInside" id="77H-tq-DvK"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
@@ -721,25 +382,133 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection id="6xL-bx-d3X">
+                            <tableViewSection id="PXg-VJ-uRc">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="300" id="Ayk-hG-ueO">
-                                        <rect key="frame" x="0.0" y="227" width="375" height="300"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="60" id="g5O-Kq-uJr">
+                                        <rect key="frame" x="0.0" y="227" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ayk-hG-ueO" id="CVa-Bg-cDb">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="299.5"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="g5O-Kq-uJr" id="hIM-0v-GbY">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O0F-WB-e2y" customClass="FSCalendar">
-                                                    <rect key="frame" x="10" y="5" width="355" height="289.5"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="无" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gGD-zF-qbo">
+                                                    <rect key="frame" x="18" y="19" width="18" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ath-Iw-pkV">
+                                                    <rect key="frame" x="308" y="14" width="51" height="31"/>
+                                                </switch>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="O0F-WB-e2y" secondAttribute="bottom" constant="5" id="4r3-77-LjH"/>
-                                                <constraint firstItem="O0F-WB-e2y" firstAttribute="leading" secondItem="CVa-Bg-cDb" secondAttribute="leading" constant="10" id="CKY-o4-aGp"/>
-                                                <constraint firstAttribute="trailing" secondItem="O0F-WB-e2y" secondAttribute="trailing" constant="10" id="XBN-eG-MIl"/>
-                                                <constraint firstItem="O0F-WB-e2y" firstAttribute="top" secondItem="CVa-Bg-cDb" secondAttribute="top" constant="5" id="eVa-eV-ghg"/>
+                                                <constraint firstItem="gGD-zF-qbo" firstAttribute="centerY" secondItem="hIM-0v-GbY" secondAttribute="centerY" id="36s-V5-EdC"/>
+                                                <constraint firstItem="Ath-Iw-pkV" firstAttribute="centerY" secondItem="hIM-0v-GbY" secondAttribute="centerY" id="6Qc-YQ-mUb"/>
+                                                <constraint firstItem="gGD-zF-qbo" firstAttribute="leading" secondItem="hIM-0v-GbY" secondAttribute="leadingMargin" constant="10" id="Jvg-CR-JZh"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Ath-Iw-pkV" secondAttribute="trailing" constant="10" id="uUl-iA-tRu"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="BIC-K7-eOB">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="60" id="DWH-GE-IaZ">
+                                        <rect key="frame" x="0.0" y="323" width="375" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DWH-GE-IaZ" id="Smq-hi-m0r">
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="59"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="无" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G57-UJ-nTu">
+                                                    <rect key="frame" x="18" y="19" width="18" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="G57-UJ-nTu" firstAttribute="centerY" secondItem="Smq-hi-m0r" secondAttribute="centerY" id="rP0-rg-iB3"/>
+                                                <constraint firstItem="G57-UJ-nTu" firstAttribute="leading" secondItem="Smq-hi-m0r" secondAttribute="leadingMargin" constant="10" id="s06-Sd-6fM"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="xbp-up-hqc">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="60" id="teI-Oa-12b">
+                                        <rect key="frame" x="0.0" y="419" width="375" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="teI-Oa-12b" id="Sbe-xZ-Ogi">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入带有 http:// 前缀的网址" textAlignment="center" minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="yTv-VD-Eif">
+                                                    <rect key="frame" x="13" y="5" width="349" height="49"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="yTv-VD-Eif" firstAttribute="leading" secondItem="Sbe-xZ-Ogi" secondAttribute="leadingMargin" constant="5" id="1iE-pT-IAd"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="yTv-VD-Eif" secondAttribute="trailing" constant="5" id="BK6-Zn-Gk9"/>
+                                                <constraint firstAttribute="bottom" secondItem="yTv-VD-Eif" secondAttribute="bottom" constant="5" id="bXZ-8U-Akq"/>
+                                                <constraint firstItem="yTv-VD-Eif" firstAttribute="top" secondItem="Sbe-xZ-Ogi" secondAttribute="top" constant="5" id="i8s-eX-fBp"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="vGF-0C-44S">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="100" id="Ft9-Xg-F5b">
+                                        <rect key="frame" x="0.0" y="515" width="375" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ft9-Xg-F5b" id="GR5-tm-e0U">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bMH-2e-wdG">
+                                                    <rect key="frame" x="18" y="38" width="339" height="43"/>
+                                                </imageView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ki2-5s-xgO">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="38"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wtU-Oq-EvO">
+                                                            <rect key="frame" x="0.0" y="4" width="125" height="30"/>
+                                                            <state key="normal" title="更改图片"/>
+                                                            <connections>
+                                                                <action selector="modifyPicAction:" destination="c1M-lD-w8g" eventType="touchUpInside" id="gG2-k6-wog"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7eo-7n-hHL">
+                                                            <rect key="frame" x="125" y="4" width="125" height="30"/>
+                                                            <state key="normal" title="查看大图"/>
+                                                            <connections>
+                                                                <action selector="clickPicAction:" destination="c1M-lD-w8g" eventType="touchUpInside" id="gbS-DE-fON"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uTp-h9-TXH">
+                                                            <rect key="frame" x="250" y="4" width="125" height="30"/>
+                                                            <state key="normal" title="删除图片"/>
+                                                            <connections>
+                                                                <action selector="deletePicAction:" destination="c1M-lD-w8g" eventType="touchUpInside" id="o7U-62-C2f"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="bMH-2e-wdG" firstAttribute="leading" secondItem="GR5-tm-e0U" secondAttribute="leadingMargin" constant="10" id="K28-br-EjB"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="bMH-2e-wdG" secondAttribute="bottom" constant="10" id="QLJ-qo-sVt"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="bMH-2e-wdG" secondAttribute="trailing" constant="10" id="Rjy-rT-dwr"/>
+                                                <constraint firstItem="ki2-5s-xgO" firstAttribute="top" secondItem="GR5-tm-e0U" secondAttribute="top" id="Rle-Ag-UxA"/>
+                                                <constraint firstItem="ki2-5s-xgO" firstAttribute="leading" secondItem="GR5-tm-e0U" secondAttribute="leading" id="hYQ-ua-znb"/>
+                                                <constraint firstAttribute="trailing" secondItem="ki2-5s-xgO" secondAttribute="trailing" id="kOf-e8-uaz"/>
+                                                <constraint firstItem="bMH-2e-wdG" firstAttribute="top" secondItem="ki2-5s-xgO" secondAttribute="bottom" id="nzF-0g-KdL"/>
+                                                <constraint firstItem="bMH-2e-wdG" firstAttribute="top" secondItem="GR5-tm-e0U" secondAttribute="topMargin" constant="30" id="u4K-rB-9W1"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -752,16 +521,26 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="addImgButton" destination="wtU-Oq-EvO" id="Unj-qY-eeB"/>
                         <outlet property="allButton" destination="iq5-8X-4O2" id="gtF-ce-ZE3"/>
-                        <outlet property="calendar" destination="O0F-WB-e2y" id="sp8-W5-ZbM"/>
+                        <outlet property="appNameLabel" destination="G57-UJ-nTu" id="vEX-ZW-BNy"/>
+                        <outlet property="deleteImgButton" destination="uTp-h9-TXH" id="odd-bM-Pof"/>
+                        <outlet property="imgButtonStack" destination="ki2-5s-xgO" id="80s-gW-guQ"/>
+                        <outlet property="linkTextField" destination="yTv-VD-Eif" id="hEw-lS-HVa"/>
+                        <outlet property="reminderLabel" destination="gGD-zF-qbo" id="JYT-0v-5Zl"/>
+                        <outlet property="reminderSwitch" destination="Ath-Iw-pkV" id="1VS-J6-v8O"/>
+                        <outlet property="selectedImgView" destination="bMH-2e-wdG" id="zYk-f3-ZaE"/>
                         <outlet property="taskNameField" destination="Xzi-N6-pHp" id="qZW-tj-BzG"/>
+                        <outlet property="viewImgButton" destination="7eo-7n-hHL" id="vLh-Q3-tsF"/>
                         <outlet property="weekDayStack" destination="Wmp-EN-j6p" id="3mT-6x-tg0"/>
-                        <segue destination="AZA-lR-CK2" kind="show" identifier="addExtraSegue" id="y9j-iq-q91"/>
+                        <segue destination="J9r-f3-dn1" kind="presentation" identifier="reminderSegue" id="92S-VE-iNf"/>
+                        <segue destination="iLS-CK-3Yi" kind="presentation" identifier="imageSegue" id="hII-cA-IWP"/>
+                        <segue destination="1yY-U5-MZt" kind="show" identifier="appSegue" id="RWO-V5-jf5"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1KQ-4H-S1i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1002" y="-780"/>
+            <point key="canvasLocation" x="1911" y="-1612"/>
         </scene>
         <!--KPSchemeTableViewController-->
         <scene sceneID="k46-pf-kaK">
@@ -778,7 +557,7 @@
                                         <rect key="frame" x="0.0" y="35" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rZj-Vo-PVi" id="oT6-6f-4jO">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="无" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BXh-pc-0Wg">
@@ -802,7 +581,7 @@
                                         <rect key="frame" x="0.0" y="115" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RpR-v5-GR9" id="zAq-Ym-XiT">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -814,7 +593,7 @@
                                         <rect key="frame" x="0.0" y="195" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9aq-ws-M1I" id="gC1-aO-wD6">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="没找到需要的 APP？" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wpg-Kq-CgT">
@@ -846,7 +625,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jAi-KQ-7Qo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2858" y="-781"/>
+            <point key="canvasLocation" x="2833" y="-1087"/>
         </scene>
         <!--KPReminderViewController-->
         <scene sceneID="6v2-UX-KKJ">
@@ -864,7 +643,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sex-eU-UK9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2854" y="-2432"/>
+            <point key="canvasLocation" x="2854" y="-2267"/>
         </scene>
         <!--KPCalViewController-->
         <scene sceneID="zJX-OK-Dk2">
@@ -901,11 +680,11 @@
                                         <rect key="frame" x="0.0" y="35" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lfj-W5-8NN" id="lno-cK-sjc">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="字体" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jps-k7-gzB">
-                                                    <rect key="frame" x="18" y="12" width="35" height="21"/>
+                                                    <rect key="frame" x="18" y="11" width="35" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -928,7 +707,7 @@
                                         <rect key="frame" x="0.0" y="115" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f91-86-Eqg" id="FCc-9u-qR3">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="给我们打分" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uBJ-gp-zRi">
@@ -948,7 +727,7 @@
                                         <rect key="frame" x="0.0" y="159" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="J7t-ho-gR7" id="vyM-Wt-tIy">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提交意见或建议" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1k-PM-ahV">
@@ -968,7 +747,7 @@
                                         <rect key="frame" x="0.0" y="203" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XAw-iT-bvk" id="cq9-69-58t">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="版本号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9aS-Hp-CQQ">
@@ -1003,6 +782,10 @@
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <tabBarItem key="tabBarItem" title="Item" id="mlU-go-l87"/>
                     <connections>
+                        <outlet property="fontLabel" destination="jps-k7-gzB" id="Wpd-4D-tMk"/>
+                        <outlet property="mailLabel" destination="r1k-PM-ahV" id="7Zf-dM-lrw"/>
+                        <outlet property="numberLabel" destination="9aS-Hp-CQQ" id="PN1-iC-eOL"/>
+                        <outlet property="scoreLabel" destination="uBJ-gp-zRi" id="2OW-u5-MI0"/>
                         <outlet property="versionLabel" destination="zQa-Fr-G3D" id="WIP-A9-DGC"/>
                     </connections>
                 </tableViewController>
@@ -1020,10 +803,10 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="KPFontTableViewCell" id="01P-pp-N12">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="01P-pp-N12" id="99o-vy-mj6">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -1120,7 +903,7 @@
         <image name="CIRCLE_BORDER" width="106" height="106"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="QMM-bj-IhC"/>
-        <segue reference="y9j-iq-q91"/>
+        <segue reference="OKd-Dw-yC7"/>
+        <segue reference="hII-cA-IWP"/>
     </inferredMetricsTieBreakers>
 </document>

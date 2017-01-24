@@ -24,6 +24,11 @@
     self.kpTaskTableViewController = (KPTaskTableViewController *)self.viewControllers[1];
     
     [self.navigationItem setTitle:@"今日"];
+    UIBarButtonItem *editItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_EDIT"]
+                                                                 style:UIBarButtonItemStylePlain
+                                                                target:self.kpTodayTableViewController
+                                                                action:@selector(editAction:)];
+    self.navigationItem.leftBarButtonItems = @[editItem];
     
     //设置底下 item
     [self.tabBarItem setImageInsets:UIEdgeInsetsMake(10, 0, -10, 0)];

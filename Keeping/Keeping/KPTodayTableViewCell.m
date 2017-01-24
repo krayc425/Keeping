@@ -34,7 +34,6 @@
 
 - (void)setIsFinished:(BOOL)isFinished{
     [self.myCheckBox setOn:isFinished];
-    [self.myCheckBox setUserInteractionEnabled:!isFinished];
 }
 
 - (IBAction)moreAction:(id)sender{

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -70,6 +70,7 @@
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="0.0" colorSpace="calibratedRGB"/>
             <connections>
+                <outlet property="cardView" destination="fcw-8v-FrW" id="2F1-0S-LLB"/>
                 <outlet property="myCheckBox" destination="xgk-pg-jdY" id="LVS-x4-Vz9"/>
                 <outlet property="punchDaysLabel" destination="XBM-2O-wnG" id="N4B-0Y-sVP"/>
                 <outlet property="taskNameLabel" destination="2aB-FB-WuP" id="oaF-Rk-ocK"/>

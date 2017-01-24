@@ -22,8 +22,20 @@
     self.versionLabel.text = [NSString stringWithFormat:@"v%@",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [self setFont];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)setFont{
+    [self.fontLabel setFont:[UIFont fontWithName:[Utilities getFont] size:17.0]];
+    [self.mailLabel setFont:[UIFont fontWithName:[Utilities getFont] size:17.0]];
+    [self.scoreLabel setFont:[UIFont fontWithName:[Utilities getFont] size:17.0]];
+    [self.numberLabel setFont:[UIFont fontWithName:[Utilities getFont] size:17.0]];
+    [self.versionLabel setFont:[UIFont fontWithName:[Utilities getFont] size:17.0]];
 }
 
 #pragma mark - Table view data source

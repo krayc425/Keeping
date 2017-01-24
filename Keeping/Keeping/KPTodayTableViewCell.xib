@@ -38,7 +38,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iue-6t-6A6">
-                        <rect key="frame" x="154" y="49" width="12" height="6"/>
+                        <rect key="frame" x="154" y="45.5" width="12" height="6"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="iue-6t-6A6" secondAttribute="height" multiplier="15:8" id="ESR-1L-A2h"/>
                             <constraint firstAttribute="height" constant="6" id="Eyi-xV-3Rf"/>
@@ -103,7 +103,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="KCu-23-9U8">
-                        <rect key="frame" x="140" y="34" width="40" height="10"/>
+                        <rect key="frame" x="140" y="27.5" width="40" height="10"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qYF-LJ-P9k">
                                 <rect key="frame" x="0.0" y="0.0" width="10" height="10"/>
@@ -141,12 +141,12 @@
                     <constraint firstItem="MId-YP-mlf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="F6y-hj-EM4"/>
                     <constraint firstAttribute="trailing" secondItem="MId-YP-mlf" secondAttribute="trailing" constant="10" id="HXP-1d-dF6"/>
                     <constraint firstAttribute="bottom" secondItem="rT9-ra-MAX" secondAttribute="bottom" constant="5" id="KDi-51-cGJ"/>
+                    <constraint firstItem="KCu-23-9U8" firstAttribute="centerY" secondItem="MId-YP-mlf" secondAttribute="centerY" id="KU6-BG-bGQ"/>
                     <constraint firstAttribute="trailing" secondItem="rT9-ra-MAX" secondAttribute="trailing" constant="10" id="LfC-1Q-GWG"/>
                     <constraint firstItem="MId-YP-mlf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="PrC-iF-slt"/>
-                    <constraint firstItem="iue-6t-6A6" firstAttribute="bottom" secondItem="MId-YP-mlf" secondAttribute="bottom" constant="-5" id="aSC-pu-fUC"/>
                     <constraint firstItem="X4g-mE-Nlp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="cIp-FL-hY9"/>
                     <constraint firstItem="rT9-ra-MAX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="cVC-Hp-i1h"/>
-                    <constraint firstItem="iue-6t-6A6" firstAttribute="top" secondItem="KCu-23-9U8" secondAttribute="bottom" constant="5" id="hjV-yV-KEH"/>
+                    <constraint firstItem="iue-6t-6A6" firstAttribute="top" secondItem="KCu-23-9U8" secondAttribute="bottom" constant="8" id="hjV-yV-KEH"/>
                     <constraint firstItem="WEt-XN-3wS" firstAttribute="centerY" secondItem="MId-YP-mlf" secondAttribute="centerY" id="i29-4v-fAJ"/>
                     <constraint firstItem="K31-Gh-vqJ" firstAttribute="leading" secondItem="WEt-XN-3wS" secondAttribute="trailing" constant="10" id="psv-IA-PQ1"/>
                     <constraint firstItem="rT9-ra-MAX" firstAttribute="top" secondItem="MId-YP-mlf" secondAttribute="bottom" constant="5" id="t1X-1F-yAJ"/>

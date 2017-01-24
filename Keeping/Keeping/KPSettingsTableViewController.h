@@ -13,4 +13,9 @@
 
 @property (nonatomic, nonnull) IBOutlet UILabel *versionLabel;
 
+@property (nonatomic, nonnull) IBOutlet UILabel *fontLabel;
+@property (nonatomic, nonnull) IBOutlet UILabel *scoreLabel;
+@property (nonatomic, nonnull) IBOutlet UILabel *mailLabel;
+@property (nonatomic, nonnull) IBOutlet UILabel *numberLabel;
+
 @end

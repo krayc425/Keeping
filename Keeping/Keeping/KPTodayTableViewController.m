@@ -15,8 +15,15 @@
 #import "DateUtil.h"
 #import "UIScrollView+EmptyDataSet.h"
 #import "KPImageViewController.h"
+#import "MLKMenuPopover.h"
 
-@interface KPTodayTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
+#define MENU_POPOVER_FRAME CGRectMake(10, 44 + 9, 140, 44 * [[Utilities getTaskSortArr] count])
+
+@interface KPTodayTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, MLKMenuPopoverDelegate>
+
+- (void)editAction:(_Nonnull id)sender;
+
+@property (nonatomic,strong) MLKMenuPopover *_Nonnull menuPopover;
 
 @end
 
@@ -25,6 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.sortFactor = @"addDate";
 //     NSArray *fontFamilies = [UIFont familyNames];
 //     for (int i = 0; i < [fontFamilies count]; i++){
 //     NSString *fontFamily = [fontFamilies objectAtIndex:i];
@@ -58,6 +66,16 @@
         }
     }
     
+    //排序
+    NSMutableArray *sortDescriptors = [[NSMutableArray alloc] init];
+    for(NSString *str in [self.sortFactor componentsSeparatedByString:@"|"]){
+        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:str ascending:YES];
+        [sortDescriptors addObject:sortDescriptor];
+    }
+    self.unfinishedTaskArr = [NSMutableArray arrayWithArray:[self.unfinishedTaskArr sortedArrayUsingDescriptors:sortDescriptors]];
+    self.finishedTaskArr = [NSMutableArray arrayWithArray:[self.finishedTaskArr sortedArrayUsingDescriptors:sortDescriptors]];
+    
+    
     [self.progressLabel setText:[NSString stringWithFormat:@"%lu / %lu", (unsigned long)self.finishedTaskArr.count, ((unsigned long)self.finishedTaskArr.count + (unsigned long)self.unfinishedTaskArr.count)]];
     
     [self.tableView reloadData];
@@ -70,7 +88,11 @@
 }
 
 - (void)editAction:(id)sender{
+    [self.menuPopover dismissMenuPopover];
     
+    self.menuPopover = [[MLKMenuPopover alloc] initWithFrame:MENU_POPOVER_FRAME menuItems:[[Utilities getTaskSortArr] allKeys]];
+    self.menuPopover.menuPopoverDelegate = self;
+    [self.menuPopover showInView:self.navigationController.view];
 }
 
 #pragma mark - Table view data source
@@ -174,50 +196,59 @@
             }
             [cell.taskNameLabel setText:t.name];
             
-            UIImage *appImg = [UIImage imageNamed:@"TODAY_APP"];
+            [cell.moreButton setHidden:YES];
             if(t.appScheme != NULL){
+                [cell.moreButton setHidden:NO];
+                
                 NSDictionary *d = t.appScheme;
                 NSString *s = d.allKeys[0];
                 [cell.appButton setTitle:[NSString stringWithFormat:@"启动%@", s] forState:UIControlStateNormal];
                 [cell.appButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
                 [cell.appButton setUserInteractionEnabled:YES];
                 
+                UIImage *appImg = [UIImage imageNamed:@"TODAY_APP"];
                 appImg = [appImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+                [cell.appImg setImage:appImg];
+                [cell.appButton setHidden:NO];
+                [cell.appImg setHidden:NO];
             }else{
-                [cell.appButton setTitle:@"没有 APP" forState:UIControlStateNormal];
-                [cell.appButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-                
-                [cell.appButton setUserInteractionEnabled:NO];
+                [cell.appButton setHidden:YES];
+                [cell.appImg setHidden:YES];
             }
-            [cell.appImg setImage:appImg];
             
-            UIImage *linkImg = [UIImage imageNamed:@"TODAY_LINK"];
             if(t.link != NULL && ![t.link isEqualToString:@""]){
+                [cell.moreButton setHidden:NO];
+                
                 [cell.linkButton setTitle:@"打开链接" forState:UIControlStateNormal];
                 [cell.linkButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
                 [cell.linkButton setUserInteractionEnabled:YES];
                 
+                UIImage *linkImg = [UIImage imageNamed:@"TODAY_LINK"];
                 linkImg = [linkImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+                [cell.linkImg setImage:linkImg];
+                [cell.linkButton setHidden:NO];
+                [cell.linkImg setHidden:NO];
             }else{
-                [cell.linkButton setTitle:@"没有链接" forState:UIControlStateNormal];
-                [cell.linkButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-                [cell.linkButton setUserInteractionEnabled:NO];
+                [cell.linkButton setHidden:YES];
+                [cell.linkImg setHidden:YES];
             }
-            [cell.linkImg setImage:linkImg];
             
-            UIImage *imageImg = [UIImage imageNamed:@"TODAY_IMAGE"];
             if(t.image != NULL){
+                [cell.moreButton setHidden:NO];
+                
                 [cell.imageButton setTitle:@"查看图片" forState:UIControlStateNormal];
                 [cell.imageButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
                 [cell.imageButton setUserInteractionEnabled:YES];
                 
+                UIImage *imageImg = [UIImage imageNamed:@"TODAY_IMAGE"];
                 imageImg = [imageImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+                [cell.imageImg setImage:imageImg];
+                [cell.imageButton setHidden:NO];
+                [cell.imageImg setHidden:NO];
             }else{
-                [cell.imageButton setTitle:@"没有图片" forState:UIControlStateNormal];
-                [cell.imageButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-                [cell.imageButton setUserInteractionEnabled:YES];
+                [cell.imageButton setHidden:YES];
+                [cell.imageImg setHidden:YES];
             }
-            [cell.imageImg setImage:imageImg];
             
             NSString *reminderTimeStr = @"";
             if(t.reminderTime != NULL){
@@ -273,10 +304,17 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if(indexPath.section != 0){
-        if(self.selectedIndexPath == indexPath){
-            self.selectedIndexPath = NULL;
+        KPTodayTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        if([cell.moreButton isHidden]){
+            
         }else{
-            self.selectedIndexPath = indexPath;
+        
+            if(self.selectedIndexPath == indexPath){
+                self.selectedIndexPath = NULL;
+            }else{
+                self.selectedIndexPath = indexPath;
+            }
+        
         }
         
         [tableView reloadData];
@@ -292,7 +330,35 @@
         Task *task = self.unfinishedTaskArr[path.row];
         [[TaskManager shareInstance] punchForTaskWithID:@(task.id)];
         [self loadTasks];
+    }else if(path.section == 2){
+        
+        Task *task = self.finishedTaskArr[path.row];
+        
+        UIAlertController *alertController =
+        [UIAlertController alertControllerWithTitle:@"您要将此任务设为未完成吗？"
+                                            message:nil
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
+                                                               style:UIAlertActionStyleCancel
+                                                             handler:^(UIAlertAction *Action){
+                                                                 
+                                                                 [[TaskManager shareInstance] punchForTaskWithID:@(task.id)];
+                                                                 [self loadTasks];
+                                                                 
+                                                             }];
+        [alertController addAction:cancelAction];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定"
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction *Action){
+                                                             
+                                                             [[TaskManager shareInstance] unpunchForTaskWithID:@(task.id)];
+                                                             [self loadTasks];
+                                                             
+                                                         }];
+        [alertController addAction:okAction];
+        [self presentViewController:alertController animated:YES completion:nil];
     }
+
 }
 
 - (void)moreAction:(UITableViewCell *)cell withButton:(UIButton *)button;{
@@ -360,6 +426,14 @@
     }else{
         return NO;
     }
+}
+
+#pragma mark - MLKMenuPopoverDelegate
+
+- (void)menuPopover:(MLKMenuPopover *)menuPopover didSelectMenuItemAtIndex:(NSInteger)selectedIndex{
+    self.sortFactor = [[Utilities getTaskSortArr] allValues][selectedIndex];
+    NSLog(@"按%@排序", self.sortFactor);
+    [self loadTasks];
 }
 
 @end
