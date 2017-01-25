@@ -79,7 +79,7 @@ static TaskManager* _instance = nil;
     }
     
     return [[[DBManager shareInstance] getDB] executeUpdate:
-            @"INSERT INTO t_task (name, appScheme, reminderDays, addDate, reminderTime, punchDateArr, image, link) VALUES (?, ?, ?, ?, ?, ?, ?, ?);",
+            @"INSERT INTO t_task (name, appScheme, reminderDays, addDate, reminderTime, punchDateArr, image, link, endDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);",
             task.name,
             schemeJsonStr,
             daysJsonStr,
@@ -87,7 +87,8 @@ static TaskManager* _instance = nil;
             task.reminderTime,
             punchJsonStr,
             task.image,
-            task.link
+            task.link,
+            task.endDate
             ];
 }
 
@@ -128,7 +129,7 @@ static TaskManager* _instance = nil;
     }
     
     return [[[DBManager shareInstance] getDB] executeUpdate:
-            @"UPDATE t_task SET name = ?, appScheme = ?, reminderDays = ?, addDate = ?, reminderTime = ?, punchDateArr = ?, image = ?, link = ? WHERE id = ?;",
+            @"UPDATE t_task SET name = ?, appScheme = ?, reminderDays = ?, addDate = ?, reminderTime = ?, punchDateArr = ?, image = ?, link = ?, endDate = ? WHERE id = ?;",
             task.name,
             schemeJsonStr,
             daysJsonStr,
@@ -137,6 +138,7 @@ static TaskManager* _instance = nil;
             punchJsonStr,
             task.image,
             task.link,
+            task.endDate,
             @(task.id)
             ];
     return YES;
@@ -185,6 +187,7 @@ static TaskManager* _instance = nil;
         t.reminderTime = [resultSet dateForColumn:@"reminderTime"];
         t.image = [resultSet dataForColumn:@"image"];
         t.link = [resultSet stringForColumn:@"link"];
+        t.endDate = [resultSet dateForColumn:@"endDate"];
         
         [self.taskArr addObject:t];
     }
@@ -199,7 +202,9 @@ static TaskManager* _instance = nil;
     NSMutableArray *taskArr = [[NSMutableArray alloc] init];
     for (Task *task in [self getTasks]) {
         if([task.reminderDays containsObject:[NSNumber numberWithInt:(int)[[NSDate date] weekday]]]){
-            [taskArr addObject:task];
+            if(task.endDate == NULL || (task.endDate != NULL && [task.endDate isLaterThanOrEqualTo:[NSDate date]])){
+                [taskArr addObject:task];
+            }
         }
     }
     return taskArr;
@@ -229,7 +234,7 @@ static TaskManager* _instance = nil;
     return count;
 }
 
-- (BOOL)punchForTaskWithID:(NSNumber *)taskid{
+- (BOOL)punchForTaskWithID:(NSNumber *)taskid onDate:(NSDate *)date{
     FMResultSet *resultSet = [[[DBManager shareInstance] getDB] executeQuery:@"select * from t_task where id = ?;", taskid];
     while([resultSet next]){
         NSString *punchJsonStr = [resultSet stringForColumn:@"punchDateArr"];
@@ -241,8 +246,8 @@ static TaskManager* _instance = nil;
                 punchArr = [[NSMutableArray alloc] init];
             }
             
-            if(![punchArr containsObject:[DateUtil transformDate:[NSDate date]]]){
-                [punchArr addObject:[DateUtil transformDate:[NSDate date]]];
+            if(![punchArr containsObject:[DateUtil transformDate:date]]){
+                [punchArr addObject:[DateUtil transformDate:date]];
             }
             
             NSError *err = nil;

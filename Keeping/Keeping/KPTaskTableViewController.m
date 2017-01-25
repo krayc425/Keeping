@@ -34,6 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.taskArr = [[NSMutableArray alloc] init];
+    self.historyTaskArr = [[NSMutableArray alloc] init];
     
     self.tableView.emptyDataSetSource = self;
     self.tableView.emptyDataSetDelegate = self;
@@ -79,8 +80,18 @@
 
 - (void)loadTasksOfWeekdays:(NSArray *)weekDays{
     self.taskArr = [[NSMutableArray alloc] init];
+    self.historyTaskArr = [[NSMutableArray alloc] init];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"ANY SELF.reminderDays in %@", weekDays];
     self.taskArr = [NSMutableArray arrayWithArray:[[[TaskManager shareInstance] getTasks] filteredArrayUsingPredicate:predicate]];
+    
+    for(Task *t in self.taskArr){
+        if([t.endDate isEarlierThan:[NSDate date]]){
+            [self.historyTaskArr addObject:t];
+        }
+    }
+    for(Task *t in self.historyTaskArr){
+        [self.taskArr removeObject:t];
+    }
     
     //排序
     NSMutableArray *sortDescriptors = [[NSMutableArray alloc] init];
@@ -88,7 +99,9 @@
         NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:str ascending:YES];
         [sortDescriptors addObject:sortDescriptor];
     }
+    
     self.taskArr = [NSMutableArray arrayWithArray:[self.taskArr sortedArrayUsingDescriptors:sortDescriptors]];
+    self.historyTaskArr = [NSMutableArray arrayWithArray:[self.historyTaskArr sortedArrayUsingDescriptors:sortDescriptors]];
     
     [self.tableView reloadData];
 }
@@ -175,7 +188,7 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -184,6 +197,8 @@
             return 1;
         case 1:
             return [self.taskArr count];
+        case 2:
+            return [self.historyTaskArr count];
     }
 }
 
@@ -196,10 +211,23 @@
             }else{
                 KPSeparatorView *view = [[[NSBundle mainBundle] loadNibNamed:@"KPSeparatorView" owner:nil options:nil] lastObject];
                 view.backgroundColor = [UIColor clearColor];
-                [view setText:@"任务"];
+                [view setText:@"进行中"];
                 return view;
             }
         }
+            break;
+        case 2:
+        {
+            if([self.historyTaskArr count] == 0){
+                return [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+            }else{
+                KPSeparatorView *view = [[[NSBundle mainBundle] loadNibNamed:@"KPSeparatorView" owner:nil options:nil] lastObject];
+                view.backgroundColor = [UIColor clearColor];
+                [view setText:@"已结束"];
+                return view;
+            }
+        }
+            break;
         default:
             return [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     }
@@ -215,17 +243,25 @@
                 return 20.0f;
             }
         }
+        case 2:
+        {
+            if([self. historyTaskArr count] == 0){
+                return 0.00001f;
+            }else{
+                return 20.0f;
+            }
+        }
         default:
             return 0.00001f;
     }
 }
 
 - (UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    if(section == 0){
+//    if(section == 0){
         return [UIView new];
-    }else{
-        return [super tableView:tableView viewForFooterInSection:section];
-    }
+//    }else{
+//        return [super tableView:tableView viewForFooterInSection:section];
+//    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -238,7 +274,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if(indexPath.section == 1){
+    if(indexPath.section != 0){
         [self performSegueWithIdentifier:@"detailTaskSegue" sender:indexPath];
     }
 }
@@ -252,15 +288,15 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section != 0) {
-        return 10;
-    }else{
+    if (indexPath.section == 0) {
         return [super tableView:tableView indentationLevelForRowAtIndexPath:indexPath];
+    }else{
+        return 10;
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(indexPath.section == 1){
+    if(indexPath.section != 0){
         static NSString *cellIdentifier = @"KPTaskTableViewCell";
         UINib *nib = [UINib nibWithNibName:@"KPTaskTableViewCell" bundle:nil];
         [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
@@ -270,7 +306,13 @@
         
         cell.backgroundColor = [UIColor clearColor];
         
-        Task *t = self.taskArr[indexPath.row];
+        
+        Task *t;
+        if(indexPath.section == 1){
+            t = self.taskArr[indexPath.row];
+        }else if(indexPath.section == 2){
+            t = self.historyTaskArr[indexPath.row];
+        }
         [cell.nameLabel setText:t.name];
         
         for(UIButton *button in cell.weekDayStack.subviews){
@@ -323,7 +365,7 @@
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(indexPath.section == 1){
+    if(indexPath.section != 0){
         return YES;
     }else{
         return NO;
@@ -332,22 +374,29 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        Task *t = self.taskArr[indexPath.row];
+        Task *t;
+        if(indexPath.section == 1){
+            t = self.taskArr[indexPath.row];
+            
+            [self.taskArr removeObject:t];
+        }else if(indexPath.section == 2){
+            t = self.historyTaskArr[indexPath.row];
+            
+            [self.historyTaskArr removeObject:t];
+        }
         
         [[TaskManager shareInstance] deleteTask:t];
         
-        [self.taskArr removeObject:t];
-        
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
-        if(self.taskArr.count == 0){
+        if(self.taskArr.count == 0 || self.historyTaskArr.count == 0){
             [self.tableView reloadData];
         }
     }
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(indexPath.section == 1){
+    if(indexPath.section != 0){
         return UITableViewCellEditingStyleDelete;
     }else{
         return UITableViewCellEditingStyleNone;
@@ -367,7 +416,11 @@
     }else if([segue.identifier isEqualToString:@"detailTaskSegue"]){
         KPTaskDetailTableViewController *kptdtvc = (KPTaskDetailTableViewController *)[segue destinationViewController];
         NSIndexPath *indexPath = (NSIndexPath *)sender;
-        [kptdtvc setTask:self.taskArr[indexPath.row]];
+        if(indexPath.section == 1){
+            [kptdtvc setTask:self.taskArr[indexPath.row]];
+        }else if(indexPath.section == 2){
+            [kptdtvc setTask:self.historyTaskArr[indexPath.row]];
+        }
     }else if([segue.identifier isEqualToString:@"addTaskSegue"]){
         KPTaskDetailTableViewController *kptdtvc = (KPTaskDetailTableViewController *)[segue destinationViewController];
         [kptdtvc setTask:NULL];
@@ -401,7 +454,7 @@
 }
 
 - (BOOL)emptyDataSetShouldBeForcedToDisplay:(UIScrollView *)scrollView{
-    if(self.taskArr.count == 0){
+    if(self.taskArr.count == 0 && self.historyTaskArr.count == 0){
         return YES;
     }else{
         return NO;

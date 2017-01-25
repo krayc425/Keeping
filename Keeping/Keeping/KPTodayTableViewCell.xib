@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -31,14 +31,14 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="任务名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X4g-mE-Nlp">
-                        <rect key="frame" x="18" y="22.5" width="52" height="20.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="任务名" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="X4g-mE-Nlp">
+                        <rect key="frame" x="18" y="22" width="52" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iue-6t-6A6">
-                        <rect key="frame" x="154" y="45.5" width="12" height="6"/>
+                        <rect key="frame" x="154" y="46" width="12" height="6"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="iue-6t-6A6" secondAttribute="height" multiplier="15:8" id="ESR-1L-A2h"/>
                             <constraint firstAttribute="height" constant="6" id="Eyi-xV-3Rf"/>
@@ -46,7 +46,7 @@
                         <state key="normal" backgroundImage="MORE_INFO_DOWN"/>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K31-Gh-vqJ" customClass="BEMCheckBox">
-                        <rect key="frame" x="272" y="17.5" width="30" height="30"/>
+                        <rect key="frame" x="272" y="18" width="30" height="30"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="K31-Gh-vqJ" secondAttribute="height" multiplier="1:1" id="7U4-sE-8qA"/>
@@ -54,27 +54,27 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rT9-ra-MAX" userLabel="CardView2" customClass="CardsView">
-                        <rect key="frame" x="10" y="65" width="300" height="49.5"/>
+                        <rect key="frame" x="10" y="65" width="300" height="49"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="36C-0s-hLK">
-                                <rect key="frame" x="5" y="5" width="290" height="39.5"/>
+                                <rect key="frame" x="5" y="5" width="290" height="39"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="headTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rhn-ZQ-GtI">
-                                        <rect key="frame" x="0.0" y="5" width="96.5" height="30"/>
+                                        <rect key="frame" x="0.0" y="5" width="97" height="30"/>
                                         <state key="normal" title="打开 APP"/>
                                         <connections>
                                             <action selector="moreAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="NVF-ba-W69"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zbz-pJ-XEK">
-                                        <rect key="frame" x="96.5" y="5" width="97" height="30"/>
+                                        <rect key="frame" x="97" y="5" width="96" height="30"/>
                                         <state key="normal" title="打开链接"/>
                                         <connections>
                                             <action selector="moreAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="s0n-Al-Dxd"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YGi-8P-wfJ">
-                                        <rect key="frame" x="193.5" y="5" width="96.5" height="30"/>
+                                        <rect key="frame" x="193" y="5" width="97" height="30"/>
                                         <state key="normal" title="查看图片"/>
                                         <connections>
                                             <action selector="moreAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Pdj-Pv-jzb"/>
@@ -96,14 +96,14 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HH:mm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WEt-XN-3wS">
-                        <rect key="frame" x="204" y="22.5" width="58" height="20.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HH:mm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WEt-XN-3wS">
+                        <rect key="frame" x="204" y="22" width="58" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="KCu-23-9U8">
-                        <rect key="frame" x="140" y="27.5" width="40" height="10"/>
+                        <rect key="frame" x="140" y="28" width="40" height="10"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qYF-LJ-P9k">
                                 <rect key="frame" x="0.0" y="0.0" width="10" height="10"/>
@@ -143,7 +143,9 @@
                     <constraint firstAttribute="bottom" secondItem="rT9-ra-MAX" secondAttribute="bottom" constant="5" id="KDi-51-cGJ"/>
                     <constraint firstItem="KCu-23-9U8" firstAttribute="centerY" secondItem="MId-YP-mlf" secondAttribute="centerY" id="KU6-BG-bGQ"/>
                     <constraint firstAttribute="trailing" secondItem="rT9-ra-MAX" secondAttribute="trailing" constant="10" id="LfC-1Q-GWG"/>
+                    <constraint firstItem="WEt-XN-3wS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="KCu-23-9U8" secondAttribute="trailing" id="OKB-95-J7G"/>
                     <constraint firstItem="MId-YP-mlf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="PrC-iF-slt"/>
+                    <constraint firstItem="KCu-23-9U8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="X4g-mE-Nlp" secondAttribute="trailing" id="XiD-Y2-6V0"/>
                     <constraint firstItem="X4g-mE-Nlp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="cIp-FL-hY9"/>
                     <constraint firstItem="rT9-ra-MAX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="cVC-Hp-i1h"/>
                     <constraint firstItem="iue-6t-6A6" firstAttribute="top" secondItem="KCu-23-9U8" secondAttribute="bottom" constant="8" id="hjV-yV-KEH"/>

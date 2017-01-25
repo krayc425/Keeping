@@ -20,7 +20,7 @@
 - (NSMutableArray *_Nonnull)getTasks;
 - (NSMutableArray *_Nonnull)getTodayTasks;
 - (NSMutableArray *_Nonnull)getTasksOfDate:(NSDate *_Nonnull)date;
-- (BOOL)punchForTaskWithID:(NSNumber *_Nonnull)taskid;
+- (BOOL)punchForTaskWithID:(NSNumber *_Nonnull)taskid onDate:(NSDate *_Nonnull)date;
 - (BOOL)unpunchForTaskWithID:(NSNumber *_Nonnull)taskid;
 
 - (int)totalPunchNumberOfTask:(Task *_Nonnull)task;

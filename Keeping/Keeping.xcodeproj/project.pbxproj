@@ -190,15 +190,6 @@
 			name = Reminder;
 			sourceTree = "<group>";
 		};
-		24151C931E322D6F00757A69 /* Detail */ = {
-			isa = PBXGroup;
-			children = (
-				24151C901E322D6700757A69 /* KPTaskDetailTableViewController.h */,
-				24151C911E322D6700757A69 /* KPTaskDetailTableViewController.m */,
-			);
-			name = Detail;
-			sourceTree = "<group>";
-		};
 		2429CBF01E2E4AA20027DD37 /* Today */ = {
 			isa = PBXGroup;
 			children = (
@@ -243,7 +234,8 @@
 				24F2A0C91E2F383A00F30FB1 /* KPTaskTableViewCell.xib */,
 				24F2A0DD1E2F489500F30FB1 /* Scheme */,
 				241464471E327BDA00D04A22 /* Reminder */,
-				24151C931E322D6F00757A69 /* Detail */,
+				24151C901E322D6700757A69 /* KPTaskDetailTableViewController.h */,
+				24151C911E322D6700757A69 /* KPTaskDetailTableViewController.m */,
 			);
 			name = Task;
 			sourceTree = "<group>";

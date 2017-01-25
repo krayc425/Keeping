@@ -180,7 +180,7 @@
         //识别用户点击的是哪个 action
         if ([response.actionIdentifier isEqualToString:@"action.done"]) {
             //打卡
-            [[TaskManager shareInstance] punchForTaskWithID:(NSNumber *)[userInfo valueForKey:@"taskid"]];
+            [[TaskManager shareInstance] punchForTaskWithID:(NSNumber *)[userInfo valueForKey:@"taskid"] onDate:[NSDate date]];
         }
     }
     

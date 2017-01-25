@@ -77,11 +77,13 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "AVOSCloud/AVOS/AVOSCloud/AVOSCloud_Art.inc"
   install_resource "$PODS_CONFIGURATION_BUILD_DIR/Appirater/Appirater.bundle"
   install_resource "DateTools/DateTools/DateTools.bundle"
+  install_resource "HSDatePickerViewController/HSDatePickerViewControllerDemo/HSDatePickerViewController/HSDatePickerViewController.xib"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "AVOSCloud/AVOS/AVOSCloud/AVOSCloud_Art.inc"
   install_resource "$PODS_CONFIGURATION_BUILD_DIR/Appirater/Appirater.bundle"
   install_resource "DateTools/DateTools/DateTools.bundle"
+  install_resource "HSDatePickerViewController/HSDatePickerViewControllerDemo/HSDatePickerViewController/HSDatePickerViewController.xib"
 fi
 
 mkdir -p "${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

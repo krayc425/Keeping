@@ -328,7 +328,7 @@
     //section = 1 : 未完成
     if(path.section == 1){
         Task *task = self.unfinishedTaskArr[path.row];
-        [[TaskManager shareInstance] punchForTaskWithID:@(task.id)];
+        [[TaskManager shareInstance] punchForTaskWithID:@(task.id) onDate:[NSDate date]];
         [self loadTasks];
     }else if(path.section == 2){
         
@@ -342,7 +342,8 @@
                                                                style:UIAlertActionStyleCancel
                                                              handler:^(UIAlertAction *Action){
                                                                  
-                                                                 [[TaskManager shareInstance] punchForTaskWithID:@(task.id)];
+                                                                 [[TaskManager shareInstance] punchForTaskWithID:@(task.id) onDate:[NSDate date]];
+                                                                 self.selectedIndexPath = NULL;
                                                                  [self loadTasks];
                                                                  
                                                              }];
@@ -352,6 +353,7 @@
                                                          handler:^(UIAlertAction *Action){
                                                              
                                                              [[TaskManager shareInstance] unpunchForTaskWithID:@(task.id)];
+                                                             self.selectedIndexPath = NULL;
                                                              [self loadTasks];
                                                              
                                                          }];

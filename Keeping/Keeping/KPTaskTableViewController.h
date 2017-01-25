@@ -12,6 +12,7 @@
 @interface KPTaskTableViewController : UITableViewController <PassImgDelegate>
 
 @property (nonnull, nonatomic) NSMutableArray *taskArr;
+@property (nonnull, nonatomic) NSMutableArray *historyTaskArr;
 
 @property (nonnull, nonatomic) IBOutlet UIStackView *weekDayStack;
 @property (nonnull, nonatomic) NSMutableArray *selectedWeekdayArr;

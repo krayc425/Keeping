@@ -10,8 +10,9 @@
 #import "Task.h"
 #import "KPSchemeTableViewController.h"
 #import "KPReminderViewController.h"
+#import "HSDatePickerViewController.h"
 
-@interface KPTaskDetailTableViewController : UITableViewController <SchemeDelegate, ReminderDelegate,  UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate>
+@interface KPTaskDetailTableViewController : UITableViewController <SchemeDelegate, ReminderDelegate,  UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, HSDatePickerViewControllerDelegate>
 
 @property (nullable, nonatomic) Task *task;
 
@@ -20,6 +21,10 @@
 @property (nonnull, nonatomic) IBOutlet UIStackView *weekDayStack;
 @property (nonnull, nonatomic) IBOutlet UIButton *allButton;
 @property (nonnull, nonatomic) NSMutableArray *selectedWeekdayArr;
+
+@property (nonnull, nonatomic) IBOutlet UIStackView *durationStack;
+@property (nonnull, nonatomic) IBOutlet UILabel *startDateLabel;
+@property (nonnull, nonatomic) IBOutlet UILabel *endDateLabel;
 
 @property (nonnull, nonatomic) IBOutlet UILabel *reminderLabel;
 @property (nonnull, nonatomic) IBOutlet UISwitch *reminderSwitch;

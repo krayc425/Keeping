@@ -21,7 +21,6 @@
 
 @property (nonnull, nonatomic) UITableView *taskTableView;
 
-@property (nonnull, nonatomic) NSDate *selectedDate;
 @property (nonnull, nonatomic) NSMutableArray *taskArr;
 
 @property (nullable, nonatomic) Task *task;

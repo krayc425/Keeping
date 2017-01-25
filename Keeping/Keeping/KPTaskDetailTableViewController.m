@@ -29,7 +29,22 @@
     
     if(self.task != NULL){
         [self.navigationItem setTitle:@"任务详情"];
-    
+        
+        [self.startDateLabel setText:[self.task.addDate formattedDateWithFormat:@"yyyy/MM/dd"]];
+        if(self.task.endDate != NULL){
+            [self.endDateLabel setText:[self.task.endDate formattedDateWithFormat:@"yyyy/MM/dd"]];
+            
+            //如果已经超期，不能编辑
+//            if([self.task.endDate isEarlierThan:[NSDate date]]){
+//                [self.tableView setUserInteractionEnabled:NO];
+//            }else{
+//                [self.tableView setUserInteractionEnabled:YES];
+//            }
+            
+        }else{
+            [self.endDateLabel setText:@"无结束日期"];
+        }
+        
         //对星期排序
         NSMutableArray *arr = [NSMutableArray arrayWithArray:self.task.reminderDays];
         [arr sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
@@ -68,6 +83,9 @@
     }else{
         [self.navigationItem setTitle:@"新增任务"];
         
+        [self.startDateLabel setText:[[NSDate date] formattedDateWithFormat:@"YYYY/MM/dd"]];
+        [self.endDateLabel setText:@""];
+        
         [self setNotHaveImage];
         
         [self.taskNameField becomeFirstResponder];
@@ -79,12 +97,19 @@
     self.navigationItem.leftBarButtonItems = @[cancelItem];
     //导航栏右上角
     UIBarButtonItem *okItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_DONE"] style:UIBarButtonItemStylePlain target:self action:@selector(doneAction:)];
-    self.navigationItem.rightBarButtonItems = @[okItem];
+    //不能编辑==过期==没有右上角
+    if([self.tableView isUserInteractionEnabled]){
+        self.navigationItem.rightBarButtonItems = @[okItem];
+    }
     //任务名
     [self.taskNameField setFont:[UIFont fontWithName:[Utilities getFont] size:25.0]];
     //文本框代理
     self.taskNameField.delegate = self;
     self.linkTextField.delegate = self;
+    //持续时间
+    for(UILabel *label in self.durationStack.subviews){
+        [label setFont:[UIFont fontWithName:[Utilities getFont] size:20.0]];
+    }
     //星期几选项按钮
     for(UIButton *button in self.weekDayStack.subviews){
         [button setTintColor:[Utilities getColor]];
@@ -180,6 +205,20 @@
 
 - (void)doneAction:(id)sender{
     
+    //先检查有没有填满必填信息
+    if(![self checkCompleted]){
+        UIAlertController *alertController =
+        [UIAlertController alertControllerWithTitle:@"信息填写不完整"
+                                            message:nil
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
+                                                           style:UIAlertActionStyleDefault
+                                                         handler: nil];
+        [alertController addAction:okAction];
+        [self presentViewController:alertController animated:YES completion:nil];
+        return;
+    }
+    
     //新任务
     if(self.task == NULL){
         self.task = [Task new];
@@ -201,6 +240,8 @@
     self.task.image = UIImagePNGRepresentation(self.selectedImgView.image);
     //链接
     self.task.link = self.linkTextField.text;       //有：文字，无：@“”
+    //结束日期
+    self.task.endDate = [NSDate dateWithString:self.endDateLabel.text formatString:@"yyyy/MM/dd"];
     
     //更新
     NSString *title;
@@ -382,10 +423,36 @@
     [self.tableView reloadData];
 }
 
+#pragma mark - Select end date
+
+- (void)showDatePicker{
+    HSDatePickerViewController *hsdpvc = [[HSDatePickerViewController alloc] init];
+    hsdpvc.delegate = self;
+    hsdpvc.minDate = [NSDate date];
+    
+    hsdpvc.backButtonTitle = @"返回";
+    hsdpvc.confirmButtonTitle = @"确定";
+    
+    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+    [fmt setDateFormat:@"yyyy/MM/dd"];
+    hsdpvc.dateFormatter = fmt;
+    
+    NSDateFormatter *myfmt = [[NSDateFormatter alloc] init];
+    [myfmt setDateFormat:@"yyyy 年 MM 月"];
+    hsdpvc.monthAndYearLabelDateFormater = myfmt;
+    
+    [self presentViewController:hsdpvc animated:YES completion:nil];
+}
+
+- (void)hsDatePickerPickedDate:(NSDate *)date{
+    NSLog(@"%@", date.description);
+    [self.endDateLabel setText:[date formattedDateWithFormat:@"yyyy/MM/dd"]];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 6;
+    return 7;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -402,15 +469,18 @@
             [view setText:@"完成时间"];
             break;
         case 2:
-            [view setText:@"提醒时间"];
+            [view setText:@"持续时间"];
             break;
         case 3:
-            [view setText:@"打开 APP"];
+            [view setText:@"提醒时间"];
             break;
         case 4:
-            [view setText:@"链接"];
+            [view setText:@"打开 APP"];
             break;
         case 5:
+            [view setText:@"链接"];
+            break;
+        case 6:
             [view setText:@"图片"];
             break;
         default:
@@ -436,12 +506,15 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     switch (indexPath.section) {
         case 2:
-            [self showReminderPickerAction:[NSDate date]];
+            [self showDatePicker];
             break;
         case 3:
+            [self showReminderPickerAction:[NSDate date]];
+            break;
+        case 4:
             [self performSegueWithIdentifier:@"appSegue" sender:nil];
             break;
-        case 5:
+        case 6:
             [self modifyPicAction:nil];
             break;
         default:
@@ -450,14 +523,14 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(indexPath.section == 5){
+    if(indexPath.section == 6){
         return self.view.frame.size.width;
     }else{
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];
     }
 }
 
-#pragma -mark UITextFieldDelegate
+#pragma mark - UITextFieldDelegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [self hideKeyboard];

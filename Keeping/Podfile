@@ -11,4 +11,5 @@ target 'Keeping' do
   pod 'FMDB'
   pod 'BEMCheckBox'
   pod 'AVOSCloud'
+  pod 'HSDatePickerViewController'
 end
