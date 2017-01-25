@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ABCIntroView.h"
 
-@interface KPNavigationViewController : UINavigationController
+@interface KPNavigationViewController : UINavigationController <ABCIntroViewDelegate>
+
+@property (nonatomic, nonnull) ABCIntroView *introView;
 
 - (void)setFont;
 

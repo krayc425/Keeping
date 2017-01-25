@@ -44,6 +44,15 @@
         }
          */
         
+        [self.taskNameField setText:[self.task name]];
+        
+        self.selectedWeekdayArr = [NSMutableArray arrayWithArray:self.task.reminderDays];
+        if([self.selectedWeekdayArr count] > 0){
+            [self.allButton setTitle:@"清空" forState: UIControlStateNormal];
+        }else{
+            [self.allButton setTitle:@"全选" forState: UIControlStateNormal];
+        }
+        
         [self.startDateLabel setText:[self.task.addDate formattedDateWithFormat:@"yyyy/MM/dd"]];
         if(self.task.endDate != NULL){
             [self.endDateLabel setText:[self.task.endDate formattedDateWithFormat:@"yyyy/MM/dd"]];
@@ -100,6 +109,8 @@
         [self.startDateLabel setText:[[NSDate date] formattedDateWithFormat:@"YYYY/MM/dd"]];
         [self.endDateLabel setText:@"无结束日期"];
         
+        [self.reminderSwitch setOn:NO];
+        
         [self setNotHaveImage];
         
         [self.taskNameField becomeFirstResponder];
@@ -141,7 +152,6 @@
     //提醒标签
     [self.reminderLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
     //提醒开关
-    [self.reminderSwitch setOn:NO];
     [self.reminderSwitch setTintColor:[Utilities getColor]];
     [self.reminderSwitch setOnTintColor:[Utilities getColor]];
     [self.reminderSwitch addTarget:self action:@selector(showReminderPickerAction:) forControlEvents:UIControlEventValueChanged];
@@ -165,15 +175,6 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    [self.taskNameField setText:[self.task name]];
-    
-    self.selectedWeekdayArr = [NSMutableArray arrayWithArray:self.task.reminderDays];
-    if([self.selectedWeekdayArr count] > 0){
-        [self.allButton setTitle:@"清空" forState: UIControlStateNormal];
-    }else{
-        [self.allButton setTitle:@"全选" forState: UIControlStateNormal];
-    }
-    
     for(NSNumber *num in self.selectedWeekdayArr){
         UIImage *buttonImg = [UIImage imageNamed:@"CIRCLE_FULL"];
         buttonImg = [buttonImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
