@@ -12,6 +12,7 @@
             <connections>
                 <outlet property="backButton" destination="HU9-Bd-V7s" id="VIe-Y1-L0e"/>
                 <outlet property="confirmButton" destination="qZr-Uh-b0m" id="X7O-K6-sPh"/>
+                <outlet property="deleteButton" destination="lJA-ts-gMA" id="Sb5-VE-8xm"/>
                 <outlet property="monthAndYearLabel" destination="sfF-zZ-haF" id="erj-GJ-kLB"/>
                 <outlet property="monthNextButton" destination="qcC-OY-BQF" id="8Tc-Hn-flm"/>
                 <outlet property="monthPreviousButton" destination="bFA-oh-ynX" id="fWM-sP-PsL"/>
@@ -28,14 +29,14 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <visualEffectView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NBw-0a-eIC">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NBw-0a-eIC">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="to3-pt-2Xa">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PDc-i5-hmC">
-                                <rect key="frame" x="160" y="153" width="280" height="294"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PDc-i5-hmC">
+                                <rect key="frame" x="47.5" y="186.5" width="280" height="294"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Month Year" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sfF-zZ-haF">
                                         <rect key="frame" x="46" y="8" width="188" height="21"/>
@@ -67,29 +68,29 @@
                                             <action selector="jumpToNextMonth:" destination="-1" eventType="touchUpInside" id="Dkb-7r-Tzd"/>
                                         </connections>
                                     </button>
-                                    <pickerView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4gh-iz-nmv">
-                                        <rect key="frame" x="0.0" y="66" width="280" height="162"/>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4gh-iz-nmv">
+                                        <rect key="frame" x="0.0" y="39" width="280" height="216"/>
                                         <connections>
                                             <outlet property="dataSource" destination="-1" id="edz-h3-GNc"/>
                                             <outlet property="delegate" destination="-1" id="7qI-az-Llc"/>
                                         </connections>
                                     </pickerView>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yf1-uq-2fg" userLabel="Separator1 View">
-                                        <rect key="frame" x="0.0" y="65" width="280" height="1"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yf1-uq-2fg" userLabel="Separator1 View">
+                                        <rect key="frame" x="0.0" y="38" width="280" height="1"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="epI-Uk-3js"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5EX-Xv-fgu" userLabel="Separator2 View">
-                                        <rect key="frame" x="0.0" y="228" width="280" height="1"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5EX-Xv-fgu" userLabel="Separator2 View">
+                                        <rect key="frame" x="0.0" y="255" width="280" height="1"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="Ctu-Tg-e3n"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CjY-o6-GpL" userLabel="Separator3 View">
-                                        <rect key="frame" x="140" y="229" width="1" height="65"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CjY-o6-GpL" userLabel="Separator3 View">
+                                        <rect key="frame" x="140" y="256" width="1" height="38"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="1" id="RlX-eu-XI0"/>
@@ -145,10 +146,23 @@
                                     <constraint firstItem="bFA-oh-ynX" firstAttribute="top" secondItem="PDc-i5-hmC" secondAttribute="top" constant="4" id="zeN-Zb-P0J"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lJA-ts-gMA">
+                                <rect key="frame" x="112" y="512.5" width="150" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="5du-zi-Inv"/>
+                                    <constraint firstAttribute="width" constant="150" id="PMb-gN-Xdi"/>
+                                </constraints>
+                                <state key="normal" title="设为无限期"/>
+                                <connections>
+                                    <action selector="deleteDate:" destination="-1" eventType="touchUpInside" id="ccm-f8-bjD"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="lJA-ts-gMA" firstAttribute="top" secondItem="PDc-i5-hmC" secondAttribute="bottom" constant="32" id="OAI-TL-HP6"/>
                             <constraint firstAttribute="centerY" secondItem="PDc-i5-hmC" secondAttribute="centerY" id="Rb6-jd-tRv"/>
+                            <constraint firstItem="lJA-ts-gMA" firstAttribute="centerX" secondItem="to3-pt-2Xa" secondAttribute="centerX" id="jdA-rd-CRh"/>
                             <constraint firstAttribute="centerX" secondItem="PDc-i5-hmC" secondAttribute="centerX" id="rYy-v9-4ny"/>
                         </constraints>
                     </view>

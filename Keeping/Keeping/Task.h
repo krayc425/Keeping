@@ -21,7 +21,7 @@
 @property (nonatomic, nonnull) NSDate *addDate;
 
 //结束日期
-@property (nonatomic, nonnull) NSDate *endDate;
+@property (nonatomic, nullable) NSDate *endDate;
 //跳转 app 的 scheme
 @property (nonatomic, nullable) NSDictionary *appScheme;
 //提醒时间

@@ -36,6 +36,8 @@ static NSInteger kBufforRows = 30; //Number of rows that are prevent by scroll p
 @property (nonatomic, assign) NSInteger minRowIndex;
 
 @property (nonatomic, assign) UIStatusBarStyle previousStatusBarStyle;
+
+@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 @end
 
 @implementation HSDatePickerViewController
@@ -115,6 +117,12 @@ static NSInteger kBufforRows = 30; //Number of rows that are prevent by scroll p
     NSDateComponents *components = [[NSCalendar currentCalendar] components:(NSCalendarUnitHour | NSCalendarUnitMinute) fromDate:self.date];
     [self setPickerView:self.pickerView rowInComponent:HourPicker toIntagerValue:[components hour] decrementing:NO animated:NO];
     [self setPickerView:self.pickerView rowInComponent:MinutePicker toIntagerValue:[components minute]  decrementing:NO animated:NO];
+    
+    self.deleteButton.layer.cornerRadius = 10.0;
+    self.deleteButton.layer.borderColor = self.mainColor.CGColor;
+    self.deleteButton.layer.borderWidth = 1.0;
+    self.deleteButton.layer.borderColor = self.mainColor.CGColor;
+    [self.deleteButton setTitleColor:self.mainColor forState:UIControlStateNormal];
     
 }
 
@@ -292,13 +300,13 @@ static NSInteger kBufforRows = 30; //Number of rows that are prevent by scroll p
             [paragraphStyle setAlignment:NSTextAlignmentRight];
             break;
         case HourPicker:
-            title = [NSString stringWithFormat:@"%02ld", row % [self realNumberOfRowsInComponent:component]];
-            [paragraphStyle setAlignment:NSTextAlignmentCenter];
+            //title = [NSString stringWithFormat:@"%02ld", row % [self realNumberOfRowsInComponent:component]];
+            //[paragraphStyle setAlignment:NSTextAlignmentCenter];
 
             break;
         case MinutePicker:
-            title = [NSString stringWithFormat:@"%02lu", row % [self realNumberOfRowsInComponent:component] * self.minuteStep];
-            [paragraphStyle setAlignment:NSTextAlignmentLeft];
+            //title = [NSString stringWithFormat:@"%02lu", row % [self realNumberOfRowsInComponent:component] * self.minuteStep];
+            //[paragraphStyle setAlignment:NSTextAlignmentLeft];
 
             break;
     }
@@ -505,6 +513,23 @@ static NSInteger kBufforRows = 30; //Number of rows that are prevent by scroll p
         }
         [self dismissViewControllerAnimated:YES completion:success];
     }
+}
+
+- (IBAction)deleteDate:(id)sender{
+    if ([self.delegate respondsToSelector:@selector(hsDatePickerPickedDate:)]) {
+        [self.delegate hsDatePickerPickedDate:NULL];
+    }
+    
+    if ([self.delegate respondsToSelector:@selector(hsDatePickerWillDismissWithQuitMethod:)]) {
+        [self.delegate hsDatePickerWillDismissWithQuitMethod:QuitWithResult];
+    }
+    void (^success)(void) = nil;
+    if ([self.delegate respondsToSelector:@selector(hsDatePickerDidDismissWithQuitMethod:)]) {
+        success = ^{
+            [self.delegate hsDatePickerDidDismissWithQuitMethod:QuitWithResult];
+        };
+    }
+    [self dismissViewControllerAnimated:YES completion:success];
 }
 
 @end

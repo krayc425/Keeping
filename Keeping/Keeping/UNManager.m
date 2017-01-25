@@ -42,10 +42,6 @@
         content.badge = @1;
         content.sound = [UNNotificationSound defaultSound];
         
-        if(task.appScheme == NULL){
-            
-        }
-        
         content.userInfo = @{
                              @"taskid" : @(task.id),
                              @"taskapp" : task.appScheme == NULL ? @{} : task.appScheme,
@@ -70,6 +66,7 @@
         // 创建通知请求 UNNotificationRequest 将触发条件和通知内容添加到请求中
         UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:requestIdentifier content:content trigger:trigger];
         // 将通知请求 add 到 UNUserNotificationCenter
+        
         [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
             if (!error) {
                 NSLog(@"推送已添加成功 %@ %@", requestIdentifier, task.reminderTime.description);

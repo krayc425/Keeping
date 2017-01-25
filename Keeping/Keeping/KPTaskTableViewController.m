@@ -49,12 +49,9 @@
         [button setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
         if(button.tag != -1){
             //-1是全选按钮
-            [button.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:18.0]];
             UIImage *buttonImg = [UIImage imageNamed:@"CIRCLE_BORDER"];
             buttonImg = [buttonImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             [button setBackgroundImage:buttonImg forState:UIControlStateNormal];
-        }else{
-            [button.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0]];
         }
     }
     
@@ -69,9 +66,9 @@
 - (void)viewWillAppear:(BOOL)animated{
     for(UIButton *button in self.weekDayStack.subviews){
         if(button.tag != -1){
-            [button.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:18.0]];
+            [button.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:18.0f]];
         }else{
-            [button.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0]];
+            [button.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:12.0f]];
         }
     }
     
@@ -350,9 +347,6 @@
             [cell.taskImgViewBtn setUserInteractionEnabled:NO];
             [cell.taskImgViewBtn setBackgroundImage:[UIImage new] forState:UIControlStateNormal];
         }
-        
-//        NSString *dateStr =  [t.addDate formattedDateWithFormat:@"YYYY/MM/dd HH:mm:ss"];
-        [cell.totalDayLabel setText:[NSString stringWithFormat:@"已添加 %ld 天, 已完成 %lu 天", (long)[[NSDate date] daysFrom:t.addDate] + 1, (unsigned long)[t.punchDateArr count]]];
         
         int totalPunchNum = [[TaskManager shareInstance] totalPunchNumberOfTask:t];
         int punchNum = (int)[t.punchDateArr count];

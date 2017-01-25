@@ -123,7 +123,7 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gXc-TE-L9R">
-                                                            <rect key="frame" x="43" y="26" width="33.5" height="33"/>
+                                                            <rect key="frame" x="43" y="25.5" width="33.5" height="34"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="gXc-TE-L9R" secondAttribute="height" id="hyq-HY-WeZ"/>
                                                             </constraints>
@@ -163,7 +163,7 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rV5-l2-4KP">
-                                                            <rect key="frame" x="215.5" y="26" width="33.5" height="33"/>
+                                                            <rect key="frame" x="215.5" y="25.5" width="33.5" height="34"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="rV5-l2-4KP" secondAttribute="height" multiplier="1:1" id="F6Y-0Z-d9a"/>
                                                             </constraints>
@@ -307,12 +307,12 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="10" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wmp-EN-j6p">
-                                                    <rect key="frame" x="19" y="10" width="343" height="39"/>
+                                                    <rect key="frame" x="19" y="10" width="382" height="39.5"/>
                                                     <subviews>
                                                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9e7-MS-jnv">
-                                                            <rect key="frame" x="0.0" y="2.5" width="34" height="34"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="39" height="39.5"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" secondItem="9e7-MS-jnv" secondAttribute="height" id="sYw-99-shO"/>
+                                                                <constraint firstAttribute="width" secondItem="9e7-MS-jnv" secondAttribute="height" multiplier="1:1" id="sYw-99-shO"/>
                                                             </constraints>
                                                             <state key="normal" title="日" backgroundImage="CIRCLE_BORDER"/>
                                                             <connections>
@@ -320,9 +320,9 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fb2-dA-hsP">
-                                                            <rect key="frame" x="44" y="2.5" width="34.5" height="34"/>
+                                                            <rect key="frame" x="49" y="0.5" width="39" height="39"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" secondItem="Fb2-dA-hsP" secondAttribute="height" id="dIm-bY-ZsG"/>
+                                                                <constraint firstAttribute="width" secondItem="Fb2-dA-hsP" secondAttribute="height" multiplier="1:1" id="dIm-bY-ZsG"/>
                                                             </constraints>
                                                             <state key="normal" title="一" backgroundImage="CIRCLE_BORDER"/>
                                                             <connections>
@@ -330,9 +330,9 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lmB-wf-eHd">
-                                                            <rect key="frame" x="88.5" y="2.5" width="34" height="34"/>
+                                                            <rect key="frame" x="98" y="0.0" width="39" height="39.5"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" secondItem="lmB-wf-eHd" secondAttribute="height" id="uvn-05-kIa"/>
+                                                                <constraint firstAttribute="width" secondItem="lmB-wf-eHd" secondAttribute="height" multiplier="1:1" id="uvn-05-kIa"/>
                                                             </constraints>
                                                             <state key="normal" title="二" backgroundImage="CIRCLE_BORDER"/>
                                                             <connections>
@@ -340,9 +340,9 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nwb-R9-Q2T">
-                                                            <rect key="frame" x="132.5" y="2.5" width="34" height="34"/>
+                                                            <rect key="frame" x="147" y="0.0" width="39" height="39.5"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" secondItem="Nwb-R9-Q2T" secondAttribute="height" id="wKl-7Z-Eu0"/>
+                                                                <constraint firstAttribute="width" secondItem="Nwb-R9-Q2T" secondAttribute="height" multiplier="1:1" id="wKl-7Z-Eu0"/>
                                                             </constraints>
                                                             <state key="normal" title="三" backgroundImage="CIRCLE_BORDER"/>
                                                             <connections>
@@ -350,7 +350,7 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NDn-NP-FdE">
-                                                            <rect key="frame" x="176.5" y="2.5" width="34" height="34"/>
+                                                            <rect key="frame" x="196" y="0.0" width="39" height="39.5"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="NDn-NP-FdE" secondAttribute="height" multiplier="1:1" id="W7c-dh-otf"/>
                                                             </constraints>
@@ -360,7 +360,7 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UGP-fl-zRy">
-                                                            <rect key="frame" x="220.5" y="2.5" width="34.5" height="34"/>
+                                                            <rect key="frame" x="245" y="0.5" width="39" height="39"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="UGP-fl-zRy" secondAttribute="height" multiplier="1:1" id="1bv-eF-QLh"/>
                                                             </constraints>
@@ -370,9 +370,9 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wGh-aC-5Rt">
-                                                            <rect key="frame" x="265" y="2.5" width="34" height="34"/>
+                                                            <rect key="frame" x="294" y="0.0" width="39" height="39.5"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" secondItem="wGh-aC-5Rt" secondAttribute="height" id="jr7-4a-O0P"/>
+                                                                <constraint firstAttribute="width" secondItem="wGh-aC-5Rt" secondAttribute="height" multiplier="1:1" id="jr7-4a-O0P"/>
                                                             </constraints>
                                                             <state key="normal" title="六" backgroundImage="CIRCLE_BORDER"/>
                                                             <connections>
@@ -380,8 +380,9 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iq5-8X-4O2">
-                                                            <rect key="frame" x="309" y="2.5" width="34" height="34"/>
+                                                            <rect key="frame" x="343" y="0.0" width="39" height="39.5"/>
                                                             <constraints>
+                                                                <constraint firstAttribute="width" constant="36" id="lYf-S2-Jk9"/>
                                                                 <constraint firstAttribute="width" secondItem="iq5-8X-4O2" secondAttribute="height" multiplier="1:1" id="viS-LT-BVb"/>
                                                             </constraints>
                                                             <state key="normal" title="全选"/>
@@ -416,19 +417,19 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="deB-FH-Sot">
                                                     <rect key="frame" x="13" y="13" width="316" height="33"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016/1/17" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mWm-2T-lpo">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016/1/17" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mWm-2T-lpo">
                                                             <rect key="frame" x="0.0" y="0.0" width="105.5" height="33"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" tag="-1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="~" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QDy-bl-ZbL">
+                                                        <label opaque="NO" userInteractionEnabled="NO" tag="-1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="~" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QDy-bl-ZbL">
                                                             <rect key="frame" x="105.5" y="0.0" width="105" height="33"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CjA-9C-Pec">
+                                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CjA-9C-Pec">
                                                             <rect key="frame" x="210.5" y="0.0" width="105.5" height="33"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>

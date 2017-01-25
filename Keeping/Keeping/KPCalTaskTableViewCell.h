@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import "BEMCheckBox.h"
 #import "CardsView.h"
 
 @interface KPCalTaskTableViewCell : UITableViewCell
@@ -17,9 +16,6 @@
 @property (nonatomic, nonnull) IBOutlet UILabel *taskNameLabel;
 @property (nonatomic, nonnull) IBOutlet UILabel *punchDaysLabel;
 
-//@property (nonnull, nonatomic) IBOutlet BEMCheckBox *myCheckBox;
-
-//- (void)setIsFinished:(BOOL)isFinished;
 - (void)setIsSelected:(BOOL)isSelected;
 - (void)setFont;
 

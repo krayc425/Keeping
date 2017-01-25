@@ -18,6 +18,8 @@
     
     self.myCheckBox.delegate = self;
     [self.myCheckBox setOnAnimationType:BEMAnimationTypeFill];
+    [self.myCheckBox setOffAnimationType:BEMAnimationTypeFill];
+    
     [self.myCheckBox setOnTintColor:[Utilities getColor]];
     [self.myCheckBox setOnCheckColor:[Utilities getColor]];
     [self.myCheckBox setOnFillColor:[UIColor clearColor]];

@@ -27,8 +27,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
     if(self.task != NULL){
         [self.navigationItem setTitle:@"任务详情"];
+        
+        /*
+         * 暂时
+         */
+        [self.weekDayStack setUserInteractionEnabled:NO];
+        /*
+        for(UIButton *btn in self.weekDayStack.subviews){
+            [btn setTintColor:[UIColor lightGrayColor]];
+            if(btn.tag == -1){
+                [btn setHidden:YES];
+            }
+        }
+         */
         
         [self.startDateLabel setText:[self.task.addDate formattedDateWithFormat:@"yyyy/MM/dd"]];
         if(self.task.endDate != NULL){
@@ -84,7 +98,7 @@
         [self.navigationItem setTitle:@"新增任务"];
         
         [self.startDateLabel setText:[[NSDate date] formattedDateWithFormat:@"YYYY/MM/dd"]];
-        [self.endDateLabel setText:@""];
+        [self.endDateLabel setText:@"无结束日期"];
         
         [self setNotHaveImage];
         
@@ -102,13 +116,13 @@
         self.navigationItem.rightBarButtonItems = @[okItem];
     }
     //任务名
-    [self.taskNameField setFont:[UIFont fontWithName:[Utilities getFont] size:25.0]];
+    [self.taskNameField setFont:[UIFont fontWithName:[Utilities getFont] size:25.0f]];
     //文本框代理
     self.taskNameField.delegate = self;
     self.linkTextField.delegate = self;
     //持续时间
     for(UILabel *label in self.durationStack.subviews){
-        [label setFont:[UIFont fontWithName:[Utilities getFont] size:20.0]];
+        [label setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
     }
     //星期几选项按钮
     for(UIButton *button in self.weekDayStack.subviews){
@@ -116,16 +130,16 @@
         [button setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
         if(button.tag != -1){
             //-1是全选按钮
-            [button.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:18.0]];
+            [button.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:18.0f]];
             UIImage *buttonImg = [UIImage imageNamed:@"CIRCLE_BORDER"];
             buttonImg = [buttonImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             [button setBackgroundImage:buttonImg forState:UIControlStateNormal];
         }else{
-            [button.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0]];
+            [button.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:12.0f]];
         }
     }
     //提醒标签
-    [self.reminderLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0]];
+    [self.reminderLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
     //提醒开关
     [self.reminderSwitch setOn:NO];
     [self.reminderSwitch setTintColor:[Utilities getColor]];
@@ -241,7 +255,11 @@
     //链接
     self.task.link = self.linkTextField.text;       //有：文字，无：@“”
     //结束日期
-    self.task.endDate = [NSDate dateWithString:self.endDateLabel.text formatString:@"yyyy/MM/dd"];
+    if([self.endDateLabel.text isEqualToString:@"无结束日期"]){
+        self.task.endDate = NULL;
+    }else{
+        self.task.endDate = [NSDate dateWithString:self.endDateLabel.text formatString:@"yyyy/MM/dd"];
+    }
     
     //更新
     NSString *title;
@@ -445,8 +463,11 @@
 }
 
 - (void)hsDatePickerPickedDate:(NSDate *)date{
-    NSLog(@"%@", date.description);
-    [self.endDateLabel setText:[date formattedDateWithFormat:@"yyyy/MM/dd"]];
+    if(date == NULL){
+        [self.endDateLabel setText:@"无结束日期"];
+    }else{
+        [self.endDateLabel setText:[date formattedDateWithFormat:@"yyyy/MM/dd"]];
+    }
 }
 
 #pragma mark - Table view data source

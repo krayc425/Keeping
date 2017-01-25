@@ -42,7 +42,7 @@
     }
     if([[[NSUserDefaults standardUserDefaults] valueForKey:@"font"] isEqualToString:@""]
        || [[NSUserDefaults standardUserDefaults] valueForKey:@"font"] == NULL){
-        [[NSUserDefaults standardUserDefaults] setValue:@"FZSSJW--GB1-0" forKey:@"font"];
+        [[NSUserDefaults standardUserDefaults] setValue:@"STHeitiSC-Light" forKey:@"font"];
     }
     
     return YES;

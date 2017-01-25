@@ -329,38 +329,14 @@
     if(path.section == 1){
         Task *task = self.unfinishedTaskArr[path.row];
         [[TaskManager shareInstance] punchForTaskWithID:@(task.id) onDate:[NSDate date]];
+        self.selectedIndexPath = NULL;
         [self loadTasks];
     }else if(path.section == 2){
-        
         Task *task = self.finishedTaskArr[path.row];
-        
-        UIAlertController *alertController =
-        [UIAlertController alertControllerWithTitle:@"您要将此任务设为未完成吗？"
-                                            message:nil
-                                     preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
-                                                               style:UIAlertActionStyleCancel
-                                                             handler:^(UIAlertAction *Action){
-                                                                 
-                                                                 [[TaskManager shareInstance] punchForTaskWithID:@(task.id) onDate:[NSDate date]];
-                                                                 self.selectedIndexPath = NULL;
-                                                                 [self loadTasks];
-                                                                 
-                                                             }];
-        [alertController addAction:cancelAction];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定"
-                                                           style:UIAlertActionStyleDefault
-                                                         handler:^(UIAlertAction *Action){
-                                                             
-                                                             [[TaskManager shareInstance] unpunchForTaskWithID:@(task.id)];
-                                                             self.selectedIndexPath = NULL;
-                                                             [self loadTasks];
-                                                             
-                                                         }];
-        [alertController addAction:okAction];
-        [self presentViewController:alertController animated:YES completion:nil];
+        [[TaskManager shareInstance] unpunchForTaskWithID:@(task.id)];
+        self.selectedIndexPath = NULL;
+        [self loadTasks];
     }
-
 }
 
 - (void)moreAction:(UITableViewCell *)cell withButton:(UIButton *)button;{

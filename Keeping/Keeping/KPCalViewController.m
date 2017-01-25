@@ -104,10 +104,13 @@
 
 - (void)loadTasks{
     self.taskArr = [[TaskManager shareInstance] getTasks];
+    [self.calendar reloadData];
+    [self.calendar reloadInputViews];
     [self.taskTableView reloadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    self.task = NULL;
     [self setFont];
     [self loadTasks];
 }
@@ -213,14 +216,14 @@
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
                                                            style:UIAlertActionStyleDefault
                                                          handler:^(UIAlertAction *action){
+                                                             
                                                              [[TaskManager shareInstance] punchForTaskWithID:@(self.task.id) onDate:date];
                                                              
-                                                             self.task = NULL;
-                                                             [self.calendar reloadData];
-                                                             [self.calendar reloadInputViews];
+                                                             NSIndexPath *path = [NSIndexPath indexPathForRow:[self.taskArr indexOfObject:self.task] inSection:0];
                                                              
                                                              [self loadTasks];
-                                                             
+
+                                                             self.task = self.taskArr[path.row];
                                                          }];
         [alertController addAction:cancelAction];
         [alertController addAction:okAction];
