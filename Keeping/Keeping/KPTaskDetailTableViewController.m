@@ -18,6 +18,9 @@
 #import "KPReminderViewController.h"
 #import "KPSchemeManager.h"
 
+#define ENDLESS_STRING @"无限期"
+#define DATE_FORMAT @"yyyy/MM/dd"
+
 @interface KPTaskDetailTableViewController ()
 
 @end
@@ -26,95 +29,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
-    if(self.task != NULL){
-        [self.navigationItem setTitle:@"任务详情"];
-        
-        /*
-         * 暂时
-         */
-        [self.weekDayStack setUserInteractionEnabled:NO];
-        /*
-        for(UIButton *btn in self.weekDayStack.subviews){
-            [btn setTintColor:[UIColor lightGrayColor]];
-            if(btn.tag == -1){
-                [btn setHidden:YES];
-            }
-        }
-         */
-        
-        [self.taskNameField setText:[self.task name]];
-        
-        self.selectedWeekdayArr = [NSMutableArray arrayWithArray:self.task.reminderDays];
-        if([self.selectedWeekdayArr count] > 0){
-            [self.allButton setTitle:@"清空" forState: UIControlStateNormal];
-        }else{
-            [self.allButton setTitle:@"全选" forState: UIControlStateNormal];
-        }
-        
-        [self.startDateLabel setText:[self.task.addDate formattedDateWithFormat:@"yyyy/MM/dd"]];
-        if(self.task.endDate != NULL){
-            [self.endDateLabel setText:[self.task.endDate formattedDateWithFormat:@"yyyy/MM/dd"]];
-            
-            //如果已经超期，不能编辑
-//            if([self.task.endDate isEarlierThan:[NSDate date]]){
-//                [self.tableView setUserInteractionEnabled:NO];
-//            }else{
-//                [self.tableView setUserInteractionEnabled:YES];
-//            }
-            
-        }else{
-            [self.endDateLabel setText:@"无结束日期"];
-        }
-        
-        //对星期排序
-        NSMutableArray *arr = [NSMutableArray arrayWithArray:self.task.reminderDays];
-        [arr sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-            NSNumber *n1 = (NSNumber *)obj1;
-            NSNumber *n2 = (NSNumber *)obj2;
-            NSComparisonResult result = [n1 compare:n2];
-            return result == NSOrderedDescending;
-        }];
-        self.task.reminderDays = arr;
-        
-        self.selectedApp = self.task.appScheme;
-        if(self.selectedApp != NULL){
-            [self.appNameLabel setText:self.selectedApp.allKeys[0]];
-        }
-        
-        self.reminderTime = self.task.reminderTime;
-        if(self.reminderTime != NULL){
-            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            [dateFormatter setDateFormat:@"HH:mm"];
-            NSString *currentDateStr = [dateFormatter stringFromDate:self.reminderTime];
-            [self.reminderLabel setText:currentDateStr];
-            [self.reminderSwitch setOn:YES];
-        }
-        
-        if(self.task.image != NULL){
-            [self.selectedImgView setImage:[UIImage imageWithData:self.task.image]];
-            [self setHasImage];
-        }else{
-            [self setNotHaveImage];
-        }
-        
-        [self.linkTextField setText:self.task.link];
-        
-        [self.tableView reloadData];
-        
-    }else{
-        [self.navigationItem setTitle:@"新增任务"];
-        
-        [self.startDateLabel setText:[[NSDate date] formattedDateWithFormat:@"YYYY/MM/dd"]];
-        [self.endDateLabel setText:@"无结束日期"];
-        
-        [self.reminderSwitch setOn:NO];
-        
-        [self setNotHaveImage];
-        
-        [self.taskNameField becomeFirstResponder];
-    }
     
     self.clearsSelectionOnViewWillAppear = NO;
     //导航栏左上角
@@ -172,15 +86,107 @@
 //    gesture.numberOfTapsRequired = 1;
 //    [self.view addGestureRecognizer:gesture];
     
+    
+    
+    
+    if(self.task != NULL){
+        [self.navigationItem setTitle:@"任务详情"];
+        
+        /*
+         * 暂时
+         */
+        [self.weekDayStack setUserInteractionEnabled:NO];
+        /*
+         for(UIButton *btn in self.weekDayStack.subviews){
+         [btn setTintColor:[UIColor lightGrayColor]];
+         if(btn.tag == -1){
+         [btn setHidden:YES];
+         }
+         }
+         */
+        
+        [self.taskNameField setText:[self.task name]];
+        
+        self.selectedWeekdayArr = [NSMutableArray arrayWithArray:self.task.reminderDays];
+        if([self.selectedWeekdayArr count] > 0){
+            [self.allButton setTitle:@"清空" forState: UIControlStateNormal];
+        }else{
+            [self.allButton setTitle:@"全选" forState: UIControlStateNormal];
+        }
+        for(NSNumber *num in self.selectedWeekdayArr){
+            UIImage *buttonImg = [UIImage imageNamed:@"CIRCLE_FULL"];
+            buttonImg = [buttonImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            [self.weekDayStack.subviews[num.integerValue-1] setBackgroundImage:buttonImg forState:UIControlStateNormal];
+            [self.weekDayStack.subviews[num.integerValue-1] setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        }
+        
+        [self.startDateLabel setText:[self.task.addDate formattedDateWithFormat:DATE_FORMAT]];
+        if(self.task.endDate != NULL){
+            [self.endDateLabel setText:[self.task.endDate formattedDateWithFormat:DATE_FORMAT]];
+            
+            //如果已经超期，不能编辑
+            //            if([self.task.endDate isEarlierThan:[NSDate date]]){
+            //                [self.tableView setUserInteractionEnabled:NO];
+            //            }else{
+            //                [self.tableView setUserInteractionEnabled:YES];
+            //            }
+            
+        }else{
+            [self.endDateLabel setText:ENDLESS_STRING];
+        }
+        
+        //对星期排序
+        NSMutableArray *arr = [NSMutableArray arrayWithArray:self.task.reminderDays];
+        [arr sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+            NSNumber *n1 = (NSNumber *)obj1;
+            NSNumber *n2 = (NSNumber *)obj2;
+            NSComparisonResult result = [n1 compare:n2];
+            return result == NSOrderedDescending;
+        }];
+        self.task.reminderDays = arr;
+        
+        self.selectedApp = self.task.appScheme;
+        if(self.selectedApp != NULL){
+            [self.appNameLabel setText:self.selectedApp.allKeys[0]];
+        }
+        
+        self.reminderTime = self.task.reminderTime;
+        if(self.reminderTime != NULL){
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"HH:mm"];
+            NSString *currentDateStr = [dateFormatter stringFromDate:self.reminderTime];
+            [self.reminderLabel setText:currentDateStr];
+            [self.reminderSwitch setOn:YES];
+        }
+        
+        if(self.task.image != NULL){
+            [self.selectedImgView setImage:[UIImage imageWithData:self.task.image]];
+            [self setHasImage];
+        }else{
+            [self setNotHaveImage];
+        }
+        
+        [self.linkTextField setText:self.task.link];
+        
+        [self.tableView reloadData];
+        
+    }else{
+        [self.navigationItem setTitle:@"新增任务"];
+        
+        [self.startDateLabel setText:[[NSDate date] formattedDateWithFormat:DATE_FORMAT]];
+        [self.endDateLabel setText:ENDLESS_STRING];
+        
+        self.selectedWeekdayArr = [[NSMutableArray alloc] init];
+        [self.reminderSwitch setOn:NO];
+        
+        [self setNotHaveImage];
+        
+        [self.taskNameField becomeFirstResponder];
+    }
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    for(NSNumber *num in self.selectedWeekdayArr){
-        UIImage *buttonImg = [UIImage imageNamed:@"CIRCLE_FULL"];
-        buttonImg = [buttonImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        [self.weekDayStack.subviews[num.integerValue-1] setBackgroundImage:buttonImg forState:UIControlStateNormal];
-        [self.weekDayStack.subviews[num.integerValue-1] setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    }
 }
 
 - (void)hideKeyboard{
@@ -256,10 +262,10 @@
     //链接
     self.task.link = self.linkTextField.text;       //有：文字，无：@“”
     //结束日期
-    if([self.endDateLabel.text isEqualToString:@"无结束日期"]){
+    if([self.endDateLabel.text isEqualToString:ENDLESS_STRING]){
         self.task.endDate = NULL;
     }else{
-        self.task.endDate = [NSDate dateWithString:self.endDateLabel.text formatString:@"yyyy/MM/dd"];
+        self.task.endDate = [NSDate dateWithString:self.endDateLabel.text formatString:DATE_FORMAT];
     }
     
     //更新
@@ -453,7 +459,7 @@
     hsdpvc.confirmButtonTitle = @"确定";
     
     NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
-    [fmt setDateFormat:@"yyyy/MM/dd"];
+    [fmt setDateFormat:DATE_FORMAT];
     hsdpvc.dateFormatter = fmt;
     
     NSDateFormatter *myfmt = [[NSDateFormatter alloc] init];
@@ -465,9 +471,9 @@
 
 - (void)hsDatePickerPickedDate:(NSDate *)date{
     if(date == NULL){
-        [self.endDateLabel setText:@"无结束日期"];
+        [self.endDateLabel setText:ENDLESS_STRING];
     }else{
-        [self.endDateLabel setText:[date formattedDateWithFormat:@"yyyy/MM/dd"]];
+        [self.endDateLabel setText:[date formattedDateWithFormat:DATE_FORMAT]];
     }
 }
 

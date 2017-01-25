@@ -36,7 +36,7 @@
                             <constraint firstAttribute="height" constant="45" id="qCC-8a-IsU"/>
                         </constraints>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qjo-ku-I5K">
+                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qjo-ku-I5K">
                         <rect key="frame" x="202" y="13" width="45" height="45"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="45" id="RO2-Cd-zzu"/>

@@ -93,7 +93,7 @@
     //排序
     NSMutableArray *sortDescriptors = [[NSMutableArray alloc] init];
     for(NSString *str in [self.sortFactor componentsSeparatedByString:@"|"]){
-        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:str ascending:YES];
+        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:str ascending:self.isAscend];
         [sortDescriptors addObject:sortDescriptor];
     }
     
@@ -459,6 +459,7 @@
 
 - (void)menuPopover:(MLKMenuPopover *)menuPopover didSelectMenuItemAtIndex:(NSInteger)selectedIndex{
     self.sortFactor = [[Utilities getTaskSortArr] allValues][selectedIndex];
+    self.isAscend = [[[Utilities getTaskSortArr] allKeys][selectedIndex] containsString:@"升序"];
     NSLog(@"按%@排序", self.sortFactor);
     [self loadTasksOfWeekdays:self.selectedWeekdayArr];
 }

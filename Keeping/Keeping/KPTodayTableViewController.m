@@ -21,8 +21,6 @@
 
 @interface KPTodayTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, MLKMenuPopoverDelegate>
 
-- (void)editAction:(_Nonnull id)sender;
-
 @property (nonatomic,strong) MLKMenuPopover *_Nonnull menuPopover;
 
 @end
@@ -69,7 +67,7 @@
     //排序
     NSMutableArray *sortDescriptors = [[NSMutableArray alloc] init];
     for(NSString *str in [self.sortFactor componentsSeparatedByString:@"|"]){
-        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:str ascending:YES];
+        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:str ascending:self.isAscend];
         [sortDescriptors addObject:sortDescriptor];
     }
     self.unfinishedTaskArr = [NSMutableArray arrayWithArray:[self.unfinishedTaskArr sortedArrayUsingDescriptors:sortDescriptors]];
@@ -85,6 +83,10 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)addAction:(id)senders{
+    [self performSegueWithIdentifier:@"addTaskSegue" sender:nil];
 }
 
 - (void)editAction:(id)sender{
@@ -202,7 +204,7 @@
                 
                 NSDictionary *d = t.appScheme;
                 NSString *s = d.allKeys[0];
-                [cell.appButton setTitle:[NSString stringWithFormat:@"启动%@", s] forState:UIControlStateNormal];
+                [cell.appButton setTitle:[NSString stringWithFormat:@"%@", s] forState:UIControlStateNormal];
                 [cell.appButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
                 [cell.appButton setUserInteractionEnabled:YES];
                 
@@ -219,7 +221,7 @@
             if(t.link != NULL && ![t.link isEqualToString:@""]){
                 [cell.moreButton setHidden:NO];
                 
-                [cell.linkButton setTitle:@"打开链接" forState:UIControlStateNormal];
+                [cell.linkButton setTitle:@"链接" forState:UIControlStateNormal];
                 [cell.linkButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
                 [cell.linkButton setUserInteractionEnabled:YES];
                 
@@ -236,7 +238,7 @@
             if(t.image != NULL){
                 [cell.moreButton setHidden:NO];
                 
-                [cell.imageButton setTitle:@"查看图片" forState:UIControlStateNormal];
+                [cell.imageButton setTitle:@"图片" forState:UIControlStateNormal];
                 [cell.imageButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
                 [cell.imageButton setUserInteractionEnabled:YES];
                 
@@ -410,6 +412,7 @@
 
 - (void)menuPopover:(MLKMenuPopover *)menuPopover didSelectMenuItemAtIndex:(NSInteger)selectedIndex{
     self.sortFactor = [[Utilities getTaskSortArr] allValues][selectedIndex];
+    self.isAscend = [[[Utilities getTaskSortArr] allKeys][selectedIndex] containsString:@"升序"];
     NSLog(@"按%@排序", self.sortFactor);
     [self loadTasks];
 }

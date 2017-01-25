@@ -49,7 +49,7 @@
 - (void)showSubmitAlert{
    
     UIAlertController *alertController =
-    [UIAlertController alertControllerWithTitle:@"请输入您要提交的 APP 名称"
+    [UIAlertController alertControllerWithTitle:@"请输入您想打开的 APP 名称"
                                         message:nil
                                  preferredStyle:UIAlertControllerStyleAlert];
     [alertController addTextFieldWithConfigurationHandler:nil];

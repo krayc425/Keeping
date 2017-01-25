@@ -20,5 +20,9 @@
 @property (nullable, nonatomic) NSIndexPath *selectedIndexPath;
 
 @property (nonnull, nonatomic) NSString *sortFactor;
+@property (nonatomic) BOOL isAscend;
+
+- (void)addAction:(_Nonnull id)sender;
+- (void)editAction:(_Nonnull id)sender;
 
 @end

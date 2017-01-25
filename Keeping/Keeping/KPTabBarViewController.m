@@ -30,6 +30,12 @@
                                                                 action:@selector(editAction:)];
     self.navigationItem.leftBarButtonItems = @[editItem];
     
+    UIBarButtonItem *addItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_ADD"]
+                                                                style:UIBarButtonItemStylePlain
+                                                               target:self.kpTaskTableViewController
+                                                               action:@selector(addAction:)];
+    self.navigationItem.rightBarButtonItems = @[addItem];
+    
     //设置底下 item
     [self.tabBarItem setImageInsets:UIEdgeInsetsMake(10, 0, -10, 0)];
     [[self.tabBar.items objectAtIndex:0] setTitle:@"今日"];
@@ -80,7 +86,11 @@
                                                                         action:@selector(editAction:)];
             self.navigationItem.leftBarButtonItems = @[editItem];
             
-            self.navigationItem.rightBarButtonItems = nil;
+            UIBarButtonItem *addItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_ADD"]
+                                                                        style:UIBarButtonItemStylePlain
+                                                                       target:self.kpTaskTableViewController
+                                                                       action:@selector(addAction:)];
+            self.navigationItem.rightBarButtonItems = @[addItem];
         }
             break;
         case 1:

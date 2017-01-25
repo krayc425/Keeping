@@ -225,7 +225,7 @@
     if (!_doneButton) {
         _doneButton = [[UIButton alloc] initWithFrame:CGRectMake(0, self.frame.size.height-60, self.frame.size.width, 60)];
         [_doneButton setTintColor:[UIColor whiteColor]];
-        [_doneButton setTitle:@"去添加任务吧!" forState:UIControlStateNormal];
+        [_doneButton setTitle:@"去添加第一个任务!" forState:UIControlStateNormal];
         [_doneButton.titleLabel setFont:[UIFont systemFontOfSize:18.0]];
         [_doneButton setBackgroundColor:[Utilities getColor]];
         [_doneButton addTarget:self.delegate action:@selector(onDoneButtonPressed) forControlEvents:UIControlEventTouchUpInside];

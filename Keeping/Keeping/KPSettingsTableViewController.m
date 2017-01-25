@@ -97,7 +97,7 @@
     NSString *title = [NSString stringWithFormat:@"Keeping! Feedbacks"];
     [wMailViewController setSubject:title];
     
-    [wMailViewController setToRecipients:[NSArray arrayWithObject:@"krayc@foxmail.com"]];
+    [wMailViewController setToRecipients:[NSArray arrayWithObject:@"krayc425@gmail.com"]];
     
     NSString *phoneVersion = [[UIDevice currentDevice] systemVersion];
     NSString *phoneModel  = [[UIDevice currentDevice] model];

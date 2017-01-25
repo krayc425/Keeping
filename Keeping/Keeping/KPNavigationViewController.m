@@ -66,17 +66,17 @@
 
 - (void)onDoneButtonPressed{
     //    Uncomment so that the IntroView does not show after the user clicks "DONE"
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:@"YES"forKey:@"intro_screen_viewed"];
+    [defaults synchronize];
     
-    //    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults]
-    //    [defaults setObject:@"YES"forKey:@"intro_screen_viewed"];
-    //    [defaults synchronize];
     [UIView animateWithDuration:1.0 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.introView.alpha = 0;
     } completion:^(BOOL finished) {
         [self.introView removeFromSuperview];
         
         KPTabBarViewController *tb = self.viewControllers[0];
-        [tb.viewControllers[1] performSegueWithIdentifier:@"addTaskSegue" sender:nil];
+        [tb.viewControllers[0] performSegueWithIdentifier:@"addTaskSegue" sender:nil];
     }];
 }
 

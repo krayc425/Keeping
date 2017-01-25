@@ -19,6 +19,7 @@
 @property (nonnull, nonatomic) IBOutlet UIButton *allButton;
 
 @property (nonnull, nonatomic) NSString *sortFactor;
+@property (nonatomic) BOOL isAscend;
 
 - (void)addAction:(_Nonnull id)senders;
 - (void)editAction:(_Nonnull id)senders;
