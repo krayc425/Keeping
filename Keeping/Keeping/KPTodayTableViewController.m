@@ -47,7 +47,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [self.progressLabel setFont:[UIFont fontWithName:[Utilities getFont] size:40.0f]];
     [self.dateLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
-    
+    self.selectedIndexPath = NULL;
     [self.dateLabel setText:[DateUtil getTodayDate]];
     [self loadTasks];
 }
@@ -412,7 +412,7 @@
 
 - (void)menuPopover:(MLKMenuPopover *)menuPopover didSelectMenuItemAtIndex:(NSInteger)selectedIndex{
     self.sortFactor = [[Utilities getTaskSortArr] allValues][selectedIndex];
-    self.isAscend = [[[Utilities getTaskSortArr] allKeys][selectedIndex] containsString:@"升序"];
+    self.isAscend = [[[Utilities getTaskSortArr] allKeys][selectedIndex] containsString:@"⇧"];
     NSLog(@"按%@排序", self.sortFactor);
     [self loadTasks];
 }

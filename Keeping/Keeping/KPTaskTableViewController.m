@@ -82,7 +82,8 @@
     self.taskArr = [NSMutableArray arrayWithArray:[[[TaskManager shareInstance] getTasks] filteredArrayUsingPredicate:predicate]];
     
     for(Task *t in self.taskArr){
-        if([t.endDate isEarlierThan:[NSDate date]]){
+        //（结束日加一天以后 才是到期）
+        if([[t.endDate dateByAddingDays:1] isEarlierThan:[NSDate date]]){
             [self.historyTaskArr addObject:t];
         }
     }
@@ -459,7 +460,7 @@
 
 - (void)menuPopover:(MLKMenuPopover *)menuPopover didSelectMenuItemAtIndex:(NSInteger)selectedIndex{
     self.sortFactor = [[Utilities getTaskSortArr] allValues][selectedIndex];
-    self.isAscend = [[[Utilities getTaskSortArr] allKeys][selectedIndex] containsString:@"升序"];
+    self.isAscend = [[[Utilities getTaskSortArr] allKeys][selectedIndex] containsString:@"⇧"];
     NSLog(@"按%@排序", self.sortFactor);
     [self loadTasksOfWeekdays:self.selectedWeekdayArr];
 }

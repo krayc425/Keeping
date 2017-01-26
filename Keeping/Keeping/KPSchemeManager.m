@@ -27,6 +27,7 @@
 //             @{@"1号店" : @"wccbyihaodian://"},
              @{@"有道词典" : @"yddictproapp://"},
              @{@"知乎" : @"zhihu://"},
+             @{@"扇贝单词" : @"shanbay://"},
 //             @{@"豆瓣 FM" : @"doubanradio://"},
 //             @{@"网易公开课" : @"ntesopen://"},
              @{@"Safari" : @"http://"},

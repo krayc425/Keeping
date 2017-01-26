@@ -79,31 +79,11 @@
     }
     //链接
     [self.linkTextField setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
-    
-    //添加手势，点击屏幕其他区域关闭键盘的操作
-//    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self
-//                                                                              action:@selector(hideKeyboard)];
-//    gesture.numberOfTapsRequired = 1;
-//    [self.view addGestureRecognizer:gesture];
-    
-    
-    
+    //到期日期颜色
+    [self.endDateLabel setTextColor:[Utilities getColor]];
     
     if(self.task != NULL){
         [self.navigationItem setTitle:@"任务详情"];
-        
-        /*
-         * 暂时
-         */
-        [self.weekDayStack setUserInteractionEnabled:NO];
-        /*
-         for(UIButton *btn in self.weekDayStack.subviews){
-         [btn setTintColor:[UIColor lightGrayColor]];
-         if(btn.tag == -1){
-         [btn setHidden:YES];
-         }
-         }
-         */
         
         [self.taskNameField setText:[self.task name]];
         
@@ -121,6 +101,7 @@
         }
         
         [self.startDateLabel setText:[self.task.addDate formattedDateWithFormat:DATE_FORMAT]];
+
         if(self.task.endDate != NULL){
             [self.endDateLabel setText:[self.task.endDate formattedDateWithFormat:DATE_FORMAT]];
             
@@ -157,6 +138,9 @@
             NSString *currentDateStr = [dateFormatter stringFromDate:self.reminderTime];
             [self.reminderLabel setText:currentDateStr];
             [self.reminderSwitch setOn:YES];
+        }else{
+            [self.reminderLabel setText:@"无"];
+            [self.reminderSwitch setOn:NO];
         }
         
         if(self.task.image != NULL){
@@ -251,8 +235,6 @@
     
     //任务名
     self.task.name = self.taskNameField.text;
-    //完成时间
-    self.task.reminderDays = self.selectedWeekdayArr;
     //app 名
     self.task.appScheme = self.selectedApp;
     //提醒时间
@@ -269,25 +251,114 @@
     }
     
     //更新
-    NSString *title;
     if(self.task.id == 0){
+        //完成时间
+        //对星期排序
+        NSMutableArray *arr = [NSMutableArray arrayWithArray:self.selectedWeekdayArr];
+        [arr sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+            NSNumber *n1 = (NSNumber *)obj1;
+            NSNumber *n2 = (NSNumber *)obj2;
+            NSComparisonResult result = [n1 compare:n2];
+            return result == NSOrderedDescending;
+        }];
+        //赋值
+        self.task.reminderDays = arr;
+        
+        //增加
         [[TaskManager shareInstance] addTask:self.task];
-        title = @"新增成功";
+        
+        //提示
+        UIAlertController *alertController =
+        [UIAlertController alertControllerWithTitle:@"新增成功"
+                                            message:nil
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction *action){
+                                                             [self.navigationController popToRootViewControllerAnimated:YES];
+                                                         }];
+        [alertController addAction:okAction];
+        [self presentViewController:alertController animated:YES completion:nil];
     }else{
-        [[TaskManager shareInstance] updateTask:self.task];
-        title = @"修改成功";
+        //完成时间排序
+        NSMutableArray *arr = [NSMutableArray arrayWithArray:self.selectedWeekdayArr];
+        [arr sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+            NSNumber *n1 = (NSNumber *)obj1;
+            NSNumber *n2 = (NSNumber *)obj2;
+            NSComparisonResult result = [n1 compare:n2];
+            return result == NSOrderedDescending;
+        }];
+        self.selectedWeekdayArr = arr;
+        
+        if(![self.task.reminderDays isEqual:arr]){
+            UIAlertController *alertController =
+            [UIAlertController alertControllerWithTitle:@"注意"
+                                                message:@"您更改了预计完成日的选项，这会导致今天之前的打卡记录清空，新的记录将从今天开始重新计算。您要继续吗？"
+                                         preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
+                                                               style:UIAlertActionStyleCancel
+                                                                 handler:^(UIAlertAction *action){
+                                                                     
+                                                                     [[TaskManager shareInstance] updateTask:self.task];
+                                                                     
+                                                                     UIAlertController *alertController =
+                                                                     [UIAlertController alertControllerWithTitle:@"修改成功"
+                                                                                                         message:nil
+                                                                                                  preferredStyle:UIAlertControllerStyleAlert];
+                                                                     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
+                                                                                                                        style:UIAlertActionStyleDefault
+                                                                                                                      handler:^(UIAlertAction *action){
+                                                                                                                          [self.navigationController popToRootViewControllerAnimated:YES];
+                                                                                                                      }];
+                                                                     [alertController addAction:okAction];
+                                                                     [self presentViewController:alertController animated:YES completion:nil];
+                                                                 }];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"仍然更改"
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction *action){
+                                                                 
+                                                                 //更新厨师日期、打卡数组和提醒日期
+                                                                 self.task.reminderDays = arr;
+                                                                 
+                                                                 NSDate *addDate = [NSDate dateWithYear:[[NSDate date] year] month:[[NSDate date] month] day:[[NSDate date] day]];
+                                                                 self.task.addDate = addDate;
+                                                                 self.task.punchDateArr = [[NSMutableArray alloc] init];
+                                                                 
+                                                                 [[TaskManager shareInstance] updateTask:self.task];
+                                                                 
+                                                                 UIAlertController *alertController =
+                                                                 [UIAlertController alertControllerWithTitle:@"修改成功"
+                                                                                                     message:nil
+                                                                                              preferredStyle:UIAlertControllerStyleAlert];
+                                                                 UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
+                                                                                                                    style:UIAlertActionStyleDefault
+                                                                                                                  handler:^(UIAlertAction *action){
+                                                                                                                      [self.navigationController popToRootViewControllerAnimated:YES];
+                                                                                                                  }];
+                                                                 [alertController addAction:okAction];
+                                                                 [self presentViewController:alertController animated:YES completion:nil];
+                                                             }];
+            [alertController addAction:cancelAction];
+            [alertController addAction:okAction];
+            [self presentViewController:alertController animated:YES completion:nil];
+        }else{
+            
+            [[TaskManager shareInstance] updateTask:self.task];
+            
+            UIAlertController *alertController =
+            [UIAlertController alertControllerWithTitle:@"修改成功"
+                                                message:nil
+                                         preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction *action){
+                                                                 [self.navigationController popToRootViewControllerAnimated:YES];
+                                                             }];
+            [alertController addAction:okAction];
+            [self presentViewController:alertController animated:YES completion:nil];
+        }
+
     }
-    UIAlertController *alertController =
-    [UIAlertController alertControllerWithTitle:title
-                                        message:nil
-                                 preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
-                                                       style:UIAlertActionStyleDefault
-                                                     handler:^(UIAlertAction *action){
-                                                         [self.navigationController popToRootViewControllerAnimated:YES];
-                                                     }];
-    [alertController addAction:okAction];
-    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 #pragma mark - Select Weekday Actions
@@ -473,7 +544,8 @@
     if(date == NULL){
         [self.endDateLabel setText:ENDLESS_STRING];
     }else{
-        [self.endDateLabel setText:[date formattedDateWithFormat:DATE_FORMAT]];
+        NSDate *endDate = [NSDate dateWithYear:[date year] month:[date month] day:[date day]];
+        [self.endDateLabel setText:[endDate formattedDateWithFormat:DATE_FORMAT]];
     }
 }
 

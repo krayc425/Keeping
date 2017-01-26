@@ -35,10 +35,12 @@
 + (NSDictionary *)getTaskSortArr{
     return @{
 //             @"任务名" : @"name",
-             @"添加日期升序" : @"addDate",
-             @"添加日期降序" : @"addDate",
-             @"提醒时间升序" : @"reminderTime.hour|reminderTime.minute",
-             @"提醒时间降序" : @"reminderTime.hour|reminderTime.minute"
+             @"开始日期⇧" : @"addDate",
+             @"开始日期⇩" : @"addDate",
+             @"提醒时间⇧" : @"reminderTime.hour|reminderTime.minute",
+             @"提醒时间⇩" : @"reminderTime.hour|reminderTime.minute",
+             @"结束日期⇧" : @"endDate",
+             @"结束日期⇩" : @"endDate"
              };
 }
 

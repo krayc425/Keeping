@@ -22,9 +22,9 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.2</string>
+	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>6</string>
+	<string>2</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>sinaweibo</string>
@@ -45,6 +45,7 @@
 		<string>doubanradio</string>
 		<string>ntesopen</string>
 		<string>http</string>
+		<string>shanbay</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

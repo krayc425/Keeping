@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CardsView.h"
+#import "HYCircleProgressView.h"
 
 @interface KPCalTaskTableViewCell : UITableViewCell
 
@@ -15,6 +16,8 @@
 
 @property (nonatomic, nonnull) IBOutlet UILabel *taskNameLabel;
 @property (nonatomic, nonnull) IBOutlet UILabel *punchDaysLabel;
+//完成进度
+@property (nonatomic, nonnull) IBOutlet HYCircleProgressView *progressView;
 
 - (void)setIsSelected:(BOOL)isSelected;
 - (void)setFont;

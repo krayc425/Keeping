@@ -47,9 +47,6 @@
     self.calendar.appearance.selectionColor =  [UIColor clearColor];
     self.calendar.appearance.titleSelectionColor = [UIColor blackColor];
     self.calendar.appearance.todaySelectionColor = [UIColor clearColor];
-//    self.calendar.appearance.borderSelectionColor;
-    
-//    self.calendar.select = NO;
     
     [cardView addSubview:self.calendar];
     
@@ -96,6 +93,22 @@
     [super viewDidLoad];
     self.gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     self.task = NULL;
+    
+    
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunchCal"]){
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunchCal"];
+        
+        UIAlertController *alertController =
+        [UIAlertController alertControllerWithTitle:@"小提示"
+                                            message:@"点击每项任务查看进度\n红色圆圈代表当天未完成，点击可以补打卡\n蓝色圆圈代表未来应当完成的日期\n蓝色实心圆圈代表打了卡的日期\n日期下方的小蓝点代表添加/结束日期"
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:nil];
+        [alertController addAction:okAction];
+        [self presentViewController:alertController animated:YES completion:nil];
+
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -126,7 +139,7 @@
     if([[NSDate date] isEarlierThanOrEqualTo:date]){
         return NO;
     }
-    if(self.task.endDate != NULL && [self.task.endDate isEarlierThan:date]){
+    if(self.task.endDate != NULL && [[self.task.endDate dateByAddingDays:1] isEarlierThan:date]){
         return NO;
     }else{
         return ![self.task.punchDateArr containsObject:[DateUtil transformDate:date]] && [self.task.reminderDays containsObject:@(date.weekday)] && [self.task.addDate isEarlierThanOrEqualTo:date];
@@ -183,7 +196,8 @@
     //进度
     int totalPunchNum = [[TaskManager shareInstance] totalPunchNumberOfTask:t];
     int punchNum = (int)[t.punchDateArr count];
-    [cell.punchDaysLabel setText:[NSString stringWithFormat:@"已完成 %d 天, 计划完成 %d 天, 完成率 %.1f%%", punchNum, totalPunchNum, totalPunchNum == 0 ? 0 : ((float)punchNum / (float)totalPunchNum * 100.0)]];
+    [cell.punchDaysLabel setText:[NSString stringWithFormat:@"已完成 %d 天, 计划完成 %d 天", punchNum, totalPunchNum]];
+    [cell.progressView setProgress:totalPunchNum == 0 ? 0 : (float)punchNum / (float)totalPunchNum animated:NO];
     
     return cell;
 }

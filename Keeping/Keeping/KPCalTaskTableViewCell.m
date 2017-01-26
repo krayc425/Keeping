@@ -28,16 +28,27 @@
         [self.cardView setBackgroundColor:[Utilities getColor]];
         [self.taskNameLabel setTextColor:[UIColor whiteColor]];
         [self.punchDaysLabel setTextColor:[UIColor whiteColor]];
+        
+        [self.progressView setBackgroundStrokeColor:[Utilities getColor]];
+        [self.progressView setProgressStrokeColor:[UIColor whiteColor]];
+        [self.progressView setDigitTintColor:[UIColor whiteColor]];
+
     }else{
         [self.cardView setBackgroundColor:[UIColor whiteColor]];
         [self.taskNameLabel setTextColor:[UIColor blackColor]];
         [self.punchDaysLabel setTextColor:[UIColor blackColor]];
+        
+        [self.progressView setBackgroundStrokeColor:[UIColor groupTableViewBackgroundColor]];
+        [self.progressView setProgressStrokeColor:[Utilities getColor]];
+        [self.progressView setDigitTintColor:[UIColor blackColor]];
+
     }
 }
 
 - (void)setFont{
     [self.taskNameLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
     [self.punchDaysLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
+    [self.progressView setFont];
 }
 
 @end

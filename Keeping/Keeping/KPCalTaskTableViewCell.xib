@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fcw-8v-FrW" customClass="CardsView">
-                        <rect key="frame" x="10" y="5" width="300" height="60"/>
+                        <rect key="frame" x="10" y="5" width="300" height="59"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -28,26 +29,36 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="4Z4-sv-c43">
-                        <rect key="frame" x="18" y="13" width="52" height="44"/>
+                        <rect key="frame" x="18" y="13" width="52" height="43"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="任务名" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="2aB-FB-WuP">
-                                <rect key="frame" x="0.0" y="0.0" width="52" height="22"/>
+                                <rect key="frame" x="0.0" y="0.0" width="52" height="21.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XBM-2O-wnG">
-                                <rect key="frame" x="0.0" y="22" width="52" height="22"/>
+                                <rect key="frame" x="0.0" y="21.5" width="52" height="21.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                     </stackView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AGj-Js-VDw" customClass="HYCircleProgressView">
+                        <rect key="frame" x="257" y="12" width="45" height="45"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="45" id="Fnc-ap-wIp"/>
+                            <constraint firstAttribute="width" secondItem="AGj-Js-VDw" secondAttribute="height" multiplier="1:1" id="RBJ-rH-saL"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottomMargin" secondItem="4Z4-sv-c43" secondAttribute="bottom" constant="5" id="0S2-L4-wzg"/>
+                    <constraint firstItem="AGj-Js-VDw" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="3sK-Do-W4D"/>
                     <constraint firstAttribute="trailing" secondItem="fcw-8v-FrW" secondAttribute="trailing" constant="10" id="5zI-nE-ouR"/>
+                    <constraint firstItem="AGj-Js-VDw" firstAttribute="width" secondItem="AGj-Js-VDw" secondAttribute="height" multiplier="1:1" id="J0D-Lj-uzw"/>
                     <constraint firstItem="fcw-8v-FrW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="azH-nw-hea"/>
                     <constraint firstItem="fcw-8v-FrW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="e14-qj-lVc"/>
                     <constraint firstItem="4Z4-sv-c43" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="fmg-P9-sXS"/>
@@ -55,11 +66,13 @@
                     <constraint firstItem="4Z4-sv-c43" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="nrA-4J-Po1"/>
                     <constraint firstItem="4Z4-sv-c43" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="oDE-6L-Qxj"/>
                     <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="4Z4-sv-c43" secondAttribute="trailing" id="pwo-C3-bFE"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="AGj-Js-VDw" secondAttribute="trailing" constant="10" id="sWE-6B-oTh"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="0.0" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="cardView" destination="fcw-8v-FrW" id="2F1-0S-LLB"/>
+                <outlet property="progressView" destination="AGj-Js-VDw" id="Tzu-uW-LzY"/>
                 <outlet property="punchDaysLabel" destination="XBM-2O-wnG" id="N4B-0Y-sVP"/>
                 <outlet property="taskNameLabel" destination="2aB-FB-WuP" id="oaF-Rk-ocK"/>
             </connections>
