@@ -185,7 +185,7 @@
     }
     
     if(![[userInfo objectForKey:@"taskapp"] isEqual: @{}]){
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[[userInfo objectForKey:@"taskapp"] allValues][0]]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[[userInfo objectForKey:@"taskapp"] allValues][0]] options:@{} completionHandler:nil];
     }
     
     completionHandler(); // 系统要求执行这个方法, 不然报错

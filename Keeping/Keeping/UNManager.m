@@ -26,6 +26,12 @@
         components.hour = task.reminderTime.hour;
         components.minute = task.reminderTime.minute;
         
+        //FOR TEST
+//        components.hour = [[NSDate date] hour];
+//        components.minute = [[[NSDate date] dateByAddingMinutes:1] minute];
+        
+        NSLog(@"通知时间 %ld %ld", (long)components.hour, (long)components.minute);
+        
         UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components repeats:YES];
         
         // 创建通知内容 UNMutableNotificationContent, 注意不是 UNNotificationContent, 此对象为不可变对象。

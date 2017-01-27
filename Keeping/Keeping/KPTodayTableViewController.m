@@ -359,12 +359,12 @@
         case 0:
         {
             NSString *s = t.appScheme.allValues[0];
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:s]];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:s] options:@{} completionHandler:nil];
         }
             break;
         case 1:
         {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:t.link]];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:t.link] options:@{} completionHandler:nil];
         }
             break;
         case 2:

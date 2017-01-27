@@ -292,19 +292,29 @@
             return [Utilities getColor];
         }
         if([self.task.addDate isEarlierThanOrEqualTo:date] && [self.task.reminderDays containsObject:@(date.weekday)]){
-            if([[NSDate date] isEarlierThanOrEqualTo:date]){
                 if(self.task.endDate == NULL){
-                    return [Utilities getColor];
-                }else{
-                    if([self.task.endDate isLaterThanOrEqualTo:date]){
+                    
+                    if([[NSDate date] isEarlierThanOrEqualTo:date]){
                         return [Utilities getColor];
+                    }else{
+                        return [UIColor redColor];
+                    }
+                    
+                }else{
+                    
+                    if([self.task.endDate isLaterThanOrEqualTo:date]){
+                        
+                        if([[NSDate date] isEarlierThanOrEqualTo:date]){
+                            return [Utilities getColor];
+                        }else{
+                            return [UIColor redColor];
+                        }
+                        
                     }else{
                         return [UIColor clearColor];
                     }
                 }
-            }else{
-                return [UIColor redColor];
-            }
+        
         }
     }
     
