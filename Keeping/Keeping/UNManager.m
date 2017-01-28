@@ -9,6 +9,7 @@
 #import "UNManager.h"
 #import "DateTools.h"
 #import "DateUtil.h"
+#import "TaskManager.h"
 
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
 #import <UserNotifications/UserNotifications.h>
@@ -91,11 +92,27 @@
     }
 }
 
++ (void)reconstructNotifications{
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    
+    [center removeAllPendingNotificationRequests];
+    [center removeAllDeliveredNotifications];
+    
+    for(Task *task in [[TaskManager shareInstance] getTasks]){
+        if(task.reminderTime != nil){
+            [self createLocalizedUserNotification:task];
+        }
+    }
+}
+
 + (void)printNumberOfNotifications{
-//    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
-//    for(UNNotificationRequest *r in center){
-//        NSLog(@"%@", r.description);
-//    }    
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    [center getPendingNotificationRequestsWithCompletionHandler:^(NSArray<UNNotificationRequest *> * _Nonnull requests) {
+        NSLog(@"NUMBER: %lu", (unsigned long)requests.count);
+        for(UNNotificationRequest *request in requests){
+            NSLog(@"%@", [request.content.userInfo valueForKey:@"taskid"]);
+        }
+    }];
 }
 
 @end

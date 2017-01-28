@@ -47,6 +47,7 @@
 		<string>http</string>
 		<string>shanbay</string>
 		<string>wxce5d9e837051d623</string>
+		<string>danyuapp</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
@@ -57,6 +58,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>方正书宋简体.ttf</string>
+		<string>方正楷体简体.ttf</string>
 	</array>
 	<key>UIApplicationShortcutItems</key>
 	<array>

@@ -31,6 +31,12 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    //先删除所有通知
+//    [UNManager printNumberOfNotifications];
+    [UNManager reconstructNotifications];
+//    [UNManager printNumberOfNotifications];
+    
     [self replyPushNotificationAuthorization:application];
     
     [AVOSCloud setApplicationId:@"sabdEOhaMdwIEc2zbKRBQk56-gzGzoHsz" clientKey:@"byONReV9r125hlRuN1mAvv9I"];
@@ -102,9 +108,11 @@
 //            NSLog(@"========%@",settings);
         }];
     }else if (IOS8_OR_LATER){
-        //iOS 8 - iOS 10系统
-        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
+      //iOS 8 - iOS 10系统
+        UIUserNotificationType types = (UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound);
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
         [application registerUserNotificationSettings:settings];
+        
     }
 }
 

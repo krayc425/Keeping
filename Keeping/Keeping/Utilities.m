@@ -24,6 +24,7 @@
              @{@"黑体" : @"STHeitiSC-Light"},
              @{@"苹方" : @"PingFangSC-Regular"},
              @{@"方正书宋" : @"FZSSJW--GB1-0"},
+             @{@"方正楷体" : @"FZKTJW--GB1-0"},
              ];
 }
 

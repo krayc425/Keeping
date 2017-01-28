@@ -31,6 +31,7 @@
     [super viewDidLoad];
     
     self.sortFactor = @"addDate";
+    
 //     NSArray *fontFamilies = [UIFont familyNames];
 //     for (int i = 0; i < [fontFamilies count]; i++){
 //     NSString *fontFamily = [fontFamilies objectAtIndex:i];

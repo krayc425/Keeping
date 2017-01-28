@@ -30,6 +30,7 @@
 		2436F82A1E2F2C5700C2984A /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 2436F8291E2F2C5700C2984A /* Task.m */; };
 		244EB3051E3635B100D30AE3 /* KPImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 244EB3041E3635B100D30AE3 /* KPImageViewController.m */; };
 		245196711E3CB82F00C18C5B /* TabBar.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 245196701E3CB82F00C18C5B /* TabBar.xcassets */; };
+		245196761E3CE35200C18C5B /* 方正楷体简体.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 245196751E3CE34F00C18C5B /* 方正楷体简体.ttf */; };
 		24699F031E2F213D0092FBED /* KPNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24699F021E2F213D0092FBED /* KPNavigationViewController.m */; };
 		24699F051E2F23C60092FBED /* Navigation.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24699F041E2F23C60092FBED /* Navigation.xcassets */; };
 		247A79801E38ABF1000EE623 /* ABCIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = 247A797F1E38ABF1000EE623 /* ABCIntroView.m */; };
@@ -112,6 +113,7 @@
 		244EB3031E3635B100D30AE3 /* KPImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPImageViewController.h; sourceTree = "<group>"; };
 		244EB3041E3635B100D30AE3 /* KPImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPImageViewController.m; sourceTree = "<group>"; };
 		245196701E3CB82F00C18C5B /* TabBar.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TabBar.xcassets; sourceTree = "<group>"; };
+		245196751E3CE34F00C18C5B /* 方正楷体简体.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "方正楷体简体.ttf"; sourceTree = "<group>"; };
 		24699F011E2F213D0092FBED /* KPNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPNavigationViewController.h; sourceTree = "<group>"; };
 		24699F021E2F213D0092FBED /* KPNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPNavigationViewController.m; sourceTree = "<group>"; };
 		24699F041E2F23C60092FBED /* Navigation.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Navigation.xcassets; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 		249AE3151E2DEE7700F704F8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				245196751E3CE34F00C18C5B /* 方正楷体简体.ttf */,
 				2429CBF71E2E571A0027DD37 /* 方正书宋简体.ttf */,
 				249AE3161E2DEE7700F704F8 /* main.m */,
 			);
@@ -520,6 +523,7 @@
 				24699F051E2F23C60092FBED /* Navigation.xcassets in Resources */,
 				24F2A0FA1E2F7B6E00F30FB1 /* round_backarrow_big-high.png in Resources */,
 				2435DBFA1E35CD5500F1A96E /* KPFontTableViewCell.xib in Resources */,
+				245196761E3CE35200C18C5B /* 方正楷体简体.ttf in Resources */,
 				2429CBF81E2E571A0027DD37 /* 方正书宋简体.ttf in Resources */,
 				24F2A0FB1E2F7B6E00F30FB1 /* round_backarrow_big-high@2x.png in Resources */,
 				24F2A0F81E2F7B6E00F30FB1 /* picker_wheel_ip4.png in Resources */,

@@ -261,6 +261,8 @@ static TaskManager* _instance = nil;
                 punchJsonStr = nil;
             }
             
+            NSLog(@"punch %@", taskid);
+            
             return [[[DBManager shareInstance] getDB] executeUpdate:@"update t_task set punchDateArr = ? where id = ?;", punchJsonStr, taskid];
         }
     }
