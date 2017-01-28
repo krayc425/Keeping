@@ -145,7 +145,9 @@ static TaskManager* _instance = nil;
 }
 
 - (BOOL)deleteTask:(Task *_Nonnull)task{
+    
     [UNManager deleteLocalizedUserNotification:task];
+    
     return [[[DBManager shareInstance] getDB] executeUpdate:
             @"delete from t_task where id = ?;",
             @(task.id)];

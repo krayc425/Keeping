@@ -29,6 +29,7 @@
 		2436F8271E2F2C4B00C2984A /* TaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2436F8261E2F2C4B00C2984A /* TaskManager.m */; };
 		2436F82A1E2F2C5700C2984A /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 2436F8291E2F2C5700C2984A /* Task.m */; };
 		244EB3051E3635B100D30AE3 /* KPImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 244EB3041E3635B100D30AE3 /* KPImageViewController.m */; };
+		245196711E3CB82F00C18C5B /* TabBar.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 245196701E3CB82F00C18C5B /* TabBar.xcassets */; };
 		24699F031E2F213D0092FBED /* KPNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24699F021E2F213D0092FBED /* KPNavigationViewController.m */; };
 		24699F051E2F23C60092FBED /* Navigation.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24699F041E2F23C60092FBED /* Navigation.xcassets */; };
 		247A79801E38ABF1000EE623 /* ABCIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = 247A797F1E38ABF1000EE623 /* ABCIntroView.m */; };
@@ -42,7 +43,6 @@
 		24DCF1901E30AAAA0097C250 /* KPCalTaskTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DCF18E1E30AAAA0097C250 /* KPCalTaskTableViewCell.m */; };
 		24DCF1911E30AAAA0097C250 /* KPCalTaskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24DCF18F1E30AAAA0097C250 /* KPCalTaskTableViewCell.xib */; };
 		24DCF1941E310A890097C250 /* CardsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DCF1931E310A890097C250 /* CardsView.m */; };
-		24DCF1961E31C29E0097C250 /* TabBar.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24DCF1951E31C29E0097C250 /* TabBar.xcassets */; };
 		24F2A0C31E2F371B00F30FB1 /* UIView+MJAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F2A0C21E2F371B00F30FB1 /* UIView+MJAlertView.m */; };
 		24F2A0CB1E2F383A00F30FB1 /* KPTaskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24F2A0C91E2F383A00F30FB1 /* KPTaskTableViewCell.xib */; };
 		24F2A0CE1E2F38C700F30FB1 /* KPTaskTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F2A0CD1E2F38C700F30FB1 /* KPTaskTableViewCell.m */; };
@@ -111,6 +111,7 @@
 		2436F8291E2F2C5700C2984A /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
 		244EB3031E3635B100D30AE3 /* KPImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPImageViewController.h; sourceTree = "<group>"; };
 		244EB3041E3635B100D30AE3 /* KPImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPImageViewController.m; sourceTree = "<group>"; };
+		245196701E3CB82F00C18C5B /* TabBar.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TabBar.xcassets; sourceTree = "<group>"; };
 		24699F011E2F213D0092FBED /* KPNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPNavigationViewController.h; sourceTree = "<group>"; };
 		24699F021E2F213D0092FBED /* KPNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPNavigationViewController.m; sourceTree = "<group>"; };
 		24699F041E2F23C60092FBED /* Navigation.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Navigation.xcassets; sourceTree = "<group>"; };
@@ -132,7 +133,6 @@
 		24DCF18F1E30AAAA0097C250 /* KPCalTaskTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KPCalTaskTableViewCell.xib; sourceTree = "<group>"; };
 		24DCF1921E310A890097C250 /* CardsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardsView.h; sourceTree = "<group>"; };
 		24DCF1931E310A890097C250 /* CardsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardsView.m; sourceTree = "<group>"; };
-		24DCF1951E31C29E0097C250 /* TabBar.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = TabBar.xcassets; path = ../TabBar.xcassets; sourceTree = "<group>"; };
 		24F2A0C11E2F371B00F30FB1 /* UIView+MJAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJAlertView.h"; sourceTree = "<group>"; };
 		24F2A0C21E2F371B00F30FB1 /* UIView+MJAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJAlertView.m"; sourceTree = "<group>"; };
 		24F2A0C91E2F383A00F30FB1 /* KPTaskTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KPTaskTableViewCell.xib; sourceTree = "<group>"; };
@@ -310,7 +310,7 @@
 				249AE31E1E2DEE7700F704F8 /* Main.storyboard */,
 				249AE3241E2DEE7700F704F8 /* Assets.xcassets */,
 				24699F041E2F23C60092FBED /* Navigation.xcassets */,
-				24DCF1951E31C29E0097C250 /* TabBar.xcassets */,
+				245196701E3CB82F00C18C5B /* TabBar.xcassets */,
 				249AE3261E2DEE7700F704F8 /* LaunchScreen.storyboard */,
 				249AE3291E2DEE7700F704F8 /* Info.plist */,
 				249AE3211E2DEE7700F704F8 /* Keeping.xcdatamodeld */,
@@ -511,6 +511,7 @@
 				24F2A0FC1E2F7B6E00F30FB1 /* round_backarrow_big.png in Resources */,
 				24F2A0FF1E2F7B6E00F30FB1 /* schedule_image_moon-high@2x.png in Resources */,
 				24F2A0F61E2F7B6E00F30FB1 /* checkmark_icon_white@2x.png in Resources */,
+				245196711E3CB82F00C18C5B /* TabBar.xcassets in Resources */,
 				24F2A0F71E2F7B6E00F30FB1 /* picker_wheel@2x.png in Resources */,
 				24F2A0FD1E2F7B6E00F30FB1 /* round_backarrow_big@2x.png in Resources */,
 				249AE3201E2DEE7700F704F8 /* Main.storyboard in Resources */,
@@ -523,7 +524,6 @@
 				24F2A0FB1E2F7B6E00F30FB1 /* round_backarrow_big-high@2x.png in Resources */,
 				24F2A0F81E2F7B6E00F30FB1 /* picker_wheel_ip4.png in Resources */,
 				2429CBEA1E2E49A60027DD37 /* KPSeparatorView.xib in Resources */,
-				24DCF1961E31C29E0097C250 /* TabBar.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

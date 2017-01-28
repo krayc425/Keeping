@@ -10,6 +10,8 @@
 
 @implementation KPSchemeManager
 
+//添加完别忘了去 info.plist 也加一个
+
 + (NSArray *)getSchemeArr{
     return @[
              @{@"微博" : @"sinaweibo://"},
@@ -28,6 +30,7 @@
              @{@"有道词典" : @"yddictproapp://"},
              @{@"知乎" : @"zhihu://"},
              @{@"扇贝单词" : @"shanbay://"},
+             @{@"百词斩" : @"wxce5d9e837051d623://"},
 //             @{@"豆瓣 FM" : @"doubanradio://"},
 //             @{@"网易公开课" : @"ntesopen://"},
              @{@"Safari" : @"http://"},

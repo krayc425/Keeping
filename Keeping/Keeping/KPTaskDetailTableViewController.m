@@ -40,15 +40,21 @@
     if([self.tableView isUserInteractionEnabled]){
         self.navigationItem.rightBarButtonItems = @[okItem];
     }
+    
+    
     //任务名
     [self.taskNameField setFont:[UIFont fontWithName:[Utilities getFont] size:25.0f]];
     //文本框代理
     self.taskNameField.delegate = self;
     self.linkTextField.delegate = self;
+    
+    
     //持续时间
     for(UILabel *label in self.durationStack.subviews){
         [label setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
     }
+    
+    
     //星期几选项按钮
     for(UIButton *button in self.weekDayStack.subviews){
         [button setTintColor:[Utilities getColor]];
@@ -63,24 +69,36 @@
             [button.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:12.0f]];
         }
     }
+    
+    
     //提醒标签
     [self.reminderLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
     //提醒开关
     [self.reminderSwitch setTintColor:[Utilities getColor]];
     [self.reminderSwitch setOnTintColor:[Utilities getColor]];
     [self.reminderSwitch addTarget:self action:@selector(showReminderPickerAction:) forControlEvents:UIControlEventValueChanged];
+    
+    
     //APP名字标签
     [self.appNameLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
+    
+    
     //图片
     self.selectedImgView.userInteractionEnabled = YES;
     for(UIButton *button in self.imgButtonStack.subviews){
         [button setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
         [button.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
     }
+    
+    
     //链接
     [self.linkTextField setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
+    
+    
     //到期日期颜色
     [self.endDateLabel setTextColor:[Utilities getColor]];
+    
+    
     
     if(self.task != NULL){
         [self.navigationItem setTitle:@"任务详情"];
@@ -101,7 +119,6 @@
         }
         
         [self.startDateLabel setText:[self.task.addDate formattedDateWithFormat:DATE_FORMAT]];
-
         if(self.task.endDate != NULL){
             [self.endDateLabel setText:[self.task.endDate formattedDateWithFormat:DATE_FORMAT]];
             
@@ -170,9 +187,6 @@
     
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-}
-
 - (void)hideKeyboard{
     if([self.taskNameField isFirstResponder]){
         [self.taskNameField resignFirstResponder];
@@ -224,13 +238,8 @@
         return;
     }
     
-    //新任务
     if(self.task == NULL){
         self.task = [Task new];
-        
-        NSDate *addDate = [NSDate dateWithYear:[[NSDate date] year] month:[[NSDate date] month] day:[[NSDate date] day]];
-        self.task.addDate = addDate;
-        self.task.punchDateArr = [[NSMutableArray alloc] init];
     }
     
     //任务名
@@ -252,6 +261,12 @@
     
     //更新
     if(self.task.id == 0){
+        
+        //添加日期，打卡数组
+        NSDate *addDate = [NSDate dateWithYear:[[NSDate date] year] month:[[NSDate date] month] day:[[NSDate date] day]];
+        self.task.addDate = addDate;
+        self.task.punchDateArr = [[NSMutableArray alloc] init];
+
         //完成时间
         //对星期排序
         NSMutableArray *arr = [NSMutableArray arrayWithArray:self.selectedWeekdayArr];
