@@ -8,6 +8,8 @@
 
 #import "DBManager.h"
 
+#define GROUP_ID @"group.com.krayc.keeping"
+
 @implementation DBManager
 
 static DBManager* _instance = nil;
@@ -34,14 +36,37 @@ static DBManager* _instance = nil;
 
 - (void)establishDB{
     //数据库路径
-    NSString *doc =[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) lastObject];
-    NSString *fileName = [doc stringByAppendingPathComponent:@"task.sqlite"];
-    NSLog(@"DB PATH : %@", doc);
+    
+    NSString *doc1 = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) lastObject];
+    NSString *doc2 = [[[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:GROUP_ID] path];
+    NSString *fileName1 = [doc1 stringByAppendingPathComponent:@"task.sqlite"];
+    NSString *fileName2 = [doc2 stringByAppendingPathComponent:@"task.sqlite"];
+    
+    NSLog(@"DB PATH 1 : %@", doc1);
+    NSLog(@"DB PATH 2 : %@", doc2);
+    NSLog(@"FILE PATH 1 : %@", fileName1);
+    NSLog(@"FILE PATH 2 : %@", fileName2);
+    
+    
+    //原来如果有，先挪到第二个地方去（针对1.0版本）
+    if([[NSFileManager defaultManager] fileExistsAtPath:fileName1]){
+        //复制到第二个
+        if([[NSFileManager defaultManager] fileExistsAtPath:fileName2]){
+            [[NSFileManager defaultManager] removeItemAtPath:fileName2 error:nil];
+        }
+        [[NSFileManager defaultManager] copyItemAtPath:fileName1 toPath:fileName2 error:nil];
+        //删除第一个
+        [[NSFileManager defaultManager] removeItemAtPath:fileName1 error:nil];
+    }else{
+        
+    }
+    
+    
     //获得数据库
-    self.db = [FMDatabase databaseWithPath:fileName];
+    self.db = [FMDatabase databaseWithPath:fileName2];
     //使用如下语句，如果打开失败，可能是权限不足或者资源不足。通常打开完操作操作后，需要调用 close 方法来关闭数据库。在和数据库交互之前，数据库必须是打开的。如果资源或权限不足无法打开或创建数据库，都会导致打开失败。
     if ([self.db open]){
-    //创表
+        //创表
         
         //先看有没有这张表
         if(![self.db tableExists:@"t_task"]){
@@ -73,6 +98,7 @@ static DBManager* _instance = nil;
         }
         
     }
+
 }
 
 - (FMDatabase *_Nonnull)getDB{

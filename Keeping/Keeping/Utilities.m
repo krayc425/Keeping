@@ -35,7 +35,6 @@
 //多个排序条件用|分割，到那边再 split
 + (NSDictionary *)getTaskSortArr{
     return @{
-//             @"任务名" : @"name",
              @"开始日期⇧" : @"addDate",
              @"开始日期⇩" : @"addDate",
              @"提醒时间⇧" : @"reminderTime.hour|reminderTime.minute",

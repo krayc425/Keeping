@@ -19,22 +19,42 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>BEMCheckBox.xcscheme</key>
+		<key>BEMCheckBox-iOS10.0.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>DZNEmptyDataSet.xcscheme</key>
+		<key>BEMCheckBox-iOS10.2.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>DateTools.xcscheme</key>
+		<key>DZNEmptyDataSet-iOS10.0.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>FMDB.xcscheme</key>
+		<key>DZNEmptyDataSet-iOS10.2.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>DateTools-iOS10.0.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>DateTools-iOS10.2.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FMDB-iOS10.0.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FMDB-iOS10.2.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -59,15 +79,15 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-KeepingWidget.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>107FC511B01CDA14F01A7A647152DEB8</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>1430236F6521BE436AAB592276C433CF</key>
+		<key>042A800CB1F99A4381D2681A17E5BAC4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -77,12 +97,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>21D763D2462B8C870008110EEC0B0930</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>28AFBC0E511B8F40FE4F8AB64E3F6F22</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5437890023F30CA85DFCA260CA914D48</key>
+		<key>40017AAC9EF9CA8D4504BB54DD9F9DF5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -92,12 +117,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8642CC820CE8C5B88C113D7F47AF4BC3</key>
+		<key>7AA93F3641CB172CE98227D092DBF4CC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B36F6D48026E14827529F787D63D61B8</key>
+		<key>8FD009C1B89BFE77AEF1BD1C71491D9B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>97EB3CB1EF522E3203F027512C3488F9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A6D9C4A523D097C732503D3533738EDC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A74CB9929C6EC3EA06B79A6F5C86E660</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -112,7 +152,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>DBAA853E113CA8DBFF916A61D63C055D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>DF880A7BBC8CC3F13B3C8A1B5D0F5FC3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DF9C730C3418CB90259B92AE29550B93</key>
 		<dict>
 			<key>primary</key>
 			<true/>

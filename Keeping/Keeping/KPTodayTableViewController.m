@@ -50,6 +50,7 @@
     [self.dateLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
     self.selectedIndexPath = NULL;
     [self.dateLabel setText:[DateUtil getTodayDate]];
+    
     [self loadTasks];
 }
 

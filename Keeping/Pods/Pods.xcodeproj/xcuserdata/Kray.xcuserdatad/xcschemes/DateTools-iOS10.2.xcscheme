@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '107FC511B01CDA14F01A7A647152DEB8'
-               BlueprintName = 'BEMCheckBox'
+               BlueprintIdentifier = '97EB3CB1EF522E3203F027512C3488F9'
+               BlueprintName = 'DateTools-iOS10.2'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libBEMCheckBox.a'>
+               BuildableName = 'libDateTools-iOS10.2.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

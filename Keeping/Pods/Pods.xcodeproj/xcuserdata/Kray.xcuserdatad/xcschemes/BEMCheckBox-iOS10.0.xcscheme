@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '40017AAC9EF9CA8D4504BB54DD9F9DF5'
-               BlueprintName = 'Pods-Keeping'
+               BlueprintIdentifier = 'DF9C730C3418CB90259B92AE29550B93'
+               BlueprintName = 'BEMCheckBox-iOS10.0'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libPods-Keeping.a'>
+               BuildableName = 'libBEMCheckBox-iOS10.0.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

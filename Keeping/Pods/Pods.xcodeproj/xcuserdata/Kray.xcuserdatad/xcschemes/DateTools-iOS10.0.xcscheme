@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '8642CC820CE8C5B88C113D7F47AF4BC3'
-               BlueprintName = 'FMDB'
+               BlueprintIdentifier = '7AA93F3641CB172CE98227D092DBF4CC'
+               BlueprintName = 'DateTools-iOS10.0'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libFMDB.a'>
+               BuildableName = 'libDateTools-iOS10.0.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

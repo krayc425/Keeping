@@ -34,6 +34,20 @@
 		24699F031E2F213D0092FBED /* KPNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24699F021E2F213D0092FBED /* KPNavigationViewController.m */; };
 		24699F051E2F23C60092FBED /* Navigation.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24699F041E2F23C60092FBED /* Navigation.xcassets */; };
 		247A79801E38ABF1000EE623 /* ABCIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = 247A797F1E38ABF1000EE623 /* ABCIntroView.m */; };
+		247F01B91E3D9E1B001F900C /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 247F01B81E3D9E1B001F900C /* NotificationCenter.framework */; };
+		247F01BD1E3D9E1B001F900C /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 247F01BC1E3D9E1B001F900C /* TodayViewController.m */; };
+		247F01C41E3D9E1B001F900C /* KeepingWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 247F01B71E3D9E1B001F900C /* KeepingWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		247F01CA1E3DAAA9001F900C /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 2436F8291E2F2C5700C2984A /* Task.m */; };
+		247F01CD1E3DB44B001F900C /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2429CBF21E2E4E750027DD37 /* Utilities.m */; };
+		247F01D11E3DB4F8001F900C /* KPWidgetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 247F01CF1E3DB4F8001F900C /* KPWidgetTableViewCell.m */; };
+		247F01D21E3DB4F8001F900C /* KPWidgetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 247F01D01E3DB4F8001F900C /* KPWidgetTableViewCell.xib */; };
+		247F01D31E3DBAB7001F900C /* DateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DCF1891E3094050097C250 /* DateUtil.m */; };
+		247F01D41E3DBB27001F900C /* 方正书宋简体.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2429CBF71E2E571A0027DD37 /* 方正书宋简体.ttf */; };
+		247F01D51E3DBB2B001F900C /* 方正楷体简体.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 245196751E3CE34F00C18C5B /* 方正楷体简体.ttf */; };
+		247F01D71E3DBC4E001F900C /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 247F01D61E3DBC4E001F900C /* MainInterface.storyboard */; };
+		247F01D81E3DC5F3001F900C /* TaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2436F8261E2F2C4B00C2984A /* TaskManager.m */; };
+		247F01D91E3DC625001F900C /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F2A0D01E2F3F1800F30FB1 /* DBManager.m */; };
+		247F01DA1E3DC627001F900C /* UNManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24151C961E32388300757A69 /* UNManager.m */; };
 		249AE3171E2DEE7700F704F8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 249AE3161E2DEE7700F704F8 /* main.m */; };
 		249AE31A1E2DEE7700F704F8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 249AE3191E2DEE7700F704F8 /* AppDelegate.m */; };
 		249AE3201E2DEE7700F704F8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 249AE31E1E2DEE7700F704F8 /* Main.storyboard */; };
@@ -69,7 +83,32 @@
 		24F2A1021E2F7B6E00F30FB1 /* KPTimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F2A0F31E2F7B6E00F30FB1 /* KPTimePicker.m */; };
 		24F2A1061E2F7CBC00F30FB1 /* KPReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F2A1051E2F7CBC00F30FB1 /* KPReminderViewController.m */; };
 		AA046577A8286B52DB0532E7 /* libPods-Keeping.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58B3856F487D477013388BEE /* libPods-Keeping.a */; };
+		B29DF1F523DB296B043EFE77 /* libPods-KeepingWidget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7768AB7A1CE5FD0A347A4517 /* libPods-KeepingWidget.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		247F01C21E3D9E1B001F900C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 249AE30A1E2DEE7700F704F8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 247F01B61E3D9E1B001F900C;
+			remoteInfo = KeepingWidget;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		247F01C81E3D9E1B001F900C /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				247F01C41E3D9E1B001F900C /* KeepingWidget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		24151C901E322D6700757A69 /* KPTaskDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPTaskDetailTableViewController.h; sourceTree = "<group>"; };
@@ -119,6 +158,16 @@
 		24699F041E2F23C60092FBED /* Navigation.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Navigation.xcassets; sourceTree = "<group>"; };
 		247A797E1E38ABF1000EE623 /* ABCIntroView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABCIntroView.h; sourceTree = "<group>"; };
 		247A797F1E38ABF1000EE623 /* ABCIntroView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABCIntroView.m; sourceTree = "<group>"; };
+		247F01B71E3D9E1B001F900C /* KeepingWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = KeepingWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		247F01B81E3D9E1B001F900C /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		247F01BB1E3D9E1B001F900C /* TodayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
+		247F01BC1E3D9E1B001F900C /* TodayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
+		247F01C11E3D9E1B001F900C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		247F01C91E3D9F16001F900C /* KeepingWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KeepingWidget.entitlements; sourceTree = "<group>"; };
+		247F01CE1E3DB4F8001F900C /* KPWidgetTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPWidgetTableViewCell.h; sourceTree = "<group>"; };
+		247F01CF1E3DB4F8001F900C /* KPWidgetTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPWidgetTableViewCell.m; sourceTree = "<group>"; };
+		247F01D01E3DB4F8001F900C /* KPWidgetTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KPWidgetTableViewCell.xib; sourceTree = "<group>"; };
+		247F01D61E3DBC4E001F900C /* MainInterface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		249AE3121E2DEE7700F704F8 /* Keeping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Keeping.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		249AE3161E2DEE7700F704F8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		249AE3181E2DEE7700F704F8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -168,12 +217,24 @@
 		24F2A0F31E2F7B6E00F30FB1 /* KPTimePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPTimePicker.m; sourceTree = "<group>"; };
 		24F2A1041E2F7CBC00F30FB1 /* KPReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPReminderViewController.h; sourceTree = "<group>"; };
 		24F2A1051E2F7CBC00F30FB1 /* KPReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPReminderViewController.m; sourceTree = "<group>"; };
+		3303168DFB48063C3EC132E2 /* Pods-KeepingWidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KeepingWidget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KeepingWidget/Pods-KeepingWidget.debug.xcconfig"; sourceTree = "<group>"; };
 		58B3856F487D477013388BEE /* libPods-Keeping.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Keeping.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7768AB7A1CE5FD0A347A4517 /* libPods-KeepingWidget.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KeepingWidget.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		90B7675F597B76B950B77B8B /* Pods-Keeping.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keeping.release.xcconfig"; path = "Pods/Target Support Files/Pods-Keeping/Pods-Keeping.release.xcconfig"; sourceTree = "<group>"; };
 		D878305BCC1A269899CF1ACC /* Pods-Keeping.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keeping.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Keeping/Pods-Keeping.debug.xcconfig"; sourceTree = "<group>"; };
+		F23AC8433168973E490B2488 /* Pods-KeepingWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KeepingWidget.release.xcconfig"; path = "Pods/Target Support Files/Pods-KeepingWidget/Pods-KeepingWidget.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		247F01B41E3D9E1B001F900C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				247F01B91E3D9E1B001F900C /* NotificationCenter.framework in Frameworks */,
+				B29DF1F523DB296B043EFE77 /* libPods-KeepingWidget.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		249AE30F1E2DEE7700F704F8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -268,10 +329,26 @@
 			name = TaskData;
 			sourceTree = "<group>";
 		};
+		247F01BA1E3D9E1B001F900C /* KeepingWidget */ = {
+			isa = PBXGroup;
+			children = (
+				247F01C91E3D9F16001F900C /* KeepingWidget.entitlements */,
+				247F01BB1E3D9E1B001F900C /* TodayViewController.h */,
+				247F01BC1E3D9E1B001F900C /* TodayViewController.m */,
+				247F01D61E3DBC4E001F900C /* MainInterface.storyboard */,
+				247F01CE1E3DB4F8001F900C /* KPWidgetTableViewCell.h */,
+				247F01CF1E3DB4F8001F900C /* KPWidgetTableViewCell.m */,
+				247F01D01E3DB4F8001F900C /* KPWidgetTableViewCell.xib */,
+				247F01C11E3D9E1B001F900C /* Info.plist */,
+			);
+			path = KeepingWidget;
+			sourceTree = "<group>";
+		};
 		249AE3091E2DEE7700F704F8 = {
 			isa = PBXGroup;
 			children = (
 				249AE3141E2DEE7700F704F8 /* Keeping */,
+				247F01BA1E3D9E1B001F900C /* KeepingWidget */,
 				249AE3131E2DEE7700F704F8 /* Products */,
 				DC76C55BD0DF229BAC78AECF /* Pods */,
 				3B36A3747ED818A6EEF990CE /* Frameworks */,
@@ -282,6 +359,7 @@
 			isa = PBXGroup;
 			children = (
 				249AE3121E2DEE7700F704F8 /* Keeping.app */,
+				247F01B71E3D9E1B001F900C /* KeepingWidget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -422,6 +500,8 @@
 			children = (
 				2436F8231E2F2C3300C2984A /* libsqlite3.0.tbd */,
 				58B3856F487D477013388BEE /* libPods-Keeping.a */,
+				247F01B81E3D9E1B001F900C /* NotificationCenter.framework */,
+				7768AB7A1CE5FD0A347A4517 /* libPods-KeepingWidget.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -431,6 +511,8 @@
 			children = (
 				D878305BCC1A269899CF1ACC /* Pods-Keeping.debug.xcconfig */,
 				90B7675F597B76B950B77B8B /* Pods-Keeping.release.xcconfig */,
+				3303168DFB48063C3EC132E2 /* Pods-KeepingWidget.debug.xcconfig */,
+				F23AC8433168973E490B2488 /* Pods-KeepingWidget.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -438,6 +520,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		247F01B61E3D9E1B001F900C /* KeepingWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 247F01C71E3D9E1B001F900C /* Build configuration list for PBXNativeTarget "KeepingWidget" */;
+			buildPhases = (
+				41DDC58DE091080386FCEE17 /* [CP] Check Pods Manifest.lock */,
+				247F01B31E3D9E1B001F900C /* Sources */,
+				247F01B41E3D9E1B001F900C /* Frameworks */,
+				247F01B51E3D9E1B001F900C /* Resources */,
+				27BD4EC4E6B5255A94352257 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KeepingWidget;
+			productName = KeepingWidget;
+			productReference = 247F01B71E3D9E1B001F900C /* KeepingWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		249AE3111E2DEE7700F704F8 /* Keeping */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 249AE32C1E2DEE7700F704F8 /* Build configuration list for PBXNativeTarget "Keeping" */;
@@ -448,10 +549,12 @@
 				249AE3101E2DEE7700F704F8 /* Resources */,
 				C306EC120EDCB79DCB2A853B /* [CP] Embed Pods Frameworks */,
 				1DB4E3AA2BDD226DF2D68A26 /* [CP] Copy Pods Resources */,
+				247F01C81E3D9E1B001F900C /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				247F01C31E3D9E1B001F900C /* PBXTargetDependency */,
 			);
 			name = Keeping;
 			productName = Keeping;
@@ -467,11 +570,24 @@
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "宋 奎熹";
 				TargetAttributes = {
+					247F01B61E3D9E1B001F900C = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = VEBQ28K9EA;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
 					249AE3111E2DEE7700F704F8 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = VEBQ28K9EA;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -493,11 +609,23 @@
 			projectRoot = "";
 			targets = (
 				249AE3111E2DEE7700F704F8 /* Keeping */,
+				247F01B61E3D9E1B001F900C /* KeepingWidget */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		247F01B51E3D9E1B001F900C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				247F01D41E3DBB27001F900C /* 方正书宋简体.ttf in Resources */,
+				247F01D71E3DBC4E001F900C /* MainInterface.storyboard in Resources */,
+				247F01D21E3DB4F8001F900C /* KPWidgetTableViewCell.xib in Resources */,
+				247F01D51E3DBB2B001F900C /* 方正楷体简体.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		249AE3101E2DEE7700F704F8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -564,6 +692,36 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Keeping/Pods-Keeping-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		27BD4EC4E6B5255A94352257 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KeepingWidget/Pods-KeepingWidget-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		41DDC58DE091080386FCEE17 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		C306EC120EDCB79DCB2A853B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -582,6 +740,21 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		247F01B31E3D9E1B001F900C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				247F01D91E3DC625001F900C /* DBManager.m in Sources */,
+				247F01CA1E3DAAA9001F900C /* Task.m in Sources */,
+				247F01D31E3DBAB7001F900C /* DateUtil.m in Sources */,
+				247F01BD1E3D9E1B001F900C /* TodayViewController.m in Sources */,
+				247F01DA1E3DC627001F900C /* UNManager.m in Sources */,
+				247F01D11E3DB4F8001F900C /* KPWidgetTableViewCell.m in Sources */,
+				247F01D81E3DC5F3001F900C /* TaskManager.m in Sources */,
+				247F01CD1E3DB44B001F900C /* Utilities.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		249AE30E1E2DEE7700F704F8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -625,6 +798,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		247F01C31E3D9E1B001F900C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 247F01B61E3D9E1B001F900C /* KeepingWidget */;
+			targetProxy = 247F01C21E3D9E1B001F900C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		249AE31E1E2DEE7700F704F8 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -645,6 +826,36 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		247F01C51E3D9E1B001F900C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3303168DFB48063C3EC132E2 /* Pods-KeepingWidget.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = KeepingWidget/KeepingWidget.entitlements;
+				DEVELOPMENT_TEAM = VEBQ28K9EA;
+				INFOPLIST_FILE = KeepingWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.krayc.Keeping.KeepingWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		247F01C61E3D9E1B001F900C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F23AC8433168973E490B2488 /* Pods-KeepingWidget.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = KeepingWidget/KeepingWidget.entitlements;
+				DEVELOPMENT_TEAM = VEBQ28K9EA;
+				INFOPLIST_FILE = KeepingWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.krayc.Keeping.KeepingWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		249AE32A1E2DEE7700F704F8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -768,6 +979,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		247F01C71E3D9E1B001F900C /* Build configuration list for PBXNativeTarget "KeepingWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				247F01C51E3D9E1B001F900C /* Debug */,
+				247F01C61E3D9E1B001F900C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		249AE30D1E2DEE7700F704F8 /* Build configuration list for PBXProject "Keeping" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
