@@ -25,4 +25,9 @@
 
 @property (nullable, nonatomic) Task *task;
 
+@property (nonnull, nonatomic) NSString *sortFactor;
+@property (nonatomic) BOOL isAscend;
+
+- (void)editAction:(_Nonnull id)sender;
+
 @end

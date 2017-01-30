@@ -20,6 +20,8 @@
 @property (nonatomic, nonnull) id<WidgetTaskDelegate> delegate;
 
 @property (nonatomic, nonnull) IBOutlet UILabel *nameLabel;
+@property (nonatomic, nonnull) IBOutlet UILabel *timeLabel;
+
 @property (nonatomic, nonnull) IBOutlet BEMCheckBox *checkBox;
 
 - (void)setFont;

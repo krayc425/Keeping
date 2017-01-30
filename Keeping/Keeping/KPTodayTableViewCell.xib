@@ -33,7 +33,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="任务名" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="X4g-mE-Nlp">
-                        <rect key="frame" x="18" y="22" width="52" height="21"/>
+                        <rect key="frame" x="18" y="22.5" width="52" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -61,24 +61,31 @@
                                 <rect key="frame" x="5" y="5" width="290" height="39"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="headTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rhn-ZQ-GtI">
-                                        <rect key="frame" x="0.0" y="5" width="97" height="30"/>
+                                        <rect key="frame" x="0.0" y="4.5" width="72.5" height="30"/>
                                         <state key="normal" title="打开 APP"/>
                                         <connections>
                                             <action selector="moreAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="NVF-ba-W69"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zbz-pJ-XEK">
-                                        <rect key="frame" x="97" y="5" width="96" height="30"/>
+                                        <rect key="frame" x="72.5" y="4.5" width="72.5" height="30"/>
                                         <state key="normal" title="打开链接"/>
                                         <connections>
                                             <action selector="moreAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="s0n-Al-Dxd"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YGi-8P-wfJ">
-                                        <rect key="frame" x="193" y="5" width="97" height="30"/>
+                                        <rect key="frame" x="145" y="4.5" width="72.5" height="30"/>
                                         <state key="normal" title="查看图片"/>
                                         <connections>
                                             <action selector="moreAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Pdj-Pv-jzb"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hxW-bt-j5b">
+                                        <rect key="frame" x="217.5" y="4.5" width="72.5" height="30"/>
+                                        <state key="normal" title="查看备注"/>
+                                        <connections>
+                                            <action selector="moreAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="tsP-JR-5Rp"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -98,13 +105,13 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HH:mm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WEt-XN-3wS">
-                        <rect key="frame" x="204" y="22" width="58" height="21"/>
+                        <rect key="frame" x="204" y="22.5" width="58" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="KCu-23-9U8">
-                        <rect key="frame" x="140" y="28" width="40" height="10"/>
+                        <rect key="frame" x="133" y="28" width="55" height="10"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qYF-LJ-P9k">
                                 <rect key="frame" x="0.0" y="0.0" width="10" height="10"/>
@@ -127,8 +134,16 @@
                                     <constraint firstAttribute="height" constant="10" id="sfQ-YH-K2e"/>
                                 </constraints>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TODAY_TEXT" translatesAutoresizingMaskIntoConstraints="NO" id="T6Z-KN-C3G">
+                                <rect key="frame" x="45" y="0.0" width="10" height="10"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="T6Z-KN-C3G" secondAttribute="height" multiplier="1:1" id="KfJ-Tw-yvt"/>
+                                    <constraint firstAttribute="height" constant="10" id="Ki7-E9-2lc"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="T6Z-KN-C3G" firstAttribute="width" secondItem="T6Z-KN-C3G" secondAttribute="height" multiplier="1:1" id="Z2V-y4-Ewa"/>
                             <constraint firstAttribute="height" constant="10" id="mAX-GG-7zg"/>
                         </constraints>
                     </stackView>
@@ -165,6 +180,8 @@
                 <outlet property="imageImg" destination="pWw-gS-wbu" id="9kS-db-bTg"/>
                 <outlet property="linkButton" destination="Zbz-pJ-XEK" id="DJa-Zz-IuU"/>
                 <outlet property="linkImg" destination="OB1-fl-otB" id="KJs-6j-bJu"/>
+                <outlet property="memoButton" destination="hxW-bt-j5b" id="jNm-av-RhJ"/>
+                <outlet property="memoImg" destination="T6Z-KN-C3G" id="hsx-RX-TQP"/>
                 <outlet property="moreButton" destination="iue-6t-6A6" id="RhB-za-ovt"/>
                 <outlet property="myCheckBox" destination="K31-Gh-vqJ" id="acV-xM-w54"/>
                 <outlet property="reminderLabel" destination="WEt-XN-3wS" id="P7E-fG-QWo"/>
@@ -174,5 +191,6 @@
     </objects>
     <resources>
         <image name="MORE_INFO_DOWN" width="30" height="16"/>
+        <image name="TODAY_TEXT" width="16" height="16"/>
     </resources>
 </document>

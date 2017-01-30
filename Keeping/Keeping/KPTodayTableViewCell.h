@@ -34,6 +34,7 @@
 @property (nonnull, nonatomic) IBOutlet UIImageView *appImg;
 @property (nonnull, nonatomic) IBOutlet UIImageView *linkImg;
 @property (nonnull, nonatomic) IBOutlet UIImageView *imageImg;
+@property (nonnull, nonatomic) IBOutlet UIImageView *memoImg;
 //子 cardview
 @property (nonnull, nonatomic) IBOutlet UIView *cardView2;
 //APP 按钮
@@ -42,6 +43,8 @@
 @property (nonnull, nonatomic) IBOutlet UIButton *linkButton;   //tag = 1
 //图片 按钮
 @property (nonnull, nonatomic) IBOutlet UIButton *imageButton;  //tag = 2
+//备注 按钮
+@property (nonnull, nonatomic) IBOutlet UIButton *memoButton;  //tag = 3
 
 - (void)setIsFinished:(BOOL)isFinished;
 

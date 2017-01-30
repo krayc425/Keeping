@@ -15,6 +15,10 @@
     [super awakeFromNib];
     
     [self.nameLabel setTextColor:[Utilities getColor]];
+    [self.timeLabel setTextColor:[Utilities getColor]];
+    
+//        [self.nameLabel setTextColor:[UIColor blackColor]];
+//        [self.timeLabel setTextColor:[UIColor blackColor]];
     
     self.checkBox.delegate = self;
     [self.checkBox setOnAnimationType:BEMAnimationTypeFill];
@@ -23,6 +27,8 @@
     [self.checkBox setOnTintColor:[Utilities getColor]];
     [self.checkBox setOnCheckColor:[Utilities getColor]];
     [self.checkBox setOnFillColor:[UIColor clearColor]];
+    
+    [self setFont];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -34,7 +40,8 @@
 }
 
 - (void)setFont{
-    [self.nameLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
+    [self.nameLabel setFont:[UIFont systemFontOfSize:20.0f]];
+    [self.timeLabel setFont:[UIFont systemFontOfSize:17.0f]];
 }
 
 @end

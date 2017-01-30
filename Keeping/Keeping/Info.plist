@@ -24,7 +24,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.1</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>sinaweibo</string>
@@ -32,22 +32,18 @@
 		<string>mqq</string>
 		<string>taobao</string>
 		<string>alipay</string>
-		<string>weico</string>
-		<string>mqqbrowser</string>
-		<string>ucbrowser</string>
-		<string>baidumap</string>
-		<string>googlechrome</string>
-		<string>youku</string>
-		<string>imeituan</string>
-		<string>wccbyihaodian</string>
 		<string>yddictproapp</string>
 		<string>zhihu</string>
-		<string>doubanradio</string>
-		<string>ntesopen</string>
 		<string>http</string>
 		<string>shanbay</string>
 		<string>wxce5d9e837051d623</string>
 		<string>danyuapp</string>
+		<string>WindInfoIPhoneFree</string>
+		<string>StockMasterIPhoneFree</string>
+		<string>toefl1216c2</string>
+		<string>jiakaobaodianxingui</string>
+		<string>com.huanshoulv</string>
+		<string>iGoldSun</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

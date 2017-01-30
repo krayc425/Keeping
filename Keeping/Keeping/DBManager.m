@@ -71,7 +71,7 @@ static DBManager* _instance = nil;
         //先看有没有这张表
         if(![self.db tableExists:@"t_task"]){
             BOOL result = [self.db executeUpdate:
-                           @"CREATE TABLE IF NOT EXISTS t_task (id integer PRIMARY KEY AUTOINCREMENT, name text NOT NULL, appScheme text, reminderDays text, addDate date NOT NULL, reminderTime date, punchDateArr text, image blob, link text, endDate date)"];
+                           @"CREATE TABLE IF NOT EXISTS t_task (id integer PRIMARY KEY AUTOINCREMENT, name text NOT NULL, appScheme text, reminderDays text, addDate date NOT NULL, reminderTime date, punchDateArr text, image blob, link text, endDate date, memo text)"];
             if (result){
                 NSLog(@"创建表成功");
             }
@@ -93,6 +93,11 @@ static DBManager* _instance = nil;
             if (![self.db columnExists:@"endDate" inTableWithName:@"t_task"]){
                 [self.db executeUpdate:[NSString stringWithFormat:@"ALTER TABLE %@ ADD %@ date", @"t_task", @"endDate"]];
                 NSLog(@"增加结束日期字段成功");
+            }
+            //备注选项
+            if (![self.db columnExists:@"memo" inTableWithName:@"t_task"]){
+                [self.db executeUpdate:[NSString stringWithFormat:@"ALTER TABLE %@ ADD %@ text", @"t_task", @"memo"]];
+                NSLog(@"增加备注字段成功");
             }
             
         }

@@ -12,7 +12,7 @@
 #import "KPReminderViewController.h"
 #import "HSDatePickerViewController.h"
 
-@interface KPTaskDetailTableViewController : UITableViewController <SchemeDelegate, ReminderDelegate,  UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, HSDatePickerViewControllerDelegate>
+@interface KPTaskDetailTableViewController : UITableViewController <SchemeDelegate, ReminderDelegate,  UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, HSDatePickerViewControllerDelegate, UITextViewDelegate>
 
 @property (nullable, nonatomic) Task *task;
 
@@ -41,5 +41,7 @@
 @property (nonnull, nonatomic) IBOutlet UIButton *deleteImgButton;
 
 @property (nonnull, nonatomic) IBOutlet UITextField *linkTextField;
+
+@property (nonnull, nonatomic) IBOutlet UITextView *memoTextView;
 
 @end

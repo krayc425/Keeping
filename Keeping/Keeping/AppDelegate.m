@@ -14,6 +14,8 @@
 #import "KPTabBarViewController.h"
 #import <AVOSCloud/AVOSCloud.h>
 #import "UNManager.h"
+#import "YFStartView.h"
+#import "StartButtomView.h"
 
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
 #import <UserNotifications/UserNotifications.h>
@@ -50,7 +52,27 @@
        || [[NSUserDefaults standardUserDefaults] valueForKey:@"font"] == NULL){
         [[NSUserDefaults standardUserDefaults] setValue:@"STHeitiSC-Light" forKey:@"font"];
     }
+
+    //启动动画
+    YFStartView *startView = [YFStartView startView];
+    startView.isAllowRandomImage = YES;
+    startView.randomImages = [NSMutableArray arrayWithObjects:@"Intro_Screen_Four", @"Intro_Screen_Three", @"Intro_Screen_Two", @"Intro_Screen_One", nil];
     
+    //LogoPositionCenter
+//    startView.logoPosition = LogoPositionCenter;
+//    startView.logoImage = [UIImage imageNamed:@"LOGO_512"];
+    
+    //LogoPositionCenter & UIView
+    startView.logoPosition = LogoPositionButtom;
+    StartButtomView *startButtomView = [[[NSBundle mainBundle] loadNibNamed:@"StartButtomView" owner:self options:nil] lastObject];
+    startView.logoView = startButtomView;
+    
+    //LogoPositionCenter & UIImage
+    //    startView.logoPosition = LogoPositionButtom;
+    //    startView.logoImage = [UIImage imageNamed:@"logo"];
+    
+    [startView configYFStartView];
+
     return YES;
 }
 

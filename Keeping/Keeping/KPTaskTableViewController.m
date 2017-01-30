@@ -304,7 +304,6 @@
         
         cell.backgroundColor = [UIColor clearColor];
         
-        
         Task *t;
         
         if(indexPath.section == 1){
@@ -313,8 +312,6 @@
             t = self.historyTaskArr[indexPath.row];
         }
         [cell.nameLabel setText:t.name];
-        
-        NSLog(@"%d", t.id);
         
         for(UIButton *button in cell.weekDayStack.subviews){
             if([t.reminderDays containsObject:@(button.tag)]){

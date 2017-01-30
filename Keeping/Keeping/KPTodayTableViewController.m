@@ -16,12 +16,15 @@
 #import "UIScrollView+EmptyDataSet.h"
 #import "KPImageViewController.h"
 #import "MLKMenuPopover.h"
+#import "AMPopTip.h"
 
 #define MENU_POPOVER_FRAME CGRectMake(10, 44 + 9, 140, 44 * [[Utilities getTaskSortArr] count])
 
 @interface KPTodayTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, MLKMenuPopoverDelegate>
 
 @property (nonatomic,strong) MLKMenuPopover *_Nonnull menuPopover;
+
+@property (nonatomic,strong) AMPopTip *tip;
 
 @end
 
@@ -48,10 +51,14 @@
 - (void)viewWillAppear:(BOOL)animated{
     [self.progressLabel setFont:[UIFont fontWithName:[Utilities getFont] size:40.0f]];
     [self.dateLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
-    self.selectedIndexPath = NULL;
     [self.dateLabel setText:[DateUtil getTodayDate]];
     
     [self loadTasks];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    self.selectedIndexPath = NULL;
+    [self.tip hide];
 }
 
 - (void)loadTasks{
@@ -254,6 +261,23 @@
                 [cell.imageImg setHidden:YES];
             }
             
+            if(t.memo != NULL && ![t.memo isEqualToString:@""]){
+                [cell.moreButton setHidden:NO];
+                
+                [cell.memoButton setTitle:@"备注" forState:UIControlStateNormal];
+                [cell.memoButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
+                [cell.memoButton setUserInteractionEnabled:YES];
+                
+                UIImage *imageImg = [UIImage imageNamed:@"TODAY_TEXT"];
+                imageImg = [imageImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+                [cell.memoImg setImage:imageImg];
+                [cell.memoButton setHidden:NO];
+                [cell.memoImg setHidden:NO];
+            }else{
+                [cell.memoButton setHidden:YES];
+                [cell.memoImg setHidden:YES];
+            }
+            
             NSString *reminderTimeStr = @"";
             if(t.reminderTime != NULL){
                 NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -322,6 +346,7 @@
         }
         
         [tableView reloadData];
+        
     }
 }
 
@@ -357,6 +382,7 @@
     //      = 0 : app
     //      = 1 : 链接
     //      = 2 : 图片
+    //      = 3 : 备注
     switch (button.tag) {
         case 0:
         {
@@ -372,6 +398,24 @@
         case 2:
         {
             [self performSegueWithIdentifier:@"imageSegue" sender:[UIImage imageWithData:t.image]];
+        }
+            break;
+        case 3:
+        {
+            self.tip = [AMPopTip popTip];
+            [self.tip showText:t.memo
+                     direction:AMPopTipDirectionNone
+                      maxWidth:self.view.frame.size.width - 50
+                        inView:self.view
+                     fromFrame:self.view.frame];
+            self.tip.shouldDismissOnTap = YES;
+            
+            self.tip.textColor = [UIColor whiteColor];
+            self.tip.tintColor = [Utilities getColor];
+            self.tip.popoverColor = [Utilities getColor];
+            self.tip.borderColor = [UIColor whiteColor];
+
+            self.tip.radius = 10;
         }
             break;
         default:

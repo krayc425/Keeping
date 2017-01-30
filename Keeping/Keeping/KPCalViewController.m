@@ -15,8 +15,13 @@
 #import "DateUtil.h"
 #import "CardsView.h"
 #import "KPCalTaskTableViewCell.h"
+#import "MLKMenuPopover.h"
 
-@interface KPCalViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
+#define MENU_POPOVER_FRAME CGRectMake(10, 44 + 9, 140, 44 * [[Utilities getTaskSortArr] count])
+
+@interface KPCalViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, MLKMenuPopoverDelegate>
+
+@property (nonatomic,strong) MLKMenuPopover *_Nonnull menuPopover;
 
 @end
 
@@ -117,6 +122,16 @@
 
 - (void)loadTasks{
     self.taskArr = [[TaskManager shareInstance] getTasks];
+    
+    //排序
+    NSMutableArray *sortDescriptors = [[NSMutableArray alloc] init];
+    for(NSString *str in [self.sortFactor componentsSeparatedByString:@"|"]){
+        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:str ascending:self.isAscend];
+        [sortDescriptors addObject:sortDescriptor];
+    }
+    
+    self.taskArr = [NSMutableArray arrayWithArray:[self.taskArr sortedArrayUsingDescriptors:sortDescriptors]];
+    
     [self.calendar reloadData];
     [self.calendar reloadInputViews];
     [self.taskTableView reloadData];
@@ -144,6 +159,14 @@
     }else{
         return ![self.task.punchDateArr containsObject:[DateUtil transformDate:date]] && [self.task.reminderDays containsObject:@(date.weekday)] && [self.task.addDate isEarlierThanOrEqualTo:date];
     }
+}
+
+- (void)editAction:(id)sender{
+    [self.menuPopover dismissMenuPopover];
+    
+    self.menuPopover = [[MLKMenuPopover alloc] initWithFrame:MENU_POPOVER_FRAME menuItems:[[Utilities getTaskSortArr] allKeys]];
+    self.menuPopover.menuPopoverDelegate = self;
+    [self.menuPopover showInView:self.navigationController.view];
 }
 
 #pragma mark - Table view data source
@@ -329,6 +352,16 @@
     }else{
         return 0;
     }
+}
+
+
+#pragma mark - MLKMenuPopoverDelegate
+
+- (void)menuPopover:(MLKMenuPopover *)menuPopover didSelectMenuItemAtIndex:(NSInteger)selectedIndex{
+    self.sortFactor = [[Utilities getTaskSortArr] allValues][selectedIndex];
+    self.isAscend = [[[Utilities getTaskSortArr] allKeys][selectedIndex] containsString:@"⇧"];
+    NSLog(@"按%@排序", self.sortFactor);
+    [self loadTasks];
 }
 
 @end

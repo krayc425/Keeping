@@ -99,6 +99,21 @@
     [self.endDateLabel setTextColor:[Utilities getColor]];
     
     
+    //备注
+    self.memoTextView.delegate = self;
+    [self.memoTextView setTextColor:[Utilities getColor]];
+    [self.memoTextView setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
+    
+    UILabel *placeHolderLabel = [[UILabel alloc] init];
+    placeHolderLabel.text = @"点击输入备注";
+    placeHolderLabel.numberOfLines = 0;
+    placeHolderLabel.textColor = [UIColor lightGrayColor];
+    [placeHolderLabel sizeToFit];
+    [placeHolderLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
+    placeHolderLabel.textAlignment = NSTextAlignmentCenter;
+    [self.memoTextView addSubview:placeHolderLabel];
+    [self.memoTextView setValue:placeHolderLabel forKey:@"_placeholderLabel"];
+    
     
     if(self.task != NULL){
         [self.navigationItem setTitle:@"任务详情"];
@@ -168,6 +183,8 @@
         }
         
         [self.linkTextField setText:self.task.link];
+        
+        [self.memoTextView setText:self.task.memo];
         
         [self.tableView reloadData];
         
@@ -258,6 +275,8 @@
     }else{
         self.task.endDate = [NSDate dateWithString:self.endDateLabel.text formatString:DATE_FORMAT];
     }
+    //备注
+    self.task.memo = self.memoTextView.text;
     
     //更新
     if(self.task.id == 0){
@@ -567,7 +586,7 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 7;
+    return 8;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -593,9 +612,12 @@
             [view setText:@"打开 APP"];
             break;
         case 5:
-            [view setText:@"链接"];
+            [view setText:@"备注"];
             break;
         case 6:
+            [view setText:@"链接"];
+            break;
+        case 7:
             [view setText:@"图片"];
             break;
         default:
@@ -629,7 +651,7 @@
         case 4:
             [self performSegueWithIdentifier:@"appSegue" sender:nil];
             break;
-        case 6:
+        case 7:
             [self modifyPicAction:nil];
             break;
         default:
@@ -638,17 +660,25 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(indexPath.section == 6){
+    if(indexPath.section == 7){
         return self.view.frame.size.width;
     }else{
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];
     }
 }
 
-#pragma mark - UITextFieldDelegate
+#pragma mark - UITextFieldDelegate & UITextViewDelegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [self hideKeyboard];
+    return YES;
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString*)text{
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
     return YES;
 }
 

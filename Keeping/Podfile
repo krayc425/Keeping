@@ -9,6 +9,9 @@ target 'Keeping' do
   pod 'BEMCheckBox'
   pod 'AVOSCloud'
   pod 'HSDatePickerViewController'
+  pod 'FDFullscreenPopGesture'
+  pod 'YFStartView'
+  pod 'AMPopTip'
   
 end
 

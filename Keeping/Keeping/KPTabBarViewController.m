@@ -22,6 +22,7 @@
     
     self.kpTodayTableViewController = (KPTodayTableViewController *)self.viewControllers[0];
     self.kpTaskTableViewController = (KPTaskTableViewController *)self.viewControllers[1];
+    self.kpCalViewController = (KPCalViewController *)self.viewControllers[2];
     
     [self.navigationItem setTitle:@"今日"];
     UIBarButtonItem *editItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_EDIT"]
@@ -114,7 +115,12 @@
         {
             [self.navigationItem setTitle:@"统计"];
             
-            self.navigationItem.leftBarButtonItems = nil;
+            UIBarButtonItem *editItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_EDIT"]
+                                                                         style:UIBarButtonItemStylePlain
+                                                                        target:self.kpCalViewController
+                                                                        action:@selector(editAction:)];
+            self.navigationItem.leftBarButtonItems = @[editItem];
+            
             self.navigationItem.rightBarButtonItems = nil;
         }
             break;

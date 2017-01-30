@@ -29,8 +29,6 @@
     [super viewDidLoad];
     [self loadDB];
     
-//    self.preferredContentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, 44 + DATELABEL_HEIGHT);
-    
     self.taskTableView.delegate = self;
     self.taskTableView.dataSource = self;
     self.taskTableView.emptyDataSetSource = self;
@@ -39,12 +37,12 @@
     
     [self.dateLabel setTextColor:[Utilities getColor]];
     [self.dateLabel setFont:[UIFont fontWithName:[Utilities getFont] size:25.0]];
+    
+    self.extensionContext.widgetLargestAvailableDisplayMode = NCWidgetDisplayModeExpanded;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
-    self.extensionContext.widgetLargestAvailableDisplayMode = NCWidgetDisplayModeExpanded;
     
     [self.dateLabel setText:[DateUtil getTodayDate]];
     
@@ -52,7 +50,7 @@
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
-    [self.db close];
+//    [self.db close];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -65,7 +63,6 @@
     } else {
         self.preferredContentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, DATELABEL_HEIGHT + self.taskArr.count * 44);
     }
-    [self.view reloadInputViews];
 }
 
 - (void)loadDB{
@@ -94,19 +91,19 @@
         t.id = [resultSet intForColumn:@"id"];
         t.name = [resultSet stringForColumn:@"name"];
         
-//        NSString *schemeJsonStr = [resultSet stringForColumn:@"appScheme"];
-//        if(schemeJsonStr != NULL){
-//            NSData *schemeData = [schemeJsonStr dataUsingEncoding:NSUTF8StringEncoding];
-//            NSDictionary *schemeDict = [NSJSONSerialization JSONObjectWithData:schemeData options:NSJSONReadingAllowFragments error:nil];
-//            t.appScheme = schemeDict;
-//        }
-//        
-//        NSString *daysJsonStr = [resultSet stringForColumn:@"reminderDays"];
-//        if(daysJsonStr != NULL){
-//            NSData *daysData = [daysJsonStr dataUsingEncoding:NSUTF8StringEncoding];
-//            NSArray *daysArr = [NSJSONSerialization JSONObjectWithData:daysData options:NSJSONReadingAllowFragments error:nil];
-//            t.reminderDays = daysArr;
-//        }
+        NSString *schemeJsonStr = [resultSet stringForColumn:@"appScheme"];
+        if(schemeJsonStr != NULL){
+            NSData *schemeData = [schemeJsonStr dataUsingEncoding:NSUTF8StringEncoding];
+            NSDictionary *schemeDict = [NSJSONSerialization JSONObjectWithData:schemeData options:NSJSONReadingAllowFragments error:nil];
+            t.appScheme = schemeDict;
+        }
+        
+        NSString *daysJsonStr = [resultSet stringForColumn:@"reminderDays"];
+        if(daysJsonStr != NULL){
+            NSData *daysData = [daysJsonStr dataUsingEncoding:NSUTF8StringEncoding];
+            NSArray *daysArr = [NSJSONSerialization JSONObjectWithData:daysData options:NSJSONReadingAllowFragments error:nil];
+            t.reminderDays = daysArr;
+        }
         
         NSString *punchJsonStr = [resultSet stringForColumn:@"punchDateArr"];
         if(punchJsonStr != NULL){
@@ -115,11 +112,11 @@
             t.punchDateArr = punchArr;
         }
         
-//        t.addDate = [resultSet dateForColumn:@"addDate"];
-//        t.reminderTime = [resultSet dateForColumn:@"reminderTime"];
-//        t.image = [resultSet dataForColumn:@"image"];
-//        t.link = [resultSet stringForColumn:@"link"];
-//        t.endDate = [resultSet dateForColumn:@"endDate"];
+        t.addDate = [resultSet dateForColumn:@"addDate"];
+        t.reminderTime = [resultSet dateForColumn:@"reminderTime"];
+        t.image = [resultSet dataForColumn:@"image"];
+        t.link = [resultSet stringForColumn:@"link"];
+        t.endDate = [resultSet dateForColumn:@"endDate"];
         
         if(![t.punchDateArr containsObject:[DateUtil transformDate:[NSDate date]]]){
             [self.taskArr addObject:t];
@@ -131,15 +128,8 @@
 }
 
 - (void)widgetPerformUpdateWithCompletionHandler:(void (^)(NCUpdateResult))completionHandler {
-    
-//    self.preferredContentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, self.taskArr.count * 30);
-//    
-//    [self.view reloadInputViews];
-
     completionHandler(NCUpdateResultNewData);
 }
-
-
 
 #pragma mark - Check Delegate
 
@@ -176,9 +166,19 @@
     
     [cell.checkBox setOn:NO];
     
-    Task *t;
-    t = self.taskArr[indexPath.row];
+    Task *t = self.taskArr[indexPath.row];
+    
     [cell.nameLabel setText:t.name];
+    
+    NSString *reminderTimeStr = @"";
+    if(t.reminderTime != NULL){
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"HH:mm"];
+        reminderTimeStr = [dateFormatter stringFromDate:t.reminderTime];
+        [cell.timeLabel setText:reminderTimeStr];
+    }else{
+        [cell.timeLabel setText:@""];
+    }
     
     return cell;
 }

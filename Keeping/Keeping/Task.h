@@ -32,5 +32,7 @@
 @property (nonatomic, nullable) NSData *image;
 //链接
 @property (nonatomic, nullable) NSString *link;
+//备注
+@property (nonatomic, nullable) NSString *memo;
 
 @end

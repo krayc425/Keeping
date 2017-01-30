@@ -21,30 +21,39 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mxa-3u-hRk">
-                        <rect key="frame" x="18" y="12" width="42" height="21"/>
+                        <rect key="frame" x="18" y="11" width="42" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hCM-e2-PC3" customClass="BEMCheckBox">
-                        <rect key="frame" x="274" y="8" width="28" height="28"/>
+                        <rect key="frame" x="275" y="8" width="27" height="27"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="hCM-e2-PC3" secondAttribute="height" multiplier="1:1" id="TKX-op-5g4"/>
                         </constraints>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Oh-dH-eT6">
+                        <rect key="frame" x="223" y="11.5" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="hCM-e2-PC3" secondAttribute="trailing" constant="10" id="DQb-j0-eda"/>
                     <constraint firstItem="Mxa-3u-hRk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="UL2-n2-qgz"/>
+                    <constraint firstItem="5Oh-dH-eT6" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="dsi-8o-gXT"/>
                     <constraint firstItem="Mxa-3u-hRk" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="fZW-Y5-ddN"/>
                     <constraint firstAttribute="bottom" secondItem="hCM-e2-PC3" secondAttribute="bottom" constant="8" id="mfN-Uk-wEu"/>
                     <constraint firstItem="hCM-e2-PC3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="pda-vG-8GL"/>
+                    <constraint firstItem="hCM-e2-PC3" firstAttribute="leading" secondItem="5Oh-dH-eT6" secondAttribute="trailing" constant="10" id="u5A-JE-uGg"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="checkBox" destination="hCM-e2-PC3" id="rf7-Ad-Jcc"/>
                 <outlet property="nameLabel" destination="Mxa-3u-hRk" id="6z2-AC-LOT"/>
+                <outlet property="timeLabel" destination="5Oh-dH-eT6" id="XKw-Ar-W5s"/>
             </connections>
         </tableViewCell>
     </objects>

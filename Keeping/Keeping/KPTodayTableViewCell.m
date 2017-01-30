@@ -49,6 +49,7 @@
     [self.appButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
     [self.linkButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
     [self.imageButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
+    [self.memoButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
 }
 
 @end
