@@ -79,7 +79,7 @@ static TaskManager* _instance = nil;
     }
     
     return [[[DBManager shareInstance] getDB] executeUpdate:
-            @"INSERT INTO t_task (name, appScheme, reminderDays, addDate, reminderTime, punchDateArr, image, link, endDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
+            @"INSERT INTO t_task (name, appScheme, reminderDays, addDate, reminderTime, punchDateArr, image, link, endDate, memo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
             task.name,
             schemeJsonStr,
             daysJsonStr,

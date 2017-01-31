@@ -56,8 +56,15 @@
     [self loadTasks];
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    self.tip = [AMPopTip popTip];
+}
+
 - (void)viewWillDisappear:(BOOL)animated{
     self.selectedIndexPath = NULL;
+}
+
+- (void)viewDidDisappear:(BOOL)animated{
     [self.tip hide];
 }
 
@@ -402,20 +409,21 @@
             break;
         case 3:
         {
-            self.tip = [AMPopTip popTip];
-            [self.tip showText:t.memo
-                     direction:AMPopTipDirectionNone
-                      maxWidth:self.view.frame.size.width - 50
-                        inView:self.view
-                     fromFrame:self.view.frame];
-            self.tip.shouldDismissOnTap = YES;
-            
-            self.tip.textColor = [UIColor whiteColor];
-            self.tip.tintColor = [Utilities getColor];
-            self.tip.popoverColor = [Utilities getColor];
-            self.tip.borderColor = [UIColor whiteColor];
+            if(![self.tip isVisible] && ![self.tip isAnimating]){
+                [self.tip showText:t.memo
+                         direction:AMPopTipDirectionNone
+                          maxWidth:self.view.frame.size.width - 50
+                            inView:self.view
+                         fromFrame:self.view.frame];
+                self.tip.shouldDismissOnTap = YES;
+                
+                self.tip.textColor = [UIColor whiteColor];
+                self.tip.tintColor = [Utilities getColor];
+                self.tip.popoverColor = [Utilities getColor];
+                self.tip.borderColor = [UIColor whiteColor];
 
-            self.tip.radius = 10;
+                self.tip.radius = 10;
+            }
         }
             break;
         default:
@@ -457,8 +465,12 @@
 #pragma mark - MLKMenuPopoverDelegate
 
 - (void)menuPopover:(MLKMenuPopover *)menuPopover didSelectMenuItemAtIndex:(NSInteger)selectedIndex{
-    self.sortFactor = [[Utilities getTaskSortArr] allValues][selectedIndex];
-    self.isAscend = [[[Utilities getTaskSortArr] allKeys][selectedIndex] containsString:@"⇧"];
+    if([self.sortFactor isEqualToString:[[Utilities getTaskSortArr] allValues][selectedIndex]]){
+        self.isAscend = !self.isAscend;
+    }else{
+        self.sortFactor = [[Utilities getTaskSortArr] allValues][selectedIndex];
+        self.isAscend = true;
+    }
     NSLog(@"按%@排序", self.sortFactor);
     [self loadTasks];
 }

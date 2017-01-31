@@ -7,7 +7,12 @@
 //
 
 #import "Task.h"
+#import "TaskManager.h"
 
 @implementation Task
+
+- (float)progress{
+    return (float)[self.punchDateArr count] / [[TaskManager shareInstance] totalPunchNumberOfTask:self];
+}
 
 @end

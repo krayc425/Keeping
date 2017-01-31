@@ -358,8 +358,12 @@
 #pragma mark - MLKMenuPopoverDelegate
 
 - (void)menuPopover:(MLKMenuPopover *)menuPopover didSelectMenuItemAtIndex:(NSInteger)selectedIndex{
-    self.sortFactor = [[Utilities getTaskSortArr] allValues][selectedIndex];
-    self.isAscend = [[[Utilities getTaskSortArr] allKeys][selectedIndex] containsString:@"⇧"];
+    if([self.sortFactor isEqualToString:[[Utilities getTaskSortArr] allValues][selectedIndex]]){
+        self.isAscend = !self.isAscend;
+    }else{
+        self.sortFactor = [[Utilities getTaskSortArr] allValues][selectedIndex];
+        self.isAscend = true;
+    }
     NSLog(@"按%@排序", self.sortFactor);
     [self loadTasks];
 }

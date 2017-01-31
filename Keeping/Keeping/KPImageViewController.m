@@ -20,6 +20,7 @@
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hide:)];
     tapGesture.numberOfTapsRequired = 1;
     [self.imageView addGestureRecognizer:tapGesture];
+    [self.view addGestureRecognizer:tapGesture];
     
     [self.imageView setImage:self.img];
 }

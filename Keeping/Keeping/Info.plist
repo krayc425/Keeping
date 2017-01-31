@@ -24,7 +24,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.1</string>
 	<key>CFBundleVersion</key>
-	<string>2</string>
+	<string>4</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>sinaweibo</string>
@@ -44,6 +44,7 @@
 		<string>jiakaobaodianxingui</string>
 		<string>com.huanshoulv</string>
 		<string>iGoldSun</string>
+		<string>tencenttribe</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

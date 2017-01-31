@@ -35,4 +35,7 @@
 //备注
 @property (nonatomic, nullable) NSString *memo;
 
+//完成率
+@property (nonatomic) float progress;
+
 @end

@@ -79,22 +79,22 @@ static DBManager* _instance = nil;
         }else{
             //更新数据库表
             
-            //图片选项
+            //图片选项    added on 1.0
             if (![self.db columnExists:@"image" inTableWithName:@"t_task"]){
                 [self.db executeUpdate:[NSString stringWithFormat:@"ALTER TABLE %@ ADD %@ blob", @"t_task", @"image"]];
                 NSLog(@"增加图片字段成功");
             }
-            //链接选项
+            //链接选项    added on 1.0
             if (![self.db columnExists:@"link" inTableWithName:@"t_task"]){
                 [self.db executeUpdate:[NSString stringWithFormat:@"ALTER TABLE %@ ADD %@ text", @"t_task", @"link"]];
                 NSLog(@"增加链接字段成功");
             }
-            //结束日期选项
+            //结束日期选项    added on 1.0
             if (![self.db columnExists:@"endDate" inTableWithName:@"t_task"]){
                 [self.db executeUpdate:[NSString stringWithFormat:@"ALTER TABLE %@ ADD %@ date", @"t_task", @"endDate"]];
                 NSLog(@"增加结束日期字段成功");
             }
-            //备注选项
+            //备注选项  added on 1.1
             if (![self.db columnExists:@"memo" inTableWithName:@"t_task"]){
                 [self.db executeUpdate:[NSString stringWithFormat:@"ALTER TABLE %@ ADD %@ text", @"t_task", @"memo"]];
                 NSLog(@"增加备注字段成功");

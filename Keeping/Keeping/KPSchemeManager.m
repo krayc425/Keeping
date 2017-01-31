@@ -37,7 +37,8 @@
              @{@"万得资讯" : @"WindInfoIPhoneFree://"},
              @{@"万得股票" : @"StockMasterIPhoneFree://"},
              @{@"换手率" : @"com.huanshoulv://"},
-             @{@"金太阳" : @"iGoldSun://"}
+             @{@"金太阳" : @"iGoldSun://"},
+             @{@"兴趣部落" : @"tencenttribe://"}
              ];
 }
 

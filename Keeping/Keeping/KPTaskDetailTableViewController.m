@@ -609,10 +609,10 @@
             [view setText:@"提醒时间"];
             break;
         case 4:
-            [view setText:@"打开 APP"];
+            [view setText:@"备注"];
             break;
         case 5:
-            [view setText:@"备注"];
+            [view setText:@"打开 APP"];
             break;
         case 6:
             [view setText:@"链接"];
@@ -648,7 +648,7 @@
         case 3:
             [self showReminderPickerAction:[NSDate date]];
             break;
-        case 4:
+        case 5:
             [self performSegueWithIdentifier:@"appSegue" sender:nil];
             break;
         case 7:
