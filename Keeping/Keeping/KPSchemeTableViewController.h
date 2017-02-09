@@ -17,11 +17,18 @@
 
 @end
 
-@interface KPSchemeTableViewController : UITableViewController
+@interface KPSchemeTableViewController : UITableViewController <UISearchResultsUpdating, UISearchDisplayDelegate>
 
 @property (nonatomic, nonnull) id<SchemeDelegate> delegate;
 
 @property (nonatomic, nullable) NSIndexPath *selectedPath;
+
+@property (nonatomic, nonnull) NSMutableArray *allNames;
+@property (nonatomic, nonnull) NSMutableArray *allSchemes;
+@property (nonatomic, nonnull) NSMutableArray *searchResults;
+@property (nonatomic, nonnull) NSMutableArray *appDictionaryArr;
+
+@property (nonatomic ,nonnull) UISearchController *searchController;
 
 @property (nonatomic, nonnull) IBOutlet UILabel *noneLabel;
 @property (nonatomic, nonnull) IBOutlet UILabel *insLabel;

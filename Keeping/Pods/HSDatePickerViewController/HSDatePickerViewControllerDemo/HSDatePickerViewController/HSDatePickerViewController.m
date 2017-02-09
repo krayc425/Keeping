@@ -118,11 +118,15 @@ static NSInteger kBufforRows = 30; //Number of rows that are prevent by scroll p
     [self setPickerView:self.pickerView rowInComponent:HourPicker toIntagerValue:[components hour] decrementing:NO animated:NO];
     [self setPickerView:self.pickerView rowInComponent:MinutePicker toIntagerValue:[components minute]  decrementing:NO animated:NO];
     
-    self.deleteButton.layer.cornerRadius = 10.0;
-    self.deleteButton.layer.borderColor = self.mainColor.CGColor;
-    self.deleteButton.layer.borderWidth = 1.0;
-    self.deleteButton.layer.borderColor = self.mainColor.CGColor;
-    [self.deleteButton setTitleColor:self.mainColor forState:UIControlStateNormal];
+    if(self.timeType == 1){
+        self.deleteButton.layer.cornerRadius = 10.0;
+        self.deleteButton.layer.borderColor = self.mainColor.CGColor;
+        self.deleteButton.layer.borderWidth = 1.0;
+        self.deleteButton.layer.borderColor = self.mainColor.CGColor;
+        [self.deleteButton setTitleColor:self.mainColor forState:UIControlStateNormal];
+    }else{
+        [self.deleteButton setHidden:YES];
+    }
     
 }
 

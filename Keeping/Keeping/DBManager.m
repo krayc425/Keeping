@@ -7,10 +7,11 @@
 //
 
 #import "DBManager.h"
+#import <WatchConnectivity/WatchConnectivity.h>
 
 #define GROUP_ID @"group.com.krayc.keeping"
 
-@implementation DBManager
+@implementation DBManager 
 
 static DBManager* _instance = nil;
 
@@ -29,9 +30,19 @@ static DBManager* _instance = nil;
 - (instancetype)init{
     self = [super init];
     if (self) {
+        [self establishWC];
         [self establishDB];
     }
     return self;
+}
+
+- (void)establishWC{
+    //Watch 链接
+    if ([WCSession isSupported]) {
+        WCSession *session = [WCSession defaultSession];
+        session.delegate = self;
+        [session activateSession];
+    }
 }
 
 - (void)establishDB{
@@ -60,6 +71,13 @@ static DBManager* _instance = nil;
     }else{
         
     }
+    
+    
+//    NSLog(@"transfer begin");
+//    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"file://%@", fileName2]];   // URL of file
+//    NSDictionary *metadataDict = nil;    // Create dictionary of data
+//    [[WCSession defaultSession] transferFile:url metadata:metadataDict];
+//    NSLog(@"transfer done");
     
     
     //获得数据库
@@ -101,9 +119,8 @@ static DBManager* _instance = nil;
             }
             
         }
-        
     }
-
+    
 }
 
 - (FMDatabase *_Nonnull)getDB{
@@ -114,5 +131,26 @@ static DBManager* _instance = nil;
     NSLog(@"db close");
     [self.db close];
 }
+
+#pragma <WCSessionDelegate>
+
+- (void)sessionDidDeactivate:(WCSession *)session{
+    NSLog(@"sessionDidDeactivate");
+}
+
+- (void)sessionDidBecomeInactive:(WCSession *)session{
+    NSLog(@"sessionDidBecomeInactive");
+}
+
+//- (void)session:(nonnull WCSession *)session didReceiveMessage:(nonnull NSDictionary *)message replyHandler:(nonnull void (^)(NSDictionary * __nonnull))replyHandler {
+//    NSString *counterValue = [message objectForKey:@"counterValue"];
+//    
+//    //Use this to update the UI instantaneously (otherwise, takes a little while)
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        
+//        NSLog(@"COUNTER %@", counterValue);
+//        
+//    });
+//}
 
 @end

@@ -54,6 +54,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>DateTools-watchOS3.1.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>FDFullscreenPopGesture.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -65,6 +70,11 @@
 			<false/>
 		</dict>
 		<key>FMDB-iOS10.2.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FMDB-watchOS3.1.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -85,6 +95,16 @@
 			<false/>
 		</dict>
 		<key>Pods-Keeping.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-KeepingWatch Extension.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-KeepingWatch.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -132,6 +152,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>61BFE612F81624CA0C26EAF53D046B4C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>7AA93F3641CB172CE98227D092DBF4CC</key>
 		<dict>
 			<key>primary</key>
@@ -142,12 +167,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>8D261B8C17F2029C13436B28905886F0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>8FD009C1B89BFE77AEF1BD1C71491D9B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>97EB3CB1EF522E3203F027512C3488F9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A697DA04F323007A6F3A55A777E55458</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -188,6 +223,11 @@
 			<true/>
 		</dict>
 		<key>DF9C730C3418CB90259B92AE29550B93</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E05481E29607944DB2C69E087A2BD80A</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -9,6 +9,8 @@
 #import "KPWidgetTableViewCell.h"
 #import "Utilities.h"
 
+#define GROUP_ID @"group.com.krayc.keeping"
+
 @implementation KPWidgetTableViewCell
 
 - (void)awakeFromNib {
@@ -40,8 +42,11 @@
 }
 
 - (void)setFont{
-    [self.nameLabel setFont:[UIFont systemFontOfSize:20.0f]];
-    [self.timeLabel setFont:[UIFont systemFontOfSize:17.0f]];
+    NSUserDefaults *shared = [[NSUserDefaults alloc]initWithSuiteName:GROUP_ID];
+    NSString *fontName = (NSString *)[shared valueForKey:@"fontwidget"];
+    
+    [self.nameLabel setFont:[UIFont fontWithName:fontName size:20.0f]];
+    [self.timeLabel setFont:[UIFont fontWithName:fontName size:17.0f]];
 }
 
 @end

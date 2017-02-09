@@ -7,15 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FSCalendar.h"
 #import "KPTodayTableViewCell.h"
 
-@interface KPTodayTableViewController : UITableViewController <CheckTaskDelegate>
+@interface KPTodayTableViewController : UITableViewController <CheckTaskDelegate, FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance>
 
-@property (nonnull, nonatomic) IBOutlet UILabel *dateLabel;
+@property (nonnull, nonatomic) IBOutlet UIButton *dateButton;
 @property (nonnull, nonatomic) IBOutlet UILabel *progressLabel;
 
 @property (nonnull, nonatomic) NSMutableArray *unfinishedTaskArr;
 @property (nonnull, nonatomic) NSMutableArray *finishedTaskArr;
+
+@property (nonnull, nonatomic) NSDate *selectedDate;
 
 @property (nullable, nonatomic) NSIndexPath *selectedIndexPath;
 
@@ -24,5 +27,10 @@
 
 - (void)addAction:(_Nonnull id)sender;
 - (void)editAction:(_Nonnull id)sender;
+
+@property (nonnull, nonatomic) FSCalendar *calendar;
+@property (nonnull, nonatomic) UIButton *previousButton;
+@property (nonnull, nonatomic) UIButton *nextButton;
+@property (nonnull, nonatomic) NSCalendar *gregorian;
 
 @end

@@ -13,10 +13,12 @@
 #import "TaskManager.h"
 #import "Task.h"
 #import "DateUtil.h"
+#import "DateTools.h"
 #import "UIScrollView+EmptyDataSet.h"
 #import "KPImageViewController.h"
 #import "MLKMenuPopover.h"
 #import "AMPopTip.h"
+#import "CardsView.h"
 
 #define MENU_POPOVER_FRAME CGRectMake(10, 44 + 9, 140, 44 * [[Utilities getTaskSortArr] count])
 
@@ -35,6 +37,8 @@
     
     self.sortFactor = @"addDate";
     
+    self.selectedDate = [NSDate dateWithYear:[[NSDate date] year] month:[[NSDate date] month] day:[[NSDate date] day]];
+    
 //     NSArray *fontFamilies = [UIFont familyNames];
 //     for (int i = 0; i < [fontFamilies count]; i++){
 //     NSString *fontFamily = [fontFamilies objectAtIndex:i];
@@ -50,8 +54,8 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [self.progressLabel setFont:[UIFont fontWithName:[Utilities getFont] size:40.0f]];
-    [self.dateLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
-    [self.dateLabel setText:[DateUtil getTodayDate]];
+    [self.dateButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
+    [self.dateButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
     
     [self loadTasks];
 }
@@ -62,6 +66,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated{
     self.selectedIndexPath = NULL;
+//    self.selectedDate = [NSDate date];
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
@@ -69,11 +74,13 @@
 }
 
 - (void)loadTasks{
+    [self.dateButton setTitle:[DateUtil getDateStringOfDate:self.selectedDate] forState:UIControlStateNormal];
+    
     self.unfinishedTaskArr = [[NSMutableArray alloc] init];
     self.finishedTaskArr = [[NSMutableArray alloc] init];
-    NSMutableArray *taskArr = [[TaskManager shareInstance] getTodayTasks];
+    NSMutableArray *taskArr = [[TaskManager shareInstance] getTasksOfDate:self.selectedDate];
     for (Task *task in taskArr) {
-        if([task.punchDateArr containsObject:[DateUtil transformDate:[NSDate date]]]){
+        if([task.punchDateArr containsObject:[DateUtil transformDate:self.selectedDate]]){
             [self.finishedTaskArr addObject:task];
         }else{
             [self.unfinishedTaskArr addObject:task];
@@ -88,7 +95,6 @@
     }
     self.unfinishedTaskArr = [NSMutableArray arrayWithArray:[self.unfinishedTaskArr sortedArrayUsingDescriptors:sortDescriptors]];
     self.finishedTaskArr = [NSMutableArray arrayWithArray:[self.finishedTaskArr sortedArrayUsingDescriptors:sortDescriptors]];
-    
     
     [self.progressLabel setText:[NSString stringWithFormat:@"%lu / %lu", (unsigned long)self.finishedTaskArr.count, ((unsigned long)self.finishedTaskArr.count + (unsigned long)self.unfinishedTaskArr.count)]];
     
@@ -113,6 +119,44 @@
     [self.menuPopover showInView:self.navigationController.view];
 }
 
+- (IBAction)chooseDateAction:(id)sender{
+    
+    if(![self.tip isVisible] && ![self.tip isAnimating]){
+        
+        self.calendar = [[FSCalendar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width - 20, 250)];
+        self.calendar.dataSource = self;
+        self.calendar.delegate = self;
+        self.calendar.backgroundColor = [UIColor whiteColor];
+        self.calendar.layer.cornerRadius = 10;
+        self.calendar.appearance.headerMinimumDissolvedAlpha = 0;
+        self.calendar.appearance.headerDateFormat = @"yyyy 年 MM 月";
+        
+        self.calendar.appearance.headerTitleColor = [Utilities getColor];
+        self.calendar.appearance.weekdayTextColor = [Utilities getColor];
+        
+//        self.calendar.appearance.todayColor = [UIColor whiteColor];
+//        self.calendar.appearance.titleTodayColor = [UIColor whiteColor];
+        self.calendar.appearance.selectionColor =  [Utilities getColor];
+        self.calendar.appearance.titleSelectionColor = [UIColor whiteColor];
+//        self.calendar.appearance.todaySelectionColor = [Utilities getColor];
+        
+        [self.calendar selectDate:self.selectedDate scrollToDate:YES];
+
+        [self.tip showCustomView:self.calendar
+                          direction:AMPopTipDirectionNone
+                             inView:self.tableView
+                          fromFrame:self.tableView.frame];
+        
+        self.tip.textColor = [UIColor whiteColor];
+        self.tip.tintColor = [Utilities getColor];
+        self.tip.popoverColor = [Utilities getColor];
+        self.tip.borderColor = [UIColor whiteColor];
+        
+        self.tip.radius = 15;
+    }
+
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -132,7 +176,7 @@
     }
 }
 
-- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     switch (section) {
         case 1:
         {
@@ -308,6 +352,16 @@
                 [cell.moreButton setBackgroundImage:[UIImage imageNamed:@"MORE_INFO_DOWN"] forState:UIControlStateNormal];
             }
             
+            //晚于：不能打卡
+            NSDate *tempDate = [NSDate dateWithYear:[[NSDate date] year]
+                                              month:[[NSDate date] month]
+                                                day:[[NSDate date] day]];
+            if(![self.selectedDate isEarlierThanOrEqualTo:tempDate]){
+                cell.myCheckBox.userInteractionEnabled = NO;
+            }else{
+                cell.myCheckBox.userInteractionEnabled = YES;
+            }
+            
             return cell;
         }
         default:
@@ -364,12 +418,12 @@
     //section = 1 : 未完成
     if(path.section == 1){
         Task *task = self.unfinishedTaskArr[path.row];
-        [[TaskManager shareInstance] punchForTaskWithID:@(task.id) onDate:[NSDate date]];
+        [[TaskManager shareInstance] punchForTaskWithID:@(task.id) onDate:self.selectedDate];
         self.selectedIndexPath = NULL;
         [self loadTasks];
     }else if(path.section == 2){
         Task *task = self.finishedTaskArr[path.row];
-        [[TaskManager shareInstance] unpunchForTaskWithID:@(task.id)];
+        [[TaskManager shareInstance] unpunchForTaskWithID:@(task.id) onDate:self.selectedDate];
         self.selectedIndexPath = NULL;
         [self loadTasks];
     }
@@ -460,6 +514,15 @@
     }else{
         return NO;
     }
+}
+
+#pragma mark - FSCalendarDelegate
+
+- (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date{
+    NSDate *tempDate = [NSDate dateWithYear:[date year] month:[date month] day:[date day]];
+    self.selectedDate = tempDate;
+    [self.tip hide];
+    [self loadTasks];
 }
 
 #pragma mark - MLKMenuPopoverDelegate

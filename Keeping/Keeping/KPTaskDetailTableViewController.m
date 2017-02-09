@@ -44,6 +44,9 @@
     
     //任务名
     [self.taskNameField setFont:[UIFont fontWithName:[Utilities getFont] size:25.0f]];
+    self.taskNameField.layer.borderWidth = 1.0;
+    self.taskNameField.layer.cornerRadius = 5.0;
+    self.taskNameField.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
     //文本框代理
     self.taskNameField.delegate = self;
     self.linkTextField.delegate = self;
@@ -93,16 +96,42 @@
     
     //链接
     [self.linkTextField setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
+    self.linkTextField.layer.borderWidth = 1.0;
+    self.linkTextField.layer.cornerRadius = 5.0;
+    self.linkTextField.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
     
     
-    //到期日期颜色
-    [self.endDateLabel setTextColor:[Utilities getColor]];
+    //开始、到期日期颜色
+    [self.startDateButton setUserInteractionEnabled:NO];
+    [self.startDateButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    [self.endDateButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
     
     
     //备注
     self.memoTextView.delegate = self;
     [self.memoTextView setTextColor:[Utilities getColor]];
     [self.memoTextView setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
+    self.memoTextView.layer.borderWidth = 1.0;
+    self.memoTextView.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
+    self.memoTextView.layer.cornerRadius = 5.0;
+    
+    UIToolbar* keyboardDoneButtonView = [[UIToolbar alloc] init];
+    keyboardDoneButtonView.barStyle = UIBarStyleBlack;
+    keyboardDoneButtonView.translucent = YES;
+    keyboardDoneButtonView.backgroundColor = [UIColor whiteColor];
+    keyboardDoneButtonView.barTintColor = [UIColor groupTableViewBackgroundColor];
+    [keyboardDoneButtonView sizeToFit];
+    
+    UIBarButtonItem *spaceButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                               target:nil
+                                                                               action:nil];
+    UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithTitle:@"完成"
+                                                                       style:UIBarButtonItemStyleDone
+                                                                  target:self
+                                                                  action:@selector(pickerDoneClicked)];
+    doneButton.tintColor = [Utilities getColor];
+    [keyboardDoneButtonView setItems:@[spaceButton, doneButton]];
+    self.memoTextView.inputAccessoryView = keyboardDoneButtonView;
     
     UILabel *placeHolderLabel = [[UILabel alloc] init];
     placeHolderLabel.text = @"点击输入备注";
@@ -133,9 +162,9 @@
             [self.weekDayStack.subviews[num.integerValue-1] setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         }
         
-        [self.startDateLabel setText:[self.task.addDate formattedDateWithFormat:DATE_FORMAT]];
+        [self.startDateButton setTitle:[self.task.addDate formattedDateWithFormat:DATE_FORMAT] forState:UIControlStateNormal];
         if(self.task.endDate != NULL){
-            [self.endDateLabel setText:[self.task.endDate formattedDateWithFormat:DATE_FORMAT]];
+            [self.endDateButton setTitle:[self.task.endDate formattedDateWithFormat:DATE_FORMAT] forState:UIControlStateNormal];
             
             //如果已经超期，不能编辑
             //            if([self.task.endDate isEarlierThan:[NSDate date]]){
@@ -145,7 +174,7 @@
             //            }
             
         }else{
-            [self.endDateLabel setText:ENDLESS_STRING];
+            [self.endDateButton setTitle:ENDLESS_STRING forState:UIControlStateNormal];
         }
         
         //对星期排序
@@ -191,8 +220,8 @@
     }else{
         [self.navigationItem setTitle:@"新增任务"];
         
-        [self.startDateLabel setText:[[NSDate date] formattedDateWithFormat:DATE_FORMAT]];
-        [self.endDateLabel setText:ENDLESS_STRING];
+        [self.startDateButton setTitle:[[NSDate date] formattedDateWithFormat:DATE_FORMAT] forState:UIControlStateNormal];
+        [self.endDateButton setTitle:ENDLESS_STRING forState:UIControlStateNormal];
         
         self.selectedWeekdayArr = [[NSMutableArray alloc] init];
         [self.reminderSwitch setOn:NO];
@@ -270,10 +299,10 @@
     //链接
     self.task.link = self.linkTextField.text;       //有：文字，无：@“”
     //结束日期
-    if([self.endDateLabel.text isEqualToString:ENDLESS_STRING]){
+    if([self.endDateButton.titleLabel.text isEqualToString:ENDLESS_STRING]){
         self.task.endDate = NULL;
     }else{
-        self.task.endDate = [NSDate dateWithString:self.endDateLabel.text formatString:DATE_FORMAT];
+        self.task.endDate = [NSDate dateWithString:self.endDateButton.titleLabel.text formatString:DATE_FORMAT];
     }
     //备注
     self.task.memo = self.memoTextView.text;
@@ -555,10 +584,17 @@
 
 #pragma mark - Select end date
 
-- (void)showDatePicker{
+- (IBAction)selectDateAction:(id)sender{
+    UIButton *btn = (UIButton *)sender;
+    [self showDatePickerWithStartOrEnd:(int)btn.tag];
+}
+
+- (void)showDatePickerWithStartOrEnd:(int)type{
+    //type:
+    //      0 : 开始
+    //      1 : 结束
     HSDatePickerViewController *hsdpvc = [[HSDatePickerViewController alloc] init];
     hsdpvc.delegate = self;
-    hsdpvc.minDate = [NSDate date];
     
     hsdpvc.backButtonTitle = @"返回";
     hsdpvc.confirmButtonTitle = @"确定";
@@ -571,15 +607,23 @@
     [myfmt setDateFormat:@"yyyy 年 MM 月"];
     hsdpvc.monthAndYearLabelDateFormater = myfmt;
     
+    hsdpvc.timeType = type;
+    
+    if(type == 0){
+        
+    }else{
+        hsdpvc.minDate = [NSDate date];
+    }
+    
     [self presentViewController:hsdpvc animated:YES completion:nil];
 }
 
 - (void)hsDatePickerPickedDate:(NSDate *)date{
     if(date == NULL){
-        [self.endDateLabel setText:ENDLESS_STRING];
+        [self.endDateButton setTitle:ENDLESS_STRING forState:UIControlStateNormal];
     }else{
         NSDate *endDate = [NSDate dateWithYear:[date year] month:[date month] day:[date day]];
-        [self.endDateLabel setText:[endDate formattedDateWithFormat:DATE_FORMAT]];
+        [self.endDateButton setTitle:[endDate formattedDateWithFormat:DATE_FORMAT] forState:UIControlStateNormal];
     }
 }
 
@@ -642,11 +686,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     switch (indexPath.section) {
-        case 2:
-            [self showDatePicker];
-            break;
         case 3:
-            [self showReminderPickerAction:[NSDate date]];
+            [self showReminderPickerAction:[NSDate date] ];
             break;
         case 5:
             [self performSegueWithIdentifier:@"appSegue" sender:nil];
@@ -674,12 +715,8 @@
     return YES;
 }
 
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString*)text{
-    if ([text isEqualToString:@"\n"]) {
-        [textView resignFirstResponder];
-        return NO;
-    }
-    return YES;
+- (void)pickerDoneClicked{
+    [self.memoTextView resignFirstResponder];
 }
 
 #pragma mark - Navigation
@@ -689,7 +726,7 @@
         KPSchemeTableViewController *kpstvc = (KPSchemeTableViewController *)[segue destinationViewController];
         kpstvc.delegate = self;
         if(self.selectedApp != NULL){
-            [kpstvc setSelectedPath:[NSIndexPath indexPathForRow:[[KPSchemeManager getSchemeArr] indexOfObject:self.selectedApp] inSection:1]];
+            [kpstvc setSelectedPath:[NSIndexPath indexPathForRow:[[[KPSchemeManager shareInstance] getSchemeArr] indexOfObject:self.selectedApp] inSection:1]];
         }else{
             [kpstvc setSelectedPath:[NSIndexPath indexPathForRow:0 inSection:0]];
         }

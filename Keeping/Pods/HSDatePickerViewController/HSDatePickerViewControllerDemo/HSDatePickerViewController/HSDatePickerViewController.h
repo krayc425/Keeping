@@ -98,4 +98,6 @@ typedef enum : NSUInteger {
  */
 @property (nonatomic, strong) NSString *backButtonTitle;
 
+@property (nonatomic) int timeType;
+
 @end

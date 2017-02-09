@@ -9,15 +9,35 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>KeepingWatch (Complication).xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>23</integer>
+		</dict>
+		<key>KeepingWatch (Notification).xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>22</integer>
+		</dict>
+		<key>KeepingWatch.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>21</integer>
+		</dict>
 		<key>KeepingWidget.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>12</integer>
+			<integer>1</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>247F01B61E3D9E1B001F900C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2486A5751E4B22D5006B29EE</key>
 		<dict>
 			<key>primary</key>
 			<true/>

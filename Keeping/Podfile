@@ -23,3 +23,17 @@ target 'KeepingWidget' do
   pod 'DZNEmptyDataSet'
 
 end
+
+target 'KeepingWatch' do
+  
+  pod 'FMDB'
+  pod 'DateTools'
+
+end
+
+target 'KeepingWatch Extension' do
+  
+  pod 'FMDB'
+  pod 'DateTools'
+
+end

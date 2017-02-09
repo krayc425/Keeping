@@ -261,7 +261,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Xzi-N6-pHp">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Xzi-N6-pHp">
                                                     <rect key="frame" x="19" y="5" width="343" height="50"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -408,34 +408,36 @@
                             </tableViewSection>
                             <tableViewSection id="3DI-Ay-ANt">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="60" id="QKC-Ek-4Ce">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="60" id="QKC-Ek-4Ce">
                                         <rect key="frame" x="0.0" y="227" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QKC-Ek-4Ce" id="3kI-Up-ju8">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="deB-FH-Sot">
-                                                    <rect key="frame" x="13" y="13" width="316" height="34"/>
+                                                    <rect key="frame" x="13" y="13" width="349" height="34"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016/1/17" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mWm-2T-lpo">
-                                                            <rect key="frame" x="0.0" y="0.0" width="105.5" height="34"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <color key="textColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uex-MV-BR6">
+                                                            <rect key="frame" x="0.0" y="0.0" width="116.5" height="34"/>
+                                                            <state key="normal" title="Button"/>
+                                                            <connections>
+                                                                <action selector="selectDateAction:" destination="c1M-lD-w8g" eventType="touchUpInside" id="PRS-N4-Yxj"/>
+                                                            </connections>
+                                                        </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" tag="-1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="~" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QDy-bl-ZbL">
-                                                            <rect key="frame" x="105.5" y="0.0" width="105" height="34"/>
+                                                            <rect key="frame" x="116.5" y="0.0" width="116" height="34"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CjA-9C-Pec">
-                                                            <rect key="frame" x="210.5" y="0.0" width="105.5" height="34"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uKW-o4-C4R">
+                                                            <rect key="frame" x="232.5" y="0.0" width="116.5" height="34"/>
+                                                            <state key="normal" title="Button"/>
+                                                            <connections>
+                                                                <action selector="selectDateAction:" destination="c1M-lD-w8g" eventType="touchUpInside" id="WbM-69-n1f"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
@@ -491,7 +493,7 @@
                                                     <rect key="frame" x="13" y="5" width="349" height="50"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
                                                 </textView>
                                             </subviews>
                                             <constraints>
@@ -537,7 +539,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入带有 http:// 前缀的网址" textAlignment="center" minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="yTv-VD-Eif">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入带有 http:// 前缀的网址" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="yTv-VD-Eif">
                                                     <rect key="frame" x="13" y="5" width="349" height="50"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -619,14 +621,14 @@
                         <outlet property="appNameLabel" destination="G57-UJ-nTu" id="vEX-ZW-BNy"/>
                         <outlet property="deleteImgButton" destination="uTp-h9-TXH" id="odd-bM-Pof"/>
                         <outlet property="durationStack" destination="deB-FH-Sot" id="hEP-bp-ai3"/>
-                        <outlet property="endDateLabel" destination="CjA-9C-Pec" id="b5O-l8-8i5"/>
+                        <outlet property="endDateButton" destination="uKW-o4-C4R" id="Ev2-A7-Lvj"/>
                         <outlet property="imgButtonStack" destination="ki2-5s-xgO" id="80s-gW-guQ"/>
                         <outlet property="linkTextField" destination="yTv-VD-Eif" id="hEw-lS-HVa"/>
                         <outlet property="memoTextView" destination="RxR-7u-GrK" id="Cxq-aF-uuK"/>
                         <outlet property="reminderLabel" destination="gGD-zF-qbo" id="JYT-0v-5Zl"/>
                         <outlet property="reminderSwitch" destination="Ath-Iw-pkV" id="1VS-J6-v8O"/>
                         <outlet property="selectedImgView" destination="bMH-2e-wdG" id="zYk-f3-ZaE"/>
-                        <outlet property="startDateLabel" destination="mWm-2T-lpo" id="ZtE-7X-7Rn"/>
+                        <outlet property="startDateButton" destination="uex-MV-BR6" id="dvf-77-eoR"/>
                         <outlet property="taskNameField" destination="Xzi-N6-pHp" id="qZW-tj-BzG"/>
                         <outlet property="viewImgButton" destination="7eo-7n-hHL" id="vLh-Q3-tsF"/>
                         <outlet property="weekDayStack" destination="Wmp-EN-j6p" id="3mT-6x-tg0"/>
@@ -718,9 +720,18 @@
                     <connections>
                         <outlet property="insLabel" destination="Wpg-Kq-CgT" id="twA-0u-vqx"/>
                         <outlet property="noneLabel" destination="BXh-pc-0Wg" id="gg6-mn-Op6"/>
+                        <outlet property="searchDisplayController" destination="0ng-hf-vTu" id="Jtx-86-4yJ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jAi-KQ-7Qo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="0ng-hf-vTu">
+                    <connections>
+                        <outlet property="delegate" destination="1yY-U5-MZt" id="JWL-BZ-YNE"/>
+                        <outlet property="searchContentsController" destination="1yY-U5-MZt" id="Ad0-bU-FLW"/>
+                        <outlet property="searchResultsDataSource" destination="1yY-U5-MZt" id="DKc-DV-MwJ"/>
+                        <outlet property="searchResultsDelegate" destination="1yY-U5-MZt" id="BTs-W4-8Ns"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="4450" y="-99"/>
         </scene>
@@ -946,16 +957,17 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="rVZ-Wx-BdQ">
-                                                    <rect key="frame" x="153" y="34.5" width="68" height="41"/>
+                                                    <rect key="frame" x="153" y="30" width="68" height="50.5"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hzR-oc-ZMW">
-                                                            <rect key="frame" x="16" y="0.0" width="36" height="20.5"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vUu-3h-ozc">
+                                                            <rect key="frame" x="17.5" y="0.0" width="33" height="30"/>
+                                                            <state key="normal" title="Date"/>
+                                                            <connections>
+                                                                <action selector="chooseDateAction:" destination="6at-be-euJ" eventType="touchUpInside" id="ATP-1A-Nz9"/>
+                                                            </connections>
+                                                        </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Progress" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6p5-7J-dTY">
-                                                            <rect key="frame" x="0.0" y="20.5" width="68" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="30" width="68" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -986,7 +998,7 @@
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <tabBarItem key="tabBarItem" title="Item" id="9FZ-kn-RtR"/>
                     <connections>
-                        <outlet property="dateLabel" destination="hzR-oc-ZMW" id="Ova-4O-KoR"/>
+                        <outlet property="dateButton" destination="vUu-3h-ozc" id="XKG-Tk-xGz"/>
                         <outlet property="progressLabel" destination="6p5-7J-dTY" id="EbA-3f-QwO"/>
                         <segue destination="iLS-CK-3Yi" kind="presentation" identifier="imageSegue" id="nx1-5h-KeX"/>
                         <segue destination="c1M-lD-w8g" kind="show" identifier="addTaskSegue" id="TG3-6D-Rt1"/>
@@ -1001,7 +1013,7 @@
         <image name="CIRCLE_BORDER" width="106" height="106"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="tMR-sH-vNC"/>
-        <segue reference="hII-cA-IWP"/>
+        <segue reference="nx1-5h-KeX"/>
+        <segue reference="TG3-6D-Rt1"/>
     </inferredMetricsTieBreakers>
 </document>

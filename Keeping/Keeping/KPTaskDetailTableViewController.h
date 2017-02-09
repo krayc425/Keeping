@@ -23,8 +23,8 @@
 @property (nonnull, nonatomic) NSMutableArray *selectedWeekdayArr;
 
 @property (nonnull, nonatomic) IBOutlet UIStackView *durationStack;
-@property (nonnull, nonatomic) IBOutlet UILabel *startDateLabel;
-@property (nonnull, nonatomic) IBOutlet UILabel *endDateLabel;
+@property (nonnull, nonatomic) IBOutlet UIButton *startDateButton;
+@property (nonnull, nonatomic) IBOutlet UIButton *endDateButton;
 
 @property (nonnull, nonatomic) IBOutlet UILabel *reminderLabel;
 @property (nonnull, nonatomic) IBOutlet UISwitch *reminderSwitch;

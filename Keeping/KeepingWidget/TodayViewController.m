@@ -14,12 +14,15 @@
 #import "KPWidgetTableViewCell.h"
 #import "UIScrollView+EmptyDataSet.h"
 #import "TaskManager.h"
+#import "DateTools.h"
 
 #define GROUP_ID @"group.com.krayc.keeping"
 
 #define DATELABEL_HEIGHT 66
 
 @interface TodayViewController () <NCWidgetProviding, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
+
+@property (nonatomic, nonnull) NSString *fontName;
 
 @end
 
@@ -29,6 +32,9 @@
     [super viewDidLoad];
     [self loadDB];
     
+    NSUserDefaults *shared = [[NSUserDefaults alloc]initWithSuiteName:GROUP_ID];
+    self.fontName = (NSString *)[shared valueForKey:@"fontwidget"];
+    
     self.taskTableView.delegate = self;
     self.taskTableView.dataSource = self;
     self.taskTableView.emptyDataSetSource = self;
@@ -36,7 +42,7 @@
     self.taskTableView.backgroundColor = [UIColor clearColor];
     
     [self.dateLabel setTextColor:[Utilities getColor]];
-    [self.dateLabel setFont:[UIFont fontWithName:[Utilities getFont] size:25.0]];
+    [self.dateLabel setFont:[UIFont fontWithName:self.fontName size:25.0]];
     
     self.extensionContext.widgetLargestAvailableDisplayMode = NCWidgetDisplayModeExpanded;
 }
@@ -44,13 +50,9 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    [self.dateLabel setText:[DateUtil getTodayDate]];
+    [self.dateLabel setText:[DateUtil getDateStringOfDate:[NSDate date]]];
     
     [self loadTasks];
-}
-
-- (void)viewDidDisappear:(BOOL)animated{
-//    [self.db close];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -118,7 +120,8 @@
         t.link = [resultSet stringForColumn:@"link"];
         t.endDate = [resultSet dateForColumn:@"endDate"];
         
-        if(![t.punchDateArr containsObject:[DateUtil transformDate:[NSDate date]]]){
+        if([t.reminderDays containsObject:[NSNumber numberWithInteger:[[NSDate date] weekday]]]
+           && ![t.punchDateArr containsObject:[DateUtil transformDate:[NSDate date]]]){
             [self.taskArr addObject:t];
         }
         
@@ -190,7 +193,7 @@
     
     NSDictionary *attributes = @{
                                  NSForegroundColorAttributeName: [Utilities getColor],
-                                 NSFontAttributeName:[UIFont fontWithName:[Utilities getFont] size:20.0]
+                                 NSFontAttributeName:[UIFont fontWithName:self.fontName size:20.0]
                                  };
     
     return [[NSAttributedString alloc] initWithString:text attributes:attributes];

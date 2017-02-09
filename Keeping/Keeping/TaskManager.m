@@ -272,7 +272,7 @@ static TaskManager* _instance = nil;
     return NO;
 }
 
-- (BOOL)unpunchForTaskWithID:(NSNumber *)taskid{
+- (BOOL)unpunchForTaskWithID:(NSNumber *)taskid onDate:(NSDate *_Nonnull)date{
     FMResultSet *resultSet = [[[DBManager shareInstance] getDB] executeQuery:@"select * from t_task where id = ?;", taskid];
     while([resultSet next]){
         NSString *punchJsonStr = [resultSet stringForColumn:@"punchDateArr"];
@@ -284,8 +284,8 @@ static TaskManager* _instance = nil;
                 punchArr = [[NSMutableArray alloc] init];
             }
             
-            if([punchArr containsObject:[DateUtil transformDate:[NSDate date]]]){
-                [punchArr removeObject:[DateUtil transformDate:[NSDate date]]];
+            if([punchArr containsObject:[DateUtil transformDate:date]]){
+                [punchArr removeObject:[DateUtil transformDate:date]];
             }
             
             NSError *err = nil;

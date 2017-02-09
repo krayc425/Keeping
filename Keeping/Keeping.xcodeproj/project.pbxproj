@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		114929EB532AF69840409A0A /* libPods-KeepingWatch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A82AAE1686C2E350CED30CF7 /* libPods-KeepingWatch.a */; };
 		24151C921E322D6700757A69 /* KPTaskDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24151C911E322D6700757A69 /* KPTaskDetailTableViewController.m */; };
 		24151C971E32388300757A69 /* UNManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24151C961E32388300757A69 /* UNManager.m */; };
 		241FB6671E31D2F300DF4D53 /* HYCircleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 241FB6661E31D2F300DF4D53 /* HYCircleProgressView.m */; };
@@ -50,6 +51,20 @@
 		247F01D81E3DC5F3001F900C /* TaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2436F8261E2F2C4B00C2984A /* TaskManager.m */; };
 		247F01D91E3DC625001F900C /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F2A0D01E2F3F1800F30FB1 /* DBManager.m */; };
 		247F01DA1E3DC627001F900C /* UNManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24151C961E32388300757A69 /* UNManager.m */; };
+		2486A57A1E4B22D5006B29EE /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2486A5781E4B22D5006B29EE /* Interface.storyboard */; };
+		2486A57C1E4B22D5006B29EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2486A57B1E4B22D5006B29EE /* Assets.xcassets */; };
+		2486A5831E4B22D5006B29EE /* KeepingWatch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2486A5821E4B22D5006B29EE /* KeepingWatch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2486A58B1E4B22D5006B29EE /* InterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2486A58A1E4B22D5006B29EE /* InterfaceController.m */; };
+		2486A58E1E4B22D5006B29EE /* ExtensionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2486A58D1E4B22D5006B29EE /* ExtensionDelegate.m */; };
+		2486A5911E4B22D5006B29EE /* NotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2486A5901E4B22D5006B29EE /* NotificationController.m */; };
+		2486A5941E4B22D5006B29EE /* ComplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2486A5931E4B22D5006B29EE /* ComplicationController.m */; };
+		2486A5961E4B22D6006B29EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2486A5951E4B22D6006B29EE /* Assets.xcassets */; };
+		2486A59A1E4B22D6006B29EE /* KeepingWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 2486A5761E4B22D5006B29EE /* KeepingWatch.app */; };
+		2486A5A51E4B25BE006B29EE /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 2436F8291E2F2C5700C2984A /* Task.m */; };
+		2486A5A61E4B262D006B29EE /* DateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DCF1891E3094050097C250 /* DateUtil.m */; };
+		2486A5A71E4B264C006B29EE /* TaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2436F8261E2F2C4B00C2984A /* TaskManager.m */; };
+		2486A5A81E4B267C006B29EE /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F2A0D01E2F3F1800F30FB1 /* DBManager.m */; };
+		2486A5A91E4B267E006B29EE /* UNManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24151C961E32388300757A69 /* UNManager.m */; };
 		249AE3171E2DEE7700F704F8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 249AE3161E2DEE7700F704F8 /* main.m */; };
 		249AE31A1E2DEE7700F704F8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 249AE3191E2DEE7700F704F8 /* AppDelegate.m */; };
 		249AE3201E2DEE7700F704F8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 249AE31E1E2DEE7700F704F8 /* Main.storyboard */; };
@@ -86,6 +101,7 @@
 		24F2A1061E2F7CBC00F30FB1 /* KPReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F2A1051E2F7CBC00F30FB1 /* KPReminderViewController.m */; };
 		AA046577A8286B52DB0532E7 /* libPods-Keeping.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58B3856F487D477013388BEE /* libPods-Keeping.a */; };
 		B29DF1F523DB296B043EFE77 /* libPods-KeepingWidget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7768AB7A1CE5FD0A347A4517 /* libPods-KeepingWidget.a */; };
+		DFD3823905111E5D9603C19D /* libPods-KeepingWatch Extension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 536AA62E968456370B920F00 /* libPods-KeepingWatch Extension.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +111,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 247F01B61E3D9E1B001F900C;
 			remoteInfo = KeepingWidget;
+		};
+		2486A5841E4B22D5006B29EE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 249AE30A1E2DEE7700F704F8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2486A5811E4B22D5006B29EE;
+			remoteInfo = "KeepingWatch Extension";
+		};
+		2486A5981E4B22D6006B29EE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 249AE30A1E2DEE7700F704F8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2486A5751E4B22D5006B29EE;
+			remoteInfo = KeepingWatch;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -108,6 +138,28 @@
 				247F01C41E3D9E1B001F900C /* KeepingWidget.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2486A5A01E4B22D6006B29EE /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				2486A5831E4B22D5006B29EE /* KeepingWatch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2486A5A21E4B22D6006B29EE /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				2486A59A1E4B22D6006B29EE /* KeepingWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -173,6 +225,24 @@
 		247F01CF1E3DB4F8001F900C /* KPWidgetTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPWidgetTableViewCell.m; sourceTree = "<group>"; };
 		247F01D01E3DB4F8001F900C /* KPWidgetTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KPWidgetTableViewCell.xib; sourceTree = "<group>"; };
 		247F01D61E3DBC4E001F900C /* MainInterface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
+		2486A5761E4B22D5006B29EE /* KeepingWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KeepingWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2486A5791E4B22D5006B29EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		2486A57B1E4B22D5006B29EE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2486A57D1E4B22D5006B29EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2486A5821E4B22D5006B29EE /* KeepingWatch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "KeepingWatch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2486A5881E4B22D5006B29EE /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		2486A5891E4B22D5006B29EE /* InterfaceController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InterfaceController.h; sourceTree = "<group>"; };
+		2486A58A1E4B22D5006B29EE /* InterfaceController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InterfaceController.m; sourceTree = "<group>"; };
+		2486A58C1E4B22D5006B29EE /* ExtensionDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExtensionDelegate.h; sourceTree = "<group>"; };
+		2486A58D1E4B22D5006B29EE /* ExtensionDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExtensionDelegate.m; sourceTree = "<group>"; };
+		2486A58F1E4B22D5006B29EE /* NotificationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationController.h; sourceTree = "<group>"; };
+		2486A5901E4B22D5006B29EE /* NotificationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationController.m; sourceTree = "<group>"; };
+		2486A5921E4B22D5006B29EE /* ComplicationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComplicationController.h; sourceTree = "<group>"; };
+		2486A5931E4B22D5006B29EE /* ComplicationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComplicationController.m; sourceTree = "<group>"; };
+		2486A5951E4B22D6006B29EE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2486A5971E4B22D6006B29EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2486A5A31E4B249F006B29EE /* KeepingWatch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KeepingWatch.entitlements; sourceTree = "<group>"; };
+		2486A5A41E4B24AE006B29EE /* KeepingWatch Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "KeepingWatch Extension.entitlements"; sourceTree = "<group>"; };
 		249AE3121E2DEE7700F704F8 /* Keeping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Keeping.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		249AE3161E2DEE7700F704F8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		249AE3181E2DEE7700F704F8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -222,21 +292,43 @@
 		24F2A0F31E2F7B6E00F30FB1 /* KPTimePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPTimePicker.m; sourceTree = "<group>"; };
 		24F2A1041E2F7CBC00F30FB1 /* KPReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPReminderViewController.h; sourceTree = "<group>"; };
 		24F2A1051E2F7CBC00F30FB1 /* KPReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPReminderViewController.m; sourceTree = "<group>"; };
+		2F338776FD6DDCCB914A553C /* Pods-KeepingWatch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KeepingWatch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KeepingWatch/Pods-KeepingWatch.debug.xcconfig"; sourceTree = "<group>"; };
 		3303168DFB48063C3EC132E2 /* Pods-KeepingWidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KeepingWidget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KeepingWidget/Pods-KeepingWidget.debug.xcconfig"; sourceTree = "<group>"; };
+		5303058E548373FF6E1E7AF0 /* Pods-KeepingWatch Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KeepingWatch Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KeepingWatch Extension/Pods-KeepingWatch Extension.debug.xcconfig"; sourceTree = "<group>"; };
+		536AA62E968456370B920F00 /* libPods-KeepingWatch Extension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KeepingWatch Extension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		58B3856F487D477013388BEE /* libPods-Keeping.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Keeping.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7768AB7A1CE5FD0A347A4517 /* libPods-KeepingWidget.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KeepingWidget.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		85B397591B8EAB57C5D32895 /* Pods-KeepingWatch Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KeepingWatch Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-KeepingWatch Extension/Pods-KeepingWatch Extension.release.xcconfig"; sourceTree = "<group>"; };
 		90B7675F597B76B950B77B8B /* Pods-Keeping.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keeping.release.xcconfig"; path = "Pods/Target Support Files/Pods-Keeping/Pods-Keeping.release.xcconfig"; sourceTree = "<group>"; };
+		A82AAE1686C2E350CED30CF7 /* libPods-KeepingWatch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KeepingWatch.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC115080F1212FC2B74097CC /* Pods-KeepingWatch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KeepingWatch.release.xcconfig"; path = "Pods/Target Support Files/Pods-KeepingWatch/Pods-KeepingWatch.release.xcconfig"; sourceTree = "<group>"; };
 		D878305BCC1A269899CF1ACC /* Pods-Keeping.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keeping.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Keeping/Pods-Keeping.debug.xcconfig"; sourceTree = "<group>"; };
 		F23AC8433168973E490B2488 /* Pods-KeepingWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KeepingWidget.release.xcconfig"; path = "Pods/Target Support Files/Pods-KeepingWidget/Pods-KeepingWidget.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1AB6E42705C375548F225B4A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				114929EB532AF69840409A0A /* libPods-KeepingWatch.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		247F01B41E3D9E1B001F900C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				247F01B91E3D9E1B001F900C /* NotificationCenter.framework in Frameworks */,
 				B29DF1F523DB296B043EFE77 /* libPods-KeepingWidget.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2486A57F1E4B22D5006B29EE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DFD3823905111E5D9603C19D /* libPods-KeepingWatch Extension.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,11 +452,51 @@
 			path = KeepingWidget;
 			sourceTree = "<group>";
 		};
+		2486A5771E4B22D5006B29EE /* KeepingWatch */ = {
+			isa = PBXGroup;
+			children = (
+				2486A5A31E4B249F006B29EE /* KeepingWatch.entitlements */,
+				2486A5781E4B22D5006B29EE /* Interface.storyboard */,
+				2486A57B1E4B22D5006B29EE /* Assets.xcassets */,
+				2486A57D1E4B22D5006B29EE /* Info.plist */,
+			);
+			path = KeepingWatch;
+			sourceTree = "<group>";
+		};
+		2486A5861E4B22D5006B29EE /* KeepingWatch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				2486A5A41E4B24AE006B29EE /* KeepingWatch Extension.entitlements */,
+				2486A5891E4B22D5006B29EE /* InterfaceController.h */,
+				2486A58A1E4B22D5006B29EE /* InterfaceController.m */,
+				2486A58C1E4B22D5006B29EE /* ExtensionDelegate.h */,
+				2486A58D1E4B22D5006B29EE /* ExtensionDelegate.m */,
+				2486A58F1E4B22D5006B29EE /* NotificationController.h */,
+				2486A5901E4B22D5006B29EE /* NotificationController.m */,
+				2486A5921E4B22D5006B29EE /* ComplicationController.h */,
+				2486A5931E4B22D5006B29EE /* ComplicationController.m */,
+				2486A5951E4B22D6006B29EE /* Assets.xcassets */,
+				2486A5971E4B22D6006B29EE /* Info.plist */,
+				2486A5871E4B22D5006B29EE /* Supporting Files */,
+			);
+			path = "KeepingWatch Extension";
+			sourceTree = "<group>";
+		};
+		2486A5871E4B22D5006B29EE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2486A5881E4B22D5006B29EE /* PushNotificationPayload.apns */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		249AE3091E2DEE7700F704F8 = {
 			isa = PBXGroup;
 			children = (
 				249AE3141E2DEE7700F704F8 /* Keeping */,
 				247F01BA1E3D9E1B001F900C /* KeepingWidget */,
+				2486A5771E4B22D5006B29EE /* KeepingWatch */,
+				2486A5861E4B22D5006B29EE /* KeepingWatch Extension */,
 				249AE3131E2DEE7700F704F8 /* Products */,
 				DC76C55BD0DF229BAC78AECF /* Pods */,
 				3B36A3747ED818A6EEF990CE /* Frameworks */,
@@ -376,6 +508,8 @@
 			children = (
 				249AE3121E2DEE7700F704F8 /* Keeping.app */,
 				247F01B71E3D9E1B001F900C /* KeepingWidget.appex */,
+				2486A5761E4B22D5006B29EE /* KeepingWatch.app */,
+				2486A5821E4B22D5006B29EE /* KeepingWatch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -390,8 +524,6 @@
 				24699F021E2F213D0092FBED /* KPNavigationViewController.m */,
 				2429CBF91E2E5D510027DD37 /* KPTabBarViewController.h */,
 				2429CBFA1E2E5D510027DD37 /* KPTabBarViewController.m */,
-				244EB3031E3635B100D30AE3 /* KPImageViewController.h */,
-				244EB3041E3635B100D30AE3 /* KPImageViewController.m */,
 				24151C951E32388300757A69 /* UNManager.h */,
 				24151C961E32388300757A69 /* UNManager.m */,
 				24F2A0CF1E2F3F1800F30FB1 /* DBManager.h */,
@@ -439,6 +571,8 @@
 		24DCF18C1E30A07C0097C250 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				244EB3031E3635B100D30AE3 /* KPImageViewController.h */,
+				244EB3041E3635B100D30AE3 /* KPImageViewController.m */,
 				247A797E1E38ABF1000EE623 /* ABCIntroView.h */,
 				247A797F1E38ABF1000EE623 /* ABCIntroView.m */,
 				2435AF5A1E34D0D50065DC74 /* MLKMenuPopover.h */,
@@ -518,6 +652,8 @@
 				58B3856F487D477013388BEE /* libPods-Keeping.a */,
 				247F01B81E3D9E1B001F900C /* NotificationCenter.framework */,
 				7768AB7A1CE5FD0A347A4517 /* libPods-KeepingWidget.a */,
+				A82AAE1686C2E350CED30CF7 /* libPods-KeepingWatch.a */,
+				536AA62E968456370B920F00 /* libPods-KeepingWatch Extension.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -529,6 +665,10 @@
 				90B7675F597B76B950B77B8B /* Pods-Keeping.release.xcconfig */,
 				3303168DFB48063C3EC132E2 /* Pods-KeepingWidget.debug.xcconfig */,
 				F23AC8433168973E490B2488 /* Pods-KeepingWidget.release.xcconfig */,
+				2F338776FD6DDCCB914A553C /* Pods-KeepingWatch.debug.xcconfig */,
+				CC115080F1212FC2B74097CC /* Pods-KeepingWatch.release.xcconfig */,
+				5303058E548373FF6E1E7AF0 /* Pods-KeepingWatch Extension.debug.xcconfig */,
+				85B397591B8EAB57C5D32895 /* Pods-KeepingWatch Extension.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -555,6 +695,46 @@
 			productReference = 247F01B71E3D9E1B001F900C /* KeepingWidget.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		2486A5751E4B22D5006B29EE /* KeepingWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2486A5A11E4B22D6006B29EE /* Build configuration list for PBXNativeTarget "KeepingWatch" */;
+			buildPhases = (
+				7D787D770F2B25C66C644395 /* [CP] Check Pods Manifest.lock */,
+				2486A5741E4B22D5006B29EE /* Resources */,
+				2486A5A01E4B22D6006B29EE /* Embed App Extensions */,
+				1AB6E42705C375548F225B4A /* Frameworks */,
+				6EFBB344A4B112A6A084D74B /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2486A5851E4B22D5006B29EE /* PBXTargetDependency */,
+			);
+			name = KeepingWatch;
+			productName = KeepingWatch;
+			productReference = 2486A5761E4B22D5006B29EE /* KeepingWatch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		2486A5811E4B22D5006B29EE /* KeepingWatch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2486A59F1E4B22D6006B29EE /* Build configuration list for PBXNativeTarget "KeepingWatch Extension" */;
+			buildPhases = (
+				EDC57BDB56D2F9794F91EA3C /* [CP] Check Pods Manifest.lock */,
+				2486A57E1E4B22D5006B29EE /* Sources */,
+				2486A57F1E4B22D5006B29EE /* Frameworks */,
+				2486A5801E4B22D5006B29EE /* Resources */,
+				C0180AF9179F3661723C2844 /* [CP] Embed Pods Frameworks */,
+				2F742839E5DEA9BE9140506D /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "KeepingWatch Extension";
+			productName = "KeepingWatch Extension";
+			productReference = 2486A5821E4B22D5006B29EE /* KeepingWatch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 		249AE3111E2DEE7700F704F8 /* Keeping */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 249AE32C1E2DEE7700F704F8 /* Build configuration list for PBXNativeTarget "Keeping" */;
@@ -566,11 +746,13 @@
 				C306EC120EDCB79DCB2A853B /* [CP] Embed Pods Frameworks */,
 				1DB4E3AA2BDD226DF2D68A26 /* [CP] Copy Pods Resources */,
 				247F01C81E3D9E1B001F900C /* Embed App Extensions */,
+				2486A5A21E4B22D6006B29EE /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				247F01C31E3D9E1B001F900C /* PBXTargetDependency */,
+				2486A5991E4B22D6006B29EE /* PBXTargetDependency */,
 			);
 			name = Keeping;
 			productName = Keeping;
@@ -587,6 +769,26 @@
 				ORGANIZATIONNAME = "宋 奎熹";
 				TargetAttributes = {
 					247F01B61E3D9E1B001F900C = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = VEBQ28K9EA;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
+					2486A5751E4B22D5006B29EE = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = VEBQ28K9EA;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
+					2486A5811E4B22D5006B29EE = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = VEBQ28K9EA;
 						ProvisioningStyle = Automatic;
@@ -626,6 +828,8 @@
 			targets = (
 				249AE3111E2DEE7700F704F8 /* Keeping */,
 				247F01B61E3D9E1B001F900C /* KeepingWidget */,
+				2486A5751E4B22D5006B29EE /* KeepingWatch */,
+				2486A5811E4B22D5006B29EE /* KeepingWatch Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -639,6 +843,23 @@
 				247F01D71E3DBC4E001F900C /* MainInterface.storyboard in Resources */,
 				247F01D21E3DB4F8001F900C /* KPWidgetTableViewCell.xib in Resources */,
 				247F01D51E3DBB2B001F900C /* 方正楷体简体.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2486A5741E4B22D5006B29EE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2486A57C1E4B22D5006B29EE /* Assets.xcassets in Resources */,
+				2486A57A1E4B22D5006B29EE /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2486A5801E4B22D5006B29EE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2486A5961E4B22D6006B29EE /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -724,6 +945,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KeepingWidget/Pods-KeepingWidget-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		2F742839E5DEA9BE9140506D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KeepingWatch Extension/Pods-KeepingWatch Extension-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		41DDC58DE091080386FCEE17 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -737,6 +973,51 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6EFBB344A4B112A6A084D74B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KeepingWatch/Pods-KeepingWatch-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7D787D770F2B25C66C644395 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C0180AF9179F3661723C2844 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KeepingWatch Extension/Pods-KeepingWatch Extension-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C306EC120EDCB79DCB2A853B /* [CP] Embed Pods Frameworks */ = {
@@ -754,6 +1035,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Keeping/Pods-Keeping-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		EDC57BDB56D2F9794F91EA3C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -769,6 +1065,22 @@
 				247F01D11E3DB4F8001F900C /* KPWidgetTableViewCell.m in Sources */,
 				247F01D81E3DC5F3001F900C /* TaskManager.m in Sources */,
 				247F01CD1E3DB44B001F900C /* Utilities.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2486A57E1E4B22D5006B29EE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2486A5A91E4B267E006B29EE /* UNManager.m in Sources */,
+				2486A5A51E4B25BE006B29EE /* Task.m in Sources */,
+				2486A58E1E4B22D5006B29EE /* ExtensionDelegate.m in Sources */,
+				2486A5A71E4B264C006B29EE /* TaskManager.m in Sources */,
+				2486A5941E4B22D5006B29EE /* ComplicationController.m in Sources */,
+				2486A5A61E4B262D006B29EE /* DateUtil.m in Sources */,
+				2486A58B1E4B22D5006B29EE /* InterfaceController.m in Sources */,
+				2486A5911E4B22D5006B29EE /* NotificationController.m in Sources */,
+				2486A5A81E4B267C006B29EE /* DBManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -822,9 +1134,27 @@
 			target = 247F01B61E3D9E1B001F900C /* KeepingWidget */;
 			targetProxy = 247F01C21E3D9E1B001F900C /* PBXContainerItemProxy */;
 		};
+		2486A5851E4B22D5006B29EE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2486A5811E4B22D5006B29EE /* KeepingWatch Extension */;
+			targetProxy = 2486A5841E4B22D5006B29EE /* PBXContainerItemProxy */;
+		};
+		2486A5991E4B22D6006B29EE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2486A5751E4B22D5006B29EE /* KeepingWatch */;
+			targetProxy = 2486A5981E4B22D6006B29EE /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		2486A5781E4B22D5006B29EE /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2486A5791E4B22D5006B29EE /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
 		249AE31E1E2DEE7700F704F8 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -871,6 +1201,78 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.krayc.Keeping.KeepingWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		2486A59B1E4B22D6006B29EE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F338776FD6DDCCB914A553C /* Pods-KeepingWatch.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = KeepingWatch/KeepingWatch.entitlements;
+				DEVELOPMENT_TEAM = VEBQ28K9EA;
+				IBSC_MODULE = KeepingWatch_Extension;
+				INFOPLIST_FILE = KeepingWatch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.krayc.Keeping.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.1;
+			};
+			name = Debug;
+		};
+		2486A59C1E4B22D6006B29EE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CC115080F1212FC2B74097CC /* Pods-KeepingWatch.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = KeepingWatch/KeepingWatch.entitlements;
+				DEVELOPMENT_TEAM = VEBQ28K9EA;
+				IBSC_MODULE = KeepingWatch_Extension;
+				INFOPLIST_FILE = KeepingWatch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.krayc.Keeping.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.1;
+			};
+			name = Release;
+		};
+		2486A59D1E4B22D6006B29EE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5303058E548373FF6E1E7AF0 /* Pods-KeepingWatch Extension.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "KeepingWatch Extension/KeepingWatch Extension.entitlements";
+				DEVELOPMENT_TEAM = VEBQ28K9EA;
+				INFOPLIST_FILE = "KeepingWatch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.krayc.Keeping.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.1;
+			};
+			name = Debug;
+		};
+		2486A59E1E4B22D6006B29EE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 85B397591B8EAB57C5D32895 /* Pods-KeepingWatch Extension.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "KeepingWatch Extension/KeepingWatch Extension.entitlements";
+				DEVELOPMENT_TEAM = VEBQ28K9EA;
+				INFOPLIST_FILE = "KeepingWatch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.krayc.Keeping.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.1;
 			};
 			name = Release;
 		};
@@ -1002,6 +1404,24 @@
 			buildConfigurations = (
 				247F01C51E3D9E1B001F900C /* Debug */,
 				247F01C61E3D9E1B001F900C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2486A59F1E4B22D6006B29EE /* Build configuration list for PBXNativeTarget "KeepingWatch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2486A59D1E4B22D6006B29EE /* Debug */,
+				2486A59E1E4B22D6006B29EE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2486A5A11E4B22D6006B29EE /* Build configuration list for PBXNativeTarget "KeepingWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2486A59B1E4B22D6006B29EE /* Debug */,
+				2486A59C1E4B22D6006B29EE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

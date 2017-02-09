@@ -12,6 +12,8 @@
 #import "KPNavigationViewController.h"
 #import "KPTabBarViewController.h"
 
+#define GROUP_ID @"group.com.krayc.keeping"
+
 @interface KPFontTableViewController ()
 
 @end
@@ -60,7 +62,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary *fontDict = [Utilities getFontArr][indexPath.row];
+    
     [[NSUserDefaults standardUserDefaults] setValue:[fontDict allValues][0] forKey:@"font"];
+    
+    NSUserDefaults *shared = [[NSUserDefaults alloc]initWithSuiteName:GROUP_ID];
+    [shared setValue:[fontDict allValues][0] forKey:@"fontwidget"];
+    [shared synchronize];
     
     KPNavigationViewController *nav = (KPNavigationViewController *)self.navigationController;
     [nav setFont];

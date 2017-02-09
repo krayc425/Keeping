@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "FMDatabase.h"
 #import "FMDatabaseAdditions.h"
+#import <WatchConnectivity/WatchConnectivity.h>
 
-@interface DBManager : NSObject
+@interface DBManager : NSObject <WCSessionDelegate>
 
 @property (nonatomic, nonnull) FMDatabase *db;
 

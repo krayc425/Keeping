@@ -10,6 +10,8 @@
 
 @interface KPSchemeManager : NSObject
 
-+ (NSArray *_Nonnull)getSchemeArr;
++ (_Nonnull instancetype)shareInstance;
+
+- (NSArray *_Nonnull)getSchemeArr;
 
 @end

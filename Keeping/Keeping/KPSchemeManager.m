@@ -7,39 +7,46 @@
 //
 
 #import "KPSchemeManager.h"
+#import <AVOSCloud/AVOSCloud.h>
+
+static NSMutableArray *_Nullable schemes = nil;
 
 @implementation KPSchemeManager
 
 //添加完别忘了去 info.plist 也加一个
 
-+ (NSArray *)getSchemeArr{
-    return @[
-             @{@"Safari" : @"http://"},
-             @{@"微博" : @"sinaweibo://"},
-             @{@"微信" : @"weixin://"},
-             @{@"QQ"  : @"mqq://"},
-             @{@"淘宝" : @"taobao://"},
-             @{@"支付宝" : @"alipay://"},
-//             @{@"QQ 浏览器" : @"mqqbrowser://"},
-//             @{@"UC 浏览器" : @"ucbrowser://"},
-//             @{@"百度地图" : @"baidumap://"},
-//             @{@"Chrome" : @"googlechrome://"},
-//             @{@"优酷" : @"youku://"},
-//             @{@"美团" : @"imeituan://"},
-//             @{@"1号店" : @"wccbyihaodian://"},
-             @{@"知乎" : @"zhihu://"},
-             @{@"有道词典" : @"yddictproapp://"},
-             @{@"扇贝单词" : @"shanbay://"},
-             @{@"百词斩" : @"wxce5d9e837051d623://"},
-             @{@"单语" : @"danyuapp://"},
-             @{@"小站托福" : @"toefl1216c2://"},
-             @{@"驾考宝典" : @"jiakaobaodianxingui://"},
-             @{@"万得资讯" : @"WindInfoIPhoneFree://"},
-             @{@"万得股票" : @"StockMasterIPhoneFree://"},
-             @{@"换手率" : @"com.huanshoulv://"},
-             @{@"金太阳" : @"iGoldSun://"},
-             @{@"兴趣部落" : @"tencenttribe://"}
-             ];
+static KPSchemeManager* _instance = nil;
+
++ (instancetype)shareInstance{
+    static dispatch_once_t onceToken ;
+    dispatch_once(&onceToken, ^{
+        _instance = [[super allocWithZone:NULL] init];
+    });
+    return _instance ;
+}
+
++ (id)allocWithZone:(struct _NSZone *)zone{
+    return [KPSchemeManager shareInstance] ;
+}
+
+- (instancetype)init{
+    self = [super init];
+    if (self) {
+        schemes = [[NSMutableArray alloc] init];
+        [self getSchemes];
+    }
+    return self;
+}
+
+- (void)getSchemes{
+    AVQuery *query = [AVQuery queryWithClassName:@"AppScheme"];
+    for(AVObject *object in [query findObjects]){
+        [schemes addObject:[NSDictionary dictionaryWithObject:object[@"scheme"] forKey:object[@"name"]]];
+    }
+}
+
+- (NSArray *)getSchemeArr{
+    return schemes;
 }
 
 @end

@@ -26,6 +26,8 @@
 #define IOS8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
 #define IOS7_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
 
+#define GROUP_ID @"group.com.krayc.keeping"
+
 @interface AppDelegate () <UNUserNotificationCenterDelegate>
 
 @end
@@ -35,14 +37,16 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     //先删除所有通知
-//    [UNManager printNumberOfNotifications];
     [UNManager reconstructNotifications];
-//    [UNManager printNumberOfNotifications];
     
     [self replyPushNotificationAuthorization:application];
     
+    //LeanCloud
+    [AVOSCloud setAllLogsEnabled:NO];
     [AVOSCloud setApplicationId:@"sabdEOhaMdwIEc2zbKRBQk56-gzGzoHsz" clientKey:@"byONReV9r125hlRuN1mAvv9I"];
     [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    
     
     //第一次启动
     if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]){
@@ -52,7 +56,15 @@
        || [[NSUserDefaults standardUserDefaults] valueForKey:@"font"] == NULL){
         [[NSUserDefaults standardUserDefaults] setValue:@"STHeitiSC-Light" forKey:@"font"];
     }
+    NSUserDefaults *shared = [[NSUserDefaults alloc]initWithSuiteName:GROUP_ID];
+    if([shared valueForKey:@"fontwidget"] == NULL
+       || [[shared valueForKey:@"fontwidget"] isEqualToString:@""]){
+        [shared setValue:@"STHeitiSC-Light" forKey:@"fontwidget"];
+        [shared synchronize];
+    }
 
+    
+    
     //启动动画
     YFStartView *startView = [YFStartView startView];
     startView.isAllowRandomImage = YES;
@@ -72,7 +84,11 @@
     //    startView.logoImage = [UIImage imageNamed:@"logo"];
     
     [startView configYFStartView];
-
+    
+    //下载 schemes
+    NSArray *r = [[KPSchemeManager shareInstance] getSchemeArr];
+    NSLog(@"%lu rrr", (unsigned long)r.count);
+     
     return YES;
 }
 
