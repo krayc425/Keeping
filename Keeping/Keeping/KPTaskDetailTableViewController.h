@@ -26,6 +26,9 @@
 @property (nonnull, nonatomic) IBOutlet UIButton *startDateButton;
 @property (nonnull, nonatomic) IBOutlet UIButton *endDateButton;
 
+@property (nonatomic, nonnull) IBOutlet UIStackView *colorStack;    //button tag : 1 ~ 7
+@property (nonatomic) int selectedColorNum;
+
 @property (nonnull, nonatomic) IBOutlet UILabel *reminderLabel;
 @property (nonnull, nonatomic) IBOutlet UISwitch *reminderSwitch;
 @property (nonatomic, nullable) NSDate *reminderTime;

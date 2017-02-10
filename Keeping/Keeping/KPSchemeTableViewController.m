@@ -25,6 +25,7 @@
     
     [self.noneLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0]];
     [self.insLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0]];
+    [self.refreshLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0]];
     
     //隐藏返回键
     [self.navigationItem setHidesBackButton:YES];
@@ -35,10 +36,7 @@
     UIBarButtonItem *okItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_DONE"] style:UIBarButtonItemStylePlain target:self action:@selector(doneAction:)];
     self.navigationItem.rightBarButtonItems = @[okItem];
     
-    self.allNames = [[NSMutableArray alloc] init];
-    self.allSchemes = [[NSMutableArray alloc] init];
     self.searchResults = [[NSMutableArray alloc] init];
-    self.appDictionaryArr = [[NSMutableArray alloc] init];
     
     [self loadApps];
     //搜索框
@@ -50,13 +48,16 @@
 }
 
 - (void)loadApps{
+    self.allNames = [[NSMutableArray alloc] init];
+    self.allSchemes = [[NSMutableArray alloc] init];
+    self.appDictionaryArr = [[NSMutableArray alloc] init];
     for(NSDictionary *dict in [[KPSchemeManager shareInstance] getSchemeArr]){
         [self.allNames addObject:dict.allKeys[0]];
         [self.allSchemes addObject:dict.allValues[0]];
         [self.appDictionaryArr addObject:dict];
     }
-    NSLog(@"%lu nums", (unsigned long)[self.appDictionaryArr count]);
-    NSLog(@"%lu nums", (unsigned long)[[[KPSchemeManager shareInstance] getSchemeArr] count]);
+//    NSLog(@"%lu nums", (unsigned long)[self.appDictionaryArr count]);
+//    NSLog(@"%lu nums", (unsigned long)[[[KPSchemeManager shareInstance] getSchemeArr] count]);
     [self.tableView reloadData];
 }
 
@@ -88,22 +89,30 @@
 
 - (void)showSubmitAlert{
     UIAlertController *alertController =
-    [UIAlertController alertControllerWithTitle:@"请输入您想打开的 APP 名称"
+    [UIAlertController alertControllerWithTitle:@"提交 APP"
                                         message:nil
                                  preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addTextFieldWithConfigurationHandler:nil];
     [alertController addTextFieldWithConfigurationHandler:nil];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
                                                            style:UIAlertActionStyleCancel
                                                          handler:nil];
     [alertController addAction:cancelAction];
+    
+    UITextField *nameText = alertController.textFields.firstObject;
+    UITextField *schemeText = alertController.textFields.lastObject;
+    
+    nameText.placeholder = @"APP 名称";
+    schemeText.placeholder = @"对应 URL Scheme（可选）";
+    
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定"
                                                        style:UIAlertActionStyleDefault
                                                      handler:^(UIAlertAction *action){
-                                                         UITextField *nameText = alertController.textFields.firstObject;
                                                          
                                                          
                                                          AVObject *appNameSubmitted = [AVObject objectWithClassName:@"appNameSubmitted"];
                                                          [appNameSubmitted setObject:[nameText text] forKey:@"appName"];
+                                                         [appNameSubmitted setObject:[schemeText text] forKey:@"appScheme"];
                                                          [appNameSubmitted save];
                                                          
                                                          
@@ -125,7 +134,7 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -137,21 +146,16 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if(indexPath.section != 2){
+    if(indexPath.section <= 1){
         static NSString *cellIdentifier = @"KPSchemeTableViewCell";
         UINib *nib = [UINib nibWithNibName:@"KPSchemeTableViewCell" bundle:nil];
         [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
         KPSchemeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
         
-        if(indexPath.section == 1){
-//            if([self.searchController isActive]){
-//                [cell.appNameLabel setText:self.searchResults[indexPath.row]];
-//            }else{
-                [cell.appNameLabel setText:self.allNames[indexPath.row]];
-//            }
-        }else{
+        if(indexPath.section == 0){
             cell.appNameLabel.text = @"无";
+        }else{
+            [cell.appNameLabel setText:self.allNames[indexPath.row]];
         }
         
         if(indexPath == self.selectedPath){
@@ -184,28 +188,31 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if(indexPath.section == 2){
+    if(indexPath.section == 3){
         [self showSubmitAlert];
-    }else if(indexPath.section == 1){
-        if(![[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:[[self.appDictionaryArr objectAtIndex:indexPath.row] allValues][0]]]){
-            
-            UIAlertController *alertController =
-            [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"您尚未安装 %@", [self.appDictionaryArr[indexPath.row] allKeys][0]]
-                                                message:nil
-                                         preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
-                                                               style:UIAlertActionStyleDefault
-                                                             handler:nil];
-            [alertController addAction:okAction];
-            [self presentViewController:alertController animated:YES completion:nil];
-
-        }else{
-            if(self.selectedPath == indexPath){
-                self.selectedPath = NULL;
-            }else{
-                self.selectedPath = indexPath;
-            }
-        }
+//    }else if(indexPath.section == 1){
+//        if(![[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:[[self.appDictionaryArr objectAtIndex:indexPath.row] allValues][0]]]){
+//            
+//            UIAlertController *alertController =
+//            [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"您尚未安装 %@", [self.appDictionaryArr[indexPath.row] allKeys][0]]
+//                                                message:nil
+//                                         preferredStyle:UIAlertControllerStyleAlert];
+//            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
+//                                                               style:UIAlertActionStyleDefault
+//                                                             handler:nil];
+//            [alertController addAction:okAction];
+//            [self presentViewController:alertController animated:YES completion:nil];
+//
+//        }else{
+//            if(self.selectedPath == indexPath){
+//                self.selectedPath = NULL;
+//            }else{
+//                self.selectedPath = indexPath;
+//            }
+//        }
+    }else if(indexPath.section == 2){
+        [[KPSchemeManager shareInstance] getSchemes];
+        [self loadApps];
     }else{
         if(self.selectedPath == indexPath){
             self.selectedPath = NULL;

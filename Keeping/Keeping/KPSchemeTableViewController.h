@@ -31,6 +31,7 @@
 @property (nonatomic ,nonnull) UISearchController *searchController;
 
 @property (nonatomic, nonnull) IBOutlet UILabel *noneLabel;
+@property (nonatomic, nonnull) IBOutlet UILabel *refreshLabel;
 @property (nonatomic, nonnull) IBOutlet UILabel *insLabel;
 
 @end

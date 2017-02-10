@@ -20,4 +20,6 @@
 
 + (NSDictionary *)getTaskSortArr;
 
++ (NSArray *)getTypeColorArr;
+
 @end

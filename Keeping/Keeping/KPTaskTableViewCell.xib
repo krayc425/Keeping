@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -46,17 +47,32 @@
                             <action selector="imgAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="7GJ-cU-cLp"/>
                         </connections>
                     </button>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="6Ve-KO-ENb">
-                        <rect key="frame" x="18" y="14.5" width="184" height="40.5"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="6Ve-KO-ENb">
+                        <rect key="frame" x="18" y="13" width="184" height="45"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="TPV-JP-ZrE">
-                                <rect key="frame" x="0.0" y="0.0" width="42" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="4UM-kP-ZJp">
+                                <rect key="frame" x="0.0" y="0.0" width="56.5" height="20"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="TPV-JP-ZrE">
+                                        <rect key="frame" x="0.0" y="0.0" width="42" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="25U-RF-mtf"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zwj-tx-iGW">
+                                        <rect key="frame" x="47" y="5" width="9.5" height="10"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Zwj-tx-iGW" secondAttribute="height" multiplier="1:1" id="5BE-db-rVx"/>
+                                            <constraint firstAttribute="height" constant="10" id="IJj-dg-Rlv"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="sBK-sY-QwO">
-                                <rect key="frame" x="0.0" y="20.5" width="184" height="20"/>
+                                <rect key="frame" x="0.0" y="25" width="184" height="20"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ve1-Tr-LWS">
                                         <rect key="frame" x="0.0" y="0.0" width="170" height="20"/>
@@ -128,9 +144,6 @@
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <constraints>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="TPV-JP-ZrE" secondAttribute="trailing" id="J3j-QG-mqR"/>
-                        </constraints>
                     </stackView>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -154,6 +167,7 @@
                 <outlet property="nameLabel" destination="TPV-JP-ZrE" id="ACa-av-ZXR"/>
                 <outlet property="progressView" destination="GI4-oS-7Ju" id="KMI-Gx-1zR"/>
                 <outlet property="taskImgViewBtn" destination="Qjo-ku-I5K" id="Xwf-uB-SEq"/>
+                <outlet property="typeImg" destination="Zwj-tx-iGW" id="dSv-GX-KHb"/>
                 <outlet property="weekDayStack" destination="ve1-Tr-LWS" id="apT-yj-jPP"/>
             </connections>
         </tableViewCell>

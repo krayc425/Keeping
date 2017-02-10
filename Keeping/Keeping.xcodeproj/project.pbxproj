@@ -34,6 +34,11 @@
 		244EB3051E3635B100D30AE3 /* KPImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 244EB3041E3635B100D30AE3 /* KPImageViewController.m */; };
 		245196711E3CB82F00C18C5B /* TabBar.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 245196701E3CB82F00C18C5B /* TabBar.xcassets */; };
 		245196761E3CE35200C18C5B /* 方正楷体简体.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 245196751E3CE34F00C18C5B /* 方正楷体简体.ttf */; };
+		24555F911E4DDBB1002ACED3 /* KPTypeColorTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24555F901E4DDBB1002ACED3 /* KPTypeColorTableViewController.m */; };
+		2462FB891E4D6295004E70A5 /* Intro_Screen_Four.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2462FB851E4D6295004E70A5 /* Intro_Screen_Four.jpg */; };
+		2462FB8A1E4D6295004E70A5 /* Intro_Screen_One.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2462FB861E4D6295004E70A5 /* Intro_Screen_One.jpg */; };
+		2462FB8B1E4D6295004E70A5 /* Intro_Screen_Three.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2462FB871E4D6295004E70A5 /* Intro_Screen_Three.jpg */; };
+		2462FB8C1E4D6295004E70A5 /* Intro_Screen_Two.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2462FB881E4D6295004E70A5 /* Intro_Screen_Two.jpg */; };
 		24699F031E2F213D0092FBED /* KPNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24699F021E2F213D0092FBED /* KPNavigationViewController.m */; };
 		24699F051E2F23C60092FBED /* Navigation.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24699F041E2F23C60092FBED /* Navigation.xcassets */; };
 		247A79801E38ABF1000EE623 /* ABCIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = 247A797F1E38ABF1000EE623 /* ABCIntroView.m */; };
@@ -210,6 +215,12 @@
 		244EB3041E3635B100D30AE3 /* KPImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPImageViewController.m; sourceTree = "<group>"; };
 		245196701E3CB82F00C18C5B /* TabBar.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TabBar.xcassets; sourceTree = "<group>"; };
 		245196751E3CE34F00C18C5B /* 方正楷体简体.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "方正楷体简体.ttf"; sourceTree = "<group>"; };
+		24555F8F1E4DDBB1002ACED3 /* KPTypeColorTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPTypeColorTableViewController.h; sourceTree = "<group>"; };
+		24555F901E4DDBB1002ACED3 /* KPTypeColorTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPTypeColorTableViewController.m; sourceTree = "<group>"; };
+		2462FB851E4D6295004E70A5 /* Intro_Screen_Four.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Intro_Screen_Four.jpg; sourceTree = "<group>"; };
+		2462FB861E4D6295004E70A5 /* Intro_Screen_One.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Intro_Screen_One.jpg; sourceTree = "<group>"; };
+		2462FB871E4D6295004E70A5 /* Intro_Screen_Three.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Intro_Screen_Three.jpg; sourceTree = "<group>"; };
+		2462FB881E4D6295004E70A5 /* Intro_Screen_Two.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Intro_Screen_Two.jpg; sourceTree = "<group>"; };
 		24699F011E2F213D0092FBED /* KPNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPNavigationViewController.h; sourceTree = "<group>"; };
 		24699F021E2F213D0092FBED /* KPNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPNavigationViewController.m; sourceTree = "<group>"; };
 		24699F041E2F23C60092FBED /* Navigation.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Navigation.xcassets; sourceTree = "<group>"; };
@@ -371,6 +382,8 @@
 				2429CBDB1E2DF61B0027DD37 /* KPSettingsTableViewController.h */,
 				2429CBDC1E2DF61B0027DD37 /* KPSettingsTableViewController.m */,
 				2435DBF51E35CCD400F1A96E /* Font */,
+				24555F8F1E4DDBB1002ACED3 /* KPTypeColorTableViewController.h */,
+				24555F901E4DDBB1002ACED3 /* KPTypeColorTableViewController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -429,9 +442,9 @@
 		243E93F61E3E38100045A089 /* Launch */ = {
 			isa = PBXGroup;
 			children = (
-				243E93F11E3E37FD0045A089 /* StartButtomView.xib */,
 				243E93F31E3E38040045A089 /* StartButtomView.h */,
 				243E93F41E3E38040045A089 /* StartButtomView.m */,
+				243E93F11E3E37FD0045A089 /* StartButtomView.xib */,
 				249AE3261E2DEE7700F704F8 /* LaunchScreen.storyboard */,
 			);
 			name = Launch;
@@ -550,6 +563,10 @@
 		249AE3151E2DEE7700F704F8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2462FB851E4D6295004E70A5 /* Intro_Screen_Four.jpg */,
+				2462FB861E4D6295004E70A5 /* Intro_Screen_One.jpg */,
+				2462FB871E4D6295004E70A5 /* Intro_Screen_Three.jpg */,
+				2462FB881E4D6295004E70A5 /* Intro_Screen_Two.jpg */,
 				245196751E3CE34F00C18C5B /* 方正楷体简体.ttf */,
 				2429CBF71E2E571A0027DD37 /* 方正书宋简体.ttf */,
 				249AE3161E2DEE7700F704F8 /* main.m */,
@@ -869,14 +886,17 @@
 			files = (
 				24F2A0F91E2F7B6E00F30FB1 /* picker_wheel_ip4@2x.png in Resources */,
 				24F2A0FE1E2F7B6E00F30FB1 /* schedule_image_moon-high.png in Resources */,
+				2462FB891E4D6295004E70A5 /* Intro_Screen_Four.jpg in Resources */,
 				24F2A0F51E2F7B6E00F30FB1 /* checkmark_icon_white.png in Resources */,
 				2429CBEF1E2E4A9B0027DD37 /* KPTodayTableViewCell.xib in Resources */,
+				2462FB8B1E4D6295004E70A5 /* Intro_Screen_Three.jpg in Resources */,
 				24F2A0CB1E2F383A00F30FB1 /* KPTaskTableViewCell.xib in Resources */,
 				249AE3281E2DEE7700F704F8 /* LaunchScreen.storyboard in Resources */,
 				24F2A1001E2F7B6E00F30FB1 /* schedule_image_sun-high.png in Resources */,
 				249AE3251E2DEE7700F704F8 /* Assets.xcassets in Resources */,
 				24F2A1011E2F7B6E00F30FB1 /* schedule_image_sun-high@2x.png in Resources */,
 				24F2A0FC1E2F7B6E00F30FB1 /* round_backarrow_big.png in Resources */,
+				2462FB8C1E4D6295004E70A5 /* Intro_Screen_Two.jpg in Resources */,
 				24F2A0FF1E2F7B6E00F30FB1 /* schedule_image_moon-high@2x.png in Resources */,
 				24F2A0F61E2F7B6E00F30FB1 /* checkmark_icon_white@2x.png in Resources */,
 				245196711E3CB82F00C18C5B /* TabBar.xcassets in Resources */,
@@ -892,6 +912,7 @@
 				245196761E3CE35200C18C5B /* 方正楷体简体.ttf in Resources */,
 				2429CBF81E2E571A0027DD37 /* 方正书宋简体.ttf in Resources */,
 				24F2A0FB1E2F7B6E00F30FB1 /* round_backarrow_big-high@2x.png in Resources */,
+				2462FB8A1E4D6295004E70A5 /* Intro_Screen_One.jpg in Resources */,
 				24F2A0F81E2F7B6E00F30FB1 /* picker_wheel_ip4.png in Resources */,
 				2429CBEA1E2E49A60027DD37 /* KPSeparatorView.xib in Resources */,
 			);
@@ -1120,6 +1141,7 @@
 				24F2A0C31E2F371B00F30FB1 /* UIView+MJAlertView.m in Sources */,
 				2435DBF11E35CCC300F1A96E /* KPFontTableViewController.m in Sources */,
 				243E93F51E3E38040045A089 /* StartButtomView.m in Sources */,
+				24555F911E4DDBB1002ACED3 /* KPTypeColorTableViewController.m in Sources */,
 				24F2A1061E2F7CBC00F30FB1 /* KPReminderViewController.m in Sources */,
 				249AE3231E2DEE7700F704F8 /* Keeping.xcdatamodeld in Sources */,
 				2429CBE81E2E499A0027DD37 /* KPSeparatorView.m in Sources */,

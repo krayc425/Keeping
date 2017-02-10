@@ -33,6 +33,7 @@
 - (void)setFont{
     [self.fontLabel setFont:[UIFont fontWithName:[Utilities getFont] size:17.0]];
     [self.mailLabel setFont:[UIFont fontWithName:[Utilities getFont] size:17.0]];
+    [self.typeLabel setFont:[UIFont fontWithName:[Utilities getFont] size:17.0]];
     [self.scoreLabel setFont:[UIFont fontWithName:[Utilities getFont] size:17.0]];
     [self.numberLabel setFont:[UIFont fontWithName:[Utilities getFont] size:17.0]];
     [self.versionLabel setFont:[UIFont fontWithName:[Utilities getFont] size:17.0]];
@@ -41,7 +42,7 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -49,6 +50,8 @@
         case 0:
             return 1;
         case 1:
+            return 1;
+        case 2:
             return 3;
         default:
             return 0;
@@ -60,6 +63,8 @@
         case 0:
             return @"外观";
         case 1:
+            return @"偏好";
+        case 2:
             return @"其他";
         default:
             return @"";
@@ -68,9 +73,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if(indexPath.section == 1 && indexPath.row == 0){
+    if(indexPath.section == 2 && indexPath.row == 0){
         [self scoreApp];
-    }else if(indexPath.section == 1 && indexPath.row == 1){
+    }else if(indexPath.section == 2 && indexPath.row == 1){
         [self sendBugEmail];
     }
 }

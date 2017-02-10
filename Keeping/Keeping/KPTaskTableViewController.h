@@ -14,6 +14,11 @@
 @property (nonnull, nonatomic) NSMutableArray *taskArr;
 @property (nonnull, nonatomic) NSMutableArray *historyTaskArr;
 
+@property (nonatomic, nonnull) IBOutlet UIStackView *pageStack;
+
+@property (nonatomic, nonnull) IBOutlet UIStackView *colorStack;    //button tag : 1 ~ 7
+@property (nonatomic) int selectedColorNum;
+
 @property (nonnull, nonatomic) IBOutlet UIStackView *weekDayStack;
 @property (nonnull, nonatomic) NSMutableArray *selectedWeekdayArr;
 @property (nonnull, nonatomic) IBOutlet UIButton *allButton;

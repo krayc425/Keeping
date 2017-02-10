@@ -33,6 +33,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.sortFactor = @"addDate";
+    
     self.taskArr = [[NSMutableArray alloc] init];
     self.historyTaskArr = [[NSMutableArray alloc] init];
     
@@ -42,7 +45,7 @@
     self.tableView.tableFooterView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     
-    self.sortFactor = @"addDate";
+    
     //星期几选项按钮
     for(UIButton *button in self.weekDayStack.subviews){
         [button setTintColor:[Utilities getColor]];
@@ -54,9 +57,48 @@
             [button setBackgroundImage:buttonImg forState:UIControlStateNormal];
         }
     }
-    
     self.selectedWeekdayArr = [[NSMutableArray alloc] init];
     [self selectAllWeekDay];
+    
+    
+    //类别按钮
+    for (int i = 0; i < [[Utilities getTypeColorArr] count]; i++) {
+        UIButton *btn = (UIButton *)self.colorStack.subviews[i];
+        UIImage *img = [UIImage imageNamed:@"CIRCLE_FULL"];
+        img = [img imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        [btn setBackgroundImage:img forState:UIControlStateNormal];
+        [btn setTintColor:[Utilities getTypeColorArr][i]];
+        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [btn.titleLabel setFont:[UIFont systemFontOfSize:20.0f]];
+        [btn setTag:i+1];
+    }
+    self.selectedColorNum = -1;
+    
+    
+    //page 指示 stack
+    self.weekDayStack.hidden = NO;
+    self.colorStack.hidden = YES;
+    for(UIImageView *imgView in self.pageStack.subviews){
+        UIImage *img = [UIImage imageNamed:@"CIRCLE_FULL"];
+        img = [img imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        [imgView setImage:img];
+    }
+    [self.pageStack.subviews[0] setTintColor:[Utilities getColor]];
+    [self.pageStack.subviews[1] setTintColor:[UIColor groupTableViewBackgroundColor]];
+    
+    UISwipeGestureRecognizer *swipeGRLeft1 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeAction:)];
+    UISwipeGestureRecognizer *swipeGRRight1 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeAction:)];
+    swipeGRLeft1.direction = UISwipeGestureRecognizerDirectionLeft;
+    swipeGRRight1.direction = UISwipeGestureRecognizerDirectionRight;
+    UISwipeGestureRecognizer *swipeGRLeft2 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeAction:)];
+    UISwipeGestureRecognizer *swipeGRRight2 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeAction:)];
+    swipeGRLeft2.direction = UISwipeGestureRecognizerDirectionLeft;
+    swipeGRRight2.direction = UISwipeGestureRecognizerDirectionRight;
+    
+    [self.colorStack addGestureRecognizer:swipeGRLeft1];
+    [self.colorStack addGestureRecognizer:swipeGRRight1];
+    [self.weekDayStack addGestureRecognizer:swipeGRLeft2];
+    [self.weekDayStack addGestureRecognizer:swipeGRRight2];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -75,11 +117,45 @@
     [self loadTasksOfWeekdays:self.selectedWeekdayArr];
 }
 
+- (void)swipeAction:(UISwipeGestureRecognizer *)sender{
+    if([self.colorStack isHidden]){
+        [self.colorStack setHidden:NO];
+        [self.weekDayStack setHidden:YES];
+        [self.pageStack.subviews[0] setTintColor:[UIColor groupTableViewBackgroundColor]];
+        [self.pageStack.subviews[1] setTintColor:[Utilities getColor]];
+    }else{
+        [self.colorStack setHidden:YES];
+        [self.weekDayStack setHidden:NO];
+        [self.pageStack.subviews[0] setTintColor:[Utilities getColor]];
+        [self.pageStack.subviews[1] setTintColor:[UIColor groupTableViewBackgroundColor]];
+    }
+}
+
+- (void)addAction:(id)senders{
+    [self performSegueWithIdentifier:@"addTaskSegue" sender:nil];
+}
+
+- (void)editAction:(id)senders{
+    [self.menuPopover dismissMenuPopover];
+    
+    self.menuPopover = [[MLKMenuPopover alloc] initWithFrame:MENU_POPOVER_FRAME menuItems:[[Utilities getTaskSortArr] allKeys]];
+    self.menuPopover.menuPopoverDelegate = self;
+    [self.menuPopover showInView:self.navigationController.view];
+}
+
 - (void)loadTasksOfWeekdays:(NSArray *)weekDays{
     self.taskArr = [[NSMutableArray alloc] init];
     self.historyTaskArr = [[NSMutableArray alloc] init];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"ANY SELF.reminderDays in %@", weekDays];
+    
     self.taskArr = [NSMutableArray arrayWithArray:[[[TaskManager shareInstance] getTasks] filteredArrayUsingPredicate:predicate]];
+    
+    
+    if(self.selectedColorNum > 0){
+        NSPredicate *predicate2 = [NSPredicate predicateWithFormat:@"SELF.type == %d", self.selectedColorNum];
+        self.taskArr = [NSMutableArray arrayWithArray:[self.taskArr filteredArrayUsingPredicate:predicate2]];
+    }
+    
     
     for(Task *t in self.taskArr){
         //（结束日加一天以后 才是到期）
@@ -104,17 +180,26 @@
     [self.tableView reloadData];
 }
 
-- (void)addAction:(id)senders{
-    [self performSegueWithIdentifier:@"addTaskSegue" sender:nil];
+#pragma mark - Select Color Action
+
+- (IBAction)selectColorAction:(id)sender{
+    UIButton *button = (UIButton *)sender;
+    if(self.selectedColorNum == (int)button.tag){
+        self.selectedColorNum = -1;
+    }else{
+        self.selectedColorNum = (int)button.tag;
+    }
+    for(UIButton *btn in self.colorStack.subviews){
+        if(btn.tag == self.selectedColorNum){
+            [btn setTitle:@"●" forState:UIControlStateNormal];
+        }else{
+            [btn setTitle:@"" forState:UIControlStateNormal];
+        }
+    }
+    [self loadTasksOfWeekdays:self.selectedWeekdayArr];
 }
 
-- (void)editAction:(id)senders{
-    [self.menuPopover dismissMenuPopover];
-    
-    self.menuPopover = [[MLKMenuPopover alloc] initWithFrame:MENU_POPOVER_FRAME menuItems:[[Utilities getTaskSortArr] allKeys]];
-    self.menuPopover.menuPopoverDelegate = self;
-    [self.menuPopover showInView:self.navigationController.view];
-}
+#pragma mark - Select Weekday Action
 
 - (IBAction)selectWeekdayAction:(id)sender{
     UIButton *btn = (UIButton *)sender;
@@ -327,6 +412,15 @@
                 buttonImg = [buttonImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
                 [button setBackgroundImage:buttonImg forState:UIControlStateNormal];
             }
+        }
+        
+        if(t.type > 0){
+            UIImage *img = [UIImage imageNamed:@"CIRCLE_FULL"];
+            img = [img imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            cell.typeImg.tintColor = [Utilities getTypeColorArr][t.type - 1];
+            [cell.typeImg setImage:img];
+        }else{
+            [cell.typeImg setImage:[UIImage new]];
         }
         
         NSString *reminderTimeStr = @"";

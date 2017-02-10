@@ -42,4 +42,16 @@
              };
 }
 
++ (NSArray *)getTypeColorArr{
+    return @[
+             [UIColor colorWithRed:252.0/255.0 green:99.0/255.0 blue:96.0/255.0 alpha:1.0],
+             [UIColor colorWithRed:247.0/255.0 green:165.0/255.0 blue:80.0/255.0 alpha:1.0],
+             [UIColor colorWithRed:243.0/255.0 green:205.0/255.0 blue:86.0/255.0 alpha:1.0],
+             [UIColor colorWithRed:112.0/255.0 green:202.0/255.0 blue:87.0/255.0 alpha:1.0],
+             [UIColor colorWithRed:81.0/255.0 green:185.0/255.0 blue:214.0/255.0 alpha:1.0],
+             [UIColor colorWithRed:207.0/255.0 green:139.0/255.0 blue:223.0/255.0 alpha:1.0],
+             [UIColor colorWithRed:164.0/255.0 green:164.0/255.0 blue:167.0/255.0 alpha:1.0],
+             ];
+}
+
 @end

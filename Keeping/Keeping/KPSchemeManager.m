@@ -9,6 +9,8 @@
 #import "KPSchemeManager.h"
 #import <AVOSCloud/AVOSCloud.h>
 
+#define GB18030_ENCODING CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000)
+
 static NSMutableArray *_Nullable schemes = nil;
 
 @implementation KPSchemeManager
@@ -32,13 +34,13 @@ static KPSchemeManager* _instance = nil;
 - (instancetype)init{
     self = [super init];
     if (self) {
-        schemes = [[NSMutableArray alloc] init];
         [self getSchemes];
     }
     return self;
 }
 
 - (void)getSchemes{
+    schemes = [[NSMutableArray alloc] init];
     AVQuery *query = [AVQuery queryWithClassName:@"AppScheme"];
     for(AVObject *object in [query findObjects]){
         [schemes addObject:[NSDictionary dictionaryWithObject:object[@"scheme"] forKey:object[@"name"]]];
@@ -46,7 +48,15 @@ static KPSchemeManager* _instance = nil;
 }
 
 - (NSArray *)getSchemeArr{
-    return schemes;
+    return [schemes sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        
+        NSString *number1 = [[[obj1 allKeys] objectAtIndex:0] stringByAddingPercentEscapesUsingEncoding:GB18030_ENCODING];
+        NSString *number2 = [[[obj2 allKeys] objectAtIndex:0] stringByAddingPercentEscapesUsingEncoding:GB18030_ENCODING];;
+        
+        NSComparisonResult result = [number1 compare:number2];
+        
+        return result == NSOrderedDescending; // 升序
+    }];
 }
 
 @end

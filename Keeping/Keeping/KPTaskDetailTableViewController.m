@@ -47,9 +47,7 @@
     self.taskNameField.layer.borderWidth = 1.0;
     self.taskNameField.layer.cornerRadius = 5.0;
     self.taskNameField.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
-    //文本框代理
     self.taskNameField.delegate = self;
-    self.linkTextField.delegate = self;
     
     
     //持续时间
@@ -71,6 +69,19 @@
         }else{
             [button.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:12.0f]];
         }
+    }
+    
+    
+    //类别
+    for (int i = 0; i < [[Utilities getTypeColorArr] count]; i++) {
+        UIButton *btn = (UIButton *)self.colorStack.subviews[i];
+        UIImage *img = [UIImage imageNamed:@"CIRCLE_FULL"];
+        img = [img imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        [btn setBackgroundImage:img forState:UIControlStateNormal];
+        [btn setTintColor:[Utilities getTypeColorArr][i]];
+        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [btn.titleLabel setFont:[UIFont systemFontOfSize:20.0f]];
+        [btn setTag:i+1];
     }
     
     
@@ -99,6 +110,7 @@
     self.linkTextField.layer.borderWidth = 1.0;
     self.linkTextField.layer.cornerRadius = 5.0;
     self.linkTextField.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
+    self.linkTextField.delegate = self;
     
     
     //开始、到期日期颜色
@@ -115,21 +127,22 @@
     self.memoTextView.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
     self.memoTextView.layer.cornerRadius = 5.0;
     
-    UIToolbar* keyboardDoneButtonView = [[UIToolbar alloc] init];
+    UIToolbar *keyboardDoneButtonView = [[UIToolbar alloc] init];
     keyboardDoneButtonView.barStyle = UIBarStyleBlack;
-    keyboardDoneButtonView.translucent = YES;
-    keyboardDoneButtonView.backgroundColor = [UIColor whiteColor];
-    keyboardDoneButtonView.barTintColor = [UIColor groupTableViewBackgroundColor];
+    keyboardDoneButtonView.translucent = NO;
+    keyboardDoneButtonView.backgroundColor = [Utilities getColor];
+    keyboardDoneButtonView.tintColor = [Utilities getColor];
+    keyboardDoneButtonView.barTintColor = [Utilities getColor];
     [keyboardDoneButtonView sizeToFit];
     
     UIBarButtonItem *spaceButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                                target:nil
                                                                                action:nil];
-    UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithTitle:@"完成"
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"完成"
                                                                        style:UIBarButtonItemStyleDone
                                                                   target:self
                                                                   action:@selector(pickerDoneClicked)];
-    doneButton.tintColor = [Utilities getColor];
+    doneButton.tintColor = [UIColor whiteColor];
     [keyboardDoneButtonView setItems:@[spaceButton, doneButton]];
     self.memoTextView.inputAccessoryView = keyboardDoneButtonView;
     
@@ -190,6 +203,14 @@
         self.selectedApp = self.task.appScheme;
         if(self.selectedApp != NULL){
             [self.appNameLabel setText:self.selectedApp.allKeys[0]];
+        }
+        
+        for(UIButton *btn in self.colorStack.subviews){
+            if(self.task.type == btn.tag){
+                [btn setTitle:@"●" forState:UIControlStateNormal];
+            }else{
+                [btn setTitle:@"" forState:UIControlStateNormal];
+            }
         }
         
         self.reminderTime = self.task.reminderTime;
@@ -306,6 +327,8 @@
     }
     //备注
     self.task.memo = self.memoTextView.text;
+    //类别
+    self.task.type = self.selectedColorNum;
     
     //更新
     if(self.task.id == 0){
@@ -421,6 +444,24 @@
             [self presentViewController:alertController animated:YES completion:nil];
         }
 
+    }
+}
+
+#pragma mark - Color Type Selection
+
+- (IBAction)selectColorAction:(id)sender{
+    UIButton *button = (UIButton *)sender;
+    if(self.selectedColorNum == (int)button.tag){
+        self.selectedColorNum = -1;
+    }else{
+        self.selectedColorNum = (int)button.tag;
+    }
+    for(UIButton *btn in self.colorStack.subviews){
+        if(btn.tag == self.selectedColorNum){
+            [btn setTitle:@"●" forState:UIControlStateNormal];
+        }else{
+            [btn setTitle:@"" forState:UIControlStateNormal];
+        }
     }
 }
 
@@ -630,7 +671,7 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 8;
+    return 9;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -650,18 +691,21 @@
             [view setText:@"持续时间"];
             break;
         case 3:
-            [view setText:@"提醒时间"];
+            [view setText:@"类别"];
             break;
         case 4:
-            [view setText:@"备注"];
+            [view setText:@"提醒时间"];
             break;
         case 5:
-            [view setText:@"打开 APP"];
+            [view setText:@"备注"];
             break;
         case 6:
-            [view setText:@"链接"];
+            [view setText:@"打开 APP"];
             break;
         case 7:
+            [view setText:@"链接"];
+            break;
+        case 8:
             [view setText:@"图片"];
             break;
         default:
@@ -686,13 +730,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     switch (indexPath.section) {
-        case 3:
+        case 4:
             [self showReminderPickerAction:[NSDate date] ];
             break;
-        case 5:
+        case 6:
             [self performSegueWithIdentifier:@"appSegue" sender:nil];
             break;
-        case 7:
+        case 8:
             [self modifyPicAction:nil];
             break;
         default:
@@ -701,7 +745,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(indexPath.section == 7){
+    if(indexPath.section == 8){
         return self.view.frame.size.width;
     }else{
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];

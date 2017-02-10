@@ -12,6 +12,7 @@
 
 + (_Nonnull instancetype)shareInstance;
 
+- (void)getSchemes;
 - (NSArray *_Nonnull)getSchemeArr;
 
 @end

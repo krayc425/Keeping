@@ -27,6 +27,7 @@
 @property (nonatomic,strong) MLKMenuPopover *_Nonnull menuPopover;
 
 @property (nonatomic,strong) AMPopTip *tip;
+@property (nonatomic,strong) AMPopTip *calTip;
 
 @end
 
@@ -35,8 +36,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     self.sortFactor = @"addDate";
-    
     self.selectedDate = [NSDate dateWithYear:[[NSDate date] year] month:[[NSDate date] month] day:[[NSDate date] day]];
     
 //     NSArray *fontFamilies = [UIFont familyNames];
@@ -62,19 +63,25 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     self.tip = [AMPopTip popTip];
+    self.calTip = [AMPopTip popTip];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     self.selectedIndexPath = NULL;
-//    self.selectedDate = [NSDate date];
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
     [self.tip hide];
+    [self.calTip hide];
 }
 
 - (void)loadTasks{
+    if([self.tip isVisible] || [self.tip isAnimating]){
+        [self.tip hide];
+    }
+    
     [self.dateButton setTitle:[DateUtil getDateStringOfDate:self.selectedDate] forState:UIControlStateNormal];
+    self.selectedIndexPath = NULL;
     
     self.unfinishedTaskArr = [[NSMutableArray alloc] init];
     self.finishedTaskArr = [[NSMutableArray alloc] init];
@@ -119,15 +126,23 @@
     [self.menuPopover showInView:self.navigationController.view];
 }
 
+#pragma mark - Choose Date
+
 - (IBAction)chooseDateAction:(id)sender{
     
-    if(![self.tip isVisible] && ![self.tip isAnimating]){
+    if(![self.calTip isVisible] && ![self.calTip isAnimating]){
         
         self.calendar = [[FSCalendar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width - 20, 250)];
         self.calendar.dataSource = self;
         self.calendar.delegate = self;
         self.calendar.backgroundColor = [UIColor whiteColor];
         self.calendar.layer.cornerRadius = 10;
+        
+        self.calendar.appearance.titleFont = [UIFont fontWithName:[Utilities getFont] size:12.0];
+        self.calendar.appearance.headerTitleFont = [UIFont fontWithName:[Utilities getFont] size:15.0];
+        self.calendar.appearance.weekdayFont = [UIFont fontWithName:[Utilities getFont] size:15.0];
+        self.calendar.appearance.subtitleFont = [UIFont fontWithName:[Utilities getFont] size:10.0];
+        
         self.calendar.appearance.headerMinimumDissolvedAlpha = 0;
         self.calendar.appearance.headerDateFormat = @"yyyy 年 MM 月";
         
@@ -140,21 +155,57 @@
         self.calendar.appearance.titleSelectionColor = [UIColor whiteColor];
 //        self.calendar.appearance.todaySelectionColor = [Utilities getColor];
         
+        UIButton *previousButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        previousButton.frame = CGRectMake(5, 5, 95, 34);
+        previousButton.backgroundColor = [UIColor whiteColor];
+        previousButton.titleLabel.font = [UIFont systemFontOfSize:15];
+        [previousButton setTintColor:[Utilities getColor]];
+        UIImage *leftImg = [UIImage imageNamed:@"icon_prev"];
+        leftImg = [leftImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        [previousButton setImage:leftImg forState:UIControlStateNormal];
+        [previousButton addTarget:self action:@selector(previousClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [self.calendar addSubview:previousButton];
+        self.previousButton = previousButton;
+        
+        UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        nextButton.frame = CGRectMake(CGRectGetWidth(self.calendar.frame)-100, 5, 95, 34);
+        nextButton.backgroundColor = [UIColor whiteColor];
+        nextButton.titleLabel.font = [UIFont systemFontOfSize:15];
+        [nextButton setTintColor:[Utilities getColor]];
+        UIImage *rightImg = [UIImage imageNamed:@"icon_next"];
+        rightImg = [rightImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        [nextButton setImage:rightImg forState:UIControlStateNormal];
+        [nextButton addTarget:self action:@selector(nextClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [self.calendar addSubview:nextButton];
+        self.nextButton = nextButton;
+        
         [self.calendar selectDate:self.selectedDate scrollToDate:YES];
-
-        [self.tip showCustomView:self.calendar
+        
+        [self.calTip showCustomView:self.calendar
                           direction:AMPopTipDirectionNone
                              inView:self.tableView
                           fromFrame:self.tableView.frame];
         
-        self.tip.textColor = [UIColor whiteColor];
-        self.tip.tintColor = [Utilities getColor];
-        self.tip.popoverColor = [Utilities getColor];
-        self.tip.borderColor = [UIColor whiteColor];
+        self.calTip.textColor = [UIColor whiteColor];
+        self.calTip.tintColor = [Utilities getColor];
+        self.calTip.popoverColor = [Utilities getColor];
+        self.calTip.borderColor = [UIColor whiteColor];
         
-        self.tip.radius = 15;
+        self.calTip.radius = 15;
     }
 
+}
+
+- (void)previousClicked:(id)sender{
+    NSDate *currentMonth = self.calendar.currentPage;
+    NSDate *previousMonth = [self.gregorian dateByAddingUnit:NSCalendarUnitMonth value:-1 toDate:currentMonth options:0];
+    [self.calendar setCurrentPage:previousMonth animated:YES];
+}
+
+- (void)nextClicked:(id)sender{
+    NSDate *currentMonth = self.calendar.currentPage;
+    NSDate *nextMonth = [self.gregorian dateByAddingUnit:NSCalendarUnitMonth value:1 toDate:currentMonth options:0];
+    [self.calendar setCurrentPage:nextMonth animated:YES];
 }
 
 #pragma mark - Table view data source
@@ -419,12 +470,10 @@
     if(path.section == 1){
         Task *task = self.unfinishedTaskArr[path.row];
         [[TaskManager shareInstance] punchForTaskWithID:@(task.id) onDate:self.selectedDate];
-        self.selectedIndexPath = NULL;
         [self loadTasks];
     }else if(path.section == 2){
         Task *task = self.finishedTaskArr[path.row];
         [[TaskManager shareInstance] unpunchForTaskWithID:@(task.id) onDate:self.selectedDate];
-        self.selectedIndexPath = NULL;
         [self loadTasks];
     }
 }
@@ -495,7 +544,7 @@
     }
 }
 
-#pragma mark - DZNEmpty Delegate
+#pragma mark - DZNEmptyTableViewDelegate
 
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView{
     NSString *text = @"没有任务";
@@ -521,7 +570,7 @@
 - (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date{
     NSDate *tempDate = [NSDate dateWithYear:[date year] month:[date month] day:[date day]];
     self.selectedDate = tempDate;
-    [self.tip hide];
+    [self.calTip hide];
     [self loadTasks];
 }
 

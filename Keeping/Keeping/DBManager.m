@@ -117,6 +117,11 @@ static DBManager* _instance = nil;
                 [self.db executeUpdate:[NSString stringWithFormat:@"ALTER TABLE %@ ADD %@ text", @"t_task", @"memo"]];
                 NSLog(@"增加备注字段成功");
             }
+            //类别选项  added on 1.2
+            if (![self.db columnExists:@"type" inTableWithName:@"t_task"]){
+                [self.db executeUpdate:[NSString stringWithFormat:@"ALTER TABLE %@ ADD %@ integer", @"t_task", @"type"]];
+                NSLog(@"增加类别字段成功");
+            }
             
         }
     }

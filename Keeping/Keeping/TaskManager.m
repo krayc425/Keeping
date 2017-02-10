@@ -79,7 +79,7 @@ static TaskManager* _instance = nil;
     }
     
     return [[[DBManager shareInstance] getDB] executeUpdate:
-            @"INSERT INTO t_task (name, appScheme, reminderDays, addDate, reminderTime, punchDateArr, image, link, endDate, memo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
+            @"INSERT INTO t_task (name, appScheme, reminderDays, addDate, reminderTime, punchDateArr, image, link, endDate, memo, type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
             task.name,
             schemeJsonStr,
             daysJsonStr,
@@ -89,7 +89,8 @@ static TaskManager* _instance = nil;
             task.image,
             task.link,
             task.endDate,
-            task.memo
+            task.memo,
+            @(task.type)
             ];
 }
 
@@ -130,7 +131,7 @@ static TaskManager* _instance = nil;
     }
     
     return [[[DBManager shareInstance] getDB] executeUpdate:
-            @"UPDATE t_task SET name = ?, appScheme = ?, reminderDays = ?, addDate = ?, reminderTime = ?, punchDateArr = ?, image = ?, link = ?, endDate = ?, memo = ? WHERE id = ?;",
+            @"UPDATE t_task SET name = ?, appScheme = ?, reminderDays = ?, addDate = ?, reminderTime = ?, punchDateArr = ?, image = ?, link = ?, endDate = ?, memo = ?, type = ? WHERE id = ?;",
             task.name,
             schemeJsonStr,
             daysJsonStr,
@@ -141,6 +142,7 @@ static TaskManager* _instance = nil;
             task.link,
             task.endDate,
             task.memo,
+            @(task.type),
             @(task.id)
             ];
     return YES;
@@ -193,6 +195,7 @@ static TaskManager* _instance = nil;
         t.link = [resultSet stringForColumn:@"link"];
         t.endDate = [resultSet dateForColumn:@"endDate"];
         t.memo = [resultSet stringForColumn:@"memo"];
+        t.type = [resultSet intForColumn:@"type"];
         
         [self.taskArr addObject:t];
     }

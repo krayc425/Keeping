@@ -10,4 +10,6 @@
 
 @interface StartButtomView : UIView
 
+@property (nonnull, nonatomic) IBOutlet UILabel *nameLabel;
+
 @end

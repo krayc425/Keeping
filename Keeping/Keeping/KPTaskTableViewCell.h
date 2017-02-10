@@ -28,6 +28,8 @@
 @property (nonnull, nonatomic) IBOutlet UIStackView *weekDayStack;
 //缩略图
 @property (nonatomic, nonnull) IBOutlet UIButton *taskImgViewBtn;
+//类别
+@property (nonatomic, nonnull) IBOutlet UIImageView *typeImg;
 
 - (IBAction)imgAction:(_Nonnull id)sender;
 

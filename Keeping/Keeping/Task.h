@@ -34,6 +34,8 @@
 @property (nonatomic, nullable) NSString *link;
 //备注
 @property (nonatomic, nullable) NSString *memo;
+//类别
+@property (nonatomic) int type;
 
 //完成率
 @property (nonatomic) float progress;

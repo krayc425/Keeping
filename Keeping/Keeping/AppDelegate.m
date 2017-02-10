@@ -42,8 +42,8 @@
     [self replyPushNotificationAuthorization:application];
     
     //LeanCloud
-    [AVOSCloud setAllLogsEnabled:NO];
     [AVOSCloud setApplicationId:@"sabdEOhaMdwIEc2zbKRBQk56-gzGzoHsz" clientKey:@"byONReV9r125hlRuN1mAvv9I"];
+    [AVOSCloud setAllLogsEnabled:NO];
     [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     
@@ -64,31 +64,21 @@
     }
 
     
-    
     //启动动画
     YFStartView *startView = [YFStartView startView];
     startView.isAllowRandomImage = YES;
     startView.randomImages = [NSMutableArray arrayWithObjects:@"Intro_Screen_Four", @"Intro_Screen_Three", @"Intro_Screen_Two", @"Intro_Screen_One", nil];
-    
-    //LogoPositionCenter
-//    startView.logoPosition = LogoPositionCenter;
-//    startView.logoImage = [UIImage imageNamed:@"LOGO_512"];
     
     //LogoPositionCenter & UIView
     startView.logoPosition = LogoPositionButtom;
     StartButtomView *startButtomView = [[[NSBundle mainBundle] loadNibNamed:@"StartButtomView" owner:self options:nil] lastObject];
     startView.logoView = startButtomView;
     
-    //LogoPositionCenter & UIImage
-    //    startView.logoPosition = LogoPositionButtom;
-    //    startView.logoImage = [UIImage imageNamed:@"logo"];
-    
     [startView configYFStartView];
     
     //下载 schemes
     NSArray *r = [[KPSchemeManager shareInstance] getSchemeArr];
-    NSLog(@"%lu rrr", (unsigned long)r.count);
-     
+    
     return YES;
 }
 

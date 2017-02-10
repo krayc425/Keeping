@@ -7,15 +7,18 @@
 //
 
 #import "StartButtomView.h"
+#import "Utilities.h"
 
 @implementation StartButtomView
 
-/*
+
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
+//- (void)drawRect:(CGRect)rect {
     // Drawing code
-}
-*/
+//    [self.nameLabel setFont:[UIFont fontWithName:[Utilities getFont] size:25.0f]];
+//    self.backgroundColor = [UIColor redColor];
+//}
+
 
 @end
