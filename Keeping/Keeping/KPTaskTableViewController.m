@@ -36,7 +36,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.sortFactor = @"addDate";
+    self.sortFactor = @"sortName";
     
     self.taskArr = [[NSMutableArray alloc] init];
     self.historyTaskArr = [[NSMutableArray alloc] init];
@@ -136,20 +136,6 @@
     }
 
     [self fadeAnimation];
-//    
-//    if([[NSUserDefaults standardUserDefaults] boolForKey:@"animation"]){
-//        CATransition *animation = [CATransition animation];
-//        animation.duration = 0.3f;
-//        animation.timingFunction = UIViewAnimationCurveEaseInOut;
-//        animation.type = @"push";
-//        if(sender.direction == UISwipeGestureRecognizerDirectionLeft){
-//            animation.subtype = kCATransitionFromLeft;
-//        }else if(sender.direction == UISwipeGestureRecognizerDirectionRight){
-//            animation.subtype = kCATransitionFromRight;
-//        }
-//        [self.colorStack.layer addAnimation:animation forKey:@"fadeAnimation"];
-//        [self.weekDayStack.layer addAnimation:animation forKey:@"fadeAnimation"];
-//    }
 }
 
 - (void)addAction:(id)senders{

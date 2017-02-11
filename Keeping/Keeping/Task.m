@@ -9,10 +9,16 @@
 #import "Task.h"
 #import "TaskManager.h"
 
+#define GB18030_ENCODING CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000)
+
 @implementation Task
 
 - (float)progress{
     return (float)[self.punchDateArr count] / [[TaskManager shareInstance] totalPunchNumberOfTask:self];
+}
+
+- (NSString *)sortName{
+   return [self.name stringByAddingPercentEscapesUsingEncoding:GB18030_ENCODING];
 }
 
 @end

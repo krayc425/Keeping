@@ -56,9 +56,6 @@
     self.tabBar.barTintColor = [UIColor whiteColor];
     self.tabBar.tintColor = [Utilities getColor];
     
-    
-    
-    
     //注册通知
     [[NSNotificationCenter defaultCenter] addObserver:self.kpSettingsTableViewController
                                              selector:@selector(checkMessage:)
@@ -72,7 +69,6 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated{
-    NSLog(@"tabbar appear");
     [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification_CheckMessage"
                                                         object:nil
                                                       userInfo:nil];

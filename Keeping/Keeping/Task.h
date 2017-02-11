@@ -39,5 +39,7 @@
 
 //完成率
 @property (nonatomic) float progress;
+//排序的任务名
+@property (nonatomic, nonnull) NSString *sortName;
 
 @end

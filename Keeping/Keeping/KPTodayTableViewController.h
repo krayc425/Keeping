@@ -25,6 +25,12 @@
 @property (nonnull, nonatomic) NSString *sortFactor;
 @property (nonatomic) BOOL isAscend;
 
+@property (nonatomic, nonnull) IBOutlet UIStackView *pageStack;
+
+@property (nonatomic, nonnull) IBOutlet UIStackView *dateStack;
+@property (nonatomic, nonnull) IBOutlet UIStackView *colorStack;    //button tag : 1 ~ 7
+@property (nonatomic) int selectedColorNum;
+
 - (void)addAction:(_Nonnull id)sender;
 - (void)editAction:(_Nonnull id)sender;
 

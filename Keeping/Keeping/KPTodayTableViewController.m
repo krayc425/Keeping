@@ -22,12 +22,14 @@
 
 #define MENU_POPOVER_FRAME CGRectMake(10, 44 + 9, 140, 44 * [[Utilities getTaskSortArr] count])
 
+static AMPopTip *shareTip = NULL;
+
 @interface KPTodayTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, MLKMenuPopoverDelegate>
 
-@property (nonatomic,strong) MLKMenuPopover *_Nonnull menuPopover;
+@property (nonatomic, strong) MLKMenuPopover *_Nonnull menuPopover;
 
-@property (nonatomic,strong) AMPopTip *tip;
-@property (nonatomic,strong) AMPopTip *calTip;
+@property (nonatomic, strong) AMPopTip *tip;
+@property (nonatomic, strong) AMPopTip *calTip;
 
 @end
 
@@ -37,7 +39,7 @@
     [super viewDidLoad];
     
     self.gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    self.sortFactor = @"addDate";
+    self.sortFactor = @"sortName";
     self.selectedDate = [NSDate dateWithYear:[[NSDate date] year] month:[[NSDate date] month] day:[[NSDate date] day]];
     
 //     NSArray *fontFamilies = [UIFont familyNames];
@@ -51,29 +53,71 @@
     self.tableView.emptyDataSetDelegate = self;
     self.tableView.tableFooterView = [UIView new];
     self.tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    
+    //类别按钮
+    for (int i = 0; i < [[Utilities getTypeColorArr] count]; i++) {
+        UIButton *btn = (UIButton *)self.colorStack.subviews[i];
+        UIImage *img = [UIImage imageNamed:@"CIRCLE_FULL"];
+        img = [img imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        [btn setBackgroundImage:img forState:UIControlStateNormal];
+        [btn setTintColor:[Utilities getTypeColorArr][i]];
+        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [btn.titleLabel setFont:[UIFont systemFontOfSize:20.0f]];
+        [btn setTag:i+1];
+    }
+    self.selectedColorNum = -1;
+    
+    //page 指示 stack
+    self.dateStack.hidden = NO;
+    self.colorStack.hidden = YES;
+    for(UIImageView *imgView in self.pageStack.subviews){
+        UIImage *img = [UIImage imageNamed:@"CIRCLE_FULL"];
+        img = [img imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        [imgView setImage:img];
+    }
+    [self.pageStack.subviews[0] setTintColor:[Utilities getColor]];
+    [self.pageStack.subviews[1] setTintColor:[UIColor groupTableViewBackgroundColor]];
+    
+    UISwipeGestureRecognizer *swipeGRLeft1 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeAction:)];
+    UISwipeGestureRecognizer *swipeGRRight1 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeAction:)];
+    swipeGRLeft1.direction = UISwipeGestureRecognizerDirectionLeft;
+    swipeGRRight1.direction = UISwipeGestureRecognizerDirectionRight;
+    UISwipeGestureRecognizer *swipeGRLeft2 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeAction:)];
+    UISwipeGestureRecognizer *swipeGRRight2 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeAction:)];
+    swipeGRLeft2.direction = UISwipeGestureRecognizerDirectionLeft;
+    swipeGRRight2.direction = UISwipeGestureRecognizerDirectionRight;
+    
+    [self.colorStack addGestureRecognizer:swipeGRLeft1];
+    [self.colorStack addGestureRecognizer:swipeGRRight1];
+    [self.dateStack addGestureRecognizer:swipeGRLeft2];
+    [self.dateStack addGestureRecognizer:swipeGRRight2];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [self.progressLabel setFont:[UIFont fontWithName:[Utilities getFont] size:40.0f]];
     [self.dateButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
     [self.dateButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
-    [self.progressLabel sizeToFit];
     
     [self loadTasks];
-}
-
-- (void)viewDidAppear:(BOOL)animated{
-    self.tip = [AMPopTip popTip];
-    self.calTip = [AMPopTip popTip];
+    
+//    self.tip = [AMPopTip popTip];
+//    self.calTip = [AMPopTip popTip];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     self.selectedIndexPath = NULL;
-}
-
-- (void)viewDidDisappear:(BOOL)animated{
-    [self.tip hide];
-    [self.calTip hide];
+//    if([self.tip isVisible] || [self.tip isAnimating]){
+//        [self.tip hide];
+//    }
+//    if([self.calTip isVisible] || [self.calTip isAnimating]){
+//        [self.calTip hide];
+//    }
+//    self.tip = NULL;
+//    self.calTip = NULL;
+    if([[KPTodayTableViewController shareTipInstance] isAnimating] || [[KPTodayTableViewController shareTipInstance] isVisible]){
+        [[KPTodayTableViewController shareTipInstance] hide];
+        shareTip = NULL;
+    }
 }
 
 - (void)loadTasks{
@@ -104,6 +148,13 @@
     self.unfinishedTaskArr = [NSMutableArray arrayWithArray:[self.unfinishedTaskArr sortedArrayUsingDescriptors:sortDescriptors]];
     self.finishedTaskArr = [NSMutableArray arrayWithArray:[self.finishedTaskArr sortedArrayUsingDescriptors:sortDescriptors]];
     
+    //按类别
+    if(self.selectedColorNum > 0){
+        NSPredicate *predicate2 = [NSPredicate predicateWithFormat:@"SELF.type == %d", self.selectedColorNum];
+        self.unfinishedTaskArr = [NSMutableArray arrayWithArray:[self.unfinishedTaskArr filteredArrayUsingPredicate:predicate2]];
+        self.finishedTaskArr = [NSMutableArray arrayWithArray:[self.finishedTaskArr filteredArrayUsingPredicate:predicate2]];
+    }
+    
     [self.progressLabel setText:[NSString stringWithFormat:@"%lu / %lu", (unsigned long)self.finishedTaskArr.count, ((unsigned long)self.finishedTaskArr.count + (unsigned long)self.unfinishedTaskArr.count)]];
     
     [self.tableView reloadData];
@@ -115,6 +166,25 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)swipeAction:(UISwipeGestureRecognizer *)sender{
+    
+    if([self.colorStack isHidden]){
+        [self.colorStack setHidden:NO];
+        [self.dateStack setHidden:YES];
+        
+        [self.pageStack.subviews[0] setTintColor:[UIColor groupTableViewBackgroundColor]];
+        [self.pageStack.subviews[1] setTintColor:[Utilities getColor]];
+    }else{
+        [self.colorStack setHidden:YES];
+        [self.dateStack setHidden:NO];
+        
+        [self.pageStack.subviews[0] setTintColor:[Utilities getColor]];
+        [self.pageStack.subviews[1] setTintColor:[UIColor groupTableViewBackgroundColor]];
+    }
+    
+    [self fadeAnimation];
 }
 
 - (void)addAction:(id)senders{
@@ -129,11 +199,32 @@
     [self.menuPopover showInView:self.navigationController.view];
 }
 
+#pragma mark - Select Color Action
+
+- (IBAction)selectColorAction:(id)sender{
+    UIButton *button = (UIButton *)sender;
+    if(self.selectedColorNum == (int)button.tag){
+        self.selectedColorNum = -1;
+    }else{
+        self.selectedColorNum = (int)button.tag;
+    }
+    for(UIButton *btn in self.colorStack.subviews){
+        if(btn.tag == self.selectedColorNum){
+            [btn setTitle:@"●" forState:UIControlStateNormal];
+        }else{
+            [btn setTitle:@"" forState:UIControlStateNormal];
+        }
+    }
+    [self loadTasks];
+}
+
 #pragma mark - Choose Date
 
 - (IBAction)chooseDateAction:(id)sender{
     
-    if(![self.calTip isVisible] && ![self.calTip isAnimating]){
+    AMPopTip *tp = [KPTodayTableViewController shareTipInstance];
+    
+    if(![tp isVisible] && ![tp isAnimating]){
         
         self.calendar = [[FSCalendar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width - 20, 250)];
         self.calendar.dataSource = self;
@@ -184,17 +275,17 @@
         
         [self.calendar selectDate:self.selectedDate scrollToDate:YES];
         
-        [self.calTip showCustomView:self.calendar
+        [tp showCustomView:self.calendar
                           direction:AMPopTipDirectionNone
                              inView:self.tableView
                           fromFrame:self.tableView.frame];
         
-        self.calTip.textColor = [UIColor whiteColor];
-        self.calTip.tintColor = [Utilities getColor];
-        self.calTip.popoverColor = [Utilities getColor];
-        self.calTip.borderColor = [UIColor whiteColor];
+        tp.textColor = [UIColor whiteColor];
+        tp.tintColor = [Utilities getColor];
+        tp.popoverColor = [Utilities getColor];
+        tp.borderColor = [UIColor whiteColor];
         
-        self.calTip.radius = 15;
+        tp.radius = 15;
     }
 
 }
@@ -524,20 +615,21 @@
             break;
         case 3:
         {
-            if(![self.tip isVisible] && ![self.tip isAnimating]){
-                [self.tip showText:t.memo
+            AMPopTip *tp = [KPTodayTableViewController shareTipInstance];
+            if(![tp isVisible] && ![tp isAnimating]){
+                [tp showText:t.memo
                          direction:AMPopTipDirectionNone
                           maxWidth:self.view.frame.size.width - 50
                             inView:self.view
                          fromFrame:self.view.frame];
-                self.tip.shouldDismissOnTap = YES;
+                tp.shouldDismissOnTap = YES;
                 
-                self.tip.textColor = [UIColor whiteColor];
-                self.tip.tintColor = [Utilities getColor];
-                self.tip.popoverColor = [Utilities getColor];
-                self.tip.borderColor = [UIColor whiteColor];
+                tp.textColor = [UIColor whiteColor];
+                tp.tintColor = [Utilities getColor];
+                tp.popoverColor = [Utilities getColor];
+                tp.borderColor = [UIColor whiteColor];
 
-                self.tip.radius = 10;
+                tp.radius = 10;
             }
         }
             break;
@@ -609,6 +701,10 @@
         animation.type = [Utilities getAnimationType];
         [self.tableView.layer addAnimation:animation forKey:@"fadeAnimation"];
     }
+}
+
++ (AMPopTip *)shareTipInstance{
+    return shareTip == NULL ? shareTip = [AMPopTip popTip] : shareTip;
 }
 
 @end
