@@ -19,6 +19,8 @@
 #import "MLKMenuPopover.h"
 #import "KPImageViewController.h"
 
+#define ANIMATION_TYPE @"fade"
+
 #define MENU_POPOVER_FRAME CGRectMake(10, 44 + 9, 140, 44 * [[Utilities getTaskSortArr] count])
 
 @interface KPTaskTableViewController () <MLKMenuPopoverDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
@@ -118,17 +120,36 @@
 }
 
 - (void)swipeAction:(UISwipeGestureRecognizer *)sender{
+    
     if([self.colorStack isHidden]){
         [self.colorStack setHidden:NO];
         [self.weekDayStack setHidden:YES];
+        
         [self.pageStack.subviews[0] setTintColor:[UIColor groupTableViewBackgroundColor]];
         [self.pageStack.subviews[1] setTintColor:[Utilities getColor]];
     }else{
         [self.colorStack setHidden:YES];
         [self.weekDayStack setHidden:NO];
+        
         [self.pageStack.subviews[0] setTintColor:[Utilities getColor]];
         [self.pageStack.subviews[1] setTintColor:[UIColor groupTableViewBackgroundColor]];
     }
+
+    [self fadeAnimation];
+//    
+//    if([[NSUserDefaults standardUserDefaults] boolForKey:@"animation"]){
+//        CATransition *animation = [CATransition animation];
+//        animation.duration = 0.3f;
+//        animation.timingFunction = UIViewAnimationCurveEaseInOut;
+//        animation.type = @"push";
+//        if(sender.direction == UISwipeGestureRecognizerDirectionLeft){
+//            animation.subtype = kCATransitionFromLeft;
+//        }else if(sender.direction == UISwipeGestureRecognizerDirectionRight){
+//            animation.subtype = kCATransitionFromRight;
+//        }
+//        [self.colorStack.layer addAnimation:animation forKey:@"fadeAnimation"];
+//        [self.weekDayStack.layer addAnimation:animation forKey:@"fadeAnimation"];
+//    }
 }
 
 - (void)addAction:(id)senders{
@@ -178,6 +199,8 @@
     self.historyTaskArr = [NSMutableArray arrayWithArray:[self.historyTaskArr sortedArrayUsingDescriptors:sortDescriptors]];
     
     [self.tableView reloadData];
+    
+    [self fadeAnimation];
 }
 
 #pragma mark - Select Color Action
@@ -561,6 +584,18 @@
     }
     NSLog(@"按%@排序", self.sortFactor);
     [self loadTasksOfWeekdays:self.selectedWeekdayArr];
+}
+
+#pragma mark - Fade Animation
+
+- (void)fadeAnimation{
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"animation"]){
+        CATransition *animation = [CATransition animation];
+        animation.duration = 0.3f;
+        animation.timingFunction = UIViewAnimationCurveEaseInOut;
+        animation.type = [Utilities getAnimationType];
+        [self.tableView.layer addAnimation:animation forKey:@"fadeAnimation"];
+    }
 }
 
 @end

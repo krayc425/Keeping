@@ -14,7 +14,6 @@
 #import "KPTabBarViewController.h"
 #import <AVOSCloud/AVOSCloud.h>
 #import "UNManager.h"
-#import "YFStartView.h"
 #import "StartButtomView.h"
 
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
@@ -41,6 +40,8 @@
     
     [self replyPushNotificationAuthorization:application];
     
+    
+    
     //LeanCloud
     [AVOSCloud setApplicationId:@"sabdEOhaMdwIEc2zbKRBQk56-gzGzoHsz" clientKey:@"byONReV9r125hlRuN1mAvv9I"];
     [AVOSCloud setAllLogsEnabled:NO];
@@ -51,6 +52,7 @@
     //第一次启动
     if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]){
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"animation"];
     }
     if([[[NSUserDefaults standardUserDefaults] valueForKey:@"font"] isEqualToString:@""]
        || [[NSUserDefaults standardUserDefaults] valueForKey:@"font"] == NULL){
@@ -62,22 +64,11 @@
         [shared setValue:@"STHeitiSC-Light" forKey:@"fontwidget"];
         [shared synchronize];
     }
-
     
-    //启动动画
-    YFStartView *startView = [YFStartView startView];
-    startView.isAllowRandomImage = YES;
-    startView.randomImages = [NSMutableArray arrayWithObjects:@"Intro_Screen_Four", @"Intro_Screen_Three", @"Intro_Screen_Two", @"Intro_Screen_One", nil];
-    
-    //LogoPositionCenter & UIView
-    startView.logoPosition = LogoPositionButtom;
-    StartButtomView *startButtomView = [[[NSBundle mainBundle] loadNibNamed:@"StartButtomView" owner:self options:nil] lastObject];
-    startView.logoView = startButtomView;
-    
-    [startView configYFStartView];
     
     //下载 schemes
     NSArray *r = [[KPSchemeManager shareInstance] getSchemeArr];
+    NSLog(@"%lu apps", (unsigned long)r.count);
     
     return YES;
 }

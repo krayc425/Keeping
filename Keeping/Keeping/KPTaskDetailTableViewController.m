@@ -205,14 +205,6 @@
             [self.appNameLabel setText:self.selectedApp.allKeys[0]];
         }
         
-        for(UIButton *btn in self.colorStack.subviews){
-            if(self.task.type == btn.tag){
-                [btn setTitle:@"●" forState:UIControlStateNormal];
-            }else{
-                [btn setTitle:@"" forState:UIControlStateNormal];
-            }
-        }
-        
         self.reminderTime = self.task.reminderTime;
         if(self.reminderTime != NULL){
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -235,6 +227,16 @@
         [self.linkTextField setText:self.task.link];
         
         [self.memoTextView setText:self.task.memo];
+        
+        
+        for(UIButton *btn in self.colorStack.subviews){
+            if(self.task.type == btn.tag){
+                [btn setTitle:@"●" forState:UIControlStateNormal];
+            }else{
+                [btn setTitle:@"" forState:UIControlStateNormal];
+            }
+        }
+        self.selectedColorNum = self.task.type;
         
         [self.tableView reloadData];
         

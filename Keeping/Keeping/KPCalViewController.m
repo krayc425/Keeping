@@ -135,6 +135,8 @@
     [self.calendar reloadData];
     [self.calendar reloadInputViews];
     [self.taskTableView reloadData];
+    
+    [self fadeAnimation];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -192,6 +194,8 @@
     [self.calendar reloadData];
     
     [self.taskTableView reloadData];
+    
+    [self fadeAnimation];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -365,6 +369,18 @@
     }
     NSLog(@"按%@排序", self.sortFactor);
     [self loadTasks];
+}
+
+#pragma mark - Fade Animation
+
+- (void)fadeAnimation{
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"animation"]){
+        CATransition *animation = [CATransition animation];
+        animation.duration = 0.3f;
+        animation.timingFunction = UIViewAnimationCurveEaseInOut;
+        animation.type = [Utilities getAnimationType];
+        [self.view.layer addAnimation:animation forKey:@"fadeAnimation"];
+    }
 }
 
 @end

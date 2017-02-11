@@ -108,6 +108,8 @@
     [self.tableView reloadData];
     
     [self.tableView reloadEmptyDataSet];
+    
+    [self fadeAnimation];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -585,6 +587,18 @@
     }
     NSLog(@"按%@排序", self.sortFactor);
     [self loadTasks];
+}
+
+#pragma mark - Fade Animation
+
+- (void)fadeAnimation{
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"animation"]){
+        CATransition *animation = [CATransition animation];
+        animation.duration = 0.3f;
+        animation.timingFunction = UIViewAnimationCurveEaseInOut;
+        animation.type = [Utilities getAnimationType];
+        [self.tableView.layer addAnimation:animation forKey:@"fadeAnimation"];
+    }
 }
 
 @end

@@ -11,8 +11,9 @@ PODS:
   - FMDB/standard (2.6.2)
   - FSCalendar (2.5.1)
   - HSDatePickerViewController (1.0.4)
+  - LeanCloudFeedback (0.1.1):
+    - AVOSCloud
   - MBProgressHUD (1.0.0)
-  - YFStartView (0.0.1)
 
 DEPENDENCIES:
   - AMPopTip
@@ -25,8 +26,8 @@ DEPENDENCIES:
   - FMDB
   - FSCalendar
   - HSDatePickerViewController
+  - LeanCloudFeedback
   - MBProgressHUD
-  - YFStartView
 
 SPEC CHECKSUMS:
   AMPopTip: b810a33c120feacafce170cc9ddcaa8ce3a8389d
@@ -39,9 +40,9 @@ SPEC CHECKSUMS:
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   FSCalendar: 8efeb4b92240937204165c7743f4375923112fb5
   HSDatePickerViewController: 5a72b71f8c3b10e76f2c28a898f8572b551432a6
+  LeanCloudFeedback: 686305ea196931c7eae49800c384e42d78408482
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
-  YFStartView: 0f81260cc7da743133c738d9154e4e7d9cf20314
 
-PODFILE CHECKSUM: f8370f646b13dca07e5fd1056e0ee3c813ff849c
+PODFILE CHECKSUM: 15a897104e048327f7ad6a86826c24ca04261358
 
 COCOAPODS: 1.1.1

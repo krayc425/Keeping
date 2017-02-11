@@ -22,4 +22,6 @@
 
 + (NSArray *)getTypeColorArr;
 
++ (NSString *)getAnimationType;
+
 @end

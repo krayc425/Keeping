@@ -78,12 +78,28 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "$PODS_CONFIGURATION_BUILD_DIR/Appirater/Appirater.bundle"
   install_resource "DateTools/DateTools/DateTools.bundle"
   install_resource "HSDatePickerViewController/HSDatePickerViewControllerDemo/HSDatePickerViewController/HSDatePickerViewController.xib"
+  install_resource "LeanCloudFeedback/LeanCloudFeedback/resources/feedback_add_image@2x.png"
+  install_resource "LeanCloudFeedback/LeanCloudFeedback/resources/feedback_back@2x.png"
+  install_resource "LeanCloudFeedback/LeanCloudFeedback/resources/feedback_bg_1@2x.png"
+  install_resource "LeanCloudFeedback/LeanCloudFeedback/resources/feedback_bg_2@2x.png"
+  install_resource "LeanCloudFeedback/LeanCloudFeedback/resources/feedback_btn@2x.png"
+  install_resource "LeanCloudFeedback/LeanCloudFeedback/resources/feedback_btn_new@2x.png"
+  install_resource "LeanCloudFeedback/LeanCloudFeedback/resources/feedback_warning@2x.png"
+  install_resource "LeanCloudFeedback/LeanCloudFeedback/resources/LeanCloudFeedback.strings"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "AVOSCloud/AVOS/AVOSCloud/AVOSCloud_Art.inc"
   install_resource "$PODS_CONFIGURATION_BUILD_DIR/Appirater/Appirater.bundle"
   install_resource "DateTools/DateTools/DateTools.bundle"
   install_resource "HSDatePickerViewController/HSDatePickerViewControllerDemo/HSDatePickerViewController/HSDatePickerViewController.xib"
+  install_resource "LeanCloudFeedback/LeanCloudFeedback/resources/feedback_add_image@2x.png"
+  install_resource "LeanCloudFeedback/LeanCloudFeedback/resources/feedback_back@2x.png"
+  install_resource "LeanCloudFeedback/LeanCloudFeedback/resources/feedback_bg_1@2x.png"
+  install_resource "LeanCloudFeedback/LeanCloudFeedback/resources/feedback_bg_2@2x.png"
+  install_resource "LeanCloudFeedback/LeanCloudFeedback/resources/feedback_btn@2x.png"
+  install_resource "LeanCloudFeedback/LeanCloudFeedback/resources/feedback_btn_new@2x.png"
+  install_resource "LeanCloudFeedback/LeanCloudFeedback/resources/feedback_warning@2x.png"
+  install_resource "LeanCloudFeedback/LeanCloudFeedback/resources/LeanCloudFeedback.strings"
 fi
 
 mkdir -p "${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

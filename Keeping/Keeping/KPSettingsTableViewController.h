@@ -7,14 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <MessageUI/MessageUI.h>
 
-@interface KPSettingsTableViewController : UITableViewController <MFMailComposeViewControllerDelegate>
+@interface KPSettingsTableViewController : UITableViewController
 
 @property (nonatomic, nonnull) IBOutlet UILabel *versionLabel;
 
+@property (nonatomic, nonnull) IBOutlet UISwitch *animationSwitch;
+
 @property (nonatomic, nonnull) IBOutlet UILabel *fontLabel;
-@property (nonatomic, nonnull) IBOutlet UILabel *typeLabel;
+@property (nonatomic, nonnull) IBOutlet UILabel *animationLabel;
 @property (nonatomic, nonnull) IBOutlet UILabel *scoreLabel;
 @property (nonatomic, nonnull) IBOutlet UILabel *mailLabel;
 @property (nonatomic, nonnull) IBOutlet UILabel *numberLabel;

@@ -10,8 +10,8 @@ target 'Keeping' do
   pod 'AVOSCloud'
   pod 'HSDatePickerViewController'
   pod 'FDFullscreenPopGesture'
-  pod 'YFStartView'
   pod 'AMPopTip'
+  pod 'LeanCloudFeedback'
   
 end
 
@@ -21,19 +21,5 @@ target 'KeepingWidget' do
   pod 'DateTools'
   pod 'BEMCheckBox'
   pod 'DZNEmptyDataSet'
-
-end
-
-target 'KeepingWatch' do
-  
-  pod 'FMDB'
-  pod 'DateTools'
-
-end
-
-target 'KeepingWatch Extension' do
-  
-  pod 'FMDB'
-  pod 'DateTools'
 
 end

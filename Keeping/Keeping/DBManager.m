@@ -30,20 +30,20 @@ static DBManager* _instance = nil;
 - (instancetype)init{
     self = [super init];
     if (self) {
-        [self establishWC];
+//        [self establishWC];
         [self establishDB];
     }
     return self;
 }
 
-- (void)establishWC{
+//- (void)establishWC{
     //Watch 链接
-    if ([WCSession isSupported]) {
-        WCSession *session = [WCSession defaultSession];
-        session.delegate = self;
-        [session activateSession];
-    }
-}
+//    if ([WCSession isSupported]) {
+//        WCSession *session = [WCSession defaultSession];
+//        session.delegate = self;
+//        [session activateSession];
+//    }
+//}
 
 - (void)establishDB{
     //数据库路径
@@ -136,17 +136,17 @@ static DBManager* _instance = nil;
     NSLog(@"db close");
     [self.db close];
 }
-
-#pragma <WCSessionDelegate>
-
-- (void)sessionDidDeactivate:(WCSession *)session{
-    NSLog(@"sessionDidDeactivate");
-}
-
-- (void)sessionDidBecomeInactive:(WCSession *)session{
-    NSLog(@"sessionDidBecomeInactive");
-}
-
+//
+//#pragma <WCSessionDelegate>
+//
+//- (void)sessionDidDeactivate:(WCSession *)session{
+//    NSLog(@"sessionDidDeactivate");
+//}
+//
+//- (void)sessionDidBecomeInactive:(WCSession *)session{
+//    NSLog(@"sessionDidBecomeInactive");
+//}
+//
 //- (void)session:(nonnull WCSession *)session didReceiveMessage:(nonnull NSDictionary *)message replyHandler:(nonnull void (^)(NSDictionary * __nonnull))replyHandler {
 //    NSString *counterValue = [message objectForKey:@"counterValue"];
 //    

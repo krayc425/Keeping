@@ -54,11 +54,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>DateTools-watchOS3.1.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>FDFullscreenPopGesture.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -74,17 +69,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>FMDB-watchOS3.1.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>FSCalendar.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>HSDatePickerViewController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>LeanCloudFeedback.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -99,22 +94,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-KeepingWatch Extension.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-KeepingWatch.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-KeepingWidget.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>YFStartView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -123,11 +103,6 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>042A800CB1F99A4381D2681A17E5BAC4</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>05FE3B2ACCCB6A2E6999C5C53C798902</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -152,22 +127,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>61BFE612F81624CA0C26EAF53D046B4C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>7AA93F3641CB172CE98227D092DBF4CC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>8C447FB25C4AAF4737A5034EEF25A91C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>8D261B8C17F2029C13436B28905886F0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -182,7 +142,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A697DA04F323007A6F3A55A777E55458</key>
+		<key>A40FD10582462E4B7E3F0FD7865B3551</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -193,6 +153,11 @@
 			<true/>
 		</dict>
 		<key>A74CB9929C6EC3EA06B79A6F5C86E660</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AD7A652E7C8A92E79B4C63432FD18A27</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -223,11 +188,6 @@
 			<true/>
 		</dict>
 		<key>DF9C730C3418CB90259B92AE29550B93</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E05481E29607944DB2C69E087A2BD80A</key>
 		<dict>
 			<key>primary</key>
 			<true/>

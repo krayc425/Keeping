@@ -54,4 +54,8 @@
              ];
 }
 
++ (NSString *)getAnimationType{
+    return @"fade";
+}
+
 @end
