@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -28,17 +29,32 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="4Z4-sv-c43">
-                        <rect key="frame" x="18" y="13" width="52" height="43"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="4Z4-sv-c43">
+                        <rect key="frame" x="18" y="13" width="67" height="43"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="任务名" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="2aB-FB-WuP">
-                                <rect key="frame" x="0.0" y="0.0" width="52" height="21.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="v7w-EL-qCn">
+                                <rect key="frame" x="0.0" y="0.0" width="67" height="21"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="任务名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="2aB-FB-WuP">
+                                        <rect key="frame" x="0.0" y="0.5" width="52" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="5J5-ZY-uUz"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xmd-oM-pt6">
+                                        <rect key="frame" x="57" y="5.5" width="10" height="10"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="10" id="gbE-aZ-AbI"/>
+                                            <constraint firstAttribute="width" secondItem="xmd-oM-pt6" secondAttribute="height" multiplier="1:1" id="odm-LL-A7R"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XBM-2O-wnG">
-                                <rect key="frame" x="0.0" y="21.5" width="52" height="21.5"/>
+                                <rect key="frame" x="0.0" y="21" width="42" height="22"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -75,6 +91,7 @@
                 <outlet property="progressView" destination="AGj-Js-VDw" id="Tzu-uW-LzY"/>
                 <outlet property="punchDaysLabel" destination="XBM-2O-wnG" id="N4B-0Y-sVP"/>
                 <outlet property="taskNameLabel" destination="2aB-FB-WuP" id="oaF-Rk-ocK"/>
+                <outlet property="typeImg" destination="xmd-oM-pt6" id="eD3-CK-NDe"/>
             </connections>
         </tableViewCell>
     </objects>

@@ -8,6 +8,8 @@
 
 #import "KPTabBarViewController.h"
 #import "Utilities.h"
+#import "UITabBar+BadgeTabBar.h"
+#import <LeanCloudFeedback/LeanCloudFeedback.h>
 
 @interface KPTabBarViewController ()
 
@@ -23,6 +25,7 @@
     self.kpTodayTableViewController = (KPTodayTableViewController *)self.viewControllers[0];
     self.kpTaskTableViewController = (KPTaskTableViewController *)self.viewControllers[1];
     self.kpCalViewController = (KPCalViewController *)self.viewControllers[2];
+    self.kpSettingsTableViewController=  (KPSettingsTableViewController *)self.viewControllers[3];
     
     [self.navigationItem setTitle:@"今日"];
     UIBarButtonItem *editItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_EDIT"]
@@ -52,10 +55,27 @@
     
     self.tabBar.barTintColor = [UIColor whiteColor];
     self.tabBar.tintColor = [Utilities getColor];
+    
+    
+    
+    
+    //注册通知
+    [[NSNotificationCenter defaultCenter] addObserver:self.kpSettingsTableViewController
+                                             selector:@selector(checkMessage:)
+                                                 name:@"Notification_CheckMessage"
+                                               object:nil];
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    NSLog(@"tabbar appear");
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification_CheckMessage"
+                                                        object:nil
+                                                      userInfo:nil];
 }
 
 - (void)setFont{

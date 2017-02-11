@@ -57,6 +57,7 @@
     [self.progressLabel setFont:[UIFont fontWithName:[Utilities getFont] size:40.0f]];
     [self.dateButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
     [self.dateButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
+    [self.progressLabel sizeToFit];
     
     [self loadTasks];
 }
@@ -310,6 +311,15 @@
                 [cell setIsFinished:YES];
             }
             [cell.taskNameLabel setText:t.name];
+            
+            if(t.type > 0){
+                UIImage *img = [UIImage imageNamed:@"CIRCLE_FULL"];
+                img = [img imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+                cell.typeImg.tintColor = [Utilities getTypeColorArr][t.type - 1];
+                [cell.typeImg setImage:img];
+            }else{
+                [cell.typeImg setImage:[UIImage new]];
+            }
             
             [cell.moreButton setHidden:YES];
             if(t.appScheme != NULL){

@@ -50,7 +50,7 @@ static CGFloat const kSendButtonWidth = 60;
         _feedbackReplies = [[NSMutableArray alloc] init];
         // Custom initialization
         _navigationBarStyle = LCUserFeedbackNavigationBarStyleBlue;
-        _contactHeaderHidden = NO;
+        _contactHeaderHidden = YES;
         _feedbackCellFont = [UIFont systemFontOfSize:16];
         _presented = YES;
     }
@@ -61,8 +61,10 @@ static CGFloat const kSendButtonWidth = 60;
 {
     [super viewDidLoad];
     [self setupUI];
-//    [self keyboardWillHide:nil];
+
     [self loadFeedbackThreads];
+    
+    [self.inputTextField becomeFirstResponder];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

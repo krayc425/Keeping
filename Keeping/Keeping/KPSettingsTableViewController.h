@@ -14,10 +14,14 @@
 
 @property (nonatomic, nonnull) IBOutlet UISwitch *animationSwitch;
 
+@property (nonatomic, nonnull) IBOutlet UILabel *unreadMsgLabel;
+
 @property (nonatomic, nonnull) IBOutlet UILabel *fontLabel;
 @property (nonatomic, nonnull) IBOutlet UILabel *animationLabel;
 @property (nonatomic, nonnull) IBOutlet UILabel *scoreLabel;
 @property (nonatomic, nonnull) IBOutlet UILabel *mailLabel;
 @property (nonatomic, nonnull) IBOutlet UILabel *numberLabel;
+
+- (void)checkMessage:(_Nonnull id)sender;
 
 @end

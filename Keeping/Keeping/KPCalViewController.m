@@ -220,6 +220,16 @@
     
     [cell.taskNameLabel setText:t.name];
     
+    //类别
+    if(t.type > 0){
+        UIImage *img = [UIImage imageNamed:@"CIRCLE_FULL"];
+        img = [img imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        cell.typeImg.tintColor = [Utilities getTypeColorArr][t.type - 1];
+        [cell.typeImg setImage:img];
+    }else{
+        [cell.typeImg setImage:[UIImage new]];
+    }
+    
     //进度
     int totalPunchNum = [[TaskManager shareInstance] totalPunchNumberOfTask:t];
     int punchNum = (int)[t.punchDateArr count];

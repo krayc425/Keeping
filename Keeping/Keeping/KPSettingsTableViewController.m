@@ -9,6 +9,7 @@
 #import "KPSettingsTableViewController.h"
 #import "Utilities.h"
 #import <LeanCloudFeedback/LeanCloudFeedback.h>
+#import "UITabBar+BadgeTabBar.h"
 
 @interface KPSettingsTableViewController ()
 
@@ -18,6 +19,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.unreadMsgLabel setTextColor:[UIColor redColor]];
     
     [self.animationSwitch setOnTintColor:[Utilities getColor]];
     [self.animationSwitch setOn:[[NSUserDefaults standardUserDefaults] boolForKey:@"animation"]];
@@ -31,6 +34,29 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [self setFont];
+}
+
+- (void)checkMessage:(id)sender{
+    //检查有没有未读消息
+    [[LCUserFeedbackAgent sharedInstance] countUnreadFeedbackThreadsWithBlock:^(NSInteger number, NSError *error) {
+        if (error) {
+            // 网络出错了，不设置红点
+            [self.unreadMsgLabel setText:@""];
+            [self.tabBarController.tabBar hideBadgeOnItemIndex:3];
+        } else {
+            // 根据未读数 number，设置红点，提醒用户
+            if(number > 0){
+                [self.unreadMsgLabel setText:[NSString stringWithFormat:@"%ld 条消息", (long)number]];
+                [self.tabBarController.tabBar showBadgeOnItemIndex:3];
+            }else{
+                [self.unreadMsgLabel setText:@""];
+                [self.tabBarController.tabBar hideBadgeOnItemIndex:3];
+            }
+        }
+    }];
+}
+
+- (void)viewDidAppear:(BOOL)animated{
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,6 +81,7 @@
     [self.scoreLabel setFont:[UIFont fontWithName:[Utilities getFont] size:17.0]];
     [self.numberLabel setFont:[UIFont fontWithName:[Utilities getFont] size:17.0]];
     [self.versionLabel setFont:[UIFont fontWithName:[Utilities getFont] size:17.0]];
+    [self.unreadMsgLabel setFont:[UIFont fontWithName:[Utilities getFont] size:17.0]];
 }
 
 #pragma mark - Table view data source

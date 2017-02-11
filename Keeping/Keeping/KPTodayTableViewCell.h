@@ -26,7 +26,8 @@
 @property (nonatomic, nonnull) IBOutlet UILabel *reminderLabel;
 //打钩
 @property (nonnull, nonatomic) IBOutlet BEMCheckBox *myCheckBox;
-
+//类别
+@property (nonatomic, nonnull) IBOutlet UIImageView *typeImg;
 
 //更多 按钮
 @property (nonnull, nonatomic) IBOutlet UIButton *moreButton;

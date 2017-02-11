@@ -11,12 +11,14 @@
 @class KPTodayTableViewController;
 @class KPTaskTableViewController;
 @class KPCalViewController;
+@class KPSettingsTableViewController;
 
 @interface KPTabBarViewController : UITabBarController <UITabBarControllerDelegate>
 
 @property (nonatomic, nonnull) KPTodayTableViewController *kpTodayTableViewController;
 @property (nonatomic, nonnull) KPTaskTableViewController *kpTaskTableViewController;
 @property (nonatomic, nonnull) KPCalViewController *kpCalViewController;
+@property (nonatomic, nonnull) KPSettingsTableViewController *kpSettingsTableViewController;
 
 - (void)setFont;
 

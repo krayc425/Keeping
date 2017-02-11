@@ -70,6 +70,7 @@
     NSArray *r = [[KPSchemeManager shareInstance] getSchemeArr];
     NSLog(@"%lu apps", (unsigned long)r.count);
     
+    
     return YES;
 }
 

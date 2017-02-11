@@ -16,6 +16,8 @@
 
 @property (nonatomic, nonnull) IBOutlet UILabel *taskNameLabel;
 @property (nonatomic, nonnull) IBOutlet UILabel *punchDaysLabel;
+//类别
+@property (nonatomic, nonnull) IBOutlet UIImageView *typeImg;
 //完成进度
 @property (nonatomic, nonnull) IBOutlet HYCircleProgressView *progressView;
 
