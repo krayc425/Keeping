@@ -49,27 +49,18 @@
     self.tableView.tableFooterView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     
-    //代理
+    //星期代理
     self.weekDayView.weekdayDelegate = self;
     self.weekDayView.isAllSelected = YES;
+    self.weekDayView.isAllButtonHidden = NO;
+    self.weekDayView.fontSize = 18.0;
     
-    //类别按钮
-    for (int i = 0; i < [[Utilities getTypeColorArr] count]; i++) {
-        UIButton *btn = (UIButton *)self.colorStack.subviews[i];
-        UIImage *img = [UIImage imageNamed:@"CIRCLE_FULL"];
-        img = [img imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        [btn setBackgroundImage:img forState:UIControlStateNormal];
-        [btn setTintColor:[Utilities getTypeColorArr][i]];
-        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [btn.titleLabel setFont:[UIFont systemFontOfSize:20.0f]];
-        [btn setTag:i+1];
-    }
-    self.selectedColorNum = -1;
-    
+    //类别代理
+    self.colorView.colorDelegate = self;
     
     //page 指示 stack
     self.weekDayView.hidden = NO;
-    self.colorStack.hidden = YES;
+    self.colorView.hidden = YES;
     for(UIImageView *imgView in self.pageStack.subviews){
         UIImage *img = [UIImage imageNamed:@"CIRCLE_FULL"];
         img = [img imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
@@ -87,8 +78,8 @@
     swipeGRLeft2.direction = UISwipeGestureRecognizerDirectionLeft;
     swipeGRRight2.direction = UISwipeGestureRecognizerDirectionRight;
     
-    [self.colorStack addGestureRecognizer:swipeGRLeft1];
-    [self.colorStack addGestureRecognizer:swipeGRRight1];
+    [self.colorView addGestureRecognizer:swipeGRLeft1];
+    [self.colorView addGestureRecognizer:swipeGRRight1];
     [self.weekDayView addGestureRecognizer:swipeGRLeft2];
     [self.weekDayView addGestureRecognizer:swipeGRRight2];
 }
@@ -99,18 +90,23 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [self loadTasksOfWeekdays:self.selectedWeekdayArr];
+    [self setFont];
+}
+
+- (void)setFont{
+    [self.weekDayView setFont];
 }
 
 - (void)swipeAction:(UISwipeGestureRecognizer *)sender{
     
-    if([self.colorStack isHidden]){
-        [self.colorStack setHidden:NO];
+    if([self.colorView isHidden]){
+        [self.colorView setHidden:NO];
         [self.weekDayView setHidden:YES];
         
         [self.pageStack.subviews[0] setTintColor:[UIColor groupTableViewBackgroundColor]];
         [self.pageStack.subviews[1] setTintColor:[Utilities getColor]];
     }else{
-        [self.colorStack setHidden:YES];
+        [self.colorView setHidden:YES];
         [self.weekDayView setHidden:NO];
         
         [self.pageStack.subviews[0] setTintColor:[Utilities getColor]];
@@ -140,7 +136,8 @@
     self.taskArr = [[TaskManager shareInstance] getTasksOfWeekdays:weekDays];
     
     //按类别
-    self.taskArr = [NSMutableArray arrayWithArray:[TaskDataHelper filtrateTasks:self.taskArr withType:self.selectedColorNum]];
+    self.taskArr = [NSMutableArray arrayWithArray:[TaskDataHelper filtrateTasks:self.taskArr
+                                                                       withType:self.selectedColorNum]];
     
     for(Task *t in self.taskArr){
         //（结束日加一天以后 才是到期）
@@ -159,25 +156,6 @@
     [self.tableView reloadData];
     
     [self fadeAnimation];
-}
-
-#pragma mark - Select Color Action
-
-- (IBAction)selectColorAction:(id)sender{
-    UIButton *button = (UIButton *)sender;
-    if(self.selectedColorNum == (int)button.tag){
-        self.selectedColorNum = -1;
-    }else{
-        self.selectedColorNum = (int)button.tag;
-    }
-    for(UIButton *btn in self.colorStack.subviews){
-        if(btn.tag == self.selectedColorNum){
-            [btn setTitle:@"●" forState:UIControlStateNormal];
-        }else{
-            [btn setTitle:@"" forState:UIControlStateNormal];
-        }
-    }
-    [self loadTasksOfWeekdays:self.selectedWeekdayArr];
 }
 
 #pragma mark - Pop Up Image
@@ -305,8 +283,6 @@
         
         [cell setFont];
         
-        cell.backgroundColor = [UIColor clearColor];
-        
         Task *t;
         
         if(indexPath.section == 1){
@@ -316,21 +292,9 @@
         }
         [cell.nameLabel setText:t.name];
         
-        for(UIButton *button in cell.weekDayStack.subviews){
-            if([t.reminderDays containsObject:@(button.tag)]){
-                [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-                
-                UIImage *buttonImg = [UIImage imageNamed:@"CIRCLE_FULL"];
-                buttonImg = [buttonImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-                [button setBackgroundImage:buttonImg forState:UIControlStateNormal];
-            }else{
-                [button setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
-                
-                UIImage *buttonImg = [UIImage imageNamed:@"CIRCLE_BORDER"];
-                buttonImg = [buttonImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-                [button setBackgroundImage:buttonImg forState:UIControlStateNormal];
-            }
-        }
+        [cell.weekdayView selectWeekdaysInArray:[NSMutableArray arrayWithArray:t.reminderDays]];
+        [cell.weekdayView setIsAllSelected:NO];
+        [cell.weekdayView setUserInteractionEnabled:NO];
         
         if(t.type > 0){
             UIImage *img = [UIImage imageNamed:@"CIRCLE_FULL"];
@@ -497,6 +461,13 @@
 
 - (void)didChangeWeekdays:(NSArray *_Nonnull)selectWeekdays{
     self.selectedWeekdayArr = [NSMutableArray arrayWithArray:selectWeekdays];
+    [self loadTasksOfWeekdays:self.selectedWeekdayArr];
+}
+
+#pragma mark - KPColorPickerDelegate
+
+- (void)didChangeColors:(int)selectColorNum{
+    self.selectedColorNum = selectColorNum;
     [self loadTasksOfWeekdays:self.selectedWeekdayArr];
 }
 

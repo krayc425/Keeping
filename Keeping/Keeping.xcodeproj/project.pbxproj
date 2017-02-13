@@ -10,6 +10,8 @@
 		24151C921E322D6700757A69 /* KPTaskDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24151C911E322D6700757A69 /* KPTaskDetailTableViewController.m */; };
 		24151C971E32388300757A69 /* UNManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24151C961E32388300757A69 /* UNManager.m */; };
 		241FB6671E31D2F300DF4D53 /* HYCircleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 241FB6661E31D2F300DF4D53 /* HYCircleProgressView.m */; };
+		2426103B1E51ACB30016DC64 /* KPColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2426103A1E51ACB30016DC64 /* KPColorPickerView.m */; };
+		2426103D1E51ACBC0016DC64 /* KPColorPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2426103C1E51ACBC0016DC64 /* KPColorPickerView.xib */; };
 		2429CBD41E2DF5E60027DD37 /* KPTodayTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2429CBD31E2DF5E60027DD37 /* KPTodayTableViewController.m */; };
 		2429CBD71E2DF6080027DD37 /* KPTaskTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2429CBD61E2DF6080027DD37 /* KPTaskTableViewController.m */; };
 		2429CBDD1E2DF61B0027DD37 /* KPSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2429CBDC1E2DF61B0027DD37 /* KPSettingsTableViewController.m */; };
@@ -138,6 +140,9 @@
 		24151C961E32388300757A69 /* UNManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNManager.m; sourceTree = "<group>"; };
 		241FB6651E31D2F300DF4D53 /* HYCircleProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYCircleProgressView.h; sourceTree = "<group>"; };
 		241FB6661E31D2F300DF4D53 /* HYCircleProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYCircleProgressView.m; sourceTree = "<group>"; };
+		242610391E51ACB30016DC64 /* KPColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPColorPickerView.h; sourceTree = "<group>"; };
+		2426103A1E51ACB30016DC64 /* KPColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPColorPickerView.m; sourceTree = "<group>"; };
+		2426103C1E51ACBC0016DC64 /* KPColorPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KPColorPickerView.xib; sourceTree = "<group>"; };
 		2429CBD21E2DF5E60027DD37 /* KPTodayTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPTodayTableViewController.h; sourceTree = "<group>"; };
 		2429CBD31E2DF5E60027DD37 /* KPTodayTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPTodayTableViewController.m; sourceTree = "<group>"; };
 		2429CBD51E2DF6080027DD37 /* KPTaskTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPTaskTableViewController.h; sourceTree = "<group>"; };
@@ -304,6 +309,16 @@
 				2435F3351E5175FE00C6AAA6 /* KPWeekdayPickerView.xib */,
 			);
 			name = KPWeekdayPickerView;
+			sourceTree = "<group>";
+		};
+		2426103E1E51BC7E0016DC64 /* KPColorPickerView */ = {
+			isa = PBXGroup;
+			children = (
+				242610391E51ACB30016DC64 /* KPColorPickerView.h */,
+				2426103A1E51ACB30016DC64 /* KPColorPickerView.m */,
+				2426103C1E51ACBC0016DC64 /* KPColorPickerView.xib */,
+			);
+			name = KPColorPickerView;
 			sourceTree = "<group>";
 		};
 		2429CBF01E2E4AA20027DD37 /* Today */ = {
@@ -554,6 +569,7 @@
 				24BA79A21E516D4B002133B6 /* KPSeparatorView */,
 				24BA79A31E516D55002133B6 /* BadgeTabBar */,
 				242610381E519C500016DC64 /* KPWeekdayPickerView */,
+				2426103E1E51BC7E0016DC64 /* KPColorPickerView */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -756,6 +772,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24F2A0F91E2F7B6E00F30FB1 /* picker_wheel_ip4@2x.png in Resources */,
+				2426103D1E51ACBC0016DC64 /* KPColorPickerView.xib in Resources */,
 				24F2A0FE1E2F7B6E00F30FB1 /* schedule_image_moon-high.png in Resources */,
 				2462FB891E4D6295004E70A5 /* Intro_Screen_Four.jpg in Resources */,
 				24F2A0F51E2F7B6E00F30FB1 /* checkmark_icon_white.png in Resources */,
@@ -905,6 +922,7 @@
 				24F2A0D71E2F482100F30FB1 /* KPSchemeManager.m in Sources */,
 				2429CBEE1E2E4A9B0027DD37 /* KPTodayTableViewCell.m in Sources */,
 				247A79801E38ABF1000EE623 /* ABCIntroView.m in Sources */,
+				2426103B1E51ACB30016DC64 /* KPColorPickerView.m in Sources */,
 				2429CBD41E2DF5E60027DD37 /* KPTodayTableViewController.m in Sources */,
 				24BA79A11E516949002133B6 /* TaskDataHelper.m in Sources */,
 				2435AF5C1E34D0D50065DC74 /* MLKMenuPopover.m in Sources */,

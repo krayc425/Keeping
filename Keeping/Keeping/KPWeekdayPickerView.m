@@ -10,6 +10,8 @@
 #import "Utilities.h"
 #import "DateUtil.h"
 
+#define SPACING 4.0
+
 static BOOL _loadingXib = NO;
 
 @interface KPWeekdayPickerView ()
@@ -23,6 +25,11 @@ static BOOL _loadingXib = NO;
 
 - (void)drawRect:(CGRect)rect {
     self.frame = rect;
+    
+//    [self.weekDayStack setSpacing:SPACING];
+//    
+//    float btnWidth = (self.frame.size.width - 7 * SPACING) / 8;
+    
     //星期几选项按钮
     for(UIButton *button in self.weekDayStack.subviews){
         [button setTintColor:[Utilities getColor]];
@@ -32,13 +39,11 @@ static BOOL _loadingXib = NO;
             UIImage *buttonImg = [UIImage imageNamed:@"CIRCLE_BORDER"];
             buttonImg = [buttonImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             [button setBackgroundImage:buttonImg forState:UIControlStateNormal];
-            
-            [button.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:18.0f]];
-        }else{
-            
-            [button.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:12.0f]];
         }
+//        [button setFrame:CGRectMake(0, (rect.size.height - btnWidth) / 2, btnWidth, btnWidth)];
     }
+    
+    [self setFont];
     
     if(self.selectedWeekdayArr == NULL){
         self.selectedWeekdayArr = [[NSMutableArray alloc] init];
@@ -48,6 +53,10 @@ static BOOL _loadingXib = NO;
     if(self.isAllSelected){
         [self selectAllWeekDay];
     }
+    
+    [self.allButton setHidden:self.isAllButtonHidden];
+    
+    self.weekDayStack.spacing = self.fontSize / 2.5;
 }
 
 - (id)awakeAfterUsingCoder:(NSCoder *)aDecoder {
@@ -90,11 +99,6 @@ static BOOL _loadingXib = NO;
         _loadingXib = NO;
         return view;
     }
-}
-
--(instancetype)initializeSubviews {
-    id view =   [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:self options:nil] firstObject];
-    return view;
 }
 
 #pragma mark - Select Weekday Action
@@ -167,11 +171,28 @@ static BOOL _loadingXib = NO;
     }else{
         [self.allButton setTitle:@"全选" forState: UIControlStateNormal];
     }
-    for(NSNumber *num in self.selectedWeekdayArr){
-        UIImage *buttonImg = [UIImage imageNamed:@"CIRCLE_FULL"];
-        buttonImg = [buttonImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        [self.weekDayStack.subviews[num.integerValue-1] setBackgroundImage:buttonImg forState:UIControlStateNormal];
-        [self.weekDayStack.subviews[num.integerValue-1] setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    for(int num = 1; num <= 7; num++){
+        if([self.selectedWeekdayArr containsObject:@(num)]){
+            UIImage *buttonImg = [UIImage imageNamed:@"CIRCLE_FULL"];
+            buttonImg = [buttonImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            [self.weekDayStack.subviews[num-1] setBackgroundImage:buttonImg forState:UIControlStateNormal];
+            [self.weekDayStack.subviews[num-1] setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        }else{
+            UIImage *buttonImg = [UIImage imageNamed:@"CIRCLE_BORDER"];
+            buttonImg = [buttonImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            [self.weekDayStack.subviews[num-1] setBackgroundImage:buttonImg forState:UIControlStateNormal];
+            [self.weekDayStack.subviews[num-1] setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
+        }
+    }
+}
+
+- (void)setFont{
+    for(UIButton *button in self.weekDayStack.subviews){
+        if(button.tag != -1){
+            [button.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:self.fontSize]];
+        }else{
+            [button.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:self.fontSize / 1.5]];
+        }
     }
 }
 

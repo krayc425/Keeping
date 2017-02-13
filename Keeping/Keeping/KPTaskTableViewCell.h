@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "HYCircleProgressView.h"
+#import "KPWeekdayPickerView.h"
 
 @protocol PassImgDelegate <NSObject>
 
@@ -25,7 +26,7 @@
 //完成进度
 @property (nonatomic, nonnull) IBOutlet HYCircleProgressView *progressView;
 //要做的天数
-@property (nonnull, nonatomic) IBOutlet UIStackView *weekDayStack;
+@property (nonnull, nonatomic) IBOutlet KPWeekdayPickerView *weekdayView;
 //缩略图
 @property (nonatomic, nonnull) IBOutlet UIButton *taskImgViewBtn;
 //类别

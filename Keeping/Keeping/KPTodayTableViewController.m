@@ -50,21 +50,11 @@ static AMPopTip *shareTip = NULL;
     self.tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     
     //类别按钮
-    for (int i = 0; i < [[Utilities getTypeColorArr] count]; i++) {
-        UIButton *btn = (UIButton *)self.colorStack.subviews[i];
-        UIImage *img = [UIImage imageNamed:@"CIRCLE_FULL"];
-        img = [img imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        [btn setBackgroundImage:img forState:UIControlStateNormal];
-        [btn setTintColor:[Utilities getTypeColorArr][i]];
-        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [btn.titleLabel setFont:[UIFont systemFontOfSize:20.0f]];
-        [btn setTag:i+1];
-    }
-    self.selectedColorNum = -1;
+    self.colorView.colorDelegate = self;
     
     //page 指示 stack
     self.dateStack.hidden = NO;
-    self.colorStack.hidden = YES;
+    self.colorView.hidden = YES;
     for(UIImageView *imgView in self.pageStack.subviews){
         UIImage *img = [UIImage imageNamed:@"CIRCLE_FULL"];
         img = [img imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
@@ -82,8 +72,8 @@ static AMPopTip *shareTip = NULL;
     swipeGRLeft2.direction = UISwipeGestureRecognizerDirectionLeft;
     swipeGRRight2.direction = UISwipeGestureRecognizerDirectionRight;
     
-    [self.colorStack addGestureRecognizer:swipeGRLeft1];
-    [self.colorStack addGestureRecognizer:swipeGRRight1];
+    [self.colorView addGestureRecognizer:swipeGRLeft1];
+    [self.colorView addGestureRecognizer:swipeGRRight1];
     [self.dateStack addGestureRecognizer:swipeGRLeft2];
     [self.dateStack addGestureRecognizer:swipeGRRight2];
 }
@@ -148,14 +138,14 @@ static AMPopTip *shareTip = NULL;
 
 - (void)swipeAction:(UISwipeGestureRecognizer *)sender{
     
-    if([self.colorStack isHidden]){
-        [self.colorStack setHidden:NO];
+    if([self.colorView isHidden]){
+        [self.colorView setHidden:NO];
         [self.dateStack setHidden:YES];
         
         [self.pageStack.subviews[0] setTintColor:[UIColor groupTableViewBackgroundColor]];
         [self.pageStack.subviews[1] setTintColor:[Utilities getColor]];
     }else{
-        [self.colorStack setHidden:YES];
+        [self.colorView setHidden:YES];
         [self.dateStack setHidden:NO];
         
         [self.pageStack.subviews[0] setTintColor:[Utilities getColor]];
@@ -175,25 +165,6 @@ static AMPopTip *shareTip = NULL;
     self.menuPopover = [[MLKMenuPopover alloc] initWithFrame:MENU_POPOVER_FRAME menuItems:[[Utilities getTaskSortArr] allKeys]];
     self.menuPopover.menuPopoverDelegate = self;
     [self.menuPopover showInView:self.navigationController.view];
-}
-
-#pragma mark - Select Color Action
-
-- (IBAction)selectColorAction:(id)sender{
-    UIButton *button = (UIButton *)sender;
-    if(self.selectedColorNum == (int)button.tag){
-        self.selectedColorNum = -1;
-    }else{
-        self.selectedColorNum = (int)button.tag;
-    }
-    for(UIButton *btn in self.colorStack.subviews){
-        if(btn.tag == self.selectedColorNum){
-            [btn setTitle:@"●" forState:UIControlStateNormal];
-        }else{
-            [btn setTitle:@"" forState:UIControlStateNormal];
-        }
-    }
-    [self loadTasks];
 }
 
 #pragma mark - Choose Date
@@ -675,6 +646,13 @@ static AMPopTip *shareTip = NULL;
         animation.type = [Utilities getAnimationType];
         [self.tableView.layer addAnimation:animation forKey:@"fadeAnimation"];
     }
+}
+
+#pragma mark - KPColorPickerDelegate
+
+- (void)didChangeColors:(int)selectColorNum{
+    self.selectedColorNum = selectColorNum;
+    [self loadTasks];
 }
 
 #pragma mark - AMPopTip Singleton

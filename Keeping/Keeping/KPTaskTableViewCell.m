@@ -14,14 +14,14 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
+    self.backgroundColor = [UIColor clearColor];
+    
     [self setFont];
     
     [self.progressView setBackgroundStrokeColor:[UIColor groupTableViewBackgroundColor]];
     [self.progressView setProgressStrokeColor:[Utilities getColor]];
     
-    for(UIButton *button in self.weekDayStack.subviews){
-        [button setTintColor:[Utilities getColor]];
-    }
+    self.weekdayView.isAllButtonHidden = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -39,9 +39,8 @@
     
     [self.progressView setFont];
     
-    for(UIButton *button in self.weekDayStack.subviews){
-        [button.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:12.0f]];
-    }
+    [self.weekdayView setFont];
+    self.weekdayView.fontSize = 12.0;
 }
 
 @end

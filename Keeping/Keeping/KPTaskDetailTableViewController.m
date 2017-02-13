@@ -59,20 +59,13 @@
     //星期代理
     self.weekdayView.weekdayDelegate = self;
     self.weekdayView.isAllSelected = NO;
+    self.weekdayView.fontSize = 18.0;
+    self.weekdayView.isAllButtonHidden = NO;
     
     
     
-    //类别
-    for (int i = 0; i < [[Utilities getTypeColorArr] count]; i++) {
-        UIButton *btn = (UIButton *)self.colorStack.subviews[i];
-        UIImage *img = [UIImage imageNamed:@"CIRCLE_FULL"];
-        img = [img imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        [btn setBackgroundImage:img forState:UIControlStateNormal];
-        [btn setTintColor:[Utilities getTypeColorArr][i]];
-        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [btn.titleLabel setFont:[UIFont systemFontOfSize:20.0f]];
-        [btn setTag:i+1];
-    }
+    //类别代理
+    self.colorView.colorDelegate = self;
     
     
     //提醒标签
@@ -107,6 +100,8 @@
     [self.startDateButton setUserInteractionEnabled:NO];
     [self.startDateButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
     [self.endDateButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
+    [self.startDateButton.titleLabel sizeToFit];
+    [self.endDateButton.titleLabel sizeToFit];
     
     
     //备注
@@ -153,7 +148,7 @@
         [self.taskNameField setText:[self.task name]];
         
         self.selectedWeekdayArr = [NSMutableArray arrayWithArray:self.task.reminderDays];
-        [self.weekdayView setSelectedWeekdayArr:self.selectedWeekdayArr];
+        [self.weekdayView selectWeekdaysInArray:self.selectedWeekdayArr];
         
         [self.startDateButton setTitle:[self.task.addDate formattedDateWithFormat:DATE_FORMAT] forState:UIControlStateNormal];
         if(self.task.endDate != NULL){
@@ -208,15 +203,8 @@
         
         [self.memoTextView setText:self.task.memo];
         
-        
-        for(UIButton *btn in self.colorStack.subviews){
-            if(self.task.type == btn.tag){
-                [btn setTitle:@"●" forState:UIControlStateNormal];
-            }else{
-                [btn setTitle:@"" forState:UIControlStateNormal];
-            }
-        }
         self.selectedColorNum = self.task.type;
+        [self.colorView setSelectedColorNum:self.selectedColorNum];
         
         [self.tableView reloadData];
         
@@ -438,13 +426,7 @@
     }else{
         self.selectedColorNum = (int)button.tag;
     }
-    for(UIButton *btn in self.colorStack.subviews){
-        if(btn.tag == self.selectedColorNum){
-            [btn setTitle:@"●" forState:UIControlStateNormal];
-        }else{
-            [btn setTitle:@"" forState:UIControlStateNormal];
-        }
-    }
+    self.colorView.selectedColorNum = self.selectedColorNum;
 }
 
 #pragma mark - Reminder Actions
@@ -758,6 +740,12 @@
 
 - (void)didChangeWeekdays:(NSArray *_Nonnull)selectWeekdays{
     self.selectedWeekdayArr = [NSMutableArray arrayWithArray:selectWeekdays];
+}
+
+#pragma mark - KPColorPickerDelegate
+
+- (void)didChangeColors:(int)selectColorNum{
+    self.selectedColorNum = selectColorNum;
 }
 
 @end

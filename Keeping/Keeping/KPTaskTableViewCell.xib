@@ -21,7 +21,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lcf-2t-2Cr" customClass="CardsView">
-                        <rect key="frame" x="10" y="5" width="300" height="60"/>
+                        <rect key="frame" x="10" y="5" width="300" height="59.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -30,7 +30,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GI4-oS-7Ju" customClass="HYCircleProgressView">
-                        <rect key="frame" x="257" y="13" width="45" height="45"/>
+                        <rect key="frame" x="257" y="12.5" width="45" height="45"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="GI4-oS-7Ju" secondAttribute="height" multiplier="1:1" id="bGa-Yv-fCU"/>
@@ -38,7 +38,7 @@
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qjo-ku-I5K">
-                        <rect key="frame" x="202" y="13" width="45" height="45"/>
+                        <rect key="frame" x="202" y="12.5" width="45" height="45"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="45" id="RO2-Cd-zzu"/>
                             <constraint firstAttribute="width" secondItem="Qjo-ku-I5K" secondAttribute="height" multiplier="1:1" id="T1a-TD-Xl8"/>
@@ -47,132 +47,63 @@
                             <action selector="imgAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="7GJ-cU-cLp"/>
                         </connections>
                     </button>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="6Ve-KO-ENb">
-                        <rect key="frame" x="18" y="13" width="184" height="45"/>
+                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yki-xl-EWe" customClass="KPWeekdayPickerView">
+                        <rect key="frame" x="18" y="41.5" width="150" height="15"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="150" id="MQu-cn-lh2"/>
+                            <constraint firstAttribute="height" constant="18" id="VBi-Vp-ACC"/>
+                        </constraints>
+                    </view>
+                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="4UM-kP-ZJp">
+                        <rect key="frame" x="18" y="13" width="56.5" height="20"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="4UM-kP-ZJp">
-                                <rect key="frame" x="0.0" y="0.0" width="56.5" height="20"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="TPV-JP-ZrE">
-                                        <rect key="frame" x="0.0" y="0.0" width="42" height="20"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="25U-RF-mtf"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zwj-tx-iGW">
-                                        <rect key="frame" x="47" y="5" width="9.5" height="10"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="Zwj-tx-iGW" secondAttribute="height" multiplier="1:1" id="5BE-db-rVx"/>
-                                            <constraint firstAttribute="height" constant="10" id="IJj-dg-Rlv"/>
-                                        </constraints>
-                                    </imageView>
-                                </subviews>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="sBK-sY-QwO">
-                                <rect key="frame" x="0.0" y="25" width="184" height="20"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ve1-Tr-LWS">
-                                        <rect key="frame" x="0.0" y="0.0" width="170" height="20"/>
-                                        <subviews>
-                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QpJ-ze-QAA">
-                                                <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="QpJ-ze-QAA" secondAttribute="height" id="9zn-xq-9ff"/>
-                                                </constraints>
-                                                <state key="normal" title="日" backgroundImage="CIRCLE_BORDER"/>
-                                            </button>
-                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ycb-oM-bEg">
-                                                <rect key="frame" x="25" y="0.0" width="20" height="20"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="ycb-oM-bEg" secondAttribute="height" id="tRn-v8-7L6"/>
-                                                </constraints>
-                                                <state key="normal" title="一" backgroundImage="CIRCLE_BORDER"/>
-                                            </button>
-                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MkU-DY-0P7">
-                                                <rect key="frame" x="50" y="0.0" width="20" height="20"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="MkU-DY-0P7" secondAttribute="height" id="AE8-9I-4Qp"/>
-                                                </constraints>
-                                                <state key="normal" title="二" backgroundImage="CIRCLE_BORDER"/>
-                                            </button>
-                                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ex1-hI-W9p">
-                                                <rect key="frame" x="75" y="0.0" width="20" height="20"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="Ex1-hI-W9p" secondAttribute="height" id="b7V-2v-X7i"/>
-                                                </constraints>
-                                                <state key="normal" title="三" backgroundImage="CIRCLE_BORDER"/>
-                                            </button>
-                                            <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xxe-gk-12X">
-                                                <rect key="frame" x="100" y="0.0" width="20" height="20"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="Xxe-gk-12X" secondAttribute="height" multiplier="1:1" id="rhl-ak-xnn"/>
-                                                </constraints>
-                                                <state key="normal" title="四" backgroundImage="CIRCLE_BORDER"/>
-                                            </button>
-                                            <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="owV-Yx-u6F">
-                                                <rect key="frame" x="125" y="0.0" width="20" height="20"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="owV-Yx-u6F" secondAttribute="height" multiplier="1:1" id="C50-yb-0En"/>
-                                                </constraints>
-                                                <state key="normal" title="五" backgroundImage="CIRCLE_BORDER"/>
-                                            </button>
-                                            <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="spY-ue-CPJ">
-                                                <rect key="frame" x="150" y="0.0" width="20" height="20"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="spY-ue-CPJ" secondAttribute="height" id="d2Q-IO-iyU"/>
-                                                </constraints>
-                                                <state key="normal" title="六" backgroundImage="CIRCLE_BORDER"/>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="KFg-1W-2gl">
-                                        <rect key="frame" x="180" y="0.0" width="4" height="20"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="TPV-JP-ZrE">
+                                <rect key="frame" x="0.0" y="0.0" width="42" height="20"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="KFg-1W-2gl" secondAttribute="bottom" id="eZo-S3-Wdn"/>
-                                    <constraint firstAttribute="height" constant="20" id="gdP-6V-j5J"/>
-                                    <constraint firstItem="KFg-1W-2gl" firstAttribute="top" secondItem="sBK-sY-QwO" secondAttribute="top" id="tH6-dD-G0b"/>
-                                    <constraint firstAttribute="bottom" secondItem="ve1-Tr-LWS" secondAttribute="bottom" id="vb0-gy-eap"/>
-                                    <constraint firstItem="ve1-Tr-LWS" firstAttribute="top" secondItem="sBK-sY-QwO" secondAttribute="top" id="wpX-Ck-5rW"/>
+                                    <constraint firstAttribute="height" constant="20" id="25U-RF-mtf"/>
                                 </constraints>
-                            </stackView>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zwj-tx-iGW">
+                                <rect key="frame" x="47" y="5" width="9.5" height="10"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Zwj-tx-iGW" secondAttribute="height" multiplier="1:1" id="5BE-db-rVx"/>
+                                    <constraint firstAttribute="height" constant="10" id="IJj-dg-Rlv"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="G7l-lm-SOM"/>
+                        </constraints>
                     </stackView>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstItem="6Ve-KO-ENb" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="3yl-uW-zwk"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="yki-xl-EWe" secondAttribute="bottom" constant="5" id="8jR-29-MTb"/>
                     <constraint firstItem="GI4-oS-7Ju" firstAttribute="leading" secondItem="Qjo-ku-I5K" secondAttribute="trailing" constant="10" id="C1h-Kd-1iM"/>
                     <constraint firstItem="GI4-oS-7Ju" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Cfw-tf-dgL"/>
+                    <constraint firstItem="4UM-kP-ZJp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="Fij-8x-QBH"/>
                     <constraint firstAttribute="trailingMargin" secondItem="GI4-oS-7Ju" secondAttribute="trailing" constant="10" id="PFF-LI-9Y8"/>
+                    <constraint firstItem="4UM-kP-ZJp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="VPd-AA-XQj"/>
                     <constraint firstItem="Lcf-2t-2Cr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="aY9-yy-JeX"/>
                     <constraint firstItem="Qjo-ku-I5K" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="bza-Sq-FbU"/>
-                    <constraint firstItem="6Ve-KO-ENb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="et9-vA-aVz"/>
                     <constraint firstAttribute="bottom" secondItem="Lcf-2t-2Cr" secondAttribute="bottom" constant="5" id="h5k-GF-Uem"/>
+                    <constraint firstItem="yki-xl-EWe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="htd-ei-Tw6"/>
                     <constraint firstItem="Lcf-2t-2Cr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="jiH-y7-v8l"/>
-                    <constraint firstItem="Qjo-ku-I5K" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Ve-KO-ENb" secondAttribute="trailing" id="pH7-04-kfa"/>
                     <constraint firstAttribute="trailing" secondItem="Lcf-2t-2Cr" secondAttribute="trailing" constant="10" id="z0R-3X-5aP"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
-                <outlet property="daysLabel" destination="KFg-1W-2gl" id="qtQ-5G-qtK"/>
                 <outlet property="nameLabel" destination="TPV-JP-ZrE" id="ACa-av-ZXR"/>
                 <outlet property="progressView" destination="GI4-oS-7Ju" id="KMI-Gx-1zR"/>
                 <outlet property="taskImgViewBtn" destination="Qjo-ku-I5K" id="Xwf-uB-SEq"/>
                 <outlet property="typeImg" destination="Zwj-tx-iGW" id="dSv-GX-KHb"/>
-                <outlet property="weekDayStack" destination="ve1-Tr-LWS" id="apT-yj-jPP"/>
+                <outlet property="weekdayView" destination="yki-xl-EWe" id="asn-Gw-1IA"/>
             </connections>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="CIRCLE_BORDER" width="106" height="106"/>
-    </resources>
 </document>

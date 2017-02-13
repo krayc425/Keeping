@@ -9,23 +9,20 @@
 #import <UIKit/UIKit.h>
 #import "KPTaskTableViewCell.h"
 #import "KPWeekdayPickerView.h"
-#import "CardsView.h"
+#import "KPColorPickerView.h"
 #import "KPWeekdayPickerView.h"
 
-@interface KPTaskTableViewController : UITableViewController <PassImgDelegate, KPWeekdayPickerDelegate>
-
-@property (nonnull, nonatomic) IBOutlet CardsView *cView;
+@interface KPTaskTableViewController : UITableViewController <PassImgDelegate, KPWeekdayPickerDelegate, KPColorPickerDelegate>
 
 @property (nonnull, nonatomic) NSMutableArray *taskArr;
 @property (nonnull, nonatomic) NSMutableArray *historyTaskArr;
 
 @property (nonatomic, nonnull) IBOutlet UIStackView *pageStack;
 
-@property (nonatomic, nonnull) IBOutlet UIStackView *colorStack;    //button tag : 1 ~ 7
 @property (nonatomic) int selectedColorNum;
+@property (nonatomic, nonnull) IBOutlet KPColorPickerView *colorView;
 
 @property (nonnull, nonatomic) NSMutableArray *selectedWeekdayArr;
-
 @property (nonnull, nonatomic) IBOutlet KPWeekdayPickerView *weekDayView;
 
 @property (nonnull, nonatomic) NSString *sortFactor;
