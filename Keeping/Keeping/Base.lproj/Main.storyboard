@@ -15,7 +15,7 @@
         <scene sceneID="do5-em-2mj">
             <objects>
                 <navigationController storyboardIdentifier="KPNavigationViewController" id="BIL-fh-dCv" userLabel="KPNavigationViewController" customClass="KPNavigationViewController" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="drc-Be-qV6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="drc-Be-qV6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -185,91 +185,6 @@
                                                         </button>
                                                     </subviews>
                                                 </stackView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="hS5-Gp-DlO">
-                                                    <rect key="frame" x="20" y="10" width="335" height="80"/>
-                                                    <subviews>
-                                                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W3S-fz-IFp">
-                                                            <rect key="frame" x="0.0" y="23.5" width="33" height="33"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="W3S-fz-IFp" secondAttribute="height" id="x1E-mF-y7M"/>
-                                                            </constraints>
-                                                            <state key="normal" title="日" backgroundImage="CIRCLE_BORDER"/>
-                                                            <connections>
-                                                                <action selector="selectWeekdayAction:" destination="ztj-1T-P03" eventType="touchUpInside" id="q4w-1h-2uC"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gXc-TE-L9R">
-                                                            <rect key="frame" x="43" y="23.5" width="33.5" height="33"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="gXc-TE-L9R" secondAttribute="height" id="hyq-HY-WeZ"/>
-                                                            </constraints>
-                                                            <state key="normal" title="一" backgroundImage="CIRCLE_BORDER"/>
-                                                            <connections>
-                                                                <action selector="selectWeekdayAction:" destination="ztj-1T-P03" eventType="touchUpInside" id="crB-dO-fhh"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KeQ-lO-kKM">
-                                                            <rect key="frame" x="86.5" y="23.5" width="33" height="33"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="KeQ-lO-kKM" secondAttribute="height" id="Vbo-58-37B"/>
-                                                            </constraints>
-                                                            <state key="normal" title="二" backgroundImage="CIRCLE_BORDER"/>
-                                                            <connections>
-                                                                <action selector="selectWeekdayAction:" destination="ztj-1T-P03" eventType="touchUpInside" id="lP2-7v-YUS"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Lk-qA-RCm">
-                                                            <rect key="frame" x="129.5" y="23.5" width="33" height="33"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="0Lk-qA-RCm" secondAttribute="height" id="jaA-U0-KTW"/>
-                                                            </constraints>
-                                                            <state key="normal" title="三" backgroundImage="CIRCLE_BORDER"/>
-                                                            <connections>
-                                                                <action selector="selectWeekdayAction:" destination="ztj-1T-P03" eventType="touchUpInside" id="b4H-z4-PHB"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gjg-95-oje">
-                                                            <rect key="frame" x="172.5" y="23.5" width="33" height="33"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="Gjg-95-oje" secondAttribute="height" multiplier="1:1" id="f1C-SA-hOK"/>
-                                                            </constraints>
-                                                            <state key="normal" title="四" backgroundImage="CIRCLE_BORDER"/>
-                                                            <connections>
-                                                                <action selector="selectWeekdayAction:" destination="ztj-1T-P03" eventType="touchUpInside" id="UNW-v7-1G0"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rV5-l2-4KP">
-                                                            <rect key="frame" x="215.5" y="23.5" width="33.5" height="33"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="rV5-l2-4KP" secondAttribute="height" multiplier="1:1" id="F6Y-0Z-d9a"/>
-                                                            </constraints>
-                                                            <state key="normal" title="五" backgroundImage="CIRCLE_BORDER"/>
-                                                            <connections>
-                                                                <action selector="selectWeekdayAction:" destination="ztj-1T-P03" eventType="touchUpInside" id="EgF-51-wRr"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="km6-Gr-KuP">
-                                                            <rect key="frame" x="259" y="23.5" width="33" height="33"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="km6-Gr-KuP" secondAttribute="height" id="5CN-ET-fkJ"/>
-                                                            </constraints>
-                                                            <state key="normal" title="六" backgroundImage="CIRCLE_BORDER"/>
-                                                            <connections>
-                                                                <action selector="selectWeekdayAction:" destination="ztj-1T-P03" eventType="touchUpInside" id="6eC-P4-kc3"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tb5-Gd-57o">
-                                                            <rect key="frame" x="302" y="23.5" width="33" height="33"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="tb5-Gd-57o" secondAttribute="height" multiplier="1:1" id="ozf-Pf-613"/>
-                                                            </constraints>
-                                                            <state key="normal" title="全选"/>
-                                                            <connections>
-                                                                <action selector="selectAllWeekdayAction:" destination="ztj-1T-P03" eventType="touchUpInside" id="GHd-kH-fA3"/>
-                                                            </connections>
-                                                        </button>
-                                                    </subviews>
-                                                </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="XBt-Je-oFK">
                                                     <rect key="frame" x="177" y="83" width="21" height="7"/>
                                                     <subviews>
@@ -292,22 +207,26 @@
                                                         <constraint firstItem="AVd-9S-aGH" firstAttribute="width" secondItem="AVd-9S-aGH" secondAttribute="height" multiplier="1:1" id="eyI-WH-TjE"/>
                                                     </constraints>
                                                 </stackView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uX8-4F-gJ8" customClass="KPWeekdayPickerView">
+                                                    <rect key="frame" x="20" y="10" width="335" height="73"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="h0I-Fx-97a" firstAttribute="leading" secondItem="bNL-kJ-Hjc" secondAttribute="leading" constant="20" id="0u9-bD-gg0"/>
-                                                <constraint firstItem="hS5-Gp-DlO" firstAttribute="leading" secondItem="bNL-kJ-Hjc" secondAttribute="leading" constant="20" id="56r-3w-YED"/>
                                                 <constraint firstItem="ha8-sc-aya" firstAttribute="leading" secondItem="bNL-kJ-Hjc" secondAttribute="leading" constant="10" id="5SM-4o-Nnn"/>
                                                 <constraint firstItem="XBt-Je-oFK" firstAttribute="centerX" secondItem="bNL-kJ-Hjc" secondAttribute="centerX" id="5gU-11-UiP"/>
-                                                <constraint firstAttribute="trailing" secondItem="hS5-Gp-DlO" secondAttribute="trailing" constant="20" id="9i8-4f-Abs"/>
                                                 <constraint firstItem="h0I-Fx-97a" firstAttribute="top" secondItem="bNL-kJ-Hjc" secondAttribute="top" constant="10" id="Al4-q5-2GP"/>
+                                                <constraint firstItem="XBt-Je-oFK" firstAttribute="top" secondItem="uX8-4F-gJ8" secondAttribute="bottom" id="HSF-l0-IKZ"/>
                                                 <constraint firstAttribute="trailing" secondItem="h0I-Fx-97a" secondAttribute="trailing" constant="20" id="OI6-UB-fIN"/>
-                                                <constraint firstItem="hS5-Gp-DlO" firstAttribute="top" secondItem="bNL-kJ-Hjc" secondAttribute="top" constant="10" id="XhX-wc-Fjv"/>
+                                                <constraint firstItem="uX8-4F-gJ8" firstAttribute="top" secondItem="bNL-kJ-Hjc" secondAttribute="top" constant="10" id="SMA-ID-xtF"/>
                                                 <constraint firstAttribute="bottom" secondItem="ha8-sc-aya" secondAttribute="bottom" constant="5" id="dNX-mn-Ssh"/>
                                                 <constraint firstAttribute="bottom" secondItem="XBt-Je-oFK" secondAttribute="bottom" constant="10" id="fWx-BA-dJH"/>
+                                                <constraint firstItem="uX8-4F-gJ8" firstAttribute="leading" secondItem="bNL-kJ-Hjc" secondAttribute="leading" constant="20" id="kIt-XX-1g3"/>
                                                 <constraint firstAttribute="bottom" secondItem="h0I-Fx-97a" secondAttribute="bottom" constant="10" id="nSQ-c6-PNQ"/>
+                                                <constraint firstAttribute="trailing" secondItem="uX8-4F-gJ8" secondAttribute="trailing" constant="20" id="pnH-7m-vRj"/>
                                                 <constraint firstAttribute="trailing" secondItem="ha8-sc-aya" secondAttribute="trailing" constant="10" id="qNR-sD-i8m"/>
                                                 <constraint firstItem="ha8-sc-aya" firstAttribute="top" secondItem="bNL-kJ-Hjc" secondAttribute="top" constant="10" id="ylx-7D-j9o"/>
-                                                <constraint firstAttribute="bottom" secondItem="hS5-Gp-DlO" secondAttribute="bottom" constant="10" id="zJ4-Dm-knk"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="0.0" colorSpace="calibratedRGB"/>
@@ -335,10 +254,10 @@
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <tabBarItem key="tabBarItem" title="Item" id="fdh-tp-3dv"/>
                     <connections>
-                        <outlet property="allButton" destination="tb5-Gd-57o" id="oZu-pn-tjX"/>
+                        <outlet property="cView" destination="ha8-sc-aya" id="HWC-cq-cTZ"/>
                         <outlet property="colorStack" destination="h0I-Fx-97a" id="Cl5-Pg-wAz"/>
                         <outlet property="pageStack" destination="XBt-Je-oFK" id="LxZ-rs-hBD"/>
-                        <outlet property="weekDayStack" destination="hS5-Gp-DlO" id="KVp-j2-TcL"/>
+                        <outlet property="weekDayView" destination="uX8-4F-gJ8" id="Fra-fH-fBL"/>
                         <segue destination="c1M-lD-w8g" kind="show" identifier="detailTaskSegue" id="tMR-sH-vNC"/>
                         <segue destination="iLS-CK-3Yi" kind="presentation" identifier="imageSegue" id="QMM-bj-IhC"/>
                         <segue destination="c1M-lD-w8g" kind="show" identifier="addTaskSegue" id="OKd-Dw-yC7"/>
@@ -346,7 +265,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9DX-im-IF9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1614" y="-683"/>
+            <point key="canvasLocation" x="1613.5999999999999" y="-683.20839580209895"/>
         </scene>
         <!--KPTaskDetailTableViewController-->
         <scene sceneID="s1j-Ej-AEu">
@@ -404,7 +323,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bpY-Ov-16U">
-                                                    <rect key="frame" x="5" y="23.5" width="9" height="20.5"/>
+                                                    <rect key="frame" x="5" y="23" width="9" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="8.5" id="Fgl-ZL-cca"/>
                                                     </constraints>
@@ -412,100 +331,18 @@
                                                     <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="10" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wmp-EN-j6p">
-                                                    <rect key="frame" x="19" y="10" width="390" height="40"/>
-                                                    <subviews>
-                                                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9e7-MS-jnv">
-                                                            <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="9e7-MS-jnv" secondAttribute="height" multiplier="1:1" id="sYw-99-shO"/>
-                                                            </constraints>
-                                                            <state key="normal" title="日" backgroundImage="CIRCLE_BORDER"/>
-                                                            <connections>
-                                                                <action selector="selectWeekdayAction:" destination="c1M-lD-w8g" eventType="touchUpInside" id="hrV-xq-Cdj"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fb2-dA-hsP">
-                                                            <rect key="frame" x="50" y="0.0" width="40" height="40"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="Fb2-dA-hsP" secondAttribute="height" multiplier="1:1" id="dIm-bY-ZsG"/>
-                                                            </constraints>
-                                                            <state key="normal" title="一" backgroundImage="CIRCLE_BORDER"/>
-                                                            <connections>
-                                                                <action selector="selectWeekdayAction:" destination="c1M-lD-w8g" eventType="touchUpInside" id="ybu-of-Nhy"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lmB-wf-eHd">
-                                                            <rect key="frame" x="100" y="0.0" width="40" height="40"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="lmB-wf-eHd" secondAttribute="height" multiplier="1:1" id="uvn-05-kIa"/>
-                                                            </constraints>
-                                                            <state key="normal" title="二" backgroundImage="CIRCLE_BORDER"/>
-                                                            <connections>
-                                                                <action selector="selectWeekdayAction:" destination="c1M-lD-w8g" eventType="touchUpInside" id="a9Z-za-7T1"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nwb-R9-Q2T">
-                                                            <rect key="frame" x="150" y="0.0" width="40" height="40"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="Nwb-R9-Q2T" secondAttribute="height" multiplier="1:1" id="wKl-7Z-Eu0"/>
-                                                            </constraints>
-                                                            <state key="normal" title="三" backgroundImage="CIRCLE_BORDER"/>
-                                                            <connections>
-                                                                <action selector="selectWeekdayAction:" destination="c1M-lD-w8g" eventType="touchUpInside" id="xPS-ug-tZB"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NDn-NP-FdE">
-                                                            <rect key="frame" x="200" y="0.0" width="40" height="40"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="NDn-NP-FdE" secondAttribute="height" multiplier="1:1" id="W7c-dh-otf"/>
-                                                            </constraints>
-                                                            <state key="normal" title="四" backgroundImage="CIRCLE_BORDER"/>
-                                                            <connections>
-                                                                <action selector="selectWeekdayAction:" destination="c1M-lD-w8g" eventType="touchUpInside" id="spf-fw-Dpr"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UGP-fl-zRy">
-                                                            <rect key="frame" x="250" y="0.0" width="40" height="40"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="UGP-fl-zRy" secondAttribute="height" multiplier="1:1" id="1bv-eF-QLh"/>
-                                                            </constraints>
-                                                            <state key="normal" title="五" backgroundImage="CIRCLE_BORDER"/>
-                                                            <connections>
-                                                                <action selector="selectWeekdayAction:" destination="c1M-lD-w8g" eventType="touchUpInside" id="RJP-8J-DBJ"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wGh-aC-5Rt">
-                                                            <rect key="frame" x="300" y="0.0" width="40" height="40"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="wGh-aC-5Rt" secondAttribute="height" multiplier="1:1" id="jr7-4a-O0P"/>
-                                                            </constraints>
-                                                            <state key="normal" title="六" backgroundImage="CIRCLE_BORDER"/>
-                                                            <connections>
-                                                                <action selector="selectWeekdayAction:" destination="c1M-lD-w8g" eventType="touchUpInside" id="0Yl-wC-fs5"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iq5-8X-4O2">
-                                                            <rect key="frame" x="350" y="0.0" width="40" height="40"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="36" id="lYf-S2-Jk9"/>
-                                                                <constraint firstAttribute="width" secondItem="iq5-8X-4O2" secondAttribute="height" multiplier="1:1" id="viS-LT-BVb"/>
-                                                            </constraints>
-                                                            <state key="normal" title="全选"/>
-                                                            <connections>
-                                                                <action selector="selectAllWeekdayAction:" destination="c1M-lD-w8g" eventType="touchUpInside" id="77H-tq-DvK"/>
-                                                            </connections>
-                                                        </button>
-                                                    </subviews>
-                                                </stackView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y7I-Vg-d7O" customClass="KPWeekdayPickerView">
+                                                    <rect key="frame" x="19" y="10" width="346" height="40"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="Wmp-EN-j6p" secondAttribute="bottom" constant="10" id="CCb-w2-diC"/>
-                                                <constraint firstItem="Wmp-EN-j6p" firstAttribute="top" secondItem="cmW-jc-2dj" secondAttribute="top" constant="10" id="Gd7-o1-a55"/>
+                                                <constraint firstAttribute="trailing" secondItem="y7I-Vg-d7O" secondAttribute="trailing" constant="10" id="3iF-5f-bUQ"/>
                                                 <constraint firstItem="bpY-Ov-16U" firstAttribute="centerY" secondItem="cmW-jc-2dj" secondAttribute="centerY" constant="4" id="Qad-dj-8bu"/>
+                                                <constraint firstItem="y7I-Vg-d7O" firstAttribute="leading" secondItem="bpY-Ov-16U" secondAttribute="trailing" constant="5" id="RUY-oU-p0Q"/>
                                                 <constraint firstItem="bpY-Ov-16U" firstAttribute="leading" secondItem="cmW-jc-2dj" secondAttribute="leading" constant="5" id="UeY-8o-H8k"/>
-                                                <constraint firstItem="Wmp-EN-j6p" firstAttribute="leading" secondItem="bpY-Ov-16U" secondAttribute="trailing" constant="5" id="bXN-7k-o0M"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Wmp-EN-j6p" secondAttribute="trailing" constant="5" id="jSV-y2-hkP"/>
+                                                <constraint firstAttribute="bottom" secondItem="y7I-Vg-d7O" secondAttribute="bottom" constant="10" id="sj4-G6-tQu"/>
+                                                <constraint firstItem="y7I-Vg-d7O" firstAttribute="top" secondItem="cmW-jc-2dj" secondAttribute="top" constant="10" id="vTy-tm-Dr3"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -566,7 +403,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="KP9-8b-wuc">
-                                                    <rect key="frame" x="10" y="10" width="355" height="40"/>
+                                                    <rect key="frame" x="18" y="10" width="339" height="40"/>
                                                     <subviews>
                                                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6zA-SJ-HNa">
                                                             <rect key="frame" x="0.0" y="5" width="30" height="30"/>
@@ -578,7 +415,7 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u81-Aw-4zT">
-                                                            <rect key="frame" x="54" y="5" width="30" height="30"/>
+                                                            <rect key="frame" x="51.5" y="5" width="30" height="30"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="u81-Aw-4zT" secondAttribute="height" multiplier="1:1" id="4np-ea-rs2"/>
                                                             </constraints>
@@ -587,7 +424,7 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oSY-zW-Ksz">
-                                                            <rect key="frame" x="108.5" y="5" width="30" height="30"/>
+                                                            <rect key="frame" x="103" y="5" width="30" height="30"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="oSY-zW-Ksz" secondAttribute="height" multiplier="1:1" id="bfS-Pc-0P8"/>
                                                             </constraints>
@@ -596,7 +433,7 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7hC-uT-iFR">
-                                                            <rect key="frame" x="162.5" y="5" width="30" height="30"/>
+                                                            <rect key="frame" x="154.5" y="5" width="30" height="30"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="7hC-uT-iFR" secondAttribute="height" multiplier="1:1" id="pYq-Si-cNI"/>
                                                             </constraints>
@@ -605,7 +442,7 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YXV-Y9-Ih9">
-                                                            <rect key="frame" x="216.5" y="5" width="30" height="30"/>
+                                                            <rect key="frame" x="206" y="5" width="30" height="30"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="YXV-Y9-Ih9" secondAttribute="height" multiplier="1:1" id="21Q-UD-lqX"/>
                                                             </constraints>
@@ -614,7 +451,7 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IBm-Zx-d7M">
-                                                            <rect key="frame" x="271" y="5" width="30" height="30"/>
+                                                            <rect key="frame" x="257.5" y="5" width="30" height="30"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="IBm-Zx-d7M" secondAttribute="height" multiplier="1:1" id="ueV-Mc-a1X"/>
                                                             </constraints>
@@ -623,7 +460,7 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CNh-E7-Y40">
-                                                            <rect key="frame" x="325" y="5" width="30" height="30"/>
+                                                            <rect key="frame" x="309" y="5" width="30" height="30"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="CNh-E7-Y40" secondAttribute="height" multiplier="1:1" id="Ell-1Z-PfK"/>
                                                             </constraints>
@@ -637,8 +474,8 @@
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="KP9-8b-wuc" secondAttribute="bottom" constant="10" id="0VL-7N-2aV"/>
                                                 <constraint firstItem="KP9-8b-wuc" firstAttribute="top" secondItem="RYI-Hd-UF7" secondAttribute="top" constant="10" id="AOT-Ti-odn"/>
-                                                <constraint firstAttribute="trailing" secondItem="KP9-8b-wuc" secondAttribute="trailing" constant="10" id="bIX-uE-atm"/>
-                                                <constraint firstItem="KP9-8b-wuc" firstAttribute="leading" secondItem="RYI-Hd-UF7" secondAttribute="leading" constant="10" id="wFm-E3-Rgt"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="KP9-8b-wuc" secondAttribute="trailing" constant="10" id="bIX-uE-atm"/>
+                                                <constraint firstItem="KP9-8b-wuc" firstAttribute="leading" secondItem="RYI-Hd-UF7" secondAttribute="leadingMargin" constant="10" id="wFm-E3-Rgt"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -810,7 +647,6 @@
                     </tableView>
                     <connections>
                         <outlet property="addImgButton" destination="wtU-Oq-EvO" id="Unj-qY-eeB"/>
-                        <outlet property="allButton" destination="iq5-8X-4O2" id="gtF-ce-ZE3"/>
                         <outlet property="appNameLabel" destination="G57-UJ-nTu" id="vEX-ZW-BNy"/>
                         <outlet property="colorStack" destination="KP9-8b-wuc" id="DPM-Ui-MIT"/>
                         <outlet property="deleteImgButton" destination="uTp-h9-TXH" id="odd-bM-Pof"/>
@@ -825,7 +661,7 @@
                         <outlet property="startDateButton" destination="uex-MV-BR6" id="dvf-77-eoR"/>
                         <outlet property="taskNameField" destination="Xzi-N6-pHp" id="qZW-tj-BzG"/>
                         <outlet property="viewImgButton" destination="7eo-7n-hHL" id="vLh-Q3-tsF"/>
-                        <outlet property="weekDayStack" destination="Wmp-EN-j6p" id="3mT-6x-tg0"/>
+                        <outlet property="weekdayView" destination="y7I-Vg-d7O" id="Zeb-Tx-pe3"/>
                         <segue destination="J9r-f3-dn1" kind="presentation" identifier="reminderSegue" id="92S-VE-iNf"/>
                         <segue destination="iLS-CK-3Yi" kind="presentation" identifier="imageSegue" id="hII-cA-IWP"/>
                         <segue destination="1yY-U5-MZt" kind="show" identifier="appSegue" id="RWO-V5-jf5"/>
@@ -1034,13 +870,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="动画效果" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sRw-yr-iKn">
-                                                    <rect key="frame" x="18" y="11" width="69.5" height="21"/>
+                                                    <rect key="frame" x="18" y="11" width="70" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BXU-0R-oVM">
-                                                    <rect key="frame" x="308" y="6.5" width="51" height="31"/>
+                                                    <rect key="frame" x="308" y="7" width="51" height="31"/>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -1381,11 +1217,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="CIRCLE_BORDER" width="106" height="106"/>
         <image name="CIRCLE_FULL" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="TG3-6D-Rt1"/>
-        <segue reference="nx1-5h-KeX"/>
+        <segue reference="tMR-sH-vNC"/>
+        <segue reference="hII-cA-IWP"/>
     </inferredMetricsTieBreakers>
 </document>

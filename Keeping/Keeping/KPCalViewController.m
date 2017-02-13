@@ -16,6 +16,7 @@
 #import "CardsView.h"
 #import "KPCalTaskTableViewCell.h"
 #import "MLKMenuPopover.h"
+#import "TaskDataHelper.h"
 
 #define MENU_POPOVER_FRAME CGRectMake(10, 44 + 9, 140, 44 * [[Utilities getTaskSortArr] count])
 
@@ -124,13 +125,7 @@
     self.taskArr = [[TaskManager shareInstance] getTasks];
     
     //排序
-    NSMutableArray *sortDescriptors = [[NSMutableArray alloc] init];
-    for(NSString *str in [self.sortFactor componentsSeparatedByString:@"|"]){
-        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:str ascending:self.isAscend];
-        [sortDescriptors addObject:sortDescriptor];
-    }
-    
-    self.taskArr = [NSMutableArray arrayWithArray:[self.taskArr sortedArrayUsingDescriptors:sortDescriptors]];
+    self.taskArr = [NSMutableArray arrayWithArray:[TaskDataHelper sortTasks:self.taskArr withSortFactor:self.sortFactor isAscend:self.isAscend]];
     
     [self.calendar reloadData];
     [self.calendar reloadInputViews];

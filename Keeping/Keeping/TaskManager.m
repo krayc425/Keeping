@@ -229,6 +229,11 @@ static TaskManager* _instance = nil;
     return taskArr;
 }
 
+- (NSMutableArray *)getTasksOfWeekdays:(NSArray *)weekdays{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"ANY SELF.reminderDays in %@", weekdays];
+    return [NSMutableArray arrayWithArray:[[self getTasks] filteredArrayUsingPredicate:predicate]];
+}
+
 - (int)totalPunchNumberOfTask:(Task *)task{
     NSDate *date = task.addDate;
     NSArray *weekDays = task.reminderDays;
@@ -275,7 +280,7 @@ static TaskManager* _instance = nil;
     return NO;
 }
 
-- (BOOL)unpunchForTaskWithID:(NSNumber *)taskid onDate:(NSDate *_Nonnull)date{
+- (BOOL)unpunchForTaskWithID:(NSNumber *)taskid onDate:(NSDate *)date{
     FMResultSet *resultSet = [[[DBManager shareInstance] getDB] executeQuery:@"select * from t_task where id = ?;", taskid];
     while([resultSet next]){
         NSString *punchJsonStr = [resultSet stringForColumn:@"punchDateArr"];

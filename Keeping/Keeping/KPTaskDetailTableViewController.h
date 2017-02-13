@@ -11,15 +11,15 @@
 #import "KPSchemeTableViewController.h"
 #import "KPReminderViewController.h"
 #import "HSDatePickerViewController.h"
+#import "KPWeekdayPickerView.h"
 
-@interface KPTaskDetailTableViewController : UITableViewController <SchemeDelegate, ReminderDelegate,  UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, HSDatePickerViewControllerDelegate, UITextViewDelegate>
+@interface KPTaskDetailTableViewController : UITableViewController <SchemeDelegate, ReminderDelegate,  UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, HSDatePickerViewControllerDelegate, UITextViewDelegate, KPWeekdayPickerDelegate>
 
 @property (nullable, nonatomic) Task *task;
 
 @property (nonnull, nonatomic) IBOutlet UITextField *taskNameField;
 
-@property (nonnull, nonatomic) IBOutlet UIStackView *weekDayStack;
-@property (nonnull, nonatomic) IBOutlet UIButton *allButton;
+@property (nonnull, nonatomic) IBOutlet KPWeekdayPickerView *weekdayView;
 @property (nonnull, nonatomic) NSMutableArray *selectedWeekdayArr;
 
 @property (nonnull, nonatomic) IBOutlet UIStackView *durationStack;

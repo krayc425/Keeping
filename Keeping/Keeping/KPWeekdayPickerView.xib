@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KPWeekdayPickerView"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="KPWeekdayPickerView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="10" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yv6-eu-kc0">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                    <subviews>
+                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CQv-km-K5G">
+                            <rect key="frame" x="0.0" y="11" width="38" height="38"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="CQv-km-K5G" secondAttribute="height" multiplier="1:1" id="u90-OG-hOy"/>
+                            </constraints>
+                            <state key="normal" title="日" backgroundImage="CIRCLE_BORDER"/>
+                            <connections>
+                                <action selector="selectWeekdayAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="z67-D5-p62"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ue-RT-b3U">
+                            <rect key="frame" x="48" y="11" width="38.5" height="38"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="9Ue-RT-b3U" secondAttribute="height" multiplier="1:1" id="Cjd-Hy-Ovm"/>
+                            </constraints>
+                            <state key="normal" title="一" backgroundImage="CIRCLE_BORDER"/>
+                            <connections>
+                                <action selector="selectWeekdayAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="oqe-G3-Ew0"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ES1-dj-tgN">
+                            <rect key="frame" x="96.5" y="11" width="38" height="38"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="ES1-dj-tgN" secondAttribute="height" multiplier="1:1" id="N4K-gd-3Lc"/>
+                            </constraints>
+                            <state key="normal" title="二" backgroundImage="CIRCLE_BORDER"/>
+                            <connections>
+                                <action selector="selectWeekdayAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="ZUm-0i-lCr"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="irH-QQ-GUW">
+                            <rect key="frame" x="144.5" y="11" width="38" height="38"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="irH-QQ-GUW" secondAttribute="height" multiplier="1:1" id="xY3-nO-35y"/>
+                            </constraints>
+                            <state key="normal" title="三" backgroundImage="CIRCLE_BORDER"/>
+                            <connections>
+                                <action selector="selectWeekdayAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="0kG-Ri-GvY"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YMH-Ie-sb2">
+                            <rect key="frame" x="192.5" y="11" width="38" height="38"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="YMH-Ie-sb2" secondAttribute="height" multiplier="1:1" id="GOG-Pr-AeM"/>
+                            </constraints>
+                            <state key="normal" title="四" backgroundImage="CIRCLE_BORDER"/>
+                            <connections>
+                                <action selector="selectWeekdayAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="EhF-Eg-xFG"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eFa-4F-4ip">
+                            <rect key="frame" x="240.5" y="11" width="38.5" height="38"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="eFa-4F-4ip" secondAttribute="height" multiplier="1:1" id="AuG-TU-kJI"/>
+                            </constraints>
+                            <state key="normal" title="五" backgroundImage="CIRCLE_BORDER"/>
+                            <connections>
+                                <action selector="selectWeekdayAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="R8d-Kd-Bfb"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I4X-kC-7pM">
+                            <rect key="frame" x="289" y="11" width="38" height="38"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="I4X-kC-7pM" secondAttribute="height" multiplier="1:1" id="Bgh-Fl-3XX"/>
+                            </constraints>
+                            <state key="normal" title="六" backgroundImage="CIRCLE_BORDER"/>
+                            <connections>
+                                <action selector="selectWeekdayAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="ooa-3j-nwI"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CUv-aG-cfb">
+                            <rect key="frame" x="337" y="11" width="38" height="38"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="CUv-aG-cfb" secondAttribute="height" multiplier="1:1" id="fSf-6E-8Dp"/>
+                            </constraints>
+                            <state key="normal" title="全选"/>
+                            <connections>
+                                <action selector="selectAllWeekdayAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="MOY-mg-HKy"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="yv6-eu-kc0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="0CB-bh-iVq"/>
+                <constraint firstAttribute="bottom" secondItem="yv6-eu-kc0" secondAttribute="bottom" id="cwa-u2-SNF"/>
+                <constraint firstAttribute="trailing" secondItem="yv6-eu-kc0" secondAttribute="trailing" id="uQb-0z-de3"/>
+                <constraint firstItem="yv6-eu-kc0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="weT-Mb-mUQ"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="allButton" destination="CUv-aG-cfb" id="XJd-pC-Vju"/>
+                <outlet property="weekDayStack" destination="yv6-eu-kc0" id="Wyf-CW-KiP"/>
+            </connections>
+            <point key="canvasLocation" x="52" y="68"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="CIRCLE_BORDER" width="106" height="106"/>
+    </resources>
+</document>

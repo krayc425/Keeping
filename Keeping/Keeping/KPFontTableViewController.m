@@ -24,6 +24,17 @@
     [super viewDidLoad];
     
     [self.navigationItem setTitle:@"字体"];
+    
+//    [self loadFontNames];
+}
+
+- (void)loadFontNames{
+    NSArray *fontFamilies = [UIFont familyNames];
+    for (int i = 0; i < [fontFamilies count]; i++){
+        NSString *fontFamily = [fontFamilies objectAtIndex:i];
+        NSArray *fontNames = [UIFont fontNamesForFamilyName:[fontFamilies objectAtIndex:i]];
+        NSLog (@"%@: %@", fontFamily, fontNames);
+    }
 }
 
 - (void)didReceiveMemoryWarning {

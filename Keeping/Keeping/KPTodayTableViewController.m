@@ -19,6 +19,7 @@
 #import "MLKMenuPopover.h"
 #import "AMPopTip.h"
 #import "CardsView.h"
+#import "TaskDataHelper.h"
 
 #define MENU_POPOVER_FRAME CGRectMake(10, 44 + 9, 140, 44 * [[Utilities getTaskSortArr] count])
 
@@ -40,14 +41,8 @@ static AMPopTip *shareTip = NULL;
     
     self.gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     self.sortFactor = @"sortName";
+    self.isAscend = true;
     self.selectedDate = [NSDate dateWithYear:[[NSDate date] year] month:[[NSDate date] month] day:[[NSDate date] day]];
-    
-//     NSArray *fontFamilies = [UIFont familyNames];
-//     for (int i = 0; i < [fontFamilies count]; i++){
-//     NSString *fontFamily = [fontFamilies objectAtIndex:i];
-//     NSArray *fontNames = [UIFont fontNamesForFamilyName:[fontFamilies objectAtIndex:i]];
-//     NSLog (@"%@: %@", fontFamily, fontNames);
-//     }
     
     self.tableView.emptyDataSetSource = self;
     self.tableView.emptyDataSetDelegate = self;
@@ -99,22 +94,12 @@ static AMPopTip *shareTip = NULL;
     [self.dateButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
     
     [self loadTasks];
-    
-//    self.tip = [AMPopTip popTip];
-//    self.calTip = [AMPopTip popTip];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     self.selectedIndexPath = NULL;
-//    if([self.tip isVisible] || [self.tip isAnimating]){
-//        [self.tip hide];
-//    }
-//    if([self.calTip isVisible] || [self.calTip isAnimating]){
-//        [self.calTip hide];
-//    }
-//    self.tip = NULL;
-//    self.calTip = NULL;
-    if([[KPTodayTableViewController shareTipInstance] isAnimating] || [[KPTodayTableViewController shareTipInstance] isVisible]){
+    if([[KPTodayTableViewController shareTipInstance] isAnimating]
+       || [[KPTodayTableViewController shareTipInstance] isVisible]){
         [[KPTodayTableViewController shareTipInstance] hide];
         shareTip = NULL;
     }
@@ -130,6 +115,7 @@ static AMPopTip *shareTip = NULL;
     
     self.unfinishedTaskArr = [[NSMutableArray alloc] init];
     self.finishedTaskArr = [[NSMutableArray alloc] init];
+    
     NSMutableArray *taskArr = [[TaskManager shareInstance] getTasksOfDate:self.selectedDate];
     for (Task *task in taskArr) {
         if([task.punchDateArr containsObject:[DateUtil transformDate:self.selectedDate]]){
@@ -140,20 +126,12 @@ static AMPopTip *shareTip = NULL;
     }
     
     //排序
-    NSMutableArray *sortDescriptors = [[NSMutableArray alloc] init];
-    for(NSString *str in [self.sortFactor componentsSeparatedByString:@"|"]){
-        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:str ascending:self.isAscend];
-        [sortDescriptors addObject:sortDescriptor];
-    }
-    self.unfinishedTaskArr = [NSMutableArray arrayWithArray:[self.unfinishedTaskArr sortedArrayUsingDescriptors:sortDescriptors]];
-    self.finishedTaskArr = [NSMutableArray arrayWithArray:[self.finishedTaskArr sortedArrayUsingDescriptors:sortDescriptors]];
+    self.unfinishedTaskArr = [NSMutableArray arrayWithArray:[TaskDataHelper sortTasks:self.unfinishedTaskArr withSortFactor:self.sortFactor isAscend:self.isAscend]];
+    self.finishedTaskArr = [NSMutableArray arrayWithArray:[TaskDataHelper sortTasks:self.finishedTaskArr withSortFactor:self.sortFactor isAscend:self.isAscend]];
     
     //按类别
-    if(self.selectedColorNum > 0){
-        NSPredicate *predicate2 = [NSPredicate predicateWithFormat:@"SELF.type == %d", self.selectedColorNum];
-        self.unfinishedTaskArr = [NSMutableArray arrayWithArray:[self.unfinishedTaskArr filteredArrayUsingPredicate:predicate2]];
-        self.finishedTaskArr = [NSMutableArray arrayWithArray:[self.finishedTaskArr filteredArrayUsingPredicate:predicate2]];
-    }
+    self.unfinishedTaskArr = [NSMutableArray arrayWithArray:[TaskDataHelper filtrateTasks:self.unfinishedTaskArr withType:self.selectedColorNum]];
+    self.finishedTaskArr = [NSMutableArray arrayWithArray:[TaskDataHelper filtrateTasks:self.finishedTaskArr withType:self.selectedColorNum]];
     
     [self.progressLabel setText:[NSString stringWithFormat:@"%lu / %lu", (unsigned long)self.finishedTaskArr.count, ((unsigned long)self.finishedTaskArr.count + (unsigned long)self.unfinishedTaskArr.count)]];
     
@@ -287,7 +265,6 @@ static AMPopTip *shareTip = NULL;
         
         tp.radius = 15;
     }
-
 }
 
 - (void)previousClicked:(id)sender{
@@ -361,9 +338,7 @@ static AMPopTip *shareTip = NULL;
             }
         }
         case 2:
-        {
-             return 20.0f;
-        }
+            return 20.0f;
         default:
             return 0.00001f;
     }
@@ -413,6 +388,7 @@ static AMPopTip *shareTip = NULL;
             }
             
             [cell.moreButton setHidden:YES];
+            
             if(t.appScheme != NULL){
                 [cell.moreButton setHidden:NO];
                 
@@ -551,13 +527,11 @@ static AMPopTip *shareTip = NULL;
         if([cell.moreButton isHidden]){
             
         }else{
-        
             if(self.selectedIndexPath == indexPath){
                 self.selectedIndexPath = NULL;
             }else{
                 self.selectedIndexPath = indexPath;
             }
-        
         }
         
         [tableView reloadData];
@@ -702,6 +676,8 @@ static AMPopTip *shareTip = NULL;
         [self.tableView.layer addAnimation:animation forKey:@"fadeAnimation"];
     }
 }
+
+#pragma mark - AMPopTip Singleton
 
 + (AMPopTip *)shareTipInstance{
     return shareTip == NULL ? shareTip = [AMPopTip popTip] : shareTip;
