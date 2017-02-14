@@ -20,6 +20,7 @@
 #import "AMPopTip.h"
 #import "CardsView.h"
 #import "TaskDataHelper.h"
+#import "KPTaskDetailTableViewController.h"
 
 #define MENU_POPOVER_FRAME CGRectMake(10, 44 + 9, 140, 44 * [[Utilities getTaskSortArr] count])
 
@@ -226,8 +227,8 @@ static AMPopTip *shareTip = NULL;
         
         [tp showCustomView:self.calendar
                           direction:AMPopTipDirectionNone
-                             inView:self.tableView
-                          fromFrame:self.tableView.frame];
+                             inView:self.view
+                          fromFrame:self.view.bounds];
         
         tp.textColor = [UIColor whiteColor];
         tp.tintColor = [Utilities getColor];
@@ -321,6 +322,10 @@ static AMPopTip *shareTip = NULL;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0.00001f;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return @"               ";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -507,6 +512,31 @@ static AMPopTip *shareTip = NULL;
         
         [tableView reloadData];
         
+        [self fadeAnimation];
+    }
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.section != 0){
+        if(indexPath != self.selectedIndexPath){
+            return UITableViewCellEditingStyleDelete;
+        }else{
+            return UITableViewCellEditingStyleNone;
+        }
+    }else{
+        return UITableViewCellEditingStyleNone;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        Task *t;
+        if(indexPath.section == 1){
+            t = self.unfinishedTaskArr[indexPath.row];
+        }else if(indexPath.section == 2){
+            t = self.finishedTaskArr[indexPath.row];
+        }
+        [self performSegueWithIdentifier:@"detailTaskSegue" sender:t];
     }
 }
 
@@ -566,7 +596,7 @@ static AMPopTip *shareTip = NULL;
                          direction:AMPopTipDirectionNone
                           maxWidth:self.view.frame.size.width - 50
                             inView:self.view
-                         fromFrame:self.view.frame];
+                         fromFrame:self.view.bounds];
                 tp.shouldDismissOnTap = YES;
                 
                 tp.textColor = [UIColor whiteColor];
@@ -590,6 +620,10 @@ static AMPopTip *shareTip = NULL;
     if([segue.identifier isEqualToString:@"imageSegue"]){
         KPImageViewController *imageVC = (KPImageViewController *)[segue destinationViewController];
         [imageVC setImg:(UIImage *)sender];
+    }else if([segue.identifier isEqualToString:@"detailTaskSegue"]){
+        Task *t = (Task *)sender;
+        KPTaskDetailTableViewController *kptdtvc = (KPTaskDetailTableViewController *)[segue destinationViewController];
+        [kptdtvc setTask:t];
     }
 }
 
@@ -632,7 +666,6 @@ static AMPopTip *shareTip = NULL;
         self.sortFactor = [[Utilities getTaskSortArr] allValues][selectedIndex];
         self.isAscend = true;
     }
-    NSLog(@"按%@排序", self.sortFactor);
     [self loadTasks];
 }
 

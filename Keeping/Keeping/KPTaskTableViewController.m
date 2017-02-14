@@ -20,8 +20,6 @@
 #import "KPImageViewController.h"
 #import "TaskDataHelper.h"
 
-#define ANIMATION_TYPE @"fade"
-
 #define MENU_POPOVER_FRAME CGRectMake(10, 44 + 9, 140, 44 * [[Utilities getTaskSortArr] count])
 
 @interface KPTaskTableViewController () <MLKMenuPopoverDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
@@ -254,7 +252,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if(indexPath.section != 0){
-        [self performSegueWithIdentifier:@"detailTaskSegue" sender:indexPath];
+        Task *t;
+        if(indexPath.section == 1){
+            t = self.taskArr[indexPath.row];
+        }else if(indexPath.section == 2){
+            t = self.historyTaskArr[indexPath.row];
+        }
+        [self performSegueWithIdentifier:@"detailTaskSegue" sender:t];
     }
 }
 
@@ -375,7 +379,7 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return @"删除";
+    return @"               ";
 }
 
 #pragma mark - Navigation
@@ -385,13 +389,9 @@
         KPImageViewController *imageVC = (KPImageViewController *)[segue destinationViewController];
         [imageVC setImg:(UIImage *)sender];
     }else if([segue.identifier isEqualToString:@"detailTaskSegue"]){
+        Task *t = (Task *)sender;
         KPTaskDetailTableViewController *kptdtvc = (KPTaskDetailTableViewController *)[segue destinationViewController];
-        NSIndexPath *indexPath = (NSIndexPath *)sender;
-        if(indexPath.section == 1){
-            [kptdtvc setTask:self.taskArr[indexPath.row]];
-        }else if(indexPath.section == 2){
-            [kptdtvc setTask:self.historyTaskArr[indexPath.row]];
-        }
+        [kptdtvc setTask:t];
     }else if([segue.identifier isEqualToString:@"addTaskSegue"]){
         KPTaskDetailTableViewController *kptdtvc = (KPTaskDetailTableViewController *)[segue destinationViewController];
         [kptdtvc setTask:NULL];
@@ -441,7 +441,6 @@
         self.sortFactor = [[Utilities getTaskSortArr] allValues][selectedIndex];
         self.isAscend = true;
     }
-    NSLog(@"按%@排序", self.sortFactor);
     [self loadTasksOfWeekdays:self.selectedWeekdayArr];
 }
 

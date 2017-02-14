@@ -9,17 +9,11 @@
 #import "KPColorPickerView.h"
 #import "Utilities.h"
 
-#define SPACING 4.0
-
 static BOOL _loadingXib = NO;
 
 @implementation KPColorPickerView
 
 - (void)drawRect:(CGRect)rect {
-    NSLog(@"draw");
-//    [self.colorStack setSpacing:SPACING];
-//    
-//    float btnWidth = (rect.size.width - 6 * SPACING) / 7;
     
     //类别按钮
     for (int i = 0; i < [[Utilities getTypeColorArr] count]; i++) {
@@ -31,11 +25,6 @@ static BOOL _loadingXib = NO;
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [btn.titleLabel setFont:[UIFont systemFontOfSize:20.0f]];
         [btn setTag:i+1];
-        
-//        [btn setFrame:CGRectMake(0,
-//                                (rect.size.height - btnWidth) / 2,
-//                                btnWidth,
-//                                btnWidth)];
     }
     
     if(self.selectedColorNum > 0){

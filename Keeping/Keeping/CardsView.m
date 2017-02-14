@@ -37,14 +37,11 @@
 
 - (void)commonInit{
     _cornerRadius = 2;
+    self.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)layoutSubviews{
     self.layer.cornerRadius = _cornerRadius;
-//    [[Utilities getColor] setStroke];
-//    UIBezierPath *borderPath = [UIBezierPath bezierPathWithRoundedRect:self.frame cornerRadius:_cornerRadius];
-//    borderPath.lineWidth = 1;
-//    [borderPath stroke];
 }
 
 @end

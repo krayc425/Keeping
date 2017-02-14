@@ -372,7 +372,6 @@
         self.sortFactor = [[Utilities getTaskSortArr] allValues][selectedIndex];
         self.isAscend = true;
     }
-    NSLog(@"按%@排序", self.sortFactor);
     [self loadTasks];
 }
 

@@ -16,11 +16,11 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" semanticContentAttribute="spatial" distribution="fillEqually" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="aG1-lK-VSO">
+                <stackView opaque="NO" contentMode="scaleToFill" semanticContentAttribute="spatial" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="aG1-lK-VSO">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                     <subviews>
                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qsy-oE-wgt">
-                            <rect key="frame" x="0.0" y="5" width="49.5" height="50"/>
+                            <rect key="frame" x="0.0" y="7.5" width="45" height="45.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="Qsy-oE-wgt" secondAttribute="height" multiplier="1:1" id="L9W-pn-ySz"/>
                             </constraints>
@@ -29,7 +29,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SHv-R8-GF4">
-                            <rect key="frame" x="54.5" y="5" width="49" height="50"/>
+                            <rect key="frame" x="55" y="7.5" width="45" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="SHv-R8-GF4" secondAttribute="height" multiplier="1:1" id="4gm-VM-cLW"/>
                             </constraints>
@@ -38,7 +38,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tcN-eb-CPI">
-                            <rect key="frame" x="108.5" y="5" width="49.5" height="50"/>
+                            <rect key="frame" x="110" y="7.5" width="45" height="45.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="tcN-eb-CPI" secondAttribute="height" multiplier="1:1" id="EgV-rj-1Gw"/>
                             </constraints>
@@ -47,7 +47,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jhp-tc-4Xl">
-                            <rect key="frame" x="163" y="5.5" width="49" height="49"/>
+                            <rect key="frame" x="165" y="7.5" width="45" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="Jhp-tc-4Xl" secondAttribute="height" multiplier="1:1" id="ynr-ro-ZP8"/>
                             </constraints>
@@ -56,7 +56,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7SI-Pl-5N6">
-                            <rect key="frame" x="217" y="5" width="49.5" height="50"/>
+                            <rect key="frame" x="220" y="7.5" width="45" height="45.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="7SI-Pl-5N6" secondAttribute="height" multiplier="1:1" id="yPD-t3-e0I"/>
                             </constraints>
@@ -65,7 +65,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8K4-f9-xJM">
-                            <rect key="frame" x="271.5" y="5" width="49" height="50"/>
+                            <rect key="frame" x="275" y="7.5" width="45" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="8K4-f9-xJM" secondAttribute="height" multiplier="1:1" id="HCa-B5-qa1"/>
                             </constraints>
@@ -74,7 +74,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5uF-4S-FfS">
-                            <rect key="frame" x="325.5" y="5" width="49.5" height="50"/>
+                            <rect key="frame" x="330" y="7.5" width="45" height="45.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="5uF-4S-FfS" secondAttribute="height" multiplier="1:1" id="u8w-1m-CuC"/>
                             </constraints>

@@ -10,8 +10,6 @@
 #import "Utilities.h"
 #import "DateUtil.h"
 
-#define SPACING 4.0
-
 static BOOL _loadingXib = NO;
 
 @interface KPWeekdayPickerView ()
@@ -26,10 +24,6 @@ static BOOL _loadingXib = NO;
 - (void)drawRect:(CGRect)rect {
     self.frame = rect;
     
-//    [self.weekDayStack setSpacing:SPACING];
-//    
-//    float btnWidth = (self.frame.size.width - 7 * SPACING) / 8;
-    
     //星期几选项按钮
     for(UIButton *button in self.weekDayStack.subviews){
         [button setTintColor:[Utilities getColor]];
@@ -40,7 +34,6 @@ static BOOL _loadingXib = NO;
             buttonImg = [buttonImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             [button setBackgroundImage:buttonImg forState:UIControlStateNormal];
         }
-//        [button setFrame:CGRectMake(0, (rect.size.height - btnWidth) / 2, btnWidth, btnWidth)];
     }
     
     [self setFont];
