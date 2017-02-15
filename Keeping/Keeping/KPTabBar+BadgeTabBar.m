@@ -1,16 +1,16 @@
 //
-//  UITabBar+BadgeTabBar.m
+//  KPTabBar+BadgeTabBar.m
 //  Keeping
 //
-//  Created by 宋 奎熹 on 2017/2/11.
+//  Created by 宋 奎熹 on 2017/2/15.
 //  Copyright © 2017年 宋 奎熹. All rights reserved.
 //
 
-#import "UITabBar+BadgeTabBar.h"
+#import "KPTabBar+BadgeTabBar.h"
 
 #define TabbarItemNums 4.0
 
-@implementation UITabBar (BadgeTabBar)
+@implementation KPTabBar (BadgeTabBar)
 
 //显示小红点
 - (void)showBadgeOnItemIndex:(int)index{
@@ -25,7 +25,7 @@
     CGRect tabFrame = self.frame;
     
     //确定小红点的位置
-    float percentX = (index +0.6) / TabbarItemNums;
+    float percentX = (index + 0.7) / TabbarItemNums;
     CGFloat x = ceilf(percentX * tabFrame.size.width);
     CGFloat y = ceilf(0.1 * tabFrame.size.height);
     badgeView.frame = CGRectMake(x, y, 10, 10);//圆形大小为10

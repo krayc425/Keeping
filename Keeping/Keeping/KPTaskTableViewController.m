@@ -114,10 +114,6 @@
     [self fadeAnimation];
 }
 
-- (void)addAction:(id)senders{
-    [self performSegueWithIdentifier:@"addTaskSegue" sender:nil];
-}
-
 - (void)editAction:(id)senders{
     [self.menuPopover dismissMenuPopover];
     
@@ -234,19 +230,11 @@
 }
 
 - (UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-//    if(section == 0){
-        return [UIView new];
-//    }else{
-//        return [super tableView:tableView viewForFooterInSection:section];
-//    }
+    return [UIView new];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-//    if(section == 0){
-        return 0.00001f;
-//    }else{
-//        return [super tableView:tableView heightForFooterInSection:section];
-//    }
+    return 0.00001f;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -349,24 +337,40 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        Task *t;
-        if(indexPath.section == 1){
-            t = self.taskArr[indexPath.row];
-            
-            [self.taskArr removeObject:t];
-        }else if(indexPath.section == 2){
-            t = self.historyTaskArr[indexPath.row];
-            
-            [self.historyTaskArr removeObject:t];
-        }
         
-        [[TaskManager shareInstance] deleteTask:t];
-        
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        
-        if(self.taskArr.count == 0 || self.historyTaskArr.count == 0){
-            [self.tableView reloadData];
-        }
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"确认删除吗\n此操作不可恢复"
+                                                                                 message:nil
+                                                                          preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
+                                                           style:UIAlertActionStyleCancel
+                                                         handler:nil];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"删除"
+                                                           style:UIAlertActionStyleDestructive
+                                                         handler:^(UIAlertAction *action){
+                                                             
+                                                             Task *t;
+                                                             if(indexPath.section == 1){
+                                                                 t = self.taskArr[indexPath.row];
+                                                                 
+                                                                 [self.taskArr removeObject:t];
+                                                             }else if(indexPath.section == 2){
+                                                                 t = self.historyTaskArr[indexPath.row];
+                                                                 
+                                                                 [self.historyTaskArr removeObject:t];
+                                                             }
+                                                             
+                                                             [[TaskManager shareInstance] deleteTask:t];
+                                                             
+                                                             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                                                             
+                                                             if(self.taskArr.count == 0 || self.historyTaskArr.count == 0){
+                                                                 [self.tableView reloadData];
+                                                             }
+                                                             
+                                                         }];
+        [alertController addAction:cancelAction];
+        [alertController addAction:okAction];
+        [self presentViewController:alertController animated:YES completion:nil];
     }
 }
 
@@ -392,9 +396,6 @@
         Task *t = (Task *)sender;
         KPTaskDetailTableViewController *kptdtvc = (KPTaskDetailTableViewController *)[segue destinationViewController];
         [kptdtvc setTask:t];
-    }else if([segue.identifier isEqualToString:@"addTaskSegue"]){
-        KPTaskDetailTableViewController *kptdtvc = (KPTaskDetailTableViewController *)[segue destinationViewController];
-        [kptdtvc setTask:NULL];
     }
 }
 

@@ -76,7 +76,7 @@
         [self.introView removeFromSuperview];
         
         KPTabBarViewController *tb = self.viewControllers[0];
-        [tb.viewControllers[0] performSegueWithIdentifier:@"addTaskSegue" sender:nil];
+        [tb performSegueWithIdentifier:@"addTaskSegue" sender:nil];
     }];
 }
 

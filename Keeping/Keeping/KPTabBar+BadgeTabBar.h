@@ -1,14 +1,14 @@
 //
-//  UITabBar+BadgeTabBar.h
+//  KPTabBar+BadgeTabBar.h
 //  Keeping
 //
-//  Created by 宋 奎熹 on 2017/2/11.
+//  Created by 宋 奎熹 on 2017/2/15.
 //  Copyright © 2017年 宋 奎熹. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "KPTabBar.h"
 
-@interface UITabBar (BadgeTabBar)
+@interface KPTabBar (BadgeTabBar)
 
 - (void)showBadgeOnItemIndex:(int)index;   //显示小红点
 

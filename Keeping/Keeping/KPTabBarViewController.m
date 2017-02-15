@@ -8,8 +8,10 @@
 
 #import "KPTabBarViewController.h"
 #import "Utilities.h"
-#import "UITabBar+BadgeTabBar.h"
+#import "KPTabBar+BadgeTabBar.h"
 #import <LeanCloudFeedback/LeanCloudFeedback.h>
+#import "KPTabBar.h"
+#import "KPTaskDetailTableViewController.h"
 
 @interface KPTabBarViewController ()
 
@@ -21,6 +23,24 @@
     [super viewDidLoad];
     
     self.delegate = self;
+    
+//    [self setValue:[[KPTabBar alloc] init] forKeyPath:@"tabBar"];
+    KPTabBar *tabBar = (KPTabBar *)self.tabBar;
+    tabBar.addDelegate = self;
+    
+    [self.tabBarItem setImageInsets:UIEdgeInsetsMake(10, 0, -10, 0)];
+    
+    [[self.tabBar.items objectAtIndex:0] setTitle:@"今日"];
+    [[self.tabBar.items objectAtIndex:0] setImage:[UIImage imageNamed:@"TAB_TODAY"]];
+    [[self.tabBar.items objectAtIndex:1] setTitle:@"任务"];
+    [[self.tabBar.items objectAtIndex:1] setImage:[UIImage imageNamed:@"TAB_TASK"]];
+    [[self.tabBar.items objectAtIndex:2] setTitle:@"统计"];
+    [[self.tabBar.items objectAtIndex:2] setImage:[UIImage imageNamed:@"TAB_STATISTICS"]];
+    [[self.tabBar.items objectAtIndex:3] setTitle:@"设置"];
+    [[self.tabBar.items objectAtIndex:3] setImage:[UIImage imageNamed:@"TAB_SETTINGS"]];
+    
+    self.tabBar.barTintColor = [UIColor whiteColor];
+    self.tabBar.tintColor = [Utilities getColor];
     
     self.kpTodayTableViewController = (KPTodayTableViewController *)self.viewControllers[0];
     self.kpTaskTableViewController = (KPTaskTableViewController *)self.viewControllers[1];
@@ -34,27 +54,9 @@
                                                                 action:@selector(editAction:)];
     self.navigationItem.leftBarButtonItems = @[editItem];
     
-    UIBarButtonItem *addItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_ADD"]
-                                                                style:UIBarButtonItemStylePlain
-                                                               target:self.kpTaskTableViewController
-                                                               action:@selector(addAction:)];
-    self.navigationItem.rightBarButtonItems = @[addItem];
-    
-    //设置底下 item
-    [self.tabBarItem setImageInsets:UIEdgeInsetsMake(10, 0, -10, 0)];
-    [[self.tabBar.items objectAtIndex:0] setTitle:@"今日"];
-    [[self.tabBar.items objectAtIndex:0] setImage:[UIImage imageNamed:@"TAB_TODAY"]];
-    [[self.tabBar.items objectAtIndex:1] setTitle:@"任务"];
-    [[self.tabBar.items objectAtIndex:1] setImage:[UIImage imageNamed:@"TAB_TASK"]];
-    [[self.tabBar.items objectAtIndex:2] setTitle:@"统计"];
-    [[self.tabBar.items objectAtIndex:2] setImage:[UIImage imageNamed:@"TAB_STATISTICS"]];
-    [[self.tabBar.items objectAtIndex:3] setTitle:@"设置"];
-    [[self.tabBar.items objectAtIndex:3] setImage:[UIImage imageNamed:@"TAB_SETTINGS"]];
+    self.navigationItem.rightBarButtonItems = nil;
     
     [self setFont];
-    
-    self.tabBar.barTintColor = [UIColor whiteColor];
-    self.tabBar.tintColor = [Utilities getColor];
     
     //注册通知
     [[NSNotificationCenter defaultCenter] addObserver:self.kpSettingsTableViewController
@@ -103,11 +105,7 @@
                                                                         action:@selector(editAction:)];
             self.navigationItem.leftBarButtonItems = @[editItem];
             
-            UIBarButtonItem *addItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_ADD"]
-                                                                        style:UIBarButtonItemStylePlain
-                                                                       target:self.kpTaskTableViewController
-                                                                       action:@selector(addAction:)];
-            self.navigationItem.rightBarButtonItems = @[addItem];
+            self.navigationItem.rightBarButtonItems = nil;
         }
             break;
         case 1:
@@ -120,11 +118,7 @@
                                                                         action:@selector(editAction:)];
             self.navigationItem.leftBarButtonItems = @[editItem];
             
-            UIBarButtonItem *addItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_ADD"]
-                                                                        style:UIBarButtonItemStylePlain
-                                                                       target:self.kpTaskTableViewController
-                                                                       action:@selector(addAction:)];
-            self.navigationItem.rightBarButtonItems = @[addItem];
+            self.navigationItem.rightBarButtonItems = nil;
         }
             break;
         case 2:
@@ -150,6 +144,21 @@
             break;
         default:
             break;
+    }
+}
+
+#pragma mark - KPTabBar Delegate
+
+- (void)tabBar:(UITabBar *_Nonnull)tabBar didTappedAddButton:(UIButton *_Nonnull)addButton{
+    [self performSegueWithIdentifier:@"addTaskSegue" sender:nil];
+}
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"addTaskSegue"]){
+        KPTaskDetailTableViewController *kptdtvc = (KPTaskDetailTableViewController *)[segue destinationViewController];
+        [kptdtvc setTask:NULL];
     }
 }
 

@@ -9,7 +9,8 @@
 #import "KPSettingsTableViewController.h"
 #import "Utilities.h"
 #import <LeanCloudFeedback/LeanCloudFeedback.h>
-#import "UITabBar+BadgeTabBar.h"
+#import "KPTabBar+BadgeTabBar.h"
+#import "KPTabBar.h"
 
 @interface KPSettingsTableViewController ()
 
@@ -40,17 +41,19 @@
     //检查有没有未读消息
     [[LCUserFeedbackAgent sharedInstance] countUnreadFeedbackThreadsWithBlock:^(NSInteger number, NSError *error) {
         if (error) {
+            KPTabBar *tabBar = (KPTabBar *)self.tabBarController.tabBar;
             // 网络出错了，不设置红点
             [self.unreadMsgLabel setText:@""];
-            [self.tabBarController.tabBar hideBadgeOnItemIndex:3];
+            [tabBar hideBadgeOnItemIndex:3];
         } else {
+            KPTabBar *tabBar = (KPTabBar *)self.tabBarController.tabBar;
             // 根据未读数 number，设置红点，提醒用户
             if(number > 0){
                 [self.unreadMsgLabel setText:[NSString stringWithFormat:@"%ld 条消息", (long)number]];
-                [self.tabBarController.tabBar showBadgeOnItemIndex:3];
+                [tabBar showBadgeOnItemIndex:3];
             }else{
                 [self.unreadMsgLabel setText:@""];
-                [self.tabBarController.tabBar hideBadgeOnItemIndex:3];
+                [tabBar hideBadgeOnItemIndex:3];
             }
         }
     }];
@@ -82,6 +85,7 @@
     [self.numberLabel setFont:[UIFont fontWithName:[Utilities getFont] size:17.0]];
     [self.versionLabel setFont:[UIFont fontWithName:[Utilities getFont] size:17.0]];
     [self.unreadMsgLabel setFont:[UIFont fontWithName:[Utilities getFont] size:17.0]];
+    [self.donateLabel setFont:[UIFont fontWithName:[Utilities getFont] size:17.0]];
 }
 
 #pragma mark - Table view data source
@@ -97,7 +101,7 @@
 //        case 1:
 //            return 1;
         case 1:
-            return 3;
+            return 4;
         default:
             return 0;
     }
@@ -123,6 +127,8 @@
     }else if(indexPath.section == 1 && indexPath.row == 1){
         LCUserFeedbackAgent *agent = [LCUserFeedbackAgent sharedInstance];
         [agent showConversations:self title:nil contact:nil];
+    }else if(indexPath.section == 1 && indexPath.row == 2){
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"alipayqr://platformapi/startapp?saId=10000007&qrcode=https://qr.alipay.com/FKX01076CQTSWFALUMNQ70"] options:@{} completionHandler:nil];
     }
 }
 

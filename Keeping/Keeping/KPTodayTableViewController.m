@@ -156,10 +156,6 @@ static AMPopTip *shareTip = NULL;
     [self fadeAnimation];
 }
 
-- (void)addAction:(id)senders{
-    [self performSegueWithIdentifier:@"addTaskSegue" sender:nil];
-}
-
 - (void)editAction:(id)sender{
     [self.menuPopover dismissMenuPopover];
     
@@ -355,12 +351,15 @@ static AMPopTip *shareTip = NULL;
             [cell.taskNameLabel setText:t.name];
             
             if(t.type > 0){
+                [cell.typeImg setHidden:NO];
+                
                 UIImage *img = [UIImage imageNamed:@"CIRCLE_FULL"];
                 img = [img imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
                 cell.typeImg.tintColor = [Utilities getTypeColorArr][t.type - 1];
                 [cell.typeImg setImage:img];
             }else{
                 [cell.typeImg setImage:[UIImage new]];
+                [cell.typeImg setHidden:YES];
             }
             
             [cell.moreButton setHidden:YES];

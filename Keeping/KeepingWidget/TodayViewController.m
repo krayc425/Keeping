@@ -42,7 +42,10 @@
     self.taskTableView.backgroundColor = [UIColor clearColor];
     
     [self.dateLabel setTextColor:[Utilities getColor]];
-    [self.dateLabel setFont:[UIFont fontWithName:self.fontName size:25.0]];
+    [self.dateLabel setFont:[UIFont fontWithName:self.fontName size:25.0f]];
+    
+    [self.countLabel setTextColor:[Utilities getColor]];
+    [self.countLabel setFont:[UIFont fontWithName:self.fontName size:15.0f]];
     
     self.extensionContext.widgetLargestAvailableDisplayMode = NCWidgetDisplayModeExpanded;
 }
@@ -71,7 +74,7 @@
     NSString *doc2 = [[[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:GROUP_ID] path];
     NSString *fileName2 = [doc2 stringByAppendingPathComponent:@"task.sqlite"];
     
-    NSLog(@"WIDEGT DB PATH %@", fileName2);
+//    NSLog(@"WIDEGT DB PATH %@", fileName2);
     
     self.db = [FMDatabase databaseWithPath:fileName2];
     
@@ -125,6 +128,12 @@
             [self.taskArr addObject:t];
         }
         
+    }
+    
+    if(self.taskArr.count > 0){
+        [self.countLabel setText:[NSString stringWithFormat:@"剩余 %lu 个未完成", (unsigned long)self.taskArr.count]];
+    }else{
+        [self.countLabel setText:@""];
     }
     
     [self.taskTableView reloadData];

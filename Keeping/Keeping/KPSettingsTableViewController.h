@@ -21,6 +21,7 @@
 @property (nonatomic, nonnull) IBOutlet UILabel *scoreLabel;
 @property (nonatomic, nonnull) IBOutlet UILabel *mailLabel;
 @property (nonatomic, nonnull) IBOutlet UILabel *numberLabel;
+@property (nonatomic, nonnull) IBOutlet UILabel *donateLabel;
 
 - (void)checkMessage:(_Nonnull id)sender;
 
