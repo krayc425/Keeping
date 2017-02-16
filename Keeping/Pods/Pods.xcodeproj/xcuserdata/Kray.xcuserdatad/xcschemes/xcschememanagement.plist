@@ -14,16 +14,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Appirater-Appirater.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Appirater.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>BEMCheckBox-iOS10.0.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -89,6 +79,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>PYSearch.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Keeping.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -127,12 +122,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>691042FE278A596335D8D48C6E659EB3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>7AA93F3641CB172CE98227D092DBF4CC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>8FD009C1B89BFE77AEF1BD1C71491D9B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>915766B04B34CCF955755CD0BDBB3C69</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -157,17 +162,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AD7A652E7C8A92E79B4C63432FD18A27</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>C42630B2C5CE9EBC52F895E367A87286</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>CBBC8921BA1356CA84C7AE46DBCDDC17</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -178,11 +173,6 @@
 			<true/>
 		</dict>
 		<key>DBAA853E113CA8DBFF916A61D63C055D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>DF880A7BBC8CC3F13B3C8A1B5D0F5FC3</key>
 		<dict>
 			<key>primary</key>
 			<true/>

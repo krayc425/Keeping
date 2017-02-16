@@ -44,7 +44,7 @@
     [self.dateLabel setTextColor:[Utilities getColor]];
     [self.dateLabel setFont:[UIFont fontWithName:self.fontName size:25.0f]];
     
-    [self.countLabel setTextColor:[Utilities getColor]];
+    [self.countLabel setTextColor:[UIColor blackColor]];
     [self.countLabel setFont:[UIFont fontWithName:self.fontName size:15.0f]];
     
     self.extensionContext.widgetLargestAvailableDisplayMode = NCWidgetDisplayModeExpanded;

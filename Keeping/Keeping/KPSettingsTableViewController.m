@@ -72,6 +72,7 @@
         case 0:
         {
             [[NSUserDefaults standardUserDefaults] setBool:self.animationSwitch.isOn forKey:@"animation"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
         }
             break;
     }
@@ -79,6 +80,7 @@
 
 - (void)setFont{
     [self.fontLabel setFont:[UIFont fontWithName:[Utilities getFont] size:17.0]];
+    [self.typeTextLabel setFont:[UIFont fontWithName:[Utilities getFont] size:17.0]];
     [self.mailLabel setFont:[UIFont fontWithName:[Utilities getFont] size:17.0]];
     [self.animationLabel setFont:[UIFont fontWithName:[Utilities getFont] size:17.0]];
     [self.scoreLabel setFont:[UIFont fontWithName:[Utilities getFont] size:17.0]];
@@ -97,7 +99,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch (section) {
         case 0:
-            return 2;
+            return 3;
 //        case 1:
 //            return 1;
         case 1:

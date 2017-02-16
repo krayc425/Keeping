@@ -58,6 +58,8 @@
        || [[NSUserDefaults standardUserDefaults] valueForKey:@"font"] == NULL){
         [[NSUserDefaults standardUserDefaults] setValue:@"STHeitiSC-Light" forKey:@"font"];
     }
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
     NSUserDefaults *shared = [[NSUserDefaults alloc]initWithSuiteName:GROUP_ID];
     if([shared valueForKey:@"fontwidget"] == NULL
        || [[shared valueForKey:@"fontwidget"] isEqualToString:@""]){

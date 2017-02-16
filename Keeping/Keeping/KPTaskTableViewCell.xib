@@ -48,7 +48,7 @@
                         </connections>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yki-xl-EWe" customClass="KPWeekdayPickerView">
-                        <rect key="frame" x="18" y="38.5" width="150" height="18"/>
+                        <rect key="frame" x="18" y="40.5" width="150" height="18"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="150" id="MQu-cn-lh2"/>
@@ -56,7 +56,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="middleTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="TPV-JP-ZrE">
-                        <rect key="frame" x="18" y="13" width="42" height="20"/>
+                        <rect key="frame" x="18" y="8" width="42" height="29.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -72,7 +72,6 @@
                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="Qjo-ku-I5K" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Zwj-tx-iGW" secondAttribute="trailing" constant="5" id="4Gk-81-hVK"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="yki-xl-EWe" secondAttribute="bottom" constant="5" id="8jR-29-MTb"/>
                     <constraint firstItem="Zwj-tx-iGW" firstAttribute="centerY" secondItem="TPV-JP-ZrE" secondAttribute="centerY" id="92j-51-v51"/>
                     <constraint firstItem="GI4-oS-7Ju" firstAttribute="leading" secondItem="Qjo-ku-I5K" secondAttribute="trailing" constant="10" id="C1h-Kd-1iM"/>
                     <constraint firstItem="GI4-oS-7Ju" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Cfw-tf-dgL"/>
@@ -81,12 +80,13 @@
                     <constraint firstItem="Lcf-2t-2Cr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="aY9-yy-JeX"/>
                     <constraint firstItem="TPV-JP-ZrE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="bvh-1f-AR6"/>
                     <constraint firstItem="Qjo-ku-I5K" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="bza-Sq-FbU"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="yki-xl-EWe" secondAttribute="bottom" constant="3" id="eOm-ZV-WVE"/>
                     <constraint firstAttribute="bottom" secondItem="Lcf-2t-2Cr" secondAttribute="bottom" constant="5" id="h5k-GF-Uem"/>
                     <constraint firstItem="yki-xl-EWe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="htd-ei-Tw6"/>
                     <constraint firstItem="Lcf-2t-2Cr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="jiH-y7-v8l"/>
-                    <constraint firstItem="yki-xl-EWe" firstAttribute="top" secondItem="TPV-JP-ZrE" secondAttribute="bottom" constant="5" id="vzX-0G-Rj4"/>
+                    <constraint firstItem="yki-xl-EWe" firstAttribute="top" secondItem="TPV-JP-ZrE" secondAttribute="bottom" constant="3" id="vzX-0G-Rj4"/>
                     <constraint firstAttribute="trailing" secondItem="Lcf-2t-2Cr" secondAttribute="trailing" constant="10" id="z0R-3X-5aP"/>
-                    <constraint firstItem="TPV-JP-ZrE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="zPj-EP-dVh"/>
+                    <constraint firstItem="TPV-JP-ZrE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="zPj-EP-dVh"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>

@@ -13,7 +13,9 @@
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height
 
-@implementation KPTaskTableViewCell
+@implementation KPTaskTableViewCell{
+    UILabel *deleteLabel;
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -39,16 +41,15 @@
     cardView.cornerRadius = 10.0;
     [deleteView addSubview:cardView];
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(cardView.frame.size.width / 2 - 20,
+    deleteLabel = [[UILabel alloc] initWithFrame:CGRectMake(cardView.frame.size.width / 2 - 20,
                                                                cardView.frame.size.height / 2 - 25,
                                                                40,
                                                                50)];
-    [label setText:@"删除"];
-    [label setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
-    [label setTextColor:[UIColor redColor]];
-    [label setNumberOfLines:2];
-    [label setTextAlignment:NSTextAlignmentCenter];
-    [cardView addSubview:label];
+    [deleteLabel setText:@"删除"];
+    [deleteLabel setTextColor:[UIColor redColor]];
+    [deleteLabel setNumberOfLines:2];
+    [deleteLabel setTextAlignment:NSTextAlignmentCenter];
+    [cardView addSubview:deleteLabel];
     
     [self.contentView addSubview:deleteView];
 }
@@ -65,6 +66,7 @@
 - (void)setFont{
     [self.nameLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
     [self.daysLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
+    [deleteLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
     
     [self.progressView setFont];
     

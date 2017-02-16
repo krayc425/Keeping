@@ -53,7 +53,6 @@
                                                                 target:self.kpTodayTableViewController
                                                                 action:@selector(editAction:)];
     self.navigationItem.leftBarButtonItems = @[editItem];
-    
     self.navigationItem.rightBarButtonItems = nil;
     
     [self setFont];
@@ -118,7 +117,12 @@
                                                                         action:@selector(editAction:)];
             self.navigationItem.leftBarButtonItems = @[editItem];
             
-            self.navigationItem.rightBarButtonItems = nil;
+            
+//            UIBarButtonItem *searchItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch
+//                                                                                        target:self.kpTaskTableViewController
+//                                                                                        action:@selector(searchAction:)];
+//            self.navigationItem.rightBarButtonItems = @[searchItem];
+            self.navigationItem.rightBarButtonItems = @[];
         }
             break;
         case 2:

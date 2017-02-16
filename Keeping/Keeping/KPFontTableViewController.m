@@ -75,6 +75,7 @@
     NSDictionary *fontDict = [Utilities getFontArr][indexPath.row];
     
     [[NSUserDefaults standardUserDefaults] setValue:[fontDict allValues][0] forKey:@"font"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
     NSUserDefaults *shared = [[NSUserDefaults alloc]initWithSuiteName:GROUP_ID];
     [shared setValue:[fontDict allValues][0] forKey:@"fontwidget"];

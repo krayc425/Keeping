@@ -8,15 +8,25 @@
 
 #import "KPColorPickerView.h"
 #import "Utilities.h"
+#import "AMPopTip.h"
 
 static BOOL _loadingXib = NO;
+
+@interface KPColorPickerView (){
+    AMPopTip *popTip;
+    NSArray *colorArr;
+}
+
+@end
 
 @implementation KPColorPickerView
 
 - (void)drawRect:(CGRect)rect {
+    self.backgroundColor = [UIColor clearColor];
     
+    colorArr = [Utilities getTypeColorArr];
     //类别按钮
-    for (int i = 0; i < [[Utilities getTypeColorArr] count]; i++) {
+    for (int i = 0; i < [colorArr count]; i++) {
         UIButton *btn = (UIButton *)self.colorStack.subviews[i];
         UIImage *img = [UIImage imageNamed:@"CIRCLE_FULL"];
         img = [img imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
@@ -96,6 +106,27 @@ static BOOL _loadingXib = NO;
             [btn setTitle:@"" forState:UIControlStateNormal];
         }
     }
+    
+    NSString *str = [[[[NSUserDefaults standardUserDefaults] objectForKey:@"typeTextArr"] mutableCopy] objectAtIndex:button.tag - 1];
+    
+    if(![str isEqualToString:@""] && str != NULL){
+        popTip = [AMPopTip popTip];
+        
+        popTip.textColor = [UIColor whiteColor];
+        popTip.tintColor = colorArr[button.tag - 1];
+        popTip.popoverColor = colorArr[button.tag - 1];
+        popTip.borderColor = [UIColor whiteColor];
+        
+        popTip.radius = 10;
+        
+        [popTip showText:str
+               direction:AMPopTipDirectionUp
+                maxWidth:200
+                  inView:self
+               fromFrame:CGRectOffset(button.frame, 0, 7.0f)
+                duration:1.0f];
+    }
+    
     [self.colorDelegate didChangeColors:self.selectedColorNum];
 }
 

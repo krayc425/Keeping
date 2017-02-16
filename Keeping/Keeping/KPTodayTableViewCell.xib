@@ -142,7 +142,7 @@
                         </constraints>
                     </stackView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="middleTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="3Uo-Cw-fbd">
-                        <rect key="frame" x="18" y="15" width="42" height="35"/>
+                        <rect key="frame" x="18" y="10" width="42" height="45"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -160,7 +160,7 @@
                     <constraint firstAttribute="trailingMargin" secondItem="K31-Gh-vqJ" secondAttribute="trailing" constant="10" id="1ab-fc-iCz"/>
                     <constraint firstItem="iue-6t-6A6" firstAttribute="centerX" secondItem="MId-YP-mlf" secondAttribute="centerX" id="6Q6-Fp-9CI"/>
                     <constraint firstItem="iue-6t-6A6" firstAttribute="centerX" secondItem="KCu-23-9U8" secondAttribute="centerX" id="D4h-ff-6lb"/>
-                    <constraint firstItem="3Uo-Cw-fbd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="DLv-PN-0h3"/>
+                    <constraint firstItem="3Uo-Cw-fbd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="DLv-PN-0h3"/>
                     <constraint firstItem="K31-Gh-vqJ" firstAttribute="centerY" secondItem="MId-YP-mlf" secondAttribute="centerY" id="Dwu-S1-N7g"/>
                     <constraint firstItem="MId-YP-mlf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="F6y-hj-EM4"/>
                     <constraint firstAttribute="trailing" secondItem="MId-YP-mlf" secondAttribute="trailing" constant="10" id="HXP-1d-dF6"/>
@@ -174,7 +174,7 @@
                     <constraint firstItem="rT9-ra-MAX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="cVC-Hp-i1h"/>
                     <constraint firstItem="iue-6t-6A6" firstAttribute="top" secondItem="KCu-23-9U8" secondAttribute="bottom" constant="8" id="hjV-yV-KEH"/>
                     <constraint firstItem="WEt-XN-3wS" firstAttribute="centerY" secondItem="MId-YP-mlf" secondAttribute="centerY" id="i29-4v-fAJ"/>
-                    <constraint firstItem="rT9-ra-MAX" firstAttribute="top" secondItem="3Uo-Cw-fbd" secondAttribute="bottom" constant="15" id="kGR-h1-PBJ"/>
+                    <constraint firstItem="rT9-ra-MAX" firstAttribute="top" secondItem="3Uo-Cw-fbd" secondAttribute="bottom" constant="10" id="kGR-h1-PBJ"/>
                     <constraint firstItem="K31-Gh-vqJ" firstAttribute="leading" secondItem="WEt-XN-3wS" secondAttribute="trailing" constant="10" id="psv-IA-PQ1"/>
                     <constraint firstItem="rT9-ra-MAX" firstAttribute="top" secondItem="MId-YP-mlf" secondAttribute="bottom" constant="5" id="t1X-1F-yAJ"/>
                     <constraint firstItem="MWs-Nq-QtG" firstAttribute="centerY" secondItem="MId-YP-mlf" secondAttribute="centerY" id="tDI-Jv-z6Q"/>

@@ -1,7 +1,6 @@
 target 'Keeping' do
 
   pod 'MBProgressHUD'
-  pod 'Appirater'
   pod 'DateTools'
   pod 'DZNEmptyDataSet'
   pod 'FSCalendar'
@@ -12,6 +11,7 @@ target 'Keeping' do
   pod 'FDFullscreenPopGesture'
   pod 'AMPopTip'
   pod 'LeanCloudFeedback'
+  pod 'PYSearch'
   
 end
 

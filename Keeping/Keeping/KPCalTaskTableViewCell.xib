@@ -30,7 +30,10 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XBM-2O-wnG">
-                        <rect key="frame" x="18" y="38" width="42" height="18.5"/>
+                        <rect key="frame" x="18" y="40.5" width="42" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="ocE-mp-Oev"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -43,11 +46,8 @@
                             <constraint firstAttribute="width" secondItem="AGj-Js-VDw" secondAttribute="height" multiplier="1:1" id="RBJ-rH-saL"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="任务名" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="2aB-FB-WuP">
-                        <rect key="frame" x="18" y="13" width="52" height="20"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="20" id="5J5-ZY-uUz"/>
-                        </constraints>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="任务名" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="2aB-FB-WuP">
+                        <rect key="frame" x="18" y="8" width="52" height="29.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -67,10 +67,10 @@
                     <constraint firstAttribute="trailing" secondItem="fcw-8v-FrW" secondAttribute="trailing" constant="10" id="5zI-nE-ouR"/>
                     <constraint firstItem="xmd-oM-pt6" firstAttribute="leading" secondItem="2aB-FB-WuP" secondAttribute="trailing" constant="5" id="AmX-Ui-OkU"/>
                     <constraint firstItem="AGj-Js-VDw" firstAttribute="width" secondItem="AGj-Js-VDw" secondAttribute="height" multiplier="1:1" id="J0D-Lj-uzw"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="XBM-2O-wnG" secondAttribute="bottom" constant="5" id="N4I-8B-cqF"/>
-                    <constraint firstItem="2aB-FB-WuP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="OMu-OW-wEX"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="XBM-2O-wnG" secondAttribute="bottom" constant="1" id="N4I-8B-cqF"/>
+                    <constraint firstItem="2aB-FB-WuP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="OMu-OW-wEX"/>
                     <constraint firstItem="fcw-8v-FrW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="azH-nw-hea"/>
-                    <constraint firstItem="XBM-2O-wnG" firstAttribute="top" secondItem="2aB-FB-WuP" secondAttribute="bottom" constant="5" id="d5e-o8-M45"/>
+                    <constraint firstItem="XBM-2O-wnG" firstAttribute="top" secondItem="2aB-FB-WuP" secondAttribute="bottom" constant="3" id="d5e-o8-M45"/>
                     <constraint firstItem="fcw-8v-FrW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="e14-qj-lVc"/>
                     <constraint firstItem="2aB-FB-WuP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="f4s-iw-99D"/>
                     <constraint firstAttribute="bottom" secondItem="fcw-8v-FrW" secondAttribute="bottom" constant="5" id="m2w-A9-taa"/>

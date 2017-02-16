@@ -13,7 +13,9 @@
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height
 
-@implementation KPTodayTableViewCell
+@implementation KPTodayTableViewCell{
+    UILabel *infoLabel;
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -41,16 +43,15 @@
     cardView.cornerRadius = 10.0;
     [deleteView addSubview:cardView];
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(cardView.frame.size.width / 2 - 30,
+    infoLabel = [[UILabel alloc] initWithFrame:CGRectMake(cardView.frame.size.width / 2 - 30,
                                                                cardView.frame.size.height / 2 - 25,
                                                                60,
                                                                50)];
-    [label setText:@"详情"];
-    [label setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
-    [label setTextColor:[Utilities getColor]];
-    [label setNumberOfLines:2];
-    [label setTextAlignment:NSTextAlignmentCenter];
-    [cardView addSubview:label];
+    [infoLabel setText:@"详情"];
+    [infoLabel setTextColor:[Utilities getColor]];
+    [infoLabel setNumberOfLines:2];
+    [infoLabel setTextAlignment:NSTextAlignmentCenter];
+    [cardView addSubview:infoLabel];
     
     [self.contentView addSubview:deleteView];
 }
@@ -79,6 +80,8 @@
     [self.linkButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
     [self.imageButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
     [self.memoButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
+    
+    [infoLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
 }
 
 @end

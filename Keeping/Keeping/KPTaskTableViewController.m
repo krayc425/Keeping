@@ -19,10 +19,11 @@
 #import "MLKMenuPopover.h"
 #import "KPImageViewController.h"
 #import "TaskDataHelper.h"
+#import <PYSearch.h>
 
 #define MENU_POPOVER_FRAME CGRectMake(10, 44 + 9, 140, 44 * [[Utilities getTaskSortArr] count])
 
-@interface KPTaskTableViewController () <MLKMenuPopoverDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
+@interface KPTaskTableViewController () <MLKMenuPopoverDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, PYSearchViewControllerDelegate>
 
 @property (nonatomic, assign) UIView *background;   //图片放大的背景
 
@@ -112,6 +113,27 @@
     }
 
     [self fadeAnimation];
+}
+
+- (void)searchAction:(id)senders{
+    // 1. 创建热门搜索
+    // 2. 创建控制器
+    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:nil searchBarPlaceholder:@"搜索任务名" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+        // 开始搜索执行以下代码
+        // 如：跳转到指定控制器
+//        [searchViewController.navigationController pushViewController:[[PYTempViewController alloc] init] animated:YES];
+        NSLog(@"search for %@", searchText);
+        
+    }];
+    // 3. 设置风格
+    searchViewController.searchHistoryStyle = PYHotSearchStyleDefault; // 搜索历史风格为default
+    searchViewController.hotSearchStyle = PYHotSearchStyleDefault; // 热门搜索风格为默认
+    // 4. 设置代理
+    searchViewController.delegate = self;
+    // 5. 跳转到搜索控制器
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:searchViewController];
+    [self presentViewController:nav animated:YES completion:nil];
+
 }
 
 - (void)editAction:(id)senders{
@@ -412,19 +434,6 @@
     return [[NSAttributedString alloc] initWithString:text attributes:attributes];
 }
 
-- (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state{
-    NSDictionary *attributes = @{
-                                 NSForegroundColorAttributeName: [Utilities getColor],
-                                 NSFontAttributeName:[UIFont fontWithName:[Utilities getFont] size:15.0]
-                                 };
-    
-    return [[NSAttributedString alloc] initWithString:@"去新增任务" attributes:attributes];
-}
-
-- (void)emptyDataSet:(UIScrollView *)scrollView didTapButton:(UIButton *)button{
-    [self addAction:self];
-}
-
 - (BOOL)emptyDataSetShouldBeForcedToDisplay:(UIScrollView *)scrollView{
     if(self.taskArr.count == 0 && self.historyTaskArr.count == 0){
         return YES;
@@ -469,6 +478,22 @@
 - (void)didChangeColors:(int)selectColorNum{
     self.selectedColorNum = selectColorNum;
     [self loadTasksOfWeekdays:self.selectedWeekdayArr];
+}
+
+#pragma mark - PYSearchViewControllerDelegate
+
+- (void)searchViewController:(PYSearchViewController *)searchViewController searchTextDidChange:(UISearchBar *)seachBar searchText:(NSString *)searchText{
+    NSLog(@"change text");
+    if (searchText.length) {
+        // 与搜索条件再搜索
+        // 显示建议搜索结果
+        NSMutableArray *searchSuggestionsM = [NSMutableArray array];
+        for(Task *task in [TaskDataHelper filtrateTasks:self.taskArr withString:searchText]){
+            [searchSuggestionsM addObject:task.name];
+        }
+        // 返回
+        searchViewController.searchSuggestions = searchSuggestionsM;
+    }
 }
 
 @end

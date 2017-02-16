@@ -14,4 +14,6 @@
 
 + (NSArray *)filtrateTasks:(NSArray *)tasks withType:(int)typeNum;
 
++ (NSArray *)filtrateTasks:(NSArray *)tasks withString:(NSString *)str;
+
 @end

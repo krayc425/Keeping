@@ -17,6 +17,7 @@
 @property (nonatomic, nonnull) IBOutlet UILabel *unreadMsgLabel;
 
 @property (nonatomic, nonnull) IBOutlet UILabel *fontLabel;
+@property (nonatomic, nonnull) IBOutlet UILabel *typeTextLabel;
 @property (nonatomic, nonnull) IBOutlet UILabel *animationLabel;
 @property (nonatomic, nonnull) IBOutlet UILabel *scoreLabel;
 @property (nonatomic, nonnull) IBOutlet UILabel *mailLabel;

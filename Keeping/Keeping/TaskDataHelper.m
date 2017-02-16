@@ -28,4 +28,9 @@
     }
 }
 
++ (NSArray *)filtrateTasks:(NSArray *)tasks withString:(NSString *)str{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name CONTAINS %@", str];
+    return [NSMutableArray arrayWithArray:[tasks filteredArrayUsingPredicate:predicate]];
+}
+
 @end

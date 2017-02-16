@@ -103,6 +103,7 @@
     
     if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunchCal"]){
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunchCal"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
         
         UIAlertController *alertController =
         [UIAlertController alertControllerWithTitle:@"小提示"

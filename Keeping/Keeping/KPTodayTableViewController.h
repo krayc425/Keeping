@@ -32,7 +32,6 @@
 @property (nonatomic, nonnull) IBOutlet KPColorPickerView *colorView;  //button tag : 1 ~ 7
 @property (nonatomic) int selectedColorNum;
 
-- (void)addAction:(_Nonnull id)sender;
 - (void)editAction:(_Nonnull id)sender;
 
 @property (nonnull, nonatomic) FSCalendar *calendar;
