@@ -14,15 +14,18 @@
 
 @property (nonatomic, nonnull) IBOutlet UISwitch *animationSwitch;
 
-@property (nonatomic, nonnull) IBOutlet UILabel *unreadMsgLabel;
+@property (nonatomic, nonnull) IBOutlet UISwitch *badgeSwitch;
 
-@property (nonatomic, nonnull) IBOutlet UILabel *fontLabel;
-@property (nonatomic, nonnull) IBOutlet UILabel *typeTextLabel;
-@property (nonatomic, nonnull) IBOutlet UILabel *animationLabel;
-@property (nonatomic, nonnull) IBOutlet UILabel *scoreLabel;
-@property (nonatomic, nonnull) IBOutlet UILabel *mailLabel;
-@property (nonatomic, nonnull) IBOutlet UILabel *numberLabel;
-@property (nonatomic, nonnull) IBOutlet UILabel *donateLabel;
+@property (nonatomic, nonnull) IBOutletCollection(UILabel) NSArray *labels;
+
+@property (nonatomic, nonnull) IBOutlet UILabel *unreadMsgLabel;
+//@property (nonatomic, nonnull) IBOutlet UILabel *fontLabel;
+//@property (nonatomic, nonnull) IBOutlet UILabel *typeTextLabel;
+//@property (nonatomic, nonnull) IBOutlet UILabel *animationLabel;
+//@property (nonatomic, nonnull) IBOutlet UILabel *scoreLabel;
+//@property (nonatomic, nonnull) IBOutlet UILabel *mailLabel;
+//@property (nonatomic, nonnull) IBOutlet UILabel *numberLabel;
+//@property (nonatomic, nonnull) IBOutlet UILabel *donateLabel;
 
 - (void)checkMessage:(_Nonnull id)sender;
 

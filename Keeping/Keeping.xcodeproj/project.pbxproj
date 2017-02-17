@@ -68,6 +68,7 @@
 		249AE3231E2DEE7700F704F8 /* Keeping.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 249AE3211E2DEE7700F704F8 /* Keeping.xcdatamodeld */; };
 		249AE3251E2DEE7700F704F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 249AE3241E2DEE7700F704F8 /* Assets.xcassets */; };
 		249AE3281E2DEE7700F704F8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 249AE3261E2DEE7700F704F8 /* LaunchScreen.storyboard */; };
+		24A0CD6C1E56CED80017EE22 /* KPScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 24A0CD6B1E56CED80017EE22 /* KPScheme.m */; };
 		24BA79A11E516949002133B6 /* TaskDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 24BA79A01E516949002133B6 /* TaskDataHelper.m */; };
 		24BA79AB1E516FE0002133B6 /* KPWeekdayPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24BA79AA1E516FE0002133B6 /* KPWeekdayPickerView.m */; };
 		24DCF18A1E3094050097C250 /* DateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DCF1891E3094050097C250 /* DateUtil.m */; };
@@ -223,6 +224,8 @@
 		249AE3241E2DEE7700F704F8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		249AE3271E2DEE7700F704F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		249AE3291E2DEE7700F704F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		24A0CD6A1E56CED80017EE22 /* KPScheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPScheme.h; sourceTree = "<group>"; };
+		24A0CD6B1E56CED80017EE22 /* KPScheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPScheme.m; sourceTree = "<group>"; };
 		24BA799F1E516949002133B6 /* TaskDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskDataHelper.h; sourceTree = "<group>"; };
 		24BA79A01E516949002133B6 /* TaskDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDataHelper.m; sourceTree = "<group>"; };
 		24BA79A91E516FE0002133B6 /* KPWeekdayPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPWeekdayPickerView.h; sourceTree = "<group>"; };
@@ -341,7 +344,7 @@
 				2429CBDB1E2DF61B0027DD37 /* KPSettingsTableViewController.h */,
 				2429CBDC1E2DF61B0027DD37 /* KPSettingsTableViewController.m */,
 				2435DBF51E35CCD400F1A96E /* Font */,
-				2497004D1E5607610015CC5F /* Type */,
+				2497004D1E5607610015CC5F /* TypeText */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -425,7 +428,7 @@
 			path = KeepingWidget;
 			sourceTree = "<group>";
 		};
-		2497004D1E5607610015CC5F /* Type */ = {
+		2497004D1E5607610015CC5F /* TypeText */ = {
 			isa = PBXGroup;
 			children = (
 				249700451E5607210015CC5F /* KPTypeTableViewController.h */,
@@ -434,7 +437,7 @@
 				249700491E56075B0015CC5F /* KPTypeColorTableViewCell.m */,
 				2497004A1E56075B0015CC5F /* KPTypeColorTableViewCell.xib */,
 			);
-			name = Type;
+			name = TypeText;
 			sourceTree = "<group>";
 		};
 		249AE3091E2DEE7700F704F8 = {
@@ -602,6 +605,8 @@
 				24F2A0D81E2F489100F30FB1 /* KPSchemeTableViewCell.h */,
 				24F2A0D91E2F489100F30FB1 /* KPSchemeTableViewCell.m */,
 				24F2A0DA1E2F489100F30FB1 /* KPSchemeTableViewCell.xib */,
+				24A0CD6A1E56CED80017EE22 /* KPScheme.h */,
+				24A0CD6B1E56CED80017EE22 /* KPScheme.m */,
 			);
 			name = Scheme;
 			sourceTree = "<group>";
@@ -942,6 +947,7 @@
 				249AE3171E2DEE7700F704F8 /* main.m in Sources */,
 				24F2A0D71E2F482100F30FB1 /* KPSchemeManager.m in Sources */,
 				2429CBEE1E2E4A9B0027DD37 /* KPTodayTableViewCell.m in Sources */,
+				24A0CD6C1E56CED80017EE22 /* KPScheme.m in Sources */,
 				247A79801E38ABF1000EE623 /* ABCIntroView.m in Sources */,
 				2426103B1E51ACB30016DC64 /* KPColorPickerView.m in Sources */,
 				2429CBD41E2DF5E60027DD37 /* KPTodayTableViewController.m in Sources */,

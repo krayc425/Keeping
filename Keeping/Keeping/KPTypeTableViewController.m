@@ -25,7 +25,6 @@
     [self.navigationItem setTitle:@"类别颜色备注"];
     
     colorArr = [NSMutableArray arrayWithArray:[Utilities getTypeColorArr]];
-    NSLog(@"%lu colors" , (unsigned long)colorArr.count);
     NSMutableArray *tmpColorTextArr = [[[NSUserDefaults standardUserDefaults] objectForKey:@"typeTextArr"] mutableCopy];
     if(tmpColorTextArr == NULL || tmpColorTextArr.count == 0){
         colorTextArr = [NSMutableArray array];

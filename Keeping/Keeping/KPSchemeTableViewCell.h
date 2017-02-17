@@ -10,6 +10,8 @@
 
 @interface KPSchemeTableViewCell : UITableViewCell
 
+@property (nonatomic, nonnull) IBOutlet UIImageView *appIconImg;
+
 @property (nonatomic, nonnull) IBOutlet UILabel *appNameLabel;
 
 @end

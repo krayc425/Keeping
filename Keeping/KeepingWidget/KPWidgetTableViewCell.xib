@@ -20,8 +20,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mxa-3u-hRk">
-                        <rect key="frame" x="18" y="11" width="42" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="Mxa-3u-hRk">
+                        <rect key="frame" x="18" y="5" width="42" height="33.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -42,10 +42,13 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="hCM-e2-PC3" secondAttribute="trailing" constant="10" id="DQb-j0-eda"/>
+                    <constraint firstItem="5Oh-dH-eT6" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Mxa-3u-hRk" secondAttribute="trailing" constant="5" id="J9Y-43-oq0"/>
+                    <constraint firstAttribute="bottom" secondItem="Mxa-3u-hRk" secondAttribute="bottom" constant="5" id="MP1-M5-AOz"/>
                     <constraint firstItem="Mxa-3u-hRk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="UL2-n2-qgz"/>
                     <constraint firstItem="5Oh-dH-eT6" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="dsi-8o-gXT"/>
                     <constraint firstItem="Mxa-3u-hRk" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="fZW-Y5-ddN"/>
                     <constraint firstAttribute="bottom" secondItem="hCM-e2-PC3" secondAttribute="bottom" constant="8" id="mfN-Uk-wEu"/>
+                    <constraint firstItem="Mxa-3u-hRk" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="n4r-v7-lsv"/>
                     <constraint firstItem="hCM-e2-PC3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="pda-vG-8GL"/>
                     <constraint firstItem="hCM-e2-PC3" firstAttribute="leading" secondItem="5Oh-dH-eT6" secondAttribute="trailing" constant="10" id="u5A-JE-uGg"/>
                 </constraints>

@@ -698,13 +698,13 @@
 
 #pragma mark - Scheme Delegate
 
-- (void)passScheme:(NSDictionary *)value{
-    if([value.allKeys[0] isEqualToString:@""]){
+- (void)passScheme:(KPScheme *)scheme{
+    if(scheme == NULL){
         self.selectedApp = NULL;
         [self.appNameLabel setText:@"无"];
     }else{
-        self.selectedApp = value;
-        [self.appNameLabel setText:self.selectedApp.allKeys[0]];
+        self.selectedApp = @{scheme.name : scheme.scheme};
+        [self.appNameLabel setText:scheme.name];
     }
     [self.tableView reloadData];
 }

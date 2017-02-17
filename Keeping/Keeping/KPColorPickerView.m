@@ -109,7 +109,7 @@ static BOOL _loadingXib = NO;
     
     NSString *str = [[[[NSUserDefaults standardUserDefaults] objectForKey:@"typeTextArr"] mutableCopy] objectAtIndex:button.tag - 1];
     
-    if(![str isEqualToString:@""] && str != NULL){
+    if(![str isEqualToString:@""] && str != NULL && self.selectedColorNum != -1){
         popTip = [AMPopTip popTip];
         
         popTip.textColor = [UIColor whiteColor];
@@ -123,7 +123,7 @@ static BOOL _loadingXib = NO;
                direction:AMPopTipDirectionUp
                 maxWidth:200
                   inView:self
-               fromFrame:CGRectOffset(button.frame, 0, 7.0f)
+               fromFrame:CGRectOffset(button.frame, 0, 8.0f)
                 duration:1.0f];
     }
     

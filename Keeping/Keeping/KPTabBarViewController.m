@@ -57,10 +57,16 @@
     
     [self setFont];
     
-    //注册通知
+    //注册通知:检查反馈新消息
     [[NSNotificationCenter defaultCenter] addObserver:self.kpSettingsTableViewController
                                              selector:@selector(checkMessage:)
                                                  name:@"Notification_CheckMessage"
+                                               object:nil];
+    
+    //注册通知:设置角标
+    [[NSNotificationCenter defaultCenter] addObserver:self.kpTodayTableViewController
+                                             selector:@selector(setBadge)
+                                                 name:@"Notification_Badge"
                                                object:nil];
     
 }
@@ -71,6 +77,9 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification_CheckMessage"
+                                                        object:nil
+                                                      userInfo:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification_Badge"
                                                         object:nil
                                                       userInfo:nil];
 }

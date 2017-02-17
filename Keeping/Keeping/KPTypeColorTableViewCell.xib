@@ -17,11 +17,11 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uqn-dA-6fj">
-                        <rect key="frame" x="48" y="0.0" width="264" height="43.5"/>
+                        <rect key="frame" x="48" y="0.0" width="254" height="43.5"/>
                         <nil key="textColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
@@ -38,7 +38,7 @@
                     <constraint firstItem="Uqn-dA-6fj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="MUx-xI-yYM"/>
                     <constraint firstItem="Uqn-dA-6fj" firstAttribute="leading" secondItem="WkS-z5-YC5" secondAttribute="trailing" id="auI-tP-756"/>
                     <constraint firstItem="WkS-z5-YC5" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="bqr-4h-UwH"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="Uqn-dA-6fj" secondAttribute="trailing" id="iY0-jk-69M"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Uqn-dA-6fj" secondAttribute="trailing" constant="10" id="iY0-jk-69M"/>
                     <constraint firstAttribute="bottom" secondItem="Uqn-dA-6fj" secondAttribute="bottom" id="t2Y-HI-9LF"/>
                     <constraint firstItem="WkS-z5-YC5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="uAD-06-PiX"/>
                 </constraints>

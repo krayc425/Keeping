@@ -12,6 +12,7 @@
 #import "Utilities.h"
 #import <AVOSCloud/AVOSCloud.h>
 #import "MBProgressHUD.h"
+#import "KPScheme.h"
 
 @interface KPSchemeTableViewController ()
 
@@ -48,16 +49,8 @@
 }
 
 - (void)loadApps{
-    self.allNames = [[NSMutableArray alloc] init];
-    self.allSchemes = [[NSMutableArray alloc] init];
-    self.appDictionaryArr = [[NSMutableArray alloc] init];
-    for(NSDictionary *dict in [[KPSchemeManager shareInstance] getSchemeArr]){
-        [self.allNames addObject:dict.allKeys[0]];
-        [self.allSchemes addObject:dict.allValues[0]];
-        [self.appDictionaryArr addObject:dict];
-    }
-//    NSLog(@"%lu nums", (unsigned long)[self.appDictionaryArr count]);
-//    NSLog(@"%lu nums", (unsigned long)[[[KPSchemeManager shareInstance] getSchemeArr] count]);
+    self.schemeArr = [NSMutableArray arrayWithArray:[[KPSchemeManager shareInstance] getSchemeArr]];
+    
     [self.tableView reloadData];
 }
 
@@ -80,9 +73,9 @@
 
 - (void)doneAction:(id)sender{
     if(self.selectedPath != NULL && self.selectedPath.section == 1){
-        [self.delegate passScheme:self.appDictionaryArr[self.selectedPath.row]];
+        [self.delegate passScheme:self.schemeArr[self.selectedPath.row]];
     }else{
-        [self.delegate passScheme:@{@"":@""}];
+        [self.delegate passScheme:NULL];
     }
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -139,7 +132,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if(section == 1){
-        return [self.appDictionaryArr count];
+        return [self.schemeArr count];
     }else{
         return 1;
     }
@@ -154,8 +147,16 @@
         
         if(indexPath.section == 0){
             cell.appNameLabel.text = @"无";
+            
+            [cell.appIconImg setImage:[UIImage new]];
         }else{
-            [cell.appNameLabel setText:self.allNames[indexPath.row]];
+            KPScheme *s = self.schemeArr[indexPath.row];
+            [cell.appNameLabel setText:s.name];
+            
+            AVFile *file = s.iconFile;
+            [file getThumbnail:YES width:100 height:100 withBlock:^(UIImage *image, NSError *error) {
+                [cell.appIconImg setImage:image];
+            }];
         }
         
         if(indexPath == self.selectedPath){
@@ -190,26 +191,6 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if(indexPath.section == 3){
         [self showSubmitAlert];
-//    }else if(indexPath.section == 1){
-//        if(![[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:[[self.appDictionaryArr objectAtIndex:indexPath.row] allValues][0]]]){
-//            
-//            UIAlertController *alertController =
-//            [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"您尚未安装 %@", [self.appDictionaryArr[indexPath.row] allKeys][0]]
-//                                                message:nil
-//                                         preferredStyle:UIAlertControllerStyleAlert];
-//            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
-//                                                               style:UIAlertActionStyleDefault
-//                                                             handler:nil];
-//            [alertController addAction:okAction];
-//            [self presentViewController:alertController animated:YES completion:nil];
-//
-//        }else{
-//            if(self.selectedPath == indexPath){
-//                self.selectedPath = NULL;
-//            }else{
-//                self.selectedPath = indexPath;
-//            }
-//        }
     }else if(indexPath.section == 2){
         [[KPSchemeManager shareInstance] getSchemes];
         [self loadApps];
@@ -228,8 +209,8 @@
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController{
     [self.searchResults removeAllObjects];
     //NSPredicate 谓词
-    NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"self contains[cd] %@", searchController.searchBar.text];
-    self.searchResults = [[self.allNames filteredArrayUsingPredicate:searchPredicate] mutableCopy];
+    NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"SELF.name CONTAINS[cd] %@", searchController.searchBar.text];
+    self.searchResults = [[self.schemeArr filteredArrayUsingPredicate:searchPredicate] mutableCopy];
     //刷新表格
     [self.tableView reloadData];
 }

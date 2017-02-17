@@ -31,7 +31,7 @@
 //        components.hour = [[NSDate date] hour];
 //        components.minute = [[[NSDate date] dateByAddingMinutes:1] minute];
         
-        NSLog(@"通知时间 %ld %ld", (long)components.hour, (long)components.minute);
+//        NSLog(@"通知时间 %ld %ld", (long)components.hour, (long)components.minute);
         
         UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components repeats:YES];
         

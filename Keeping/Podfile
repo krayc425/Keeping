@@ -12,6 +12,7 @@ target 'Keeping' do
   pod 'AMPopTip'
   pod 'LeanCloudFeedback'
   pod 'PYSearch'
+  pod 'MMWormhole'
   
 end
 

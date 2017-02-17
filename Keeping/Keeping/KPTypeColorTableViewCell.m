@@ -16,7 +16,7 @@
     
     [self.colorText setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
     
-    self.colorText.placeholder = @"添加备注";
+    self.colorText.placeholder = @"点击添加备注";
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

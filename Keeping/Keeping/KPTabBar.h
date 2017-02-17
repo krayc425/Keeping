@@ -18,6 +18,6 @@
 
 @property (nonatomic, nonnull) UIButton *publishButton;
 
-@property (nonatomic, weak) id<KPTabBarDelegate> addDelegate;
+@property (nonatomic, weak) _Nullable id<KPTabBarDelegate> addDelegate;
 
 @end

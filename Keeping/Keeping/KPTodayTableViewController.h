@@ -34,6 +34,8 @@
 
 - (void)editAction:(_Nonnull id)sender;
 
+- (void)setBadge;
+
 @property (nonnull, nonatomic) FSCalendar *calendar;
 @property (nonnull, nonatomic) UIButton *previousButton;
 @property (nonnull, nonatomic) UIButton *nextButton;

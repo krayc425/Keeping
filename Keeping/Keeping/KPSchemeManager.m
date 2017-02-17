@@ -8,6 +8,7 @@
 
 #import "KPSchemeManager.h"
 #import <AVOSCloud/AVOSCloud.h>
+#import "KPScheme.h"
 
 #define GB18030_ENCODING CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000)
 
@@ -43,15 +44,20 @@ static KPSchemeManager* _instance = nil;
     schemes = [[NSMutableArray alloc] init];
     AVQuery *query = [AVQuery queryWithClassName:@"AppScheme"];
     for(AVObject *object in [query findObjects]){
-        [schemes addObject:[NSDictionary dictionaryWithObject:object[@"scheme"] forKey:object[@"name"]]];
+        KPScheme *scheme = [KPScheme new];
+        [scheme setName:object[@"name"]];
+        [scheme setScheme:object[@"scheme"]];
+        [scheme setIconFile:object[@"Icon"]];
+        [schemes addObject:scheme];
     }
 }
 
 - (NSArray *)getSchemeArr{
     return [schemes sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        
-        NSString *number1 = [[[obj1 allKeys] objectAtIndex:0] stringByAddingPercentEscapesUsingEncoding:GB18030_ENCODING];
-        NSString *number2 = [[[obj2 allKeys] objectAtIndex:0] stringByAddingPercentEscapesUsingEncoding:GB18030_ENCODING];;
+        KPScheme *s1 = (KPScheme *)obj1;
+        KPScheme *s2 = (KPScheme *)obj2;
+        NSString *number1 = [s1.name stringByAddingPercentEscapesUsingEncoding:GB18030_ENCODING];
+        NSString *number2 = [s2.name stringByAddingPercentEscapesUsingEncoding:GB18030_ENCODING];;
         
         NSComparisonResult result = [number1 compare:number2];
         

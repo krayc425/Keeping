@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KPScheme.h"
 
 @protocol SchemeDelegate <NSObject>
 
 /**
  此方为必须实现的协议方法，用来传值
  */
-- (void)passScheme:(NSDictionary *_Nonnull)value;
+- (void)passScheme:(KPScheme *_Nullable)scheme;
 
 @end
 
@@ -23,10 +24,8 @@
 
 @property (nonatomic, nullable) NSIndexPath *selectedPath;
 
-@property (nonatomic, nonnull) NSMutableArray *allNames;
-@property (nonatomic, nonnull) NSMutableArray *allSchemes;
 @property (nonatomic, nonnull) NSMutableArray *searchResults;
-@property (nonatomic, nonnull) NSMutableArray *appDictionaryArr;
+@property (nonatomic, nonnull) NSMutableArray *schemeArr;
 
 @property (nonatomic ,nonnull) UISearchController *searchController;
 

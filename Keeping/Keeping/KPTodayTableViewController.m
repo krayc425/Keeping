@@ -131,6 +131,19 @@ static AMPopTip *shareTip = NULL;
     [self.tableView reloadEmptyDataSet];
     
     [self fadeAnimation];
+    
+    //设置角标
+    [self setBadge];
+}
+
+- (void)setBadge{
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"badgeCount"]){
+        UIApplication *application = [UIApplication sharedApplication];
+        [application setApplicationIconBadgeNumber:self.unfinishedTaskArr.count];
+    }else{
+        UIApplication *application = [UIApplication sharedApplication];
+        [application setApplicationIconBadgeNumber:0];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -222,9 +235,9 @@ static AMPopTip *shareTip = NULL;
         [self.calendar selectDate:self.selectedDate scrollToDate:YES];
         
         [tp showCustomView:self.calendar
-                          direction:AMPopTipDirectionNone
-                             inView:self.view
-                          fromFrame:self.view.bounds];
+                 direction:AMPopTipDirectionDown
+                    inView:self.tableView
+                 fromFrame:CGRectOffset(self.dateButton.frame, 23, 0)]; //这个23咋回事
         
         tp.textColor = [UIColor whiteColor];
         tp.tintColor = [Utilities getColor];

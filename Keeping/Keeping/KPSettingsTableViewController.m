@@ -26,11 +26,15 @@
     [self.animationSwitch setOnTintColor:[Utilities getColor]];
     [self.animationSwitch setOn:[[NSUserDefaults standardUserDefaults] boolForKey:@"animation"]];
     
+    [self.badgeSwitch setOnTintColor:[Utilities getColor]];
+    [self.badgeSwitch setOn:[[NSUserDefaults standardUserDefaults] boolForKey:@"badgeCount"]];
+    
     //设置版本号
     self.versionLabel.text = [NSString stringWithFormat:@"v%@",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
     
     //动画开关
     [self.animationSwitch addTarget:self action:@selector(switchChange:) forControlEvents:UIControlEventValueChanged];
+    [self.badgeSwitch addTarget:self action:@selector(switchChange:) forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -59,9 +63,6 @@
     }];
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -75,34 +76,40 @@
             [[NSUserDefaults standardUserDefaults] synchronize];
         }
             break;
+            //tag == 1: 角标开关
+        case 1:
+        {
+            [[NSUserDefaults standardUserDefaults] setBool:self.badgeSwitch.isOn forKey:@"badgeCount"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification_Badge"
+                                                                object:nil
+                                                              userInfo:nil];
+        }
+            break;
+        default:
+            break;
     }
 }
 
 - (void)setFont{
-    [self.fontLabel setFont:[UIFont fontWithName:[Utilities getFont] size:17.0]];
-    [self.typeTextLabel setFont:[UIFont fontWithName:[Utilities getFont] size:17.0]];
-    [self.mailLabel setFont:[UIFont fontWithName:[Utilities getFont] size:17.0]];
-    [self.animationLabel setFont:[UIFont fontWithName:[Utilities getFont] size:17.0]];
-    [self.scoreLabel setFont:[UIFont fontWithName:[Utilities getFont] size:17.0]];
-    [self.numberLabel setFont:[UIFont fontWithName:[Utilities getFont] size:17.0]];
-    [self.versionLabel setFont:[UIFont fontWithName:[Utilities getFont] size:17.0]];
-    [self.unreadMsgLabel setFont:[UIFont fontWithName:[Utilities getFont] size:17.0]];
-    [self.donateLabel setFont:[UIFont fontWithName:[Utilities getFont] size:17.0]];
+    for(UILabel *lbl in self.labels) {
+        [lbl setFont:[UIFont fontWithName:[Utilities getFont] size:17.0]];
+    }
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch (section) {
         case 0:
-            return 3;
-//        case 1:
-//            return 1;
+            return 2;
         case 1:
+            return 2;
+        case 2:
             return 4;
         default:
             return 0;
@@ -112,10 +119,10 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     switch (section) {
         case 0:
-            return @"通用";
-//        case 1:
-//            return @"偏好";
+            return @"外观";
         case 1:
+            return @"偏好";
+        case 2:
             return @"其他";
         default:
             return @"";
@@ -124,12 +131,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if(indexPath.section == 1 && indexPath.row == 0){
+    if(indexPath.section == 2 && indexPath.row == 0){
         [self scoreApp];
-    }else if(indexPath.section == 1 && indexPath.row == 1){
+    }else if(indexPath.section == 2 && indexPath.row == 1){
         LCUserFeedbackAgent *agent = [LCUserFeedbackAgent sharedInstance];
         [agent showConversations:self title:nil contact:nil];
-    }else if(indexPath.section == 1 && indexPath.row == 2){
+    }else if(indexPath.section == 2 && indexPath.row == 2){
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"alipayqr://platformapi/startapp?saId=10000007&qrcode=https://qr.alipay.com/FKX01076CQTSWFALUMNQ70"] options:@{} completionHandler:nil];
     }
 }
