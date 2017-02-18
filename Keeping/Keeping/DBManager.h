@@ -13,10 +13,11 @@
 
 @interface DBManager : NSObject
 
-@property (nonatomic, nonnull) FMDatabase *db;
+@property (nonatomic, nullable) FMDatabase *db;
 
 + (_Nonnull instancetype)shareInstance;
 - (FMDatabase *_Nonnull)getDB;
 - (void)closeDB;
+- (NSString *_Nonnull)getDBPath;
 
 @end

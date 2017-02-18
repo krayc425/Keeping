@@ -120,10 +120,10 @@ static BOOL _loadingXib = NO;
         popTip.radius = 10;
         
         [popTip showText:str
-               direction:AMPopTipDirectionUp
+               direction:self.selectedColorNum <= colorArr.count / 2 ? AMPopTipDirectionRight : AMPopTipDirectionLeft
                 maxWidth:200
                   inView:self
-               fromFrame:CGRectOffset(button.frame, 0, 8.0f)
+               fromFrame:CGRectOffset(button.frame, self.selectedColorNum <= colorArr.count / 2 ? -8.0f : 8.0f, 0)
                 duration:1.0f];
     }
     

@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>AFNetworking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>AMPopTip.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -74,6 +79,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>LeanCloudSocial.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MBProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -112,12 +122,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>21D763D2462B8C870008110EEC0B0930</key>
+		<key>1C7BFAAF2DC57C05F4C5C3BB08A53907</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2511C0D7051FC4DA83BD7D1EE557D5A0</key>
+		<key>21D763D2462B8C870008110EEC0B0930</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -128,6 +138,11 @@
 			<true/>
 		</dict>
 		<key>586F2DFA9BDCC6675C2546793A69E5CC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>77768C38976F68B7218B9729B53E66AE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -162,6 +177,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>AFAFB55453D161D2BB5CFB30C68A54D5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>B1C7ACA3A39768E7717294F7A106719A</key>
 		<dict>
 			<key>primary</key>
@@ -187,7 +207,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E7FF5611ED929DD5A2B62EA5D4DB44B5</key>
+		<key>E9080F34C562916CC51C4B6F9C9CD7E5</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -22,6 +22,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.texts = [NSMutableArray array];
+    
     [self.navigationItem setTitle:@"类别颜色备注"];
     
     colorArr = [NSMutableArray arrayWithArray:[Utilities getTypeColorArr]];
@@ -35,7 +37,6 @@
         colorTextArr = [NSMutableArray arrayWithArray:tmpColorTextArr];
     }
     
-    //导航栏右上角
     UIBarButtonItem *okItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_DONE"] style:UIBarButtonItemStylePlain target:self action:@selector(doneAction:)];
     self.navigationItem.rightBarButtonItems = @[okItem];
     
@@ -78,6 +79,10 @@
     img = [img imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [cell.imageView setImage:img];
     
+    cell.colorText.tag = indexPath.row;
+    cell.colorText.delegate = self;
+    [self.texts addObject:cell.colorText];
+    
     if(colorTextArr[indexPath.row] == NULL){
         [cell.colorText setText:@""];
     }else{
@@ -85,6 +90,17 @@
     }
     
     return cell;
+}
+
+#pragma mark - UITextField Delegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    if(textField.tag < colorArr.count - 1){
+        [self.texts[textField.tag+1] becomeFirstResponder];
+    }else{
+        [textField resignFirstResponder];
+    }
+    return YES;
 }
 
 @end

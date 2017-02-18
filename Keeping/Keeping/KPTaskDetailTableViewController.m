@@ -78,6 +78,9 @@
     
     //APP名字标签
     [self.appNameLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
+    [self.appImgButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
+    [self.appImgButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
+    [self.appImgButton setHidden:YES];
     
     
     //图片
@@ -103,7 +106,7 @@
     [self.startDateButton.titleLabel sizeToFit];
     [self.endDateButton.titleLabel sizeToFit];
     
-    
+     
     //备注
     self.memoTextView.delegate = self;
     [self.memoTextView setTextColor:[Utilities getColor]];
@@ -175,9 +178,14 @@
         }];
         self.task.reminderDays = arr;
         
-        self.selectedApp = self.task.appScheme;
+        for(KPScheme *s in [[KPSchemeManager shareInstance] getSchemeArr]){
+            if([s.name isEqualToString:self.task.appScheme.allKeys[0]]){
+                self.selectedApp = s;
+            }
+        }
         if(self.selectedApp != NULL){
-            [self.appNameLabel setText:self.selectedApp.allKeys[0]];
+            [self.appNameLabel setText:self.selectedApp.name];
+            [self.appImgButton setHidden:NO];
         }
         
         self.reminderTime = self.task.reminderTime;
@@ -282,7 +290,7 @@
     //任务名
     self.task.name = self.taskNameField.text;
     //app 名
-    self.task.appScheme = self.selectedApp;
+    self.task.appScheme = @{self.selectedApp.name : self.selectedApp.scheme};
     //提醒时间
     self.task.reminderTime = self.reminderTime;
     //图片
@@ -442,6 +450,17 @@
 }
 
 #pragma mark - Pic Actions
+
+- (IBAction)appSetIconAction:(id)sender{
+    if(self.selectedApp == NULL){
+        return;
+    }
+    AVFile *file = self.selectedApp.iconFile;
+    [file getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
+        [self.selectedImgView setImage:[UIImage imageWithData:data]];
+    }];
+    [self setHasImage];
+}
 
 - (IBAction)deletePicAction:(id)sender{
     if(self.selectedImgView.image == [UIImage new]){
@@ -682,7 +701,11 @@
         KPSchemeTableViewController *kpstvc = (KPSchemeTableViewController *)[segue destinationViewController];
         kpstvc.delegate = self;
         if(self.selectedApp != NULL){
-            [kpstvc setSelectedPath:[NSIndexPath indexPathForRow:[[[KPSchemeManager shareInstance] getSchemeArr] indexOfObject:self.selectedApp] inSection:1]];
+            NSMutableArray *allNames = [NSMutableArray array];
+            for(KPScheme *s in [[KPSchemeManager shareInstance] getSchemeArr]){
+                [allNames addObject:s.name];
+            }
+            [kpstvc setSelectedPath:[NSIndexPath indexPathForRow:[allNames indexOfObject:self.selectedApp.name]inSection:1]];
         }else{
             [kpstvc setSelectedPath:[NSIndexPath indexPathForRow:0 inSection:0]];
         }
@@ -702,9 +725,11 @@
     if(scheme == NULL){
         self.selectedApp = NULL;
         [self.appNameLabel setText:@"无"];
+        [self.appImgButton setHidden:YES];
     }else{
-        self.selectedApp = @{scheme.name : scheme.scheme};
+        self.selectedApp = scheme;
         [self.appNameLabel setText:scheme.name];
+        [self.appImgButton setHidden:NO];
     }
     [self.tableView reloadData];
 }

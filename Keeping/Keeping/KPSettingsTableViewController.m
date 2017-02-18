@@ -11,6 +11,11 @@
 #import <LeanCloudFeedback/LeanCloudFeedback.h>
 #import "KPTabBar+BadgeTabBar.h"
 #import "KPTabBar.h"
+#import "KPUserTableViewController.h"
+
+// 静态库方式引入
+#import <LeanCloudSocial/AVOSCloudSNS.h>
+#import <LeanCloudSocial/AVUser+SNS.h>
 
 @interface KPSettingsTableViewController ()
 
@@ -29,16 +34,23 @@
     [self.badgeSwitch setOnTintColor:[Utilities getColor]];
     [self.badgeSwitch setOn:[[NSUserDefaults standardUserDefaults] boolForKey:@"badgeCount"]];
     
-    //设置版本号
-    self.versionLabel.text = [NSString stringWithFormat:@"v%@",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
-    
     //动画开关
     [self.animationSwitch addTarget:self action:@selector(switchChange:) forControlEvents:UIControlEventValueChanged];
     [self.badgeSwitch addTarget:self action:@selector(switchChange:) forControlEvents:UIControlEventValueChanged];
+    
+    [AVOSCloudSNS setupPlatform:AVOSCloudSNSQQ withAppKey:@"1105994496" andAppSecret:@"uWY42qyXpNMvzovb" andRedirectURI:nil];
+    
+    [AVOSCloudSNS setupPlatform:AVOSCloudSNSSinaWeibo withAppKey:@"2794847636" andAppSecret:@"ea8dc38d68732d3920f17a9c997862a9" andRedirectURI:@"http://www.baidu.com"];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [self setFont];
+    
+    if([AVUser currentUser]){
+        [self.userNameLabel setText:[AVUser currentUser].username];
+    }else{
+        [self.userNameLabel setText:@"登录"];
+    }
 }
 
 - (void)checkMessage:(id)sender{
@@ -97,20 +109,32 @@
     }
 }
 
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"userSegue"]) {
+        AVUser *u = (AVUser *)sender;
+        KPUserTableViewController *kputvc = (KPUserTableViewController *)segue.destinationViewController;
+        [kputvc setCurrentUser:u];
+    }
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch (section) {
         case 0:
-            return 2;
+            return 1;
         case 1:
             return 2;
         case 2:
-            return 4;
+            return 2;
+        case 3:
+            return 2;
         default:
             return 0;
     }
@@ -119,10 +143,12 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     switch (section) {
         case 0:
-            return @"外观";
+            return @"账号";
         case 1:
-            return @"偏好";
+            return @"外观";
         case 2:
+            return @"偏好";
+        case 3:
             return @"其他";
         default:
             return @"";
@@ -131,23 +157,61 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if(indexPath.section == 2 && indexPath.row == 0){
-        [self scoreApp];
-    }else if(indexPath.section == 2 && indexPath.row == 1){
+    
+    if(indexPath.section == 0 && indexPath.row == 0){
+        if(![AVUser currentUser]){
+            // 如果安装了，则跳转至应用，否则跳转至网页
+            [AVOSCloudSNS loginWithCallback:^(id object, NSError *error) {
+                if (error) {
+                    NSLog(@"failed to get authentication from weibo. error: %@", error.description);
+                } else {
+                    [AVUser loginWithAuthData:object platform:AVOSCloudSNSPlatformWeiBo block:^(AVUser *user, NSError *error) {
+                        if ([self filterError:error]) {
+                            [self loginSucceedWithUser:user authData:object];
+                        }
+                    }];
+                }
+            } toPlatform:AVOSCloudSNSSinaWeibo];
+        }else{
+            [self performSegueWithIdentifier:@"userSegue" sender:[AVUser currentUser]];
+        }
+        
+    }
+    
+    if(indexPath.section == 3 && indexPath.row == 0){
         LCUserFeedbackAgent *agent = [LCUserFeedbackAgent sharedInstance];
         [agent showConversations:self title:nil contact:nil];
-    }else if(indexPath.section == 2 && indexPath.row == 2){
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"alipayqr://platformapi/startapp?saId=10000007&qrcode=https://qr.alipay.com/FKX01076CQTSWFALUMNQ70"] options:@{} completionHandler:nil];
     }
 }
 
-#pragma mark - Go to Score
+- (void)alert:(NSString *)message {
+    UIAlertController *alertController =
+    [UIAlertController alertControllerWithTitle:message
+                                        message:nil
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:nil];
+    [alertController addAction:okAction];
+    [self presentViewController:alertController animated:YES completion:nil];}
 
-- (void)scoreApp{
-    NSString *str = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%@", [Utilities getAPPID]];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]
-                                       options:@{}
-                             completionHandler:nil];
+- (BOOL)filterError:(NSError *)error {
+    if (error) {
+        [self alert:[error localizedDescription]];
+        return NO;
+    }
+    return YES;
+}
+
+- (void)loginSucceedWithUser:(AVUser *)user authData:(NSDictionary *)authData{
+    [AVUser loginWithAuthData:authData platform:AVOSCloudSNSPlatformWeiBo block:^(AVUser *user, NSError *error) {
+        if (error) {
+            // 登录失败，可能为网络问题或 authData 无效
+            NSLog(@"%@", error.description);
+        } else {
+            [self performSegueWithIdentifier:@"userSegue" sender:user];
+        }
+    }];
 }
 
 @end

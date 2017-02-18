@@ -13,6 +13,7 @@ target 'Keeping' do
   pod 'LeanCloudFeedback'
   pod 'PYSearch'
   pod 'MMWormhole'
+  pod 'LeanCloudSocial'
   
 end
 

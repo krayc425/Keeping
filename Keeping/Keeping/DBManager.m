@@ -72,14 +72,6 @@ static DBManager* _instance = nil;
         
     }
     
-    
-//    NSLog(@"transfer begin");
-//    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"file://%@", fileName2]];   // URL of file
-//    NSDictionary *metadataDict = nil;    // Create dictionary of data
-//    [[WCSession defaultSession] transferFile:url metadata:metadataDict];
-//    NSLog(@"transfer done");
-    
-    
     //获得数据库
     self.db = [FMDatabase databaseWithPath:fileName2];
     //使用如下语句，如果打开失败，可能是权限不足或者资源不足。通常打开完操作操作后，需要调用 close 方法来关闭数据库。在和数据库交互之前，数据库必须是打开的。如果资源或权限不足无法打开或创建数据库，都会导致打开失败。
@@ -135,7 +127,19 @@ static DBManager* _instance = nil;
 - (void)closeDB{
     NSLog(@"db close");
     [self.db close];
+    self.db = NULL;
 }
+
+- (NSString *)getDBPath{
+    NSString *doc2 = [[[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:GROUP_ID] path];
+    NSString *fileName2 = [doc2 stringByAppendingPathComponent:@"task.sqlite"];
+    return fileName2;
+}
+
+//- (NSFILe *)getDB{
+//    
+//}
+
 //
 //#pragma <WCSessionDelegate>
 //

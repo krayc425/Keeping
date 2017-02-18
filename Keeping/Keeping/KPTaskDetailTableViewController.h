@@ -13,6 +13,7 @@
 #import "HSDatePickerViewController.h"
 #import "KPWeekdayPickerView.h"
 #import "KPColorPickerView.h"
+#import "KPScheme.h"
 
 @interface KPTaskDetailTableViewController : UITableViewController <SchemeDelegate, ReminderDelegate,  UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, HSDatePickerViewControllerDelegate, UITextViewDelegate, KPWeekdayPickerDelegate, KPColorPickerDelegate>
 
@@ -35,7 +36,8 @@
 @property (nonatomic, nullable) NSDate *reminderTime;
 
 @property (nonnull, nonatomic) IBOutlet UILabel *appNameLabel;
-@property (nonatomic, nullable) NSDictionary *selectedApp;
+@property (nonatomic, nullable) KPScheme *selectedApp;
+@property (nonnull, nonatomic) IBOutlet UIButton *appImgButton;
 
 @property (nonnull, nonatomic) IBOutlet UIImageView *selectedImgView;
 @property (nonnull, nonatomic) UIImagePickerController* picker_library_;

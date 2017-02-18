@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2404F1BE1E54A63400C4B7D5 /* KPTabBar+BadgeTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2404F1BD1E54A63400C4B7D5 /* KPTabBar+BadgeTabBar.m */; };
+		240826DD1E570A1500EAC855 /* KPUserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 240826DC1E570A1500EAC855 /* KPUserTableViewController.m */; };
 		24151C921E322D6700757A69 /* KPTaskDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24151C911E322D6700757A69 /* KPTaskDetailTableViewController.m */; };
 		24151C971E32388300757A69 /* UNManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24151C961E32388300757A69 /* UNManager.m */; };
 		241FB6671E31D2F300DF4D53 /* HYCircleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 241FB6661E31D2F300DF4D53 /* HYCircleProgressView.m */; };
@@ -59,6 +60,7 @@
 		247F01D91E3DC625001F900C /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F2A0D01E2F3F1800F30FB1 /* DBManager.m */; };
 		247F01DA1E3DC627001F900C /* UNManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24151C961E32388300757A69 /* UNManager.m */; };
 		2493299D1E549EA300C85070 /* KPTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2493299C1E549EA300C85070 /* KPTabBar.m */; };
+		2493AFA21E57DC9800098DB0 /* KPAboutTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2493AFA11E57DC9800098DB0 /* KPAboutTableViewController.m */; };
 		249700471E5607210015CC5F /* KPTypeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 249700461E5607210015CC5F /* KPTypeTableViewController.m */; };
 		2497004B1E56075B0015CC5F /* KPTypeColorTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 249700491E56075B0015CC5F /* KPTypeColorTableViewCell.m */; };
 		2497004C1E56075B0015CC5F /* KPTypeColorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2497004A1E56075B0015CC5F /* KPTypeColorTableViewCell.xib */; };
@@ -140,6 +142,8 @@
 /* Begin PBXFileReference section */
 		2404F1BC1E54A63400C4B7D5 /* KPTabBar+BadgeTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KPTabBar+BadgeTabBar.h"; sourceTree = "<group>"; };
 		2404F1BD1E54A63400C4B7D5 /* KPTabBar+BadgeTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KPTabBar+BadgeTabBar.m"; sourceTree = "<group>"; };
+		240826DB1E570A1500EAC855 /* KPUserTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPUserTableViewController.h; sourceTree = "<group>"; };
+		240826DC1E570A1500EAC855 /* KPUserTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPUserTableViewController.m; sourceTree = "<group>"; };
 		24151C901E322D6700757A69 /* KPTaskDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPTaskDetailTableViewController.h; sourceTree = "<group>"; };
 		24151C911E322D6700757A69 /* KPTaskDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPTaskDetailTableViewController.m; sourceTree = "<group>"; };
 		24151C941E32378600757A69 /* Keeping.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Keeping.entitlements; sourceTree = "<group>"; };
@@ -210,6 +214,8 @@
 		247F01D61E3DBC4E001F900C /* MainInterface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		2493299B1E549EA300C85070 /* KPTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPTabBar.h; sourceTree = "<group>"; };
 		2493299C1E549EA300C85070 /* KPTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPTabBar.m; sourceTree = "<group>"; };
+		2493AFA01E57DC9800098DB0 /* KPAboutTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KPAboutTableViewController.h; path = ../KPAboutTableViewController.h; sourceTree = "<group>"; };
+		2493AFA11E57DC9800098DB0 /* KPAboutTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KPAboutTableViewController.m; path = ../KPAboutTableViewController.m; sourceTree = "<group>"; };
 		249700451E5607210015CC5F /* KPTypeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPTypeTableViewController.h; sourceTree = "<group>"; };
 		249700461E5607210015CC5F /* KPTypeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPTypeTableViewController.m; sourceTree = "<group>"; };
 		249700481E56075B0015CC5F /* KPTypeColorTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPTypeColorTableViewCell.h; sourceTree = "<group>"; };
@@ -306,6 +312,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		240826DE1E570A1C00EAC855 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				240826DB1E570A1500EAC855 /* KPUserTableViewController.h */,
+				240826DC1E570A1500EAC855 /* KPUserTableViewController.m */,
+			);
+			name = User;
+			sourceTree = "<group>";
+		};
 		242610381E519C500016DC64 /* KPWeekdayPickerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -343,6 +358,8 @@
 			children = (
 				2429CBDB1E2DF61B0027DD37 /* KPSettingsTableViewController.h */,
 				2429CBDC1E2DF61B0027DD37 /* KPSettingsTableViewController.m */,
+				2493AFA31E57DEF000098DB0 /* About */,
+				240826DE1E570A1C00EAC855 /* User */,
 				2435DBF51E35CCD400F1A96E /* Font */,
 				2497004D1E5607610015CC5F /* TypeText */,
 			);
@@ -426,6 +443,15 @@
 				247F01C11E3D9E1B001F900C /* Info.plist */,
 			);
 			path = KeepingWidget;
+			sourceTree = "<group>";
+		};
+		2493AFA31E57DEF000098DB0 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				2493AFA01E57DC9800098DB0 /* KPAboutTableViewController.h */,
+				2493AFA11E57DC9800098DB0 /* KPAboutTableViewController.m */,
+			);
+			name = About;
 			sourceTree = "<group>";
 		};
 		2497004D1E5607610015CC5F /* TypeText */ = {
@@ -946,6 +972,7 @@
 				249AE31A1E2DEE7700F704F8 /* AppDelegate.m in Sources */,
 				249AE3171E2DEE7700F704F8 /* main.m in Sources */,
 				24F2A0D71E2F482100F30FB1 /* KPSchemeManager.m in Sources */,
+				2493AFA21E57DC9800098DB0 /* KPAboutTableViewController.m in Sources */,
 				2429CBEE1E2E4A9B0027DD37 /* KPTodayTableViewCell.m in Sources */,
 				24A0CD6C1E56CED80017EE22 /* KPScheme.m in Sources */,
 				247A79801E38ABF1000EE623 /* ABCIntroView.m in Sources */,
@@ -970,6 +997,7 @@
 				24151C921E322D6700757A69 /* KPTaskDetailTableViewController.m in Sources */,
 				24F2A0C31E2F371B00F30FB1 /* UIView+MJAlertView.m in Sources */,
 				2435DBF11E35CCC300F1A96E /* KPFontTableViewController.m in Sources */,
+				240826DD1E570A1500EAC855 /* KPUserTableViewController.m in Sources */,
 				243E93F51E3E38040045A089 /* StartButtomView.m in Sources */,
 				24F2A1061E2F7CBC00F30FB1 /* KPReminderViewController.m in Sources */,
 				249AE3231E2DEE7700F704F8 /* Keeping.xcdatamodeld in Sources */,

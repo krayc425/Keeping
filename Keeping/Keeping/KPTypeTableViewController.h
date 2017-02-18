@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface KPTypeTableViewController : UITableViewController
+@interface KPTypeTableViewController : UITableViewController <UITextFieldDelegate>
+
+@property (nonatomic) NSMutableArray *texts;
 
 @end
