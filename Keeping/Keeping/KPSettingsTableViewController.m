@@ -38,18 +38,41 @@
     [self.animationSwitch addTarget:self action:@selector(switchChange:) forControlEvents:UIControlEventValueChanged];
     [self.badgeSwitch addTarget:self action:@selector(switchChange:) forControlEvents:UIControlEventValueChanged];
     
-    [AVOSCloudSNS setupPlatform:AVOSCloudSNSQQ withAppKey:@"1105994496" andAppSecret:@"uWY42qyXpNMvzovb" andRedirectURI:nil];
+    //APP 登录图标按钮
+    for(UIButton *btn in self.appButtonStack.subviews){
+        [btn.layer setCornerRadius:btn.layer.frame.size.width / 2];
+        [btn.layer setMasksToBounds:YES];
+    }
     
+    //配置登录信息
     [AVOSCloudSNS setupPlatform:AVOSCloudSNSSinaWeibo withAppKey:@"2794847636" andAppSecret:@"ea8dc38d68732d3920f17a9c997862a9" andRedirectURI:@"http://www.baidu.com"];
+    [AVOSCloudSNS setupPlatform:AVOSCloudSNSQQ withAppKey:@"1105994496" andAppSecret:@"uWY42qyXpNMvzovb" andRedirectURI:@"http://www.baidu.com"];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [self setFont];
-    
+
     if([AVUser currentUser]){
-        [self.userNameLabel setText:[AVUser currentUser].username];
+        
+        AVQuery *query = [AVQuery queryWithClassName:@"username"];
+        [query whereKey:@"userId" equalTo:[AVUser currentUser].objectId];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if (!error) {
+                if(query.countObjects > 0){
+                    AVObject *user = objects[0];
+                    [self.userNameLabel setText:[user objectForKey:@"username"]];
+                }else{
+                    [self.userNameLabel setText:[[AVUser currentUser] valueForKey:@"username"]];
+                }
+            }else{
+                NSLog(@"错误：%@",error.description);
+            }
+        }];
+        
+        [self.appButtonStack setHidden:YES];
     }else{
         [self.userNameLabel setText:@"登录"];
+        [self.appButtonStack setHidden:NO];
     }
 }
 
@@ -109,6 +132,44 @@
     }
 }
 
+- (IBAction)qqLoginAction:(id)sender{
+    if(![AVUser currentUser]){
+        // 如果安装了，则跳转至应用，否则跳转至网页
+        [AVOSCloudSNS loginWithCallback:^(id object, NSError *error) {
+            if (error) {
+                NSLog(@"failed to get authentication from weibo. error: %@", error.description);
+            } else {
+                [AVUser loginWithAuthData:object platform:AVOSCloudSNSPlatformQQ block:^(AVUser *user, NSError *error) {
+                    if ([self filterError:error]) {
+                        [self loginSucceedWithUser:user authData:object onPlatform:AVOSCloudSNSPlatformQQ];
+                    }
+                }];
+            }
+        } toPlatform:AVOSCloudSNSQQ];
+    }else{
+        [self performSegueWithIdentifier:@"userSegue" sender:[AVUser currentUser]];
+    }
+}
+
+- (IBAction)weiboLoginAction:(id)sender{
+    if(![AVUser currentUser]){
+        // 如果安装了，则跳转至应用，否则跳转至网页
+        [AVOSCloudSNS loginWithCallback:^(id object, NSError *error) {
+            if (error) {
+                NSLog(@"failed to get authentication from weibo. error: %@", error.description);
+            } else {
+                [AVUser loginWithAuthData:object platform:AVOSCloudSNSPlatformWeiBo block:^(AVUser *user, NSError *error) {
+                    if ([self filterError:error]) {
+                        [self loginSucceedWithUser:user authData:object onPlatform:AVOSCloudSNSPlatformWeiBo];
+                    }
+                }];
+            }
+        } toPlatform:AVOSCloudSNSSinaWeibo];
+    }else{
+        [self performSegueWithIdentifier:@"userSegue" sender:[AVUser currentUser]];
+    }
+}
+
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -159,23 +220,9 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if(indexPath.section == 0 && indexPath.row == 0){
-        if(![AVUser currentUser]){
-            // 如果安装了，则跳转至应用，否则跳转至网页
-            [AVOSCloudSNS loginWithCallback:^(id object, NSError *error) {
-                if (error) {
-                    NSLog(@"failed to get authentication from weibo. error: %@", error.description);
-                } else {
-                    [AVUser loginWithAuthData:object platform:AVOSCloudSNSPlatformWeiBo block:^(AVUser *user, NSError *error) {
-                        if ([self filterError:error]) {
-                            [self loginSucceedWithUser:user authData:object];
-                        }
-                    }];
-                }
-            } toPlatform:AVOSCloudSNSSinaWeibo];
-        }else{
+        if([AVUser currentUser]){
             [self performSegueWithIdentifier:@"userSegue" sender:[AVUser currentUser]];
         }
-        
     }
     
     if(indexPath.section == 3 && indexPath.row == 0){
@@ -204,8 +251,8 @@
     return YES;
 }
 
-- (void)loginSucceedWithUser:(AVUser *)user authData:(NSDictionary *)authData{
-    [AVUser loginWithAuthData:authData platform:AVOSCloudSNSPlatformWeiBo block:^(AVUser *user, NSError *error) {
+- (void)loginSucceedWithUser:(AVUser *)user authData:(NSDictionary *)authData onPlatform:(NSString *)platform{
+    [AVUser loginWithAuthData:authData platform:platform block:^(AVUser *user, NSError *error) {
         if (error) {
             // 登录失败，可能为网络问题或 authData 无效
             NSLog(@"%@", error.description);

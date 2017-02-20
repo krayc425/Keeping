@@ -8,11 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "KPTabBar.h"
-
-@class KPTodayTableViewController;
-@class KPTaskTableViewController;
-@class KPCalViewController;
-@class KPSettingsTableViewController;
+#import "KPTodayTableViewController.h"
+#import "KPTaskTableViewController.h"
+#import "KPCalViewController.h"
+#import "KPSettingsTableViewController.h"
 
 @interface KPTabBarViewController : UITabBarController <UITabBarControllerDelegate, KPTabBarDelegate>
 

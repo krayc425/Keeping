@@ -18,7 +18,9 @@
 }
 
 - (NSString *)sortName{
-   return [self.name stringByAddingPercentEscapesUsingEncoding:GB18030_ENCODING];
+//    NSCharacterSet *set = [NSCharacterSet URLQueryAllowedCharacterSet];
+//    return [self.name stringByAddingPercentEncodingWithAllowedCharacters:set];
+    return [self.name stringByAddingPercentEscapesUsingEncoding:GB18030_ENCODING];
 }
 
 @end

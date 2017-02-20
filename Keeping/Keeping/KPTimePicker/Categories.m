@@ -137,7 +137,7 @@
     NSDateComponents *time = [[NSCalendar currentCalendar] components:unitFlags fromDate:self];
     NSInteger thisMin = [time minute];
     NSDate *newDate;
-    int remain = thisMin % minutes;
+    int remain = (int)thisMin % minutes;
     // if less then 3 then round down
     NSInteger dividor = ceil(minutes/2);
     if (remain<dividor){

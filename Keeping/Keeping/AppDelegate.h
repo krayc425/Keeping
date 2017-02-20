@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
-// 静态库方式引入
 #import <LeanCloudSocial/AVOSCloudSNS.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>

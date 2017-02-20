@@ -80,7 +80,7 @@
     
     //APP名字标签
     [self.appNameLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
-    [self.appImgButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
+    [self.appImgButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
     [self.appImgButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
     [self.appImgButton setHidden:YES];
     

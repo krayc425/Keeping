@@ -13,6 +13,7 @@
 		24151C971E32388300757A69 /* UNManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24151C961E32388300757A69 /* UNManager.m */; };
 		241FB6671E31D2F300DF4D53 /* HYCircleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 241FB6661E31D2F300DF4D53 /* HYCircleProgressView.m */; };
 		2422066A1E5A6A3B00F03BA2 /* ImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 242206691E5A6A3B00F03BA2 /* ImageUtil.m */; };
+		2422066D1E5A7D1A00F03BA2 /* KPAboutTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2422066C1E5A7D1A00F03BA2 /* KPAboutTableViewController.m */; };
 		2426103B1E51ACB30016DC64 /* KPColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2426103A1E51ACB30016DC64 /* KPColorPickerView.m */; };
 		2426103D1E51ACBC0016DC64 /* KPColorPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2426103C1E51ACBC0016DC64 /* KPColorPickerView.xib */; };
 		2429CBD41E2DF5E60027DD37 /* KPTodayTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2429CBD31E2DF5E60027DD37 /* KPTodayTableViewController.m */; };
@@ -61,7 +62,6 @@
 		247F01D91E3DC625001F900C /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F2A0D01E2F3F1800F30FB1 /* DBManager.m */; };
 		247F01DA1E3DC627001F900C /* UNManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24151C961E32388300757A69 /* UNManager.m */; };
 		2493299D1E549EA300C85070 /* KPTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2493299C1E549EA300C85070 /* KPTabBar.m */; };
-		2493AFA21E57DC9800098DB0 /* KPAboutTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2493AFA11E57DC9800098DB0 /* KPAboutTableViewController.m */; };
 		249700471E5607210015CC5F /* KPTypeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 249700461E5607210015CC5F /* KPTypeTableViewController.m */; };
 		2497004B1E56075B0015CC5F /* KPTypeColorTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 249700491E56075B0015CC5F /* KPTypeColorTableViewCell.m */; };
 		2497004C1E56075B0015CC5F /* KPTypeColorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2497004A1E56075B0015CC5F /* KPTypeColorTableViewCell.xib */; };
@@ -154,6 +154,8 @@
 		241FB6661E31D2F300DF4D53 /* HYCircleProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYCircleProgressView.m; sourceTree = "<group>"; };
 		242206681E5A6A3B00F03BA2 /* ImageUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUtil.h; sourceTree = "<group>"; };
 		242206691E5A6A3B00F03BA2 /* ImageUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageUtil.m; sourceTree = "<group>"; };
+		2422066B1E5A7D1A00F03BA2 /* KPAboutTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPAboutTableViewController.h; sourceTree = "<group>"; };
+		2422066C1E5A7D1A00F03BA2 /* KPAboutTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPAboutTableViewController.m; sourceTree = "<group>"; };
 		242610391E51ACB30016DC64 /* KPColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPColorPickerView.h; sourceTree = "<group>"; };
 		2426103A1E51ACB30016DC64 /* KPColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPColorPickerView.m; sourceTree = "<group>"; };
 		2426103C1E51ACBC0016DC64 /* KPColorPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KPColorPickerView.xib; sourceTree = "<group>"; };
@@ -217,8 +219,6 @@
 		247F01D61E3DBC4E001F900C /* MainInterface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		2493299B1E549EA300C85070 /* KPTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPTabBar.h; sourceTree = "<group>"; };
 		2493299C1E549EA300C85070 /* KPTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPTabBar.m; sourceTree = "<group>"; };
-		2493AFA01E57DC9800098DB0 /* KPAboutTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KPAboutTableViewController.h; path = ../KPAboutTableViewController.h; sourceTree = "<group>"; };
-		2493AFA11E57DC9800098DB0 /* KPAboutTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KPAboutTableViewController.m; path = ../KPAboutTableViewController.m; sourceTree = "<group>"; };
 		249700451E5607210015CC5F /* KPTypeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPTypeTableViewController.h; sourceTree = "<group>"; };
 		249700461E5607210015CC5F /* KPTypeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPTypeTableViewController.m; sourceTree = "<group>"; };
 		249700481E56075B0015CC5F /* KPTypeColorTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPTypeColorTableViewCell.h; sourceTree = "<group>"; };
@@ -451,8 +451,8 @@
 		2493AFA31E57DEF000098DB0 /* About */ = {
 			isa = PBXGroup;
 			children = (
-				2493AFA01E57DC9800098DB0 /* KPAboutTableViewController.h */,
-				2493AFA11E57DC9800098DB0 /* KPAboutTableViewController.m */,
+				2422066B1E5A7D1A00F03BA2 /* KPAboutTableViewController.h */,
+				2422066C1E5A7D1A00F03BA2 /* KPAboutTableViewController.m */,
 			);
 			name = About;
 			sourceTree = "<group>";
@@ -978,7 +978,7 @@
 				249AE31A1E2DEE7700F704F8 /* AppDelegate.m in Sources */,
 				249AE3171E2DEE7700F704F8 /* main.m in Sources */,
 				24F2A0D71E2F482100F30FB1 /* KPSchemeManager.m in Sources */,
-				2493AFA21E57DC9800098DB0 /* KPAboutTableViewController.m in Sources */,
+				2422066D1E5A7D1A00F03BA2 /* KPAboutTableViewController.m in Sources */,
 				2429CBEE1E2E4A9B0027DD37 /* KPTodayTableViewCell.m in Sources */,
 				24A0CD6C1E56CED80017EE22 /* KPScheme.m in Sources */,
 				247A79801E38ABF1000EE623 /* ABCIntroView.m in Sources */,
