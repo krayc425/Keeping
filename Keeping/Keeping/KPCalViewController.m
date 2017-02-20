@@ -17,6 +17,7 @@
 #import "KPCalTaskTableViewCell.h"
 #import "MLKMenuPopover.h"
 #import "TaskDataHelper.h"
+#import "SCLAlertView.h"
 
 #define MENU_POPOVER_FRAME CGRectMake(10, 44 + 9, 140, 44 * [[Utilities getTaskSortArr] count])
 
@@ -105,15 +106,8 @@
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunchCal"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
-        UIAlertController *alertController =
-        [UIAlertController alertControllerWithTitle:@"小提示"
-                                            message:@"点击每项任务查看进度\n红色圆圈代表当天未完成，点击可以补打卡\n蓝色圆圈代表未来应当完成的日期\n蓝色实心圆圈代表打了卡的日期\n日期下方的小蓝点代表添加/结束日期"
-                                     preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
-                                                           style:UIAlertActionStyleDefault
-                                                         handler:nil];
-        [alertController addAction:okAction];
-        [self presentViewController:alertController animated:YES completion:nil];
+        SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+        [alert showInfo:@"小提示" subTitle:@"点击每项任务查看进度\n红色圆圈代表当天未完成，点击可以补打卡\n蓝色圆圈代表未来应当完成的日期\n蓝色实心圆圈代表打了卡的日期\n日期下方的小蓝点代表添加/结束日期" closeButtonTitle:@"好的" duration:0.0f];
 
     }
 }
@@ -253,28 +247,18 @@
 - (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date{
     [calendar deselectDate:date];
     if([self canFixPunch:date]){
-        UIAlertController *alertController =
-        [UIAlertController alertControllerWithTitle:@"补打卡"
-                                            message:[NSString stringWithFormat:@"这个日期您可以为 %@ 补打卡", self.task.name]
-                                     preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
-                                                           style:UIAlertActionStyleCancel
-                                                         handler:nil];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
-                                                           style:UIAlertActionStyleDefault
-                                                         handler:^(UIAlertAction *action){
-                                                             
-                                                             [[TaskManager shareInstance] punchForTaskWithID:@(self.task.id) onDate:date];
-                                                             
-                                                             NSIndexPath *path = [NSIndexPath indexPathForRow:[self.taskArr indexOfObject:self.task] inSection:0];
-                                                             
-                                                             [self loadTasks];
-
-                                                             self.task = self.taskArr[path.row];
-                                                         }];
-        [alertController addAction:cancelAction];
-        [alertController addAction:okAction];
-        [self presentViewController:alertController animated:YES completion:nil];
+        
+        SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+        
+        [alert addButton:@"好的" actionBlock:^(void) {
+            [[TaskManager shareInstance] punchForTaskWithID:@(self.task.id) onDate:date];
+            NSIndexPath *path = [NSIndexPath indexPathForRow:[self.taskArr indexOfObject:self.task] inSection:0];
+            [self loadTasks];
+            self.task = self.taskArr[path.row];
+        }];
+        
+        [alert showInfo:@"补打卡" subTitle:[NSString stringWithFormat:@"这个日期您可以为 %@ 补打卡", self.task.name] closeButtonTitle:@"取消" duration:0.0f];
+        
     }
 }
 

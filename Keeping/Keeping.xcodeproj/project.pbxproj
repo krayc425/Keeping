@@ -12,6 +12,7 @@
 		24151C921E322D6700757A69 /* KPTaskDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24151C911E322D6700757A69 /* KPTaskDetailTableViewController.m */; };
 		24151C971E32388300757A69 /* UNManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24151C961E32388300757A69 /* UNManager.m */; };
 		241FB6671E31D2F300DF4D53 /* HYCircleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 241FB6661E31D2F300DF4D53 /* HYCircleProgressView.m */; };
+		2422066A1E5A6A3B00F03BA2 /* ImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 242206691E5A6A3B00F03BA2 /* ImageUtil.m */; };
 		2426103B1E51ACB30016DC64 /* KPColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2426103A1E51ACB30016DC64 /* KPColorPickerView.m */; };
 		2426103D1E51ACBC0016DC64 /* KPColorPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2426103C1E51ACBC0016DC64 /* KPColorPickerView.xib */; };
 		2429CBD41E2DF5E60027DD37 /* KPTodayTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2429CBD31E2DF5E60027DD37 /* KPTodayTableViewController.m */; };
@@ -151,6 +152,8 @@
 		24151C961E32388300757A69 /* UNManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNManager.m; sourceTree = "<group>"; };
 		241FB6651E31D2F300DF4D53 /* HYCircleProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYCircleProgressView.h; sourceTree = "<group>"; };
 		241FB6661E31D2F300DF4D53 /* HYCircleProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYCircleProgressView.m; sourceTree = "<group>"; };
+		242206681E5A6A3B00F03BA2 /* ImageUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUtil.h; sourceTree = "<group>"; };
+		242206691E5A6A3B00F03BA2 /* ImageUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageUtil.m; sourceTree = "<group>"; };
 		242610391E51ACB30016DC64 /* KPColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPColorPickerView.h; sourceTree = "<group>"; };
 		2426103A1E51ACB30016DC64 /* KPColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPColorPickerView.m; sourceTree = "<group>"; };
 		2426103C1E51ACBC0016DC64 /* KPColorPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KPColorPickerView.xib; sourceTree = "<group>"; };
@@ -600,6 +603,8 @@
 				24DCF1891E3094050097C250 /* DateUtil.m */,
 				2429CBF11E2E4E750027DD37 /* Utilities.h */,
 				2429CBF21E2E4E750027DD37 /* Utilities.m */,
+				242206681E5A6A3B00F03BA2 /* ImageUtil.h */,
+				242206691E5A6A3B00F03BA2 /* ImageUtil.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -962,6 +967,7 @@
 				2404F1BE1E54A63400C4B7D5 /* KPTabBar+BadgeTabBar.m in Sources */,
 				24DCF1901E30AAAA0097C250 /* KPCalTaskTableViewCell.m in Sources */,
 				24F2A1021E2F7B6E00F30FB1 /* KPTimePicker.m in Sources */,
+				2422066A1E5A6A3B00F03BA2 /* ImageUtil.m in Sources */,
 				24699F031E2F213D0092FBED /* KPNavigationViewController.m in Sources */,
 				2497004B1E56075B0015CC5F /* KPTypeColorTableViewCell.m in Sources */,
 				2429CBFE1E2E61430027DD37 /* KPCalViewController.m in Sources */,

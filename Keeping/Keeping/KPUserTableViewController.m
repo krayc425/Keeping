@@ -11,6 +11,7 @@
 #import "DBManager.h"
 #import <AVOSCloud/AVOSCloud.h>
 #import "MBProgressHUD.h"
+#import "SCLAlertView.h"
 
 @interface KPUserTableViewController ()
 
@@ -48,22 +49,12 @@
         AVFile *f = [AVFile fileWithName:@"" contentsAtPath:[[DBManager shareInstance] getDBPath]];
         [dbBackUp setObject:f forKey:@"db"];
         [dbBackUp saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-            NSString *msg;
+            SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
             if(succeeded){
-                msg = @"上传成功";
+                [alert showSuccess:@"上传成功" subTitle:nil closeButtonTitle:@"好的" duration:0.0];
             }else{
-                msg = @"上传失败";
+                [alert showError:@"上传失败" subTitle:nil closeButtonTitle:@"好的" duration:0.0];
             }
-            
-            UIAlertController *alertController =
-            [UIAlertController alertControllerWithTitle:msg
-                                                message:nil
-                                         preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
-                                                               style:UIAlertActionStyleDefault
-                                                             handler:nil];
-            [alertController addAction:okAction];
-            [self presentViewController:alertController animated:YES completion:nil];
         }];
     }else{
         AVObject *dbBackUp = [query getFirstObject];
@@ -85,22 +76,12 @@
         AVFile *f = [AVFile fileWithName:@"" contentsAtPath:[[DBManager shareInstance] getDBPath]];
         [dbBackUp setObject:f forKey:@"db"];
         [dbBackUp saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-            NSString *msg;
+            SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
             if(succeeded){
-                msg = @"上传成功";
+                [alert showSuccess:@"上传成功" subTitle:nil closeButtonTitle:@"好的" duration:0.0];
             }else{
-                msg = @"上传失败";
+                [alert showError:@"上传失败" subTitle:nil closeButtonTitle:@"好的" duration:0.0];
             }
-            
-            UIAlertController *alertController =
-            [UIAlertController alertControllerWithTitle:msg
-                                                message:nil
-                                         preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
-                                                               style:UIAlertActionStyleDefault
-                                                             handler:nil];
-            [alertController addAction:okAction];
-            [self presentViewController:alertController animated:YES completion:nil];
         }];
     }
 }
@@ -109,15 +90,8 @@
     AVQuery *query = [AVQuery queryWithClassName:@"dbBackUp"];
     [query whereKey:@"userID" equalTo:self.currentUser.objectId];
     if(query.countObjects == 0){
-        UIAlertController *alertController =
-        [UIAlertController alertControllerWithTitle:@"您未上传过数据"
-                                            message:nil
-                                     preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
-                                                           style:UIAlertActionStyleDefault
-                                                         handler:nil];
-        [alertController addAction:okAction];
-        [self presentViewController:alertController animated:YES completion:nil];
+        SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+        [alert showWarning:@"上传成功" subTitle:nil closeButtonTitle:@"好的" duration:0.0];
     }else{
         AVObject *dbBackUp = [query getFirstObject];
         AVFile *file = [dbBackUp objectForKey:@"db"];
@@ -129,15 +103,8 @@
             
             [[[DBManager shareInstance] getDB] open];
             
-            UIAlertController *alertController =
-            [UIAlertController alertControllerWithTitle:@"下载成功"
-                                                message:nil
-                                         preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
-                                                               style:UIAlertActionStyleDefault
-                                                             handler:nil];
-            [alertController addAction:okAction];
-            [self presentViewController:alertController animated:YES completion:nil];
+            SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+            [alert showSuccess:@"下载成功" subTitle:nil closeButtonTitle:@"好的" duration:0.0];
             
         }];
     }
@@ -186,34 +153,23 @@
         
     }else if(indexPath.section == 1 && indexPath.row == 1){
         
-        UIAlertController *alertController =
-        [UIAlertController alertControllerWithTitle:@"注意"
-                                            message:@"下载后将覆盖本地所有数据，确定下载吗？"
-                                     preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
-                                                           style:UIAlertActionStyleCancel
-                                                         handler:nil];
-        [alertController addAction:cancelAction];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"下载"
-                                                           style:UIAlertActionStyleDefault
-                                                         handler:^(UIAlertAction *action){
-                                                             
-                                                             MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
-                                                             hud.label.text = @"下载中";
-                                                             
-                                                             dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-                                                                 
-                                                                 [self downloadDB];
-                                                                 
-                                                                 dispatch_async(dispatch_get_main_queue(), ^{
-                                                                     [MBProgressHUD hideHUDForView:self.view animated:YES];
-                                                                 });
-                                                                 
-                                                             });
-                                                             
-                                                         }];
-        [alertController addAction:okAction];
-        [self presentViewController:alertController animated:YES completion:nil];
+        SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+        [alert addButton:@"下载" actionBlock:^{
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
+            hud.label.text = @"下载中";
+            
+            dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                
+                [self downloadDB];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                });
+                
+            });
+        }];
+        [alert showWarning:@"注意" subTitle:@"下载后将覆盖本地所有数据，确定下载吗？" closeButtonTitle:@"取消" duration:0.0];
+        
     }
 }
 

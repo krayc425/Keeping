@@ -41,6 +41,7 @@ PODS:
     - MMWormhole/Core (= 2.0.0)
   - MMWormhole/Core (2.0.0)
   - PYSearch (0.3.4)
+  - SCLAlertView-Objective-C (1.0.6)
 
 DEPENDENCIES:
   - AMPopTip
@@ -57,6 +58,7 @@ DEPENDENCIES:
   - MBProgressHUD
   - MMWormhole
   - PYSearch
+  - SCLAlertView-Objective-C
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
@@ -74,7 +76,8 @@ SPEC CHECKSUMS:
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   MMWormhole: 0cd3fd35a9118b2e2d762b499f54eeaace0be791
   PYSearch: d7d89a358545f4f8ef3700197724162d1e0e2029
+  SCLAlertView-Objective-C: ca78280817e66e74366b78579350dee2ff277e23
 
-PODFILE CHECKSUM: 87113f41cec0b701f589293557f085a9e2569457
+PODFILE CHECKSUM: abca3430010125b4ab73ab3750de91c0b3857f0f
 
 COCOAPODS: 1.1.1

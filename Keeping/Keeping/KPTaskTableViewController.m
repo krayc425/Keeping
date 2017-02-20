@@ -19,6 +19,7 @@
 #import "MLKMenuPopover.h"
 #import "KPImageViewController.h"
 #import "TaskDataHelper.h"
+#import "SCLAlertView.h"
 #import <PYSearch.h>
 
 #define MENU_POPOVER_FRAME CGRectMake(10, 44 + 9, 140, 44 * [[Utilities getTaskSortArr] count])
@@ -359,40 +360,28 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"确认删除吗\n此操作不可恢复"
-                                                                                 message:nil
-                                                                          preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
-                                                           style:UIAlertActionStyleCancel
-                                                         handler:nil];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"删除"
-                                                           style:UIAlertActionStyleDestructive
-                                                         handler:^(UIAlertAction *action){
-                                                             
-                                                             Task *t;
-                                                             if(indexPath.section == 1){
-                                                                 t = self.taskArr[indexPath.row];
-                                                                 
-                                                                 [self.taskArr removeObject:t];
-                                                             }else if(indexPath.section == 2){
-                                                                 t = self.historyTaskArr[indexPath.row];
-                                                                 
-                                                                 [self.historyTaskArr removeObject:t];
-                                                             }
-                                                             
-                                                             [[TaskManager shareInstance] deleteTask:t];
-                                                             
-                                                             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-                                                             
-                                                             if(self.taskArr.count == 0 || self.historyTaskArr.count == 0){
-                                                                 [self.tableView reloadData];
-                                                             }
-                                                             
-                                                         }];
-        [alertController addAction:cancelAction];
-        [alertController addAction:okAction];
-        [self presentViewController:alertController animated:YES completion:nil];
+        SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+        [alert addButton:@"删除" actionBlock:^{
+            Task *t;
+            if(indexPath.section == 1){
+                t = self.taskArr[indexPath.row];
+                
+                [self.taskArr removeObject:t];
+            }else if(indexPath.section == 2){
+                t = self.historyTaskArr[indexPath.row];
+                
+                [self.historyTaskArr removeObject:t];
+            }
+            
+            [[TaskManager shareInstance] deleteTask:t];
+            
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            
+            if(self.taskArr.count == 0 || self.historyTaskArr.count == 0){
+                [self.tableView reloadData];
+            }
+        }];
+        [alert showWarning:@"确认删除吗" subTitle:@"此操作不可恢复" closeButtonTitle:@"取消" duration:0.0];
     }
 }
 

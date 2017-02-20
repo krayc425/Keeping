@@ -17,6 +17,8 @@
 #import "KPSchemeTableViewController.h"
 #import "KPReminderViewController.h"
 #import "KPSchemeManager.h"
+#import "ImageUtil.h"
+#import "SCLAlertView.h"
 
 #define ENDLESS_STRING @"无限期"
 #define DATE_FORMAT @"yyyy/MM/dd"
@@ -178,6 +180,7 @@
         }];
         self.task.reminderDays = arr;
         
+        self.selectedApp = NULL;
         for(KPScheme *s in [[KPSchemeManager shareInstance] getSchemeArr]){
             if([s.name isEqualToString:self.task.appScheme.allKeys[0]]){
                 self.selectedApp = s;
@@ -271,15 +274,9 @@
     
     //先检查有没有填满必填信息
     if(![self checkCompleted]){
-        UIAlertController *alertController =
-        [UIAlertController alertControllerWithTitle:@"信息填写不完整"
-                                            message:nil
-                                     preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
-                                                           style:UIAlertActionStyleDefault
-                                                         handler: nil];
-        [alertController addAction:okAction];
-        [self presentViewController:alertController animated:YES completion:nil];
+        SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+        [alert showError:@"信息填写不完整" subTitle:nil closeButtonTitle:@"好的" duration:0.0f]; // Error
+
         return;
     }
     
@@ -290,11 +287,16 @@
     //任务名
     self.task.name = self.taskNameField.text;
     //app 名
-    self.task.appScheme = @{self.selectedApp.name : self.selectedApp.scheme};
+    if(self.selectedApp == NULL){
+        self.task.appScheme = NULL;
+    }else{
+        self.task.appScheme = @{self.selectedApp.name : self.selectedApp.scheme};
+    }
     //提醒时间
     self.task.reminderTime = self.reminderTime;
     //图片
-    self.task.image = UIImagePNGRepresentation(self.selectedImgView.image);
+//    self.task.image = UIImageJPEGRepresentation((self.selectedImgView.image), 1.0);
+    self.task.image = UIImageJPEGRepresentation([ImageUtil normalizedImage:self.selectedImgView.image], 1.0);
     //链接
     self.task.link = self.linkTextField.text;       //有：文字，无：@“”
     //结束日期
@@ -331,18 +333,12 @@
         //增加
         [[TaskManager shareInstance] addTask:self.task];
         
-        //提示
-        UIAlertController *alertController =
-        [UIAlertController alertControllerWithTitle:@"新增成功"
-                                            message:nil
-                                     preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
-                                                           style:UIAlertActionStyleDefault
-                                                         handler:^(UIAlertAction *action){
-                                                             [self.navigationController popToRootViewControllerAnimated:YES];
-                                                         }];
-        [alertController addAction:okAction];
-        [self presentViewController:alertController animated:YES completion:nil];
+        
+        SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+        [alert showSuccess:@"新增成功" subTitle:nil closeButtonTitle:@"好的" duration:0.0f];
+        [alert alertIsDismissed:^{
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }];
     }else{
         //完成时间排序
         NSMutableArray *arr = [NSMutableArray arrayWithArray:self.selectedWeekdayArr];
@@ -355,71 +351,39 @@
         self.selectedWeekdayArr = arr;
         
         if(![self.task.reminderDays isEqual:arr]){
-            UIAlertController *alertController =
-            [UIAlertController alertControllerWithTitle:@"注意"
-                                                message:@"您更改了预计完成日的选项，这会导致今天之前的打卡记录清空，新的记录将从今天开始重新计算。您要继续吗？"
-                                         preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
-                                                               style:UIAlertActionStyleCancel
-                                                                 handler:^(UIAlertAction *action){
-                                                                     
-                                                                     [[TaskManager shareInstance] updateTask:self.task];
-                                                                     
-                                                                     UIAlertController *alertController =
-                                                                     [UIAlertController alertControllerWithTitle:@"修改成功"
-                                                                                                         message:nil
-                                                                                                  preferredStyle:UIAlertControllerStyleAlert];
-                                                                     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
-                                                                                                                        style:UIAlertActionStyleDefault
-                                                                                                                      handler:^(UIAlertAction *action){
-                                                                                                                          [self.navigationController popToRootViewControllerAnimated:YES];
-                                                                                                                      }];
-                                                                     [alertController addAction:okAction];
-                                                                     [self presentViewController:alertController animated:YES completion:nil];
-                                                                 }];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"仍然更改"
-                                                               style:UIAlertActionStyleDefault
-                                                             handler:^(UIAlertAction *action){
-                                                                 
-                                                                 //更新厨师日期、打卡数组和提醒日期
-                                                                 self.task.reminderDays = arr;
-                                                                 
-                                                                 NSDate *addDate = [NSDate dateWithYear:[[NSDate date] year] month:[[NSDate date] month] day:[[NSDate date] day]];
-                                                                 self.task.addDate = addDate;
-                                                                 self.task.punchDateArr = [[NSMutableArray alloc] init];
-                                                                 
-                                                                 [[TaskManager shareInstance] updateTask:self.task];
-                                                                 
-                                                                 UIAlertController *alertController =
-                                                                 [UIAlertController alertControllerWithTitle:@"修改成功"
-                                                                                                     message:nil
-                                                                                              preferredStyle:UIAlertControllerStyleAlert];
-                                                                 UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
-                                                                                                                    style:UIAlertActionStyleDefault
-                                                                                                                  handler:^(UIAlertAction *action){
-                                                                                                                      [self.navigationController popToRootViewControllerAnimated:YES];
-                                                                                                                  }];
-                                                                 [alertController addAction:okAction];
-                                                                 [self presentViewController:alertController animated:YES completion:nil];
-                                                             }];
-            [alertController addAction:cancelAction];
-            [alertController addAction:okAction];
-            [self presentViewController:alertController animated:YES completion:nil];
+            
+            SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+            
+            [alert addButton:@"仍然更改" actionBlock:^(void) {
+                
+                //更新初始日期、打卡数组和提醒日期
+                self.task.reminderDays = arr;
+                
+                NSDate *addDate = [NSDate dateWithYear:[[NSDate date] year] month:[[NSDate date] month] day:[[NSDate date] day]];
+                self.task.addDate = addDate;
+                self.task.punchDateArr = [[NSMutableArray alloc] init];
+                
+                [[TaskManager shareInstance] updateTask:self.task];
+                
+                SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+                [alert showSuccess:@"修改成功" subTitle:nil closeButtonTitle:@"好的" duration:0.0f];
+                [alert alertIsDismissed:^{
+                    [self.navigationController popToRootViewControllerAnimated:YES];
+                }];
+                
+            }];
+            
+            [alert showWarning:@"注意" subTitle:@"您更改了预计完成日的选项，这会导致今天之前的打卡记录清空，新的记录将从今天开始重新计算。您要继续吗？" closeButtonTitle:@"取消" duration:0.0f];
+            
         }else{
             
             [[TaskManager shareInstance] updateTask:self.task];
             
-            UIAlertController *alertController =
-            [UIAlertController alertControllerWithTitle:@"修改成功"
-                                                message:nil
-                                         preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
-                                                               style:UIAlertActionStyleDefault
-                                                             handler:^(UIAlertAction *action){
-                                                                 [self.navigationController popToRootViewControllerAnimated:YES];
-                                                             }];
-            [alertController addAction:okAction];
-            [self presentViewController:alertController animated:YES completion:nil];
+            SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+            [alert showSuccess:@"修改成功" subTitle:nil closeButtonTitle:@"好的" duration:0.0f];
+            [alert alertIsDismissed:^{
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            }];
         }
 
     }
@@ -457,7 +421,7 @@
     }
     AVFile *file = self.selectedApp.iconFile;
     [file getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
-        [self.selectedImgView setImage:[UIImage imageWithData:data]];
+        [self.selectedImgView setImage:[ImageUtil normalizedImage:[UIImage imageWithData:data]]];
     }];
     [self setHasImage];
 }
@@ -466,21 +430,12 @@
     if(self.selectedImgView.image == [UIImage new]){
         return;
     }else{
-        UIAlertController *alertController =
-        [UIAlertController alertControllerWithTitle:@"删除图片"
-                                            message:@"您确定要删除这张图片？"
-                                     preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
-                                                               style:UIAlertActionStyleCancel
-                                                             handler:nil];
-        [alertController addAction:cancelAction];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"删除"
-                                                           style:UIAlertActionStyleDestructive
-                                                         handler:^(UIAlertAction *action){
-                                                             [self setNotHaveImage];
-                                                         }];
-        [alertController addAction:okAction];
-        [self presentViewController:alertController animated:YES completion:nil];
+        SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+        [alert addButton:@"删除" actionBlock:^{
+            [self setNotHaveImage];
+        }];
+        [alert showQuestion:@"删除照片" subTitle:@"您确定要删除这张照片？" closeButtonTitle:@"取消" duration:0.0];
+
     }
 }
 
@@ -523,17 +478,6 @@
     }else{
         [self performSegueWithIdentifier:@"imageSegue" sender:self.selectedImgView.image];
     }
-}
-
-- (UIImage *)normalizedImage:(UIImage *)img {
-    if (img.imageOrientation == UIImageOrientationUp){
-        return img;
-    }
-    UIGraphicsBeginImageContextWithOptions(img.size, NO, img.scale);
-    [img drawInRect:(CGRect){0, 0, img.size}];
-    UIImage *normalizedImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return normalizedImage;
 }
 
 - (void)setHasImage{
@@ -757,7 +701,7 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
     //原图还是编辑过的图？
     UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
-    [self.selectedImgView setImage:[self normalizedImage:image]];
+    [self.selectedImgView setImage:[ImageUtil normalizedImage:image]];
     [self setHasImage];
 }
 

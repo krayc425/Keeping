@@ -14,6 +14,7 @@ target 'Keeping' do
   pod 'PYSearch'
   pod 'MMWormhole'
   pod 'LeanCloudSocial'
+  pod 'SCLAlertView-Objective-C'
   
 end
 

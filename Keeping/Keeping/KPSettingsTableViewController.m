@@ -193,7 +193,8 @@
                                                        style:UIAlertActionStyleDefault
                                                      handler:nil];
     [alertController addAction:okAction];
-    [self presentViewController:alertController animated:YES completion:nil];}
+    [self presentViewController:alertController animated:YES completion:nil];
+}
 
 - (BOOL)filterError:(NSError *)error {
     if (error) {

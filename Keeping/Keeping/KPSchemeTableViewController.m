@@ -13,6 +13,7 @@
 #import <AVOSCloud/AVOSCloud.h>
 #import "MBProgressHUD.h"
 #import "KPScheme.h"
+#import "SCLAlertView.h"
 
 @interface KPSchemeTableViewController ()
 
@@ -81,47 +82,19 @@
 }
 
 - (void)showSubmitAlert{
-    UIAlertController *alertController =
-    [UIAlertController alertControllerWithTitle:@"提交 APP"
-                                        message:nil
-                                 preferredStyle:UIAlertControllerStyleAlert];
-    [alertController addTextFieldWithConfigurationHandler:nil];
-    [alertController addTextFieldWithConfigurationHandler:nil];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
-                                                           style:UIAlertActionStyleCancel
-                                                         handler:nil];
-    [alertController addAction:cancelAction];
-    
-    UITextField *nameText = alertController.textFields.firstObject;
-    UITextField *schemeText = alertController.textFields.lastObject;
-    
-    nameText.placeholder = @"APP 名称";
-    schemeText.placeholder = @"对应 URL Scheme（可选）";
-    
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定"
-                                                       style:UIAlertActionStyleDefault
-                                                     handler:^(UIAlertAction *action){
-                                                         
-                                                         
-                                                         AVObject *appNameSubmitted = [AVObject objectWithClassName:@"appNameSubmitted"];
-                                                         [appNameSubmitted setObject:[nameText text] forKey:@"appName"];
-                                                         [appNameSubmitted setObject:[schemeText text] forKey:@"appScheme"];
-                                                         [appNameSubmitted save];
-                                                         
-                                                         
-                                                         UIAlertController *alertController =
-                                                         [UIAlertController alertControllerWithTitle:@"提交成功"
-                                                                                             message:@"感谢您的反馈"
-                                                                                      preferredStyle:UIAlertControllerStyleAlert];
-                                                         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定"
-                                                                                                            style:UIAlertActionStyleDefault
-                                                                                                          handler:nil];
-                                                         [alertController addAction:okAction];
-                                                         [self presentViewController:alertController animated:YES completion:nil];
-                                                         
-                                                     }];
-    [alertController addAction:okAction];
-    [self presentViewController:alertController animated:YES completion:nil];
+    SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+    UITextField *nameText = [alert addTextField:@"APP 名称"];
+    UITextField *schemeText = [alert addTextField:@"对应 URL Scheme（可选）"];
+    [alert addButton:@"提交" actionBlock:^(void) {
+        AVObject *appNameSubmitted = [AVObject objectWithClassName:@"appNameSubmitted"];
+        [appNameSubmitted setObject:[nameText text] forKey:@"appName"];
+        [appNameSubmitted setObject:[schemeText text] forKey:@"appScheme"];
+        [appNameSubmitted save];
+        
+        SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+        [alert showSuccess:@"提交成功" subTitle:@"感谢您的反馈！" closeButtonTitle:@"好的" duration:0.0];
+    }];
+    [alert showEdit:@"提交 APP" subTitle:nil closeButtonTitle:@"取消" duration:0.0];
 }
 
 #pragma mark - Table view data source
