@@ -97,21 +97,6 @@
             [dbBackUp setObject:f forKey:@"db"];
             
             succeeded = [dbBackUp save];
-            
-//            SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-//            if(succeeded){
-//                [alert showSuccess:@"上传成功" subTitle:nil closeButtonTitle:@"好的" duration:0.0];
-//            }else{
-//                [alert showError:@"上传失败" subTitle:nil closeButtonTitle:@"好的" duration:0.0];
-//            }
-            //        [dbBackUp saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-            //            SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-            //            if(succeeded){
-            //                [alert showSuccess:@"上传成功" subTitle:nil closeButtonTitle:@"好的" duration:0.0];
-            //            }else{
-            //                [alert showError:@"上传失败" subTitle:nil closeButtonTitle:@"好的" duration:0.0];
-            //            }
-            //        }];
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -221,7 +206,18 @@
         
         SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
         UITextField *usernameText = [alert addTextField:@"用户名"];
-        [alert addButton:@"提交" actionBlock:^{
+        [alert addButton:@"提交" validationBlock:^BOOL{
+            //检查是否有重复用户名
+            AVQuery *duplicateNameQuery = [AVQuery queryWithClassName:@"username"];
+            [duplicateNameQuery whereKey:@"username" equalTo:usernameText.text];
+            if(duplicateNameQuery.countObjects > 0){
+                SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+                [alert showError:@"错误" subTitle:@"用户名与已有用户重复，请更换" closeButtonTitle:@"好的" duration:0.0];
+            }
+            return duplicateNameQuery.countObjects == 0;
+            
+        } actionBlock:^{
+            
             AVQuery *query = [AVQuery queryWithClassName:@"username"];
             [query whereKey:@"userId" equalTo:self.currentUser.objectId];
             [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -243,12 +239,13 @@
                         [alert alertIsDismissed:^{
                             [self.userNameLabel setText:[user objectForKey:@"username"]];
                         }];
-
+                        
                     }];
                 }else{
                     NSLog(@"错误：%@",error.description);
                 }
             }];
+
         }];
         [alert showEdit:@"修改用户名" subTitle:nil closeButtonTitle:@"取消" duration:0.0];
         

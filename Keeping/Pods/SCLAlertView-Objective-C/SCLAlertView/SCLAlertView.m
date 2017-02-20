@@ -167,7 +167,7 @@ SCLTimerDisplay *buttonTimer;
     self.canAddObservers = YES;
     self.keyboardIsVisible = NO;
     self.hideAnimationType =  SCLAlertViewHideAnimationFadeOut;
-    self.showAnimationType = SCLAlertViewShowAnimationSlideInFromTop;
+    self.showAnimationType = SCLAlertViewShowAnimationSlideInToCenter;
     self.backgroundType = SCLAlertViewBackgroundShadow;
     self.tintTopCircle = YES;
     

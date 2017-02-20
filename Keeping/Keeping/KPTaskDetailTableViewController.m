@@ -80,9 +80,6 @@
     
     //APP名字标签
     [self.appNameLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
-    [self.appImgButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
-    [self.appImgButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
-    [self.appImgButton setHidden:YES];
     
     
     //图片
@@ -180,17 +177,6 @@
         }];
         self.task.reminderDays = arr;
         
-        self.selectedApp = NULL;
-        for(KPScheme *s in [[KPSchemeManager shareInstance] getSchemeArr]){
-            if([s.name isEqualToString:self.task.appScheme.allKeys[0]]){
-                self.selectedApp = s;
-            }
-        }
-        if(self.selectedApp != NULL){
-            [self.appNameLabel setText:self.selectedApp.name];
-            [self.appImgButton setHidden:NO];
-        }
-        
         self.reminderTime = self.task.reminderTime;
         if(self.reminderTime != NULL){
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -201,6 +187,18 @@
         }else{
             [self.reminderLabel setText:@"无"];
             [self.reminderSwitch setOn:NO];
+        }
+        
+        self.selectedApp = NULL;
+        for(KPScheme *s in [[KPSchemeManager shareInstance] getSchemeArr]){
+            if([s.name isEqualToString:self.task.appScheme.allKeys[0]]){
+                self.selectedApp = s;
+            }
+        }
+        if(self.selectedApp != NULL){
+            [self.appNameLabel setText:self.selectedApp.name];
+        }else{
+            [self.appNameLabel setText:@"无"];
         }
         
         if(self.task.image != NULL){
@@ -434,7 +432,7 @@
         [alert addButton:@"删除" actionBlock:^{
             [self setNotHaveImage];
         }];
-        [alert showQuestion:@"删除照片" subTitle:@"您确定要删除这张照片？" closeButtonTitle:@"取消" duration:0.0];
+        [alert showWarning:@"删除照片" subTitle:@"您确定要删除这张照片？" closeButtonTitle:@"取消" duration:0.0];
 
     }
 }
@@ -444,6 +442,20 @@
     imagePickerController.delegate = self;
     imagePickerController.allowsEditing = YES;
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"选择一张照片" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    if(self.task.appScheme != NULL && ![self.appNameLabel.text isEqualToString:@"无"]){
+        UIAlertAction *appAction = [UIAlertAction actionWithTitle:@"选择 APP 图标"
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * _Nonnull action) {
+                                                                 AVFile *file = self.selectedApp.iconFile;
+                                                                 [file getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
+                                                                     [self.selectedImgView setImage:[ImageUtil normalizedImage:[UIImage imageWithData:data]]];
+                                                                 }];
+                                                                 [self setHasImage];
+                                                             }];
+        [alert addAction:appAction];
+    }
+    
     UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"拍照"
                                                            style:UIAlertActionStyleDefault
                                                          handler:^(UIAlertAction * _Nonnull action) {
@@ -466,7 +478,6 @@
     if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
         [alert addAction:cameraAction];
     }
-    
     [alert addAction:photosAction];
     [alert addAction:cancelAction];
     [self presentViewController:alert animated:YES completion:nil];
@@ -669,11 +680,9 @@
     if(scheme == NULL){
         self.selectedApp = NULL;
         [self.appNameLabel setText:@"无"];
-        [self.appImgButton setHidden:YES];
     }else{
         self.selectedApp = scheme;
         [self.appNameLabel setText:scheme.name];
-        [self.appImgButton setHidden:NO];
     }
     [self.tableView reloadData];
 }

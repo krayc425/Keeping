@@ -421,17 +421,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CAa-cL-RWq">
-                                                    <rect key="frame" x="216" y="15" width="108" height="30"/>
-                                                    <state key="normal" title="将图标设为图片"/>
-                                                    <connections>
-                                                        <action selector="appSetIconAction:" destination="c1M-lD-w8g" eventType="touchUpInside" id="9oo-Eu-XN8"/>
-                                                    </connections>
-                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="CAa-cL-RWq" firstAttribute="centerY" secondItem="Smq-hi-m0r" secondAttribute="centerY" id="0Rj-al-LkV"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="CAa-cL-RWq" secondAttribute="trailing" constant="10" id="Dn2-LS-Zvd"/>
                                                 <constraint firstItem="G57-UJ-nTu" firstAttribute="centerY" secondItem="Smq-hi-m0r" secondAttribute="centerY" id="rP0-rg-iB3"/>
                                                 <constraint firstItem="G57-UJ-nTu" firstAttribute="leading" secondItem="Smq-hi-m0r" secondAttribute="leadingMargin" constant="10" id="s06-Sd-6fM"/>
                                             </constraints>
@@ -526,7 +517,6 @@
                     </tableView>
                     <connections>
                         <outlet property="addImgButton" destination="wtU-Oq-EvO" id="Unj-qY-eeB"/>
-                        <outlet property="appImgButton" destination="CAa-cL-RWq" id="E2c-1t-23l"/>
                         <outlet property="appNameLabel" destination="G57-UJ-nTu" id="vEX-ZW-BNy"/>
                         <outlet property="colorView" destination="n1p-XJ-h0B" id="R9J-AU-yil"/>
                         <outlet property="deleteImgButton" destination="uTp-h9-TXH" id="odd-bM-Pof"/>

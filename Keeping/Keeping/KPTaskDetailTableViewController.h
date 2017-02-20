@@ -36,8 +36,7 @@
 @property (nonatomic, nullable) NSDate *reminderTime;
 
 @property (nonnull, nonatomic) IBOutlet UILabel *appNameLabel;
-@property (nonatomic, nullable) KPScheme *selectedApp;
-@property (nonnull, nonatomic) IBOutlet UIButton *appImgButton;
+@property (nullable, nonatomic) KPScheme *selectedApp;
 
 @property (nonnull, nonatomic) IBOutlet UIImageView *selectedImgView;
 @property (nonnull, nonatomic) UIImagePickerController* picker_library_;
