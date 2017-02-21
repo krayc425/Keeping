@@ -18,8 +18,7 @@
     [img drawInRect:(CGRect){0, 0, img.size}];
     UIImage *normalizedImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    //    return normalizedImage;
-    //    return [self compressImage:normalizedImage toTargetWidth:100.0];
+    
     return [UIImage imageWithData:[self zipImageWithImage:normalizedImage]];
 }
 
@@ -44,7 +43,7 @@
     if (!image) {
         return nil;
     }
-    CGFloat maxFileSize = 32*1024;
+    CGFloat maxFileSize = 16*1024;
     CGFloat compression = 0.9f;
     NSData *compressedData = UIImageJPEGRepresentation(image, compression);
     while ([compressedData length] > maxFileSize) {
@@ -81,7 +80,6 @@
     UIGraphicsEndImageContext();
     
     return newImage;
-    
 }
 
 

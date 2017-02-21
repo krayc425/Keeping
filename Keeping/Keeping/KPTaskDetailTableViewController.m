@@ -65,7 +65,6 @@
     self.weekdayView.isAllButtonHidden = NO;
     
     
-    
     //类别代理
     self.colorView.colorDelegate = self;
     
@@ -294,7 +293,12 @@
     self.task.reminderTime = self.reminderTime;
     //图片
 //    self.task.image = UIImageJPEGRepresentation((self.selectedImgView.image), 1.0);
-    self.task.image = UIImageJPEGRepresentation([ImageUtil normalizedImage:self.selectedImgView.image], 1.0);
+    if(self.selectedImgView.image == NULL){
+        self.task.image = NULL;
+    }else{
+        self.task.image = UIImageJPEGRepresentation([ImageUtil normalizedImage:self.selectedImgView.image], 1.0);
+        NSLog(@"img size : %lu", self.task.image.length);
+    }
     //链接
     self.task.link = self.linkTextField.text;       //有：文字，无：@“”
     //结束日期
@@ -371,7 +375,7 @@
                 
             }];
             
-            [alert showWarning:@"注意" subTitle:@"您更改了预计完成日的选项，这会导致今天之前的打卡记录清空，新的记录将从今天开始重新计算。您要继续吗？" closeButtonTitle:@"取消" duration:0.0f];
+            [alert showWarning:@"注意" subTitle:@"您更改了预计完成日的选项，这会导致今天之前的打卡记录清空，新的记录将从今天开始重新计算。\n您要继续吗？" closeButtonTitle:@"取消" duration:0.0f];
             
         }else{
             
@@ -382,6 +386,7 @@
             [alert alertIsDismissed:^{
                 [self.navigationController popToRootViewControllerAnimated:YES];
             }];
+            
         }
 
     }
@@ -656,13 +661,15 @@
         KPSchemeTableViewController *kpstvc = (KPSchemeTableViewController *)[segue destinationViewController];
         kpstvc.delegate = self;
         if(self.selectedApp != NULL){
-            NSMutableArray *allNames = [NSMutableArray array];
-            for(KPScheme *s in [[KPSchemeManager shareInstance] getSchemeArr]){
-                [allNames addObject:s.name];
-            }
-            [kpstvc setSelectedPath:[NSIndexPath indexPathForRow:[allNames indexOfObject:self.selectedApp.name]inSection:1]];
+//            NSMutableArray *allNames = [NSMutableArray array];
+//            for(KPScheme *s in [[KPSchemeManager shareInstance] getSchemeArr]){
+//                [allNames addObject:s.name];
+//            }
+            [kpstvc setSelectedApp:self.selectedApp];
+//            [kpstvc setSelectedPath:[NSIndexPath indexPathForRow:[allNames indexOfObject:self.selectedApp.name]inSection:1]];
         }else{
-            [kpstvc setSelectedPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+//            [kpstvc setSelectedPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+            [kpstvc setSelectedApp:NULL];
         }
     }else if([segue.identifier isEqualToString:@"reminderSegue"]){
         KPReminderViewController *kprvc = (KPReminderViewController *)[segue destinationViewController];

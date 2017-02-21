@@ -42,7 +42,7 @@
     
     [self loadApps];
     //搜索框
-//    [self setSearchControllerView];
+    [self setSearchControllerView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -57,9 +57,12 @@
 
 - (void)setSearchControllerView{
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    self.searchController.dimsBackgroundDuringPresentation = false;
+    self.searchController.searchBar.delegate = self;
     self.searchController.searchBar.frame = CGRectMake(0, 0, 0, 44);
     self.searchController.searchBar.placeholder = @"APP 名称";
-    self.searchController.dimsBackgroundDuringPresentation = false;
+    self.searchController.searchBar.tintColor = [Utilities getColor];
+    [self.searchController.searchBar setValue:@"完成" forKey:@"_cancelButtonText"];
     //搜索栏表头视图
     self.tableView.tableHeaderView = self.searchController.searchBar;
     [self.searchController.searchBar sizeToFit];
@@ -73,11 +76,9 @@
 }
 
 - (void)doneAction:(id)sender{
-    if(self.selectedPath != NULL && self.selectedPath.section == 1){
-        [self.delegate passScheme:self.schemeArr[self.selectedPath.row]];
-    }else{
-        [self.delegate passScheme:NULL];
-    }
+    
+        [self.delegate passScheme:self.selectedApp];
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -100,80 +101,145 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 4;
+    if([self.searchController isActive]){
+        return 1;
+    }else{
+        return 4;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if(section == 1){
-        return [self.schemeArr count];
+    if([self.searchController isActive]){
+        return self.searchResults.count;
     }else{
-        return 1;
+        if(section == 1){
+            return [self.schemeArr count];
+        }else{
+            return 1;
+        }
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(indexPath.section <= 1){
+    if(self.searchController.isActive){
+        
         static NSString *cellIdentifier = @"KPSchemeTableViewCell";
         UINib *nib = [UINib nibWithNibName:@"KPSchemeTableViewCell" bundle:nil];
         [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
         KPSchemeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
         
-        if(indexPath.section == 0){
-            cell.appNameLabel.text = @"无";
-            
-            [cell.appIconImg setImage:[UIImage new]];
-        }else{
-            KPScheme *s = self.schemeArr[indexPath.row];
-            [cell.appNameLabel setText:s.name];
-            
-            AVFile *file = s.iconFile;
-            [file getThumbnail:YES width:100 height:100 withBlock:^(UIImage *image, NSError *error) {
-                [cell.appIconImg setImage:image];
-            }];
-//            NSLog(@"%@", s.description);
-        }
+        KPScheme *s = self.searchResults[indexPath.row];
+        [cell.appNameLabel setText:s.name];
         
-        if(indexPath == self.selectedPath){
+        AVFile *file = s.iconFile;
+        [file getThumbnail:YES width:100 height:100 withBlock:^(UIImage *image, NSError *error) {
+            [cell.appIconImg setImage:image];
+        }];
+        
+        if(self.selectedApp == self.searchResults[indexPath.row]){
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         }else{
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
         
         return cell;
+        
     }else{
-        return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+        
+        if(indexPath.section <= 1){
+            static NSString *cellIdentifier = @"KPSchemeTableViewCell";
+            UINib *nib = [UINib nibWithNibName:@"KPSchemeTableViewCell" bundle:nil];
+            [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
+            KPSchemeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+            
+            if(indexPath.section == 0){
+                cell.appNameLabel.text = @"无";
+                
+                [cell.appIconImg setImage:[UIImage new]];
+                
+                if(self.selectedApp == NULL){
+                    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+                }else{
+                    cell.accessoryType = UITableViewCellAccessoryNone;
+                }
+            }else{
+                KPScheme *s = self.schemeArr[indexPath.row];
+                [cell.appNameLabel setText:s.name];
+                
+                AVFile *file = s.iconFile;
+                [file getThumbnail:YES width:100 height:100 withBlock:^(UIImage *image, NSError *error) {
+                    [cell.appIconImg setImage:image];
+                }];
+                
+                if(self.selectedApp == self.schemeArr[indexPath.row]){
+                    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+                }else{
+                    cell.accessoryType = UITableViewCellAccessoryNone;
+                }
+            }
+            
+            return cell;
+        }else{
+            return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+        }
+        
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(indexPath.section != 1){
-        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
-    }else{
+    if(self.searchController.isActive){
         return 44;
+    }else{
+        if(indexPath.section != 1){
+            return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+        }else{
+            return 44;
+        }
     }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 1) {
+    if(self.searchController.isActive){
         return 10;
     }else{
-        return [super tableView:tableView indentationLevelForRowAtIndexPath:indexPath];
+        if (indexPath.section == 1) {
+            return 10;
+        }else{
+            return [super tableView:tableView indentationLevelForRowAtIndexPath:indexPath];
+        }
     }
 }
 
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if(indexPath.section == 3){
-        [self showSubmitAlert];
-    }else if(indexPath.section == 2){
-        [[KPSchemeManager shareInstance] getSchemes];
-        [self loadApps];
-    }else{
-        if(self.selectedPath == indexPath){
-            self.selectedPath = NULL;
+    if(self.searchController.isActive){
+        
+        if(self.selectedApp != self.searchResults[indexPath.row]){
+            self.selectedApp = self.searchResults[indexPath.row];
         }else{
-            self.selectedPath = indexPath;
+            self.selectedApp = NULL;
         }
+        
+    }else{
+        
+        if(indexPath.section == 3){
+            [self showSubmitAlert];
+        }else if(indexPath.section == 2){
+            [[KPSchemeManager shareInstance] getSchemes];
+            [self loadApps];
+        }else{
+            if(indexPath.section == 1){
+                if(self.selectedApp != self.schemeArr[indexPath.row]){
+                    self.selectedApp = self.schemeArr[indexPath.row];
+                }else{
+                    self.selectedApp = NULL;
+                }
+            }else{
+                self.selectedApp = NULL;
+            }
+        }
+        
     }
     [tableView reloadData];
 }
@@ -187,6 +253,13 @@
     self.searchResults = [[self.schemeArr filteredArrayUsingPredicate:searchPredicate] mutableCopy];
     //刷新表格
     [self.tableView reloadData];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        //滚动到选择的地方
+        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:[self.schemeArr indexOfObject:self.selectedApp] inSection:1] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+    });
 }
 
 @end

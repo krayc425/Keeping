@@ -29,7 +29,7 @@
     // 添加发布按钮
     UIButton *publishButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [publishButton setBackgroundImage:[UIImage imageNamed:@"TAB_ADD"] forState:UIControlStateNormal];
-    [publishButton setBackgroundImage:[UIImage imageNamed:@"TAB_ADD"] forState:UIControlStateHighlighted];
+    [publishButton setBackgroundImage:[UIImage imageNamed:@"TAB_ADD_SELECTED"] forState:UIControlStateHighlighted];
     [publishButton sizeToFit];
     [publishButton addTarget:self action:@selector(publishClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:publishButton];

@@ -24,7 +24,6 @@
     
     self.delegate = self;
     
-//    [self setValue:[[KPTabBar alloc] init] forKeyPath:@"tabBar"];
     KPTabBar *tabBar = (KPTabBar *)self.tabBar;
     tabBar.addDelegate = self;
     

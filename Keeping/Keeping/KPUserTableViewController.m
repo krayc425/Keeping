@@ -208,7 +208,7 @@
             [self uploadDB];
             
         }];
-        [alert showWarning:@"注意" subTitle:@"上传后将覆盖服务器端所有数据，确定上传吗？" closeButtonTitle:@"取消" duration:0.0];
+        [alert showWarning:@"注意" subTitle:@"上传后将覆盖服务器端所有数据，确定上传吗？\n注：上传将消耗较大流量，建议在 WiFi 环境下上传" closeButtonTitle:@"取消" duration:0.0];
         
     }else if(indexPath.section == 1 && indexPath.row == 1){
         
@@ -218,7 +218,7 @@
             [self downloadDB];
             
         }];
-        [alert showWarning:@"注意" subTitle:@"下载后将覆盖本地所有数据，确定下载吗？" closeButtonTitle:@"取消" duration:0.0];
+        [alert showWarning:@"注意" subTitle:@"下载后将覆盖本地所有数据，确定下载吗？\n注：下载将消耗较大流量，建议在 WiFi 环境下下载" closeButtonTitle:@"取消" duration:0.0];
         
     }else if(indexPath.section == 0 && indexPath.row == 0){
         

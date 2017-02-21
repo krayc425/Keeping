@@ -126,6 +126,7 @@ static DBManager* _instance = nil;
 
 - (void)closeDB{
     NSLog(@"db close");
+    [self.db clearCachedStatements];
     [self.db close];
     self.db = NULL;
 }
@@ -135,10 +136,6 @@ static DBManager* _instance = nil;
     NSString *fileName2 = [doc2 stringByAppendingPathComponent:@"task.sqlite"];
     return fileName2;
 }
-
-//- (NSFILe *)getDB{
-//    
-//}
 
 //
 //#pragma <WCSessionDelegate>
