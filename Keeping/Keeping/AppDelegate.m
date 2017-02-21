@@ -14,7 +14,6 @@
 #import "KPTabBarViewController.h"
 #import <AVOSCloud/AVOSCloud.h>
 #import "UNManager.h"
-#import "StartButtomView.h"
 
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
 #import <UserNotifications/UserNotifications.h>

@@ -130,6 +130,7 @@
             [file getThumbnail:YES width:100 height:100 withBlock:^(UIImage *image, NSError *error) {
                 [cell.appIconImg setImage:image];
             }];
+//            NSLog(@"%@", s.description);
         }
         
         if(indexPath == self.selectedPath){

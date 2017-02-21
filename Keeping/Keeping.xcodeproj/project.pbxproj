@@ -35,8 +35,6 @@
 		2436F8241E2F2C3300C2984A /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2436F8231E2F2C3300C2984A /* libsqlite3.0.tbd */; };
 		2436F8271E2F2C4B00C2984A /* TaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2436F8261E2F2C4B00C2984A /* TaskManager.m */; };
 		2436F82A1E2F2C5700C2984A /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 2436F8291E2F2C5700C2984A /* Task.m */; };
-		243E93F21E3E37FD0045A089 /* StartButtomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 243E93F11E3E37FD0045A089 /* StartButtomView.xib */; };
-		243E93F51E3E38040045A089 /* StartButtomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 243E93F41E3E38040045A089 /* StartButtomView.m */; };
 		244EB3051E3635B100D30AE3 /* KPImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 244EB3041E3635B100D30AE3 /* KPImageViewController.m */; };
 		245196711E3CB82F00C18C5B /* TabBar.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 245196701E3CB82F00C18C5B /* TabBar.xcassets */; };
 		245196761E3CE35200C18C5B /* 方正楷体简体.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 245196751E3CE34F00C18C5B /* 方正楷体简体.ttf */; };
@@ -191,9 +189,6 @@
 		2436F8261E2F2C4B00C2984A /* TaskManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskManager.m; sourceTree = "<group>"; };
 		2436F8281E2F2C5700C2984A /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
 		2436F8291E2F2C5700C2984A /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
-		243E93F11E3E37FD0045A089 /* StartButtomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StartButtomView.xib; sourceTree = "<group>"; };
-		243E93F31E3E38040045A089 /* StartButtomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartButtomView.h; sourceTree = "<group>"; };
-		243E93F41E3E38040045A089 /* StartButtomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartButtomView.m; sourceTree = "<group>"; };
 		244EB3031E3635B100D30AE3 /* KPImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPImageViewController.h; sourceTree = "<group>"; };
 		244EB3041E3635B100D30AE3 /* KPImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPImageViewController.m; sourceTree = "<group>"; };
 		245196701E3CB82F00C18C5B /* TabBar.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TabBar.xcassets; sourceTree = "<group>"; };
@@ -206,7 +201,7 @@
 		24699F021E2F213D0092FBED /* KPNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPNavigationViewController.m; sourceTree = "<group>"; };
 		24699F041E2F23C60092FBED /* Navigation.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Navigation.xcassets; sourceTree = "<group>"; };
 		247A797E1E38ABF1000EE623 /* ABCIntroView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABCIntroView.h; sourceTree = "<group>"; };
-		247A797F1E38ABF1000EE623 /* ABCIntroView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABCIntroView.m; sourceTree = "<group>"; };
+		247A797F1E38ABF1000EE623 /* ABCIntroView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ABCIntroView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		247F01B71E3D9E1B001F900C /* KeepingWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = KeepingWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		247F01B81E3D9E1B001F900C /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		247F01BB1E3D9E1B001F900C /* TodayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
@@ -422,15 +417,17 @@
 			name = TaskData;
 			sourceTree = "<group>";
 		};
-		243E93F61E3E38100045A089 /* Launch */ = {
+		246B95EF1E5BE34B00DAB2E9 /* AssistVCs */ = {
 			isa = PBXGroup;
 			children = (
-				243E93F31E3E38040045A089 /* StartButtomView.h */,
-				243E93F41E3E38040045A089 /* StartButtomView.m */,
-				243E93F11E3E37FD0045A089 /* StartButtomView.xib */,
-				249AE3261E2DEE7700F704F8 /* LaunchScreen.storyboard */,
+				24699F011E2F213D0092FBED /* KPNavigationViewController.h */,
+				24699F021E2F213D0092FBED /* KPNavigationViewController.m */,
+				2429CBF91E2E5D510027DD37 /* KPTabBarViewController.h */,
+				2429CBFA1E2E5D510027DD37 /* KPTabBarViewController.m */,
+				244EB3031E3635B100D30AE3 /* KPImageViewController.h */,
+				244EB3041E3635B100D30AE3 /* KPImageViewController.m */,
 			);
-			name = Launch;
+			name = AssistVCs;
 			sourceTree = "<group>";
 		};
 		247F01BA1E3D9E1B001F900C /* KeepingWidget */ = {
@@ -495,16 +492,7 @@
 				24151C941E32378600757A69 /* Keeping.entitlements */,
 				249AE3181E2DEE7700F704F8 /* AppDelegate.h */,
 				249AE3191E2DEE7700F704F8 /* AppDelegate.m */,
-				24699F011E2F213D0092FBED /* KPNavigationViewController.h */,
-				24699F021E2F213D0092FBED /* KPNavigationViewController.m */,
-				2429CBF91E2E5D510027DD37 /* KPTabBarViewController.h */,
-				2429CBFA1E2E5D510027DD37 /* KPTabBarViewController.m */,
-				244EB3031E3635B100D30AE3 /* KPImageViewController.h */,
-				244EB3041E3635B100D30AE3 /* KPImageViewController.m */,
-				24151C951E32388300757A69 /* UNManager.h */,
-				24151C961E32388300757A69 /* UNManager.m */,
-				24F2A0CF1E2F3F1800F30FB1 /* DBManager.h */,
-				24F2A0D01E2F3F1800F30FB1 /* DBManager.m */,
+				246B95EF1E5BE34B00DAB2E9 /* AssistVCs */,
 				2436F82B1E2F2FC000C2984A /* TaskData */,
 				2429CBF01E2E4AA20027DD37 /* Today */,
 				2429CBF61E2E53D30027DD37 /* Task */,
@@ -514,10 +502,10 @@
 				24DCF18C1E30A07C0097C250 /* UI */,
 				24DCF18B1E30940C0097C250 /* Utilities */,
 				249AE31E1E2DEE7700F704F8 /* Main.storyboard */,
+				249AE3261E2DEE7700F704F8 /* LaunchScreen.storyboard */,
 				249AE3241E2DEE7700F704F8 /* Assets.xcassets */,
 				24699F041E2F23C60092FBED /* Navigation.xcassets */,
 				245196701E3CB82F00C18C5B /* TabBar.xcassets */,
-				243E93F61E3E38100045A089 /* Launch */,
 				249AE3291E2DEE7700F704F8 /* Info.plist */,
 				249AE3211E2DEE7700F704F8 /* Keeping.xcdatamodeld */,
 				249AE3151E2DEE7700F704F8 /* Supporting Files */,
@@ -599,6 +587,10 @@
 		24DCF18B1E30940C0097C250 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				24151C951E32388300757A69 /* UNManager.h */,
+				24151C961E32388300757A69 /* UNManager.m */,
+				24F2A0CF1E2F3F1800F30FB1 /* DBManager.h */,
+				24F2A0D01E2F3F1800F30FB1 /* DBManager.m */,
 				24DCF1881E3094050097C250 /* DateUtil.h */,
 				24DCF1891E3094050097C250 /* DateUtil.m */,
 				2429CBF11E2E4E750027DD37 /* Utilities.h */,
@@ -847,7 +839,6 @@
 				24F2A0FD1E2F7B6E00F30FB1 /* round_backarrow_big@2x.png in Resources */,
 				249AE3201E2DEE7700F704F8 /* Main.storyboard in Resources */,
 				24DCF1911E30AAAA0097C250 /* KPCalTaskTableViewCell.xib in Resources */,
-				243E93F21E3E37FD0045A089 /* StartButtomView.xib in Resources */,
 				24F2A0DC1E2F489100F30FB1 /* KPSchemeTableViewCell.xib in Resources */,
 				24699F051E2F23C60092FBED /* Navigation.xcassets in Resources */,
 				24F2A0FA1E2F7B6E00F30FB1 /* round_backarrow_big-high.png in Resources */,
@@ -1004,7 +995,6 @@
 				24F2A0C31E2F371B00F30FB1 /* UIView+MJAlertView.m in Sources */,
 				2435DBF11E35CCC300F1A96E /* KPFontTableViewController.m in Sources */,
 				240826DD1E570A1500EAC855 /* KPUserTableViewController.m in Sources */,
-				243E93F51E3E38040045A089 /* StartButtomView.m in Sources */,
 				24F2A1061E2F7CBC00F30FB1 /* KPReminderViewController.m in Sources */,
 				249AE3231E2DEE7700F704F8 /* Keeping.xcdatamodeld in Sources */,
 				2429CBE81E2E499A0027DD37 /* KPSeparatorView.m in Sources */,

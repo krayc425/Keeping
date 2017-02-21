@@ -15,6 +15,9 @@
 
 @property (nonatomic, nonnull) IBOutletCollection(UILabel) NSArray *labels;
 
+@property (nonatomic, nonnull) IBOutlet UILabel *downloadTimeLabel;
+@property (nonatomic, nonnull) IBOutlet UILabel *uploadTimeLabel;
 @property (nonatomic, nonnull) IBOutlet UILabel *userNameLabel;
+
 
 @end

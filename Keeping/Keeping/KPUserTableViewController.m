@@ -12,6 +12,7 @@
 #import <AVOSCloud/AVOSCloud.h>
 #import "MBProgressHUD.h"
 #import "SCLAlertView.h"
+#import "DateUtil.h"
 
 @interface KPUserTableViewController ()
 
@@ -41,6 +42,22 @@
             NSLog(@"错误：%@",error.description);
         }
     }];
+    
+    [self setLatestLabel];
+}
+
+- (void)setLatestLabel{
+    AVQuery *dbQuery = [AVQuery queryWithClassName:@"dbBackUp"];
+    [dbQuery whereKey:@"userID" equalTo:self.currentUser.objectId];
+    if(dbQuery.countObjects != 0){
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm"];
+        
+        [self.uploadTimeLabel setText:[NSString stringWithFormat:@"最新：%@",[dateFormatter stringFromDate:[dbQuery getFirstObject].createdAt]]];
+    }else{
+        [self.uploadTimeLabel setText:@""];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -105,6 +122,7 @@
             SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
             if(succeeded){
                 [alert showSuccess:@"上传成功" subTitle:nil closeButtonTitle:@"好的" duration:0.0];
+                [self setLatestLabel];
             }else{
                 [alert showError:@"上传失败" subTitle:nil closeButtonTitle:@"好的" duration:0.0];
             }
