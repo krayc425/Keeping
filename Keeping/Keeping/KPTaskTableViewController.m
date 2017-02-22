@@ -26,8 +26,6 @@
 
 @interface KPTaskTableViewController () <MLKMenuPopoverDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, PYSearchViewControllerDelegate>
 
-@property (nonatomic, assign) UIView *background;   //图片放大的背景
-
 @property (nonatomic,strong) MLKMenuPopover *_Nonnull menuPopover;
 
 @end
@@ -134,7 +132,6 @@
     // 5. 跳转到搜索控制器
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:searchViewController];
     [self presentViewController:nav animated:YES completion:nil];
-
 }
 
 - (void)editAction:(id)senders{
@@ -472,7 +469,6 @@
 #pragma mark - PYSearchViewControllerDelegate
 
 - (void)searchViewController:(PYSearchViewController *)searchViewController searchTextDidChange:(UISearchBar *)seachBar searchText:(NSString *)searchText{
-    NSLog(@"change text");
     if (searchText.length) {
         // 与搜索条件再搜索
         // 显示建议搜索结果

@@ -30,9 +30,6 @@ static AMPopTip *shareTip = NULL;
 
 @property (nonatomic, strong) MLKMenuPopover *_Nonnull menuPopover;
 
-@property (nonatomic, strong) AMPopTip *tip;
-@property (nonatomic, strong) AMPopTip *calTip;
-
 @end
 
 @implementation KPTodayTableViewController
@@ -89,17 +86,11 @@ static AMPopTip *shareTip = NULL;
 
 - (void)viewWillDisappear:(BOOL)animated{
     self.selectedIndexPath = NULL;
-    if([[KPTodayTableViewController shareTipInstance] isAnimating]
-       || [[KPTodayTableViewController shareTipInstance] isVisible]){
-        [[KPTodayTableViewController shareTipInstance] hide];
-        shareTip = NULL;
-    }
+    [self hideTip];
 }
 
 - (void)loadTasks{
-    if([self.tip isVisible] || [self.tip isAnimating]){
-        [self.tip hide];
-    }
+    [self hideTip];
     
     [self.dateButton setTitle:[DateUtil getDateStringOfDate:self.selectedDate] forState:UIControlStateNormal];
     self.selectedIndexPath = NULL;
@@ -184,7 +175,7 @@ static AMPopTip *shareTip = NULL;
     AMPopTip *tp = [KPTodayTableViewController shareTipInstance];
     
     if(![tp isVisible] && ![tp isAnimating]){
-        
+    
         self.calendar = [[FSCalendar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width - 20, 250)];
         self.calendar.dataSource = self;
         self.calendar.delegate = self;
@@ -603,6 +594,7 @@ static AMPopTip *shareTip = NULL;
         case 3:
         {
             AMPopTip *tp = [KPTodayTableViewController shareTipInstance];
+            
             if(![tp isVisible] && ![tp isAnimating]){
                 [tp showText:t.memo
                          direction:AMPopTipDirectionNone
@@ -665,7 +657,7 @@ static AMPopTip *shareTip = NULL;
 - (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date{
     NSDate *tempDate = [NSDate dateWithYear:[date year] month:[date month] day:[date day]];
     self.selectedDate = tempDate;
-    [self.calTip hide];
+    [[KPTodayTableViewController shareTipInstance] hide];
     [self loadTasks];
 }
 
@@ -704,6 +696,14 @@ static AMPopTip *shareTip = NULL;
 
 + (AMPopTip *)shareTipInstance{
     return shareTip == NULL ? shareTip = [AMPopTip popTip] : shareTip;
+}
+
+- (void)hideTip{
+    if([[KPTodayTableViewController shareTipInstance] isAnimating]
+       || [[KPTodayTableViewController shareTipInstance] isVisible]){
+        [[KPTodayTableViewController shareTipInstance] hide];
+        shareTip = NULL;
+    }
 }
 
 @end

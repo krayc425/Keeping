@@ -143,6 +143,7 @@
     [self.memoTextView setValue:placeHolderLabel forKey:@"_placeholderLabel"];
     
     
+    //加载任务
     if(self.task != NULL){
         [self.navigationItem setTitle:@"任务详情"];
         
@@ -215,7 +216,6 @@
         [self.colorView setSelectedColorNum:self.selectedColorNum];
         
         [self.tableView reloadData];
-        
     }else{
         [self.navigationItem setTitle:@"新增任务"];
         
@@ -230,15 +230,6 @@
         [self.taskNameField becomeFirstResponder];
     }
     
-}
-
-- (void)hideKeyboard{
-    if([self.taskNameField isFirstResponder]){
-        [self.taskNameField resignFirstResponder];
-    }
-    if([self.linkTextField isFirstResponder]){
-        [self.linkTextField resignFirstResponder];
-    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -272,8 +263,7 @@
     //先检查有没有填满必填信息
     if(![self checkCompleted]){
         SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-        [alert showError:@"信息填写不完整" subTitle:nil closeButtonTitle:@"好的" duration:0.0f]; // Error
-
+        [alert showError:@"信息填写不完整" subTitle:nil closeButtonTitle:@"好的" duration:0.0f];
         return;
     }
     
@@ -334,7 +324,6 @@
         
         //增加
         [[TaskManager shareInstance] addTask:self.task];
-        
         
         SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
         [alert showSuccess:@"新增成功" subTitle:nil closeButtonTitle:@"好的" duration:0.0f];
@@ -448,16 +437,24 @@
     imagePickerController.allowsEditing = YES;
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"选择一张照片" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
-    if(self.task.appScheme != NULL && ![self.appNameLabel.text isEqualToString:@"无"]){
+    if(self.selectedApp != NULL && ![self.appNameLabel.text isEqualToString:@"无"]){
         UIAlertAction *appAction = [UIAlertAction actionWithTitle:@"选择 APP 图标"
-                                                               style:UIAlertActionStyleDefault
-                                                             handler:^(UIAlertAction * _Nonnull action) {
-                                                                 AVFile *file = self.selectedApp.iconFile;
-                                                                 [file getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
-                                                                     [self.selectedImgView setImage:[ImageUtil normalizedImage:[UIImage imageWithData:data]]];
-                                                                 }];
-                                                                 [self setHasImage];
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction * _Nonnull action) {
+                                                             AVFile *file = self.selectedApp.iconFile;
+                                                             
+                                                             [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:8] atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+                                                             
+                                                             [file getThumbnail:YES
+                                                                          width:self.view.frame.size.width
+                                                                         height:self.view.frame.size.width
+                                                                      withBlock:^(UIImage * _Nullable image, NSError * _Nullable error) {
+                                                                 
+                                                                 [self.selectedImgView setImage:[ImageUtil normalizedImage:image]];
+                                                                                                                            
                                                              }];
+
+                                                         }];
         [alert addAction:appAction];
     }
     
@@ -654,6 +651,15 @@
     [self.memoTextView resignFirstResponder];
 }
 
+- (void)hideKeyboard{
+    if([self.taskNameField isFirstResponder]){
+        [self.taskNameField resignFirstResponder];
+    }
+    if([self.linkTextField isFirstResponder]){
+        [self.linkTextField resignFirstResponder];
+    }
+}
+
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -661,14 +667,8 @@
         KPSchemeTableViewController *kpstvc = (KPSchemeTableViewController *)[segue destinationViewController];
         kpstvc.delegate = self;
         if(self.selectedApp != NULL){
-//            NSMutableArray *allNames = [NSMutableArray array];
-//            for(KPScheme *s in [[KPSchemeManager shareInstance] getSchemeArr]){
-//                [allNames addObject:s.name];
-//            }
             [kpstvc setSelectedApp:self.selectedApp];
-//            [kpstvc setSelectedPath:[NSIndexPath indexPathForRow:[allNames indexOfObject:self.selectedApp.name]inSection:1]];
         }else{
-//            [kpstvc setSelectedPath:[NSIndexPath indexPathForRow:0 inSection:0]];
             [kpstvc setSelectedApp:NULL];
         }
     }else if([segue.identifier isEqualToString:@"reminderSegue"]){

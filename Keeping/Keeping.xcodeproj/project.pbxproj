@@ -384,10 +384,9 @@
 				24F2A0CC1E2F38C700F30FB1 /* KPTaskTableViewCell.h */,
 				24F2A0CD1E2F38C700F30FB1 /* KPTaskTableViewCell.m */,
 				24F2A0C91E2F383A00F30FB1 /* KPTaskTableViewCell.xib */,
-				24F2A1041E2F7CBC00F30FB1 /* KPReminderViewController.h */,
-				24F2A1051E2F7CBC00F30FB1 /* KPReminderViewController.m */,
 				24151C901E322D6700757A69 /* KPTaskDetailTableViewController.h */,
 				24151C911E322D6700757A69 /* KPTaskDetailTableViewController.m */,
+				248A49891E5D31F80038868A /* Reminder */,
 			);
 			name = Task;
 			sourceTree = "<group>";
@@ -443,6 +442,15 @@
 				247F01C11E3D9E1B001F900C /* Info.plist */,
 			);
 			path = KeepingWidget;
+			sourceTree = "<group>";
+		};
+		248A49891E5D31F80038868A /* Reminder */ = {
+			isa = PBXGroup;
+			children = (
+				24F2A1041E2F7CBC00F30FB1 /* KPReminderViewController.h */,
+				24F2A1051E2F7CBC00F30FB1 /* KPReminderViewController.m */,
+			);
+			name = Reminder;
 			sourceTree = "<group>";
 		};
 		2493AFA31E57DEF000098DB0 /* About */ = {
@@ -621,6 +629,8 @@
 		24F2A0DD1E2F489500F30FB1 /* Scheme */ = {
 			isa = PBXGroup;
 			children = (
+				24A0CD6A1E56CED80017EE22 /* KPScheme.h */,
+				24A0CD6B1E56CED80017EE22 /* KPScheme.m */,
 				24F2A0D21E2F481000F30FB1 /* KPSchemeTableViewController.h */,
 				24F2A0D31E2F481000F30FB1 /* KPSchemeTableViewController.m */,
 				24F2A0D51E2F482100F30FB1 /* KPSchemeManager.h */,
@@ -628,8 +638,6 @@
 				24F2A0D81E2F489100F30FB1 /* KPSchemeTableViewCell.h */,
 				24F2A0D91E2F489100F30FB1 /* KPSchemeTableViewCell.m */,
 				24F2A0DA1E2F489100F30FB1 /* KPSchemeTableViewCell.xib */,
-				24A0CD6A1E56CED80017EE22 /* KPScheme.h */,
-				24A0CD6B1E56CED80017EE22 /* KPScheme.m */,
 			);
 			name = Scheme;
 			sourceTree = "<group>";

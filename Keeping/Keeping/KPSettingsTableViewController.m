@@ -12,6 +12,7 @@
 #import "KPTabBar+BadgeTabBar.h"
 #import "KPTabBar.h"
 #import "KPUserTableViewController.h"
+#import "SCLAlertView.h"
 
 // 静态库方式引入
 #import <LeanCloudSocial/AVOSCloudSNS.h>
@@ -66,6 +67,8 @@
                 }
             }else{
                 NSLog(@"错误：%@",error.description);
+                SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+                [alert showError:@"加载失败" subTitle:nil closeButtonTitle:@"好的" duration:0.0f];
             }
         }];
         
@@ -132,12 +135,16 @@
     }
 }
 
+#pragma mark - Login Actions
+
 - (IBAction)qqLoginAction:(id)sender{
     if(![AVUser currentUser]){
         // 如果安装了，则跳转至应用，否则跳转至网页
         [AVOSCloudSNS loginWithCallback:^(id object, NSError *error) {
             if (error) {
                 NSLog(@"failed to get authentication from weibo. error: %@", error.description);
+                SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+                [alert showError:@"登录失败" subTitle:nil closeButtonTitle:@"好的" duration:0.0f];
             } else {
                 [AVUser loginWithAuthData:object platform:AVOSCloudSNSPlatformQQ block:^(AVUser *user, NSError *error) {
                     if ([self filterError:error]) {
@@ -157,6 +164,8 @@
         [AVOSCloudSNS loginWithCallback:^(id object, NSError *error) {
             if (error) {
                 NSLog(@"failed to get authentication from weibo. error: %@", error.description);
+                SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+                [alert showError:@"登录失败" subTitle:nil closeButtonTitle:@"好的" duration:0.0f];
             } else {
                 [AVUser loginWithAuthData:object platform:AVOSCloudSNSPlatformWeiBo block:^(AVUser *user, NSError *error) {
                     if ([self filterError:error]) {
@@ -168,6 +177,43 @@
     }else{
         [self performSegueWithIdentifier:@"userSegue" sender:[AVUser currentUser]];
     }
+}
+
+- (void)alert:(NSString *)message {
+    UIAlertController *alertController =
+    [UIAlertController alertControllerWithTitle:message
+                                        message:nil
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:nil];
+    [alertController addAction:okAction];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+- (BOOL)filterError:(NSError *)error {
+    if (error) {
+        [self alert:[error localizedDescription]];
+        return NO;
+    }
+    return YES;
+}
+
+- (void)loginSucceedWithUser:(AVUser *)user authData:(NSDictionary *)authData onPlatform:(NSString *)platform{
+    [AVUser loginWithAuthData:authData platform:platform block:^(AVUser *user, NSError *error) {
+        if (error) {
+            // 登录失败，可能为网络问题或 authData 无效
+            NSLog(@"%@", error.description);
+            SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+            [alert showError:@"登录失败" subTitle:nil closeButtonTitle:@"好的" duration:0.0f];
+        } else {
+            SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+            [alert showSuccess:@"登录成功" subTitle:nil closeButtonTitle:@"好的" duration:0.0f];
+            [alert alertIsDismissed:^{
+                [self performSegueWithIdentifier:@"userSegue" sender:user];
+            }];
+        }
+    }];
 }
 
 #pragma mark - Navigation
@@ -204,7 +250,7 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     switch (section) {
         case 0:
-            return @"账号";
+            return @"备份";
         case 1:
             return @"外观";
         case 2:
@@ -229,37 +275,6 @@
         LCUserFeedbackAgent *agent = [LCUserFeedbackAgent sharedInstance];
         [agent showConversations:self title:nil contact:nil];
     }
-}
-
-- (void)alert:(NSString *)message {
-    UIAlertController *alertController =
-    [UIAlertController alertControllerWithTitle:message
-                                        message:nil
-                                 preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
-                                                       style:UIAlertActionStyleDefault
-                                                     handler:nil];
-    [alertController addAction:okAction];
-    [self presentViewController:alertController animated:YES completion:nil];
-}
-
-- (BOOL)filterError:(NSError *)error {
-    if (error) {
-        [self alert:[error localizedDescription]];
-        return NO;
-    }
-    return YES;
-}
-
-- (void)loginSucceedWithUser:(AVUser *)user authData:(NSDictionary *)authData onPlatform:(NSString *)platform{
-    [AVUser loginWithAuthData:authData platform:platform block:^(AVUser *user, NSError *error) {
-        if (error) {
-            // 登录失败，可能为网络问题或 authData 无效
-            NSLog(@"%@", error.description);
-        } else {
-            [self performSegueWithIdentifier:@"userSegue" sender:user];
-        }
-    }];
 }
 
 @end

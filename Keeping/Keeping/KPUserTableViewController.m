@@ -54,7 +54,7 @@
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm"];
         
-        [self.uploadTimeLabel setText:[NSString stringWithFormat:@"最新：%@",[dateFormatter stringFromDate:[dbQuery getFirstObject].createdAt]]];
+        [self.uploadTimeLabel setText:[NSString stringWithFormat:@"最新：%@",[dateFormatter stringFromDate:[dbQuery getFirstObject].updatedAt]]];
     }else{
         [self.uploadTimeLabel setText:@""];
     }
@@ -80,19 +80,16 @@
         
         AVQuery *query = [AVQuery queryWithClassName:@"dbBackUp"];
         [query whereKey:@"userID" equalTo:self.currentUser.objectId];
+        
         if(query.countObjects == 0){
+            
             AVObject *dbBackUp = [AVObject objectWithClassName:@"dbBackUp"];
             [dbBackUp setObject:self.currentUser.objectId forKey:@"userID"];
             AVFile *f = [AVFile fileWithName:@"" contentsAtPath:[[DBManager shareInstance] getDBPath]];
             [dbBackUp setObject:f forKey:@"db"];
-            [dbBackUp saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-                if(succeeded){
-                    [alert showSuccess:@"上传成功" subTitle:nil closeButtonTitle:@"好的" duration:0.0];
-                }else{
-                    [alert showError:@"上传失败" subTitle:nil closeButtonTitle:@"好的" duration:0.0];
-                }
-            }];
+            
+            succeeded = [dbBackUp save];
+            
         }else{
             AVObject *dbBackUp = [query getFirstObject];
             
@@ -117,7 +114,7 @@
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [hud hideAnimated:YES];
             
             SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
             if(succeeded){
@@ -160,7 +157,7 @@
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [hud hideAnimated:YES];
             
             if(succeeded){
                 SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
@@ -172,6 +169,62 @@
         });
         
     });
+}
+
+- (void)logout{
+    SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+    [alert addButton:@"登出" actionBlock:^{
+        [AVUser logOut];
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    [alert showWarning:@"确认登出吗" subTitle:nil closeButtonTitle:@"取消" duration:0.0f];
+}
+
+- (void)editUsername{
+    SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+    UITextField *usernameText = [alert addTextField:@"用户名"];
+    [alert addButton:@"提交" validationBlock:^BOOL{
+        //检查是否有重复用户名
+        AVQuery *duplicateNameQuery = [AVQuery queryWithClassName:@"username"];
+        [duplicateNameQuery whereKey:@"username" equalTo:usernameText.text];
+        if(duplicateNameQuery.countObjects > 0){
+            SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+            [alert showError:@"错误" subTitle:@"用户名与已有用户重复，请更换" closeButtonTitle:@"好的" duration:0.0];
+        }
+        return duplicateNameQuery.countObjects == 0;
+        
+    } actionBlock:^{
+        
+        AVQuery *query = [AVQuery queryWithClassName:@"username"];
+        [query whereKey:@"userId" equalTo:self.currentUser.objectId];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if (!error) {
+                AVObject *user;
+                
+                if(query.countObjects > 0){
+                    user = objects[0];
+                }else{
+                    user = [AVObject objectWithClassName:@"username"];
+                    [user setObject:self.currentUser.objectId forKey:@"userId"];
+                }
+                [user setObject:usernameText.text forKey:@"username"];
+                
+                [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    
+                    SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+                    [alert showSuccess:@"修改成功" subTitle:nil closeButtonTitle:@"好的" duration:0.0];
+                    [alert alertIsDismissed:^{
+                        [self.userNameLabel setText:[user objectForKey:@"username"]];
+                    }];
+                    
+                }];
+            }else{
+                NSLog(@"错误：%@",error.description);
+            }
+        }];
+        
+    }];
+    [alert showEdit:@"修改用户名" subTitle:nil closeButtonTitle:@"取消" duration:0.0];
 }
 
 #pragma mark - Table view data source
@@ -197,8 +250,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if(indexPath.section == 2 && indexPath.row == 0){
         
-        [AVUser logOut];
-        [self.navigationController popViewControllerAnimated:YES];
+        [self logout];
         
     }else if(indexPath.section == 1 && indexPath.row == 0){
         
@@ -222,50 +274,7 @@
         
     }else if(indexPath.section == 0 && indexPath.row == 0){
         
-        SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-        UITextField *usernameText = [alert addTextField:@"用户名"];
-        [alert addButton:@"提交" validationBlock:^BOOL{
-            //检查是否有重复用户名
-            AVQuery *duplicateNameQuery = [AVQuery queryWithClassName:@"username"];
-            [duplicateNameQuery whereKey:@"username" equalTo:usernameText.text];
-            if(duplicateNameQuery.countObjects > 0){
-                SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-                [alert showError:@"错误" subTitle:@"用户名与已有用户重复，请更换" closeButtonTitle:@"好的" duration:0.0];
-            }
-            return duplicateNameQuery.countObjects == 0;
-            
-        } actionBlock:^{
-            
-            AVQuery *query = [AVQuery queryWithClassName:@"username"];
-            [query whereKey:@"userId" equalTo:self.currentUser.objectId];
-            [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                if (!error) {
-                    AVObject *user;
-                    
-                    if(query.countObjects > 0){
-                        user = objects[0];
-                    }else{
-                        user = [AVObject objectWithClassName:@"username"];
-                        [user setObject:self.currentUser.objectId forKey:@"userId"];
-                    }
-                    [user setObject:usernameText.text forKey:@"username"];
-                    
-                    [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                        
-                        SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-                        [alert showSuccess:@"修改成功" subTitle:nil closeButtonTitle:@"好的" duration:0.0];
-                        [alert alertIsDismissed:^{
-                            [self.userNameLabel setText:[user objectForKey:@"username"]];
-                        }];
-                        
-                    }];
-                }else{
-                    NSLog(@"错误：%@",error.description);
-                }
-            }];
-
-        }];
-        [alert showEdit:@"修改用户名" subTitle:nil closeButtonTitle:@"取消" duration:0.0];
+        [self editUsername];
         
     }
 }

@@ -76,8 +76,7 @@
 }
 
 - (void)doneAction:(id)sender{
-    
-        [self.delegate passScheme:self.selectedApp];
+    [self.delegate passScheme:self.selectedApp];
     
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -210,19 +209,15 @@
     }
 }
 
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if(self.searchController.isActive){
-        
         if(self.selectedApp != self.searchResults[indexPath.row]){
             self.selectedApp = self.searchResults[indexPath.row];
         }else{
             self.selectedApp = NULL;
         }
-        
     }else{
-        
         if(indexPath.section == 3){
             [self showSubmitAlert];
         }else if(indexPath.section == 2){
@@ -239,7 +234,6 @@
                 self.selectedApp = NULL;
             }
         }
-        
     }
     [tableView reloadData];
 }
