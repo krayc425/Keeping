@@ -247,6 +247,16 @@ static TaskManager* _instance = nil;
     return count;
 }
 
+- (int)punchNumberOfTask:(Task *)task{
+    int count = 0;
+    for(NSString *str in task.punchDateArr){
+        if(str.intValue >= [[DateUtil transformDate:task.addDate] intValue]){
+            count++;
+        }
+    }
+    return count;
+}
+
 - (BOOL)punchForTaskWithID:(NSNumber *)taskid onDate:(NSDate *)date{
     FMResultSet *resultSet = [[[DBManager shareInstance] getDB] executeQuery:@"select * from t_task where id = ?;", taskid];
     while([resultSet next]){

@@ -16,8 +16,8 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    [self.nameLabel setTextColor:[Utilities getColor]];
-    [self.timeLabel setTextColor:[Utilities getColor]];
+    [self.nameLabel setTextColor:[UIColor blackColor]];
+    [self.timeLabel setTextColor:[UIColor blackColor]];
     
 //        [self.nameLabel setTextColor:[UIColor blackColor]];
 //        [self.timeLabel setTextColor:[UIColor blackColor]];

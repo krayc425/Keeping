@@ -36,7 +36,8 @@
     }else{
         [self.cardView setBackgroundColor:[UIColor whiteColor]];
         [self.taskNameLabel setTextColor:[UIColor blackColor]];
-        [self.punchDaysLabel setTextColor:[UIColor blackColor]];
+        
+        [self.punchDaysLabel setTextColor:[UIColor grayColor]];
         
         [self.progressView setBackgroundStrokeColor:[UIColor groupTableViewBackgroundColor]];
         [self.progressView setProgressStrokeColor:[Utilities getColor]];

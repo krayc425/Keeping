@@ -58,7 +58,7 @@
     [cardView addSubview:self.calendar];
     
     UIButton *previousButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    previousButton.frame = CGRectMake(5, 10, 95, 34);
+    previousButton.frame = CGRectMake(5, 8, 95, 34);
     previousButton.backgroundColor = [UIColor whiteColor];
     previousButton.titleLabel.font = [UIFont systemFontOfSize:15];
     [previousButton setTintColor:[Utilities getColor]];
@@ -70,7 +70,7 @@
     self.previousButton = previousButton;
     
     UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    nextButton.frame = CGRectMake(CGRectGetWidth(cardView.frame)-100, 10, 95, 34);
+    nextButton.frame = CGRectMake(CGRectGetWidth(cardView.frame)-100, 8, 95, 34);
     nextButton.backgroundColor = [UIColor whiteColor];
     nextButton.titleLabel.font = [UIFont systemFontOfSize:15];
     [nextButton setTintColor:[Utilities getColor]];
@@ -222,8 +222,13 @@
     
     //进度
     int totalPunchNum = [[TaskManager shareInstance] totalPunchNumberOfTask:t];
-    int punchNum = (int)[t.punchDateArr count];
-    [cell.punchDaysLabel setText:[NSString stringWithFormat:@"已完成 %d 天, 计划完成 %d 天", punchNum, totalPunchNum]];
+    int punchNum = [[TaskManager shareInstance] punchNumberOfTask:t];
+//    [cell.punchDaysLabel setText:[NSString stringWithFormat:@"已完成 %d 天, 计划完成 %d 天", punchNum, totalPunchNum]];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    
+    [cell.punchDaysLabel setText:[NSString stringWithFormat:@"创建于 %@ · 已完成 %d 天", [dateFormatter stringFromDate:t.addDate], punchNum]];
     [cell.progressView setProgress:totalPunchNum == 0 ? 0 : (float)punchNum / (float)totalPunchNum animated:NO];
     
     return cell;
@@ -284,8 +289,14 @@
 - (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance fillDefaultColorForDate:(nonnull NSDate *)date{
     if(self.task != NULL){
         //打了卡的日子
-        if([self.task.punchDateArr containsObject:[DateUtil transformDate:date]]){
-            return [Utilities getColor];
+        if([self.task.punchDateArr containsObject:[DateUtil transformDate:date]] && [date isLaterThanOrEqualTo:self.task.addDate]){
+            if(self.task.endDate != NULL){
+                if([self.task.endDate isLaterThanOrEqualTo:date]){
+                    return [Utilities getColor];
+                }
+            }else{
+                return [Utilities getColor];
+            }
         }
     }
     return appearance.borderDefaultColor;
@@ -294,8 +305,14 @@
 - (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance titleDefaultColorForDate:(NSDate *)date{
     if(self.task != NULL){
         //打了卡的日子
-        if([self.task.punchDateArr containsObject:[DateUtil transformDate:date]]){
-            return [UIColor whiteColor];
+        if([self.task.punchDateArr containsObject:[DateUtil transformDate:date]] && [date isLaterThanOrEqualTo:self.task.addDate]){
+            if(self.task.endDate != NULL){
+                if([self.task.endDate isLaterThanOrEqualTo:date]){
+                    return [UIColor whiteColor];
+                }
+            }else{
+                return [UIColor whiteColor];
+            }
         }
     }
     return appearance.borderDefaultColor;
@@ -304,36 +321,66 @@
 - (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance borderDefaultColorForDate:(NSDate *)date{
     
     if(self.task != NULL){
-        //未来应该打卡的日子、打了卡的日子、没打卡的日子
-        if([self.task.punchDateArr containsObject:[DateUtil transformDate:date]]){
-            return [Utilities getColor];
-        }
-        if([self.task.addDate isEarlierThanOrEqualTo:date] && [self.task.reminderDays containsObject:@(date.weekday)]){
-                if(self.task.endDate == NULL){
-                    
-                    if([[NSDate date] isEarlierThanOrEqualTo:date]){
-                        return [Utilities getColor];
-                    }else{
-                        return [UIColor redColor];
-                    }
-                    
-                }else{
-                    
-                    if([self.task.endDate isLaterThanOrEqualTo:date]){
-                        
-                        if([[NSDate date] isEarlierThanOrEqualTo:date]){
-                            return [Utilities getColor];
-                        }else{
-                            return [UIColor redColor];
-                        }
-                        
-                    }else{
-                        return [UIColor clearColor];
-                    }
-                }
         
+        if([date isEarlierThan:self.task.addDate]){
+            return [UIColor clearColor];
         }
+        
+        if(self.task.endDate != NULL){
+            if([date isLaterThan:self.task.endDate]){
+                return [UIColor clearColor];
+            }
+        }
+        
+        if([self.task.reminderDays containsObject:@(date.weekday)]){
+            if([self.task.punchDateArr containsObject:[DateUtil transformDate:date]]){
+                return [Utilities getColor];
+            }else{
+                if([[NSDate date] isLaterThan:date]){
+                    return [UIColor redColor];
+                }else{
+                    return [Utilities getColor];
+                }
+            }
+        }else{
+            return [UIColor clearColor];
+        }
+        
     }
+    
+//        //未来应该打卡的日子、打了卡的日子、没打卡的日子
+//        if([self.task.punchDateArr containsObject:[DateUtil transformDate:date]] && [date isLaterThanOrEqualTo:self.task.addDate] && [self.task.endDate isLaterThanOrEqualTo:date]){
+//            
+//            return [Utilities getColor];
+//            
+//        }else if([self.task.addDate isEarlierThanOrEqualTo:date] && [self.task.reminderDays containsObject:@(date.weekday)]){
+//            
+//            if(self.task.endDate == NULL){
+//                
+//                if([[NSDate date] isEarlierThanOrEqualTo:date]){
+//                    return [Utilities getColor];
+//                }else{
+//                    return [UIColor redColor];
+//                }
+//                
+//            }else{
+//                
+//                if([self.task.endDate isLaterThanOrEqualTo:date]){
+//                    
+//                    if([[NSDate date] isEarlierThanOrEqualTo:date]){
+//                        return [Utilities getColor];
+//                    }else{
+//                        return [UIColor redColor];
+//                    }
+//                    
+//                }else{
+//                    return [UIColor clearColor];
+//                }
+//                
+//            }
+//        
+//        }
+//    }
     
     return appearance.borderDefaultColor;
 }

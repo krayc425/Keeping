@@ -338,9 +338,10 @@
         }
         
         int totalPunchNum = [[TaskManager shareInstance] totalPunchNumberOfTask:t];
-        int punchNum = (int)[t.punchDateArr count];
+        int punchNum = [[TaskManager shareInstance] punchNumberOfTask:t];
         //暂时 NO
         [cell.progressView setProgress:totalPunchNum == 0 ? 0 : (float)punchNum / totalPunchNum animated:NO];
+        
         return cell;
     }else{
         return [super tableView:tableView cellForRowAtIndexPath:indexPath];

@@ -41,19 +41,19 @@
     self.taskTableView.emptyDataSetDelegate = self;
     self.taskTableView.backgroundColor = [UIColor clearColor];
     
-    [self.dateLabel setTextColor:[Utilities getColor]];
+    [self.dateLabel setTextColor:[UIColor blackColor]];
     [self.dateLabel setFont:[UIFont fontWithName:self.fontName size:25.0f]];
     
     [self.countLabel setTextColor:[UIColor blackColor]];
     [self.countLabel setFont:[UIFont fontWithName:self.fontName size:15.0f]];
-    
-    self.extensionContext.widgetLargestAvailableDisplayMode = NCWidgetDisplayModeExpanded;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
     [self.dateLabel setText:[DateUtil getDateStringOfDate:[NSDate date]]];
+    
+    self.extensionContext.widgetLargestAvailableDisplayMode = NCWidgetDisplayModeExpanded;
     
     [self loadTasks];
 }

@@ -51,6 +51,8 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
     [self setFont];
 
     if([AVUser currentUser]){
@@ -73,9 +75,18 @@
         }];
         
         [self.appButtonStack setHidden:YES];
+        
+        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleDefault];
+        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+        
     }else{
         [self.userNameLabel setText:@"登录"];
         [self.appButtonStack setHidden:NO];
+        
+        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        [cell setAccessoryType:UITableViewCellAccessoryNone];
     }
 }
 

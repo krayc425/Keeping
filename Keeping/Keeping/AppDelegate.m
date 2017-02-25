@@ -38,7 +38,7 @@
     [UNManager reconstructNotifications];
     
     [self replyPushNotificationAuthorization:application];
-    
+    [self registerForRemoteNotification];
     
     
     //LeanCloud
@@ -137,6 +137,63 @@
         [application registerUserNotificationSettings:settings];
         
     }
+}
+
+/**
+ * 初始化UNUserNotificationCenter
+ */
+- (void)registerForRemoteNotification {
+    // iOS10 兼容
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.0) {
+        // 使用 UNUserNotificationCenter 来管理通知
+        UNUserNotificationCenter *uncenter = [UNUserNotificationCenter currentNotificationCenter];
+        // 监听回调事件
+        [uncenter setDelegate:self];
+        //iOS10 使用以下方法注册，才能得到授权
+        [uncenter requestAuthorizationWithOptions:(UNAuthorizationOptionAlert+UNAuthorizationOptionBadge+UNAuthorizationOptionSound)
+                                completionHandler:^(BOOL granted, NSError * _Nullable error) {
+                                    [[UIApplication sharedApplication] registerForRemoteNotifications];
+                                    //TODO:授权状态改变
+                                    NSLog(@"%@" , granted ? @"授权成功" : @"授权失败");
+                                }];
+        // 获取当前的通知授权状态, UNNotificationSettings
+        [uncenter getNotificationSettingsWithCompletionHandler:^(UNNotificationSettings * _Nonnull settings) {
+            NSLog(@"%s\nline:%@\n-----\n%@\n\n", __func__, @(__LINE__), settings);
+            /*
+             UNAuthorizationStatusNotDetermined : 没有做出选择
+             UNAuthorizationStatusDenied : 用户未授权
+             UNAuthorizationStatusAuthorized ：用户已授权
+             */
+            if (settings.authorizationStatus == UNAuthorizationStatusNotDetermined) {
+                NSLog(@"未选择");
+            } else if (settings.authorizationStatus == UNAuthorizationStatusDenied) {
+                NSLog(@"未授权");
+            } else if (settings.authorizationStatus == UNAuthorizationStatusAuthorized) {
+                NSLog(@"已授权");
+            }
+        }];
+    }
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        UIUserNotificationType types = UIUserNotificationTypeAlert |
+        UIUserNotificationTypeBadge |
+        UIUserNotificationTypeSound;
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
+        
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    } else {
+        UIRemoteNotificationType types = UIRemoteNotificationTypeBadge |
+        UIRemoteNotificationTypeAlert |
+        UIRemoteNotificationTypeSound;
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:types];
+    }
+#pragma clang diagnostic pop
+}
+
+- (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    [AVOSCloud handleRemoteNotificationsWithDeviceToken:deviceToken];
 }
 
 #pragma mark - iOS10 收到通知（本地和远端） UNUserNotificationCenterDelegate

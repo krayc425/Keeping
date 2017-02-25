@@ -10,7 +10,6 @@
 #import "TaskManager.h"
 #import "Utilities.h"
 #import "KPSeparatorView.h"
-#import "UIView+MJAlertView.h"
 #import "DateUtil.h"
 #import "DateTools.h"
 #import "KPImageViewController.h"
@@ -98,8 +97,7 @@
     
     
     //开始、到期日期颜色
-    [self.startDateButton setUserInteractionEnabled:NO];
-    [self.startDateButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    [self.startDateButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
     [self.endDateButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
     [self.startDateButton.titleLabel sizeToFit];
     [self.endDateButton.titleLabel sizeToFit];
@@ -250,20 +248,27 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)nextAction:(id)sender{
-    if(![self checkCompleted]){
-        [UIView addMJNotifierWithText:@"信息填写不完整" dismissAutomatically:YES];
-    }else{
-        [self performSegueWithIdentifier:@"addExtraSegue" sender:nil];
-    }
-}
-
 - (void)doneAction:(id)sender{
     
     //先检查有没有填满必填信息
     if(![self checkCompleted]){
         SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
         [alert showError:@"信息填写不完整" subTitle:nil closeButtonTitle:@"好的" duration:0.0f];
+        [alert alertIsDismissed:^{
+            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+        }];
+        return;
+    }
+    
+    NSDate *titleStartDate = [NSDate dateWithString:self.startDateButton.titleLabel.text formatString:DATE_FORMAT];
+    NSDate *titleEndDate = [NSDate dateWithString:self.endDateButton.titleLabel.text formatString:DATE_FORMAT];
+    //检查结束日期是否合法
+    if([titleEndDate isEarlierThan:titleStartDate]){
+        SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+        [alert showError:@"持续时间设置不正确" subTitle:nil closeButtonTitle:@"好的" duration:0.0f];
+        [alert alertIsDismissed:^{
+            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:2] atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+        }];
         return;
     }
     
@@ -282,7 +287,6 @@
     //提醒时间
     self.task.reminderTime = self.reminderTime;
     //图片
-//    self.task.image = UIImageJPEGRepresentation((self.selectedImgView.image), 1.0);
     if(self.selectedImgView.image == NULL){
         self.task.image = NULL;
     }else{
@@ -291,11 +295,13 @@
     }
     //链接
     self.task.link = self.linkTextField.text;       //有：文字，无：@“”
+    //开始日期
+    self.task.addDate = titleStartDate;
     //结束日期
     if([self.endDateButton.titleLabel.text isEqualToString:ENDLESS_STRING]){
         self.task.endDate = NULL;
     }else{
-        self.task.endDate = [NSDate dateWithString:self.endDateButton.titleLabel.text formatString:DATE_FORMAT];
+        self.task.endDate = titleEndDate;
     }
     //备注
     self.task.memo = self.memoTextView.text;
@@ -305,9 +311,9 @@
     //更新
     if(self.task.id == 0){
         
-        //添加日期，打卡数组
-        NSDate *addDate = [NSDate dateWithYear:[[NSDate date] year] month:[[NSDate date] month] day:[[NSDate date] day]];
-        self.task.addDate = addDate;
+        //打卡数组
+//        NSDate *addDate = [NSDate dateWithYear:[[NSDate date] year] month:[[NSDate date] month] day:[[NSDate date] day]];
+//        self.task.addDate = addDate;
         self.task.punchDateArr = [[NSMutableArray alloc] init];
 
         //完成时间
@@ -449,8 +455,9 @@
                                                                           width:self.view.frame.size.width
                                                                          height:self.view.frame.size.width
                                                                       withBlock:^(UIImage * _Nullable image, NSError * _Nullable error) {
-                                                                 
-                                                                 [self.selectedImgView setImage:[ImageUtil normalizedImage:image]];
+                                                                          
+                                                                          [self setHasImage];
+                                                                          [self.selectedImgView setImage:[ImageUtil normalizedImage:image]];
                                                                                                                             
                                                              }];
 
@@ -536,23 +543,33 @@
     [myfmt setDateFormat:@"yyyy 年 MM 月"];
     hsdpvc.monthAndYearLabelDateFormater = myfmt;
     
+    //设置时开始日期还是结束日期
     hsdpvc.timeType = type;
     
     if(type == 0){
         
     }else{
-        hsdpvc.minDate = [NSDate date];
+        //让他结束日期可以是今天
+        NSDate *minDate = [NSDate dateWithString:self.startDateButton.titleLabel.text formatString:DATE_FORMAT];
+        hsdpvc.minDate = minDate;
     }
     
     [self presentViewController:hsdpvc animated:YES completion:nil];
 }
 
-- (void)hsDatePickerPickedDate:(NSDate *)date{
-    if(date == NULL){
+- (void)hsDatePickerPickedDate:(NSDictionary *)dateDict{
+    if(dateDict == NULL){
+        //无限期，只能是结束日期
         [self.endDateButton setTitle:ENDLESS_STRING forState:UIControlStateNormal];
     }else{
-        NSDate *endDate = [NSDate dateWithYear:[date year] month:[date month] day:[date day]];
-        [self.endDateButton setTitle:[endDate formattedDateWithFormat:DATE_FORMAT] forState:UIControlStateNormal];
+        NSDate *date = [dateDict valueForKey:@"date"];
+        if([[dateDict valueForKey:@"type"] intValue] == 0){
+            NSDate *addDate = [NSDate dateWithYear:[date year] month:[date month] day:[date day]];
+            [self.startDateButton setTitle:[addDate formattedDateWithFormat:DATE_FORMAT] forState:UIControlStateNormal];
+        }else{
+            NSDate *endDate = [NSDate dateWithYear:[date year] month:[date month] day:[date day]];
+            [self.endDateButton setTitle:[endDate formattedDateWithFormat:DATE_FORMAT] forState:UIControlStateNormal];
+        }
     }
 }
 

@@ -32,7 +32,9 @@ typedef enum : NSUInteger {
  *
  *  @param date selected date and time
  */
-- (void)hsDatePickerPickedDate:(NSDate *)date;
+//- (void)hsDatePickerPickedDate:(NSDate *)date;
+- (void)hsDatePickerPickedDate:(NSDictionary *)dateDict;
+
 @optional
 /**
  *  This method is called when view will be dismissed.

@@ -29,6 +29,7 @@ static AMPopTip *shareTip = NULL;
 @interface KPTodayTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, MLKMenuPopoverDelegate>
 
 @property (nonatomic, strong) MLKMenuPopover *_Nonnull menuPopover;
+@property (nonatomic, strong) UIView *expandView;
 
 @end
 
@@ -74,6 +75,56 @@ static AMPopTip *shareTip = NULL;
     [self.colorView addGestureRecognizer:swipeGRRight1];
     [self.dateStack addGestureRecognizer:swipeGRLeft2];
     [self.dateStack addGestureRecognizer:swipeGRRight2];
+    
+    //日历插件
+    self.calendar = [[FSCalendar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width - 20, 250)];
+    self.calendar.dataSource = self;
+    self.calendar.delegate = self;
+    self.calendar.backgroundColor = [UIColor whiteColor];
+    self.calendar.layer.cornerRadius = 10;
+    
+    self.calendar.appearance.titleFont = [UIFont fontWithName:[Utilities getFont] size:12.0];
+    self.calendar.appearance.headerTitleFont = [UIFont fontWithName:[Utilities getFont] size:15.0];
+    self.calendar.appearance.weekdayFont = [UIFont fontWithName:[Utilities getFont] size:15.0];
+    self.calendar.appearance.subtitleFont = [UIFont fontWithName:[Utilities getFont] size:10.0];
+    
+    self.calendar.appearance.headerMinimumDissolvedAlpha = 0;
+    self.calendar.appearance.headerDateFormat = @"yyyy 年 MM 月";
+    
+    self.calendar.appearance.headerTitleColor = [Utilities getColor];
+    self.calendar.appearance.weekdayTextColor = [Utilities getColor];
+    
+    //        self.calendar.appearance.todayColor = [UIColor whiteColor];
+    //        self.calendar.appearance.titleTodayColor = [UIColor whiteColor];
+    self.calendar.appearance.selectionColor =  [Utilities getColor];
+    self.calendar.appearance.titleSelectionColor = [UIColor whiteColor];
+    //        self.calendar.appearance.todaySelectionColor = [Utilities getColor];
+    
+    UIButton *previousButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    previousButton.frame = CGRectMake(5, 5, 95, 34);
+    previousButton.backgroundColor = [UIColor whiteColor];
+    previousButton.titleLabel.font = [UIFont systemFontOfSize:15];
+    [previousButton setTintColor:[Utilities getColor]];
+    UIImage *leftImg = [UIImage imageNamed:@"icon_prev"];
+    leftImg = [leftImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [previousButton setImage:leftImg forState:UIControlStateNormal];
+    [previousButton addTarget:self action:@selector(previousClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.calendar addSubview:previousButton];
+    self.previousButton = previousButton;
+    
+    UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    nextButton.frame = CGRectMake(CGRectGetWidth(self.calendar.frame)-100, 5, 95, 34);
+    nextButton.backgroundColor = [UIColor whiteColor];
+    nextButton.titleLabel.font = [UIFont systemFontOfSize:15];
+    [nextButton setTintColor:[Utilities getColor]];
+    UIImage *rightImg = [UIImage imageNamed:@"icon_next"];
+    rightImg = [rightImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [nextButton setImage:rightImg forState:UIControlStateNormal];
+    [nextButton addTarget:self action:@selector(nextClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.calendar addSubview:nextButton];
+    self.nextButton = nextButton;
+    
+    [self.calendar selectDate:self.selectedDate scrollToDate:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -175,55 +226,6 @@ static AMPopTip *shareTip = NULL;
     AMPopTip *tp = [KPTodayTableViewController shareTipInstance];
     
     if(![tp isVisible] && ![tp isAnimating]){
-    
-        self.calendar = [[FSCalendar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width - 20, 250)];
-        self.calendar.dataSource = self;
-        self.calendar.delegate = self;
-        self.calendar.backgroundColor = [UIColor whiteColor];
-        self.calendar.layer.cornerRadius = 10;
-        
-        self.calendar.appearance.titleFont = [UIFont fontWithName:[Utilities getFont] size:12.0];
-        self.calendar.appearance.headerTitleFont = [UIFont fontWithName:[Utilities getFont] size:15.0];
-        self.calendar.appearance.weekdayFont = [UIFont fontWithName:[Utilities getFont] size:15.0];
-        self.calendar.appearance.subtitleFont = [UIFont fontWithName:[Utilities getFont] size:10.0];
-        
-        self.calendar.appearance.headerMinimumDissolvedAlpha = 0;
-        self.calendar.appearance.headerDateFormat = @"yyyy 年 MM 月";
-        
-        self.calendar.appearance.headerTitleColor = [Utilities getColor];
-        self.calendar.appearance.weekdayTextColor = [Utilities getColor];
-        
-//        self.calendar.appearance.todayColor = [UIColor whiteColor];
-//        self.calendar.appearance.titleTodayColor = [UIColor whiteColor];
-        self.calendar.appearance.selectionColor =  [Utilities getColor];
-        self.calendar.appearance.titleSelectionColor = [UIColor whiteColor];
-//        self.calendar.appearance.todaySelectionColor = [Utilities getColor];
-        
-        UIButton *previousButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        previousButton.frame = CGRectMake(5, 5, 95, 34);
-        previousButton.backgroundColor = [UIColor whiteColor];
-        previousButton.titleLabel.font = [UIFont systemFontOfSize:15];
-        [previousButton setTintColor:[Utilities getColor]];
-        UIImage *leftImg = [UIImage imageNamed:@"icon_prev"];
-        leftImg = [leftImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        [previousButton setImage:leftImg forState:UIControlStateNormal];
-        [previousButton addTarget:self action:@selector(previousClicked:) forControlEvents:UIControlEventTouchUpInside];
-        [self.calendar addSubview:previousButton];
-        self.previousButton = previousButton;
-        
-        UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        nextButton.frame = CGRectMake(CGRectGetWidth(self.calendar.frame)-100, 5, 95, 34);
-        nextButton.backgroundColor = [UIColor whiteColor];
-        nextButton.titleLabel.font = [UIFont systemFontOfSize:15];
-        [nextButton setTintColor:[Utilities getColor]];
-        UIImage *rightImg = [UIImage imageNamed:@"icon_next"];
-        rightImg = [rightImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        [nextButton setImage:rightImg forState:UIControlStateNormal];
-        [nextButton addTarget:self action:@selector(nextClicked:) forControlEvents:UIControlEventTouchUpInside];
-        [self.calendar addSubview:nextButton];
-        self.nextButton = nextButton;
-        
-        [self.calendar selectDate:self.selectedDate scrollToDate:YES];
         
         [tp showCustomView:self.calendar
                  direction:AMPopTipDirectionDown
@@ -236,6 +238,10 @@ static AMPopTip *shareTip = NULL;
         tp.borderColor = [UIColor whiteColor];
         
         tp.radius = 15;
+        
+        [tp setDismissHandler:^{
+            shareTip = NULL;
+        }];
     }
 }
 
@@ -316,7 +322,7 @@ static AMPopTip *shareTip = NULL;
     }
 }
 
-- (UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     return [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 100)];
 }
 
@@ -503,9 +509,7 @@ static AMPopTip *shareTip = NULL;
     
     if(indexPath.section != 0){
         KPTodayTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        if([cell.moreButton isHidden]){
-            
-        }else{
+        if(![cell.moreButton isHidden]){
             if(self.selectedIndexPath == indexPath){
                 self.selectedIndexPath = NULL;
             }else{
@@ -520,12 +524,8 @@ static AMPopTip *shareTip = NULL;
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(indexPath.section != 0){
-        if(indexPath != self.selectedIndexPath){
-            return UITableViewCellEditingStyleDelete;
-        }else{
-            return UITableViewCellEditingStyleNone;
-        }
+    if(indexPath.section != 0 && indexPath != self.selectedIndexPath){
+        return UITableViewCellEditingStyleDelete;
     }else{
         return UITableViewCellEditingStyleNone;
     }
@@ -609,6 +609,10 @@ static AMPopTip *shareTip = NULL;
                 tp.borderColor = [UIColor whiteColor];
 
                 tp.radius = 10;
+                
+                [tp setDismissHandler:^{
+                    shareTip = NULL;
+                }];
             }
         }
             break;
@@ -657,7 +661,7 @@ static AMPopTip *shareTip = NULL;
 - (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date{
     NSDate *tempDate = [NSDate dateWithYear:[date year] month:[date month] day:[date day]];
     self.selectedDate = tempDate;
-    [[KPTodayTableViewController shareTipInstance] hide];
+    [self hideTip];
     [self loadTasks];
 }
 

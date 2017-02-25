@@ -14,7 +14,7 @@
 @implementation Task
 
 - (float)progress{
-    return (float)[self.punchDateArr count] / [[TaskManager shareInstance] totalPunchNumberOfTask:self];
+    return (float)[[TaskManager shareInstance] punchNumberOfTask:self] / [[TaskManager shareInstance] totalPunchNumberOfTask:self];
 }
 
 - (NSString *)sortName{

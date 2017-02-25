@@ -476,7 +476,11 @@ static NSInteger kBufforRows = 30; //Number of rows that are prevent by scroll p
 - (IBAction)confirmDate:(id)sender {
     //TODO: Set date
     if ([self.delegate respondsToSelector:@selector(hsDatePickerPickedDate:)]) {
-        [self.delegate hsDatePickerPickedDate:[self dateWithSelectedTime]];
+        NSDictionary *dict = @{
+                               @"date" : [self dateWithSelectedTime],
+                               @"type" : @(self.timeType)
+                               };
+        [self.delegate hsDatePickerPickedDate:dict];
     }
     
     if ([self.delegate respondsToSelector:@selector(hsDatePickerWillDismissWithQuitMethod:)]) {
