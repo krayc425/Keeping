@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BEMCheckBox.h"
+#import "CardsView.h"
 
 @protocol CheckTaskDelegate <NSObject>
 
@@ -37,7 +38,9 @@
 @property (nonnull, nonatomic) IBOutlet UIImageView *imageImg;
 @property (nonnull, nonatomic) IBOutlet UIImageView *memoImg;
 //子 cardview
-@property (nonnull, nonatomic) IBOutlet UIView *cardView2;
+@property (nonnull, nonatomic) IBOutlet CardsView *cardView2;
+//按钮 stackview
+@property (nonnull, nonatomic) IBOutlet UIStackView *buttonStackView;
 //APP 按钮
 @property (nonnull, nonatomic) IBOutlet UIButton *appButton;    //tag = 0
 //链接 按钮
@@ -46,6 +49,9 @@
 @property (nonnull, nonatomic) IBOutlet UIButton *imageButton;  //tag = 2
 //备注 按钮
 @property (nonnull, nonatomic) IBOutlet UIButton *memoButton;  //tag = 3
+
+//@property (nonatomic) BOOL isSelected;
+- (void)setIsSelected:(BOOL)isSelected;
 
 - (void)setIsFinished:(BOOL)isFinished;
 

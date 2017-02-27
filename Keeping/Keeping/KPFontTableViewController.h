@@ -10,4 +10,6 @@
 
 @interface KPFontTableViewController : UITableViewController
 
+@property (nonatomic) IBOutlet UISegmentedControl *sizeControl;
+
 @end

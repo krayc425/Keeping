@@ -57,15 +57,17 @@
        || [[NSUserDefaults standardUserDefaults] valueForKey:@"font"] == NULL){
         [[NSUserDefaults standardUserDefaults] setValue:@"STHeitiSC-Light" forKey:@"font"];
     }
+    if([[NSUserDefaults standardUserDefaults] integerForKey:@"fontSize"] == 0){
+        [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"fontSize"];
+    }
     [[NSUserDefaults standardUserDefaults] synchronize];
-    
+    //widget 字体
     NSUserDefaults *shared = [[NSUserDefaults alloc]initWithSuiteName:GROUP_ID];
     if([shared valueForKey:@"fontwidget"] == NULL
        || [[shared valueForKey:@"fontwidget"] isEqualToString:@""]){
         [shared setValue:@"STHeitiSC-Light" forKey:@"fontwidget"];
         [shared synchronize];
     }
-    
     
     //下载 schemes
     NSArray *r = [[KPSchemeManager shareInstance] getSchemeArr];

@@ -15,6 +15,7 @@
 
 + (NSString *)getFont;
 + (NSArray *)getFontArr;
++ (NSArray *)getFontSizeArr;
 
 + (NSString *)getAPPID;
 

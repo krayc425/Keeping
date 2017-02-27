@@ -15,6 +15,7 @@ target 'Keeping' do
   pod 'MMWormhole'
   pod 'LeanCloudSocial'
   pod 'SCLAlertView-Objective-C'
+  pod 'StepSlider'
   
 end
 

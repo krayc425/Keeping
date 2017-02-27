@@ -11,6 +11,9 @@
 #import "KPFontTableViewCell.h"
 #import "KPNavigationViewController.h"
 #import "KPTabBarViewController.h"
+#import "KPTaskTableViewCell.h"
+#import "KPTodayTableViewCell.h"
+#import "HYCircleProgressView.h"
 
 #define GROUP_ID @"group.com.krayc.keeping"
 
@@ -25,7 +28,10 @@
     
     [self.navigationItem setTitle:@"字体"];
     
-//    [self loadFontNames];
+    [self.sizeControl setTintColor:[Utilities getColor]];
+    
+    [self.sizeControl setSelectedSegmentIndex:[[NSUserDefaults standardUserDefaults] integerForKey:@"fontSize"]];
+    [self.sizeControl addTarget:self action:@selector(sliderValueChanged) forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)loadFontNames{
@@ -41,53 +47,160 @@
     [super didReceiveMemoryWarning];
 }
 
+- (void)sliderValueChanged{
+    [[NSUserDefaults standardUserDefaults] setInteger:self.sizeControl.selectedSegmentIndex forKey:@"fontSize"];
+    [self.tableView reloadData];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[Utilities getFontArr] count];
+    switch (section) {
+        case 0:
+            return 2;
+        case 1:
+            return [[Utilities getFontArr] count];
+        case 2:
+            return 1;
+        default:
+            return 0;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellIdentifier = @"KPFontTableViewCell";
-    UINib *nib = [UINib nibWithNibName:@"KPFontTableViewCell" bundle:nil];
-    [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
-    KPFontTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    
-    NSDictionary *fontDict = [Utilities getFontArr][indexPath.row];
-    
-    [cell.fontLabel setText:[fontDict allKeys][0]];
-    [cell.fontLabel setFont:[UIFont fontWithName:[fontDict allValues][0] size:20.0f]];
+    if(indexPath.section == 1){
+        static NSString *cellIdentifier = @"KPFontTableViewCell";
+        UINib *nib = [UINib nibWithNibName:@"KPFontTableViewCell" bundle:nil];
+        [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
+        KPFontTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+        
+        NSDictionary *fontDict = [Utilities getFontArr][indexPath.row];
+        
+        [cell.fontLabel setText:[fontDict allKeys][0]];
+        [cell.fontLabel setFont:[UIFont fontWithName:[fontDict allValues][0] size:20.0f]];
 
-    if([[[NSUserDefaults standardUserDefaults] valueForKey:@"font"] isEqualToString:[fontDict allValues][0]]){
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        if([[[NSUserDefaults standardUserDefaults] valueForKey:@"font"] isEqualToString:[fontDict allValues][0]]){
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }else{
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
+        
+        return cell;
+    }else if(indexPath.section == 0){
+        
+        Task *t = [Task new];
+        
+        t.name = @"展示任务";
+        t.reminderDays = @[@(1),@(3),@(5)];
+        t.image = NULL;
+        t.link = NULL;
+        t.appScheme = NULL;
+        t.memo = NULL;
+        t.reminderTime = [NSDate date];
+        t.type = 3;
+        
+        if(indexPath.row == 0){
+            static NSString *cellIdentifier = @"KPTodayTableViewCell";
+            UINib *nib = [UINib nibWithNibName:@"KPTodayTableViewCell" bundle:nil];
+            [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
+            KPTodayTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+            
+            [cell setIsSelected:NO];
+            
+            [cell setFont];
+            
+            [cell.taskNameLabel setText:t.name];
+            
+            [cell.moreButton setHidden:YES];
+            [cell.typeImg setHidden:NO];
+            [cell.appImg setHidden:YES];
+            [cell.linkImg setHidden:YES];
+            [cell.memoImg setHidden:YES];
+            [cell.imageImg setHidden:YES];
+            
+            UIImage *img = [UIImage imageNamed:@"CIRCLE_FULL"];
+            img = [img imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            cell.typeImg.tintColor = [Utilities getTypeColorArr][t.type - 1];
+            [cell.typeImg setImage:img];
+
+            NSString *reminderTimeStr = @"";
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"HH:mm"];
+            reminderTimeStr = [dateFormatter stringFromDate:t.reminderTime];
+            [cell.reminderLabel setText:reminderTimeStr];
+            [cell.reminderLabel setHidden:NO];
+            
+            return cell;
+        }else{
+            static NSString *cellIdentifier = @"KPTaskTableViewCell";
+            UINib *nib = [UINib nibWithNibName:@"KPTaskTableViewCell" bundle:nil];
+            [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
+            KPTaskTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+            
+            [cell setFont];
+            
+            [cell.nameLabel setText:t.name];
+            
+            [cell.weekdayView selectWeekdaysInArray:[NSMutableArray arrayWithArray:t.reminderDays]];
+            [cell.weekdayView setIsAllSelected:NO];
+            [cell.weekdayView setUserInteractionEnabled:NO];
+            
+            UIImage *img = [UIImage imageNamed:@"CIRCLE_FULL"];
+            img = [img imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            cell.typeImg.tintColor = [Utilities getTypeColorArr][t.type - 1];
+            [cell.typeImg setImage:img];
+            
+            [cell.progressView setProgress:(arc4random() % 101) / 100.0 animated:NO];
+            
+            return cell;
+        }
     }else{
-        cell.accessoryType = UITableViewCellAccessoryNone;
+        return [super tableView:tableView cellForRowAtIndexPath:indexPath];
     }
-    
-    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSDictionary *fontDict = [Utilities getFontArr][indexPath.row];
-    
-    [[NSUserDefaults standardUserDefaults] setValue:[fontDict allValues][0] forKey:@"font"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    NSUserDefaults *shared = [[NSUserDefaults alloc]initWithSuiteName:GROUP_ID];
-    [shared setValue:[fontDict allValues][0] forKey:@"fontwidget"];
-    [shared synchronize];
-    
-    KPNavigationViewController *nav = (KPNavigationViewController *)self.navigationController;
-    [nav setFont];
-    
-    KPTabBarViewController *tab = (KPTabBarViewController *)nav.viewControllers[0];
-    [tab setFont];
-    
-    [tableView reloadData];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if(indexPath.section == 1){
+        NSDictionary *fontDict = [Utilities getFontArr][indexPath.row];
+        
+        [[NSUserDefaults standardUserDefaults] setValue:[fontDict allValues][0] forKey:@"font"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        NSUserDefaults *shared = [[NSUserDefaults alloc]initWithSuiteName:GROUP_ID];
+        [shared setValue:[fontDict allValues][0] forKey:@"fontwidget"];
+        [shared synchronize];
+        
+        KPNavigationViewController *nav = (KPNavigationViewController *)self.navigationController;
+        [nav setFont];
+        
+        KPTabBarViewController *tab = (KPTabBarViewController *)nav.viewControllers[0];
+        [tab setFont];
+        
+        [tableView reloadData];
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(indexPath.section == 1){
+        return 44;
+    }else if(indexPath.section == 0){
+        return 70;
+    }else{
+        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    }
+}
+
+- (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 1) {
+        return 10;
+    }else{
+        return [super tableView:tableView indentationLevelForRowAtIndexPath:indexPath];
+    }
 }
 
 @end

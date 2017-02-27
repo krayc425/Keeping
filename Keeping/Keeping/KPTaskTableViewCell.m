@@ -64,9 +64,12 @@
 }
 
 - (void)setFont{
-    [self.nameLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
-    [self.daysLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
-    [deleteLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
+    NSNumber *fontSize = [Utilities getFontSizeArr][[[NSUserDefaults standardUserDefaults] integerForKey:@"fontSize"]];
+    float f = [fontSize floatValue];
+    
+    [self.nameLabel setFont:[UIFont fontWithName:[Utilities getFont] size:f]];
+    [self.daysLabel setFont:[UIFont fontWithName:[Utilities getFont] size:f / 1.2]];
+    [deleteLabel setFont:[UIFont fontWithName:[Utilities getFont] size:f]];
     
     [self.progressView setFont];
     

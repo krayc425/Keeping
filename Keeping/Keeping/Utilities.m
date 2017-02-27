@@ -19,6 +19,14 @@
     return [[NSUserDefaults standardUserDefaults] valueForKey:@"font"];
 }
 
++ (NSArray *)getFontSizeArr{
+    return @[
+             @(16),
+             @(18),
+             @(20)
+             ];
+}
+
 + (NSArray *)getFontArr{
     return @[
              @{@"黑体" : @"STHeitiSC-Light"},

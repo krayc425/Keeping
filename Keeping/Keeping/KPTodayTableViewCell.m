@@ -21,6 +21,7 @@
     [super awakeFromNib];
     
     [self setFont];
+//    [self setIsSelected:NO];
     
     self.myCheckBox.delegate = self;
     [self.myCheckBox setOnAnimationType:BEMAnimationTypeFill];
@@ -68,20 +69,43 @@
     [self.myCheckBox setOn:isFinished];
 }
 
+- (void)setIsSelected:(BOOL)isSelected{
+    NSLog(@"%d", isSelected);
+//    self.isSelected = isSelected;
+    
+    if(isSelected){
+        self.cardView2 = [[CardsView alloc] initWithFrame:CGRectMake(10, 70, self.frame.size.width - 20, 50)];
+        self.cardView2.cornerRadius = 10.0;
+        [self addSubview:self.cardView2];
+        
+        self.buttonStackView = [[UIStackView alloc] initWithFrame:self.cardView2.frame];
+        self.buttonStackView = [self.buttonStackView initWithArrangedSubviews:@[self.appButton,self.linkButton,self.imageButton,self.memoButton]];
+        self.buttonStackView.alignment = UIStackViewAlignmentCenter;
+        self.buttonStackView.distribution = UIStackViewDistributionFillEqually;
+        [self addSubview:self.buttonStackView];
+    }else{
+        [self.buttonStackView removeFromSuperview];
+        [self.cardView2 removeFromSuperview];
+    }
+}
+
 - (IBAction)moreAction:(id)sender{
     [self.delegate moreAction:self withButton:(UIButton *)sender];
 }
 
 - (void)setFont{
-    [self.taskNameLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
-    [self.reminderLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
+    NSNumber *fontSize = [Utilities getFontSizeArr][[[NSUserDefaults standardUserDefaults] integerForKey:@"fontSize"]];
+    float f = [fontSize floatValue];
     
-    [self.appButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
-    [self.linkButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
-    [self.imageButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
-    [self.memoButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
+    [self.taskNameLabel setFont:[UIFont fontWithName:[Utilities getFont] size:f]];
+    [self.reminderLabel setFont:[UIFont fontWithName:[Utilities getFont] size:f]];
     
-    [infoLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
+    [self.appButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:f]];
+    [self.linkButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:f]];
+    [self.imageButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:f]];
+    [self.memoButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:f]];
+    
+    [infoLabel setFont:[UIFont fontWithName:[Utilities getFont] size:f]];
 }
 
 @end

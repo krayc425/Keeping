@@ -42,6 +42,7 @@ PODS:
   - MMWormhole/Core (2.0.0)
   - PYSearch (0.3.4)
   - SCLAlertView-Objective-C (1.0.6)
+  - StepSlider (0.1.5)
 
 DEPENDENCIES:
   - AMPopTip
@@ -59,6 +60,7 @@ DEPENDENCIES:
   - MMWormhole
   - PYSearch
   - SCLAlertView-Objective-C
+  - StepSlider
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
@@ -77,7 +79,8 @@ SPEC CHECKSUMS:
   MMWormhole: 0cd3fd35a9118b2e2d762b499f54eeaace0be791
   PYSearch: d7d89a358545f4f8ef3700197724162d1e0e2029
   SCLAlertView-Objective-C: ca78280817e66e74366b78579350dee2ff277e23
+  StepSlider: 015664f22bc42509131bd86bed946819528cc86d
 
-PODFILE CHECKSUM: abca3430010125b4ab73ab3750de91c0b3857f0f
+PODFILE CHECKSUM: 05e90815b97296318a2aa646bb23a69838785cdf
 
 COCOAPODS: 1.1.1

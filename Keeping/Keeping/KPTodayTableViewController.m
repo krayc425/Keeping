@@ -458,12 +458,10 @@ static AMPopTip *shareTip = NULL;
             }
             
             if(indexPath == self.selectedIndexPath){
-                [cell.cardView2 setHidden:NO];
-                
+                [cell setIsSelected:YES];
                 [cell.moreButton setBackgroundImage:[UIImage imageNamed:@"MORE_INFO_UP"] forState:UIControlStateNormal];
             }else{
-                [cell.cardView2 setHidden:YES];
-                
+                [cell setIsSelected:NO];
                 [cell.moreButton setBackgroundImage:[UIImage imageNamed:@"MORE_INFO_DOWN"] forState:UIControlStateNormal];
             }
             
@@ -512,8 +510,10 @@ static AMPopTip *shareTip = NULL;
         if(![cell.moreButton isHidden]){
             if(self.selectedIndexPath == indexPath){
                 self.selectedIndexPath = NULL;
+//                [cell setIsSelected:NO];
             }else{
                 self.selectedIndexPath = indexPath;
+//                [cell setIsSelected:YES];
             }
         }
         
