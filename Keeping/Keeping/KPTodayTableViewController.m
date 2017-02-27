@@ -21,6 +21,7 @@
 #import "CardsView.h"
 #import "TaskDataHelper.h"
 #import "KPTaskDetailTableViewController.h"
+#import "UIImage+Extensions.h"
 
 #define MENU_POPOVER_FRAME CGRectMake(10, 44 + 9, 140, 44 * [[Utilities getTaskSortArr] count])
 
@@ -348,6 +349,16 @@ static AMPopTip *shareTip = NULL;
             
             cell.delegate = self;
             
+            //设置是否为当前 cell
+            if(indexPath == self.selectedIndexPath){
+                [cell setIsSelected:YES];
+                [cell.moreButton setBackgroundImage:[UIImage imageNamed:@"MORE_INFO_UP"] forState:UIControlStateNormal];
+            }else{
+                [cell setIsSelected:NO];
+                [cell.moreButton setBackgroundImage:[UIImage imageNamed:@"MORE_INFO_DOWN"] forState:UIControlStateNormal];
+            }
+            
+            //配置任务信息
             Task *t;
             if(indexPath.section == 1){
                 t = self.unfinishedTaskArr[indexPath.row];
@@ -457,14 +468,6 @@ static AMPopTip *shareTip = NULL;
                 [cell.reminderLabel setHidden:YES];
             }
             
-            if(indexPath == self.selectedIndexPath){
-                [cell setIsSelected:YES];
-                [cell.moreButton setBackgroundImage:[UIImage imageNamed:@"MORE_INFO_UP"] forState:UIControlStateNormal];
-            }else{
-                [cell setIsSelected:NO];
-                [cell.moreButton setBackgroundImage:[UIImage imageNamed:@"MORE_INFO_DOWN"] forState:UIControlStateNormal];
-            }
-            
             //晚于：不能打卡
             NSDate *tempDate = [NSDate dateWithYear:[[NSDate date] year]
                                               month:[[NSDate date] month]
@@ -507,19 +510,42 @@ static AMPopTip *shareTip = NULL;
     
     if(indexPath.section != 0){
         KPTodayTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        
+//        NSIndexPath *oldIndexPath = [self.selectedIndexPath copy];
+        
+//        NSLog(@"old %@", oldIndexPath.description);
+        
         if(![cell.moreButton isHidden]){
             if(self.selectedIndexPath == indexPath){
                 self.selectedIndexPath = NULL;
-//                [cell setIsSelected:NO];
             }else{
                 self.selectedIndexPath = indexPath;
-//                [cell setIsSelected:YES];
             }
         }
         
-        [tableView reloadData];
+//        NSLog(@"new %@", self.selectedIndexPath.description);
+//        
+//        if([[NSUserDefaults standardUserDefaults] boolForKey:@"animation"]){
+//
+        //            if(oldIndexPath != NULL){
         
+        [tableView reloadData];
         [self fadeAnimation];
+//                [tableView beginUpdates];
+//                [tableView reloadRowsAtIndexPaths:@[oldIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+//                [tableView endUpdates];
+//            }
+//            
+//            [tableView beginUpdates];
+//            
+//            [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//            
+//            [tableView endUpdates];
+//            
+//        }else{
+//            [tableView reloadData];
+//        }
     }
 }
 

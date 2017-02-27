@@ -70,26 +70,41 @@
 }
 
 - (void)setIsSelected:(BOOL)isSelected{
-    NSLog(@"%d", isSelected);
-//    self.isSelected = isSelected;
-    
+    self.selected = isSelected;
     if(isSelected){
-        self.cardView2 = [[CardsView alloc] initWithFrame:CGRectMake(10, 70, self.frame.size.width - 20, 50)];
+        self.cardView2 = [[CardsView alloc] initWithFrame:CGRectMake(10, 70, self.frame.size.width - 20, 45)];
         self.cardView2.cornerRadius = 10.0;
         [self addSubview:self.cardView2];
         
         self.buttonStackView = [[UIStackView alloc] initWithFrame:self.cardView2.frame];
+        
+        self.appButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.buttonStackView.frame.size.width / 4, self.buttonStackView.frame.size.height)];
+        self.appButton.tag = 0;
+        self.linkButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.buttonStackView.frame.size.width / 4, self.buttonStackView.frame.size.height)];
+        self.linkButton.tag = 1;
+        self.imageButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.buttonStackView.frame.size.width / 4, self.buttonStackView.frame.size.height)];
+        self.imageButton.tag = 2;
+        self.memoButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.buttonStackView.frame.size.width / 4, self.buttonStackView.frame.size.height)];
+        self.memoButton.tag = 3;
+
+        [self setButtonFont];
+        
         self.buttonStackView = [self.buttonStackView initWithArrangedSubviews:@[self.appButton,self.linkButton,self.imageButton,self.memoButton]];
+        for(UIButton *btn in self.buttonStackView.subviews){
+            [btn addTarget:self action:@selector(moreAction:) forControlEvents:UIControlEventTouchUpInside];
+        }
         self.buttonStackView.alignment = UIStackViewAlignmentCenter;
         self.buttonStackView.distribution = UIStackViewDistributionFillEqually;
         [self addSubview:self.buttonStackView];
     }else{
         [self.buttonStackView removeFromSuperview];
         [self.cardView2 removeFromSuperview];
+        self.buttonStackView = nil;
+        self.cardView2 = nil;
     }
 }
 
-- (IBAction)moreAction:(id)sender{
+- (void)moreAction:(id)sender{
     [self.delegate moreAction:self withButton:(UIButton *)sender];
 }
 
@@ -100,12 +115,17 @@
     [self.taskNameLabel setFont:[UIFont fontWithName:[Utilities getFont] size:f]];
     [self.reminderLabel setFont:[UIFont fontWithName:[Utilities getFont] size:f]];
     
+    [infoLabel setFont:[UIFont fontWithName:[Utilities getFont] size:f]];
+}
+
+- (void)setButtonFont{
+    NSNumber *fontSize = [Utilities getFontSizeArr][[[NSUserDefaults standardUserDefaults] integerForKey:@"fontSize"]];
+    float f = [fontSize floatValue];
+    
     [self.appButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:f]];
     [self.linkButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:f]];
     [self.imageButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:f]];
     [self.memoButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:f]];
-    
-    [infoLabel setFont:[UIFont fontWithName:[Utilities getFont] size:f]];
 }
 
 @end

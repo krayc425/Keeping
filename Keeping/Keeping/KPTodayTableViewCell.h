@@ -38,9 +38,9 @@
 @property (nonnull, nonatomic) IBOutlet UIImageView *imageImg;
 @property (nonnull, nonatomic) IBOutlet UIImageView *memoImg;
 //子 cardview
-@property (nonnull, nonatomic) IBOutlet CardsView *cardView2;
+@property (nullable, nonatomic) IBOutlet CardsView *cardView2;
 //按钮 stackview
-@property (nonnull, nonatomic) IBOutlet UIStackView *buttonStackView;
+@property (nullable, nonatomic) IBOutlet UIStackView *buttonStackView;
 //APP 按钮
 @property (nonnull, nonatomic) IBOutlet UIButton *appButton;    //tag = 0
 //链接 按钮
@@ -50,7 +50,7 @@
 //备注 按钮
 @property (nonnull, nonatomic) IBOutlet UIButton *memoButton;  //tag = 3
 
-//@property (nonatomic) BOOL isSelected;
+@property (nonatomic) BOOL selected;
 - (void)setIsSelected:(BOOL)isSelected;
 
 - (void)setIsFinished:(BOOL)isFinished;

@@ -44,6 +44,7 @@
 		2462FB8C1E4D6295004E70A5 /* Intro_Screen_Two.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2462FB881E4D6295004E70A5 /* Intro_Screen_Two.jpg */; };
 		24699F031E2F213D0092FBED /* KPNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24699F021E2F213D0092FBED /* KPNavigationViewController.m */; };
 		24699F051E2F23C60092FBED /* Navigation.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24699F041E2F23C60092FBED /* Navigation.xcassets */; };
+		246AEF0A1E64214A00D78FDD /* UIImage+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 246AEF091E64214A00D78FDD /* UIImage+Extensions.m */; };
 		247A79801E38ABF1000EE623 /* ABCIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = 247A797F1E38ABF1000EE623 /* ABCIntroView.m */; };
 		247F01B91E3D9E1B001F900C /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 247F01B81E3D9E1B001F900C /* NotificationCenter.framework */; };
 		247F01BD1E3D9E1B001F900C /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 247F01BC1E3D9E1B001F900C /* TodayViewController.m */; };
@@ -199,6 +200,8 @@
 		24699F011E2F213D0092FBED /* KPNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPNavigationViewController.h; sourceTree = "<group>"; };
 		24699F021E2F213D0092FBED /* KPNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPNavigationViewController.m; sourceTree = "<group>"; };
 		24699F041E2F23C60092FBED /* Navigation.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Navigation.xcassets; sourceTree = "<group>"; };
+		246AEF081E64214A00D78FDD /* UIImage+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extensions.h"; sourceTree = "<group>"; };
+		246AEF091E64214A00D78FDD /* UIImage+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extensions.m"; sourceTree = "<group>"; };
 		247A797E1E38ABF1000EE623 /* ABCIntroView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABCIntroView.h; sourceTree = "<group>"; };
 		247A797F1E38ABF1000EE623 /* ABCIntroView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ABCIntroView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		247F01B71E3D9E1B001F900C /* KeepingWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = KeepingWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -618,6 +621,8 @@
 				24BA79A61E516FC1002133B6 /* HYCircleProgressView */,
 				24BA79A41E516D5D002133B6 /* CardView */,
 				24F2A0E11E2F7B6E00F30FB1 /* KPTimePicker */,
+				246AEF081E64214A00D78FDD /* UIImage+Extensions.h */,
+				246AEF091E64214A00D78FDD /* UIImage+Extensions.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -961,6 +966,7 @@
 				2436F8271E2F2C4B00C2984A /* TaskManager.m in Sources */,
 				24DCF18A1E3094050097C250 /* DateUtil.m in Sources */,
 				24F2A0D11E2F3F1800F30FB1 /* DBManager.m in Sources */,
+				246AEF0A1E64214A00D78FDD /* UIImage+Extensions.m in Sources */,
 				249AE31A1E2DEE7700F704F8 /* AppDelegate.m in Sources */,
 				249AE3171E2DEE7700F704F8 /* main.m in Sources */,
 				24F2A0D71E2F482100F30FB1 /* KPSchemeManager.m in Sources */,
