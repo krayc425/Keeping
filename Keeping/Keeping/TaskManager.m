@@ -206,23 +206,11 @@ static TaskManager* _instance = nil;
     return self.taskArr;
 }
 
-- (NSMutableArray *)getTodayTasks{
-    NSMutableArray *taskArr = [[NSMutableArray alloc] init];
-    for (Task *task in [self getTasks]) {
-        if([task.reminderDays containsObject:[NSNumber numberWithInt:(int)[[NSDate date] weekday]]]){
-            if(task.endDate == NULL || (task.endDate != NULL && [task.endDate isLaterThanOrEqualTo:[NSDate date]])){
-                [taskArr addObject:task];
-            }
-        }
-    }
-    return taskArr;
-}
-
 - (NSMutableArray *)getTasksOfDate:(NSDate *)date{
     NSMutableArray *taskArr = [[NSMutableArray alloc] init];
     for (Task *task in [self getTasks]) {
         if([task.reminderDays containsObject:[NSNumber numberWithInt:(int)date.weekday]]
-           && [task.addDate isEarlierThanOrEqualTo:date]){
+           && [task.addDate isEarlierThanOrEqualTo:date] && (task.endDate == NULL || [task.endDate isLaterThanOrEqualTo:date])){
             [taskArr addObject:task];
         }
     }

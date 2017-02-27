@@ -551,7 +551,7 @@
     }else{
         //让他结束日期可以是今天
         NSDate *minDate = [NSDate dateWithString:self.startDateButton.titleLabel.text formatString:DATE_FORMAT];
-        hsdpvc.minDate = minDate;
+        hsdpvc.minDate = [minDate dateByAddingDays:-1];
     }
     
     [self presentViewController:hsdpvc animated:YES completion:nil];
