@@ -27,6 +27,7 @@
 		2429CBF81E2E571A0027DD37 /* 方正书宋简体.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2429CBF71E2E571A0027DD37 /* 方正书宋简体.ttf */; };
 		2429CBFB1E2E5D510027DD37 /* KPTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2429CBFA1E2E5D510027DD37 /* KPTabBarViewController.m */; };
 		2429CBFE1E2E61430027DD37 /* KPCalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2429CBFD1E2E61430027DD37 /* KPCalViewController.m */; };
+		2433E6CE1E65247700315D5B /* libAVOSCloud.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2433E6CD1E65247700315D5B /* libAVOSCloud.a */; };
 		2435AF5C1E34D0D50065DC74 /* MLKMenuPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 2435AF5B1E34D0D50065DC74 /* MLKMenuPopover.m */; };
 		2435DBF11E35CCC300F1A96E /* KPFontTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2435DBF01E35CCC300F1A96E /* KPFontTableViewController.m */; };
 		2435DBF91E35CD5500F1A96E /* KPFontTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2435DBF71E35CD5500F1A96E /* KPFontTableViewCell.m */; };
@@ -176,6 +177,10 @@
 		2429CBFA1E2E5D510027DD37 /* KPTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPTabBarViewController.m; sourceTree = "<group>"; };
 		2429CBFC1E2E61430027DD37 /* KPCalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPCalViewController.h; sourceTree = "<group>"; };
 		2429CBFD1E2E61430027DD37 /* KPCalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPCalViewController.m; sourceTree = "<group>"; };
+		2433E6C41E65034600315D5B /* libAVOSCloudCrashReporting.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAVOSCloudCrashReporting.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Keeping-ejqrhezpewpcwpfbtvrmhjalbbdj/Build/Products/Debug-iphonesimulator/AVOSCloudCrashReporting/libAVOSCloudCrashReporting.a"; sourceTree = "<group>"; };
+		2433E6C91E65184900315D5B /* libAVOSCloud.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAVOSCloud.a; path = "Pods/../build/Debug-iphoneos/AVOSCloud/libAVOSCloud.a"; sourceTree = "<group>"; };
+		2433E6CB1E65242B00315D5B /* libAVOSCloudCrashReporting.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAVOSCloudCrashReporting.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Keeping-ejqrhezpewpcwpfbtvrmhjalbbdj/Build/Products/Debug-iphoneos/AVOSCloudCrashReporting/libAVOSCloudCrashReporting.a"; sourceTree = "<group>"; };
+		2433E6CD1E65247700315D5B /* libAVOSCloud.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAVOSCloud.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Keeping-ejqrhezpewpcwpfbtvrmhjalbbdj/Build/Products/Debug-iphoneos/AVOSCloud/libAVOSCloud.a"; sourceTree = "<group>"; };
 		2435AF5A1E34D0D50065DC74 /* MLKMenuPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLKMenuPopover.h; sourceTree = "<group>"; };
 		2435AF5B1E34D0D50065DC74 /* MLKMenuPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLKMenuPopover.m; sourceTree = "<group>"; };
 		2435DBEF1E35CCC300F1A96E /* KPFontTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPFontTableViewController.h; sourceTree = "<group>"; };
@@ -302,6 +307,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2433E6CE1E65247700315D5B /* libAVOSCloud.a in Frameworks */,
 				2436F8241E2F2C3300C2984A /* libsqlite3.0.tbd in Frameworks */,
 				AA046577A8286B52DB0532E7 /* libPods-Keeping.a in Frameworks */,
 			);
@@ -678,6 +684,10 @@
 		3B36A3747ED818A6EEF990CE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2433E6CD1E65247700315D5B /* libAVOSCloud.a */,
+				2433E6CB1E65242B00315D5B /* libAVOSCloudCrashReporting.a */,
+				2433E6C91E65184900315D5B /* libAVOSCloud.a */,
+				2433E6C41E65034600315D5B /* libAVOSCloudCrashReporting.a */,
 				2436F8231E2F2C3300C2984A /* libsqlite3.0.tbd */,
 				58B3856F487D477013388BEE /* libPods-Keeping.a */,
 				247F01B81E3D9E1B001F900C /* NotificationCenter.framework */,
@@ -1156,10 +1166,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Keeping/Keeping.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = VEBQ28K9EA;
 				INFOPLIST_FILE = Keeping/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/AVOSCloud",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.krayc.Keeping;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1176,6 +1191,10 @@
 				INFOPLIST_FILE = Keeping/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/AVOSCloud",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.krayc.Keeping;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

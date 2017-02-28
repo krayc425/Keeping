@@ -39,13 +39,11 @@
     
     [self replyPushNotificationAuthorization:application];
     [self registerForRemoteNotification];
-    
-    
-    //LeanCloud
+
+
     [AVOSCloud setApplicationId:@"sabdEOhaMdwIEc2zbKRBQk56-gzGzoHsz" clientKey:@"byONReV9r125hlRuN1mAvv9I"];
     [AVOSCloud setAllLogsEnabled:NO];
     [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
-    
     
     
     //第一次启动
@@ -72,7 +70,6 @@
     //下载 schemes
     NSArray *r = [[KPSchemeManager shareInstance] getSchemeArr];
     NSLog(@"%lu apps", (unsigned long)r.count);
-    
     
     return YES;
 }

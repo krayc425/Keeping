@@ -6,16 +6,15 @@ target 'Keeping' do
   pod 'FSCalendar'
   pod 'FMDB'
   pod 'BEMCheckBox'
-  pod 'AVOSCloud'
   pod 'HSDatePickerViewController'
   pod 'FDFullscreenPopGesture'
   pod 'AMPopTip'
   pod 'LeanCloudFeedback'
   pod 'PYSearch'
   pod 'MMWormhole'
+  pod 'AVOSCloud'
   pod 'LeanCloudSocial'
   pod 'SCLAlertView-Objective-C'
-  pod 'StepSlider'
   
 end
 
