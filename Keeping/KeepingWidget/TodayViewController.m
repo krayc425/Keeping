@@ -150,7 +150,7 @@
     
     Task *task = self.taskArr[path.row];
     
-    [[TaskManager shareInstance]punchForTaskWithID:@(task.id) onDate:[NSDate date]];
+    [[TaskManager shareInstance] punchForTaskWithID:@(task.id) onDate:[NSDate date]];
 
     [self loadTasks];
 }

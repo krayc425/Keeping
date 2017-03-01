@@ -251,20 +251,60 @@
 
 - (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date{
     [calendar deselectDate:date];
-    if([self canFixPunch:date]){
-        
+    
+    if(self.task == NULL){
+        return;
+    }
+    
+    SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+    
+    NSString *memo = [[TaskManager shareInstance] getPunchMemoOfTask:self.task onDate:date];
+    NSString *displayMemo;
+    NSString *buttonMemoText;
+    if([memo isEqualToString:@""]){
+        displayMemo = @"无备注";
+        buttonMemoText = @"增加备注";
+    }else{
+        displayMemo = [NSString stringWithFormat:@"备注：%@", memo];
+        buttonMemoText = @"修改备注";
+    }
+    
+    [alert addButton:buttonMemoText actionBlock:^(void) {
         SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
         
-        [alert addButton:@"好的" actionBlock:^(void) {
+        UITextField *memoText = [alert addTextField:@"填写备注"];
+        memoText.text = memo;
+        [alert addButton:@"提交" actionBlock:^(void) {
+            [[TaskManager shareInstance] modifyMemoForTask:self.task withMemo:memoText.text onDate:date];
+            
+            SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+            [alert showSuccess:@"修改备注成功" subTitle:nil closeButtonTitle:@"好的" duration:0.0];
+        }];
+        [alert showEdit:@"备注" subTitle:[NSString stringWithFormat:@"%@ · %@", self.task.name, [DateUtil getDateStringOfDate:date]] closeButtonTitle:@"取消" duration:0.0];
+    }];
+    
+    if([self canFixPunch:date]){
+        [alert addButton:@"补打卡" actionBlock:^(void) {
             [[TaskManager shareInstance] punchForTaskWithID:@(self.task.id) onDate:date];
             NSIndexPath *path = [NSIndexPath indexPathForRow:[self.taskArr indexOfObject:self.task] inSection:0];
             [self loadTasks];
             self.task = self.taskArr[path.row];
         }];
-        
-        [alert showInfo:@"补打卡" subTitle:[NSString stringWithFormat:@"这个日期您可以为 %@ 补打卡", self.task.name] closeButtonTitle:@"取消" duration:0.0f];
-        
+        [alert addButton:@"跳过打卡" actionBlock:^(void) {
+            
+        }];
     }
+    
+    if([self.task.punchDateArr containsObject:[DateUtil transformDate:date]]){
+        [alert addButton:@"取消打卡" actionBlock:^(void) {
+            [[TaskManager shareInstance] unpunchForTaskWithID:@(self.task.id) onDate:date];
+            NSIndexPath *path = [NSIndexPath indexPathForRow:[self.taskArr indexOfObject:self.task] inSection:0];
+            [self loadTasks];
+            self.task = self.taskArr[path.row];
+        }];
+    }
+    
+    [alert showInfo:self.task.name subTitle:displayMemo closeButtonTitle:@"取消" duration:0.0f];
 }
 
 - (void)previousClicked:(id)sender{

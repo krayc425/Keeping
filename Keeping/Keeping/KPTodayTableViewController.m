@@ -138,6 +138,7 @@ static AMPopTip *shareTip = NULL;
 
 - (void)viewWillDisappear:(BOOL)animated{
     self.selectedIndexPath = NULL;
+    [self.tableView reloadData];
     [self hideTip];
 }
 
@@ -145,6 +146,7 @@ static AMPopTip *shareTip = NULL;
     [self hideTip];
     
     [self.dateButton setTitle:[DateUtil getDateStringOfDate:self.selectedDate] forState:UIControlStateNormal];
+    
     self.selectedIndexPath = NULL;
     
     self.unfinishedTaskArr = [[NSMutableArray alloc] init];
@@ -349,15 +351,6 @@ static AMPopTip *shareTip = NULL;
             
             cell.delegate = self;
             
-            //设置是否为当前 cell
-            if(indexPath == self.selectedIndexPath){
-                [cell setIsSelected:YES];
-                [cell.moreButton setBackgroundImage:[UIImage imageNamed:@"MORE_INFO_UP"] forState:UIControlStateNormal];
-            }else{
-                [cell setIsSelected:NO];
-                [cell.moreButton setBackgroundImage:[UIImage imageNamed:@"MORE_INFO_DOWN"] forState:UIControlStateNormal];
-            }
-            
             //配置任务信息
             Task *t;
             if(indexPath.section == 1){
@@ -369,6 +362,19 @@ static AMPopTip *shareTip = NULL;
                 
                 [cell setIsFinished:YES];
             }
+            
+            
+            [cell.moreButton setHidden:!t.hasMoreInfo];
+            
+            //设置是否为当前 cell
+            if([indexPath isEqual:self.selectedIndexPath] && ![cell.moreButton isHidden]){
+                [cell setIsSelected:YES];
+                [cell.moreButton setBackgroundImage:[UIImage imageNamed:@"MORE_INFO_UP"] forState:UIControlStateNormal];
+            }else{
+                [cell setIsSelected:NO];
+                [cell.moreButton setBackgroundImage:[UIImage imageNamed:@"MORE_INFO_DOWN"] forState:UIControlStateNormal];
+            }
+            
             [cell.taskNameLabel setText:t.name];
             
             if(t.type > 0){
@@ -383,11 +389,7 @@ static AMPopTip *shareTip = NULL;
                 [cell.typeImg setHidden:YES];
             }
             
-            [cell.moreButton setHidden:YES];
-            
             if(t.appScheme != NULL){
-                [cell.moreButton setHidden:NO];
-                
                 NSDictionary *d = t.appScheme;
                 NSString *s = d.allKeys[0];
                 [cell.appButton setTitle:[NSString stringWithFormat:@"%@", s] forState:UIControlStateNormal];
@@ -405,8 +407,6 @@ static AMPopTip *shareTip = NULL;
             }
             
             if(t.link != NULL && ![t.link isEqualToString:@""]){
-                [cell.moreButton setHidden:NO];
-                
                 [cell.linkButton setTitle:@"链接" forState:UIControlStateNormal];
                 [cell.linkButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
                 [cell.linkButton setUserInteractionEnabled:YES];
@@ -422,8 +422,6 @@ static AMPopTip *shareTip = NULL;
             }
             
             if(t.image != NULL){
-                [cell.moreButton setHidden:NO];
-                
                 [cell.imageButton setTitle:@"图片" forState:UIControlStateNormal];
                 [cell.imageButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
                 [cell.imageButton setUserInteractionEnabled:YES];
@@ -439,8 +437,6 @@ static AMPopTip *shareTip = NULL;
             }
             
             if(t.memo != NULL && ![t.memo isEqualToString:@""]){
-                [cell.moreButton setHidden:NO];
-                
                 [cell.memoButton setTitle:@"备注" forState:UIControlStateNormal];
                 [cell.memoButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
                 [cell.memoButton setUserInteractionEnabled:YES];
@@ -509,43 +505,59 @@ static AMPopTip *shareTip = NULL;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if(indexPath.section != 0){
+        
+        NSIndexPath *oldIndexPath = [self.selectedIndexPath copy];
+        
         KPTodayTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         
-//        NSIndexPath *oldIndexPath = [self.selectedIndexPath copy];
-        
-//        NSLog(@"old %@", oldIndexPath.description);
-        
         if(![cell.moreButton isHidden]){
-            if(self.selectedIndexPath == indexPath){
+            
+            if([self.selectedIndexPath isEqual:indexPath]){
                 self.selectedIndexPath = NULL;
             }else{
                 self.selectedIndexPath = indexPath;
             }
+            
+        }else{
+            self.selectedIndexPath = NULL;
         }
         
-//        NSLog(@"new %@", self.selectedIndexPath.description);
-//        
+        NSLog(@"old %@", oldIndexPath.description);
+        NSLog(@"new %@", indexPath.description);
+        
 //        if([[NSUserDefaults standardUserDefaults] boolForKey:@"animation"]){
-//
-        //            if(oldIndexPath != NULL){
-        
-        [tableView reloadData];
-        [self fadeAnimation];
+//            
+//                        [self.tableView setUserInteractionEnabled:NO];
+//            //
+//            if(oldIndexPath != NULL){
+//                
 //                [tableView beginUpdates];
+//                
 //                [tableView reloadRowsAtIndexPaths:@[oldIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-        
+//                
 //                [tableView endUpdates];
 //            }
+//            //
 //            
-//            [tableView beginUpdates];
+//            if(self.selectedIndexPath != NULL){
 //            
-//            [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//                [tableView beginUpdates];
 //            
-//            [tableView endUpdates];
+//                [tableView reloadRowsAtIndexPaths:@[self.selectedIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+//            
+//                [tableView endUpdates];
+//                
+//            }
+//            
+//                        [self.tableView setUserInteractionEnabled:YES];
 //            
 //        }else{
 //            [tableView reloadData];
 //        }
+//
+        [self fadeAnimation];
+        [tableView reloadData];
+        
     }
 }
 

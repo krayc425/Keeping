@@ -15,7 +15,7 @@ target 'Keeping' do
   pod 'AVOSCloud'
   pod 'LeanCloudSocial'
   pod 'SCLAlertView-Objective-C'
-  
+
 end
 
 target 'KeepingWidget' do

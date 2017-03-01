@@ -58,7 +58,6 @@ static DBManager* _instance = nil;
     NSLog(@"FILE PATH 1 : %@", fileName1);
     NSLog(@"FILE PATH 2 : %@", fileName2);
     
-    
     //原来如果有，先挪到第二个地方去（针对1.0版本）
     if([[NSFileManager defaultManager] fileExistsAtPath:fileName1]){
         //复制到第二个
@@ -114,7 +113,17 @@ static DBManager* _instance = nil;
                 [self.db executeUpdate:[NSString stringWithFormat:@"ALTER TABLE %@ ADD %@ integer", @"t_task", @"type"]];
                 NSLog(@"增加类别字段成功");
             }
-            
+            //备注打卡数组选项  added on 1.4
+            if (![self.db columnExists:@"punchMemoArr" inTableWithName:@"t_task"]){
+                [self.db executeUpdate:[NSString stringWithFormat:@"ALTER TABLE %@ ADD %@ text", @"t_task", @"punchMemoArr"]];
+                NSLog(@"增加备注打卡数组字段成功");
+            }
+            //跳过打卡日期数组选项  added on 1.4
+            if (![self.db columnExists:@"punchSkipArr" inTableWithName:@"t_task"]){
+                [self.db executeUpdate:[NSString stringWithFormat:@"ALTER TABLE %@ ADD %@ text", @"t_task", @"punchSkipArr"]];
+                NSLog(@"增加打卡日期数组字段成功");
+            }
+
         }
     }
     

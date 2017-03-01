@@ -27,5 +27,9 @@
 - (BOOL)unpunchForTaskWithID:(NSNumber *_Nonnull)taskid onDate:(NSDate *_Nonnull)date;
 - (int)totalPunchNumberOfTask:(Task *_Nonnull)task;
 - (int)punchNumberOfTask:(Task *_Nonnull)task;
+- (int)punchSkipNumberOfTask:(Task *_Nonnull)task;
+
+- (NSString *_Nonnull)getPunchMemoOfTask:(Task *_Nonnull)task onDate:(NSDate *_Nonnull)date;
+- (BOOL)modifyMemoForTask:(Task *_Nonnull)task withMemo:(NSString *_Nonnull)memo onDate:(NSDate *_Nonnull)date;
 
 @end

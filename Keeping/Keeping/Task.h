@@ -36,10 +36,17 @@
 @property (nonatomic, nullable) NSString *memo;
 //类别
 @property (nonatomic) int type;
+//打卡备注数组
+@property (nonatomic, nullable) NSArray *punchMemoArr;
+//跳过打卡日期数组
+@property (nonatomic, nullable) NSArray *punchSkipArr;
 
 //完成率
 @property (nonatomic) float progress;
 //排序的任务名
 @property (nonatomic, nonnull) NSString *sortName;
+
+//有没有更多信息
+- (BOOL)hasMoreInfo;
 
 @end

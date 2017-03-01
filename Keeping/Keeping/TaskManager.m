@@ -78,8 +78,26 @@ static TaskManager* _instance = nil;
         [UNManager createLocalizedUserNotification:task];
     }
     
+    NSArray *punchMemoArr = task.punchMemoArr;
+    NSString *punchMemoJsonStr;
+    if([punchMemoArr count] > 0 || punchMemoArr != NULL){
+        NSData *punchJsonData = [NSJSONSerialization dataWithJSONObject:punchMemoArr options:NSJSONWritingPrettyPrinted error:&err];
+        punchMemoJsonStr = [[NSString alloc] initWithData:punchJsonData encoding:NSUTF8StringEncoding];
+    }else{
+        punchMemoJsonStr = nil;
+    }
+    
+    NSArray *punchSkipArr = task.punchSkipArr;
+    NSString *punchSkipJsonStr;
+    if([punchSkipArr count] > 0 || punchSkipArr != NULL){
+        NSData *punchJsonData = [NSJSONSerialization dataWithJSONObject:punchSkipArr options:NSJSONWritingPrettyPrinted error:&err];
+        punchSkipJsonStr = [[NSString alloc] initWithData:punchJsonData encoding:NSUTF8StringEncoding];
+    }else{
+        punchSkipJsonStr = nil;
+    }
+    
     return [[[DBManager shareInstance] getDB] executeUpdate:
-            @"INSERT INTO t_task (name, appScheme, reminderDays, addDate, reminderTime, punchDateArr, image, link, endDate, memo, type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
+            @"INSERT INTO t_task (name, appScheme, reminderDays, addDate, reminderTime, punchDateArr, image, link, endDate, memo, type, punchMemoArr, punchSkipArr) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
             task.name,
             schemeJsonStr,
             daysJsonStr,
@@ -90,7 +108,9 @@ static TaskManager* _instance = nil;
             task.link,
             task.endDate,
             task.memo,
-            @(task.type)
+            @(task.type),
+            punchMemoJsonStr,
+            punchSkipJsonStr
             ];
 }
 
@@ -125,13 +145,31 @@ static TaskManager* _instance = nil;
         punchJsonStr = NULL;
     }
     
+    NSArray *punchMemoArr = task.punchMemoArr;
+    NSString *punchMemoJsonStr;
+    if([punchMemoArr count] > 0 || punchMemoArr != NULL){
+        NSData *punchJsonData = [NSJSONSerialization dataWithJSONObject:punchMemoArr options:NSJSONWritingPrettyPrinted error:&err];
+        punchMemoJsonStr = [[NSString alloc] initWithData:punchJsonData encoding:NSUTF8StringEncoding];
+    }else{
+        punchMemoJsonStr = nil;
+    }
+    
+    NSArray *punchSkipArr = task.punchSkipArr;
+    NSString *punchSkipJsonStr;
+    if([punchSkipArr count] > 0 || punchSkipArr != NULL){
+        NSData *punchJsonData = [NSJSONSerialization dataWithJSONObject:punchSkipArr options:NSJSONWritingPrettyPrinted error:&err];
+        punchSkipJsonStr = [[NSString alloc] initWithData:punchJsonData encoding:NSUTF8StringEncoding];
+    }else{
+        punchSkipJsonStr = nil;
+    }
+    
     if(task.reminderTime != nil){
         [UNManager deleteLocalizedUserNotification:task];
         [UNManager createLocalizedUserNotification:task];
     }
     
     return [[[DBManager shareInstance] getDB] executeUpdate:
-            @"UPDATE t_task SET name = ?, appScheme = ?, reminderDays = ?, addDate = ?, reminderTime = ?, punchDateArr = ?, image = ?, link = ?, endDate = ?, memo = ?, type = ? WHERE id = ?;",
+            @"UPDATE t_task SET name = ?, appScheme = ?, reminderDays = ?, addDate = ?, reminderTime = ?, punchDateArr = ?, image = ?, link = ?, endDate = ?, memo = ?, type = ?, punchMemoArr = ?, punchSkipArr = ? WHERE id = ?;",
             task.name,
             schemeJsonStr,
             daysJsonStr,
@@ -143,6 +181,8 @@ static TaskManager* _instance = nil;
             task.endDate,
             task.memo,
             @(task.type),
+            punchMemoJsonStr,
+            punchSkipJsonStr,
             @(task.id)
             ];
     return YES;
@@ -187,6 +227,20 @@ static TaskManager* _instance = nil;
             NSData *punchData = [punchJsonStr dataUsingEncoding:NSUTF8StringEncoding];
             NSArray *punchArr = [NSJSONSerialization JSONObjectWithData:punchData options:NSJSONReadingAllowFragments error:nil];
             t.punchDateArr = punchArr;
+        }
+        
+        NSString *punchMemoJsonStr = [resultSet stringForColumn:@"punchMemoArr"];
+        if(punchMemoJsonStr != NULL){
+            NSData *punchData = [punchMemoJsonStr dataUsingEncoding:NSUTF8StringEncoding];
+            NSArray *punchArr = [NSJSONSerialization JSONObjectWithData:punchData options:NSJSONReadingAllowFragments error:nil];
+            t.punchMemoArr = punchArr;
+        }
+        
+        NSString *punchSkipJsonStr = [resultSet stringForColumn:@"punchSkipArr"];
+        if(punchSkipJsonStr != NULL){
+            NSData *punchData = [punchMemoJsonStr dataUsingEncoding:NSUTF8StringEncoding];
+            NSArray *punchArr = [NSJSONSerialization JSONObjectWithData:punchData options:NSJSONReadingAllowFragments error:nil];
+            t.punchSkipArr = punchArr;
         }
         
         t.addDate = [resultSet dateForColumn:@"addDate"];
@@ -245,9 +299,22 @@ static TaskManager* _instance = nil;
     return count;
 }
 
+- (int)punchSkipNumberOfTask:(Task *)task{
+    int count = 0;
+    for(NSString *str in task.punchSkipArr){
+        if(str.intValue >= [[DateUtil transformDate:task.addDate] intValue]){
+            count++;
+        }
+    }
+    return count;
+}
+
 - (BOOL)punchForTaskWithID:(NSNumber *)taskid onDate:(NSDate *)date{
     FMResultSet *resultSet = [[[DBManager shareInstance] getDB] executeQuery:@"select * from t_task where id = ?;", taskid];
     while([resultSet next]){
+        
+        //如果跳过的数组有，那就移除
+        
         NSString *punchJsonStr = [resultSet stringForColumn:@"punchDateArr"];
         if(punchJsonStr != NULL){
             NSData *punchData = [punchJsonStr dataUsingEncoding:NSUTF8StringEncoding];
@@ -307,6 +374,32 @@ static TaskManager* _instance = nil;
         }
     }
     return NO;
+}
+
+- (NSString *)getPunchMemoOfTask:(Task *)task onDate:(NSDate *)date{
+    NSArray *memoArr = task.punchMemoArr;
+    if(memoArr.count == 0){
+        return @"";
+    }
+    for(NSDictionary *dict in memoArr){
+        if([dict.allKeys[0] isEqualToString:[DateUtil transformDate:date]]){
+            return dict.allValues[0];
+        }
+    }
+    return @"";
+}
+
+- (BOOL)modifyMemoForTask:(Task *_Nonnull)task withMemo:(NSString *_Nonnull)memo onDate:(NSDate *_Nonnull)date{
+    NSMutableArray *arr = [NSMutableArray arrayWithArray:task.punchMemoArr];
+    for(NSDictionary *dict in arr){
+        if([dict.allKeys[0] isEqualToString:[DateUtil transformDate:date]]){
+            [arr removeObject:dict];
+            break;
+        }
+    }
+    [arr addObject:@{[DateUtil transformDate:date] : memo}];
+    [task setPunchMemoArr:arr];
+    return [self updateTask:task];
 }
 
 @end

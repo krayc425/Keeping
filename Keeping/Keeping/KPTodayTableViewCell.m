@@ -71,7 +71,7 @@
 
 - (void)setIsSelected:(BOOL)isSelected{
     self.beingSelected = isSelected;
-    if(isSelected){
+    if(self.beingSelected){
         self.cardView2 = [[CardsView alloc] initWithFrame:CGRectMake(10, 70, self.frame.size.width - 20, 40)];
         self.cardView2.cornerRadius = 10.0;
         [self addSubview:self.cardView2];

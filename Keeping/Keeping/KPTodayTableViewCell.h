@@ -51,6 +51,7 @@
 @property (nonnull, nonatomic) IBOutlet UIButton *memoButton;  //tag = 3
 
 @property (nonatomic) BOOL beingSelected;
+
 - (void)setIsSelected:(BOOL)isSelected;
 
 - (void)setIsFinished:(BOOL)isFinished;

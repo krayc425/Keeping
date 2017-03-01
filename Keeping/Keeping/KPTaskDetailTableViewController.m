@@ -311,10 +311,8 @@
     //更新
     if(self.task.id == 0){
         
-        //打卡数组
-//        NSDate *addDate = [NSDate dateWithYear:[[NSDate date] year] month:[[NSDate date] month] day:[[NSDate date] day]];
-//        self.task.addDate = addDate;
         self.task.punchDateArr = [[NSMutableArray alloc] init];
+        self.task.punchMemoArr = [[NSMutableArray alloc] init];
 
         //完成时间
         //对星期排序

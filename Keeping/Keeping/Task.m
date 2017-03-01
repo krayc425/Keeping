@@ -14,13 +14,18 @@
 @implementation Task
 
 - (float)progress{
-    return (float)[[TaskManager shareInstance] punchNumberOfTask:self] / [[TaskManager shareInstance] totalPunchNumberOfTask:self];
+    return (float)[[TaskManager shareInstance] punchNumberOfTask:self] / ([[TaskManager shareInstance] totalPunchNumberOfTask:self] - [[TaskManager shareInstance] punchSkipNumberOfTask:self]);
 }
 
 - (NSString *)sortName{
 //    NSCharacterSet *set = [NSCharacterSet URLQueryAllowedCharacterSet];
 //    return [self.name stringByAddingPercentEncodingWithAllowedCharacters:set];
     return [self.name stringByAddingPercentEscapesUsingEncoding:GB18030_ENCODING];
+}
+
+- (BOOL)hasMoreInfo{
+    return self.image != NULL || (self.memo != NULL && ![self.memo isEqualToString:@""])
+    || (self.link != NULL && ![self.link isEqualToString:@""]) || self.appScheme != NULL;
 }
 
 @end
