@@ -47,8 +47,11 @@
 }
 
 - (void)setFont{
-    [self.taskNameLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
-    [self.punchDaysLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
+    NSNumber *fontSize = [Utilities getFontSizeArr][[[NSUserDefaults standardUserDefaults] integerForKey:@"fontSize"]];
+    float f = [fontSize floatValue];
+    
+    [self.taskNameLabel setFont:[UIFont fontWithName:[Utilities getFont] size:f]];
+    [self.punchDaysLabel setFont:[UIFont fontWithName:[Utilities getFont] size:f / 1.2]];
     [self.progressView setFont];
 }
 

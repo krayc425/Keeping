@@ -332,10 +332,8 @@
             [cell.taskImgViewBtn setBackgroundImage:[UIImage new] forState:UIControlStateNormal];
         }
         
-        int totalPunchNum = [[TaskManager shareInstance] totalPunchNumberOfTask:t];
-        int punchNum = [[TaskManager shareInstance] punchNumberOfTask:t];
         //暂时 NO
-        [cell.progressView setProgress:totalPunchNum == 0 ? 0 : (float)punchNum / totalPunchNum animated:NO];
+        [cell.progressView setProgress:t.progress animated:NO];
         
         [cell.weekdayView selectWeekdaysInArray:[NSMutableArray arrayWithArray:t.reminderDays]];
         [cell.weekdayView setIsAllSelected:NO];

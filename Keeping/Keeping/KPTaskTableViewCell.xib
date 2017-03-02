@@ -56,13 +56,13 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="middleTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="TPV-JP-ZrE">
-                        <rect key="frame" x="18" y="8" width="42" height="20.5"/>
+                        <rect key="frame" x="18" y="11" width="42" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zwj-tx-iGW">
-                        <rect key="frame" x="65" y="13.5" width="10" height="10"/>
+                        <rect key="frame" x="65" y="16.5" width="10" height="10"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="Zwj-tx-iGW" secondAttribute="height" multiplier="1:1" id="5BE-db-rVx"/>
                             <constraint firstAttribute="height" constant="10" id="IJj-dg-Rlv"/>
@@ -85,7 +85,7 @@
                     <constraint firstItem="yki-xl-EWe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="htd-ei-Tw6"/>
                     <constraint firstItem="Lcf-2t-2Cr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="jiH-y7-v8l"/>
                     <constraint firstAttribute="trailing" secondItem="Lcf-2t-2Cr" secondAttribute="trailing" constant="10" id="z0R-3X-5aP"/>
-                    <constraint firstItem="TPV-JP-ZrE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="zPj-EP-dVh"/>
+                    <constraint firstItem="TPV-JP-ZrE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="3" id="zPj-EP-dVh"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>

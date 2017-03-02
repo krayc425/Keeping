@@ -16,7 +16,7 @@
             <objects>
                 <navigationController storyboardIdentifier="KPNavigationViewController" id="BIL-fh-dCv" userLabel="KPNavigationViewController" customClass="KPNavigationViewController" sceneMemberID="viewController">
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="drc-Be-qV6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="drc-Be-qV6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -755,7 +755,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0OR-Wq-a62">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="0OR-Wq-a62">
                                                     <rect key="frame" x="357" y="22" width="0.0" height="0.0"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -763,6 +763,7 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="0OR-Wq-a62" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="kAH-ju-cMm" secondAttribute="trailing" constant="10" id="3F2-nI-leY"/>
                                                 <constraint firstItem="kAH-ju-cMm" firstAttribute="leading" secondItem="UYg-4R-6ZI" secondAttribute="leadingMargin" constant="10" id="747-I1-boM"/>
                                                 <constraint firstItem="0OR-Wq-a62" firstAttribute="centerY" secondItem="UYg-4R-6ZI" secondAttribute="centerY" id="7BZ-Ha-Xtg"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="0OR-Wq-a62" secondAttribute="trailing" constant="10" id="uAP-ZS-pBY"/>
@@ -1123,12 +1124,20 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="KPCalTaskTableViewCell" rowHeight="70" id="9wM-ho-rgX" customClass="KPCalTaskTableViewCell">
+                                        <rect key="frame" x="0.0" y="196" width="375" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9wM-ho-rgX" id="tVo-73-7wB">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="69"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="字体" id="hCY-bV-UhE">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="KPFontTableViewCell" id="ktc-ks-wCE">
-                                        <rect key="frame" x="0.0" y="253" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="323" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ktc-ks-wCE" id="8N5-eg-GMM">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -1140,14 +1149,14 @@
                             <tableViewSection headerTitle="字号" id="3lh-gO-V8Z">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="iiE-Dp-JhF">
-                                        <rect key="frame" x="0.0" y="354" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="424" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iiE-Dp-JhF" id="egt-YJ-BHh">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="uOk-Vw-l7i">
-                                                    <rect key="frame" x="18" y="8" width="339" height="29"/>
+                                                    <rect key="frame" x="18" y="8" width="339" height="28"/>
                                                     <segments>
                                                         <segment title="小"/>
                                                         <segment title="中"/>

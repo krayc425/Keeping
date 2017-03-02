@@ -46,7 +46,10 @@
             content.body = @"就是现在!";
         }
         
-        content.badge = @1;
+        if(![[NSUserDefaults standardUserDefaults] boolForKey:@"badgeCount"]){
+            content.badge = @1;
+        }
+        
         content.sound = [UNNotificationSound defaultSound];
         
         content.userInfo = @{

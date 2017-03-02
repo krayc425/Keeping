@@ -107,7 +107,7 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
         
         SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-        [alert showInfo:@"小提示" subTitle:@"点击每项任务查看进度\n红色圆圈代表当天未完成，点击可以补打卡\n蓝色圆圈代表未来应当完成的日期\n蓝色实心圆圈代表打了卡的日期\n日期下方的小蓝点代表添加/结束日期" closeButtonTitle:@"好的" duration:0.0f];
+        [alert showInfo:@"小提示" subTitle:@"点击每项任务查看进度\n灰色实心圆圈代表跳过打卡的日期\n红色圆圈代表当天未完成，点击可以补打卡或者跳过打卡\n蓝色圆圈代表未来应当完成的日期\n蓝色实心圆圈代表打了卡的日期\n日期下方的小蓝点代表添加/结束日期" closeButtonTitle:@"好的" duration:0.0f];
 
     }
 }
@@ -150,6 +150,17 @@
         return NO;
     }else{
         return ![self.task.punchDateArr containsObject:[DateUtil transformDate:date]] && [self.task.reminderDays containsObject:@(date.weekday)] && [self.task.addDate isEarlierThanOrEqualTo:date];
+    }
+}
+
+- (BOOL)canSkipTask:(NSDate *)date{
+    if([[NSDate date] isEarlierThanOrEqualTo:date]){
+        return NO;
+    }
+    if(self.task.endDate != NULL && [[self.task.endDate dateByAddingDays:1] isEarlierThan:date]){
+        return NO;
+    }else{
+        return ![self.task.punchSkipArr containsObject:[DateUtil transformDate:date]] && [self.task.reminderDays containsObject:@(date.weekday)] && [self.task.addDate isEarlierThanOrEqualTo:date];
     }
 }
 
@@ -221,14 +232,13 @@
     }
     
     //进度
-    int totalPunchNum = [[TaskManager shareInstance] totalPunchNumberOfTask:t];
     int punchNum = [[TaskManager shareInstance] punchNumberOfTask:t];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     
     [cell.punchDaysLabel setText:[NSString stringWithFormat:@"创建于 %@ · 已完成 %d 天", [dateFormatter stringFromDate:t.addDate], punchNum]];
-    [cell.progressView setProgress:totalPunchNum == 0 ? 0 : (float)punchNum / (float)totalPunchNum animated:NO];
+    [cell.progressView setProgress:t.progress animated:NO];
     
     return cell;
 }
@@ -282,6 +292,7 @@
         [alert showEdit:@"备注" subTitle:[NSString stringWithFormat:@"%@ · %@", self.task.name, [DateUtil getDateStringOfDate:date]] closeButtonTitle:@"取消" duration:0.0];
     }];
     
+    //补打卡
     if([self canFixPunch:date]){
         [alert addButton:@"补打卡" actionBlock:^(void) {
             [[TaskManager shareInstance] punchForTaskWithID:@(self.task.id) onDate:date];
@@ -289,11 +300,20 @@
             [self loadTasks];
             self.task = self.taskArr[path.row];
         }];
-//        [alert addButton:@"跳过打卡" actionBlock:^(void) {
-//            
-//        }];
+        
     }
     
+    //跳过打卡
+    if([self canSkipTask:date] && [self canFixPunch:date]){
+        [alert addButton:@"跳过打卡" actionBlock:^(void) {
+            [[TaskManager shareInstance] skipForTask:self.task onDate:date];
+            NSIndexPath *path = [NSIndexPath indexPathForRow:[self.taskArr indexOfObject:self.task] inSection:0];
+            [self loadTasks];
+            self.task = self.taskArr[path.row];
+        }];
+    }
+    
+    //取消打卡
     if([self.task.punchDateArr containsObject:[DateUtil transformDate:date]]){
         [alert addButton:@"取消打卡" actionBlock:^(void) {
             [[TaskManager shareInstance] unpunchForTaskWithID:@(self.task.id) onDate:date];
@@ -337,6 +357,17 @@
                 return [Utilities getColor];
             }
         }
+        
+        //跳过打卡的日子
+        if([self.task.punchSkipArr containsObject:[DateUtil transformDate:date]] && [date isLaterThanOrEqualTo:self.task.addDate]){
+            if(self.task.endDate != NULL){
+                if([self.task.endDate isLaterThanOrEqualTo:date]){
+                    return [UIColor lightGrayColor];
+                }
+            }else{
+                return [UIColor lightGrayColor];
+            }
+        }
     }
     return appearance.borderDefaultColor;
 }
@@ -344,7 +375,8 @@
 - (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance titleDefaultColorForDate:(NSDate *)date{
     if(self.task != NULL){
         //打了卡的日子
-        if([self.task.punchDateArr containsObject:[DateUtil transformDate:date]] && [date isLaterThanOrEqualTo:self.task.addDate]){
+        //跳过打卡的日子
+        if(([self.task.punchDateArr containsObject:[DateUtil transformDate:date]] && [date isLaterThanOrEqualTo:self.task.addDate]) || ([self.task.punchSkipArr containsObject:[DateUtil transformDate:date]] && [date isLaterThanOrEqualTo:self.task.addDate])){
             if(self.task.endDate != NULL){
                 if([self.task.endDate isLaterThanOrEqualTo:date]){
                     return [UIColor whiteColor];
@@ -354,6 +386,7 @@
             }
         }
     }
+    
     return appearance.borderDefaultColor;
 }
 
@@ -374,6 +407,8 @@
         if([self.task.reminderDays containsObject:@(date.weekday)]){
             if([self.task.punchDateArr containsObject:[DateUtil transformDate:date]]){
                 return [Utilities getColor];
+            }else if([self.task.punchSkipArr containsObject:[DateUtil transformDate:date]]){
+                return [UIColor lightGrayColor];
             }else{
                 if([[NSDate date] isLaterThan:date]){
                     return [UIColor redColor];

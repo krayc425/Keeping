@@ -54,7 +54,7 @@
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm"];
         
-        [self.uploadTimeLabel setText:[NSString stringWithFormat:@"最新：%@",[dateFormatter stringFromDate:[dbQuery getFirstObject].updatedAt]]];
+        [self.uploadTimeLabel setText:[NSString stringWithFormat:@"%@",[dateFormatter stringFromDate:[dbQuery getFirstObject].updatedAt]]];
     }else{
         [self.uploadTimeLabel setText:@""];
     }

@@ -20,7 +20,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
                     <subviews>
                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CQv-km-K5G">
-                            <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                            <rect key="frame" x="0.0" y="0.5" width="39" height="39"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="CQv-km-K5G" secondAttribute="height" multiplier="1:1" id="u90-OG-hOy"/>
                             </constraints>
@@ -30,7 +30,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ue-RT-b3U">
-                            <rect key="frame" x="50" y="0.0" width="40.5" height="40"/>
+                            <rect key="frame" x="49" y="0.5" width="40" height="39"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="9Ue-RT-b3U" secondAttribute="height" multiplier="1:1" id="Cjd-Hy-Ovm"/>
                             </constraints>
@@ -40,7 +40,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ES1-dj-tgN">
-                            <rect key="frame" x="100.5" y="0.0" width="40" height="40"/>
+                            <rect key="frame" x="99" y="0.5" width="39" height="39"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="ES1-dj-tgN" secondAttribute="height" multiplier="1:1" id="N4K-gd-3Lc"/>
                             </constraints>
@@ -50,7 +50,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="irH-QQ-GUW">
-                            <rect key="frame" x="150.5" y="0.0" width="40" height="40"/>
+                            <rect key="frame" x="148" y="0.5" width="39" height="39"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="irH-QQ-GUW" secondAttribute="height" multiplier="1:1" id="xY3-nO-35y"/>
                             </constraints>
@@ -60,7 +60,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YMH-Ie-sb2">
-                            <rect key="frame" x="200.5" y="0.0" width="40" height="40"/>
+                            <rect key="frame" x="197" y="0.5" width="39" height="39"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="YMH-Ie-sb2" secondAttribute="height" multiplier="1:1" id="GOG-Pr-AeM"/>
                             </constraints>
@@ -70,7 +70,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eFa-4F-4ip">
-                            <rect key="frame" x="250.5" y="0.0" width="40.5" height="40"/>
+                            <rect key="frame" x="246" y="0.5" width="40" height="39"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="eFa-4F-4ip" secondAttribute="height" multiplier="1:1" id="AuG-TU-kJI"/>
                             </constraints>
@@ -80,7 +80,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I4X-kC-7pM">
-                            <rect key="frame" x="301" y="0.0" width="40" height="40"/>
+                            <rect key="frame" x="296" y="0.5" width="39" height="39"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="I4X-kC-7pM" secondAttribute="height" multiplier="1:1" id="Bgh-Fl-3XX"/>
                             </constraints>
@@ -90,11 +90,10 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="-1" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CUv-aG-cfb">
-                            <rect key="frame" x="351" y="8" width="24" height="24"/>
+                            <rect key="frame" x="345" y="5" width="30" height="30"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="24" id="WUk-LG-RFx"/>
+                                <constraint firstAttribute="width" constant="30" id="WUk-LG-RFx"/>
                                 <constraint firstAttribute="width" secondItem="CUv-aG-cfb" secondAttribute="height" multiplier="1:1" id="iv7-qL-T0D"/>
-                                <constraint firstAttribute="height" constant="24" id="oL4-fC-uUF"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <state key="normal" title="全选"/>

@@ -13,6 +13,7 @@
 #import "KPTabBarViewController.h"
 #import "KPTaskTableViewCell.h"
 #import "KPTodayTableViewCell.h"
+#import "KPCalTaskTableViewCell.h"
 #import "HYCircleProgressView.h"
 
 #define GROUP_ID @"group.com.krayc.keeping"
@@ -61,7 +62,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch (section) {
         case 0:
-            return 2;
+            return 3;
         case 1:
             return [[Utilities getFontArr] count];
         case 2:
@@ -92,10 +93,13 @@
         return cell;
     }else if(indexPath.section == 0){
         
+        //去掉分割线
+        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        
         Task *t = [Task new];
         
         t.name = @"展示任务";
-        t.reminderDays = @[@(1),@(3),@(5)];
+        t.reminderDays = @[@(1),@(3),@(5),@(7)];
         t.image = NULL;
         t.link = NULL;
         t.appScheme = NULL;
@@ -103,61 +107,99 @@
         t.reminderTime = [NSDate date];
         t.type = 3;
         
-        if(indexPath.row == 0){
-            static NSString *cellIdentifier = @"KPTodayTableViewCell";
-            UINib *nib = [UINib nibWithNibName:@"KPTodayTableViewCell" bundle:nil];
-            [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
-            KPTodayTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-            
-            [cell setIsSelected:NO];
-            
-            [cell setFont];
-            
-            [cell.taskNameLabel setText:t.name];
-            
-            [cell.moreButton setHidden:YES];
-            [cell.typeImg setHidden:NO];
-            [cell.appImg setHidden:YES];
-            [cell.linkImg setHidden:YES];
-            [cell.memoImg setHidden:YES];
-            [cell.imageImg setHidden:YES];
-            
-            UIImage *img = [UIImage imageNamed:@"CIRCLE_FULL"];
-            img = [img imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-            cell.typeImg.tintColor = [Utilities getTypeColorArr][t.type - 1];
-            [cell.typeImg setImage:img];
-
-            NSString *reminderTimeStr = @"";
-            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            [dateFormatter setDateFormat:@"HH:mm"];
-            reminderTimeStr = [dateFormatter stringFromDate:t.reminderTime];
-            [cell.reminderLabel setText:reminderTimeStr];
-            [cell.reminderLabel setHidden:NO];
-            
-            return cell;
-        }else{
-            static NSString *cellIdentifier = @"KPTaskTableViewCell";
-            UINib *nib = [UINib nibWithNibName:@"KPTaskTableViewCell" bundle:nil];
-            [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
-            KPTaskTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-            
-            [cell setFont];
-            
-            [cell.nameLabel setText:t.name];
-            
-            [cell.weekdayView selectWeekdaysInArray:[NSMutableArray arrayWithArray:t.reminderDays]];
-            [cell.weekdayView setIsAllSelected:NO];
-            [cell.weekdayView setUserInteractionEnabled:NO];
-            
-            UIImage *img = [UIImage imageNamed:@"CIRCLE_FULL"];
-            img = [img imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-            cell.typeImg.tintColor = [Utilities getTypeColorArr][t.type - 1];
-            [cell.typeImg setImage:img];
-            
-            [cell.progressView setProgress:(arc4random() % 101) / 100.0 animated:NO];
-            
-            return cell;
+        switch (indexPath.row) {
+            case 0:
+            {
+                
+                static NSString *cellIdentifier = @"KPTodayTableViewCell";
+                UINib *nib = [UINib nibWithNibName:@"KPTodayTableViewCell" bundle:nil];
+                [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
+                KPTodayTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+                
+                [cell setIsSelected:NO];
+                
+                [cell setFont];
+                
+                [cell.taskNameLabel setText:t.name];
+                
+                [cell.moreButton setHidden:YES];
+                [cell.typeImg setHidden:NO];
+                [cell.appImg setHidden:YES];
+                [cell.linkImg setHidden:YES];
+                [cell.memoImg setHidden:YES];
+                [cell.imageImg setHidden:YES];
+                
+                UIImage *img = [UIImage imageNamed:@"CIRCLE_FULL"];
+                img = [img imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+                cell.typeImg.tintColor = [Utilities getTypeColorArr][t.type - 1];
+                [cell.typeImg setImage:img];
+                
+                NSString *reminderTimeStr = @"";
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setDateFormat:@"HH:mm"];
+                reminderTimeStr = [dateFormatter stringFromDate:t.reminderTime];
+                [cell.reminderLabel setText:reminderTimeStr];
+                [cell.reminderLabel setHidden:NO];
+                
+                return cell;
+            }
+                break;
+            case 1:
+            {
+                static NSString *cellIdentifier = @"KPTaskTableViewCell";
+                UINib *nib = [UINib nibWithNibName:@"KPTaskTableViewCell" bundle:nil];
+                [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
+                KPTaskTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+                
+                [cell setFont];
+                
+                [cell.nameLabel setText:t.name];
+                
+                [cell.weekdayView selectWeekdaysInArray:[NSMutableArray arrayWithArray:t.reminderDays]];
+                [cell.weekdayView setIsAllSelected:NO];
+                [cell.weekdayView setUserInteractionEnabled:NO];
+                
+                UIImage *img = [UIImage imageNamed:@"CIRCLE_FULL"];
+                img = [img imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+                cell.typeImg.tintColor = [Utilities getTypeColorArr][t.type - 1];
+                [cell.typeImg setImage:img];
+                
+                [cell.progressView setProgress:(arc4random() % 101) / 100.0 animated:NO];
+                
+                return cell;
+            }
+                break;
+            case 2:
+            {
+                static NSString *cellIdentifier = @"KPCalTaskTableViewCell";
+                UINib *nib = [UINib nibWithNibName:@"KPCalTaskTableViewCell" bundle:nil];
+                [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
+                KPCalTaskTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+                
+                [cell setFont];
+                
+                [cell.taskNameLabel setText:t.name];
+                
+                UIImage *img = [UIImage imageNamed:@"CIRCLE_FULL"];
+                img = [img imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+                cell.typeImg.tintColor = [Utilities getTypeColorArr][t.type - 1];
+                [cell.typeImg setImage:img];
+                
+                int punchNum = arc4random() % 101;
+                
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+                
+                [cell.punchDaysLabel setText:[NSString stringWithFormat:@"创建于 %@ · 已完成 %d 天", [dateFormatter stringFromDate:[NSDate date]], punchNum]];
+                [cell.progressView setProgress:(arc4random() % 101) / 100.0 animated:NO];
+                
+                return cell;
+            }
+                break;
+            default:
+                return [super tableView:tableView cellForRowAtIndexPath:indexPath];
         }
+        
     }else{
         return [super tableView:tableView cellForRowAtIndexPath:indexPath];
     }
