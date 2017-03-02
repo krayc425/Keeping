@@ -264,7 +264,7 @@ static TaskManager* _instance = nil;
     NSMutableArray *taskArr = [[NSMutableArray alloc] init];
     for (Task *task in [self getTasks]) {
         if([task.reminderDays containsObject:[NSNumber numberWithInt:(int)date.weekday]]
-           && [task.addDate isEarlierThanOrEqualTo:date] && (task.endDate == NULL || [task.endDate isLaterThanOrEqualTo:date])){
+           && [task.addDate isEarlierThanOrEqualTo:date] && (task.endDate == NULL ? TRUE : [task.endDate isLaterThanOrEqualTo:date])){
             [taskArr addObject:task];
         }
     }
@@ -280,7 +280,10 @@ static TaskManager* _instance = nil;
     NSDate *date = task.addDate;
     NSArray *weekDays = task.reminderDays;
     int count = 0;
-    while (date.day != [[[NSDate date] dateByAddingDays:1] day] ) {
+    
+    NSDate *realEndDate = (task.endDate == NULL ? [NSDate date] : ([task.endDate isLaterThan:[NSDate date]] ? [NSDate date] : task.endDate));
+        
+    while ([[DateUtil transformDate:date] intValue] < [[DateUtil transformDate:[realEndDate dateByAddingDays:1]]  intValue]) {
         if([weekDays containsObject:@(date.weekday)]){
             count++;
         }
@@ -292,7 +295,8 @@ static TaskManager* _instance = nil;
 - (int)punchNumberOfTask:(Task *)task{
     int count = 0;
     for(NSString *str in task.punchDateArr){
-        if(str.intValue >= [[DateUtil transformDate:task.addDate] intValue]){
+        if(str.intValue >= [[DateUtil transformDate:task.addDate] intValue]
+           && (task.endDate == NULL ? TRUE : str.intValue <= [[DateUtil transformDate:task.endDate] intValue])){
             count++;
         }
     }

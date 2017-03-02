@@ -16,6 +16,7 @@
 @property (nonatomic, nullable) FMDatabase *db;
 
 + (_Nonnull instancetype)shareInstance;
+- (void)establishDB;
 - (FMDatabase *_Nonnull)getDB;
 - (void)closeDB;
 - (NSString *_Nonnull)getDBPath;

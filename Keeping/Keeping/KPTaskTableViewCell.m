@@ -74,7 +74,7 @@
     [self.progressView setFont];
     
     [self.weekdayView setFont];
-    self.weekdayView.fontSize = 12.0;
+    self.weekdayView.fontSize = 10.0;
 }
 
 @end

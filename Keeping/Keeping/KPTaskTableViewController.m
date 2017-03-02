@@ -96,7 +96,6 @@
 }
 
 - (void)swipeAction:(UISwipeGestureRecognizer *)sender{
-    
     if([self.colorView isHidden]){
         [self.colorView setHidden:NO];
         [self.weekDayView setHidden:YES];
@@ -304,10 +303,6 @@
         }
         [cell.nameLabel setText:t.name];
         
-        [cell.weekdayView selectWeekdaysInArray:[NSMutableArray arrayWithArray:t.reminderDays]];
-        [cell.weekdayView setIsAllSelected:NO];
-        [cell.weekdayView setUserInteractionEnabled:NO];
-        
         if(t.type > 0){
             UIImage *img = [UIImage imageNamed:@"CIRCLE_FULL"];
             img = [img imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
@@ -341,6 +336,10 @@
         int punchNum = [[TaskManager shareInstance] punchNumberOfTask:t];
         //暂时 NO
         [cell.progressView setProgress:totalPunchNum == 0 ? 0 : (float)punchNum / totalPunchNum animated:NO];
+        
+        [cell.weekdayView selectWeekdaysInArray:[NSMutableArray arrayWithArray:t.reminderDays]];
+        [cell.weekdayView setIsAllSelected:NO];
+        [cell.weekdayView setUserInteractionEnabled:NO];
         
         return cell;
     }else{

@@ -201,7 +201,7 @@
     NSString *text = @"今日任务已全部完成";
     
     NSDictionary *attributes = @{
-                                 NSForegroundColorAttributeName: [Utilities getColor],
+                                 NSForegroundColorAttributeName: [UIColor blackColor],
                                  NSFontAttributeName:[UIFont fontWithName:self.fontName size:20.0]
                                  };
     

@@ -745,7 +745,6 @@
 				1DB4E3AA2BDD226DF2D68A26 /* [CP] Copy Pods Resources */,
 				247F01C81E3D9E1B001F900C /* Embed App Extensions */,
 				2486A5A21E4B22D6006B29EE /* Embed Watch Content */,
-				24C30B741E66777F004DE660 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -894,19 +893,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Keeping/Pods-Keeping-resources.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		24C30B741E66777F004DE660 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" 4bc572765eaf046f5cab858bb6b4665dd8b03794 a41e51e171d688723b9b56f2c3a23ee60a22e986c51602313bfc857d5303ee12";
 		};
 		27BD4EC4E6B5255A94352257 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;

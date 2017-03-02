@@ -150,7 +150,7 @@
                 
                 [[NSFileManager defaultManager] createFileAtPath:[[DBManager shareInstance] getDBPath] contents:data attributes:nil];
                 
-                [[[DBManager shareInstance] getDB] open];
+                [[DBManager shareInstance] establishDB];
                 
                 succeeded = !error;
             }];

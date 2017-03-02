@@ -16,39 +16,43 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" semanticContentAttribute="spatial" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="aG1-lK-VSO">
+                <stackView opaque="NO" contentMode="scaleToFill" semanticContentAttribute="spatial" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="aG1-lK-VSO">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                     <subviews>
                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qsy-oE-wgt">
-                            <rect key="frame" x="0.0" y="7.5" width="45" height="45.5"/>
+                            <rect key="frame" x="0.0" y="10" width="40" height="40.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="Qsy-oE-wgt" secondAttribute="height" multiplier="1:1" id="L9W-pn-ySz"/>
+                                <constraint firstAttribute="width" constant="40" id="oGL-dL-69d"/>
                             </constraints>
                             <connections>
                                 <action selector="selectColorAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="vyQ-hd-R1G"/>
                             </connections>
                         </button>
                         <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SHv-R8-GF4">
-                            <rect key="frame" x="55" y="7.5" width="45" height="45"/>
+                            <rect key="frame" x="55.5" y="10" width="40.5" height="40.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="SHv-R8-GF4" secondAttribute="height" multiplier="1:1" id="4gm-VM-cLW"/>
+                                <constraint firstAttribute="width" constant="40" id="6sT-SQ-B7g"/>
                             </constraints>
                             <connections>
                                 <action selector="selectColorAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="Luq-BL-lV9"/>
                             </connections>
                         </button>
                         <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tcN-eb-CPI">
-                            <rect key="frame" x="110" y="7.5" width="45" height="45.5"/>
+                            <rect key="frame" x="111.5" y="10" width="40" height="40.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="tcN-eb-CPI" secondAttribute="height" multiplier="1:1" id="EgV-rj-1Gw"/>
+                                <constraint firstAttribute="width" constant="40" id="bIk-gP-a20"/>
                             </constraints>
                             <connections>
                                 <action selector="selectColorAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="2dF-px-vpa"/>
                             </connections>
                         </button>
                         <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jhp-tc-4Xl">
-                            <rect key="frame" x="165" y="7.5" width="45" height="45"/>
+                            <rect key="frame" x="167.5" y="10" width="40.5" height="40.5"/>
                             <constraints>
+                                <constraint firstAttribute="width" constant="40" id="OKS-cr-aeD"/>
                                 <constraint firstAttribute="width" secondItem="Jhp-tc-4Xl" secondAttribute="height" multiplier="1:1" id="ynr-ro-ZP8"/>
                             </constraints>
                             <connections>
@@ -56,26 +60,29 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7SI-Pl-5N6">
-                            <rect key="frame" x="220" y="7.5" width="45" height="45.5"/>
+                            <rect key="frame" x="223.5" y="10" width="40" height="40.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="7SI-Pl-5N6" secondAttribute="height" multiplier="1:1" id="yPD-t3-e0I"/>
+                                <constraint firstAttribute="width" constant="40" id="zoB-zX-N29"/>
                             </constraints>
                             <connections>
                                 <action selector="selectColorAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="Grp-cz-jDU"/>
                             </connections>
                         </button>
                         <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8K4-f9-xJM">
-                            <rect key="frame" x="275" y="7.5" width="45" height="45"/>
+                            <rect key="frame" x="279" y="10" width="40.5" height="40.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="8K4-f9-xJM" secondAttribute="height" multiplier="1:1" id="HCa-B5-qa1"/>
+                                <constraint firstAttribute="width" constant="40" id="KPZ-ra-LgE"/>
                             </constraints>
                             <connections>
                                 <action selector="selectColorAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="mBT-hc-iyT"/>
                             </connections>
                         </button>
                         <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5uF-4S-FfS">
-                            <rect key="frame" x="330" y="7.5" width="45" height="45.5"/>
+                            <rect key="frame" x="335" y="10" width="40" height="40.5"/>
                             <constraints>
+                                <constraint firstAttribute="width" constant="40" id="6eP-2g-MfK"/>
                                 <constraint firstAttribute="width" secondItem="5uF-4S-FfS" secondAttribute="height" multiplier="1:1" id="u8w-1m-CuC"/>
                             </constraints>
                             <connections>
@@ -83,6 +90,32 @@
                             </connections>
                         </button>
                     </subviews>
+                    <constraints>
+                        <constraint firstItem="8K4-f9-xJM" firstAttribute="height" secondItem="Qsy-oE-wgt" secondAttribute="height" id="2dF-Ra-8hP"/>
+                        <constraint firstItem="Jhp-tc-4Xl" firstAttribute="bottom" secondItem="Qsy-oE-wgt" secondAttribute="bottom" id="2pV-PT-XOl"/>
+                        <constraint firstItem="tcN-eb-CPI" firstAttribute="bottom" secondItem="Qsy-oE-wgt" secondAttribute="bottom" id="33B-Tc-pJc"/>
+                        <constraint firstItem="tcN-eb-CPI" firstAttribute="width" secondItem="Qsy-oE-wgt" secondAttribute="width" id="9pa-Ix-niq"/>
+                        <constraint firstItem="8K4-f9-xJM" firstAttribute="bottom" secondItem="Qsy-oE-wgt" secondAttribute="bottom" id="Ca0-U0-dvk"/>
+                        <constraint firstItem="tcN-eb-CPI" firstAttribute="height" secondItem="Qsy-oE-wgt" secondAttribute="height" id="H8O-px-ceD"/>
+                        <constraint firstItem="7SI-Pl-5N6" firstAttribute="width" secondItem="Qsy-oE-wgt" secondAttribute="width" id="Lw4-M6-q4v"/>
+                        <constraint firstItem="5uF-4S-FfS" firstAttribute="top" secondItem="Qsy-oE-wgt" secondAttribute="top" id="MdV-yN-Z19"/>
+                        <constraint firstItem="tcN-eb-CPI" firstAttribute="top" secondItem="Qsy-oE-wgt" secondAttribute="top" id="Nnc-bp-mXY"/>
+                        <constraint firstItem="Jhp-tc-4Xl" firstAttribute="height" secondItem="Qsy-oE-wgt" secondAttribute="height" id="OVj-F6-SXI"/>
+                        <constraint firstItem="SHv-R8-GF4" firstAttribute="height" secondItem="Qsy-oE-wgt" secondAttribute="height" id="POC-Ig-Vgl"/>
+                        <constraint firstItem="8K4-f9-xJM" firstAttribute="top" secondItem="Qsy-oE-wgt" secondAttribute="top" id="PgZ-1h-VGb"/>
+                        <constraint firstItem="Jhp-tc-4Xl" firstAttribute="width" secondItem="Qsy-oE-wgt" secondAttribute="width" id="ROS-pB-lwy"/>
+                        <constraint firstItem="SHv-R8-GF4" firstAttribute="top" secondItem="Qsy-oE-wgt" secondAttribute="top" id="UTj-SO-N9w"/>
+                        <constraint firstItem="8K4-f9-xJM" firstAttribute="width" secondItem="Qsy-oE-wgt" secondAttribute="width" id="V2h-hm-Nd3"/>
+                        <constraint firstItem="Jhp-tc-4Xl" firstAttribute="top" secondItem="Qsy-oE-wgt" secondAttribute="top" id="Wj2-QT-Pz3"/>
+                        <constraint firstItem="SHv-R8-GF4" firstAttribute="width" secondItem="Qsy-oE-wgt" secondAttribute="width" id="bjk-RC-RYu"/>
+                        <constraint firstItem="7SI-Pl-5N6" firstAttribute="bottom" secondItem="Qsy-oE-wgt" secondAttribute="bottom" id="dp3-Dh-bT0"/>
+                        <constraint firstItem="SHv-R8-GF4" firstAttribute="bottom" secondItem="Qsy-oE-wgt" secondAttribute="bottom" id="hS8-6n-ohx"/>
+                        <constraint firstItem="7SI-Pl-5N6" firstAttribute="height" secondItem="Qsy-oE-wgt" secondAttribute="height" id="lAe-Ak-ssv"/>
+                        <constraint firstItem="7SI-Pl-5N6" firstAttribute="top" secondItem="Qsy-oE-wgt" secondAttribute="top" id="otm-cR-FGu"/>
+                        <constraint firstItem="5uF-4S-FfS" firstAttribute="bottom" secondItem="Qsy-oE-wgt" secondAttribute="bottom" id="qIm-J2-USb"/>
+                        <constraint firstItem="5uF-4S-FfS" firstAttribute="width" secondItem="Qsy-oE-wgt" secondAttribute="width" id="t9N-ww-0dm"/>
+                        <constraint firstItem="5uF-4S-FfS" firstAttribute="height" secondItem="Qsy-oE-wgt" secondAttribute="height" id="vzn-nW-A8b"/>
+                    </constraints>
                 </stackView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

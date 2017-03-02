@@ -48,21 +48,21 @@
                         </connections>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yki-xl-EWe" customClass="KPWeekdayPickerView">
-                        <rect key="frame" x="18" y="40.5" width="150" height="18"/>
+                        <rect key="frame" x="18" y="38.5" width="160" height="20"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="150" id="MQu-cn-lh2"/>
-                            <constraint firstAttribute="height" constant="18" id="VBi-Vp-ACC"/>
+                            <constraint firstAttribute="height" constant="20" id="r8F-1L-Haw"/>
+                            <constraint firstAttribute="width" constant="160" id="xqU-sF-uov"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="middleTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="TPV-JP-ZrE">
-                        <rect key="frame" x="18" y="8" width="42" height="29.5"/>
+                        <rect key="frame" x="18" y="8" width="42" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zwj-tx-iGW">
-                        <rect key="frame" x="65" y="18" width="10" height="10"/>
+                        <rect key="frame" x="65" y="13.5" width="10" height="10"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="Zwj-tx-iGW" secondAttribute="height" multiplier="1:1" id="5BE-db-rVx"/>
                             <constraint firstAttribute="height" constant="10" id="IJj-dg-Rlv"/>
@@ -84,7 +84,6 @@
                     <constraint firstAttribute="bottom" secondItem="Lcf-2t-2Cr" secondAttribute="bottom" constant="5" id="h5k-GF-Uem"/>
                     <constraint firstItem="yki-xl-EWe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="htd-ei-Tw6"/>
                     <constraint firstItem="Lcf-2t-2Cr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="jiH-y7-v8l"/>
-                    <constraint firstItem="yki-xl-EWe" firstAttribute="top" secondItem="TPV-JP-ZrE" secondAttribute="bottom" constant="3" id="vzX-0G-Rj4"/>
                     <constraint firstAttribute="trailing" secondItem="Lcf-2t-2Cr" secondAttribute="trailing" constant="10" id="z0R-3X-5aP"/>
                     <constraint firstItem="TPV-JP-ZrE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="zPj-EP-dVh"/>
                 </constraints>
@@ -95,7 +94,7 @@
                 <outlet property="progressView" destination="GI4-oS-7Ju" id="KMI-Gx-1zR"/>
                 <outlet property="taskImgViewBtn" destination="Qjo-ku-I5K" id="Xwf-uB-SEq"/>
                 <outlet property="typeImg" destination="Zwj-tx-iGW" id="dSv-GX-KHb"/>
-                <outlet property="weekdayView" destination="yki-xl-EWe" id="asn-Gw-1IA"/>
+                <outlet property="weekdayView" destination="yki-xl-EWe" id="T2M-55-XTr"/>
             </connections>
         </tableViewCell>
     </objects>

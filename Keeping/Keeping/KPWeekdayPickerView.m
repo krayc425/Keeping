@@ -48,6 +48,16 @@ static BOOL _loadingXib = NO;
     }
     
     [self.allButton setHidden:self.isAllButtonHidden];
+
+//    if(self.isAllButtonHidden){
+//        [self.allButton setTitle:@"" forState:UIControlStateNormal];
+//    }else{
+//        if(self.isAllSelected){
+//            [self.allButton setTitle:@"清空" forState:UIControlStateNormal];
+//        }else{
+//            [self.allButton setTitle:@"全选" forState:UIControlStateNormal];
+//        }
+//    }
     
     self.weekDayStack.spacing = self.fontSize / 2.5;
 }
