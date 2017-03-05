@@ -64,7 +64,7 @@ static BOOL _loadingXib = NO;
         view.translatesAutoresizingMaskIntoConstraints = self.translatesAutoresizingMaskIntoConstraints;
         
         // copy autolayout constraints
-        NSMutableArray *constraints = [NSMutableArray array];
+        NSMutableArray *constraints = [[NSMutableArray alloc] init];
         for(NSLayoutConstraint *constraint in self.constraints) {
             id firstItem = constraint.firstItem;
             id secondItem = constraint.secondItem;

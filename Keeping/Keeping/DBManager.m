@@ -146,6 +146,14 @@ static DBManager* _instance = nil;
     return fileName2;
 }
 
+- (long long)dbFilesize{
+    NSFileManager* manager =[NSFileManager defaultManager];
+    if ([manager fileExistsAtPath:self.getDBPath]){
+        return [[manager attributesOfItemAtPath:self.getDBPath error:nil] fileSize];
+    }
+    return 0;
+}
+
 //
 //#pragma <WCSessionDelegate>
 //

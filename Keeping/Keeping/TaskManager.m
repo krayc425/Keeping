@@ -436,15 +436,12 @@ static TaskManager* _instance = nil;
 - (BOOL)skipForTask:(Task *)task onDate:(NSDate *)date{
     NSMutableArray *arr = [NSMutableArray arrayWithArray:task.punchSkipArr];
     if(arr == NULL){
-        arr = [NSMutableArray array];
+        arr = [[NSMutableArray alloc] init];
     }
     if(![arr containsObject:[DateUtil transformDate:date]]){
         [arr addObject:[DateUtil transformDate:date]];
     }
     [task setPunchSkipArr:arr];
-    
-    NSLog(@"%@", [task.punchSkipArr description]);
-    
     return [self updateTask:task];
 }
 

@@ -22,14 +22,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.texts = [NSMutableArray array];
+    self.texts = [[NSMutableArray alloc] init];
     
     [self.navigationItem setTitle:@"类别颜色备注"];
     
     colorArr = [NSMutableArray arrayWithArray:[Utilities getTypeColorArr]];
     NSMutableArray *tmpColorTextArr = [[[NSUserDefaults standardUserDefaults] objectForKey:@"typeTextArr"] mutableCopy];
+    NSLog(@"%@", tmpColorTextArr.description);
     if(tmpColorTextArr == NULL || tmpColorTextArr.count == 0){
-        colorTextArr = [NSMutableArray array];
+        colorTextArr = [[NSMutableArray alloc] init];
         for (int i = 0; i < colorArr.count; i++) {
             [colorTextArr addObject:@""];
         }

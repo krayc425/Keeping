@@ -29,7 +29,7 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XBM-2O-wnG">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="XBM-2O-wnG">
                         <rect key="frame" x="18" y="40.5" width="42" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="ocE-mp-Oev"/>
@@ -75,6 +75,7 @@
                     <constraint firstItem="2aB-FB-WuP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="f4s-iw-99D"/>
                     <constraint firstAttribute="bottom" secondItem="fcw-8v-FrW" secondAttribute="bottom" constant="5" id="m2w-A9-taa"/>
                     <constraint firstAttribute="trailingMargin" secondItem="AGj-Js-VDw" secondAttribute="trailing" constant="10" id="sWE-6B-oTh"/>
+                    <constraint firstItem="AGj-Js-VDw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="XBM-2O-wnG" secondAttribute="trailing" constant="10" id="vVh-Fs-sAH"/>
                     <constraint firstItem="XBM-2O-wnG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="zuW-iR-OU8"/>
                 </constraints>
             </tableViewCellContentView>

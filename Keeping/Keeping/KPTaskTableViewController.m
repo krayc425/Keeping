@@ -470,7 +470,7 @@
     if (searchText.length) {
         // 与搜索条件再搜索
         // 显示建议搜索结果
-        NSMutableArray *searchSuggestionsM = [NSMutableArray array];
+        NSMutableArray *searchSuggestionsM = [[NSMutableArray alloc] init];
         for(Task *task in [TaskDataHelper filtrateTasks:self.taskArr withString:searchText]){
             [searchSuggestionsM addObject:task.name];
         }

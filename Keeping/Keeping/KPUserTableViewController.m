@@ -46,20 +46,6 @@
     [self setLatestLabel];
 }
 
-- (void)setLatestLabel{
-    AVQuery *dbQuery = [AVQuery queryWithClassName:@"dbBackUp"];
-    [dbQuery whereKey:@"userID" equalTo:self.currentUser.objectId];
-    if(dbQuery.countObjects != 0){
-        
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm"];
-        
-        [self.uploadTimeLabel setText:[NSString stringWithFormat:@"%@",[dateFormatter stringFromDate:[dbQuery getFirstObject].updatedAt]]];
-    }else{
-        [self.uploadTimeLabel setText:@""];
-    }
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -70,6 +56,8 @@
     }
 }
 
+#pragma mark - DB Actions
+
 - (void)uploadDB{
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
     hud.label.text = @"上传中";
@@ -77,7 +65,7 @@
     __block BOOL succeeded;
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        
+        //备份任务数据库
         AVQuery *query = [AVQuery queryWithClassName:@"dbBackUp"];
         [query whereKey:@"userID" equalTo:self.currentUser.objectId];
         
@@ -112,6 +100,24 @@
             
             succeeded = [dbBackUp save];
         }
+        //备份类别
+        
+        AVQuery *typeQuery = [AVQuery queryWithClassName:@"typeBackUp"];
+        [typeQuery whereKey:@"userID" equalTo:self.currentUser.objectId];
+        if(typeQuery.countObjects == 0){
+            
+            AVObject *types = [AVObject objectWithClassName:@"typeBackUp"];
+            [types setObject:self.currentUser.objectId forKey:@"userID"];
+            [types setObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"typeTextArr"] forKey:@"types"];
+            [types save];
+
+        }else{
+            
+            AVObject *types = [typeQuery getFirstObject];
+            [types setObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"typeTextArr"] forKey:@"types"];
+            [types save];
+
+        }
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [hud hideAnimated:YES];
@@ -128,6 +134,20 @@
     });
 }
 
+- (BOOL)hasDBOnline{
+    AVQuery *query = [AVQuery queryWithClassName:@"dbBackUp"];
+    [query whereKey:@"userID" equalTo:self.currentUser.objectId];
+    return query.countObjects != 0;
+}
+
+- (long long)getDBOnlineFileSize{
+    AVQuery *query = [AVQuery queryWithClassName:@"dbBackUp"];
+    [query whereKey:@"userID" equalTo:self.currentUser.objectId];
+    AVObject *dbBackUp = [query getFirstObject];
+    AVFile *file = [dbBackUp objectForKey:@"db"];
+    return file.size;
+}
+
 - (void)downloadDB{
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
     hud.label.text = @"下载中";
@@ -136,25 +156,34 @@
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         
+        //任务数据库
         AVQuery *query = [AVQuery queryWithClassName:@"dbBackUp"];
         [query whereKey:@"userID" equalTo:self.currentUser.objectId];
-        if(query.countObjects == 0){
-            SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-            [alert showWarning:@"您还没有上传过数据" subTitle:nil closeButtonTitle:@"好的" duration:0.0];
-        }else{
-            AVObject *dbBackUp = [query getFirstObject];
-            AVFile *file = [dbBackUp objectForKey:@"db"];
-            [file getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
-                
-                [[[DBManager shareInstance] getDB] close];
-                
-                [[NSFileManager defaultManager] createFileAtPath:[[DBManager shareInstance] getDBPath] contents:data attributes:nil];
-                
-                [[DBManager shareInstance] establishDB];
-                
-                succeeded = !error;
-            }];
+        AVObject *dbBackUp = [query getFirstObject];
+        AVFile *file = [dbBackUp objectForKey:@"db"];
+        [file getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
+            
+            [[[DBManager shareInstance] getDB] close];
+            
+            [[NSFileManager defaultManager] createFileAtPath:[[DBManager shareInstance] getDBPath] contents:data attributes:nil];
+            
+            [[DBManager shareInstance] establishDB];
+            
+            succeeded = !error;
+        }];
+        
+        //任务类别
+        AVQuery *typeQuery = [AVQuery queryWithClassName:@"typeBackUp"];
+        [typeQuery whereKey:@"userID" equalTo:self.currentUser.objectId];
+        if(typeQuery.countObjects > 0){
+            AVObject *type = [typeQuery getFirstObject];
+            NSLog(@"%@",type.description);
+            NSLog(@"%@", [[type objectForKey:@"types"]description]);
+            [[NSUserDefaults standardUserDefaults] setObject:[type objectForKey:@"types"] forKey:@"typeTextArr"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            
         }
+
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [hud hideAnimated:YES];
@@ -169,6 +198,23 @@
         });
         
     });
+    
+}
+
+#pragma mark - User Info Actions
+
+- (void)setLatestLabel{
+    AVQuery *dbQuery = [AVQuery queryWithClassName:@"dbBackUp"];
+    [dbQuery whereKey:@"userID" equalTo:self.currentUser.objectId];
+    if(dbQuery.countObjects != 0){
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+        
+        [self.uploadTimeLabel setText:[NSString stringWithFormat:@"%@",[dateFormatter stringFromDate:[dbQuery getFirstObject].updatedAt]]];
+    }else{
+        [self.uploadTimeLabel setText:@""];
+    }
 }
 
 - (void)logout{
@@ -260,17 +306,26 @@
             [self uploadDB];
             
         }];
-        [alert showWarning:@"注意" subTitle:@"上传后将覆盖服务器端所有数据，确定上传吗？\n注：上传将消耗较大流量，建议在 WiFi 环境下上传" closeButtonTitle:@"取消" duration:0.0];
+        
+        NSString *subtitle = [NSString stringWithFormat:@"上传后将覆盖服务器端所有数据，确定上传吗？\n注：上传将消耗约 %.2f MB 流量，建议在 WiFi 环境下上传", [[DBManager shareInstance] dbFilesize] / 1000000.0];
+        [alert showWarning:@"注意" subTitle:subtitle closeButtonTitle:@"取消" duration:0.0];
         
     }else if(indexPath.section == 1 && indexPath.row == 1){
         
-        SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-        [alert addButton:@"下载" actionBlock:^{
+        if(![self hasDBOnline]){
+            SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+            [alert showWarning:@"您还没有上传过数据" subTitle:nil closeButtonTitle:@"好的" duration:0.0];
+        }else{
+            SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+            [alert addButton:@"下载" actionBlock:^{
+                
+                [self downloadDB];
+                
+            }];
             
-            [self downloadDB];
-            
-        }];
-        [alert showWarning:@"注意" subTitle:@"下载后将覆盖本地所有数据，确定下载吗？\n注：下载将消耗较大流量，建议在 WiFi 环境下下载" closeButtonTitle:@"取消" duration:0.0];
+            NSString *subtitle = [NSString stringWithFormat:@"下载后将覆盖本地所有数据，确定下载吗？\n注：下载将消耗约 %.2f MB 流量，建议在 WiFi 环境下下载", [self getDBOnlineFileSize] / 1000000.0];
+            [alert showWarning:@"注意" subTitle:subtitle closeButtonTitle:@"取消" duration:0.0];
+        }
         
     }else if(indexPath.section == 0 && indexPath.row == 0){
         

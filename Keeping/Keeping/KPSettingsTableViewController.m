@@ -13,6 +13,7 @@
 #import "KPTabBar.h"
 #import "KPUserTableViewController.h"
 #import "SCLAlertView.h"
+#import "DateTools.h"
 
 // 静态库方式引入
 #import <LeanCloudSocial/AVOSCloudSNS.h>
@@ -61,12 +62,17 @@
         [query whereKey:@"userId" equalTo:[AVUser currentUser].objectId];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             if (!error) {
+                NSString *username;
+                NSInteger joinDays;
                 if(query.countObjects > 0){
                     AVObject *user = objects[0];
-                    [self.userNameLabel setText:[user objectForKey:@"username"]];
+                    username = [user objectForKey:@"username"];
+                    joinDays = [[NSDate dateWithYear:[[NSDate date] year] month:[[NSDate date] month] day:[[NSDate date] day]] daysFrom:[NSDate dateWithYear:user.createdAt.year month:user.createdAt.month day:user.createdAt.day]];
                 }else{
-                    [self.userNameLabel setText:[[AVUser currentUser] valueForKey:@"username"]];
+                    username = [[AVUser currentUser] valueForKey:@"username"];
+                    joinDays = [[NSDate dateWithYear:[[NSDate date] year] month:[[NSDate date] month] day:[[NSDate date] day]] daysFrom:[NSDate dateWithYear:[AVUser currentUser].createdAt.year month:[AVUser currentUser].createdAt.month day:[AVUser currentUser].createdAt.day]];
                 }
+                [self.userNameLabel setText:[NSString stringWithFormat:@"%@ · 已加入 %ld 天", username, (long)joinDays]];
             }else{
                 NSLog(@"错误：%@",error.description);
                 SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
@@ -252,7 +258,7 @@
         case 2:
             return 2;
         case 3:
-            return 2;
+            return 3;
         default:
             return 0;
     }
@@ -285,6 +291,12 @@
     if(indexPath.section == 3 && indexPath.row == 0){
         LCUserFeedbackAgent *agent = [LCUserFeedbackAgent sharedInstance];
         [agent showConversations:self title:nil contact:nil];
+    }
+    
+    if(indexPath.section == 3 && indexPath.row == 1){
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://songkuixi.github.io/2017/03/02/Keeping-Q-A/"]
+                                           options:@{}
+                                 completionHandler:nil];
     }
 }
 

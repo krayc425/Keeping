@@ -20,5 +20,6 @@
 - (FMDatabase *_Nonnull)getDB;
 - (void)closeDB;
 - (NSString *_Nonnull)getDBPath;
+- (long long)dbFilesize;
 
 @end

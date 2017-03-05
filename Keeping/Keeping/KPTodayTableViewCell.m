@@ -40,14 +40,14 @@
     
     deleteView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     
-    CardsView *cardView = [[CardsView alloc] initWithFrame:CGRectMake(0, 5, 90, 55)];
+    CardsView *cardView = [[CardsView alloc] initWithFrame:CGRectMake(0, 5, 90, 60)];
     cardView.cornerRadius = 10.0;
     [deleteView addSubview:cardView];
     
     infoLabel = [[UILabel alloc] initWithFrame:CGRectMake(cardView.frame.size.width / 2 - 30,
-                                                               cardView.frame.size.height / 2 - 25,
-                                                               60,
-                                                               50)];
+                                                           cardView.frame.size.height / 2 - 25,
+                                                           60,
+                                                           50)];
     [infoLabel setText:@"详情"];
     [infoLabel setTextColor:[Utilities getColor]];
     [infoLabel setNumberOfLines:2];
