@@ -125,6 +125,9 @@ static DBManager* _instance = nil;
             }
 
         }
+        
+        //清理数据库缓存
+        [self.db executeStatements:@"VACUUM t_task"];
     }
     
 }

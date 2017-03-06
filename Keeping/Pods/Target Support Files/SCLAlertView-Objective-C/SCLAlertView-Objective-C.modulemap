@@ -1,0 +1,6 @@
+framework module SCLAlertView_Objective_C {
+  umbrella header "SCLAlertView-Objective-C-umbrella.h"
+
+  export *
+  module * { export * }
+}

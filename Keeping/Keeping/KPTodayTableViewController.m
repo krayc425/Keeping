@@ -52,6 +52,9 @@ static AMPopTip *shareTip = NULL;
     //类别按钮
     self.colorView.colorDelegate = self;
     
+    //日历按钮
+    [self.dateButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
+    
     //page 指示 stack
     self.dateStack.hidden = NO;
     self.colorView.hidden = YES;
@@ -131,7 +134,6 @@ static AMPopTip *shareTip = NULL;
 - (void)viewWillAppear:(BOOL)animated{
     [self.progressLabel setFont:[UIFont fontWithName:[Utilities getFont] size:40.0f]];
     [self.dateButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
-    [self.dateButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
     
     [self loadTasks];
 }
@@ -505,9 +507,6 @@ static AMPopTip *shareTip = NULL;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if(indexPath.section != 0){
-        
-        NSIndexPath *oldIndexPath = [self.selectedIndexPath copy];
-        
         KPTodayTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         
         if(![cell.moreButton isHidden]){
@@ -522,42 +521,8 @@ static AMPopTip *shareTip = NULL;
             self.selectedIndexPath = NULL;
         }
         
-        NSLog(@"old %@", oldIndexPath.description);
-        NSLog(@"new %@", indexPath.description);
-        
-//        if([[NSUserDefaults standardUserDefaults] boolForKey:@"animation"]){
-//            
-//                        [self.tableView setUserInteractionEnabled:NO];
-//            //
-//            if(oldIndexPath != NULL){
-//                
-//                [tableView beginUpdates];
-//                
-//                [tableView reloadRowsAtIndexPaths:@[oldIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-//                
-//                [tableView endUpdates];
-//            }
-//            //
-//            
-//            if(self.selectedIndexPath != NULL){
-//            
-//                [tableView beginUpdates];
-//            
-//                [tableView reloadRowsAtIndexPaths:@[self.selectedIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-//            
-//                [tableView endUpdates];
-//                
-//            }
-//            
-//                        [self.tableView setUserInteractionEnabled:YES];
-//            
-//        }else{
-//            [tableView reloadData];
-//        }
-//
         [self fadeAnimation];
         [tableView reloadData];
-        
     }
 }
 

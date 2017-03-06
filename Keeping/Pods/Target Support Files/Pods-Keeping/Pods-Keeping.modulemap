@@ -1,0 +1,6 @@
+framework module Pods_Keeping {
+  umbrella header "Pods-Keeping-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -23,8 +23,11 @@ PODS:
   - AMPopTip (1.3.0)
   - AVOSCloud (3.6.1)
   - BEMCheckBox (1.2.1)
+  - Crashlytics (3.8.3):
+    - Fabric (~> 1.6.3)
   - DateTools (1.7.0)
   - DZNEmptyDataSet (1.8.1)
+  - Fabric (1.6.11)
   - FDFullscreenPopGesture (1.1)
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
@@ -47,8 +50,10 @@ DEPENDENCIES:
   - AMPopTip
   - AVOSCloud
   - BEMCheckBox
+  - Crashlytics
   - DateTools
   - DZNEmptyDataSet
+  - Fabric
   - FDFullscreenPopGesture
   - FMDB
   - FSCalendar
@@ -65,8 +70,10 @@ SPEC CHECKSUMS:
   AMPopTip: b810a33c120feacafce170cc9ddcaa8ce3a8389d
   AVOSCloud: cc9b567da2d30f07e3da1e4db682cad9ff56a1b6
   BEMCheckBox: 264b8b72aa92adbfefa265cc58a0cdb86b207b9f
+  Crashlytics: 2b6dbe138a42395577cfa73dfa1aa7248cadf39e
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   FSCalendar: 8efeb4b92240937204165c7743f4375923112fb5
@@ -78,6 +85,6 @@ SPEC CHECKSUMS:
   PYSearch: d7d89a358545f4f8ef3700197724162d1e0e2029
   SCLAlertView-Objective-C: ca78280817e66e74366b78579350dee2ff277e23
 
-PODFILE CHECKSUM: 1cd59d787f276f307e394bdd89a9ebc194d4d440
+PODFILE CHECKSUM: 96ab68dd08bf4670d6e98f20228f95ce00f74d31
 
 COCOAPODS: 1.2.0

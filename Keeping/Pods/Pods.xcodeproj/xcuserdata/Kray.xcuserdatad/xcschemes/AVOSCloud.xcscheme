@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '28AFBC0E511B8F40FE4F8AB64E3F6F22'
+               BlueprintIdentifier = '288A6E512ABA7B290C198795E7118F53'
                BlueprintName = 'AVOSCloud'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libAVOSCloud.a'>
+               BuildableName = 'AVOSCloud.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

@@ -1,0 +1,6 @@
+framework module PYSearch {
+  umbrella header "PYSearch-umbrella.h"
+
+  export *
+  module * { export * }
+}

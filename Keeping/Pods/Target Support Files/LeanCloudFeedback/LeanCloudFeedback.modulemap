@@ -1,0 +1,6 @@
+framework module LeanCloudFeedback {
+  umbrella header "LeanCloudFeedback-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '157391F9AA1132BC03AEBC48EC636E46'
+               BlueprintIdentifier = 'C7563D5AE176C43B7EFA77306E3C43C9'
                BlueprintName = 'FSCalendar'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libFSCalendar.a'>
+               BuildableName = 'FSCalendar.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
