@@ -15,8 +15,6 @@ target 'Keeping' do
   pod 'AVOSCloud'
   pod 'LeanCloudSocial'
   pod 'SCLAlertView-Objective-C'
-
-  use_frameworks!
   pod 'Fabric'
   pod 'Crashlytics'
 

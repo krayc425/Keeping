@@ -87,43 +87,6 @@ strip_invalid_archs() {
   fi
 }
 
-
-if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/AFNetworking/AFNetworking.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/AMPopTip/AMPopTip.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/AVOSCloud/AVOSCloud.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/BEMCheckBox-framework/BEMCheckBox.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/DZNEmptyDataSet-framework/DZNEmptyDataSet.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/DateTools-framework/DateTools.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/FDFullscreenPopGesture/FDFullscreenPopGesture.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/FMDB-framework/FMDB.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/FSCalendar/FSCalendar.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/HSDatePickerViewController/HSDatePickerViewController.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/LeanCloudFeedback/LeanCloudFeedback.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/LeanCloudSocial/LeanCloudSocial.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/MBProgressHUD/MBProgressHUD.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/MMWormhole/MMWormhole.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/PYSearch/PYSearch.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/SCLAlertView-Objective-C/SCLAlertView_Objective_C.framework"
-fi
-if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/AFNetworking/AFNetworking.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/AMPopTip/AMPopTip.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/AVOSCloud/AVOSCloud.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/BEMCheckBox-framework/BEMCheckBox.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/DZNEmptyDataSet-framework/DZNEmptyDataSet.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/DateTools-framework/DateTools.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/FDFullscreenPopGesture/FDFullscreenPopGesture.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/FMDB-framework/FMDB.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/FSCalendar/FSCalendar.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/HSDatePickerViewController/HSDatePickerViewController.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/LeanCloudFeedback/LeanCloudFeedback.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/LeanCloudSocial/LeanCloudSocial.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/MBProgressHUD/MBProgressHUD.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/MMWormhole/MMWormhole.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/PYSearch/PYSearch.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/SCLAlertView-Objective-C/SCLAlertView_Objective_C.framework"
-fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait
 fi

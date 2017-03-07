@@ -1,6 +1,0 @@
-framework module LeanCloudSocial {
-  umbrella header "LeanCloudSocial-umbrella.h"
-
-  export *
-  module * { export * }
-}

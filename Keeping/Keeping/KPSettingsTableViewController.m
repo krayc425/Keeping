@@ -14,6 +14,7 @@
 #import "KPUserTableViewController.h"
 #import "SCLAlertView.h"
 #import "DateTools.h"
+#import "MBProgressHUD.h"
 
 // 静态库方式引入
 #import <LeanCloudSocial/AVOSCloudSNS.h>
@@ -55,6 +56,8 @@
     [super viewWillAppear:animated];
     
     [self setFont];
+    
+    [self getCacheSize];
 
     if([AVUser currentUser]){
         
@@ -96,6 +99,19 @@
     }
 }
 
+- (void)getCacheSize {
+    NSUInteger size = 0;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString * cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+    NSDirectoryEnumerator *fileEnumerator = [fileManager enumeratorAtPath:cachePath];
+    for (NSString *fileName in fileEnumerator) {
+        NSString *filePath = [cachePath stringByAppendingPathComponent:fileName];
+        NSDictionary *attrs = [fileManager attributesOfItemAtPath:filePath error:nil];
+        size += [attrs fileSize];
+    }
+    [self.cacheLabel setText:[NSString stringWithFormat:@"%.2f MB", size / 1024 / 1024.0]];
+}
+
 - (void)checkMessage:(id)sender{
     //检查有没有未读消息
     [[LCUserFeedbackAgent sharedInstance] countUnreadFeedbackThreadsWithBlock:^(NSInteger number, NSError *error) {
@@ -116,6 +132,32 @@
             }
         }
     }];
+}
+
+- (void)clearDisk {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
+    hud.label.text = @"清理中";
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+        [fileManager removeItemAtPath:cachePath error:nil];
+        [fileManager createDirectoryAtPath:cachePath
+               withIntermediateDirectories:YES
+                                attributes:nil
+                                     error:NULL];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [hud hideAnimated:YES];
+            
+            SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+            [alert showSuccess:@"清理成功" subTitle: nil closeButtonTitle:@"好的" duration:0.0];
+            [alert alertIsDismissed:^{
+                [self getCacheSize];
+            }];
+        });
+        
+    });
 }
 
 - (void)didReceiveMemoryWarning {
@@ -288,15 +330,13 @@
         }
     }
     
-    if(indexPath.section == 3 && indexPath.row == 0){
+    if(indexPath.section == 3 && indexPath.row == 1){
         LCUserFeedbackAgent *agent = [LCUserFeedbackAgent sharedInstance];
         [agent showConversations:self title:nil contact:nil];
     }
     
-    if(indexPath.section == 3 && indexPath.row == 1){
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://songkuixi.github.io/2017/03/02/Keeping-Q-A/"]
-                                           options:@{}
-                                 completionHandler:nil];
+    if(indexPath.section == 3 && indexPath.row == 0){
+        [self clearDisk];
     }
 }
 

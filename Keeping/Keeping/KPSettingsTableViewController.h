@@ -18,6 +18,8 @@
 
 @property (nonatomic, nonnull) IBOutlet UILabel *unreadMsgLabel;
 
+@property (nonatomic, nonnull) IBOutlet UILabel *cacheLabel;
+
 @property (nonatomic, nonnull) IBOutlet UILabel *userNameLabel;
 @property (nonatomic, nonnull) IBOutlet UIStackView *appButtonStack;
 

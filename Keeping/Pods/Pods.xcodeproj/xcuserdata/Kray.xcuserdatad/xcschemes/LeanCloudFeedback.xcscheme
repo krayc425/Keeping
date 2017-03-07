@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '837CFAB17D4D7274F688DB5308179A1B'
+               BlueprintIdentifier = 'A40FD10582462E4B7E3F0FD7865B3551'
                BlueprintName = 'LeanCloudFeedback'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'LeanCloudFeedback.framework'>
+               BuildableName = 'libLeanCloudFeedback.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
