@@ -16,11 +16,19 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
+    [[UIColor lightGrayColor] setStroke];
+    
+    float y = 0;
+    float xLeft1 = 0.0;
+    float xRight1 = self.frame.size.width;
+    
+    UIBezierPath *path1 = [UIBezierPath bezierPath];
+    [path1 moveToPoint:CGPointMake(xLeft1, y)];
+    [path1 addLineToPoint:CGPointMake(xRight1, y)];
+    [path1 stroke];
+    
     [self.nameLabel setTextColor:[UIColor blackColor]];
     [self.timeLabel setTextColor:[UIColor blackColor]];
-    
-//        [self.nameLabel setTextColor:[UIColor blackColor]];
-//        [self.timeLabel setTextColor:[UIColor blackColor]];
     
     self.checkBox.delegate = self;
     [self.checkBox setOnAnimationType:BEMAnimationTypeFill];

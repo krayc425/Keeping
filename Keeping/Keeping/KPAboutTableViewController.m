@@ -82,6 +82,7 @@
         switch (indexPath.row) {
             case 0:
                 [self qANDa];
+                break;
             case 1:
                 [self score];
                 break;

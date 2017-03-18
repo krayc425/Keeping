@@ -23,6 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self.navigationItem setTitle:@"选择 APP"];
     
     [self.noneLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0]];
@@ -59,7 +60,7 @@
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
     self.searchController.dimsBackgroundDuringPresentation = false;
     self.searchController.searchBar.delegate = self;
-    self.searchController.searchBar.frame = CGRectMake(0, 0, 0, 44);
+    self.searchController.searchBar.frame = CGRectMake(0, 100, self.view.frame.size.width, 44);
     self.searchController.searchBar.placeholder = @"APP 名称";
     self.searchController.searchBar.tintColor = [Utilities getColor];
     [self.searchController.searchBar setValue:@"完成" forKey:@"_cancelButtonText"];
@@ -255,5 +256,13 @@
         [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:[self.schemeArr indexOfObject:self.selectedApp] inSection:1] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
     });
 }
+
+//- (void)willPresentSearchController:(UISearchController *)searchController{
+//    self.navigationController.navigationBar.translucent = YES;
+//}
+//
+//- (void)willDismissearchController:(UISearchController *)searchController{
+//    self.navigationController.navigationBar.translucent = NO;
+//}
 
 @end

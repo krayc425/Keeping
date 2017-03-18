@@ -99,21 +99,27 @@
         NSString *schemeJsonStr = [resultSet stringForColumn:@"appScheme"];
         if(schemeJsonStr != NULL){
             NSData *schemeData = [schemeJsonStr dataUsingEncoding:NSUTF8StringEncoding];
-            NSDictionary *schemeDict = [NSJSONSerialization JSONObjectWithData:schemeData options:NSJSONReadingAllowFragments error:nil];
+            NSDictionary *schemeDict = [NSJSONSerialization JSONObjectWithData:schemeData
+                                                                       options:NSJSONReadingAllowFragments
+                                                                         error:nil];
             t.appScheme = schemeDict;
         }
         
         NSString *daysJsonStr = [resultSet stringForColumn:@"reminderDays"];
         if(daysJsonStr != NULL){
             NSData *daysData = [daysJsonStr dataUsingEncoding:NSUTF8StringEncoding];
-            NSArray *daysArr = [NSJSONSerialization JSONObjectWithData:daysData options:NSJSONReadingAllowFragments error:nil];
+            NSArray *daysArr = [NSJSONSerialization JSONObjectWithData:daysData
+                                                               options:NSJSONReadingAllowFragments
+                                                                 error:nil];
             t.reminderDays = daysArr;
         }
         
         NSString *punchJsonStr = [resultSet stringForColumn:@"punchDateArr"];
         if(punchJsonStr != NULL){
             NSData *punchData = [punchJsonStr dataUsingEncoding:NSUTF8StringEncoding];
-            NSArray *punchArr = [NSJSONSerialization JSONObjectWithData:punchData options:NSJSONReadingAllowFragments error:nil];
+            NSArray *punchArr = [NSJSONSerialization JSONObjectWithData:punchData
+                                                                options:NSJSONReadingAllowFragments
+                                                                  error:nil];
             t.punchDateArr = punchArr;
         }
         

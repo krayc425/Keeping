@@ -130,6 +130,8 @@ static DBManager* _instance = nil;
         [self.db executeStatements:@"VACUUM t_task"];
     }
     
+    NSLog(@"Current Path: %@", self.getDBPath);
+    
 }
 
 - (FMDatabase *_Nonnull)getDB{

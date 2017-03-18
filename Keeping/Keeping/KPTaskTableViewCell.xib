@@ -17,7 +17,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="69.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lcf-2t-2Cr" customClass="CardsView">
@@ -56,13 +56,13 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="middleTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="TPV-JP-ZrE">
-                        <rect key="frame" x="18" y="11" width="42" height="22.5"/>
+                        <rect key="frame" x="18" y="11" width="42" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zwj-tx-iGW">
-                        <rect key="frame" x="65" y="17.5" width="10" height="10"/>
+                        <rect key="frame" x="65" y="16.5" width="10" height="10"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="Zwj-tx-iGW" secondAttribute="height" multiplier="1:1" id="5BE-db-rVx"/>
                             <constraint firstAttribute="height" constant="10" id="IJj-dg-Rlv"/>
@@ -81,7 +81,7 @@
                     <constraint firstItem="TPV-JP-ZrE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="bvh-1f-AR6"/>
                     <constraint firstItem="Qjo-ku-I5K" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="bza-Sq-FbU"/>
                     <constraint firstAttribute="bottomMargin" secondItem="yki-xl-EWe" secondAttribute="bottom" constant="3" id="eOm-ZV-WVE"/>
-                    <constraint firstItem="yki-xl-EWe" firstAttribute="top" secondItem="TPV-JP-ZrE" secondAttribute="bottom" constant="5" id="gzd-zC-EQt"/>
+                    <constraint firstItem="yki-xl-EWe" firstAttribute="top" relation="greaterThanOrEqual" secondItem="TPV-JP-ZrE" secondAttribute="bottom" id="gzd-zC-EQt"/>
                     <constraint firstAttribute="bottom" secondItem="Lcf-2t-2Cr" secondAttribute="bottom" constant="5" id="h5k-GF-Uem"/>
                     <constraint firstItem="yki-xl-EWe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="htd-ei-Tw6"/>
                     <constraint firstItem="Lcf-2t-2Cr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="jiH-y7-v8l"/>

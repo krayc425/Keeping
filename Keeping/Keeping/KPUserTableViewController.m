@@ -177,13 +177,9 @@
         [typeQuery whereKey:@"userID" equalTo:self.currentUser.objectId];
         if(typeQuery.countObjects > 0){
             AVObject *type = [typeQuery getFirstObject];
-            NSLog(@"%@",type.description);
-            NSLog(@"%@", [[type objectForKey:@"types"]description]);
             [[NSUserDefaults standardUserDefaults] setObject:[type objectForKey:@"types"] forKey:@"typeTextArr"];
             [[NSUserDefaults standardUserDefaults] synchronize];
-            
         }
-
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [hud hideAnimated:YES];

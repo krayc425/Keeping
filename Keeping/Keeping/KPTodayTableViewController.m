@@ -54,6 +54,9 @@ static AMPopTip *shareTip = NULL;
     
     //日历按钮
     [self.dateButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
+//    [self.dateButton.layer setBorderWidth:0.5f];
+//    [self.dateButton.layer setBorderColor:[Utilities getColor].CGColor];
+//    [self.dateButton.layer setCornerRadius:self.dateButton.frame.size.height / 4];
     
     //page 指示 stack
     self.dateStack.hidden = NO;
