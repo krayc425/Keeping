@@ -8,7 +8,6 @@
 
 #import "KPTabBarViewController.h"
 #import "Utilities.h"
-#import "KPTabBar+BadgeTabBar.h"
 #import <LeanCloudFeedback/LeanCloudFeedback.h>
 #import "KPTabBar.h"
 #import "KPTaskDetailTableViewController.h"
@@ -33,26 +32,25 @@
     [[self.tabBar.items objectAtIndex:0] setImage:[UIImage imageNamed:@"TAB_TODAY"]];
     [[self.tabBar.items objectAtIndex:1] setTitle:@"任务"];
     [[self.tabBar.items objectAtIndex:1] setImage:[UIImage imageNamed:@"TAB_TASK"]];
-    [[self.tabBar.items objectAtIndex:2] setTitle:@"统计"];
-    [[self.tabBar.items objectAtIndex:2] setImage:[UIImage imageNamed:@"TAB_STATISTICS"]];
-    [[self.tabBar.items objectAtIndex:3] setTitle:@"设置"];
-    [[self.tabBar.items objectAtIndex:3] setImage:[UIImage imageNamed:@"TAB_SETTINGS"]];
     
     self.tabBar.barTintColor = [UIColor whiteColor];
     self.tabBar.tintColor = [Utilities getColor];
     
     self.kpTodayTableViewController = (KPTodayTableViewController *)self.viewControllers[0];
     self.kpTaskTableViewController = (KPTaskTableViewController *)self.viewControllers[1];
-    self.kpCalViewController = (KPCalViewController *)self.viewControllers[2];
-    self.kpSettingsTableViewController=  (KPSettingsTableViewController *)self.viewControllers[3];
     
     [self.navigationItem setTitle:@"今日"];
-    UIBarButtonItem *editItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_EDIT"]
+    UIBarButtonItem *editItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_SORT"]
                                                                  style:UIBarButtonItemStylePlain
                                                                 target:self.kpTodayTableViewController
                                                                 action:@selector(editAction:)];
     self.navigationItem.leftBarButtonItems = @[editItem];
-    self.navigationItem.rightBarButtonItems = nil;
+    
+    UIBarButtonItem *settingItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_SETTINGS"]
+                                                                    style:UIBarButtonItemStylePlain
+                                                                   target:self
+                                                                   action:@selector(settingAction:)];
+    self.navigationItem.rightBarButtonItems = @[settingItem];
     
     [self setFont];
     
@@ -98,6 +96,10 @@
     }
 }
 
+- (void)settingAction:(id)sender{
+    [self performSegueWithIdentifier:@"settingSegue" sender:nil];
+}
+
 #pragma mark - UITabBarController Delegate
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
@@ -106,52 +108,22 @@
         {
             [self.navigationItem setTitle:@"今日"];
             
-            UIBarButtonItem *editItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_EDIT"]
+            UIBarButtonItem *editItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_SORT"]
                                                                          style:UIBarButtonItemStylePlain
                                                                         target:self.kpTodayTableViewController
                                                                         action:@selector(editAction:)];
             self.navigationItem.leftBarButtonItems = @[editItem];
-            
-            self.navigationItem.rightBarButtonItems = nil;
         }
             break;
         case 1:
         {
             [self.navigationItem setTitle:@"任务"];
             
-            UIBarButtonItem *editItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_EDIT"]
+            UIBarButtonItem *editItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_SORT"]
                                                                          style:UIBarButtonItemStylePlain
                                                                         target:self.kpTaskTableViewController
                                                                         action:@selector(editAction:)];
             self.navigationItem.leftBarButtonItems = @[editItem];
-            
-            
-//            UIBarButtonItem *searchItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch
-//                                                                                        target:self.kpTaskTableViewController
-//                                                                                        action:@selector(searchAction:)];
-//            self.navigationItem.rightBarButtonItems = @[searchItem];
-            self.navigationItem.rightBarButtonItems = @[];
-        }
-            break;
-        case 2:
-        {
-            [self.navigationItem setTitle:@"统计"];
-            
-            UIBarButtonItem *editItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_EDIT"]
-                                                                         style:UIBarButtonItemStylePlain
-                                                                        target:self.kpCalViewController
-                                                                        action:@selector(editAction:)];
-            self.navigationItem.leftBarButtonItems = @[editItem];
-            
-            self.navigationItem.rightBarButtonItems = nil;
-        }
-            break;
-        case 3:
-        {
-            [self.navigationItem setTitle:@"设置"];
-            
-            self.navigationItem.leftBarButtonItems = nil;
-            self.navigationItem.rightBarButtonItems = nil;
         }
             break;
         default:

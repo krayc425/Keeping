@@ -9,7 +9,6 @@
 #import "KPSettingsTableViewController.h"
 #import "Utilities.h"
 #import <LeanCloudFeedback/LeanCloudFeedback.h>
-#import "KPTabBar+BadgeTabBar.h"
 #import "KPTabBar.h"
 #import "KPUserTableViewController.h"
 #import "SCLAlertView.h"
@@ -116,19 +115,19 @@
     //检查有没有未读消息
     [[LCUserFeedbackAgent sharedInstance] countUnreadFeedbackThreadsWithBlock:^(NSInteger number, NSError *error) {
         if (error) {
-            KPTabBar *tabBar = (KPTabBar *)self.tabBarController.tabBar;
+//            KPTabBar *tabBar = (KPTabBar *)self.tabBarController.tabBar;
             // 网络出错了，不设置红点
             [self.unreadMsgLabel setText:@""];
-            [tabBar hideBadgeOnItemIndex:3];
+//            [tabBar hideBadgeOnItemIndex:3];
         } else {
-            KPTabBar *tabBar = (KPTabBar *)self.tabBarController.tabBar;
+//            KPTabBar *tabBar = (KPTabBar *)self.tabBarController.tabBar;
             // 根据未读数 number，设置红点，提醒用户
             if(number > 0){
                 [self.unreadMsgLabel setText:[NSString stringWithFormat:@"%ld 条消息", (long)number]];
-                [tabBar showBadgeOnItemIndex:3];
+//                [tabBar showBadgeOnItemIndex:3];
             }else{
                 [self.unreadMsgLabel setText:@""];
-                [tabBar hideBadgeOnItemIndex:3];
+//                [tabBar hideBadgeOnItemIndex:3];
             }
         }
     }];

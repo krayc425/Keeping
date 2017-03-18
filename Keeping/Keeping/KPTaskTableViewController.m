@@ -21,6 +21,7 @@
 #import "TaskDataHelper.h"
 #import "SCLAlertView.h"
 #import "PYSearch.h"
+#import "KPTaskDisplayTableViewController.h"
 
 #define MENU_POPOVER_FRAME CGRectMake(10, 44 + 9, 140, 44 * [[Utilities getTaskSortArr] count])
 
@@ -400,8 +401,9 @@
         [imageVC setImg:(UIImage *)sender];
     }else if([segue.identifier isEqualToString:@"detailTaskSegue"]){
         Task *t = (Task *)sender;
-        KPTaskDetailTableViewController *kptdtvc = (KPTaskDetailTableViewController *)[segue destinationViewController];
-        [kptdtvc setTask:t];
+//        KPTaskDetailTableViewController *kptdtvc = (KPTaskDetailTableViewController *)[segue destinationViewController];
+        KPTaskDisplayTableViewController *kptdtvc = segue.destinationViewController;
+        [kptdtvc setTaskid:t.id];
     }
 }
 

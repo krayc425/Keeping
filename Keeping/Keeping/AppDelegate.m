@@ -292,7 +292,7 @@
     if([shortcutItem.type isEqualToString:@"newTask"]){
         KPNavigationViewController *naviVC = (KPNavigationViewController *)self.window.rootViewController;
         KPTabBarViewController *tabBarC = (KPTabBarViewController *)[naviVC.viewControllers objectAtIndex:0];
-        [[tabBarC.viewControllers objectAtIndex:1] performSegueWithIdentifier:@"addTaskSegue" sender:nil];
+        [tabBarC performSegueWithIdentifier:@"addTaskSegue" sender:nil];
     }
 }
 

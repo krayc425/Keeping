@@ -20,6 +20,7 @@
 - (BOOL)deleteTask:(Task *_Nonnull)task;
 
 - (NSMutableArray *_Nonnull)getTasks;
+- (Task *_Nullable)getTasksOfID:(int)id;
 - (NSMutableArray *_Nonnull)getTasksOfDate:(NSDate *_Nonnull)date;
 - (NSMutableArray *_Nonnull)getTasksOfWeekdays:(NSArray *_Nonnull)weekdays;
 

@@ -52,7 +52,7 @@
     
     [self.taskNameLabel setFont:[UIFont fontWithName:[Utilities getFont] size:f]];
     [self.punchDaysLabel setFont:[UIFont fontWithName:[Utilities getFont] size:f / 1.2]];
-    [self.progressView setFont];
+    [self.progressView setFontWithSize:f / 1.2];
 }
 
 @end

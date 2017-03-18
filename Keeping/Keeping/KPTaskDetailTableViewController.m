@@ -101,6 +101,8 @@
     [self.endDateButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
     [self.startDateButton.titleLabel sizeToFit];
     [self.endDateButton.titleLabel sizeToFit];
+    [self.startDateButton.titleLabel setTextAlignment:NSTextAlignmentLeft];
+    [self.endDateButton.titleLabel setTextAlignment:NSTextAlignmentRight];
     
      
     //备注
@@ -334,7 +336,7 @@
         SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
         [alert showSuccess:@"新增成功" subTitle:nil closeButtonTitle:@"好的" duration:0.0f];
         [alert alertIsDismissed:^{
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            [self.navigationController popViewControllerAnimated:YES];
         }];
     }else{
         //完成时间排序
@@ -365,7 +367,7 @@
                 SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
                 [alert showSuccess:@"修改成功" subTitle:nil closeButtonTitle:@"好的" duration:0.0f];
                 [alert alertIsDismissed:^{
-                    [self.navigationController popToRootViewControllerAnimated:YES];
+                    [self.navigationController popViewControllerAnimated:YES];
                 }];
                 
             }];
@@ -379,7 +381,7 @@
             SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
             [alert showSuccess:@"修改成功" subTitle:nil closeButtonTitle:@"好的" duration:0.0f];
             [alert alertIsDismissed:^{
-                [self.navigationController popToRootViewControllerAnimated:YES];
+                [self.navigationController popViewControllerAnimated:YES];
             }];
             
         }

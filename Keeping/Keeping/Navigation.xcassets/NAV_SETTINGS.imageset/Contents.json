@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "TAB_STATISTICS.png",
+      "filename" : "NAV_SETTINGS.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "TAB_STATISTICS@2x.png",
+      "filename" : "NAV_SETTINGS@2x.png",
       "scale" : "2x"
     },
     {

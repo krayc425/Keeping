@@ -260,6 +260,63 @@ static TaskManager* _instance = nil;
     return self.taskArr;
 }
 
+- (Task *)getTasksOfID:(int)id{
+    FMResultSet *resultSet = [[[DBManager shareInstance] getDB] executeQuery:@"select * from t_task where id = ?;", @(id)];
+    while ([resultSet next]){
+        
+        Task *t = [Task new];
+        t.id = [resultSet intForColumn:@"id"];
+        t.name = [resultSet stringForColumn:@"name"];
+        
+        NSString *schemeJsonStr = [resultSet stringForColumn:@"appScheme"];
+        if(schemeJsonStr != NULL){
+            NSData *schemeData = [schemeJsonStr dataUsingEncoding:NSUTF8StringEncoding];
+            NSDictionary *schemeDict = [NSJSONSerialization JSONObjectWithData:schemeData options:NSJSONReadingAllowFragments error:nil];
+            t.appScheme = schemeDict;
+        }
+        
+        NSString *daysJsonStr = [resultSet stringForColumn:@"reminderDays"];
+        if(daysJsonStr != NULL){
+            NSData *daysData = [daysJsonStr dataUsingEncoding:NSUTF8StringEncoding];
+            NSArray *daysArr = [NSJSONSerialization JSONObjectWithData:daysData options:NSJSONReadingAllowFragments error:nil];
+            t.reminderDays = daysArr;
+        }
+        
+        NSString *punchJsonStr = [resultSet stringForColumn:@"punchDateArr"];
+        if(punchJsonStr != NULL){
+            NSData *punchData = [punchJsonStr dataUsingEncoding:NSUTF8StringEncoding];
+            NSArray *punchArr = [NSJSONSerialization JSONObjectWithData:punchData options:NSJSONReadingAllowFragments error:nil];
+            t.punchDateArr = punchArr;
+        }
+        
+        NSString *punchMemoJsonStr = [resultSet stringForColumn:@"punchMemoArr"];
+        if(punchMemoJsonStr != NULL){
+            NSData *punchData = [punchMemoJsonStr dataUsingEncoding:NSUTF8StringEncoding];
+            NSArray *punchArr = [NSJSONSerialization JSONObjectWithData:punchData options:NSJSONReadingAllowFragments error:nil];
+            t.punchMemoArr = punchArr;
+        }
+        
+        NSString *punchSkipJsonStr = [resultSet stringForColumn:@"punchSkipArr"];
+        if(punchSkipJsonStr != NULL){
+            NSData *punchData = [punchSkipJsonStr dataUsingEncoding:NSUTF8StringEncoding];
+            NSArray *punchArr = [NSJSONSerialization JSONObjectWithData:punchData options:NSJSONReadingAllowFragments error:nil];
+            t.punchSkipArr = punchArr;
+        }
+        
+        t.addDate = [resultSet dateForColumn:@"addDate"];
+        t.reminderTime = [resultSet dateForColumn:@"reminderTime"];
+        t.image = [resultSet dataForColumn:@"image"];
+        t.link = [resultSet stringForColumn:@"link"];
+        t.endDate = [resultSet dateForColumn:@"endDate"];
+        t.memo = [resultSet stringForColumn:@"memo"];
+        t.type = [resultSet intForColumn:@"type"];
+        
+        return t;
+    }
+    
+    return NULL;
+}
+
 - (NSMutableArray *)getTasksOfDate:(NSDate *)date{
     NSMutableArray *taskArr = [[NSMutableArray alloc] init];
     for (Task *task in [self getTasks]) {

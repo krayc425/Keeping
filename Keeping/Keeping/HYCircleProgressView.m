@@ -77,8 +77,8 @@
     [self.layer addSublayer:_progressLayer];
 }
 
-- (void)setFont{
-    self.progressLabel.font = [UIFont fontWithName:[Utilities getFont] size:15.0f];
+- (void)setFontWithSize:(CGFloat)size{
+    self.progressLabel.font = [UIFont fontWithName:[Utilities getFont] size:size];
 }
 
 #pragma mark - draw circleLine

@@ -34,7 +34,7 @@
     view.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.view = view;
     
-    CardsView *cardView = [[CardsView alloc] initWithFrame:CGRectMake(10, 10, view.frame.size.width -20, 250)];
+    CardsView *cardView = [[CardsView alloc] initWithFrame:CGRectMake(10, 10, view.frame.size.width - 20, 250)];
     cardView.cornerRadius = 10;
     cardView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:cardView];

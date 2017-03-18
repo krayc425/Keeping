@@ -565,7 +565,7 @@ static AMPopTip *shareTip = NULL;
     }
 }
 
-- (void)moreAction:(UITableViewCell *)cell withButton:(UIButton *)button;{
+- (void)moreAction:(UITableViewCell *)cell withButton:(UIButton *)button{
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     
     Task *t;

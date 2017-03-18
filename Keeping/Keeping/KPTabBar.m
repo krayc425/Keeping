@@ -31,7 +31,9 @@
     [publishButton setBackgroundImage:[UIImage imageNamed:@"TAB_ADD"] forState:UIControlStateNormal];
     [publishButton setBackgroundImage:[UIImage imageNamed:@"TAB_ADD_SELECTED"] forState:UIControlStateHighlighted];
     [publishButton sizeToFit];
-    [publishButton addTarget:self action:@selector(publishClick:) forControlEvents:UIControlEventTouchUpInside];
+    [publishButton addTarget:self
+                      action:@selector(publishClick:)
+            forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:publishButton];
     self.publishButton = publishButton;
     // 设置发布按钮的位置
@@ -41,7 +43,7 @@
     int index = 0;
     
     // 按钮的尺寸
-    CGFloat tabBarButtonW = width / 5;
+    CGFloat tabBarButtonW = width / 2 - CGRectGetWidth(publishButton.frame) / 2;
     CGFloat tabBarButtonH = height;
     CGFloat tabBarButtonY = 0;
     
@@ -53,8 +55,8 @@
         
         // 计算按钮的X值
         CGFloat tabBarButtonX = index * tabBarButtonW;
-        if (index >= 2) { // 给后面2个button增加一个宽度的X值
-            tabBarButtonX += tabBarButtonW;
+        if (index == 1) { // 给后面1个button增加一个宽度的X值
+            tabBarButtonX += CGRectGetWidth(publishButton.frame);
         }
         
         // 设置按钮的frame

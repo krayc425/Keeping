@@ -71,7 +71,7 @@
     [self.daysLabel setFont:[UIFont fontWithName:[Utilities getFont] size:f / 1.2]];
     [deleteLabel setFont:[UIFont fontWithName:[Utilities getFont] size:f]];
     
-    [self.progressView setFont];
+    [self.progressView setFontWithSize:f / 1.2];
     
     [self.weekdayView setFont];
     self.weekdayView.fontSize = 10.0;
