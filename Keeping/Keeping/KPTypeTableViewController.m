@@ -76,7 +76,7 @@
     KPTypeColorTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     
     [cell.imageView setTintColor:colorArr[indexPath.row]];
-    UIImage *img = [UIImage imageNamed:@"round"];
+    UIImage *img = [UIImage imageNamed:@"CIRCLE_FULL"];
     img = [img imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [cell.imageView setImage:img];
     

@@ -12,7 +12,7 @@
 #import "KPColorPickerView.h"
 #import "KPWeekdayPickerView.h"
 
-@interface KPTaskTableViewController : UITableViewController <PassImgDelegate, KPWeekdayPickerDelegate, KPColorPickerDelegate>
+@interface KPTaskTableViewController : UITableViewController <PassImgDelegate, KPWeekdayPickerDelegate, KPColorPickerDelegate, UIViewControllerPreviewingDelegate>
 
 @property (nonnull, nonatomic) NSMutableArray *taskArr;
 @property (nonnull, nonatomic) NSMutableArray *historyTaskArr;

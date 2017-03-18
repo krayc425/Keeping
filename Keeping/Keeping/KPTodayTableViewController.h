@@ -11,7 +11,7 @@
 #import "KPTodayTableViewCell.h"
 #import "KPColorPickerView.h"
 
-@interface KPTodayTableViewController : UITableViewController <CheckTaskDelegate, FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance, KPColorPickerDelegate>
+@interface KPTodayTableViewController : UITableViewController <CheckTaskDelegate, FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance, KPColorPickerDelegate, UIViewControllerPreviewingDelegate>
 
 @property (nonnull, nonatomic) IBOutlet UIButton *dateButton;
 @property (nonnull, nonatomic) IBOutlet UILabel *progressLabel;

@@ -24,7 +24,9 @@
 
 static AMPopTip *shareTip = NULL;
 
-@interface KPTaskDisplayTableViewController ()
+@interface KPTaskDisplayTableViewController (){
+    UILabel *titleLabel;
+}
 
 @end
 
@@ -59,8 +61,8 @@ static AMPopTip *shareTip = NULL;
     [self.endDateButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
     [self.startDateButton.titleLabel sizeToFit];
     [self.endDateButton.titleLabel sizeToFit];
-    [self.startDateButton.titleLabel setTextAlignment:NSTextAlignmentLeft];
-    [self.endDateButton.titleLabel setTextAlignment:NSTextAlignmentRight];
+    self.startDateButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    self.endDateButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     
     //CardViews
     for(CardsView *cardView in self.cardsViews){
@@ -142,8 +144,43 @@ static AMPopTip *shareTip = NULL;
     [self loadTask];
 }
 
+- (void)viewWillDisappear:(BOOL)animated{
+    [self hideTip];
+}
+
 - (void)editAction:(id)sender{
     [self performSegueWithIdentifier:@"editSegue" sender:nil];
+}
+
+- (void)setTitleLabel:(NSString *)title{
+    //Type
+    titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 64)];
+    [titleLabel setText:title];
+    [titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0]];
+    [titleLabel setTextColor:[UIColor whiteColor]];
+    [titleLabel setTextAlignment:NSTextAlignmentCenter];
+    [titleLabel sizeToFit];
+    
+    UIImageView *typeView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
+    if(self.task.type > 0){
+        UIImage *img = [UIImage imageNamed:@"Round_S"];
+        img = [img imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        typeView.tintColor = [Utilities getTypeColorArr][self.task.type - 1];
+        [typeView setImage:img];
+        [typeView setHidden:NO];
+    }else{
+        [typeView setHidden:YES];
+    }
+    
+    UIStackView *stackView = [[UIStackView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(typeView.frame) + CGRectGetWidth(titleLabel.frame) + 5, 64)];
+    stackView.axis = UILayoutConstraintAxisHorizontal;
+    stackView.distribution = UIStackViewDistributionEqualCentering;
+    stackView.alignment = UIStackViewAlignmentCenter;
+    stackView.spacing = 0;
+    [stackView addArrangedSubview:typeView];
+    [stackView addArrangedSubview:titleLabel];
+    
+    self.navigationItem.titleView = stackView;
 }
 
 - (void)loadTask{
@@ -151,7 +188,7 @@ static AMPopTip *shareTip = NULL;
     
     //Set Task Properties
     //name
-    [self.navigationItem setTitle:self.task.name];
+    [self setTitleLabel:self.task.name];
     
     //progress
     [self.progressView setProgress:self.task.progress animated:YES];
@@ -533,5 +570,26 @@ static AMPopTip *shareTip = NULL;
         shareTip = NULL;
     }
 }
+
+//#pragma mark - 3D Touch Actions
+//
+//- (NSArray *)previewActionItems{
+//    UIPreviewAction *action1 = [UIPreviewAction actionWithTitle:@"编辑"
+//                                                          style:UIPreviewActionStyleDefault
+//                                                        handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {
+//                                                            NSLog(@"%@", self.task.name);
+//                                                            [self editAction:nil];
+//                                                        }];
+//    
+//    UIPreviewAction *action2 = [UIPreviewAction actionWithTitle:@"删除"
+//                                                          style:UIPreviewActionStyleDestructive
+//                                                        handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {
+//                                                            NSLog(@"Aciton2");
+//                                                        }];
+//    
+//    NSArray *actions = @[action1,action2];
+//    
+//    return actions;
+//}
 
 @end

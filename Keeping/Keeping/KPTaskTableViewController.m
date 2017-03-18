@@ -142,6 +142,31 @@
     [self.menuPopover showInView:self.navigationController.view];
 }
 
+- (void)deleteTaskAtIndexPath:(NSIndexPath *)indexPath{
+    SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+    [alert addButton:@"删除" actionBlock:^{
+        Task *t;
+        if(indexPath.section == 1){
+            t = self.taskArr[indexPath.row];
+            
+            [self.taskArr removeObject:t];
+        }else if(indexPath.section == 2){
+            t = self.historyTaskArr[indexPath.row];
+            
+            [self.historyTaskArr removeObject:t];
+        }
+        
+        [[TaskManager shareInstance] deleteTask:t];
+        
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+        if(self.taskArr.count == 0 || self.historyTaskArr.count == 0){
+            [self.tableView reloadData];
+        }
+    }];
+    [alert showWarning:@"确认删除吗" subTitle:@"此操作不可恢复" closeButtonTitle:@"取消" duration:0.0];
+}
+
 - (void)loadTasksOfWeekdays:(NSArray *)weekDays{
     self.taskArr = [[NSMutableArray alloc] init];
     self.historyTaskArr = [[NSMutableArray alloc] init];
@@ -305,7 +330,7 @@
         [cell.nameLabel setText:t.name];
         
         if(t.type > 0){
-            UIImage *img = [UIImage imageNamed:@"CIRCLE_FULL"];
+            UIImage *img = [UIImage imageNamed:@"Round_S"];
             img = [img imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             cell.typeImg.tintColor = [Utilities getTypeColorArr][t.type - 1];
             [cell.typeImg setImage:img];
@@ -340,6 +365,11 @@
         [cell.weekdayView setIsAllSelected:NO];
         [cell.weekdayView setUserInteractionEnabled:NO];
         
+        //注册3D Touch
+        if (self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {
+            [self registerForPreviewingWithDelegate:self sourceView:cell];
+        }
+        
         return cell;
     }else{
         return [super tableView:tableView cellForRowAtIndexPath:indexPath];
@@ -356,28 +386,7 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-        [alert addButton:@"删除" actionBlock:^{
-            Task *t;
-            if(indexPath.section == 1){
-                t = self.taskArr[indexPath.row];
-                
-                [self.taskArr removeObject:t];
-            }else if(indexPath.section == 2){
-                t = self.historyTaskArr[indexPath.row];
-                
-                [self.historyTaskArr removeObject:t];
-            }
-            
-            [[TaskManager shareInstance] deleteTask:t];
-            
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            
-            if(self.taskArr.count == 0 || self.historyTaskArr.count == 0){
-                [self.tableView reloadData];
-            }
-        }];
-        [alert showWarning:@"确认删除吗" subTitle:@"此操作不可恢复" closeButtonTitle:@"取消" duration:0.0];
+        [self deleteTaskAtIndexPath:indexPath];
     }
 }
 
@@ -405,6 +414,38 @@
         KPTaskDisplayTableViewController *kptdtvc = segue.destinationViewController;
         [kptdtvc setTaskid:t.id];
     }
+}
+
+#pragma mark - UIViewControllerPreviewingDelegate
+
+- (UIViewController *)previewingContext:(id <UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location{
+    
+    if ([self.presentedViewController isKindOfClass:[KPTaskDisplayTableViewController class]]){
+        return nil;
+    }
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:(KPTaskTableViewCell* )[previewingContext sourceView]];
+    
+    Task *task;
+    if(indexPath.section == 1){
+        task = self.taskArr[indexPath.row];
+    }else if(indexPath.section == 2){
+        task = self.historyTaskArr[indexPath.row];
+    }
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    KPTaskDisplayTableViewController *childVC = (KPTaskDisplayTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"KPTaskDisplayTableViewController"];
+    [childVC setTaskid:task.id];
+    childVC.preferredContentSize = CGSizeMake(0.0f, 520.0f);
+    
+    CGRect rect = CGRectMake(0, 0, self.view.frame.size.width, 60);
+    previewingContext.sourceRect = rect;
+    
+    return childVC;
+}
+
+- (void)previewingContext:(id <UIViewControllerPreviewing>)previewingContext commitViewController:(UIViewController *)viewControllerToCommit {
+    [self.navigationController pushViewController:viewControllerToCommit animated:YES];
 }
 
 #pragma mark - DZN Empty Delegate

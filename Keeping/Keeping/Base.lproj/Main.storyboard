@@ -193,7 +193,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9DX-im-IF9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1613.5999999999999" y="-683.20839580209895"/>
+            <point key="canvasLocation" x="1609" y="-546"/>
         </scene>
         <!--KPTaskDetailTableViewController-->
         <scene sceneID="s1j-Ej-AEu">
@@ -677,26 +677,6 @@
             </objects>
             <point key="canvasLocation" x="4393" y="-1225"/>
         </scene>
-        <!--KPCalViewController-->
-        <scene sceneID="zJX-OK-Dk2">
-            <objects>
-                <viewController storyboardIdentifier="KPCalViewController" title="日历" automaticallyAdjustsScrollViewInsets="NO" id="Gxu-HQ-mkO" userLabel="KPCalViewController" customClass="KPCalViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="2T5-C8-xhU"/>
-                        <viewControllerLayoutGuide type="bottom" id="ojk-c0-hU9"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="eo0-w0-5TS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
-                    <tabBarItem key="tabBarItem" title="Item" id="JHm-IM-N8h"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Bok-VI-ovK" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1614" y="314"/>
-        </scene>
         <!--KPUserTableViewController-->
         <scene sceneID="amC-V2-CHs">
             <objects>
@@ -844,7 +824,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T0f-df-fbK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2953" y="469"/>
+            <point key="canvasLocation" x="2953" y="484"/>
         </scene>
         <!--KPSettingsTableViewController-->
         <scene sceneID="er1-qZ-sex">
@@ -1132,7 +1112,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dGU-Uv-lh1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1604" y="1306"/>
+            <point key="canvasLocation" x="1591" y="490"/>
         </scene>
         <!--KPFontTableViewController-->
         <scene sceneID="fGz-6h-aSD">
@@ -1223,7 +1203,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IG0-ES-MOE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2959" y="1311"/>
+            <point key="canvasLocation" x="2950" y="1357"/>
         </scene>
         <!--KPAboutTableViewController-->
         <scene sceneID="YjL-uK-Ovy">
@@ -1385,7 +1365,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WkS-zj-hDm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1596" y="2120"/>
+            <point key="canvasLocation" x="60" y="1333"/>
         </scene>
         <!--KPTypeTableViewController-->
         <scene sceneID="EDx-f7-QSc">
@@ -1413,7 +1393,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TzJ-ob-Fam" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2943" y="2136"/>
+            <point key="canvasLocation" x="1599" y="1367"/>
         </scene>
         <!--KPTodayTableViewController-->
         <scene sceneID="1Fg-zG-lPr">
@@ -1529,7 +1509,7 @@
                         <outlet property="pageStack" destination="NK2-G7-IZD" id="yfn-ex-sbt"/>
                         <outlet property="progressLabel" destination="6p5-7J-dTY" id="EbA-3f-QwO"/>
                         <segue destination="iLS-CK-3Yi" kind="presentation" identifier="imageSegue" id="nx1-5h-KeX"/>
-                        <segue destination="c1M-lD-w8g" kind="show" identifier="detailTaskSegue" id="aya-Su-eqv"/>
+                        <segue destination="Mhh-ns-eOa" kind="show" identifier="detailTaskSegue" id="ZOT-mw-fWn"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1eJ-8D-ohR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1558,17 +1538,17 @@
                                                     <rect key="frame" x="10" y="10" width="355" height="190"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="UhQ-ht-AMf">
-                                                            <rect key="frame" x="20" y="5" width="315" height="40"/>
+                                                            <rect key="frame" x="40" y="5" width="275" height="40"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ew7-EW-Tsj">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="40"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="130" height="40"/>
                                                                     <state key="normal" title="Button"/>
                                                                     <connections>
                                                                         <action selector="selectDateAction:" destination="c1M-lD-w8g" eventType="touchUpInside" id="vQ4-w5-bG8"/>
                                                                     </connections>
                                                                 </button>
                                                                 <label opaque="NO" userInteractionEnabled="NO" tag="-1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="~" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cCk-Zq-yEY">
-                                                                    <rect key="frame" x="150" y="0.0" width="15" height="40"/>
+                                                                    <rect key="frame" x="130" y="0.0" width="15" height="40"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="15" id="ZlP-HF-ymL"/>
                                                                     </constraints>
@@ -1577,7 +1557,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7q0-qa-Igb">
-                                                                    <rect key="frame" x="165" y="0.0" width="150" height="40"/>
+                                                                    <rect key="frame" x="145" y="0.0" width="130" height="40"/>
                                                                     <state key="normal" title="Button"/>
                                                                     <connections>
                                                                         <action selector="selectDateAction:" destination="c1M-lD-w8g" eventType="touchUpInside" id="QYv-8o-PmX"/>
@@ -1616,7 +1596,7 @@
                                                     <constraints>
                                                         <constraint firstItem="ggb-TG-2d5" firstAttribute="centerY" secondItem="uXc-oi-Sg4" secondAttribute="centerY" id="8Dc-Jc-sV0"/>
                                                         <constraint firstItem="ga2-iW-6JA" firstAttribute="centerX" secondItem="uXc-oi-Sg4" secondAttribute="centerX" id="EcU-CM-fKB"/>
-                                                        <constraint firstItem="UhQ-ht-AMf" firstAttribute="leading" secondItem="uXc-oi-Sg4" secondAttribute="leading" constant="20" id="FT0-3u-VPa"/>
+                                                        <constraint firstItem="UhQ-ht-AMf" firstAttribute="leading" secondItem="uXc-oi-Sg4" secondAttribute="leading" constant="40" id="FT0-3u-VPa"/>
                                                         <constraint firstItem="UhQ-ht-AMf" firstAttribute="top" secondItem="uXc-oi-Sg4" secondAttribute="top" constant="5" id="Fjp-QM-Kl6"/>
                                                         <constraint firstAttribute="bottom" secondItem="ga2-iW-6JA" secondAttribute="bottom" constant="10" id="dEL-xz-PHR"/>
                                                         <constraint firstItem="UhQ-ht-AMf" firstAttribute="centerX" secondItem="uXc-oi-Sg4" secondAttribute="centerX" id="ezn-dR-kFU"/>
@@ -1780,7 +1760,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ruW-hZ-f0t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2924" y="-680.5097451274363"/>
+            <point key="canvasLocation" x="2934" y="-548"/>
         </scene>
     </scenes>
     <resources>
@@ -1790,7 +1770,8 @@
         <image name="LOGO_WEIBO" width="1024" height="1024"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vs6-pH-XNp"/>
+        <segue reference="KVR-SD-oGK"/>
         <segue reference="9tp-5Z-bmL"/>
+        <segue reference="fad-KU-zal"/>
     </inferredMetricsTieBreakers>
 </document>

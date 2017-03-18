@@ -86,7 +86,12 @@
         self.imageButton.tag = 2;
         self.memoButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.buttonStackView.frame.size.width / 4, self.buttonStackView.frame.size.height)];
         self.memoButton.tag = 3;
-
+    
+        self.appButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+        self.linkButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+        self.imageButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+        self.memoButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+        
         [self setButtonFont];
         
         self.buttonStackView = [self.buttonStackView initWithArrangedSubviews:@[self.appButton,self.linkButton,self.imageButton,self.memoButton]];

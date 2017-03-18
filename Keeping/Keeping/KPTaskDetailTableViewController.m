@@ -33,10 +33,16 @@
     
     self.clearsSelectionOnViewWillAppear = NO;
     //导航栏左上角
-    UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_CANCEL"] style:UIBarButtonItemStylePlain target:self action:@selector(backAction:)];
+    UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_BACK"]
+                                                                   style:UIBarButtonItemStylePlain
+                                                                  target:self
+                                                                  action:@selector(backAction:)];
     self.navigationItem.leftBarButtonItems = @[cancelItem];
     //导航栏右上角
-    UIBarButtonItem *okItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_DONE"] style:UIBarButtonItemStylePlain target:self action:@selector(doneAction:)];
+    UIBarButtonItem *okItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_DONE"]
+                                                               style:UIBarButtonItemStylePlain
+                                                              target:self
+                                                              action:@selector(doneAction:)];
     //不能编辑==过期==没有右上角
     if([self.tableView isUserInteractionEnabled]){
         self.navigationItem.rightBarButtonItems = @[okItem];
@@ -101,8 +107,6 @@
     [self.endDateButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
     [self.startDateButton.titleLabel sizeToFit];
     [self.endDateButton.titleLabel sizeToFit];
-    [self.startDateButton.titleLabel setTextAlignment:NSTextAlignmentLeft];
-    [self.endDateButton.titleLabel setTextAlignment:NSTextAlignmentRight];
     
      
     //备注

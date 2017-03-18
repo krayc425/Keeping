@@ -20,7 +20,7 @@
 #import "AMPopTip.h"
 #import "CardsView.h"
 #import "TaskDataHelper.h"
-#import "KPTaskDetailTableViewController.h"
+#import "KPTaskDisplayTableViewController.h"
 #import "UIImage+Extensions.h"
 
 #define MENU_POPOVER_FRAME CGRectMake(10, 44 + 9, 140, 44 * [[Utilities getTaskSortArr] count])
@@ -368,7 +368,6 @@ static AMPopTip *shareTip = NULL;
                 [cell setIsFinished:YES];
             }
             
-            
             [cell.moreButton setHidden:!t.hasMoreInfo];
             
             //设置是否为当前 cell
@@ -385,7 +384,7 @@ static AMPopTip *shareTip = NULL;
             if(t.type > 0){
                 [cell.typeImg setHidden:NO];
                 
-                UIImage *img = [UIImage imageNamed:@"CIRCLE_FULL"];
+                UIImage *img = [UIImage imageNamed:@"Round_S"];
                 img = [img imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
                 cell.typeImg.tintColor = [Utilities getTypeColorArr][t.type - 1];
                 [cell.typeImg setImage:img];
@@ -406,6 +405,7 @@ static AMPopTip *shareTip = NULL;
                 [cell.appImg setImage:appImg];
                 [cell.appButton setHidden:NO];
                 [cell.appImg setHidden:NO];
+                [cell.appImg setTintColor:[Utilities getColor]];
             }else{
                 [cell.appButton setHidden:YES];
                 [cell.appImg setHidden:YES];
@@ -421,6 +421,7 @@ static AMPopTip *shareTip = NULL;
                 [cell.linkImg setImage:linkImg];
                 [cell.linkButton setHidden:NO];
                 [cell.linkImg setHidden:NO];
+                [cell.linkImg setTintColor:[Utilities getColor]];
             }else{
                 [cell.linkButton setHidden:YES];
                 [cell.linkImg setHidden:YES];
@@ -436,6 +437,7 @@ static AMPopTip *shareTip = NULL;
                 [cell.imageImg setImage:imageImg];
                 [cell.imageButton setHidden:NO];
                 [cell.imageImg setHidden:NO];
+                [cell.imageImg setTintColor:[Utilities getColor]];
             }else{
                 [cell.imageButton setHidden:YES];
                 [cell.imageImg setHidden:YES];
@@ -451,6 +453,7 @@ static AMPopTip *shareTip = NULL;
                 [cell.memoImg setImage:imageImg];
                 [cell.memoButton setHidden:NO];
                 [cell.memoImg setHidden:NO];
+                [cell.memoImg setTintColor:[Utilities getColor]];
             }else{
                 [cell.memoButton setHidden:YES];
                 [cell.memoImg setHidden:YES];
@@ -477,6 +480,11 @@ static AMPopTip *shareTip = NULL;
                 cell.myCheckBox.userInteractionEnabled = NO;
             }else{
                 cell.myCheckBox.userInteractionEnabled = YES;
+            }
+            
+            //注册3D Touch
+            if (self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {
+                [self registerForPreviewingWithDelegate:self sourceView:cell];
             }
             
             return cell;
@@ -636,9 +644,41 @@ static AMPopTip *shareTip = NULL;
         [imageVC setImg:(UIImage *)sender];
     }else if([segue.identifier isEqualToString:@"detailTaskSegue"]){
         Task *t = (Task *)sender;
-        KPTaskDetailTableViewController *kptdtvc = (KPTaskDetailTableViewController *)[segue destinationViewController];
-        [kptdtvc setTask:t];
+        KPTaskDisplayTableViewController *kptdtvc = (KPTaskDisplayTableViewController *)[segue destinationViewController];
+        [kptdtvc setTaskid:t.id];
     }
+}
+
+#pragma mark - UIViewControllerPreviewingDelegate
+
+- (UIViewController *)previewingContext:(id <UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location{
+    
+    if ([self.presentedViewController isKindOfClass:[KPTaskDisplayTableViewController class]]){
+        return nil;
+    }
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:(KPTodayTableViewCell* )[previewingContext sourceView]];
+    
+    Task *task;
+    if(indexPath.section == 1){
+        task = self.unfinishedTaskArr[indexPath.row];
+    }else{
+        task = self.finishedTaskArr[indexPath.row];
+    }
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    KPTaskDisplayTableViewController *childVC = (KPTaskDisplayTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"KPTaskDisplayTableViewController"];
+    [childVC setTaskid:task.id];
+    childVC.preferredContentSize = CGSizeMake(0.0f, 520.0f);
+
+    CGRect rect = CGRectMake(0, 0, self.view.frame.size.width, 60);
+    previewingContext.sourceRect = rect;
+    
+    return childVC;
+}
+
+- (void)previewingContext:(id <UIViewControllerPreviewing>)previewingContext commitViewController:(UIViewController *)viewControllerToCommit {
+    [self.navigationController pushViewController:viewControllerToCommit animated:YES];
 }
 
 #pragma mark - DZNEmptyTableViewDelegate
