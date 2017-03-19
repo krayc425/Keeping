@@ -28,7 +28,7 @@
     
     colorArr = [NSMutableArray arrayWithArray:[Utilities getTypeColorArr]];
     NSMutableArray *tmpColorTextArr = [[[NSUserDefaults standardUserDefaults] objectForKey:@"typeTextArr"] mutableCopy];
-    NSLog(@"%@", tmpColorTextArr.description);
+
     if(tmpColorTextArr == NULL || tmpColorTextArr.count == 0){
         colorTextArr = [[NSMutableArray alloc] init];
         for (int i = 0; i < colorArr.count; i++) {
@@ -75,10 +75,10 @@
     [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
     KPTypeColorTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     
-    [cell.imageView setTintColor:colorArr[indexPath.row]];
+    [cell.colorImg setTintColor:colorArr[indexPath.row]];
     UIImage *img = [UIImage imageNamed:@"CIRCLE_FULL"];
     img = [img imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    [cell.imageView setImage:img];
+    [cell.colorImg setImage:img];
     
     cell.colorText.tag = indexPath.row;
     cell.colorText.delegate = self;

@@ -10,14 +10,12 @@
 #import "KPTabBar.h"
 #import "KPTodayTableViewController.h"
 #import "KPTaskTableViewController.h"
-#import "KPCalViewController.h"
 #import "KPSettingsTableViewController.h"
 
 @interface KPTabBarViewController : UITabBarController <UITabBarControllerDelegate, KPTabBarDelegate>
 
 @property (nonatomic, nonnull) KPTodayTableViewController *kpTodayTableViewController;
 @property (nonatomic, nonnull) KPTaskTableViewController *kpTaskTableViewController;
-@property (nonatomic, nonnull) KPCalViewController *kpCalViewController;
 @property (nonatomic, nonnull) KPSettingsTableViewController *kpSettingsTableViewController;
 
 - (void)setFont;

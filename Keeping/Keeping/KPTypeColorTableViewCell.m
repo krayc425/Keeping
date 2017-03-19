@@ -17,6 +17,9 @@
     [self.colorText setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
     
     self.colorText.placeholder = @"点击添加备注";
+    
+    self.colorImg.contentMode = UIViewContentModeScaleAspectFill;
+    [self.colorImg setClipsToBounds:YES];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -18,8 +18,9 @@
 #import "AMPopTip.h"
 #import "KPTaskDetailTableViewController.h"
 #import "KPImageViewController.h"
+#import "KPCalInfoView.h"
 
-#define ENDLESS_STRING @"无限期"
+#define ENDLESS_STRING @"到 无限期"
 #define DATE_FORMAT @"yyyy/MM/dd"
 
 static AMPopTip *shareTip = NULL;
@@ -54,15 +55,16 @@ static AMPopTip *shareTip = NULL;
     [self.progressView setFontWithSize:25.0f];
     
     //Duration
-    for(UILabel *label in self.durationStack.subviews){
-        [label setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
-    }
     [self.startDateButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
     [self.endDateButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
     [self.startDateButton.titleLabel sizeToFit];
     [self.endDateButton.titleLabel sizeToFit];
+    [self.startDateButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
+    [self.endDateButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
     self.startDateButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    self.endDateButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+    self.endDateButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    self.startDateButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+    self.endDateButton.titleLabel.adjustsFontSizeToFitWidth = YES;
     
     //CardViews
     for(CardsView *cardView in self.cardsViews){
@@ -71,7 +73,6 @@ static AMPopTip *shareTip = NULL;
     }
     
     //Weekday
-//    self.weekdayView.weekdayDelegate = self;
     self.weekdayView.isAllSelected = NO;
     self.weekdayView.fontSize = 15.0;
     self.weekdayView.isAllButtonHidden = YES;
@@ -81,6 +82,8 @@ static AMPopTip *shareTip = NULL;
     [self.reminderLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
     
     //Calendar
+    self.gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    
     CardsView *cardView;
     for(CardsView *cv in self.cardsViews){
         if(cv.tag == 2){
@@ -134,6 +137,17 @@ static AMPopTip *shareTip = NULL;
     [cardView addSubview:nextButton];
     self.nextButton = nextButton;
     
+    UIButton *infoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    infoBtn.frame = CGRectMake(CGRectGetWidth(self.tableView.frame) - 60, 8, 32, 32);
+    infoBtn.backgroundColor = [UIColor whiteColor];
+    infoBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    [infoBtn setTintColor:[UIColor lightGrayColor]];
+    UIImage *infoImg = [UIImage imageNamed:@"Info"];
+    infoImg = [infoImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [infoBtn setImage:infoImg forState:UIControlStateNormal];
+    [infoBtn addTarget:self action:@selector(infoAction:) forControlEvents:UIControlEventTouchUpInside];
+    [cardView addSubview:infoBtn];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -152,11 +166,42 @@ static AMPopTip *shareTip = NULL;
     [self performSegueWithIdentifier:@"editSegue" sender:nil];
 }
 
+- (void)infoAction:(id)sender{
+    NSLog(@"info");
+    
+    NSArray* nibView = [[NSBundle mainBundle] loadNibNamed:@"KPCalInfoView" owner:nil options:nil];
+    KPCalInfoView *view = [nibView firstObject];
+    [view setFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame) - 40, 200)];
+    
+    AMPopTip *tp = [KPTaskDisplayTableViewController shareTipInstance];
+    
+    if(![tp isVisible] && ![tp isAnimating]){
+        
+        [tp showCustomView:view
+                 direction:AMPopTipDirectionNone
+                    inView:self.tableView
+                 fromFrame:self.tableView.bounds];
+        
+        tp.shouldDismissOnTap = YES;
+        
+        tp.textColor = [UIColor whiteColor];
+        tp.tintColor = [Utilities getColor];
+        tp.popoverColor = [Utilities getColor];
+        tp.borderColor = [UIColor whiteColor];
+        
+        tp.radius = 10;
+        
+        [tp setDismissHandler:^{
+            shareTip = NULL;
+        }];
+    }
+}
+
 - (void)setTitleLabel:(NSString *)title{
     //Type
     titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 64)];
     [titleLabel setText:title];
-    [titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0]];
+    [titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:22.0]];
     [titleLabel setTextColor:[UIColor whiteColor]];
     [titleLabel setTextAlignment:NSTextAlignmentCenter];
     [titleLabel sizeToFit];
@@ -177,8 +222,8 @@ static AMPopTip *shareTip = NULL;
     stackView.distribution = UIStackViewDistributionEqualCentering;
     stackView.alignment = UIStackViewAlignmentCenter;
     stackView.spacing = 0;
-    [stackView addArrangedSubview:typeView];
     [stackView addArrangedSubview:titleLabel];
+    [stackView addArrangedSubview:typeView];
     
     self.navigationItem.titleView = stackView;
 }
@@ -194,9 +239,9 @@ static AMPopTip *shareTip = NULL;
     [self.progressView setProgress:self.task.progress animated:YES];
     
     //duration
-    [self.startDateButton setTitle:[self.task.addDate formattedDateWithFormat:DATE_FORMAT] forState:UIControlStateNormal];
+    [self.startDateButton setTitle:[NSString stringWithFormat:@"从 %@", [self.task.addDate formattedDateWithFormat:DATE_FORMAT]] forState:UIControlStateNormal];
     if(self.task.endDate != NULL){
-        [self.endDateButton setTitle:[self.task.endDate formattedDateWithFormat:DATE_FORMAT] forState:UIControlStateNormal];
+        [self.endDateButton setTitle:[NSString stringWithFormat:@"到 %@", [self.task.endDate formattedDateWithFormat:DATE_FORMAT]] forState:UIControlStateNormal];
     }else{
         [self.endDateButton setTitle:ENDLESS_STRING forState:UIControlStateNormal];
     }
@@ -209,13 +254,13 @@ static AMPopTip *shareTip = NULL;
     self.reminderTime = self.task.reminderTime;
     if(self.reminderTime != NULL){
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"HH:mm"];
+        [dateFormatter setDateFormat:@"HH:mm 提醒"];
         NSString *currentDateStr = [dateFormatter stringFromDate:self.reminderTime];
         [self.reminderLabel setText:currentDateStr];
-        [self.reminderLabel setHidden:NO];
+//        [self.reminderLabel setHidden:NO];
     }else{
-        [self.reminderLabel setText:@""];
-        [self.reminderLabel setHidden:YES];
+        [self.reminderLabel setText:@"全天"];
+//        [self.reminderLabel setHidden:YES];
     }
 
     //app
@@ -433,7 +478,7 @@ static AMPopTip *shareTip = NULL;
         }];
     }
     
-    [alert showInfo:self.task.name subTitle:displayMemo closeButtonTitle:@"取消" duration:0.0f];
+    [alert showInfo:[DateUtil getDateStringOfDate:date] subTitle:displayMemo closeButtonTitle:@"取消" duration:0.0f];
 }
 
 - (void)previousClicked:(id)sender{

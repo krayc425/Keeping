@@ -617,10 +617,10 @@ static AMPopTip *shareTip = NULL;
                          fromFrame:self.view.bounds];
                 tp.shouldDismissOnTap = YES;
                 
-                tp.textColor = [UIColor whiteColor];
-                tp.tintColor = [Utilities getColor];
+                tp.tintColor = [UIColor whiteColor];
                 tp.popoverColor = [Utilities getColor];
                 tp.borderColor = [UIColor whiteColor];
+                tp.backgroundColor = [UIColor whiteColor];
 
                 tp.radius = 10;
                 
@@ -669,9 +669,9 @@ static AMPopTip *shareTip = NULL;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     KPTaskDisplayTableViewController *childVC = (KPTaskDisplayTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"KPTaskDisplayTableViewController"];
     [childVC setTaskid:task.id];
-    childVC.preferredContentSize = CGSizeMake(0.0f, 520.0f);
+    childVC.preferredContentSize = CGSizeMake(0.0f,470.0f);
 
-    CGRect rect = CGRectMake(0, 0, self.view.frame.size.width, 60);
+    CGRect rect = CGRectMake(0, 0, self.view.frame.size.width, 70);
     previewingContext.sourceRect = rect;
     
     return childVC;

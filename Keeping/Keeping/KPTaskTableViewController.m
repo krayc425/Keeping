@@ -410,7 +410,6 @@
         [imageVC setImg:(UIImage *)sender];
     }else if([segue.identifier isEqualToString:@"detailTaskSegue"]){
         Task *t = (Task *)sender;
-//        KPTaskDetailTableViewController *kptdtvc = (KPTaskDetailTableViewController *)[segue destinationViewController];
         KPTaskDisplayTableViewController *kptdtvc = segue.destinationViewController;
         [kptdtvc setTaskid:t.id];
     }
@@ -436,9 +435,9 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     KPTaskDisplayTableViewController *childVC = (KPTaskDisplayTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"KPTaskDisplayTableViewController"];
     [childVC setTaskid:task.id];
-    childVC.preferredContentSize = CGSizeMake(0.0f, 520.0f);
+    childVC.preferredContentSize = CGSizeMake(0.0f, 470.0f);
     
-    CGRect rect = CGRectMake(0, 0, self.view.frame.size.width, 60);
+    CGRect rect = CGRectMake(0, 0, self.view.frame.size.width, 70);
     previewingContext.sourceRect = rect;
     
     return childVC;

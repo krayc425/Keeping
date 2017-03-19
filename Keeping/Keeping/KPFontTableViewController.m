@@ -13,8 +13,8 @@
 #import "KPTabBarViewController.h"
 #import "KPTaskTableViewCell.h"
 #import "KPTodayTableViewCell.h"
-#import "KPCalTaskTableViewCell.h"
 #import "HYCircleProgressView.h"
+#import "Task.h"
 
 #define GROUP_ID @"group.com.krayc.keeping"
 
@@ -62,7 +62,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch (section) {
         case 0:
-            return 3;
+            return 2;
         case 1:
             return [[Utilities getFontArr] count];
         case 2:
@@ -164,33 +164,6 @@
                 cell.typeImg.tintColor = [Utilities getTypeColorArr][t.type - 1];
                 [cell.typeImg setImage:img];
                 
-                [cell.progressView setProgress:(arc4random() % 101) / 100.0 animated:NO];
-                
-                return cell;
-            }
-                break;
-            case 2:
-            {
-                static NSString *cellIdentifier = @"KPCalTaskTableViewCell";
-                UINib *nib = [UINib nibWithNibName:@"KPCalTaskTableViewCell" bundle:nil];
-                [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
-                KPCalTaskTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-                
-                [cell setFont];
-                
-                [cell.taskNameLabel setText:t.name];
-                
-                UIImage *img = [UIImage imageNamed:@"CIRCLE_FULL"];
-                img = [img imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-                cell.typeImg.tintColor = [Utilities getTypeColorArr][t.type - 1];
-                [cell.typeImg setImage:img];
-                
-                int punchNum = arc4random() % 101;
-                
-                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-                [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-                
-                [cell.punchDaysLabel setText:[NSString stringWithFormat:@"创建于 %@ · 已完成 %d 天", [dateFormatter stringFromDate:[NSDate date]], punchNum]];
                 [cell.progressView setProgress:(arc4random() % 101) / 100.0 animated:NO];
                 
                 return cell;
