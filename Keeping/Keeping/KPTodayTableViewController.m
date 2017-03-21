@@ -40,8 +40,7 @@ static AMPopTip *shareTip = NULL;
     [super viewDidLoad];
     
     self.gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    self.sortFactor = @"sortName";
-    self.isAscend = true;
+    
     self.selectedDate = [NSDate dateWithYear:[[NSDate date] year] month:[[NSDate date] month] day:[[NSDate date] day]];
     
     self.tableView.emptyDataSetSource = self;
@@ -148,6 +147,11 @@ static AMPopTip *shareTip = NULL;
 }
 
 - (void)loadTasks{
+    
+    NSDictionary *sortDict = [[NSUserDefaults standardUserDefaults] valueForKey:@"sort"];
+    self.sortFactor = sortDict.allKeys[0];
+    self.isAscend = sortDict.allValues[0];
+    
     [self hideTip];
     
     [self.dateButton setTitle:[DateUtil getDateStringOfDate:self.selectedDate] forState:UIControlStateNormal];
@@ -167,8 +171,8 @@ static AMPopTip *shareTip = NULL;
     }
     
     //排序
-    self.unfinishedTaskArr = [NSMutableArray arrayWithArray:[TaskDataHelper sortTasks:self.unfinishedTaskArr withSortFactor:self.sortFactor isAscend:self.isAscend]];
-    self.finishedTaskArr = [NSMutableArray arrayWithArray:[TaskDataHelper sortTasks:self.finishedTaskArr withSortFactor:self.sortFactor isAscend:self.isAscend]];
+    self.unfinishedTaskArr = [NSMutableArray arrayWithArray:[TaskDataHelper sortTasks:self.unfinishedTaskArr withSortFactor:self.sortFactor isAscend:self.isAscend.intValue]];
+    self.finishedTaskArr = [NSMutableArray arrayWithArray:[TaskDataHelper sortTasks:self.finishedTaskArr withSortFactor:self.sortFactor isAscend:self.isAscend.intValue]];
     
     //按类别
     self.unfinishedTaskArr = [NSMutableArray arrayWithArray:[TaskDataHelper filtrateTasks:self.unfinishedTaskArr withType:self.selectedColorNum]];
@@ -669,7 +673,7 @@ static AMPopTip *shareTip = NULL;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     KPTaskDisplayTableViewController *childVC = (KPTaskDisplayTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"KPTaskDisplayTableViewController"];
     [childVC setTaskid:task.id];
-    childVC.preferredContentSize = CGSizeMake(0.0f,470.0f);
+    childVC.preferredContentSize = CGSizeMake(0.0f,525.0f);
 
     CGRect rect = CGRectMake(0, 0, self.view.frame.size.width, 70);
     previewingContext.sourceRect = rect;
@@ -715,11 +719,18 @@ static AMPopTip *shareTip = NULL;
 
 - (void)menuPopover:(MLKMenuPopover *)menuPopover didSelectMenuItemAtIndex:(NSInteger)selectedIndex{
     if([self.sortFactor isEqualToString:[[Utilities getTaskSortArr] allValues][selectedIndex]]){
-        self.isAscend = !self.isAscend;
+        if(self.isAscend.intValue == true){
+            self.isAscend = @(0);
+        }else{
+            self.isAscend = @(1);
+        }
     }else{
         self.sortFactor = [[Utilities getTaskSortArr] allValues][selectedIndex];
-        self.isAscend = true;
+        self.isAscend = @(1);
     }
+    [[NSUserDefaults standardUserDefaults] setValue: @{self.sortFactor : self.isAscend} forKey:@"sort"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
     [self loadTasks];
 }
 

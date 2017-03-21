@@ -19,6 +19,7 @@
 #import "KPTaskDetailTableViewController.h"
 #import "KPImageViewController.h"
 #import "KPCalInfoView.h"
+#import "KPSeparatorView.h"
 
 #define ENDLESS_STRING @"到 无限期"
 #define DATE_FORMAT @"yyyy/MM/dd"
@@ -44,6 +45,7 @@ static AMPopTip *shareTip = NULL;
     self.navigationItem.rightBarButtonItems = @[editItem];
     
     //TableView
+    self.tableView.tableFooterView = [UIView new];
     self.tableView.tableFooterView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     
@@ -138,7 +140,7 @@ static AMPopTip *shareTip = NULL;
     self.nextButton = nextButton;
     
     UIButton *infoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    infoBtn.frame = CGRectMake(CGRectGetWidth(self.tableView.frame) - 60, 8, 32, 32);
+    infoBtn.frame = CGRectMake(CGRectGetWidth(self.tableView.frame) - 60, 9, 32, 32);
     infoBtn.backgroundColor = [UIColor whiteColor];
     infoBtn.titleLabel.font = [UIFont systemFontOfSize:15];
     [infoBtn setTintColor:[UIColor lightGrayColor]];
@@ -405,7 +407,7 @@ static AMPopTip *shareTip = NULL;
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch (section) {
         case 0:
-            return 3;
+            return 2;
         case 1:
             return 1;
         default:
@@ -415,6 +417,49 @@ static AMPopTip *shareTip = NULL;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+}
+
+
+- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    switch (section) {
+        case 0:
+        {
+            KPSeparatorView *view = [[[NSBundle mainBundle] loadNibNamed:@"KPSeparatorView" owner:nil options:nil] lastObject];
+            view.backgroundColor = [UIColor clearColor];
+            [view setText:@"基本信息"];
+            return view;
+        }
+            break;
+        case 1:
+        {
+            KPSeparatorView *view = [[[NSBundle mainBundle] loadNibNamed:@"KPSeparatorView" owner:nil options:nil] lastObject];
+            view.backgroundColor = [UIColor clearColor];
+            [view setText:@"完成情况"];
+            return view;
+        }
+            break;
+        default:
+            return [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    switch (section) {
+        case 0:
+            return 30.0f;
+        case 1:
+            return 20.0f;
+        default:
+            return 0.00001f;
+    }
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    return [UIView new];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.00001f;
 }
 
 #pragma mark - FSCalendar Delegate

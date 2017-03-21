@@ -36,9 +36,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.sortFactor = @"sortName";
-    self.isAscend = true;
-    
     self.taskArr = [[NSMutableArray alloc] init];
     self.historyTaskArr = [[NSMutableArray alloc] init];
     
@@ -168,6 +165,11 @@
 }
 
 - (void)loadTasksOfWeekdays:(NSArray *)weekDays{
+    
+    NSDictionary *sortDict = [[NSUserDefaults standardUserDefaults] valueForKey:@"sort"];
+    self.sortFactor = sortDict.allKeys[0];
+    self.isAscend = sortDict.allValues[0];
+    
     self.taskArr = [[NSMutableArray alloc] init];
     self.historyTaskArr = [[NSMutableArray alloc] init];
     
@@ -189,8 +191,8 @@
     }
     
     //排序
-    self.taskArr = [NSMutableArray arrayWithArray:[TaskDataHelper sortTasks:self.taskArr withSortFactor:self.sortFactor isAscend:self.isAscend]];
-    self.historyTaskArr = [NSMutableArray arrayWithArray:[TaskDataHelper sortTasks:self.historyTaskArr withSortFactor:self.sortFactor isAscend:self.isAscend]];
+    self.taskArr = [NSMutableArray arrayWithArray:[TaskDataHelper sortTasks:self.taskArr withSortFactor:self.sortFactor isAscend:self.isAscend.intValue]];
+    self.historyTaskArr = [NSMutableArray arrayWithArray:[TaskDataHelper sortTasks:self.historyTaskArr withSortFactor:self.sortFactor isAscend:self.isAscend.intValue]];
     
     [self.tableView reloadData];
     
@@ -435,7 +437,7 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     KPTaskDisplayTableViewController *childVC = (KPTaskDisplayTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"KPTaskDisplayTableViewController"];
     [childVC setTaskid:task.id];
-    childVC.preferredContentSize = CGSizeMake(0.0f, 470.0f);
+    childVC.preferredContentSize = CGSizeMake(0.0f, 525.0f);
     
     CGRect rect = CGRectMake(0, 0, self.view.frame.size.width, 70);
     previewingContext.sourceRect = rect;
@@ -472,11 +474,18 @@
 
 - (void)menuPopover:(MLKMenuPopover *)menuPopover didSelectMenuItemAtIndex:(NSInteger)selectedIndex{
     if([self.sortFactor isEqualToString:[[Utilities getTaskSortArr] allValues][selectedIndex]]){
-        self.isAscend = !self.isAscend;
+        if(self.isAscend.intValue == true){
+            self.isAscend = @(0);
+        }else{
+            self.isAscend = @(1);
+        }
     }else{
         self.sortFactor = [[Utilities getTaskSortArr] allValues][selectedIndex];
-        self.isAscend = true;
+        self.isAscend = @(1);
     }
+    [[NSUserDefaults standardUserDefaults] setValue: @{self.sortFactor : self.isAscend} forKey:@"sort"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
     [self loadTasksOfWeekdays:self.selectedWeekdayArr];
 }
 

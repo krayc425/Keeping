@@ -63,6 +63,9 @@
     if([[NSUserDefaults standardUserDefaults] integerForKey:@"fontSize"] == 0){
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"fontSize"];
     }
+    if([[NSUserDefaults standardUserDefaults] valueForKey:@"sort"] == NULL){
+        [[NSUserDefaults standardUserDefaults] setValue:@{@"sortName" : @true} forKey:@"sort"];
+    }
     [[NSUserDefaults standardUserDefaults] synchronize];
     //widget 字体
     NSUserDefaults *shared = [[NSUserDefaults alloc]initWithSuiteName:GROUP_ID];

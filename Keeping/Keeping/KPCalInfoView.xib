@@ -28,7 +28,7 @@
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="PyX-QJ-TCq">
                     <rect key="frame" x="10" y="35" width="480" height="160"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="fWT-GE-KQh">
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="fWT-GE-KQh">
                             <rect key="frame" x="0.0" y="0.0" width="480" height="29"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d8E-J4-PjC">
@@ -39,32 +39,32 @@
                                     <state key="normal" title="Button"/>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uxy-ac-ym7">
-                                    <rect key="frame" x="34" y="0.0" width="446" height="29"/>
+                                    <rect key="frame" x="37" y="0.0" width="443" height="29"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
                         </stackView>
-                        <stackView opaque="NO" tag="1" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="XwL-YV-En3">
+                        <stackView opaque="NO" tag="1" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="XwL-YV-En3">
                             <rect key="frame" x="0.0" y="44" width="480" height="28.5"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GeJ-R8-c1c">
-                                    <rect key="frame" x="0.0" y="0.0" width="29.5" height="28.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="29" height="28.5"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="GeJ-R8-c1c" secondAttribute="height" multiplier="1:1" id="ved-Mb-6T5"/>
                                     </constraints>
                                     <state key="normal" title="Button"/>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="STt-nt-YJq">
-                                    <rect key="frame" x="34.5" y="0.0" width="445.5" height="28.5"/>
+                                    <rect key="frame" x="37" y="0.0" width="443" height="28.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
                         </stackView>
-                        <stackView opaque="NO" tag="2" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="UDd-tR-Zo7">
+                        <stackView opaque="NO" tag="2" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="UDd-tR-Zo7">
                             <rect key="frame" x="0.0" y="87.5" width="480" height="29"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hNk-aO-ghO">
@@ -75,25 +75,25 @@
                                     <state key="normal" title="Button"/>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AiY-y6-9zC">
-                                    <rect key="frame" x="34" y="0.0" width="446" height="29"/>
+                                    <rect key="frame" x="37" y="0.0" width="443" height="29"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
                         </stackView>
-                        <stackView opaque="NO" tag="3" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="gEm-5n-lGR">
+                        <stackView opaque="NO" tag="3" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="gEm-5n-lGR">
                             <rect key="frame" x="0.0" y="131.5" width="480" height="28.5"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bDY-Ex-63Z">
-                                    <rect key="frame" x="0.0" y="0.0" width="29.5" height="28.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="29" height="28.5"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="bDY-Ex-63Z" secondAttribute="height" multiplier="1:1" id="gEn-Ve-lTd"/>
                                     </constraints>
                                     <state key="normal" title="Button"/>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lTw-st-s4U">
-                                    <rect key="frame" x="34.5" y="0.0" width="445.5" height="28.5"/>
+                                    <rect key="frame" x="37" y="0.0" width="443" height="28.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>

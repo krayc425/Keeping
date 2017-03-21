@@ -131,7 +131,9 @@
         
         if([t.reminderDays containsObject:[NSNumber numberWithInteger:[[NSDate date] weekday]]]
            && ![t.punchDateArr containsObject:[DateUtil transformDate:[NSDate date]]]){
-            [self.taskArr addObject:t];
+            if([[NSDate date] isLaterThanOrEqualTo:t.addDate] && (t.endDate == NULL || [t.endDate isLaterThanOrEqualTo:[NSDate date]])){
+                [self.taskArr addObject:t];
+            }
         }
         
     }

@@ -187,6 +187,8 @@ static CGFloat const kSendButtonWidth = 60;
             [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
             UIColor *blue = [UIColor colorWithRed:59.0/255.0 green:134.0/255.0 blue:207.0/255.0 alpha:1.0];
             self.navigationController.navigationBar.barTintColor = blue;
+            self.navigationController.navigationBar.translucent = NO;
+            self.navigationController.navigationBar.opaque = YES;
             self.closeButtonItem.tintColor = [UIColor whiteColor];
             break;
         }

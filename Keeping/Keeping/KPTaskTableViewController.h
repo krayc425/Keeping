@@ -26,7 +26,7 @@
 @property (nonnull, nonatomic) IBOutlet KPWeekdayPickerView *weekDayView;
 
 @property (nonnull, nonatomic) NSString *sortFactor;
-@property (nonatomic) BOOL isAscend;
+@property (nonnull, nonatomic) NSNumber *isAscend;
 
 - (void)searchAction:(_Nonnull id)senders;
 - (void)editAction:(_Nonnull id)senders;

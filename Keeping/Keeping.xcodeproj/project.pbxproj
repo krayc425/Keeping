@@ -383,7 +383,6 @@
 				24F2A0CC1E2F38C700F30FB1 /* KPTaskTableViewCell.h */,
 				24F2A0CD1E2F38C700F30FB1 /* KPTaskTableViewCell.m */,
 				24F2A0C91E2F383A00F30FB1 /* KPTaskTableViewCell.xib */,
-				24E9DBBB1E7D4FC000FBF144 /* Detail */,
 				248A49891E5D31F80038868A /* Reminder */,
 			);
 			name = Task;
@@ -502,6 +501,7 @@
 				2436F82B1E2F2FC000C2984A /* TaskData */,
 				2429CBF01E2E4AA20027DD37 /* Today */,
 				2429CBF61E2E53D30027DD37 /* Task */,
+				24E9DBBB1E7D4FC000FBF144 /* TaskDetail */,
 				24F2A0DD1E2F489500F30FB1 /* Scheme */,
 				2429CBF41E2E53C50027DD37 /* Settings */,
 				24DCF18C1E30A07C0097C250 /* UI */,
@@ -623,7 +623,7 @@
 			name = UI;
 			sourceTree = "<group>";
 		};
-		24E9DBBB1E7D4FC000FBF144 /* Detail */ = {
+		24E9DBBB1E7D4FC000FBF144 /* TaskDetail */ = {
 			isa = PBXGroup;
 			children = (
 				241D3EFE1E7CFAD20051023F /* KPTaskDisplayTableViewController.h */,
@@ -631,7 +631,7 @@
 				24151C901E322D6700757A69 /* KPTaskDetailTableViewController.h */,
 				24151C911E322D6700757A69 /* KPTaskDetailTableViewController.m */,
 			);
-			name = Detail;
+			name = TaskDetail;
 			sourceTree = "<group>";
 		};
 		24F2A0DD1E2F489500F30FB1 /* Scheme */ = {

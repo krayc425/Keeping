@@ -24,7 +24,7 @@
 @property (nullable, nonatomic) NSIndexPath *selectedIndexPath;
 
 @property (nonnull, nonatomic) NSString *sortFactor;
-@property (nonatomic) BOOL isAscend;
+@property (nonnull, nonatomic) NSNumber *isAscend;
 
 @property (nonatomic, nonnull) IBOutlet UIStackView *pageStack;
 
