@@ -477,25 +477,25 @@ static AMPopTip *shareTip = NULL;
     NSString *displayMemo;
     NSString *buttonMemoText;
     if([memo isEqualToString:@""]){
-        displayMemo = @"无备注";
-        buttonMemoText = @"增加备注";
+        displayMemo = @"无当日备注";
+        buttonMemoText = @"增加当日备注";
     }else{
-        displayMemo = [NSString stringWithFormat:@"备注：%@", memo];
-        buttonMemoText = @"修改备注";
+        displayMemo = [NSString stringWithFormat:@"当日备注：%@", memo];
+        buttonMemoText = @"修改当日备注";
     }
     
     [alert addButton:buttonMemoText actionBlock:^(void) {
         SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
         
-        UITextField *memoText = [alert addTextField:@"填写备注"];
+        UITextField *memoText = [alert addTextField:@"填写当日备注"];
         memoText.text = memo;
         [alert addButton:@"提交" actionBlock:^(void) {
             [[TaskManager shareInstance] modifyMemoForTask:self.task withMemo:memoText.text onDate:date];
             
             SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-            [alert showSuccess:@"修改备注成功" subTitle:nil closeButtonTitle:@"好的" duration:0.0];
+            [alert showSuccess:@"修改当日备注成功" subTitle:nil closeButtonTitle:@"好的" duration:0.0];
         }];
-        [alert showEdit:@"备注" subTitle:[NSString stringWithFormat:@"%@ · %@", self.task.name, [DateUtil getDateStringOfDate:date]] closeButtonTitle:@"取消" duration:0.0];
+        [alert showEdit:@"当日备注" subTitle:[NSString stringWithFormat:@"%@ · %@", self.task.name, [DateUtil getDateStringOfDate:date]] closeButtonTitle:@"取消" duration:0.0];
     }];
     
     //补打卡

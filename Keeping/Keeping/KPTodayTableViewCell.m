@@ -79,18 +79,19 @@
         self.buttonStackView = [[UIStackView alloc] initWithFrame:self.cardView2.frame];
         
         self.appButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.buttonStackView.frame.size.width / 4, self.buttonStackView.frame.size.height)];
-        self.appButton.tag = 0;
         self.linkButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.buttonStackView.frame.size.width / 4, self.buttonStackView.frame.size.height)];
-        self.linkButton.tag = 1;
         self.imageButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.buttonStackView.frame.size.width / 4, self.buttonStackView.frame.size.height)];
-        self.imageButton.tag = 2;
         self.memoButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.buttonStackView.frame.size.width / 4, self.buttonStackView.frame.size.height)];
-        self.memoButton.tag = 3;
     
         self.appButton.titleLabel.adjustsFontSizeToFitWidth = YES;
         self.linkButton.titleLabel.adjustsFontSizeToFitWidth = YES;
         self.imageButton.titleLabel.adjustsFontSizeToFitWidth = YES;
         self.memoButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+        
+        self.appButton.tag = 0;
+        self.linkButton.tag = 1;
+        self.imageButton.tag = 2;
+        self.memoButton.tag = 3;
         
         [self setButtonFont];
         

@@ -372,8 +372,6 @@ static AMPopTip *shareTip = NULL;
                 [cell setIsFinished:YES];
             }
             
-            [cell.moreButton setHidden:!t.hasMoreInfo];
-            
             //设置是否为当前 cell
             if([indexPath isEqual:self.selectedIndexPath] && ![cell.moreButton isHidden]){
                 [cell setIsSelected:YES];
@@ -382,6 +380,8 @@ static AMPopTip *shareTip = NULL;
                 [cell setIsSelected:NO];
                 [cell.moreButton setBackgroundImage:[UIImage imageNamed:@"MORE_INFO_DOWN"] forState:UIControlStateNormal];
             }
+
+            [cell.moreButton setHidden:!t.hasMoreInfo];
             
             [cell.taskNameLabel setText:t.name];
             
@@ -458,6 +458,9 @@ static AMPopTip *shareTip = NULL;
                 [cell.memoButton setHidden:NO];
                 [cell.memoImg setHidden:NO];
                 [cell.memoImg setTintColor:[Utilities getColor]];
+                
+//                [cell.memoButton setTitle:t.memo forState:UIControlStateNormal];
+                
             }else{
                 [cell.memoButton setHidden:YES];
                 [cell.memoImg setHidden:YES];
@@ -530,6 +533,10 @@ static AMPopTip *shareTip = NULL;
                 self.selectedIndexPath = NULL;
             }else{
                 self.selectedIndexPath = indexPath;
+                
+//                if(!cell.memoButton.hidden){
+//                    [self moreAction:cell withButton:cell.memoButton];
+//                }
             }
             
         }else{
