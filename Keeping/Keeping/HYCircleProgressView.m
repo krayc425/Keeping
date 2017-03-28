@@ -28,15 +28,17 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-//        [self setBackgroundColor:[UIColor clearColor]];
-//        [self createSubViews];
-//        //init default variable
-//        self.backgroundLineWidth = kDefaultLineWidth;
-//        self.progressLineWidth = kDefaultLineWidth;
-//        self.percentage = 0;
-//        self.offset = 0;
-//        self.sumSteps = 0;
-//        self.step = 0.1;
+        self.clipsToBounds = YES;
+        
+        [self setBackgroundColor:[UIColor clearColor]];
+        [self createSubViews];
+        //init default variable
+        self.backgroundLineWidth = kDefaultLineWidth;
+        self.progressLineWidth = kDefaultLineWidth;
+        self.percentage = 0;
+        self.offset = 0;
+        self.sumSteps = 0;
+        self.step = 0.1;
     }
     return self;
 }
@@ -44,6 +46,8 @@
 - (instancetype)initWithCoder:(NSCoder *)aDecoder{
     self = [super initWithCoder:aDecoder];
     if (self) {
+        self.clipsToBounds = YES;
+        
         [self setBackgroundColor:[UIColor clearColor]];
         [self createSubViews];
         //init default variable
@@ -86,7 +90,7 @@
 {
     UIBezierPath *path = [UIBezierPath bezierPath];
     path = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.center.x - self.frame.origin.x, self.center.y - self.frame.origin.y)
-                                          radius:(self.frame.size.width - _backgroundLineWidth)/2 - _offset
+                                          radius:(self.bounds.size.width - _backgroundLineWidth)/2 - _offset
                                       startAngle:0
                                         endAngle:M_PI*2
                                        clockwise:YES];
@@ -196,4 +200,5 @@
         return;
     }
 }
+
 @end

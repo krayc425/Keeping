@@ -10,6 +10,7 @@
 #import "Utilities.h"
 #import <LeanCloudFeedback/LeanCloudFeedback.h>
 #import "KPTabBar.h"
+#import "KPNavigationTitleView.h"
 #import "KPTaskDetailTableViewController.h"
 
 @interface KPTabBarViewController ()
@@ -39,7 +40,7 @@
     self.kpTodayTableViewController = (KPTodayTableViewController *)self.viewControllers[0];
     self.kpTaskTableViewController = (KPTaskTableViewController *)self.viewControllers[1];
     
-    [self.navigationItem setTitle:@"今日"];
+    self.navigationItem.titleView = [[KPNavigationTitleView alloc] initWithTitle:@"今日" andColor:NULL];
     UIBarButtonItem *editItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_SORT"]
                                                                  style:UIBarButtonItemStylePlain
                                                                 target:self.kpTodayTableViewController
@@ -106,13 +107,13 @@
     switch (self.selectedIndex) {
         case 0:
         {
-            [self.navigationItem setTitle:@"今日"];
-            
             UIBarButtonItem *editItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_SORT"]
                                                                          style:UIBarButtonItemStylePlain
                                                                         target:self.kpTodayTableViewController
                                                                         action:@selector(editAction:)];
             self.navigationItem.leftBarButtonItems = @[editItem];
+            
+            self.navigationItem.titleView = [[KPNavigationTitleView alloc] initWithTitle:@"今日" andColor:NULL];
         }
             break;
         case 1:
@@ -124,6 +125,8 @@
                                                                         target:self.kpTaskTableViewController
                                                                         action:@selector(editAction:)];
             self.navigationItem.leftBarButtonItems = @[editItem];
+            
+            self.navigationItem.titleView = [[KPNavigationTitleView alloc] initWithTitle:@"任务" andColor:NULL];
         }
             break;
         default:

@@ -43,6 +43,7 @@
 		2462FB8A1E4D6295004E70A5 /* Intro_Screen_One.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2462FB861E4D6295004E70A5 /* Intro_Screen_One.jpg */; };
 		2462FB8B1E4D6295004E70A5 /* Intro_Screen_Three.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2462FB871E4D6295004E70A5 /* Intro_Screen_Three.jpg */; };
 		2462FB8C1E4D6295004E70A5 /* Intro_Screen_Two.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2462FB881E4D6295004E70A5 /* Intro_Screen_Two.jpg */; };
+		2467A58C1E8A3FF700C41B11 /* KPNavigationTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2467A58B1E8A3FF700C41B11 /* KPNavigationTitleView.m */; };
 		24699F031E2F213D0092FBED /* KPNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24699F021E2F213D0092FBED /* KPNavigationViewController.m */; };
 		24699F051E2F23C60092FBED /* Navigation.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24699F041E2F23C60092FBED /* Navigation.xcassets */; };
 		246AEF0A1E64214A00D78FDD /* UIImage+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 246AEF091E64214A00D78FDD /* UIImage+Extensions.m */; };
@@ -74,6 +75,8 @@
 		24A0CD6C1E56CED80017EE22 /* KPScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 24A0CD6B1E56CED80017EE22 /* KPScheme.m */; };
 		24BA79A11E516949002133B6 /* TaskDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 24BA79A01E516949002133B6 /* TaskDataHelper.m */; };
 		24BA79AB1E516FE0002133B6 /* KPWeekdayPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24BA79AA1E516FE0002133B6 /* KPWeekdayPickerView.m */; };
+		24D2D8001E8A2D060056D1AD /* KPTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D2D7FF1E8A2D060056D1AD /* KPTimeView.m */; };
+		24D2D8021E8A2D130056D1AD /* KPTimeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24D2D8011E8A2D130056D1AD /* KPTimeView.xib */; };
 		24DCF18A1E3094050097C250 /* DateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DCF1891E3094050097C250 /* DateUtil.m */; };
 		24DCF1941E310A890097C250 /* CardsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DCF1931E310A890097C250 /* CardsView.m */; };
 		24F2A0CB1E2F383A00F30FB1 /* KPTaskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24F2A0C91E2F383A00F30FB1 /* KPTaskTableViewCell.xib */; };
@@ -201,6 +204,8 @@
 		2462FB861E4D6295004E70A5 /* Intro_Screen_One.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Intro_Screen_One.jpg; sourceTree = "<group>"; };
 		2462FB871E4D6295004E70A5 /* Intro_Screen_Three.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Intro_Screen_Three.jpg; sourceTree = "<group>"; };
 		2462FB881E4D6295004E70A5 /* Intro_Screen_Two.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Intro_Screen_Two.jpg; sourceTree = "<group>"; };
+		2467A58A1E8A3FF700C41B11 /* KPNavigationTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPNavigationTitleView.h; sourceTree = "<group>"; };
+		2467A58B1E8A3FF700C41B11 /* KPNavigationTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPNavigationTitleView.m; sourceTree = "<group>"; };
 		24699F011E2F213D0092FBED /* KPNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPNavigationViewController.h; sourceTree = "<group>"; };
 		24699F021E2F213D0092FBED /* KPNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPNavigationViewController.m; sourceTree = "<group>"; };
 		24699F041E2F23C60092FBED /* Navigation.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Navigation.xcassets; sourceTree = "<group>"; };
@@ -240,6 +245,9 @@
 		24BA79A01E516949002133B6 /* TaskDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDataHelper.m; sourceTree = "<group>"; };
 		24BA79A91E516FE0002133B6 /* KPWeekdayPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPWeekdayPickerView.h; sourceTree = "<group>"; };
 		24BA79AA1E516FE0002133B6 /* KPWeekdayPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPWeekdayPickerView.m; sourceTree = "<group>"; };
+		24D2D7FE1E8A2D060056D1AD /* KPTimeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPTimeView.h; sourceTree = "<group>"; };
+		24D2D7FF1E8A2D060056D1AD /* KPTimeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPTimeView.m; sourceTree = "<group>"; };
+		24D2D8011E8A2D130056D1AD /* KPTimeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KPTimeView.xib; sourceTree = "<group>"; };
 		24DCF1881E3094050097C250 /* DateUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateUtil.h; sourceTree = "<group>"; };
 		24DCF1891E3094050097C250 /* DateUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateUtil.m; sourceTree = "<group>"; };
 		24DCF1921E310A890097C250 /* CardsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardsView.h; sourceTree = "<group>"; };
@@ -411,6 +419,25 @@
 				24BA79A01E516949002133B6 /* TaskDataHelper.m */,
 			);
 			name = TaskData;
+			sourceTree = "<group>";
+		};
+		2467A5891E8A3DBB00C41B11 /* KPTimeView */ = {
+			isa = PBXGroup;
+			children = (
+				24D2D7FE1E8A2D060056D1AD /* KPTimeView.h */,
+				24D2D7FF1E8A2D060056D1AD /* KPTimeView.m */,
+				24D2D8011E8A2D130056D1AD /* KPTimeView.xib */,
+			);
+			name = KPTimeView;
+			sourceTree = "<group>";
+		};
+		2467A58D1E8A45B600C41B11 /* KPNavigationTitleView */ = {
+			isa = PBXGroup;
+			children = (
+				2467A58A1E8A3FF700C41B11 /* KPNavigationTitleView.h */,
+				2467A58B1E8A3FF700C41B11 /* KPNavigationTitleView.m */,
+			);
+			name = KPNavigationTitleView;
 			sourceTree = "<group>";
 		};
 		246B95EF1E5BE34B00DAB2E9 /* AssistVCs */ = {
@@ -617,6 +644,8 @@
 				24BA79A61E516FC1002133B6 /* HYCircleProgressView */,
 				24BA79A41E516D5D002133B6 /* CardView */,
 				24F2A0E11E2F7B6E00F30FB1 /* KPTimePicker */,
+				2467A5891E8A3DBB00C41B11 /* KPTimeView */,
+				2467A58D1E8A45B600C41B11 /* KPNavigationTitleView */,
 				246AEF081E64214A00D78FDD /* UIImage+Extensions.h */,
 				246AEF091E64214A00D78FDD /* UIImage+Extensions.m */,
 			);
@@ -843,6 +872,7 @@
 				24F2A1001E2F7B6E00F30FB1 /* schedule_image_sun-high.png in Resources */,
 				249AE3251E2DEE7700F704F8 /* Assets.xcassets in Resources */,
 				24F2A1011E2F7B6E00F30FB1 /* schedule_image_sun-high@2x.png in Resources */,
+				24D2D8021E8A2D130056D1AD /* KPTimeView.xib in Resources */,
 				24F2A0FC1E2F7B6E00F30FB1 /* round_backarrow_big.png in Resources */,
 				2462FB8C1E4D6295004E70A5 /* Intro_Screen_Two.jpg in Resources */,
 				24F2A0FF1E2F7B6E00F30FB1 /* schedule_image_moon-high@2x.png in Resources */,
@@ -980,6 +1010,7 @@
 			files = (
 				241A58071E7E36B9001356E0 /* KPCalInfoView.m in Sources */,
 				24F2A0D41E2F481000F30FB1 /* KPSchemeTableViewController.m in Sources */,
+				2467A58C1E8A3FF700C41B11 /* KPNavigationTitleView.m in Sources */,
 				24F2A0DB1E2F489100F30FB1 /* KPSchemeTableViewCell.m in Sources */,
 				24F2A1021E2F7B6E00F30FB1 /* KPTimePicker.m in Sources */,
 				2422066A1E5A6A3B00F03BA2 /* ImageUtil.m in Sources */,
@@ -990,6 +1021,7 @@
 				24DCF18A1E3094050097C250 /* DateUtil.m in Sources */,
 				24F2A0D11E2F3F1800F30FB1 /* DBManager.m in Sources */,
 				246AEF0A1E64214A00D78FDD /* UIImage+Extensions.m in Sources */,
+				24D2D8001E8A2D060056D1AD /* KPTimeView.m in Sources */,
 				249AE31A1E2DEE7700F704F8 /* AppDelegate.m in Sources */,
 				249AE3171E2DEE7700F704F8 /* main.m in Sources */,
 				24F2A0D71E2F482100F30FB1 /* KPSchemeManager.m in Sources */,

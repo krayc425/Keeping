@@ -22,6 +22,8 @@
 #import "TaskDataHelper.h"
 #import "KPTaskDisplayTableViewController.h"
 #import "UIImage+Extensions.h"
+#import "KPTimeView.h"
+#import "KPNavigationTitleView.h"
 
 #define MENU_POPOVER_FRAME CGRectMake(10, 44 + 9, 140, 44 * [[Utilities getTaskSortArr] count])
 
@@ -466,17 +468,11 @@ static AMPopTip *shareTip = NULL;
                 [cell.memoImg setHidden:YES];
             }
             
-            NSString *reminderTimeStr = @"";
             if(t.reminderTime != NULL){
-                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-                [dateFormatter setDateFormat:@"HH:mm"];
-                reminderTimeStr = [dateFormatter stringFromDate:t.reminderTime];
-                
-                [cell.reminderLabel setText:reminderTimeStr];
-                
-                [cell.reminderLabel setHidden:NO];
+                [cell.reminderTimeView setTime:t.reminderTime];
+                [cell.reminderTimeView setHidden:NO];
             }else{
-                [cell.reminderLabel setHidden:YES];
+                [cell.reminderTimeView setHidden:YES];
             }
             
             //晚于：不能打卡

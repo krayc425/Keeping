@@ -9,6 +9,7 @@
 #import "KPTodayTableViewCell.h"
 #import "Utilities.h"
 #import "CardsView.h"
+#import "KPTimeView.h"
 
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height
@@ -119,7 +120,6 @@
     float f = [fontSize floatValue];
     
     [self.taskNameLabel setFont:[UIFont fontWithName:[Utilities getFont] size:f]];
-    [self.reminderLabel setFont:[UIFont fontWithName:[Utilities getFont] size:f]];
     
     [infoLabel setFont:[UIFont fontWithName:[Utilities getFont] size:f]];
 }

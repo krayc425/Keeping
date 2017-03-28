@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,14 +17,26 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="69.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MId-YP-mlf" userLabel="CardView" customClass="CardsView">
                         <rect key="frame" x="10" y="5" width="300" height="60"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qcV-J5-pO2" customClass="KPTimeView">
+                                <rect key="frame" x="190" y="17" width="60" height="24"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="2VB-JY-GcP"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="qcV-J5-pO2" firstAttribute="top" secondItem="MId-YP-mlf" secondAttribute="top" constant="17" id="COj-6Z-1On"/>
+                            <constraint firstItem="qcV-J5-pO2" firstAttribute="centerY" secondItem="MId-YP-mlf" secondAttribute="centerY" constant="-1" id="QS3-1J-4nD"/>
                             <constraint firstAttribute="height" constant="60" id="sI0-ka-31c"/>
+                            <constraint firstAttribute="trailing" secondItem="qcV-J5-pO2" secondAttribute="trailing" constant="50" id="z5h-1F-GJJ"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -48,12 +60,6 @@
                             <constraint firstAttribute="height" constant="30" id="Rja-ef-Lwz"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HH:mm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WEt-XN-3wS">
-                        <rect key="frame" x="204" y="25" width="58" height="20.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="KCu-23-9U8">
                         <rect key="frame" x="133" y="30.5" width="55" height="10"/>
                         <subviews>
@@ -110,13 +116,10 @@
                     <constraint firstItem="MId-YP-mlf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="F6y-hj-EM4"/>
                     <constraint firstAttribute="trailing" secondItem="MId-YP-mlf" secondAttribute="trailing" constant="10" id="HXP-1d-dF6"/>
                     <constraint firstItem="KCu-23-9U8" firstAttribute="centerY" secondItem="MId-YP-mlf" secondAttribute="centerY" id="KU6-BG-bGQ"/>
-                    <constraint firstItem="WEt-XN-3wS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="KCu-23-9U8" secondAttribute="trailing" id="OKB-95-J7G"/>
                     <constraint firstItem="MWs-Nq-QtG" firstAttribute="leading" secondItem="3Uo-Cw-fbd" secondAttribute="trailing" constant="5" id="PS5-wh-FMd"/>
                     <constraint firstItem="MId-YP-mlf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="PrC-iF-slt"/>
                     <constraint firstItem="3Uo-Cw-fbd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="Uf8-qh-EeX"/>
                     <constraint firstItem="iue-6t-6A6" firstAttribute="top" secondItem="KCu-23-9U8" secondAttribute="bottom" constant="8" id="hjV-yV-KEH"/>
-                    <constraint firstItem="WEt-XN-3wS" firstAttribute="centerY" secondItem="MId-YP-mlf" secondAttribute="centerY" id="i29-4v-fAJ"/>
-                    <constraint firstItem="K31-Gh-vqJ" firstAttribute="leading" secondItem="WEt-XN-3wS" secondAttribute="trailing" constant="10" id="psv-IA-PQ1"/>
                     <constraint firstItem="3Uo-Cw-fbd" firstAttribute="centerY" secondItem="MId-YP-mlf" secondAttribute="centerY" id="qyN-by-k4R"/>
                     <constraint firstItem="MWs-Nq-QtG" firstAttribute="centerY" secondItem="MId-YP-mlf" secondAttribute="centerY" id="tDI-Jv-z6Q"/>
                     <constraint firstItem="KCu-23-9U8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="MWs-Nq-QtG" secondAttribute="trailing" constant="5" id="ygr-cQ-vhZ"/>
@@ -130,7 +133,7 @@
                 <outlet property="memoImg" destination="T6Z-KN-C3G" id="hsx-RX-TQP"/>
                 <outlet property="moreButton" destination="iue-6t-6A6" id="RhB-za-ovt"/>
                 <outlet property="myCheckBox" destination="K31-Gh-vqJ" id="acV-xM-w54"/>
-                <outlet property="reminderLabel" destination="WEt-XN-3wS" id="P7E-fG-QWo"/>
+                <outlet property="reminderTimeView" destination="qcV-J5-pO2" id="S08-Td-C8b"/>
                 <outlet property="taskNameLabel" destination="3Uo-Cw-fbd" id="TaC-wA-91v"/>
                 <outlet property="typeImg" destination="MWs-Nq-QtG" id="yAl-Ia-0VT"/>
             </connections>

@@ -60,9 +60,6 @@
        || [[NSUserDefaults standardUserDefaults] valueForKey:@"font"] == NULL){
         [[NSUserDefaults standardUserDefaults] setValue:@"STHeitiSC-Light" forKey:@"font"];
     }
-    if([[NSUserDefaults standardUserDefaults] integerForKey:@"fontSize"] == 0){
-        [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"fontSize"];
-    }
     if([[NSUserDefaults standardUserDefaults] valueForKey:@"sort"] == NULL){
         [[NSUserDefaults standardUserDefaults] setValue:@{@"sortName" : @true} forKey:@"sort"];
     }

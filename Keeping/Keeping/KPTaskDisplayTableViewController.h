@@ -18,6 +18,7 @@
 
 @class CardsView;
 @class HYCircleProgressView;
+@class KPTimeView;
 
 @interface KPTaskDisplayTableViewController : UITableViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance>
 
@@ -33,7 +34,7 @@
 @property (nonnull, nonatomic) IBOutlet UIButton *startDateButton;
 @property (nonnull, nonatomic) IBOutlet UIButton *endDateButton;
 
-@property (nonnull, nonatomic) IBOutlet UILabel *reminderLabel;
+@property (nonnull, nonatomic) IBOutlet KPTimeView *reminderTimeView;
 @property (nonatomic, nullable) NSDate *reminderTime;
 
 @property (nonnull, nonatomic) IBOutlet UIStackView *imgStackView;

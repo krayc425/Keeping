@@ -10,6 +10,8 @@
 #import "BEMCheckBox.h"
 #import "CardsView.h"
 
+@class KPTimeView;
+
 @protocol CheckTaskDelegate <NSObject>
 
 - (void)checkTask:(UITableViewCell *_Nonnull)cell;
@@ -24,7 +26,8 @@
 //任务名
 @property (nonatomic, nonnull) IBOutlet UILabel *taskNameLabel;
 //提醒时间
-@property (nonatomic, nonnull) IBOutlet UILabel *reminderLabel;
+//@property (nonatomic, nonnull) IBOutlet UILabel *reminderLabel;
+@property (nonatomic, nonnull) IBOutlet KPTimeView *reminderTimeView;
 //打钩
 @property (nonnull, nonatomic) IBOutlet BEMCheckBox *myCheckBox;
 //类别

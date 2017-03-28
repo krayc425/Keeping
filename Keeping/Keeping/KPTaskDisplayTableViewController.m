@@ -20,6 +20,8 @@
 #import "KPImageViewController.h"
 #import "KPCalInfoView.h"
 #import "KPSeparatorView.h"
+#import "KPTimeView.h"
+#import "KPNavigationTitleView.h"
 
 #define ENDLESS_STRING @"到 无限期"
 #define DATE_FORMAT @"yyyy/MM/dd"
@@ -79,9 +81,6 @@ static AMPopTip *shareTip = NULL;
     self.weekdayView.fontSize = 15.0;
     self.weekdayView.isAllButtonHidden = YES;
     self.weekdayView.userInteractionEnabled = NO;
-    
-    //Reminder
-    [self.reminderLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
     
     //Calendar
     self.gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
@@ -169,9 +168,7 @@ static AMPopTip *shareTip = NULL;
 }
 
 - (void)infoAction:(id)sender{
-    NSLog(@"info");
-    
-    NSArray* nibView = [[NSBundle mainBundle] loadNibNamed:@"KPCalInfoView" owner:nil options:nil];
+    NSArray *nibView = [[NSBundle mainBundle] loadNibNamed:@"KPCalInfoView" owner:nil options:nil];
     KPCalInfoView *view = [nibView firstObject];
     [view setFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame) - 40, 200)];
     
@@ -199,43 +196,18 @@ static AMPopTip *shareTip = NULL;
     }
 }
 
-- (void)setTitleLabel:(NSString *)title{
-    //Type
-    titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 64)];
-    [titleLabel setText:title];
-    [titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:22.0]];
-    [titleLabel setTextColor:[UIColor whiteColor]];
-    [titleLabel setTextAlignment:NSTextAlignmentCenter];
-    [titleLabel sizeToFit];
-    
-    UIImageView *typeView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
-    if(self.task.type > 0){
-        UIImage *img = [UIImage imageNamed:@"Round_S"];
-        img = [img imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        typeView.tintColor = [Utilities getTypeColorArr][self.task.type - 1];
-        [typeView setImage:img];
-        [typeView setHidden:NO];
-    }else{
-        [typeView setHidden:YES];
-    }
-    
-    UIStackView *stackView = [[UIStackView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(typeView.frame) + CGRectGetWidth(titleLabel.frame) + 5, 64)];
-    stackView.axis = UILayoutConstraintAxisHorizontal;
-    stackView.distribution = UIStackViewDistributionEqualCentering;
-    stackView.alignment = UIStackViewAlignmentCenter;
-    stackView.spacing = 0;
-    [stackView addArrangedSubview:titleLabel];
-    [stackView addArrangedSubview:typeView];
-    
-    self.navigationItem.titleView = stackView;
-}
-
 - (void)loadTask{
     self.task = [[TaskManager shareInstance] getTasksOfID:self.taskid];
     
     //Set Task Properties
     //name
-    [self setTitleLabel:self.task.name];
+    UIColor *color;
+    if(self.task.type > 0){
+        color = [Utilities getTypeColorArr][self.task.type - 1];
+    }else{
+        color = NULL;
+    }
+    self.navigationItem.titleView = [[KPNavigationTitleView alloc] initWithTitle:self.task.name andColor:color];
     
     //progress
     [self.progressView setProgress:self.task.progress animated:YES];
@@ -255,14 +227,9 @@ static AMPopTip *shareTip = NULL;
     //reminder
     self.reminderTime = self.task.reminderTime;
     if(self.reminderTime != NULL){
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"HH:mm 提醒"];
-        NSString *currentDateStr = [dateFormatter stringFromDate:self.reminderTime];
-        [self.reminderLabel setText:currentDateStr];
-//        [self.reminderLabel setHidden:NO];
+        [self.reminderTimeView setTime:self.reminderTime];
     }else{
-        [self.reminderLabel setText:@"全天"];
-//        [self.reminderLabel setHidden:YES];
+        [self.reminderTimeView setTime:NULL];
     }
 
     //app

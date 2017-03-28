@@ -15,6 +15,7 @@
 #import "KPTodayTableViewCell.h"
 #import "HYCircleProgressView.h"
 #import "Task.h"
+#import "KPTimeView.h"
 
 #define GROUP_ID @"group.com.krayc.keeping"
 
@@ -30,6 +31,8 @@
     [self.navigationItem setTitle:@"字体"];
     
     [self.sizeControl setTintColor:[Utilities getColor]];
+    
+    NSLog(@"saved  %ld", [[NSUserDefaults standardUserDefaults] integerForKey:@"fontSize"]);
     
     [self.sizeControl setSelectedSegmentIndex:[[NSUserDefaults standardUserDefaults] integerForKey:@"fontSize"]];
     [self.sizeControl addTarget:self action:@selector(sliderValueChanged) forControlEvents:UIControlEventValueChanged];
@@ -50,6 +53,11 @@
 
 - (void)sliderValueChanged{
     [[NSUserDefaults standardUserDefaults] setInteger:self.sizeControl.selectedSegmentIndex forKey:@"fontSize"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    NSLog(@"select %ld", (long)self.sizeControl.selectedSegmentIndex);
+    NSLog(@"saved  %ld", [[NSUserDefaults standardUserDefaults] integerForKey:@"fontSize"]);
+    
     [self.tableView reloadData];
 }
 
@@ -134,12 +142,8 @@
                 cell.typeImg.tintColor = [Utilities getTypeColorArr][t.type - 1];
                 [cell.typeImg setImage:img];
                 
-                NSString *reminderTimeStr = @"";
-                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-                [dateFormatter setDateFormat:@"HH:mm"];
-                reminderTimeStr = [dateFormatter stringFromDate:t.reminderTime];
-                [cell.reminderLabel setText:reminderTimeStr];
-                [cell.reminderLabel setHidden:NO];
+                [cell.reminderTimeView setTime:t.reminderTime];
+                [cell.reminderTimeView setHidden:NO];
                 
                 return cell;
             }
