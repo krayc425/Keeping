@@ -19,7 +19,6 @@
 
 @end
 
-
 @interface KPColorPickerView : UIView
 
 //button tag : 1 ~ 7

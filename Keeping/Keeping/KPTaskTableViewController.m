@@ -22,8 +22,13 @@
 #import "SCLAlertView.h"
 #import "PYSearch.h"
 #import "KPTaskDisplayTableViewController.h"
+#import "KPNavigationTitleView.h"
+#import "AMPopTip.h"
 
 #define MENU_POPOVER_FRAME CGRectMake(10, 44 + 9, 140, 44 * [[Utilities getTaskSortArr] count])
+
+static AMPopTip *shareTip = NULL;
+static KPColorPickerView *colorPickerView = NULL;
 
 @interface KPTaskTableViewController () <MLKMenuPopoverDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, PYSearchViewControllerDelegate>
 
@@ -52,32 +57,8 @@
     self.weekDayView.fontSize = 18.0;
     
     //类别代理
-    self.colorView.colorDelegate = self;
-    
-    //page 指示 stack
-    self.weekDayView.hidden = NO;
-    self.colorView.hidden = YES;
-    for(UIImageView *imgView in self.pageStack.subviews){
-        UIImage *img = [UIImage imageNamed:@"CIRCLE_FULL"];
-        img = [img imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        [imgView setImage:img];
-    }
-    [self.pageStack.subviews[0] setTintColor:[Utilities getColor]];
-    [self.pageStack.subviews[1] setTintColor:[UIColor groupTableViewBackgroundColor]];
-    
-    UISwipeGestureRecognizer *swipeGRLeft1 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeAction:)];
-    UISwipeGestureRecognizer *swipeGRRight1 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeAction:)];
-    swipeGRLeft1.direction = UISwipeGestureRecognizerDirectionLeft;
-    swipeGRRight1.direction = UISwipeGestureRecognizerDirectionRight;
-    UISwipeGestureRecognizer *swipeGRLeft2 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeAction:)];
-    UISwipeGestureRecognizer *swipeGRRight2 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeAction:)];
-    swipeGRLeft2.direction = UISwipeGestureRecognizerDirectionLeft;
-    swipeGRRight2.direction = UISwipeGestureRecognizerDirectionRight;
-    
-    [self.colorView addGestureRecognizer:swipeGRLeft1];
-    [self.colorView addGestureRecognizer:swipeGRRight1];
-    [self.weekDayView addGestureRecognizer:swipeGRLeft2];
-    [self.weekDayView addGestureRecognizer:swipeGRRight2];
+    [KPTaskTableViewController shareColorPickerView].colorDelegate = self;
+    [[KPTaskTableViewController shareColorPickerView] setFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame) - 32, 40)];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -89,26 +70,12 @@
     [self setFont];
 }
 
-- (void)setFont{
-    [self.weekDayView setFont];
+- (void)viewWillDisappear:(BOOL)animated{
+    [self hideTip];
 }
 
-- (void)swipeAction:(UISwipeGestureRecognizer *)sender{
-    if([self.colorView isHidden]){
-        [self.colorView setHidden:NO];
-        [self.weekDayView setHidden:YES];
-        
-        [self.pageStack.subviews[0] setTintColor:[UIColor groupTableViewBackgroundColor]];
-        [self.pageStack.subviews[1] setTintColor:[Utilities getColor]];
-    }else{
-        [self.colorView setHidden:YES];
-        [self.weekDayView setHidden:NO];
-        
-        [self.pageStack.subviews[0] setTintColor:[Utilities getColor]];
-        [self.pageStack.subviews[1] setTintColor:[UIColor groupTableViewBackgroundColor]];
-    }
-
-    [self fadeAnimation];
+- (void)setFont{
+    [self.weekDayView setFont];
 }
 
 - (void)searchAction:(id)senders{
@@ -512,7 +479,44 @@
 
 - (void)didChangeColors:(int)selectColorNum{
     self.selectedColorNum = selectColorNum;
+    [colorPickerView setSelectedColorNum:self.selectedColorNum];
+    
+    KPNavigationTitleView *titleView = (KPNavigationTitleView *)self.tabBarController.navigationItem.titleView;
+    
+    if(self.selectedColorNum > 0){
+        [titleView changeColor:[Utilities getTypeColorArr][self.selectedColorNum - 1]];
+    }else{
+        [titleView changeColor:NULL];
+    }
+    
     [self loadTasksOfWeekdays:self.selectedWeekdayArr];
+}
+
+#pragma mark - KPNavigationTitleDelegate
+
+- (void)tapped{
+    AMPopTip *tp = [KPTaskTableViewController shareTipInstance];
+    
+    if(![tp isVisible] && ![tp isAnimating]){
+        
+        [tp showCustomView:colorPickerView
+                 direction:AMPopTipDirectionDown
+                    inView:self.view
+                 fromFrame:CGRectMake(CGRectGetWidth(self.view.frame) / 2, -44, 0, 44)];
+        
+        tp.textColor = [UIColor whiteColor];
+        tp.tintColor = [Utilities getColor];
+        tp.popoverColor = [Utilities getColor];
+        tp.borderColor = [UIColor whiteColor];
+        
+        tp.radius = 10;
+        
+        [tp setDismissHandler:^{
+            shareTip = NULL;
+        }];
+    }else{
+        [tp hide];
+    }
 }
 
 #pragma mark - PYSearchViewControllerDelegate
@@ -528,6 +532,31 @@
         // 返回
         searchViewController.searchSuggestions = searchSuggestionsM;
     }
+}
+
+
+#pragma mark - AMPopTip Singleton
+
++ (AMPopTip *)shareTipInstance{
+    return shareTip == NULL ? shareTip = [AMPopTip popTip] : shareTip;
+}
+
+- (void)hideTip{
+    if([[KPTaskTableViewController shareTipInstance] isAnimating]
+       || [[KPTaskTableViewController shareTipInstance] isVisible]){
+        [[KPTaskTableViewController shareTipInstance] hide];
+        shareTip = NULL;
+    }
+}
+
+#pragma mark - KPColor Singleton
+
++ (KPColorPickerView *)shareColorPickerView{
+    if(colorPickerView == NULL){
+        NSArray *nibView = [[NSBundle mainBundle] loadNibNamed:@"KPColorPickerView" owner:nil options:nil];
+        colorPickerView = [nibView firstObject];
+    }
+    return colorPickerView;
 }
 
 @end

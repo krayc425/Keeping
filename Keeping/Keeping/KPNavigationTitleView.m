@@ -11,47 +11,40 @@
 
 @implementation KPNavigationTitleView{
     NSString *title;
-    UIColor *color;
+    UIColor *color ;
+    CGRect *myFrame;
+    UILabel *titleLabel;
+    UIImageView *typeView;
+    UIStackView *stackView;
+    BOOL canTap;
 }
 
 - (instancetype)init{
     self = [super init];
     if(self){
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 64)];
+        titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 44)];
         [titleLabel setText:title];
         [titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:22.0]];
         [titleLabel setTextColor:[UIColor whiteColor]];
         [titleLabel setTextAlignment:NSTextAlignmentCenter];
         [titleLabel sizeToFit];
         
-        UIImageView *typeView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
-        UIImage *img = [UIImage imageNamed:@"Round_S"];
-        img = [img imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        if(color == NULL){
-            [typeView setImage:[UIImage new]];
-            [typeView setHidden:YES];
-        }else{
-            typeView.tintColor = color;
-            [typeView setImage:img];
-            [typeView setHidden:NO];
-        }
+        typeView = [[UIImageView alloc] init];
+        [typeView setFrame:CGRectMake(0, 0, 10, 10)];
+        typeView.layer.masksToBounds = YES;
+        typeView.contentMode = UIViewContentModeScaleAspectFit;
         
-        self.frame = CGRectMake(0, 0, CGRectGetWidth(typeView.frame) + CGRectGetWidth(titleLabel.frame) + 5, 64);
-        
-        UIStackView *stackView = [[UIStackView alloc] initWithFrame:self.frame];
+        stackView = [[UIStackView alloc] init];
         stackView.axis = UILayoutConstraintAxisHorizontal;
-        stackView.distribution = UIStackViewDistributionEqualCentering;
+        stackView.distribution = UIStackViewDistributionFill;
         stackView.alignment = UIStackViewAlignmentCenter;
-        stackView.spacing = 0;
+        stackView.spacing = 5;
         [stackView addArrangedSubview:titleLabel];
         [stackView addArrangedSubview:typeView];
-        stackView.userInteractionEnabled = YES;
         
         [self addSubview:stackView];
         
-        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
-        tapGesture.numberOfTapsRequired = 1;
-        [stackView addGestureRecognizer:tapGesture];
+        [self setMyFrame];
     }
     return self;
 }
@@ -62,8 +55,70 @@
     return [self init];
 }
 
+- (void)changeColor:(UIColor *)thisColor{
+    color = thisColor;
+    [self setMyFrame];
+}
+
+- (void)setCanTap:(BOOL)thisCanTap{
+    canTap = thisCanTap;
+    
+    [stackView setUserInteractionEnabled:thisCanTap];
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
+    tapGesture.numberOfTapsRequired = 1;
+    [stackView addGestureRecognizer:tapGesture];
+    
+    [self setMyFrame];
+}
+
 - (void)tapAction:(id)sender{
-    NSLog(@"tap");
+    [self.navigationTitleDelegate tapped];
+}
+
+- (void)setMyFrame{
+    if(color == NULL){
+        
+        if(canTap){
+            UIImage *img = [UIImage imageNamed:@"NAV_DOWN"];
+            img = [img imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            
+            [typeView setImage:img];
+            [typeView setHidden:NO];
+            [typeView setTintColor:[UIColor whiteColor]];
+            [stackView setFrame:CGRectMake(0,
+                                           0,
+                                           CGRectGetWidth(titleLabel.frame) + 12,
+                                           44)];
+        }else{
+            [typeView setImage:[UIImage new]];
+            [typeView setHidden:YES];
+            [stackView setFrame:CGRectMake(0,
+                                           0,
+                                           CGRectGetWidth(titleLabel.frame),
+                                           44)];
+        }
+        
+    }else{
+        UIImage *img = [UIImage imageNamed:@"Round_S"];
+        img = [img imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        
+        typeView.tintColor = color;
+        [typeView setImage:img];
+        [typeView setHidden:NO];
+        [stackView setFrame:CGRectMake(0,
+                                       0,
+                                       CGRectGetWidth(titleLabel.frame) + 15,
+                                       44)];
+    }
+    
+    [self setFrame:CGRectMake(CGRectGetWidth(self.superview.frame) / 2 - CGRectGetWidth(stackView.frame) / 2,
+                              0,
+                              CGRectGetWidth(stackView.frame),
+                              CGRectGetHeight(stackView.frame))];
+    
+    [self setNeedsLayout];
+    [self layoutIfNeeded];
 }
 
 @end

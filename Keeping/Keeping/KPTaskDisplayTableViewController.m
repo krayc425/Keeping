@@ -207,7 +207,9 @@ static AMPopTip *shareTip = NULL;
     }else{
         color = NULL;
     }
-    self.navigationItem.titleView = [[KPNavigationTitleView alloc] initWithTitle:self.task.name andColor:color];
+    KPNavigationTitleView *titleView = [[KPNavigationTitleView alloc] initWithTitle:self.task.name andColor:color];
+    [titleView setCanTap:NO];
+    self.navigationItem.titleView = titleView;
     
     //progress
     [self.progressView setProgress:self.task.progress animated:YES];

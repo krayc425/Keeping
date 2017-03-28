@@ -8,8 +8,22 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol KPNavigationTitleDelegate <NSObject>
+
+- (void)tapped;
+
+@end
+
 @interface KPNavigationTitleView : UIView
 
-- (instancetype)initWithTitle:(NSString *)thisTitle andColor:(UIColor *)thisColor;
+@property (nonnull, nonatomic) id<KPNavigationTitleDelegate> navigationTitleDelegate;
+
+//1
+- (_Nonnull instancetype)initWithTitle:(NSString *_Nonnull)thisTitle andColor:(UIColor *_Nullable)thisColor;
+
+//2
+- (void)setCanTap:(BOOL)thisCanTap;
+
+- (void)changeColor:(UIColor *_Nullable)thisColor;
 
 @end

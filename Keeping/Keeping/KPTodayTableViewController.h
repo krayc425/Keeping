@@ -10,8 +10,9 @@
 #import "FSCalendar.h"
 #import "KPTodayTableViewCell.h"
 #import "KPColorPickerView.h"
+#import "KPNavigationTitleView.h"
 
-@interface KPTodayTableViewController : UITableViewController <CheckTaskDelegate, FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance, KPColorPickerDelegate, UIViewControllerPreviewingDelegate>
+@interface KPTodayTableViewController : UITableViewController <CheckTaskDelegate, FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance, KPColorPickerDelegate, UIViewControllerPreviewingDelegate, KPNavigationTitleDelegate>
 
 @property (nonnull, nonatomic) IBOutlet UIButton *dateButton;
 @property (nonnull, nonatomic) IBOutlet UILabel *progressLabel;
@@ -26,10 +27,7 @@
 @property (nonnull, nonatomic) NSString *sortFactor;
 @property (nonnull, nonatomic) NSNumber *isAscend;
 
-@property (nonatomic, nonnull) IBOutlet UIStackView *pageStack;
-
 @property (nonatomic, nonnull) IBOutlet UIStackView *dateStack;
-@property (nonatomic, nonnull) IBOutlet KPColorPickerView *colorView;  //button tag : 1 ~ 7
 @property (nonatomic) int selectedColorNum;
 
 - (void)editAction:(_Nonnull id)sender;

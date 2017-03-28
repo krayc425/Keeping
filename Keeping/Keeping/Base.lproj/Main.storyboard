@@ -16,7 +16,7 @@
             <objects>
                 <navigationController storyboardIdentifier="KPNavigationViewController" id="BIL-fh-dCv" userLabel="KPNavigationViewController" customClass="KPNavigationViewController" sceneMemberID="viewController">
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="drc-Be-qV6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="drc-Be-qV6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -111,48 +111,16 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QNp-Js-yI4" customClass="KPColorPickerView">
-                                                    <rect key="frame" x="20" y="10" width="335" height="85"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uX8-4F-gJ8" customClass="KPWeekdayPickerView">
                                                     <rect key="frame" x="20" y="10" width="335" height="85"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
-                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="XBt-Je-oFK">
-                                                    <rect key="frame" x="177" y="83" width="21" height="7"/>
-                                                    <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CIRCLE_FULL" translatesAutoresizingMaskIntoConstraints="NO" id="CL2-uA-CBa">
-                                                            <rect key="frame" x="0.0" y="0.0" width="7" height="7"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="CL2-uA-CBa" secondAttribute="height" multiplier="1:1" id="yh5-cm-hhA"/>
-                                                                <constraint firstAttribute="height" constant="7" id="z1G-Mb-yav"/>
-                                                            </constraints>
-                                                        </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CIRCLE_FULL" translatesAutoresizingMaskIntoConstraints="NO" id="AVd-9S-aGH">
-                                                            <rect key="frame" x="14" y="0.0" width="7" height="7"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="AVd-9S-aGH" secondAttribute="height" multiplier="1:1" id="dVU-kj-RLg"/>
-                                                                <constraint firstAttribute="height" constant="7" id="m0q-B6-415"/>
-                                                            </constraints>
-                                                        </imageView>
-                                                    </subviews>
-                                                    <constraints>
-                                                        <constraint firstItem="AVd-9S-aGH" firstAttribute="width" secondItem="AVd-9S-aGH" secondAttribute="height" multiplier="1:1" id="eyI-WH-TjE"/>
-                                                    </constraints>
-                                                </stackView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="ha8-sc-aya" firstAttribute="leading" secondItem="bNL-kJ-Hjc" secondAttribute="leading" constant="10" id="5SM-4o-Nnn"/>
-                                                <constraint firstItem="XBt-Je-oFK" firstAttribute="centerX" secondItem="bNL-kJ-Hjc" secondAttribute="centerX" id="5gU-11-UiP"/>
-                                                <constraint firstItem="QNp-Js-yI4" firstAttribute="top" secondItem="bNL-kJ-Hjc" secondAttribute="top" constant="10" id="91j-C8-eZJ"/>
-                                                <constraint firstAttribute="bottom" secondItem="QNp-Js-yI4" secondAttribute="bottom" constant="5" id="Ex6-Kv-0sD"/>
                                                 <constraint firstAttribute="bottom" secondItem="uX8-4F-gJ8" secondAttribute="bottom" constant="5" id="Ivs-qb-bgB"/>
                                                 <constraint firstItem="uX8-4F-gJ8" firstAttribute="top" secondItem="bNL-kJ-Hjc" secondAttribute="top" constant="10" id="SMA-ID-xtF"/>
-                                                <constraint firstItem="QNp-Js-yI4" firstAttribute="leading" secondItem="bNL-kJ-Hjc" secondAttribute="leading" constant="20" id="SsZ-gL-5QM"/>
-                                                <constraint firstAttribute="trailing" secondItem="QNp-Js-yI4" secondAttribute="trailing" constant="20" id="X0T-VD-lkH"/>
                                                 <constraint firstAttribute="bottom" secondItem="ha8-sc-aya" secondAttribute="bottom" constant="5" id="dNX-mn-Ssh"/>
-                                                <constraint firstAttribute="bottom" secondItem="XBt-Je-oFK" secondAttribute="bottom" constant="10" id="fWx-BA-dJH"/>
                                                 <constraint firstItem="uX8-4F-gJ8" firstAttribute="leading" secondItem="bNL-kJ-Hjc" secondAttribute="leading" constant="20" id="kIt-XX-1g3"/>
                                                 <constraint firstAttribute="trailing" secondItem="uX8-4F-gJ8" secondAttribute="trailing" constant="20" id="pnH-7m-vRj"/>
                                                 <constraint firstAttribute="trailing" secondItem="ha8-sc-aya" secondAttribute="trailing" constant="10" id="qNR-sD-i8m"/>
@@ -184,8 +152,6 @@
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <tabBarItem key="tabBarItem" title="Item" id="fdh-tp-3dv"/>
                     <connections>
-                        <outlet property="colorView" destination="QNp-Js-yI4" id="uv0-Nv-5QZ"/>
-                        <outlet property="pageStack" destination="XBt-Je-oFK" id="LxZ-rs-hBD"/>
                         <outlet property="weekDayView" destination="uX8-4F-gJ8" id="Fra-fH-fBL"/>
                         <segue destination="iLS-CK-3Yi" kind="presentation" identifier="imageSegue" id="QMM-bj-IhC"/>
                         <segue destination="Mhh-ns-eOa" kind="show" identifier="detailTaskSegue" id="KVR-SD-oGK"/>
@@ -193,7 +159,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9DX-im-IF9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1609" y="-546"/>
+            <point key="canvasLocation" x="1608.8" y="-546.47676161919048"/>
         </scene>
         <!--KPTaskDetailTableViewController-->
         <scene sceneID="s1j-Ej-AEu">
@@ -1414,12 +1380,8 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B3x-sn-hYx" customClass="KPColorPickerView">
-                                                    <rect key="frame" x="20" y="10" width="335" height="85"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="rVZ-Wx-BdQ">
-                                                    <rect key="frame" x="23" y="15" width="329" height="65"/>
+                                                    <rect key="frame" x="23" y="15" width="329" height="75"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vUu-3h-ozc">
                                                             <rect key="frame" x="89.5" y="0.0" width="150" height="25"/>
@@ -1433,53 +1395,25 @@
                                                             </connections>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Progress" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="6p5-7J-dTY">
-                                                            <rect key="frame" x="130.5" y="30" width="68" height="35"/>
+                                                            <rect key="frame" x="130.5" y="30" width="68" height="45"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                 </stackView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="NK2-G7-IZD">
-                                                    <rect key="frame" x="177" y="83" width="21" height="7"/>
-                                                    <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CIRCLE_FULL" translatesAutoresizingMaskIntoConstraints="NO" id="AtP-td-MBL">
-                                                            <rect key="frame" x="0.0" y="0.0" width="7" height="7"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="7" id="tLQ-SV-0fV"/>
-                                                                <constraint firstAttribute="width" secondItem="AtP-td-MBL" secondAttribute="height" multiplier="1:1" id="tS2-m4-5YS"/>
-                                                            </constraints>
-                                                        </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CIRCLE_FULL" translatesAutoresizingMaskIntoConstraints="NO" id="qNt-lC-G3W">
-                                                            <rect key="frame" x="14" y="0.0" width="7" height="7"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="qNt-lC-G3W" secondAttribute="height" multiplier="1:1" id="RKW-9X-WDU"/>
-                                                                <constraint firstAttribute="height" constant="7" id="d5b-WD-0ba"/>
-                                                            </constraints>
-                                                        </imageView>
-                                                    </subviews>
-                                                    <constraints>
-                                                        <constraint firstItem="qNt-lC-G3W" firstAttribute="width" secondItem="qNt-lC-G3W" secondAttribute="height" multiplier="1:1" id="JdK-Na-ZzO"/>
-                                                    </constraints>
-                                                </stackView>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="9fY-9r-d6N" secondAttribute="trailing" constant="10" id="0r2-O9-P7Y"/>
-                                                <constraint firstAttribute="trailing" secondItem="B3x-sn-hYx" secondAttribute="trailing" constant="20" id="13T-HL-7J2"/>
                                                 <constraint firstItem="9fY-9r-d6N" firstAttribute="leading" secondItem="m5p-tg-dhq" secondAttribute="leading" constant="10" id="5wv-Qv-5q0"/>
-                                                <constraint firstItem="B3x-sn-hYx" firstAttribute="leading" secondItem="m5p-tg-dhq" secondAttribute="leading" constant="20" id="9wb-Ib-Ym6"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="rVZ-Wx-BdQ" secondAttribute="trailing" constant="15" id="KNA-05-kWE"/>
                                                 <constraint firstItem="rVZ-Wx-BdQ" firstAttribute="centerX" secondItem="m5p-tg-dhq" secondAttribute="centerX" id="OSh-95-25b"/>
                                                 <constraint firstAttribute="bottom" secondItem="9fY-9r-d6N" secondAttribute="bottom" constant="5" id="UIE-Is-DWj"/>
-                                                <constraint firstAttribute="bottom" secondItem="B3x-sn-hYx" secondAttribute="bottom" constant="5" id="bxt-M7-XHs"/>
                                                 <constraint firstItem="rVZ-Wx-BdQ" firstAttribute="top" secondItem="m5p-tg-dhq" secondAttribute="top" constant="15" id="dEM-mY-pZW"/>
                                                 <constraint firstItem="rVZ-Wx-BdQ" firstAttribute="leading" secondItem="m5p-tg-dhq" secondAttribute="leadingMargin" constant="15" id="fjB-c3-5B6"/>
-                                                <constraint firstAttribute="bottom" secondItem="NK2-G7-IZD" secondAttribute="bottom" constant="10" id="hNw-Pd-wf0"/>
-                                                <constraint firstItem="B3x-sn-hYx" firstAttribute="top" secondItem="m5p-tg-dhq" secondAttribute="top" constant="10" id="szo-rL-2Yz"/>
-                                                <constraint firstAttribute="bottom" secondItem="rVZ-Wx-BdQ" secondAttribute="bottom" constant="20" id="wMx-6A-hG7"/>
+                                                <constraint firstAttribute="bottom" secondItem="rVZ-Wx-BdQ" secondAttribute="bottom" constant="10" id="wMx-6A-hG7"/>
                                                 <constraint firstItem="9fY-9r-d6N" firstAttribute="top" secondItem="m5p-tg-dhq" secondAttribute="top" constant="10" id="xyp-D3-YGn"/>
-                                                <constraint firstItem="NK2-G7-IZD" firstAttribute="centerX" secondItem="m5p-tg-dhq" secondAttribute="centerX" id="yx9-Qx-DUA"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1495,10 +1429,8 @@
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <tabBarItem key="tabBarItem" title="Item" id="9FZ-kn-RtR"/>
                     <connections>
-                        <outlet property="colorView" destination="B3x-sn-hYx" id="Ure-ya-jxk"/>
                         <outlet property="dateButton" destination="vUu-3h-ozc" id="XKG-Tk-xGz"/>
                         <outlet property="dateStack" destination="rVZ-Wx-BdQ" id="ZUv-hf-k1e"/>
-                        <outlet property="pageStack" destination="NK2-G7-IZD" id="yfn-ex-sbt"/>
                         <outlet property="progressLabel" destination="6p5-7J-dTY" id="EbA-3f-QwO"/>
                         <segue destination="iLS-CK-3Yi" kind="presentation" identifier="imageSegue" id="nx1-5h-KeX"/>
                         <segue destination="Mhh-ns-eOa" kind="show" identifier="detailTaskSegue" id="ZOT-mw-fWn"/>
@@ -1797,7 +1729,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="CIRCLE_FULL" width="100" height="100"/>
         <image name="Clock" width="16" height="16"/>
         <image name="LOGO_1024" width="1024" height="1024"/>
         <image name="LOGO_QQ" width="1024" height="1024"/>
@@ -1808,7 +1739,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="KVR-SD-oGK"/>
-        <segue reference="9tp-5Z-bmL"/>
+        <segue reference="QMM-bj-IhC"/>
         <segue reference="fad-KU-zal"/>
     </inferredMetricsTieBreakers>
 </document>

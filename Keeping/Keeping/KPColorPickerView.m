@@ -21,8 +21,31 @@ static BOOL _loadingXib = NO;
 
 @implementation KPColorPickerView
 
-- (void)drawRect:(CGRect)rect {
+- (void)awakeFromNib{
+    [super awakeFromNib];
+    [self commitInit];
+}
+
+- (instancetype)initWithFrame:(CGRect)frame{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self commitInit];
+    }
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self commitInit];
+    }
+    return self;
+}
+
+- (void)commitInit{
+
     self.backgroundColor = [UIColor clearColor];
+    self.layer.cornerRadius = 10.0;
     
     colorArr = [Utilities getTypeColorArr];
     //类别按钮
@@ -119,16 +142,22 @@ static BOOL _loadingXib = NO;
         
         popTip.radius = 10;
         
+//        [popTip showText:str
+//               direction:self.selectedColorNum <= colorArr.count / 2 ? AMPopTipDirectionRight : AMPopTipDirectionLeft
+//                maxWidth:200
+//                  inView:self
+//               fromFrame:CGRectOffset(button.frame, self.selectedColorNum <= colorArr.count / 2 ? -8.0f : 8.0f, 0)
+//                duration:1.0f];
+        
         [popTip showText:str
-               direction:self.selectedColorNum <= colorArr.count / 2 ? AMPopTipDirectionRight : AMPopTipDirectionLeft
+               direction:AMPopTipDirectionDown
                 maxWidth:200
                   inView:self
-               fromFrame:CGRectOffset(button.frame, self.selectedColorNum <= colorArr.count / 2 ? -8.0f : 8.0f, 0)
+               fromFrame:button.frame
                 duration:1.0f];
     }
     
     [self.colorDelegate didChangeColors:self.selectedColorNum];
 }
-
 
 @end

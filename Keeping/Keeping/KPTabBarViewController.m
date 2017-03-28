@@ -17,7 +17,10 @@
 
 @end
 
-@implementation KPTabBarViewController
+@implementation KPTabBarViewController{
+    KPNavigationTitleView *titleView1;
+    KPNavigationTitleView *titleView2;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -40,7 +43,16 @@
     self.kpTodayTableViewController = (KPTodayTableViewController *)self.viewControllers[0];
     self.kpTaskTableViewController = (KPTaskTableViewController *)self.viewControllers[1];
     
-    self.navigationItem.titleView = [[KPNavigationTitleView alloc] initWithTitle:@"今日" andColor:NULL];
+    titleView1 = [[KPNavigationTitleView alloc] initWithTitle:@"今日" andColor:NULL];
+    titleView1.navigationTitleDelegate = self.kpTodayTableViewController;
+    [titleView1 setCanTap:YES];
+    
+    titleView2 = [[KPNavigationTitleView alloc] initWithTitle:@"任务" andColor:NULL];
+    titleView2.navigationTitleDelegate = self.kpTaskTableViewController;
+    [titleView2 setCanTap:YES];
+    
+    self.navigationItem.titleView = titleView1;
+    
     UIBarButtonItem *editItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_SORT"]
                                                                  style:UIBarButtonItemStylePlain
                                                                 target:self.kpTodayTableViewController
@@ -113,7 +125,7 @@
                                                                         action:@selector(editAction:)];
             self.navigationItem.leftBarButtonItems = @[editItem];
             
-            self.navigationItem.titleView = [[KPNavigationTitleView alloc] initWithTitle:@"今日" andColor:NULL];
+            self.navigationItem.titleView = titleView1;
         }
             break;
         case 1:
@@ -126,7 +138,7 @@
                                                                         action:@selector(editAction:)];
             self.navigationItem.leftBarButtonItems = @[editItem];
             
-            self.navigationItem.titleView = [[KPNavigationTitleView alloc] initWithTitle:@"任务" andColor:NULL];
+            self.navigationItem.titleView = titleView2;
         }
             break;
         default:

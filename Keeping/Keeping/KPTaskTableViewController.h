@@ -11,16 +11,14 @@
 #import "KPWeekdayPickerView.h"
 #import "KPColorPickerView.h"
 #import "KPWeekdayPickerView.h"
+#import "KPNavigationTitleView.h"
 
-@interface KPTaskTableViewController : UITableViewController <PassImgDelegate, KPWeekdayPickerDelegate, KPColorPickerDelegate, UIViewControllerPreviewingDelegate>
+@interface KPTaskTableViewController : UITableViewController <PassImgDelegate, KPWeekdayPickerDelegate, KPColorPickerDelegate, UIViewControllerPreviewingDelegate, KPNavigationTitleDelegate>
 
 @property (nonnull, nonatomic) NSMutableArray *taskArr;
 @property (nonnull, nonatomic) NSMutableArray *historyTaskArr;
 
-@property (nonatomic, nonnull) IBOutlet UIStackView *pageStack;
-
 @property (nonatomic) int selectedColorNum;
-@property (nonatomic, nonnull) IBOutlet KPColorPickerView *colorView;
 
 @property (nonnull, nonatomic) NSMutableArray *selectedWeekdayArr;
 @property (nonnull, nonatomic) IBOutlet KPWeekdayPickerView *weekDayView;
