@@ -56,6 +56,9 @@
                              NSForegroundColorAttributeName: [UIColor whiteColor]
                              };
     self.navigationBar.titleTextAttributes = dicNav;
+    
+    KPNavigationTitleView *titleView = (KPNavigationTitleView *)self.navigationItem.titleView;
+    [titleView setFont];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle{

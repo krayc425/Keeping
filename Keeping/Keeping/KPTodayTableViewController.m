@@ -707,7 +707,7 @@ static KPColorPickerView *colorPickerView = NULL;
 
 #pragma mark - KPNavigationTitleDelegate
 
-- (void)tapped{
+- (void)navigationTitleViewTapped{
     AMPopTip *tp = [KPTodayTableViewController shareTipInstance];
     
     if(![tp isVisible] && ![tp isAnimating]){
@@ -716,6 +716,7 @@ static KPColorPickerView *colorPickerView = NULL;
                  direction:AMPopTipDirectionDown
                     inView:self.view
                  fromFrame:CGRectMake(CGRectGetWidth(self.view.frame) / 2, -44, 0, 44)];
+//                  duration:5.0f];
         
         tp.textColor = [UIColor whiteColor];
         tp.tintColor = [Utilities getColor];

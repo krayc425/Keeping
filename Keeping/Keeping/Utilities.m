@@ -33,6 +33,8 @@
              @{@"苹方" : @"PingFangSC-Regular"},
              @{@"方正书宋" : @"FZSSJW--GB1-0"},
              @{@"方正楷体" : @"FZKTJW--GB1-0"},
+             @{@"思源黑体" : @"SourceHanSansCN-Light"},
+             @{@"思源宋体" : @"SourceHanSerifCN-Light"}
              ];
 }
 

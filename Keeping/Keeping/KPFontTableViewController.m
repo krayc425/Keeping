@@ -32,10 +32,10 @@
     
     [self.sizeControl setTintColor:[Utilities getColor]];
     
-    NSLog(@"saved  %ld", [[NSUserDefaults standardUserDefaults] integerForKey:@"fontSize"]);
-    
     [self.sizeControl setSelectedSegmentIndex:[[NSUserDefaults standardUserDefaults] integerForKey:@"fontSize"]];
     [self.sizeControl addTarget:self action:@selector(sliderValueChanged) forControlEvents:UIControlEventValueChanged];
+    
+    [self loadFontNames];
 }
 
 - (void)loadFontNames{

@@ -1384,9 +1384,9 @@
                                                     <rect key="frame" x="23" y="15" width="329" height="75"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vUu-3h-ozc">
-                                                            <rect key="frame" x="89.5" y="0.0" width="150" height="25"/>
+                                                            <rect key="frame" x="14.5" y="0.0" width="300" height="25"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="150" id="7Mv-ok-Upw"/>
+                                                                <constraint firstAttribute="width" constant="300" id="7Mv-ok-Upw"/>
                                                                 <constraint firstAttribute="height" constant="25" id="kW2-oZ-Eip"/>
                                                             </constraints>
                                                             <state key="normal" title="Date"/>
@@ -1738,8 +1738,8 @@
         <image name="Weekday" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="KVR-SD-oGK"/>
-        <segue reference="QMM-bj-IhC"/>
+        <segue reference="nx1-5h-KeX"/>
+        <segue reference="ZOT-mw-fWn"/>
         <segue reference="fad-KU-zal"/>
     </inferredMetricsTieBreakers>
 </document>

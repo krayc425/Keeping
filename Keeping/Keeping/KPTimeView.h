@@ -16,4 +16,6 @@
 @property (nonnull, nonatomic) IBOutlet UILabel *minuteLabel;
 @property (nonnull, nonatomic) IBOutlet UILabel *colonLabel;
 
+- (void)setFont;
+
 @end

@@ -10,7 +10,7 @@
 
 @protocol KPNavigationTitleDelegate <NSObject>
 
-- (void)tapped;
+- (void)navigationTitleViewTapped;
 
 @end
 
@@ -25,5 +25,7 @@
 - (void)setCanTap:(BOOL)thisCanTap;
 
 - (void)changeColor:(UIColor *_Nullable)thisColor;
+
+- (void)setFont;
 
 @end

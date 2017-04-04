@@ -62,6 +62,10 @@
 		247F01D81E3DC5F3001F900C /* TaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2436F8261E2F2C4B00C2984A /* TaskManager.m */; };
 		247F01D91E3DC625001F900C /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F2A0D01E2F3F1800F30FB1 /* DBManager.m */; };
 		247F01DA1E3DC627001F900C /* UNManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24151C961E32388300757A69 /* UNManager.m */; };
+		2492A56F1E93F3F900A2AF4A /* SourceHanSansCN-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2492A56D1E93F31B00A2AF4A /* SourceHanSansCN-Light.otf */; };
+		2492A5701E93F3FA00A2AF4A /* SourceHanSansCN-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2492A56D1E93F31B00A2AF4A /* SourceHanSansCN-Light.otf */; };
+		2492A5711E93F3FC00A2AF4A /* SourceHanSerifCN-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2492A56E1E93F32500A2AF4A /* SourceHanSerifCN-Light.otf */; };
+		2492A5721E93F3FD00A2AF4A /* SourceHanSerifCN-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2492A56E1E93F32500A2AF4A /* SourceHanSerifCN-Light.otf */; };
 		2493299D1E549EA300C85070 /* KPTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2493299C1E549EA300C85070 /* KPTabBar.m */; };
 		249700471E5607210015CC5F /* KPTypeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 249700461E5607210015CC5F /* KPTypeTableViewController.m */; };
 		2497004B1E56075B0015CC5F /* KPTypeColorTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 249700491E56075B0015CC5F /* KPTypeColorTableViewCell.m */; };
@@ -223,6 +227,8 @@
 		247F01CF1E3DB4F8001F900C /* KPWidgetTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPWidgetTableViewCell.m; sourceTree = "<group>"; };
 		247F01D01E3DB4F8001F900C /* KPWidgetTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KPWidgetTableViewCell.xib; sourceTree = "<group>"; };
 		247F01D61E3DBC4E001F900C /* MainInterface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
+		2492A56D1E93F31B00A2AF4A /* SourceHanSansCN-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceHanSansCN-Light.otf"; sourceTree = "<group>"; };
+		2492A56E1E93F32500A2AF4A /* SourceHanSerifCN-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceHanSerifCN-Light.otf"; sourceTree = "<group>"; };
 		2493299B1E549EA300C85070 /* KPTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPTabBar.h; sourceTree = "<group>"; };
 		2493299C1E549EA300C85070 /* KPTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPTabBar.m; sourceTree = "<group>"; };
 		249700451E5607210015CC5F /* KPTypeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPTypeTableViewController.h; sourceTree = "<group>"; };
@@ -552,6 +558,8 @@
 				2462FB861E4D6295004E70A5 /* Intro_Screen_One.jpg */,
 				2462FB871E4D6295004E70A5 /* Intro_Screen_Three.jpg */,
 				2462FB881E4D6295004E70A5 /* Intro_Screen_Two.jpg */,
+				2492A56D1E93F31B00A2AF4A /* SourceHanSansCN-Light.otf */,
+				2492A56E1E93F32500A2AF4A /* SourceHanSerifCN-Light.otf */,
 				245196751E3CE34F00C18C5B /* 方正楷体简体.ttf */,
 				2429CBF71E2E571A0027DD37 /* 方正书宋简体.ttf */,
 				249AE3161E2DEE7700F704F8 /* main.m */,
@@ -849,7 +857,9 @@
 			files = (
 				247F01D41E3DBB27001F900C /* 方正书宋简体.ttf in Resources */,
 				247F01D71E3DBC4E001F900C /* MainInterface.storyboard in Resources */,
+				2492A5721E93F3FD00A2AF4A /* SourceHanSerifCN-Light.otf in Resources */,
 				247F01D21E3DB4F8001F900C /* KPWidgetTableViewCell.xib in Resources */,
+				2492A5701E93F3FA00A2AF4A /* SourceHanSansCN-Light.otf in Resources */,
 				247F01D51E3DBB2B001F900C /* 方正楷体简体.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -876,6 +886,7 @@
 				24F2A0FC1E2F7B6E00F30FB1 /* round_backarrow_big.png in Resources */,
 				2462FB8C1E4D6295004E70A5 /* Intro_Screen_Two.jpg in Resources */,
 				24F2A0FF1E2F7B6E00F30FB1 /* schedule_image_moon-high@2x.png in Resources */,
+				2492A56F1E93F3F900A2AF4A /* SourceHanSansCN-Light.otf in Resources */,
 				24F2A0F61E2F7B6E00F30FB1 /* checkmark_icon_white@2x.png in Resources */,
 				245196711E3CB82F00C18C5B /* TabBar.xcassets in Resources */,
 				24F2A0F71E2F7B6E00F30FB1 /* picker_wheel@2x.png in Resources */,
@@ -889,6 +900,7 @@
 				2429CBF81E2E571A0027DD37 /* 方正书宋简体.ttf in Resources */,
 				24F2A0FB1E2F7B6E00F30FB1 /* round_backarrow_big-high@2x.png in Resources */,
 				2462FB8A1E4D6295004E70A5 /* Intro_Screen_One.jpg in Resources */,
+				2492A5711E93F3FC00A2AF4A /* SourceHanSerifCN-Light.otf in Resources */,
 				24F2A0F81E2F7B6E00F30FB1 /* picker_wheel_ip4.png in Resources */,
 				2497004C1E56075B0015CC5F /* KPTypeColorTableViewCell.xib in Resources */,
 				2429CBEA1E2E49A60027DD37 /* KPSeparatorView.xib in Resources */,

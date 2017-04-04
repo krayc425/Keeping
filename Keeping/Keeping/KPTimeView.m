@@ -18,12 +18,7 @@ static BOOL _loadingXib = NO;
 @implementation KPTimeView
 
 - (void)drawRect:(CGRect)rect {
-    [self.hourLabel setFont:[UIFont fontWithName:[Utilities getFont] size:13.0]];
-    [self.hourLabel setTextColor:[Utilities getColor]];
-    [self.minuteLabel setFont:[UIFont fontWithName:[Utilities getFont] size:13.0]];
-    [self.minuteLabel setTextColor:[Utilities getColor]];
-    [self.colonLabel setFont:[UIFont fontWithName:[Utilities getFont] size:13.0]];
-    [self.colonLabel setTextColor:[Utilities getColor]];
+    [self setFont];
     // Drawing code
     self.hourLabel.layer.borderColor = [Utilities getColor].CGColor;
     self.hourLabel.layer.borderWidth = BORDER_WIDTH;
@@ -86,5 +81,13 @@ static BOOL _loadingXib = NO;
     }
 }
 
+- (void)setFont{
+    [self.hourLabel setFont:[UIFont fontWithName:[Utilities getFont] size:13.0]];
+    [self.hourLabel setTextColor:[Utilities getColor]];
+    [self.minuteLabel setFont:[UIFont fontWithName:[Utilities getFont] size:13.0]];
+    [self.minuteLabel setTextColor:[Utilities getColor]];
+    [self.colonLabel setFont:[UIFont fontWithName:[Utilities getFont] size:13.0]];
+    [self.colonLabel setTextColor:[Utilities getColor]];
+}
 
 @end

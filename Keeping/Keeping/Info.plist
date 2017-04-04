@@ -110,6 +110,8 @@
 	<array>
 		<string>方正书宋简体.ttf</string>
 		<string>方正楷体简体.ttf</string>
+		<string>SourceHanSerifCN-Light.otf</string>
+		<string>SourceHanSansCN-Light.otf</string>
 	</array>
 	<key>UIApplicationShortcutItems</key>
 	<array>

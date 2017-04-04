@@ -24,7 +24,7 @@
     if(self){
         titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 44)];
         [titleLabel setText:title];
-        [titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:22.0]];
+        [self setFont];
         [titleLabel setTextColor:[UIColor whiteColor]];
         [titleLabel setTextAlignment:NSTextAlignmentCenter];
         [titleLabel sizeToFit];
@@ -73,7 +73,7 @@
 }
 
 - (void)tapAction:(id)sender{
-    [self.navigationTitleDelegate tapped];
+    [self.navigationTitleDelegate navigationTitleViewTapped];
 }
 
 - (void)setMyFrame{
@@ -119,6 +119,10 @@
     
     [self setNeedsLayout];
     [self layoutIfNeeded];
+}
+
+- (void)setFont{
+    [titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:22.0]];
 }
 
 @end

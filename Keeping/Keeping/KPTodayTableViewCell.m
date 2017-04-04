@@ -122,6 +122,8 @@
     [self.taskNameLabel setFont:[UIFont fontWithName:[Utilities getFont] size:f]];
     
     [infoLabel setFont:[UIFont fontWithName:[Utilities getFont] size:f]];
+    
+    [self.reminderTimeView setFont];
 }
 
 - (void)setButtonFont{
