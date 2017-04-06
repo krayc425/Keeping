@@ -107,6 +107,9 @@
         [item setTitleTextAttributes:dicTab forState:UIControlStateNormal];
         [item setTitleTextAttributes:dicTabSelected forState:UIControlStateSelected];
     }
+    
+    KPNavigationTitleView *titleView = (KPNavigationTitleView *)self.navigationItem.titleView;
+    [titleView setFont];
 }
 
 - (void)settingAction:(id)sender{

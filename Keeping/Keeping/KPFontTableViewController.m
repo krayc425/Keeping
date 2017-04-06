@@ -35,7 +35,7 @@
     [self.sizeControl setSelectedSegmentIndex:[[NSUserDefaults standardUserDefaults] integerForKey:@"fontSize"]];
     [self.sizeControl addTarget:self action:@selector(sliderValueChanged) forControlEvents:UIControlEventValueChanged];
     
-    [self loadFontNames];
+//    [self loadFontNames];
 }
 
 - (void)loadFontNames{
