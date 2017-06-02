@@ -8,6 +8,9 @@
 
 #import "KPAboutTableViewController.h"
 #import "Utilities.h"
+#import <StoreKit/StoreKit.h>
+
+#define IOS10_3_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 10.3)
 
 @interface KPAboutTableViewController ()
 
@@ -18,6 +21,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    if(IOS10_3_OR_LATER){
+        [SKStoreReviewController requestReview];
+    }
     
     [self.navigationItem setTitle:@"关于"];
     [self.nameLabel setFont:[UIFont fontWithName:[Utilities getFont] size:30.0f]];
@@ -47,7 +54,12 @@
 }
 
 - (void)score{
-    NSString *str = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%@", [Utilities getAPPID]];
+    NSString *str;
+    if(IOS10_3_OR_LATER){
+        str = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@?action=write-review", [Utilities getAPPID]];
+    }else{
+        str = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%@", [Utilities getAPPID]];
+    }
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]
                                        options:@{}
                              completionHandler:nil];

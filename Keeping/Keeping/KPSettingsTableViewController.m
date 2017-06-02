@@ -14,6 +14,7 @@
 #import "SCLAlertView.h"
 #import "DateTools.h"
 #import "MBProgressHUD.h"
+#import "AppKeys.h"
 
 // 静态库方式引入
 #import <LeanCloudSocial/AVOSCloudSNS.h>
@@ -47,8 +48,8 @@
     }
     
     //配置登录信息
-    [AVOSCloudSNS setupPlatform:AVOSCloudSNSSinaWeibo withAppKey:@"2794847636" andAppSecret:@"ea8dc38d68732d3920f17a9c997862a9" andRedirectURI:@"http://www.baidu.com"];
-    [AVOSCloudSNS setupPlatform:AVOSCloudSNSQQ withAppKey:@"1105994496" andAppSecret:@"uWY42qyXpNMvzovb" andRedirectURI:@"http://www.baidu.com"];
+    [AVOSCloudSNS setupPlatform:AVOSCloudSNSSinaWeibo withAppKey:sinaID andAppSecret:sinaKey andRedirectURI:@"http://www.baidu.com"];
+    [AVOSCloudSNS setupPlatform:AVOSCloudSNSQQ withAppKey:qqID andAppSecret:qqKey andRedirectURI:@"http://www.baidu.com"];
 }
 
 - (void)viewWillAppear:(BOOL)animated{

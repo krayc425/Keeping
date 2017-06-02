@@ -332,8 +332,6 @@
         //赋值
         self.task.reminderDays = arr;
         
-//        NSLog(@"%@ %@ %@", self.task.addDate, self.task.endDate, self.task.punchDateArr);
-        
         //增加
         [[TaskManager shareInstance] addTask:self.task];
         

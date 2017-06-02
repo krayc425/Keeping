@@ -16,6 +16,7 @@
 #import "UNManager.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
+#import "AppKeys.h"
 
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
 #import <UserNotifications/UserNotifications.h>
@@ -45,11 +46,9 @@
     [self replyPushNotificationAuthorization:application];
     [self registerForRemoteNotification];
 
-
-    [AVOSCloud setApplicationId:@"sabdEOhaMdwIEc2zbKRBQk56-gzGzoHsz" clientKey:@"byONReV9r125hlRuN1mAvv9I"];
+    [AVOSCloud setApplicationId:avCloudID clientKey:avCloudKey];
     [AVOSCloud setAllLogsEnabled:NO];
     [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
-    
     
     //第一次启动
     if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]){

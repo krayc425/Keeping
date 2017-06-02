@@ -148,7 +148,6 @@ static AMPopTip *shareTip = NULL;
     [infoBtn setImage:infoImg forState:UIControlStateNormal];
     [infoBtn addTarget:self action:@selector(infoAction:) forControlEvents:UIControlEventTouchUpInside];
     [cardView addSubview:infoBtn];
-    
 }
 
 - (void)didReceiveMemoryWarning {

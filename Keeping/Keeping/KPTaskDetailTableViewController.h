@@ -28,7 +28,7 @@
 @property (nonnull, nonatomic) IBOutlet UIButton *startDateButton;
 @property (nonnull, nonatomic) IBOutlet UIButton *endDateButton;
 
-@property (nonatomic, nonnull) IBOutlet KPColorPickerView *colorView;    //button tag : 1 ~ 7
+@property (nonnull, nonatomic) IBOutlet KPColorPickerView *colorView;    //button tag : 1 ~ 7
 @property (nonatomic) int selectedColorNum;
 
 @property (nonnull, nonatomic) IBOutlet UILabel *reminderLabel;
