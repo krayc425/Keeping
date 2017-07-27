@@ -22,10 +22,10 @@
 @interface KPColorPickerView : UIView
 
 //button tag : 1 ~ 7
-@property (nonatomic, nonnull) IBOutlet UIStackView *colorStack;
+@property (nonatomic, weak) IBOutlet UIStackView *colorStack;
 
 @property (nonatomic) int selectedColorNum;
 
-@property (nonnull, nonatomic) id<KPColorPickerDelegate> colorDelegate;
+@property (weak, nonatomic) id<KPColorPickerDelegate> colorDelegate;
 
 @end

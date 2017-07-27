@@ -14,8 +14,8 @@ static BOOL _loadingXib = NO;
 
 @interface KPWeekdayPickerView ()
 
-@property (nonnull, nonatomic) IBOutlet UIStackView *weekDayStack;
-@property (nonnull, nonatomic) IBOutlet UIButton *allButton;
+@property (weak, nonatomic) IBOutlet UIStackView *weekDayStack;
+@property (weak, nonatomic) IBOutlet UIButton *allButton;
 
 @end
 

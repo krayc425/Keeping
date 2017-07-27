@@ -10,18 +10,18 @@
 
 @interface KPSettingsTableViewController : UITableViewController
 
-@property (nonatomic, nonnull) IBOutlet UISwitch *animationSwitch;
+@property (nonatomic, weak) IBOutlet UISwitch *animationSwitch;
 
-@property (nonatomic, nonnull) IBOutlet UISwitch *badgeSwitch;
+@property (nonatomic, weak) IBOutlet UISwitch *badgeSwitch;
 
-@property (nonatomic, nonnull) IBOutletCollection(UILabel) NSArray *labels;
+@property (nonatomic, weak) IBOutletCollection(UILabel) NSArray *labels;
 
-@property (nonatomic, nonnull) IBOutlet UILabel *unreadMsgLabel;
+@property (nonatomic, weak) IBOutlet UILabel *unreadMsgLabel;
 
-@property (nonatomic, nonnull) IBOutlet UILabel *cacheLabel;
+@property (nonatomic, weak) IBOutlet UILabel *cacheLabel;
 
-@property (nonatomic, nonnull) IBOutlet UILabel *userNameLabel;
-@property (nonatomic, nonnull) IBOutlet UIStackView *appButtonStack;
+@property (nonatomic, weak) IBOutlet UILabel *userNameLabel;
+@property (nonatomic, weak) IBOutlet UIStackView *appButtonStack;
 
 - (void)checkMessage:(_Nonnull id)sender;
 

@@ -10,7 +10,7 @@
 
 @interface KPTypeColorTableViewCell : UITableViewCell
 
-@property (nonnull, nonatomic) IBOutlet UIImageView *colorImg;
-@property (nonnull, nonatomic) IBOutlet UITextField *colorText;
+@property (weak, nonatomic) IBOutlet UIImageView *colorImg;
+@property (weak, nonatomic) IBOutlet UITextField *colorText;
 
 @end

@@ -18,19 +18,19 @@
 
 @interface KPTaskTableViewCell : UITableViewCell
 
-@property (nonatomic, nonnull) id<PassImgDelegate> delegate;
+@property (nonatomic, weak) id<PassImgDelegate> delegate;
 //任务名
-@property (nonatomic, nonnull) IBOutlet UILabel *nameLabel;
+@property (nonatomic, weak) IBOutlet UILabel *nameLabel;
 //改成：时间 label
-@property (nonatomic, nonnull) IBOutlet UILabel *daysLabel;
+@property (nonatomic, weak) IBOutlet UILabel *daysLabel;
 //完成进度
-@property (nonatomic, nonnull) IBOutlet HYCircleProgressView *progressView;
+@property (nonatomic, weak) IBOutlet HYCircleProgressView *progressView;
 //要做的天数
-@property (nonnull, nonatomic) IBOutlet KPWeekdayPickerView *weekdayView;
+@property (weak, nonatomic) IBOutlet KPWeekdayPickerView *weekdayView;
 //缩略图
-@property (nonatomic, nonnull) IBOutlet UIButton *taskImgViewBtn;
+@property (nonatomic, weak) IBOutlet UIButton *taskImgViewBtn;
 //类别
-@property (nonatomic, nonnull) IBOutlet UIImageView *typeImg;
+@property (nonatomic, weak) IBOutlet UIImageView *typeImg;
 
 - (IBAction)imgAction:(_Nonnull id)sender;
 

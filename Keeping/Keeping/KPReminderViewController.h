@@ -20,7 +20,7 @@
 
 @interface KPReminderViewController : UIViewController
 
-@property (nonatomic, nonnull) id<ReminderDelegate> delegate;
+@property (nonatomic, weak) id<ReminderDelegate> delegate;
 
 @property (nonnull, nonatomic) KPTimePicker *timePicker;
 

@@ -76,7 +76,7 @@
     NSLog(@"%lu apps", (unsigned long)r.count);
     
     //启动数据库
-    [[DBManager shareInstance] init];
+    [DBManager shareInstance];
     
     return YES;
 }

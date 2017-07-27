@@ -15,15 +15,15 @@
 
 @interface KPTaskTableViewController : UITableViewController <PassImgDelegate, KPWeekdayPickerDelegate, KPColorPickerDelegate, UIViewControllerPreviewingDelegate, KPNavigationTitleDelegate>
 
-@property (nonnull, nonatomic) NSMutableArray *taskArr;
-@property (nonnull, nonatomic) NSMutableArray *historyTaskArr;
+@property (copy, nonatomic) NSMutableArray *taskArr;
+@property (copy, nonatomic) NSMutableArray *historyTaskArr;
 
 @property (nonatomic) int selectedColorNum;
 
-@property (nonnull, nonatomic) NSMutableArray *selectedWeekdayArr;
-@property (nonnull, nonatomic) IBOutlet KPWeekdayPickerView *weekDayView;
+@property (copy, nonatomic) NSMutableArray *selectedWeekdayArr;
+@property (weak, nonatomic) IBOutlet KPWeekdayPickerView *weekDayView;
 
-@property (nonnull, nonatomic) NSString *sortFactor;
+@property (copy, nonatomic) NSString *sortFactor;
 @property (nonnull, nonatomic) NSNumber *isAscend;
 
 - (void)searchAction:(_Nonnull id)senders;

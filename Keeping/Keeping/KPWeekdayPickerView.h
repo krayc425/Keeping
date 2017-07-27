@@ -29,13 +29,13 @@
 /**
  *  默认选中的日期
  */
-@property (nonnull, nonatomic) NSMutableArray *selectedWeekdayArr;
+@property (nonatomic) NSMutableArray *selectedWeekdayArr;
 
 @property (nonatomic) float fontSize;
 
 @property (nonatomic) BOOL isAllButtonHidden;
 
-@property (nonnull, nonatomic) id<KPWeekdayPickerDelegate> weekdayDelegate;
+@property (weak, nonatomic) id<KPWeekdayPickerDelegate> weekdayDelegate;
 
 - (void)selectWeekdaysInArray:(NSArray *_Nonnull)weekdayArr;
 

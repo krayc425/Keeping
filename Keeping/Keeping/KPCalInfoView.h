@@ -10,8 +10,8 @@
 
 @interface KPCalInfoView : UIView
 
-@property (nonnull, nonatomic) IBOutletCollection(UILabel) NSArray *labels;
+@property (weak, nonatomic) IBOutletCollection(UILabel) NSArray *labels;
 
-@property (nonnull, nonatomic) IBOutlet UIStackView *stackView;
+@property (weak, nonatomic) IBOutlet UIStackView *stackView;
 
 @end

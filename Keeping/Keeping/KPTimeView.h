@@ -12,9 +12,9 @@
 
 - (void)setTime:(NSDate *_Nullable)date;
 
-@property (nonnull, nonatomic) IBOutlet UILabel *hourLabel;
-@property (nonnull, nonatomic) IBOutlet UILabel *minuteLabel;
-@property (nonnull, nonatomic) IBOutlet UILabel *colonLabel;
+@property (weak, nonatomic) IBOutlet UILabel *hourLabel;
+@property (weak, nonatomic) IBOutlet UILabel *minuteLabel;
+@property (weak, nonatomic) IBOutlet UILabel *colonLabel;
 
 - (void)setFont;
 

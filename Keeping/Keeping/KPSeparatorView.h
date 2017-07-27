@@ -10,7 +10,7 @@
 
 @interface KPSeparatorView : UIView
 
-@property (nonnull, nonatomic) IBOutlet UILabel *textLabel;
+@property (weak, nonatomic) IBOutlet UILabel *textLabel;
 
 - (void)setText:(NSString *_Nonnull)text;
 

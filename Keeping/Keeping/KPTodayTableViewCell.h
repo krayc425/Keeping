@@ -22,36 +22,36 @@
 
 @interface KPTodayTableViewCell : UITableViewCell <BEMCheckBoxDelegate>
 
-@property (nonatomic, nonnull) id<CheckTaskDelegate> delegate;
+@property (nonatomic, weak) id<CheckTaskDelegate> delegate;
 //任务名
-@property (nonatomic, nonnull) IBOutlet UILabel *taskNameLabel;
+@property (nonatomic, weak) IBOutlet UILabel *taskNameLabel;
 //提醒时间
 //@property (nonatomic, nonnull) IBOutlet UILabel *reminderLabel;
-@property (nonatomic, nonnull) IBOutlet KPTimeView *reminderTimeView;
+@property (nonatomic, weak) IBOutlet KPTimeView *reminderTimeView;
 //打钩
-@property (nonnull, nonatomic) IBOutlet BEMCheckBox *myCheckBox;
+@property (weak, nonatomic) IBOutlet BEMCheckBox *myCheckBox;
 //类别
-@property (nonatomic, nonnull) IBOutlet UIImageView *typeImg;
+@property (nonatomic, weak) IBOutlet UIImageView *typeImg;
 
 //更多 按钮
-@property (nonnull, nonatomic) IBOutlet UIButton *moreButton;
+@property (weak, nonatomic) IBOutlet UIButton *moreButton;
 //小图片提示
-@property (nonnull, nonatomic) IBOutlet UIImageView *appImg;
-@property (nonnull, nonatomic) IBOutlet UIImageView *linkImg;
-@property (nonnull, nonatomic) IBOutlet UIImageView *imageImg;
-@property (nonnull, nonatomic) IBOutlet UIImageView *memoImg;
+@property (weak, nonatomic) IBOutlet UIImageView * _Nullable appImg;
+@property (weak, nonatomic) IBOutlet UIImageView *linkImg;
+@property (weak, nonatomic) IBOutlet UIImageView *imageImg;
+@property (weak, nonatomic) IBOutlet UIImageView *memoImg;
 //子 cardview
-@property (nullable, nonatomic) IBOutlet CardsView *cardView2;
+@property (weak, nonatomic) IBOutlet CardsView *cardView2;
 //按钮 stackview
-@property (nullable, nonatomic) IBOutlet UIStackView *buttonStackView;
+@property (weak, nonatomic) IBOutlet UIStackView *buttonStackView;
 //APP 按钮
-@property (nonnull, nonatomic) IBOutlet UIButton *appButton;    //tag = 0
+@property (weak, nonatomic) IBOutlet UIButton *appButton;    //tag = 0
 //链接 按钮
-@property (nonnull, nonatomic) IBOutlet UIButton *linkButton;   //tag = 1
+@property (weak, nonatomic) IBOutlet UIButton *linkButton;   //tag = 1
 //图片 按钮
-@property (nonnull, nonatomic) IBOutlet UIButton *imageButton;  //tag = 2
+@property (weak, nonatomic) IBOutlet UIButton *imageButton;  //tag = 2
 //备注 按钮
-@property (nonnull, nonatomic) IBOutlet UIButton *memoButton;  //tag = 3
+@property (weak, nonatomic) IBOutlet UIButton *memoButton;  //tag = 3
 
 @property (nonatomic) BOOL beingSelected;
 

@@ -10,10 +10,10 @@
 
 @interface KPAboutTableViewController : UITableViewController
 
-@property (nonatomic, nonnull) IBOutlet UILabel *nameLabel;
+@property (nonatomic, weak) IBOutlet UILabel *nameLabel;
 
-@property (nonatomic, nonnull) IBOutlet UILabel *versionLabel;
+@property (nonatomic, weak) IBOutlet UILabel *versionLabel;
 
-@property (nonatomic, nonnull) IBOutletCollection(UILabel) NSArray *labels;
+@property (nonatomic, weak) IBOutletCollection(UILabel) NSArray *labels;
 
 @end

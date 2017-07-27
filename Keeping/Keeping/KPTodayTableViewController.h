@@ -14,20 +14,20 @@
 
 @interface KPTodayTableViewController : UITableViewController <CheckTaskDelegate, FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance, KPColorPickerDelegate, UIViewControllerPreviewingDelegate, KPNavigationTitleDelegate>
 
-@property (nonnull, nonatomic) IBOutlet UIButton *dateButton;
-@property (nonnull, nonatomic) IBOutlet UILabel *progressLabel;
+@property (weak, nonatomic) IBOutlet UIButton *dateButton;
+@property (weak, nonatomic) IBOutlet UILabel *progressLabel;
 
-@property (nonnull, nonatomic) NSMutableArray *unfinishedTaskArr;
-@property (nonnull, nonatomic) NSMutableArray *finishedTaskArr;
+@property (copy, nonatomic) NSMutableArray *unfinishedTaskArr;
+@property (copy, nonatomic) NSMutableArray *finishedTaskArr;
 
 @property (nonnull, nonatomic) NSDate *selectedDate;
 
 @property (nullable, nonatomic) NSIndexPath *selectedIndexPath;
 
-@property (nonnull, nonatomic) NSString *sortFactor;
+@property (copy, nonatomic) NSString *sortFactor;
 @property (nonnull, nonatomic) NSNumber *isAscend;
 
-@property (nonatomic, nonnull) IBOutlet UIStackView *dateStack;
+@property (nonatomic, weak) IBOutlet UIStackView *dateStack;
 @property (nonatomic) int selectedColorNum;
 
 - (void)editAction:(_Nonnull id)sender;
