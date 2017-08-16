@@ -20,7 +20,7 @@
 
 @property (nonatomic) int selectedColorNum;
 
-@property (copy, nonatomic) NSMutableArray *selectedWeekdayArr;
+@property (nonatomic) NSMutableArray *selectedWeekdayArr;
 @property (weak, nonatomic) IBOutlet KPWeekdayPickerView *weekDayView;
 
 @property (copy, nonatomic) NSString *sortFactor;

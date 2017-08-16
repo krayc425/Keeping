@@ -47,12 +47,6 @@
     }
 }
 
-- (void)donate{
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"alipayqr://platformapi/startapp?saId=10000007&qrcode=https://qr.alipay.com/FKX01076CQTSWFALUMNQ70"]
-                                       options:@{}
-                             completionHandler:nil];
-}
-
 - (void)score{
     NSString *str;
     if(IOS10_3_OR_LATER){
@@ -82,7 +76,7 @@
         case 0:
             return 1;
         case 1:
-            return 4;
+            return 3;
         default:
             return 0;
     }
@@ -97,9 +91,6 @@
                 break;
             case 1:
                 [self score];
-                break;
-            case 2:
-                [self donate];
                 break;
             default:
                 break;

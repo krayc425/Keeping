@@ -17,8 +17,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *dateButton;
 @property (weak, nonatomic) IBOutlet UILabel *progressLabel;
 
-@property (copy, nonatomic) NSMutableArray *unfinishedTaskArr;
-@property (copy, nonatomic) NSMutableArray *finishedTaskArr;
+@property (nonatomic) NSMutableArray *unfinishedTaskArr;
+@property (nonatomic) NSMutableArray *finishedTaskArr;
 
 @property (nonnull, nonatomic) NSDate *selectedDate;
 

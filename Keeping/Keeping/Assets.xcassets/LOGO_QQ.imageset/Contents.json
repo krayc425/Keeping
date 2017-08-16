@@ -2,11 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "QQ.jpg",
+      "filename" : "QQ.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "QQ@2x.png",
       "scale" : "2x"
     },
     {

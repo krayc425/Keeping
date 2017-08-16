@@ -2,11 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "微博.jpg",
+      "filename" : "WEIBO.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "WEIBO@2x.png",
       "scale" : "2x"
     },
     {

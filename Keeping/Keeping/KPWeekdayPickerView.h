@@ -29,7 +29,7 @@
 /**
  *  默认选中的日期
  */
-@property (nonatomic) NSMutableArray *selectedWeekdayArr;
+@property (nonatomic, nonnull) NSMutableArray *selectedWeekdayArr;
 
 @property (nonatomic) float fontSize;
 

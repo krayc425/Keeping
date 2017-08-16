@@ -33,7 +33,6 @@ static KPColorPickerView *colorPickerView = NULL;
 @interface KPTodayTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, MLKMenuPopoverDelegate>
 
 @property (nonatomic, strong) MLKMenuPopover *_Nonnull menuPopover;
-@property (nonatomic, strong) UIView *expandView;
 
 @end
 
