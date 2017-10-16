@@ -60,7 +60,6 @@
     [self getCacheSize];
 
     if([AVUser currentUser]){
-        
         AVQuery *query = [AVQuery queryWithClassName:@"username"];
         [query whereKey:@"userId" equalTo:[AVUser currentUser].objectId];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -198,6 +197,7 @@
 #pragma mark - Login Actions
 
 - (IBAction)qqLoginAction:(id)sender{
+    [self.appButtonStack setUserInteractionEnabled:NO];
     if(![AVUser currentUser]){
         // 如果安装了，则跳转至应用，否则跳转至网页
         [AVOSCloudSNS loginWithCallback:^(id object, NSError *error) {
@@ -208,6 +208,7 @@
             } else {
                 [AVUser loginWithAuthData:object platform:AVOSCloudSNSPlatformQQ block:^(AVUser *user, NSError *error) {
                     if ([self filterError:error]) {
+                        [self.appButtonStack setUserInteractionEnabled:YES];
                         [self loginSucceedWithUser:user authData:object onPlatform:AVOSCloudSNSPlatformQQ];
                     }
                 }];
@@ -219,6 +220,7 @@
 }
 
 - (IBAction)weiboLoginAction:(id)sender{
+    [self.appButtonStack setUserInteractionEnabled:NO];
     if(![AVUser currentUser]){
         // 如果安装了，则跳转至应用，否则跳转至网页
         [AVOSCloudSNS loginWithCallback:^(id object, NSError *error) {
@@ -229,6 +231,7 @@
             } else {
                 [AVUser loginWithAuthData:object platform:AVOSCloudSNSPlatformWeiBo block:^(AVUser *user, NSError *error) {
                     if ([self filterError:error]) {
+                        [self.appButtonStack setUserInteractionEnabled:YES];
                         [self loginSucceedWithUser:user authData:object onPlatform:AVOSCloudSNSPlatformWeiBo];
                     }
                 }];
@@ -283,6 +286,7 @@
         AVUser *u = (AVUser *)sender;
         KPUserTableViewController *kputvc = (KPUserTableViewController *)segue.destinationViewController;
         [kputvc setCurrentUser:u];
+        [self.appButtonStack setUserInteractionEnabled:YES];
     }
 }
 

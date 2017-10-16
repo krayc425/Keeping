@@ -11,12 +11,13 @@
 #import "KPTodayTableViewCell.h"
 #import "KPColorPickerView.h"
 #import "KPNavigationTitleView.h"
+#import "Keeping-Swift.h"
 
-@interface KPTodayTableViewController : UITableViewController <CheckTaskDelegate, FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance, KPColorPickerDelegate, UIViewControllerPreviewingDelegate, KPNavigationTitleDelegate>
+@interface KPTodayTableViewController : UITableViewController <CheckTaskDelegate, FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance, KPColorPickerDelegate, KPNavigationTitleDelegate>
 
 @property (weak, nonatomic, nullable) IBOutlet UILabel *subDateLabel;
 @property (weak, nonatomic, nullable) IBOutlet UIButton *dateButton;
-@property (weak, nonatomic, nullable) IBOutlet UILabel *progressLabel;
+@property (weak, nonatomic, nullable) IBOutlet KCProgressButton *progressButton;
 
 @property (nonatomic, nonnull) NSMutableArray *unfinishedTaskArr;
 @property (nonatomic, nonnull) NSMutableArray *finishedTaskArr;

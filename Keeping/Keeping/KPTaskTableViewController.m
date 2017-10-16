@@ -24,6 +24,7 @@
 #import "KPNavigationTitleView.h"
 #import "AMPopTip.h"
 #import "CardsView.h"
+#import "KPTaskTableViewController+Touch.h"
 
 #define MENU_POPOVER_FRAME CGRectMake(10, 44 + 9, 140, 44 * [[Utilities getTaskSortArr] count])
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
@@ -60,7 +61,6 @@ static KPColorPickerView *colorPickerView = NULL;
     self.weekDayView.fontSize = 18.0;
     
     self.weekDayView.selectedWeekdayArr = [NSMutableArray arrayWithArray: @[@1,@2,@3,@4,@5,@6,@7]];
-    [self loadTasksOfWeekdays: self.weekDayView.selectedWeekdayArr];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -69,6 +69,7 @@ static KPColorPickerView *colorPickerView = NULL;
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self loadTasksOfWeekdays: self.weekDayView.selectedWeekdayArr];
     [self setFont];
 }
 
@@ -102,11 +103,9 @@ static KPColorPickerView *colorPickerView = NULL;
         Task *t;
         if(indexPath.section == 1){
             t = self.taskArr[indexPath.row];
-            
             [self.taskArr removeObject:t];
         }else if(indexPath.section == 2){
             t = self.historyTaskArr[indexPath.row];
-            
             [self.historyTaskArr removeObject:t];
         }
         
@@ -155,6 +154,8 @@ static KPColorPickerView *colorPickerView = NULL;
     [self fadeAnimation];
 }
 
+#pragma mark - Set Swipe Cells
+
 - (void)configSwipeButtons {
     // 获取选项按钮的reference
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"11.0")) {
@@ -189,12 +190,12 @@ static KPColorPickerView *colorPickerView = NULL;
         CardsView *cardView = [[CardsView alloc] initWithFrame:CGRectMake(0, 5, moreButton.frame.size.width - 5, moreButton.frame.size.height - 10)];
         cardView.cornerRadius = 10.0f;
         
-        UILabel *infoLabel = [[UILabel alloc] initWithFrame:CGRectMake(cardView.frame.size.width / 2 - 30,
-                                                              cardView.frame.size.height / 2 - 25,
-                                                              60,
-                                                              50)];
-        [infoLabel setText:@"详情"];
-        [infoLabel setTextColor:[Utilities getColor]];
+        UILabel *infoLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,
+                                                                       0,
+                                                                       70,
+                                                                       cardView.frame.size.height)];
+        [infoLabel setText:@"删除"];
+        [infoLabel setTextColor:[UIColor redColor]];
         [infoLabel setNumberOfLines:2];
         [infoLabel setTextAlignment:NSTextAlignmentCenter];
         [cardView addSubview:infoLabel];
@@ -297,6 +298,11 @@ static KPColorPickerView *colorPickerView = NULL;
         }else if(indexPath.section == 2){
             t = self.historyTaskArr[indexPath.row];
         }
+        
+//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//        KPTaskDisplayTableViewController *childVC = (KPTaskDisplayTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"KPTaskDisplayTableViewController"];
+//        [childVC setTaskid:t.id];
+//        [self.navigationController pushViewController:childVC animated:true];
         [self performSegueWithIdentifier:@"detailTaskSegue" sender:t];
     }
 }
@@ -396,37 +402,6 @@ static KPColorPickerView *colorPickerView = NULL;
     }
 }
 
-#pragma mark - UIViewControllerPreviewingDelegate
-
-- (UIViewController *)previewingContext:(id <UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location{
-    if ([self.presentedViewController isKindOfClass:[KPTaskDisplayTableViewController class]]){
-        return nil;
-    }
-    
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:(KPTaskTableViewCell* )[previewingContext sourceView]];
-    
-    Task *task;
-    if(indexPath.section == 1){
-        task = self.taskArr[indexPath.row];
-    }else if(indexPath.section == 2){
-        task = self.historyTaskArr[indexPath.row];
-    }
-    
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    KPTaskDisplayTableViewController *childVC = (KPTaskDisplayTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"KPTaskDisplayTableViewController"];
-    [childVC setTaskid:task.id];
-    childVC.preferredContentSize = CGSizeMake(0.0f, 525.0f);
-    
-    CGRect rect = CGRectMake(0, 0, self.view.frame.size.width, 70);
-    previewingContext.sourceRect = rect;
-    
-    return childVC;
-}
-
-- (void)previewingContext:(id <UIViewControllerPreviewing>)previewingContext commitViewController:(UIViewController *)viewControllerToCommit {
-    [self.navigationController pushViewController:viewControllerToCommit animated:YES];
-}
-
 #pragma mark - DZN Empty Delegate
 
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView{
@@ -509,7 +484,6 @@ static KPColorPickerView *colorPickerView = NULL;
     AMPopTip *tp = [KPTaskTableViewController shareTipInstance];
     
     if(![tp isVisible] && ![tp isAnimating]){
-        
         [tp showCustomView:colorPickerView
                  direction:AMPopTipDirectionDown
                     inView:self.view

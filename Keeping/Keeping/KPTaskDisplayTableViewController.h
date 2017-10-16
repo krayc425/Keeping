@@ -25,23 +25,22 @@
 @property (nonatomic) int taskid;
 @property (nonnull, nonatomic) Task *task;
 
-@property (weak, nonatomic) IBOutlet HYCircleProgressView *progressView;
+@property (weak, nonatomic, nullable) IBOutlet HYCircleProgressView *progressView;
 
-@property (weak, nonatomic) IBOutlet KPWeekdayPickerView *weekdayView;
-@property (copy, nonatomic) NSMutableArray *selectedWeekdayArr;
+@property (weak, nonatomic, nullable) IBOutlet KPWeekdayPickerView *weekdayView;
+@property (nonatomic, nonnull) NSMutableArray *selectedWeekdayArr;
 
-@property (weak, nonatomic) IBOutlet UIStackView *durationStack;
-@property (weak, nonatomic) IBOutlet UIButton *startDateButton;
-@property (weak, nonatomic) IBOutlet UIButton *endDateButton;
+@property (weak, nonatomic, nullable) IBOutlet UIButton *startDateButton;
+@property (weak, nonatomic, nullable) IBOutlet UIButton *endDateButton;
 
-@property (weak, nonatomic) IBOutlet KPTimeView *reminderTimeView;
+@property (weak, nonatomic, nullable) IBOutlet KPTimeView *reminderTimeView;
 @property (nonatomic, nullable) NSDate *reminderTime;
 
-@property (weak, nonatomic) IBOutlet UIStackView *imgStackView;
-@property (weak, nonatomic) IBOutlet UIButton *appBtn;
-@property (weak, nonatomic) IBOutlet UIButton *linkBtn;
-@property (weak, nonatomic) IBOutlet UIButton *imageBtn;
-@property (weak, nonatomic) IBOutlet UIButton *memoBtn;
+@property (weak, nonatomic, nullable) IBOutlet UIStackView *imgStackView;
+@property (weak, nonatomic, nullable) IBOutlet UIButton *appBtn;
+@property (weak, nonatomic, nullable) IBOutlet UIButton *linkBtn;
+@property (weak, nonatomic, nullable) IBOutlet UIButton *imageBtn;
+@property (weak, nonatomic, nullable) IBOutlet UIButton *memoBtn;
 
 @property (nonnull, nonatomic) FSCalendar *calendar;
 @property (nonnull, nonatomic) UIButton *previousButton;

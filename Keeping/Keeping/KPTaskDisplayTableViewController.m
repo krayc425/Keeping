@@ -70,17 +70,20 @@ static AMPopTip *shareTip = NULL;
     self.startDateButton.titleLabel.adjustsFontSizeToFitWidth = YES;
     self.endDateButton.titleLabel.adjustsFontSizeToFitWidth = YES;
     
+    //Weekday
+    [self.weekdayView setFontSize:9.0];
+    self.weekdayView.isAllButtonHidden = YES;
+    self.weekdayView.userInteractionEnabled = NO;
+    [self.weekdayView setNeedsLayout];
+    [self.weekdayView layoutIfNeeded];
+    [self.weekdayView setNeedsUpdateConstraints];
+    [self.weekdayView updateConstraintsIfNeeded];
+    
     //CardViews
     for(CardsView *cardView in self.cardsViews){
         [cardView setCornerRadius:10.0];
         [cardView setBackgroundColor:[UIColor whiteColor]];
     }
-    
-    //Weekday
-    self.weekdayView.isAllSelected = NO;
-    self.weekdayView.fontSize = 12.0;
-    self.weekdayView.isAllButtonHidden = YES;
-    self.weekdayView.userInteractionEnabled = NO;
     
     //Calendar
     self.gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
@@ -155,10 +158,12 @@ static AMPopTip *shareTip = NULL;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     [self loadTask];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
     [self hideTip];
 }
 
@@ -174,7 +179,6 @@ static AMPopTip *shareTip = NULL;
     AMPopTip *tp = [KPTaskDisplayTableViewController shareTipInstance];
     
     if(![tp isVisible] && ![tp isAnimating]){
-        
         [tp showCustomView:view
                  direction:AMPopTipDirectionNone
                     inView:self.tableView
@@ -196,6 +200,7 @@ static AMPopTip *shareTip = NULL;
 }
 
 - (void)loadTask{
+    
     self.task = [[TaskManager shareInstance] getTasksOfID:self.taskid];
     
     //Set Task Properties
@@ -206,12 +211,13 @@ static AMPopTip *shareTip = NULL;
     }else{
         color = NULL;
     }
-    KPNavigationTitleView *titleView = [[KPNavigationTitleView alloc] initWithTitle:self.task.name andColor:color];
+    KPNavigationTitleView *titleView = [[KPNavigationTitleView alloc] initWithTitle:self.task.name
+                                                                           andColor:color];
     [titleView setCanTap:NO];
     self.navigationItem.titleView = titleView;
     
     //progress
-    [self.progressView setProgress:self.task.progress animated:YES];
+    [self.progressView setProgress:self.task.progress animated:NO];
     
     //duration
     [self.startDateButton setTitle:[NSString stringWithFormat:@"从 %@", [self.task.addDate formattedDateWithFormat:DATE_FORMAT]] forState:UIControlStateNormal];
@@ -235,8 +241,6 @@ static AMPopTip *shareTip = NULL;
 
     //app
     if(self.task.appScheme != NULL){
-//        NSDictionary *d = self.task.appScheme;
-//        NSString *s = d.allKeys[0];
         [self.appBtn setTintColor:[Utilities getColor]];
         [self.appBtn setUserInteractionEnabled:YES];
     }else{
@@ -363,30 +367,18 @@ static AMPopTip *shareTip = NULL;
         default:
             break;
     }
-    
 }
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    switch (section) {
-        case 0:
-            return 2;
-        case 1:
-            return 1;
-        default:
-            return 0;
-    }
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0 && indexPath.row == 0) {
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        [cell.contentView setNeedsUpdateConstraints];
+        [cell.contentView updateConstraintsIfNeeded];
+    }
     return [super tableView:tableView cellForRowAtIndexPath:indexPath];
 }
-
 
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     switch (section) {
@@ -414,6 +406,7 @@ static AMPopTip *shareTip = NULL;
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     switch (section) {
         case 0:
+            return 60.0f;
         case 1:
             return 50.0f;
         default:

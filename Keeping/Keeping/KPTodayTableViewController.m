@@ -24,8 +24,11 @@
 #import "UIImage+Extensions.h"
 #import "KPTimeView.h"
 #import "KPNavigationTitleView.h"
+#import "KPTodayTableViewController+Touch.h"
 
 #define MENU_POPOVER_FRAME CGRectMake(10, 44 + 9, 140, 44 * [[Utilities getTaskSortArr] count])
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
 
 static AMPopTip *shareTip = NULL;
 static KPColorPickerView *colorPickerView = NULL;
@@ -33,6 +36,7 @@ static KPColorPickerView *colorPickerView = NULL;
 @interface KPTodayTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, MLKMenuPopoverDelegate>
 
 @property (nonatomic, strong) MLKMenuPopover *_Nonnull menuPopover;
+@property (strong, nonatomic) NSIndexPath* editingIndexPath;  //当前左滑cell的index，在代理方法中设置
 
 @end
 
@@ -49,13 +53,6 @@ static KPColorPickerView *colorPickerView = NULL;
     self.tableView.emptyDataSetDelegate = self;
     self.tableView.tableFooterView = [UIView new];
     self.tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    
-    //类别按钮
-    [KPTodayTableViewController shareColorPickerView].colorDelegate = self;
-    [[KPTodayTableViewController shareColorPickerView] setFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame) - 32, 40)];
-    
-    //日历按钮
-    [self.dateButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
     
     //日历插件
     self.calendar = [[FSCalendar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width - 20, 250)];
@@ -120,6 +117,13 @@ static KPColorPickerView *colorPickerView = NULL;
     [self hideTip];
 }
 
+- (void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    if (self.editingIndexPath) {
+        [self configSwipeButtons];
+    }
+}
+
 - (void)loadTasks{
     NSDictionary *sortDict = [[NSUserDefaults standardUserDefaults] valueForKey:@"sort"];
     self.sortFactor = sortDict.allKeys[0];
@@ -150,7 +154,12 @@ static KPColorPickerView *colorPickerView = NULL;
     self.unfinishedTaskArr = [NSMutableArray arrayWithArray:[TaskDataHelper filtrateTasks:self.unfinishedTaskArr withType:self.selectedColorNum]];
     self.finishedTaskArr = [NSMutableArray arrayWithArray:[TaskDataHelper filtrateTasks:self.finishedTaskArr withType:self.selectedColorNum]];
     
-    [self.progressLabel setText:[NSString stringWithFormat:@"%lu / %lu", (unsigned long)self.finishedTaskArr.count, ((unsigned long)self.finishedTaskArr.count + (unsigned long)self.unfinishedTaskArr.count)]];
+    [self.progressButton setNeedsLayout];
+    [self.progressButton layoutIfNeeded];
+    
+    //设置进度
+    [self.progressButton setProgressWithFinished:self.finishedTaskArr.count
+                                           total:self.finishedTaskArr.count + self.unfinishedTaskArr.count];
     
     [self.tableView reloadData];
     
@@ -219,6 +228,56 @@ static KPColorPickerView *colorPickerView = NULL;
     NSDate *currentMonth = self.calendar.currentPage;
     NSDate *nextMonth = [self.gregorian dateByAddingUnit:NSCalendarUnitMonth value:1 toDate:currentMonth options:0];
     [self.calendar setCurrentPage:nextMonth animated:YES];
+}
+
+#pragma mark - Set Swipe Cells
+
+- (void)configSwipeButtons {
+    // 获取选项按钮的reference
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"11.0")) {
+        // iOS 11层级 (Xcode 9编译): UITableView -> UISwipeActionPullView
+        for (UIView *subview in self.tableView.subviews) {
+            if ([subview isKindOfClass:NSClassFromString(@"UISwipeActionPullView")] && [subview.subviews count] >= 1) {
+                // 和iOS 10的按钮顺序相反
+                UIButton *moreButton = subview.subviews[0];
+                
+                [self configMoreButton:moreButton];
+                [subview setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+            }
+        }
+    } else {
+        // iOS 8-10层级: UITableView -> UITableViewCell -> UITableViewCellDeleteConfirmationView
+        KPTodayTableViewCell *tableCell = [self.tableView cellForRowAtIndexPath:self.editingIndexPath];
+        for (UIView *subview in tableCell.subviews) {
+            if ([subview isKindOfClass:NSClassFromString(@"UITableViewCellDeleteConfirmationView")] && [subview.subviews count] >= 1) {
+                UIButton *moreButton = subview.subviews[0];
+                
+                [self configMoreButton:moreButton];
+                [subview setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+            }
+        }
+    }
+}
+
+- (void)configMoreButton:(UIButton *)moreButton {
+    if (moreButton) {
+        [moreButton setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+        
+        CardsView *cardView = [[CardsView alloc] initWithFrame:CGRectMake(0, 5, moreButton.frame.size.width - 5, moreButton.frame.size.height - 10)];
+        cardView.cornerRadius = 10.0f;
+        
+        UILabel *infoLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,
+                                                                       0,
+                                                                       70,
+                                                                       cardView.frame.size.height)];
+        [infoLabel setText:@"详情"];
+        [infoLabel setTextColor:[Utilities getColor]];
+        [infoLabel setNumberOfLines:2];
+        [infoLabel setTextAlignment:NSTextAlignmentCenter];
+        [cardView addSubview:infoLabel];
+        
+        [moreButton addSubview:cardView];
+    }
 }
 
 #pragma mark - Table view data source
@@ -294,10 +353,6 @@ static KPColorPickerView *colorPickerView = NULL;
     return 0.00001f;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return @"               ";
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
         case 1:
@@ -324,8 +379,6 @@ static KPColorPickerView *colorPickerView = NULL;
                 [cell setIsFinished:YES];
             }
             
-            [cell configureWithTask:t];
-            
             //设置是否为当前 cell
             if([indexPath isEqual:self.selectedIndexPath] && ![cell.moreButton isHidden]){
                 [cell setIsSelected:YES];
@@ -334,8 +387,8 @@ static KPColorPickerView *colorPickerView = NULL;
                 [cell setIsSelected:NO];
                 [cell.moreButton setBackgroundImage:[UIImage imageNamed:@"MORE_INFO_DOWN"] forState:UIControlStateNormal];
             }
-
-            [cell.moreButton setHidden:!t.hasMoreInfo];
+            
+            [cell configureWithTask:t];
             
             //晚于：不能打卡
             NSDate *tempDate = [NSDate dateWithYear:[[NSDate date] year]
@@ -381,7 +434,6 @@ static KPColorPickerView *colorPickerView = NULL;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
     if(indexPath.section != 0){
         KPTodayTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         
@@ -391,10 +443,6 @@ static KPColorPickerView *colorPickerView = NULL;
                 self.selectedIndexPath = NULL;
             }else{
                 self.selectedIndexPath = indexPath;
-                
-//                if(!cell.memoButton.hidden){
-//                    [self moreAction:cell withButton:cell.memoButton];
-//                }
             }
             
         }else{
@@ -406,24 +454,45 @@ static KPColorPickerView *colorPickerView = NULL;
     }
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(indexPath.section != 0){
+        return YES;
+    }else{
+        return NO;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        Task *task;
+        if(indexPath.section == 1){
+            task = self.unfinishedTaskArr[indexPath.row];
+        }else{
+            task = self.finishedTaskArr[indexPath.row];
+        }
+        [self performSegueWithIdentifier:@"detailTaskSegue" sender:task];
+    }
+}
+
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(indexPath.section != 0 && indexPath != self.selectedIndexPath){
+    if(indexPath.section != 0){
         return UITableViewCellEditingStyleDelete;
     }else{
         return UITableViewCellEditingStyleNone;
     }
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        Task *t;
-        if(indexPath.section == 1){
-            t = self.unfinishedTaskArr[indexPath.row];
-        }else if(indexPath.section == 2){
-            t = self.finishedTaskArr[indexPath.row];
-        }
-        [self performSegueWithIdentifier:@"detailTaskSegue" sender:t];
-    }
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return @"               ";
+}
+
+- (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.editingIndexPath = indexPath;
+    [self.view setNeedsLayout];   // 触发-(void)viewDidLayoutSubviews
+}
+
+- (void)tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.editingIndexPath = nil;
 }
 
 #pragma mark - Check Delegate
@@ -502,7 +571,6 @@ static KPColorPickerView *colorPickerView = NULL;
         default:
             break;
     }
-
 }
 
 #pragma mark - Navigation
@@ -516,38 +584,6 @@ static KPColorPickerView *colorPickerView = NULL;
         KPTaskDisplayTableViewController *kptdtvc = (KPTaskDisplayTableViewController *)[segue destinationViewController];
         [kptdtvc setTaskid:t.id];
     }
-}
-
-#pragma mark - UIViewControllerPreviewingDelegate
-
-- (UIViewController *)previewingContext:(id <UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location{
-    
-    if ([self.presentedViewController isKindOfClass:[KPTaskDisplayTableViewController class]]){
-        return nil;
-    }
-    
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:(KPTodayTableViewCell* )[previewingContext sourceView]];
-    
-    Task *task;
-    if(indexPath.section == 1){
-        task = self.unfinishedTaskArr[indexPath.row];
-    }else{
-        task = self.finishedTaskArr[indexPath.row];
-    }
-    
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    KPTaskDisplayTableViewController *childVC = (KPTaskDisplayTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"KPTaskDisplayTableViewController"];
-    [childVC setTaskid:task.id];
-    childVC.preferredContentSize = CGSizeMake(0.0f,525.0f);
-
-    CGRect rect = CGRectMake(0, 0, self.view.frame.size.width, 70);
-    previewingContext.sourceRect = rect;
-    
-    return childVC;
-}
-
-- (void)previewingContext:(id <UIViewControllerPreviewing>)previewingContext commitViewController:(UIViewController *)viewControllerToCommit {
-    [self.navigationController pushViewController:viewControllerToCommit animated:YES];
 }
 
 #pragma mark - DZNEmptyTableViewDelegate
@@ -617,12 +653,10 @@ static KPColorPickerView *colorPickerView = NULL;
     AMPopTip *tp = [KPTodayTableViewController shareTipInstance];
     
     if(![tp isVisible] && ![tp isAnimating]){
-        
         [tp showCustomView:colorPickerView
                  direction:AMPopTipDirectionDown
                     inView:self.view
                  fromFrame:CGRectMake(CGRectGetWidth(self.view.frame) / 2, -44, 0, 44)];
-//                  duration:5.0f];
         
         tp.textColor = [UIColor whiteColor];
         tp.tintColor = [Utilities getColor];
@@ -668,16 +702,6 @@ static KPColorPickerView *colorPickerView = NULL;
         [[KPTodayTableViewController shareTipInstance] hide];
         shareTip = NULL;
     }
-}
-
-#pragma mark - KPColor Singleton
-
-+ (KPColorPickerView *)shareColorPickerView{
-    if(colorPickerView == NULL){
-        NSArray *nibView = [[NSBundle mainBundle] loadNibNamed:@"KPColorPickerView" owner:nil options:nil];
-        colorPickerView = [nibView firstObject];
-    }
-    return colorPickerView;
 }
 
 @end

@@ -14,8 +14,8 @@ static BOOL _loadingXib = NO;
 
 @interface KPWeekdayPickerView ()
 
-@property (nonatomic) IBOutlet UIStackView *weekDayStack;
-@property (nonatomic) IBOutlet UIButton *allButton;
+@property (nonatomic, weak) IBOutlet UIStackView *weekDayStack;
+@property (nonatomic, weak) IBOutlet UIButton *allButton;
 
 @end
 
@@ -42,23 +42,9 @@ static BOOL _loadingXib = NO;
         self.selectedWeekdayArr = [[NSMutableArray alloc] init];
     }
     [self selectWeekdaysInArray:self.selectedWeekdayArr];
-
-//    if(self.isAllSelected){
-//        [self selectAllWeekDay];
-//    }
     
     [self.allButton setHidden:self.isAllButtonHidden];
 
-//    if(self.isAllButtonHidden){
-//        [self.allButton setTitle:@"" forState:UIControlStateNormal];
-//    }else{
-//        if(self.isAllSelected){
-//            [self.allButton setTitle:@"清空" forState:UIControlStateNormal];
-//        }else{
-//            [self.allButton setTitle:@"全选" forState:UIControlStateNormal];
-//        }
-//    }
-    
     self.weekDayStack.spacing = self.fontSize / 2.5;
 }
 

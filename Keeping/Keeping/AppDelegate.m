@@ -16,6 +16,7 @@
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 #import "AppKeys.h"
+#import "KPSchemeManager.h"
 
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
 #import <UserNotifications/UserNotifications.h>
@@ -69,6 +70,10 @@
         [shared setValue:@"STHeitiSC-Light" forKey:@"fontwidget"];
         [shared synchronize];
     }
+    
+    //下载 schemes
+    NSArray *r = [[KPSchemeManager shareInstance] getSchemeArr];
+    NSLog(@"%lu apps", (unsigned long)r.count);
     
     //启动数据库
     [DBManager shareInstance];

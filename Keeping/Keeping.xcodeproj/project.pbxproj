@@ -12,6 +12,7 @@
 		24151C971E32388300757A69 /* UNManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24151C961E32388300757A69 /* UNManager.m */; };
 		241A58071E7E36B9001356E0 /* KPCalInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 241A58061E7E36B9001356E0 /* KPCalInfoView.m */; };
 		241A58091E7E36C6001356E0 /* KPCalInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 241A58081E7E36C6001356E0 /* KPCalInfoView.xib */; };
+		241CECED1F94E56D00D40A0D /* KCProgressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241CECEC1F94E56D00D40A0D /* KCProgressButton.swift */; };
 		241D3F001E7CFAD20051023F /* KPTaskDisplayTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 241D3EFF1E7CFAD20051023F /* KPTaskDisplayTableViewController.m */; };
 		241FB6671E31D2F300DF4D53 /* HYCircleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 241FB6661E31D2F300DF4D53 /* HYCircleProgressView.m */; };
 		2422066A1E5A6A3B00F03BA2 /* ImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 242206691E5A6A3B00F03BA2 /* ImageUtil.m */; };
@@ -45,6 +46,8 @@
 		246AEF0A1E64214A00D78FDD /* UIImage+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 246AEF091E64214A00D78FDD /* UIImage+Extensions.m */; };
 		246BF2531EE112FE002FE39A /* AppKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 246BF2521EE112FE002FE39A /* AppKeys.m */; };
 		247A79801E38ABF1000EE623 /* ABCIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = 247A797F1E38ABF1000EE623 /* ABCIntroView.m */; };
+		247C8EBA1F94FA0D0098B574 /* KPTaskTableViewController+Touch.m in Sources */ = {isa = PBXBuildFile; fileRef = 247C8EB91F94FA0D0098B574 /* KPTaskTableViewController+Touch.m */; };
+		247C8EBD1F94FAB40098B574 /* KPTodayTableViewController+Touch.m in Sources */ = {isa = PBXBuildFile; fileRef = 247C8EBC1F94FAB40098B574 /* KPTodayTableViewController+Touch.m */; };
 		247F01B91E3D9E1B001F900C /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 247F01B81E3D9E1B001F900C /* NotificationCenter.framework */; };
 		247F01BD1E3D9E1B001F900C /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 247F01BC1E3D9E1B001F900C /* TodayViewController.m */; };
 		247F01C41E3D9E1B001F900C /* KeepingWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 247F01B71E3D9E1B001F900C /* KeepingWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -146,6 +149,8 @@
 		241A58051E7E36B9001356E0 /* KPCalInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPCalInfoView.h; sourceTree = "<group>"; };
 		241A58061E7E36B9001356E0 /* KPCalInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPCalInfoView.m; sourceTree = "<group>"; };
 		241A58081E7E36C6001356E0 /* KPCalInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KPCalInfoView.xib; sourceTree = "<group>"; };
+		241CECEB1F94E56C00D40A0D /* Keeping-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Keeping-Bridging-Header.h"; sourceTree = "<group>"; };
+		241CECEC1F94E56D00D40A0D /* KCProgressButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KCProgressButton.swift; sourceTree = "<group>"; };
 		241D3EFE1E7CFAD20051023F /* KPTaskDisplayTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPTaskDisplayTableViewController.h; sourceTree = "<group>"; };
 		241D3EFF1E7CFAD20051023F /* KPTaskDisplayTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPTaskDisplayTableViewController.m; sourceTree = "<group>"; };
 		241FB6651E31D2F300DF4D53 /* HYCircleProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYCircleProgressView.h; sourceTree = "<group>"; };
@@ -205,6 +210,10 @@
 		246BF2521EE112FE002FE39A /* AppKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppKeys.m; sourceTree = "<group>"; };
 		247A797E1E38ABF1000EE623 /* ABCIntroView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABCIntroView.h; sourceTree = "<group>"; };
 		247A797F1E38ABF1000EE623 /* ABCIntroView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ABCIntroView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		247C8EB81F94FA0D0098B574 /* KPTaskTableViewController+Touch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KPTaskTableViewController+Touch.h"; sourceTree = "<group>"; };
+		247C8EB91F94FA0D0098B574 /* KPTaskTableViewController+Touch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "KPTaskTableViewController+Touch.m"; sourceTree = "<group>"; };
+		247C8EBB1F94FAB40098B574 /* KPTodayTableViewController+Touch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KPTodayTableViewController+Touch.h"; sourceTree = "<group>"; };
+		247C8EBC1F94FAB40098B574 /* KPTodayTableViewController+Touch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "KPTodayTableViewController+Touch.m"; sourceTree = "<group>"; };
 		247F01B71E3D9E1B001F900C /* KeepingWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = KeepingWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		247F01B81E3D9E1B001F900C /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		247F01BB1E3D9E1B001F900C /* TodayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
@@ -275,16 +284,12 @@
 		24F2A0F31E2F7B6E00F30FB1 /* KPTimePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPTimePicker.m; sourceTree = "<group>"; };
 		24F2A1041E2F7CBC00F30FB1 /* KPReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPReminderViewController.h; sourceTree = "<group>"; };
 		24F2A1051E2F7CBC00F30FB1 /* KPReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPReminderViewController.m; sourceTree = "<group>"; };
-		2F338776FD6DDCCB914A553C /* Pods-KeepingWatch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KeepingWatch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KeepingWatch/Pods-KeepingWatch.debug.xcconfig"; sourceTree = "<group>"; };
 		3303168DFB48063C3EC132E2 /* Pods-KeepingWidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KeepingWidget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KeepingWidget/Pods-KeepingWidget.debug.xcconfig"; sourceTree = "<group>"; };
-		5303058E548373FF6E1E7AF0 /* Pods-KeepingWatch Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KeepingWatch Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KeepingWatch Extension/Pods-KeepingWatch Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		536AA62E968456370B920F00 /* libPods-KeepingWatch Extension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KeepingWatch Extension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7768AB7A1CE5FD0A347A4517 /* libPods-KeepingWidget.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KeepingWidget.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		85B397591B8EAB57C5D32895 /* Pods-KeepingWatch Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KeepingWatch Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-KeepingWatch Extension/Pods-KeepingWatch Extension.release.xcconfig"; sourceTree = "<group>"; };
 		90B7675F597B76B950B77B8B /* Pods-Keeping.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keeping.release.xcconfig"; path = "Pods/Target Support Files/Pods-Keeping/Pods-Keeping.release.xcconfig"; sourceTree = "<group>"; };
 		A82AAE1686C2E350CED30CF7 /* libPods-KeepingWatch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KeepingWatch.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC5A1BA89969620E5A37921E /* libPods-Keeping.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Keeping.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CC115080F1212FC2B74097CC /* Pods-KeepingWatch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KeepingWatch.release.xcconfig"; path = "Pods/Target Support Files/Pods-KeepingWatch/Pods-KeepingWatch.release.xcconfig"; sourceTree = "<group>"; };
 		D878305BCC1A269899CF1ACC /* Pods-Keeping.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keeping.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Keeping/Pods-Keeping.debug.xcconfig"; sourceTree = "<group>"; };
 		F23AC8433168973E490B2488 /* Pods-KeepingWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KeepingWidget.release.xcconfig"; path = "Pods/Target Support Files/Pods-KeepingWidget/Pods-KeepingWidget.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -355,6 +360,8 @@
 			children = (
 				2429CBD21E2DF5E60027DD37 /* KPTodayTableViewController.h */,
 				2429CBD31E2DF5E60027DD37 /* KPTodayTableViewController.m */,
+				247C8EBB1F94FAB40098B574 /* KPTodayTableViewController+Touch.h */,
+				247C8EBC1F94FAB40098B574 /* KPTodayTableViewController+Touch.m */,
 				2429CBEB1E2E4A9B0027DD37 /* KPTodayTableViewCell.h */,
 				2429CBEC1E2E4A9B0027DD37 /* KPTodayTableViewCell.m */,
 				2429CBED1E2E4A9B0027DD37 /* KPTodayTableViewCell.xib */,
@@ -380,6 +387,8 @@
 			children = (
 				2429CBD51E2DF6080027DD37 /* KPTaskTableViewController.h */,
 				2429CBD61E2DF6080027DD37 /* KPTaskTableViewController.m */,
+				247C8EB81F94FA0D0098B574 /* KPTaskTableViewController+Touch.h */,
+				247C8EB91F94FA0D0098B574 /* KPTaskTableViewController+Touch.m */,
 				24F2A0CC1E2F38C700F30FB1 /* KPTaskTableViewCell.h */,
 				24F2A0CD1E2F38C700F30FB1 /* KPTaskTableViewCell.m */,
 				24F2A0C91E2F383A00F30FB1 /* KPTaskTableViewCell.xib */,
@@ -637,6 +646,8 @@
 				24BA79A41E516D5D002133B6 /* CardView */,
 				246AEF081E64214A00D78FDD /* UIImage+Extensions.h */,
 				246AEF091E64214A00D78FDD /* UIImage+Extensions.m */,
+				241CECEC1F94E56D00D40A0D /* KCProgressButton.swift */,
+				241CECEB1F94E56C00D40A0D /* Keeping-Bridging-Header.h */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -724,10 +735,6 @@
 				90B7675F597B76B950B77B8B /* Pods-Keeping.release.xcconfig */,
 				3303168DFB48063C3EC132E2 /* Pods-KeepingWidget.debug.xcconfig */,
 				F23AC8433168973E490B2488 /* Pods-KeepingWidget.release.xcconfig */,
-				2F338776FD6DDCCB914A553C /* Pods-KeepingWatch.debug.xcconfig */,
-				CC115080F1212FC2B74097CC /* Pods-KeepingWatch.release.xcconfig */,
-				5303058E548373FF6E1E7AF0 /* Pods-KeepingWatch Extension.debug.xcconfig */,
-				85B397591B8EAB57C5D32895 /* Pods-KeepingWatch Extension.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -800,6 +807,7 @@
 					249AE3111E2DEE7700F704F8 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = VEBQ28K9EA;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -1049,8 +1057,10 @@
 				241FB6671E31D2F300DF4D53 /* HYCircleProgressView.m in Sources */,
 				241D3F001E7CFAD20051023F /* KPTaskDisplayTableViewController.m in Sources */,
 				2429CBF31E2E4E750027DD37 /* Utilities.m in Sources */,
+				241CECED1F94E56D00D40A0D /* KCProgressButton.swift in Sources */,
 				24DCF1941E310A890097C250 /* CardsView.m in Sources */,
 				2436F82A1E2F2C5700C2984A /* Task.m in Sources */,
+				247C8EBA1F94FA0D0098B574 /* KPTaskTableViewController+Touch.m in Sources */,
 				2429CBDD1E2DF61B0027DD37 /* KPSettingsTableViewController.m in Sources */,
 				2429CBD71E2DF6080027DD37 /* KPTaskTableViewController.m in Sources */,
 				24BA79AB1E516FE0002133B6 /* KPWeekdayPickerView.m in Sources */,
@@ -1059,6 +1069,7 @@
 				24151C921E322D6700757A69 /* KPTaskDetailTableViewController.m in Sources */,
 				2435DBF11E35CCC300F1A96E /* KPFontTableViewController.m in Sources */,
 				240826DD1E570A1500EAC855 /* KPUserTableViewController.m in Sources */,
+				247C8EBD1F94FAB40098B574 /* KPTodayTableViewController+Touch.m in Sources */,
 				24F2A1061E2F7CBC00F30FB1 /* KPReminderViewController.m in Sources */,
 				249AE3231E2DEE7700F704F8 /* Keeping.xcdatamodeld in Sources */,
 				2429CBE81E2E499A0027DD37 /* KPSeparatorView.m in Sources */,
@@ -1218,6 +1229,7 @@
 			baseConfigurationReference = D878305BCC1A269899CF1ACC /* Pods-Keeping.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Keeping/Keeping.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1231,6 +1243,10 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.krayc.Keeping;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Keeping/Keeping-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1239,6 +1255,7 @@
 			baseConfigurationReference = 90B7675F597B76B950B77B8B /* Pods-Keeping.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Keeping/Keeping.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = VEBQ28K9EA;
@@ -1251,6 +1268,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.krayc.Keeping;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Keeping/Keeping-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

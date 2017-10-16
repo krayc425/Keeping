@@ -33,30 +33,6 @@
     [self.myCheckBox setOnCheckColor:[Utilities getColor]];
     [self.myCheckBox setOnFillColor:[UIColor clearColor]];
     [self.contentView addSubview:self.myCheckBox];
-    
-    //自定义"更多"view
-    UIView *deleteView = [[UIView alloc] initWithFrame:CGRectMake(ScreenWidth,
-                                                                  0,
-                                                                  300,
-                                                                  70)];
-    
-    deleteView.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    
-    CardsView *cardView = [[CardsView alloc] initWithFrame:CGRectMake(0, 5, 90, 60)];
-    cardView.cornerRadius = 10.0;
-    [deleteView addSubview:cardView];
-    
-    infoLabel = [[UILabel alloc] initWithFrame:CGRectMake(cardView.frame.size.width / 2 - 30,
-                                                           cardView.frame.size.height / 2 - 25,
-                                                           60,
-                                                           50)];
-    [infoLabel setText:@"详情"];
-    [infoLabel setTextColor:[Utilities getColor]];
-    [infoLabel setNumberOfLines:2];
-    [infoLabel setTextAlignment:NSTextAlignmentCenter];
-    [cardView addSubview:infoLabel];
-    NSLog(@"%f, %f", deleteView.frame.origin.x, deleteView.frame.origin.y);
-    [self.superview addSubview:deleteView];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -226,6 +202,8 @@
     }else{
         [self.reminderTimeView setHidden:YES];
     }
+    
+    [self.moreButton setHidden:!t.hasMoreInfo];
 }
 
 @end

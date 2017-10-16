@@ -28,31 +28,31 @@
 @property (nonatomic, strong) IBOutlet UILabel *taskNameLabel;
 //提醒时间
 //@property (nonatomic, nonnull) IBOutlet UILabel *reminderLabel;
-@property (nonatomic, strong) IBOutlet KPTimeView *reminderTimeView;
+@property (nonatomic) IBOutlet KPTimeView *reminderTimeView;
 //打钩
-@property (strong, nonatomic) IBOutlet BEMCheckBox *myCheckBox;
+@property (nonatomic) IBOutlet BEMCheckBox *myCheckBox;
 //类别
-@property (nonatomic, strong) IBOutlet UIImageView *typeImg;
+@property (nonatomic) IBOutlet UIImageView *typeImg;
 
 //更多 按钮
-@property (strong, nonatomic) IBOutlet UIButton *moreButton;
+@property (nonatomic) IBOutlet UIButton *moreButton;
 //小图片提示
-@property (strong, nonatomic) IBOutlet UIImageView * _Nullable appImg;
-@property (strong, nonatomic) IBOutlet UIImageView *linkImg;
-@property (strong, nonatomic) IBOutlet UIImageView *imageImg;
-@property (strong, nonatomic) IBOutlet UIImageView *memoImg;
+@property (nonatomic) IBOutlet UIImageView * _Nullable appImg;
+@property (nonatomic) IBOutlet UIImageView * _Nullable linkImg;
+@property (nonatomic) IBOutlet UIImageView * _Nullable imageImg;
+@property (nonatomic) IBOutlet UIImageView * _Nullable memoImg;
 //子 cardview
-@property (strong, nonatomic) IBOutlet CardsView *cardView2;
+@property (nonatomic) IBOutlet CardsView *cardView2;
 //按钮 stackview
-@property (strong, nonatomic) IBOutlet UIStackView *buttonStackView;
+@property (nonatomic) IBOutlet UIStackView *buttonStackView;
 //APP 按钮
-@property (strong, nonatomic) IBOutlet UIButton *appButton;    //tag = 0
+@property (nonatomic) IBOutlet UIButton *appButton;    //tag = 0
 //链接 按钮
-@property (strong, nonatomic) IBOutlet UIButton *linkButton;   //tag = 1
+@property (nonatomic) IBOutlet UIButton *linkButton;   //tag = 1
 //图片 按钮
-@property (strong, nonatomic) IBOutlet UIButton *imageButton;  //tag = 2
+@property (nonatomic) IBOutlet UIButton *imageButton;  //tag = 2
 //备注 按钮
-@property (strong, nonatomic) IBOutlet UIButton *memoButton;  //tag = 3
+@property (nonatomic) IBOutlet UIButton *memoButton;  //tag = 3
 
 @property (nonatomic) BOOL beingSelected;
 

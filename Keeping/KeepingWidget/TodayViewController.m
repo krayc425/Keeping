@@ -10,7 +10,6 @@
 #import <NotificationCenter/NotificationCenter.h>
 #import "Task.h"
 #import "DateUtil.h"
-#import "Utilities.h"
 #import "KPWidgetTableViewCell.h"
 #import "UIScrollView+EmptyDataSet.h"
 #import "TaskManager.h"
@@ -22,8 +21,6 @@
 
 @interface TodayViewController () <NCWidgetProviding, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
-@property (nonatomic, nonnull) NSString *fontName;
-
 @end
 
 @implementation TodayViewController
@@ -32,9 +29,6 @@
     [super viewDidLoad];
     [self loadDB];
     
-    NSUserDefaults *shared = [[NSUserDefaults alloc]initWithSuiteName:GROUP_ID];
-    self.fontName = (NSString *)[shared valueForKey:@"fontwidget"];
-    
     self.taskTableView.delegate = self;
     self.taskTableView.dataSource = self;
     self.taskTableView.emptyDataSetSource = self;
@@ -42,10 +36,10 @@
     self.taskTableView.backgroundColor = [UIColor clearColor];
     
     [self.dateLabel setTextColor:[UIColor blackColor]];
-    [self.dateLabel setFont:[UIFont fontWithName:self.fontName size:25.0f]];
+    [self.dateLabel setFont:[UIFont systemFontOfSize:25.0f]];
     
     [self.countLabel setTextColor:[UIColor blackColor]];
-    [self.countLabel setFont:[UIFont fontWithName:self.fontName size:15.0f]];
+    [self.countLabel setFont:[UIFont systemFontOfSize:15.0f]];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -73,8 +67,6 @@
 - (void)loadDB{
     NSString *doc2 = [[[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:GROUP_ID] path];
     NSString *fileName2 = [doc2 stringByAppendingPathComponent:@"task.sqlite"];
-    
-//    NSLog(@"WIDEGT DB PATH %@", fileName2);
     
     self.db = [FMDatabase databaseWithPath:fileName2];
     
@@ -210,7 +202,7 @@
     
     NSDictionary *attributes = @{
                                  NSForegroundColorAttributeName: [UIColor blackColor],
-                                 NSFontAttributeName:[UIFont fontWithName:self.fontName size:20.0]
+                                 NSFontAttributeName:[UIFont systemFontOfSize:18.0f]
                                  };
     
     return [[NSAttributedString alloc] initWithString:text attributes:attributes];

@@ -85,7 +85,14 @@
     [super didReceiveMemoryWarning];
 }
 
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"Notification_CheckMessage" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"Notification_Badge" object:nil];
+}
+
 - (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification_CheckMessage"
                                                         object:nil
                                                       userInfo:nil];

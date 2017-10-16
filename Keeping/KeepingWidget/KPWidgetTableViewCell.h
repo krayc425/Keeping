@@ -17,12 +17,12 @@
 
 @interface KPWidgetTableViewCell : UITableViewCell <BEMCheckBoxDelegate>
 
-@property (nonatomic, nonnull) id<WidgetTaskDelegate> delegate;
+@property (nonatomic, weak, nullable) id<WidgetTaskDelegate> delegate;
 
-@property (nonatomic, nonnull) IBOutlet UILabel *nameLabel;
-@property (nonatomic, nonnull) IBOutlet UILabel *timeLabel;
+@property (nonatomic, weak, nullable) IBOutlet UILabel *nameLabel;
+@property (nonatomic, weak, nullable) IBOutlet UILabel *timeLabel;
 
-@property (nonatomic, nonnull) IBOutlet BEMCheckBox *checkBox;
+@property (nonatomic, weak, nullable) IBOutlet BEMCheckBox *checkBox;
 
 - (void)setFont;
 

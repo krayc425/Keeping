@@ -9,7 +9,6 @@
 #import "KPNavigationViewController.h"
 #import "KPTabBarViewController.h"
 #import "Utilities.h"
-#import "KPSchemeManager.h"
 
 @interface KPNavigationViewController ()
 
@@ -30,10 +29,6 @@
         self.introView.backgroundColor = [UIColor whiteColor];
         [self.view addSubview:self.introView];
     }
-    
-    //下载 schemes
-    NSArray *r = [[KPSchemeManager shareInstance] getSchemeArr];
-    NSLog(@"%lu apps", (unsigned long)r.count);
 }
 
 - (void)viewWillAppear:(BOOL)animated{
