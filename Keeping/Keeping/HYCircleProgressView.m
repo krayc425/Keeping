@@ -82,7 +82,7 @@
 }
 
 - (void)setFontWithSize:(CGFloat)size{
-    self.progressLabel.font = [UIFont fontWithName:[Utilities getFont] size:size];
+    self.progressLabel.font = [UIFont systemFontOfSize:size];
 }
 
 #pragma mark - draw circleLine

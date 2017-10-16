@@ -56,9 +56,6 @@ static KPColorPickerView *colorPickerView = NULL;
     
     //日历按钮
     [self.dateButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
-//    [self.dateButton.layer setBorderWidth:0.5f];
-//    [self.dateButton.layer setBorderColor:[Utilities getColor].CGColor];
-//    [self.dateButton.layer setCornerRadius:self.dateButton.frame.size.height / 4];
     
     //日历插件
     self.calendar = [[FSCalendar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width - 20, 250)];
@@ -67,10 +64,10 @@ static KPColorPickerView *colorPickerView = NULL;
     self.calendar.backgroundColor = [UIColor whiteColor];
     self.calendar.layer.cornerRadius = 10;
     
-    self.calendar.appearance.titleFont = [UIFont fontWithName:[Utilities getFont] size:12.0];
-    self.calendar.appearance.headerTitleFont = [UIFont fontWithName:[Utilities getFont] size:15.0];
-    self.calendar.appearance.weekdayFont = [UIFont fontWithName:[Utilities getFont] size:15.0];
-    self.calendar.appearance.subtitleFont = [UIFont fontWithName:[Utilities getFont] size:10.0];
+    self.calendar.appearance.titleFont = [UIFont systemFontOfSize:12.0];
+    self.calendar.appearance.headerTitleFont = [UIFont systemFontOfSize:15.0];
+    self.calendar.appearance.weekdayFont = [UIFont systemFontOfSize:15.0];
+    self.calendar.appearance.subtitleFont = [UIFont systemFontOfSize:10.0];
     
     self.calendar.appearance.headerMinimumDissolvedAlpha = 0;
     self.calendar.appearance.headerDateFormat = @"yyyy 年 MM 月";
@@ -112,25 +109,24 @@ static KPColorPickerView *colorPickerView = NULL;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    [self.progressLabel setFont:[UIFont fontWithName:[Utilities getFont] size:40.0f]];
-    [self.dateButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
-    
+    [super viewWillAppear:animated];
     [self loadTasks];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
     self.selectedIndexPath = NULL;
     [self.tableView reloadData];
     [self hideTip];
 }
 
 - (void)loadTasks{
-    
     NSDictionary *sortDict = [[NSUserDefaults standardUserDefaults] valueForKey:@"sort"];
     self.sortFactor = sortDict.allKeys[0];
     self.isAscend = sortDict.allValues[0];
     
-    [self.dateButton setTitle:[DateUtil getDateStringOfDate:self.selectedDate] forState:UIControlStateNormal];
+    [self.subDateLabel setText:[DateUtil getTodayDateStringOfDate:self.selectedDate]];
+    [self.dateButton setTitle:[NSString stringWithFormat:@"%ld", (long)self.selectedDate.day] forState:UIControlStateNormal];
     
     self.selectedIndexPath = NULL;
     
@@ -191,7 +187,6 @@ static KPColorPickerView *colorPickerView = NULL;
 #pragma mark - Choose Date
 
 - (IBAction)chooseDateAction:(id)sender{
-    
     AMPopTip *tp = [KPTodayTableViewController shareTipInstance];
     
     if(![tp isVisible] && ![tp isAnimating]){
@@ -281,11 +276,11 @@ static KPColorPickerView *colorPickerView = NULL;
             if([self.unfinishedTaskArr count] == 0){
                 return 0.00001f;
             }else{
-                return 20.0f;
+                return 50.0f;
             }
         }
         case 2:
-            return 20.0f;
+            return 50.0f;
         default:
             return 0.00001f;
     }
@@ -329,6 +324,8 @@ static KPColorPickerView *colorPickerView = NULL;
                 [cell setIsFinished:YES];
             }
             
+            [cell configureWithTask:t];
+            
             //设置是否为当前 cell
             if([indexPath isEqual:self.selectedIndexPath] && ![cell.moreButton isHidden]){
                 [cell setIsSelected:YES];
@@ -339,96 +336,6 @@ static KPColorPickerView *colorPickerView = NULL;
             }
 
             [cell.moreButton setHidden:!t.hasMoreInfo];
-            
-            [cell.taskNameLabel setText:t.name];
-            
-            if(t.type > 0){
-                [cell.typeImg setHidden:NO];
-                
-                UIImage *img = [UIImage imageNamed:@"Round_S"];
-                img = [img imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-                cell.typeImg.tintColor = [Utilities getTypeColorArr][t.type - 1];
-                [cell.typeImg setImage:img];
-            }else{
-                [cell.typeImg setImage:[UIImage new]];
-                [cell.typeImg setHidden:YES];
-            }
-            
-            if(t.appScheme != NULL){
-                NSDictionary *d = t.appScheme;
-                NSString *s = d.allKeys[0];
-                [cell.appButton setTitle:[NSString stringWithFormat:@"%@", s] forState:UIControlStateNormal];
-                [cell.appButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
-                [cell.appButton setUserInteractionEnabled:YES];
-                
-                UIImage *appImg = [UIImage imageNamed:@"TODAY_APP"];
-                appImg = [appImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-                [cell.appImg setImage:appImg];
-                [cell.appButton setHidden:NO];
-                [cell.appImg setHidden:NO];
-                [cell.appImg setTintColor:[Utilities getColor]];
-            }else{
-                [cell.appButton setHidden:YES];
-                [cell.appImg setHidden:YES];
-            }
-            
-            if(t.link != NULL && ![t.link isEqualToString:@""]){
-                [cell.linkButton setTitle:@"链接" forState:UIControlStateNormal];
-                [cell.linkButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
-                [cell.linkButton setUserInteractionEnabled:YES];
-                
-                UIImage *linkImg = [UIImage imageNamed:@"TODAY_LINK"];
-                linkImg = [linkImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-                [cell.linkImg setImage:linkImg];
-                [cell.linkButton setHidden:NO];
-                [cell.linkImg setHidden:NO];
-                [cell.linkImg setTintColor:[Utilities getColor]];
-            }else{
-                [cell.linkButton setHidden:YES];
-                [cell.linkImg setHidden:YES];
-            }
-            
-            if(t.image != NULL){
-                [cell.imageButton setTitle:@"图片" forState:UIControlStateNormal];
-                [cell.imageButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
-                [cell.imageButton setUserInteractionEnabled:YES];
-                
-                UIImage *imageImg = [UIImage imageNamed:@"TODAY_IMAGE"];
-                imageImg = [imageImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-                [cell.imageImg setImage:imageImg];
-                [cell.imageButton setHidden:NO];
-                [cell.imageImg setHidden:NO];
-                [cell.imageImg setTintColor:[Utilities getColor]];
-            }else{
-                [cell.imageButton setHidden:YES];
-                [cell.imageImg setHidden:YES];
-            }
-            
-            if(t.memo != NULL && ![t.memo isEqualToString:@""]){
-                [cell.memoButton setTitle:@"备注" forState:UIControlStateNormal];
-                [cell.memoButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
-                [cell.memoButton setUserInteractionEnabled:YES];
-                
-                UIImage *imageImg = [UIImage imageNamed:@"TODAY_TEXT"];
-                imageImg = [imageImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-                [cell.memoImg setImage:imageImg];
-                [cell.memoButton setHidden:NO];
-                [cell.memoImg setHidden:NO];
-                [cell.memoImg setTintColor:[Utilities getColor]];
-                
-//                [cell.memoButton setTitle:t.memo forState:UIControlStateNormal];
-                
-            }else{
-                [cell.memoButton setHidden:YES];
-                [cell.memoImg setHidden:YES];
-            }
-            
-            if(t.reminderTime != NULL){
-                [cell.reminderTimeView setTime:t.reminderTime];
-                [cell.reminderTimeView setHidden:NO];
-            }else{
-                [cell.reminderTimeView setHidden:YES];
-            }
             
             //晚于：不能打卡
             NSDate *tempDate = [NSDate dateWithYear:[[NSDate date] year]
@@ -650,7 +557,7 @@ static KPColorPickerView *colorPickerView = NULL;
     
     NSDictionary *attributes = @{
                                  NSForegroundColorAttributeName: [Utilities getColor],
-                                 NSFontAttributeName:[UIFont fontWithName:[Utilities getFont] size:20.0]
+                                 NSFontAttributeName:[UIFont systemFontOfSize:20.0]
                                  };
     
     return [[NSAttributedString alloc] initWithString:text attributes:attributes];

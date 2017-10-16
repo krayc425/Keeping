@@ -18,7 +18,6 @@
 
 @implementation KPAboutTableViewController
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -27,7 +26,7 @@
     }
     
     [self.navigationItem setTitle:@"关于"];
-    [self.nameLabel setFont:[UIFont fontWithName:[Utilities getFont] size:30.0f]];
+    [self.nameLabel setFont:[UIFont systemFontOfSize:30.0f]];
     
     //设置版本号
     self.versionLabel.text = [NSString stringWithFormat:@"v%@",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
@@ -43,7 +42,7 @@
 
 - (void)setFont{
     for(UILabel *lbl in self.labels) {
-        [lbl setFont:[UIFont fontWithName:[Utilities getFont] size:17.0]];
+        [lbl setFont:[UIFont systemFontOfSize:17.0]];
     }
 }
 

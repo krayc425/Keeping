@@ -96,11 +96,11 @@
 
 - (void)setFont{
     NSDictionary *dicTab = @{
-                             NSFontAttributeName:[UIFont fontWithName:[Utilities getFont] size:10.0],
+                             NSFontAttributeName:[UIFont systemFontOfSize:10.0f],
                              NSForegroundColorAttributeName: [UIColor grayColor],
                              };
     NSDictionary *dicTabSelected = @{
-                                     NSFontAttributeName:[UIFont fontWithName:[Utilities getFont] size:10.0],
+                                     NSFontAttributeName:[UIFont systemFontOfSize:10.0f],
                                      NSForegroundColorAttributeName: [Utilities getColor],
                                      };
     for(UITabBarItem *item in self.tabBar.items){

@@ -60,7 +60,7 @@ static BOOL _loadingXib = NO;
                 ];
     
     for(UILabel *label in self.labels){
-        [label setFont:[UIFont fontWithName:[Utilities getFont] size:15.0]];
+        [label setFont:[UIFont systemFontOfSize:15.0]];
     }
     
     for(UIStackView *stack in self.stackView.subviews){

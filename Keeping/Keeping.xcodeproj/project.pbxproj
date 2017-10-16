@@ -26,19 +26,15 @@
 		2429CBEE1E2E4A9B0027DD37 /* KPTodayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2429CBEC1E2E4A9B0027DD37 /* KPTodayTableViewCell.m */; };
 		2429CBEF1E2E4A9B0027DD37 /* KPTodayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2429CBED1E2E4A9B0027DD37 /* KPTodayTableViewCell.xib */; };
 		2429CBF31E2E4E750027DD37 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2429CBF21E2E4E750027DD37 /* Utilities.m */; };
-		2429CBF81E2E571A0027DD37 /* 方正书宋简体.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2429CBF71E2E571A0027DD37 /* 方正书宋简体.ttf */; };
 		2429CBFB1E2E5D510027DD37 /* KPTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2429CBFA1E2E5D510027DD37 /* KPTabBarViewController.m */; };
 		2435AF5C1E34D0D50065DC74 /* MLKMenuPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 2435AF5B1E34D0D50065DC74 /* MLKMenuPopover.m */; };
 		2435DBF11E35CCC300F1A96E /* KPFontTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2435DBF01E35CCC300F1A96E /* KPFontTableViewController.m */; };
-		2435DBF91E35CD5500F1A96E /* KPFontTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2435DBF71E35CD5500F1A96E /* KPFontTableViewCell.m */; };
-		2435DBFA1E35CD5500F1A96E /* KPFontTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2435DBF81E35CD5500F1A96E /* KPFontTableViewCell.xib */; };
 		2435F3361E5175FE00C6AAA6 /* KPWeekdayPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2435F3351E5175FE00C6AAA6 /* KPWeekdayPickerView.xib */; };
 		2436F8241E2F2C3300C2984A /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2436F8231E2F2C3300C2984A /* libsqlite3.0.tbd */; };
 		2436F8271E2F2C4B00C2984A /* TaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2436F8261E2F2C4B00C2984A /* TaskManager.m */; };
 		2436F82A1E2F2C5700C2984A /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 2436F8291E2F2C5700C2984A /* Task.m */; };
 		244EB3051E3635B100D30AE3 /* KPImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 244EB3041E3635B100D30AE3 /* KPImageViewController.m */; };
 		245196711E3CB82F00C18C5B /* TabBar.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 245196701E3CB82F00C18C5B /* TabBar.xcassets */; };
-		245196761E3CE35200C18C5B /* 方正楷体简体.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 245196751E3CE34F00C18C5B /* 方正楷体简体.ttf */; };
 		2462FB891E4D6295004E70A5 /* Intro_Screen_Four.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2462FB851E4D6295004E70A5 /* Intro_Screen_Four.jpg */; };
 		2462FB8A1E4D6295004E70A5 /* Intro_Screen_One.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2462FB861E4D6295004E70A5 /* Intro_Screen_One.jpg */; };
 		2462FB8B1E4D6295004E70A5 /* Intro_Screen_Three.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2462FB871E4D6295004E70A5 /* Intro_Screen_Three.jpg */; };
@@ -57,16 +53,10 @@
 		247F01D11E3DB4F8001F900C /* KPWidgetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 247F01CF1E3DB4F8001F900C /* KPWidgetTableViewCell.m */; };
 		247F01D21E3DB4F8001F900C /* KPWidgetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 247F01D01E3DB4F8001F900C /* KPWidgetTableViewCell.xib */; };
 		247F01D31E3DBAB7001F900C /* DateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DCF1891E3094050097C250 /* DateUtil.m */; };
-		247F01D41E3DBB27001F900C /* 方正书宋简体.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2429CBF71E2E571A0027DD37 /* 方正书宋简体.ttf */; };
-		247F01D51E3DBB2B001F900C /* 方正楷体简体.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 245196751E3CE34F00C18C5B /* 方正楷体简体.ttf */; };
 		247F01D71E3DBC4E001F900C /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 247F01D61E3DBC4E001F900C /* MainInterface.storyboard */; };
 		247F01D81E3DC5F3001F900C /* TaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2436F8261E2F2C4B00C2984A /* TaskManager.m */; };
 		247F01D91E3DC625001F900C /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F2A0D01E2F3F1800F30FB1 /* DBManager.m */; };
 		247F01DA1E3DC627001F900C /* UNManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24151C961E32388300757A69 /* UNManager.m */; };
-		2492A56F1E93F3F900A2AF4A /* SourceHanSansCN-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2492A56D1E93F31B00A2AF4A /* SourceHanSansCN-Light.otf */; };
-		2492A5701E93F3FA00A2AF4A /* SourceHanSansCN-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2492A56D1E93F31B00A2AF4A /* SourceHanSansCN-Light.otf */; };
-		2492A5711E93F3FC00A2AF4A /* SourceHanSerifCN-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2492A56E1E93F32500A2AF4A /* SourceHanSerifCN-Light.otf */; };
-		2492A5721E93F3FD00A2AF4A /* SourceHanSerifCN-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2492A56E1E93F32500A2AF4A /* SourceHanSerifCN-Light.otf */; };
 		2493299D1E549EA300C85070 /* KPTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2493299C1E549EA300C85070 /* KPTabBar.m */; };
 		249700471E5607210015CC5F /* KPTypeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 249700461E5607210015CC5F /* KPTypeTableViewController.m */; };
 		2497004B1E56075B0015CC5F /* KPTypeColorTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 249700491E56075B0015CC5F /* KPTypeColorTableViewCell.m */; };
@@ -181,7 +171,6 @@
 		2429CBED1E2E4A9B0027DD37 /* KPTodayTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KPTodayTableViewCell.xib; sourceTree = "<group>"; };
 		2429CBF11E2E4E750027DD37 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		2429CBF21E2E4E750027DD37 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
-		2429CBF71E2E571A0027DD37 /* 方正书宋简体.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "方正书宋简体.ttf"; sourceTree = "<group>"; };
 		2429CBF91E2E5D510027DD37 /* KPTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPTabBarViewController.h; sourceTree = "<group>"; };
 		2429CBFA1E2E5D510027DD37 /* KPTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPTabBarViewController.m; sourceTree = "<group>"; };
 		2433E6C41E65034600315D5B /* libAVOSCloudCrashReporting.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAVOSCloudCrashReporting.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Keeping-ejqrhezpewpcwpfbtvrmhjalbbdj/Build/Products/Debug-iphonesimulator/AVOSCloudCrashReporting/libAVOSCloudCrashReporting.a"; sourceTree = "<group>"; };
@@ -192,9 +181,6 @@
 		2435AF5B1E34D0D50065DC74 /* MLKMenuPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLKMenuPopover.m; sourceTree = "<group>"; };
 		2435DBEF1E35CCC300F1A96E /* KPFontTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPFontTableViewController.h; sourceTree = "<group>"; };
 		2435DBF01E35CCC300F1A96E /* KPFontTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPFontTableViewController.m; sourceTree = "<group>"; };
-		2435DBF61E35CD5500F1A96E /* KPFontTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPFontTableViewCell.h; sourceTree = "<group>"; };
-		2435DBF71E35CD5500F1A96E /* KPFontTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPFontTableViewCell.m; sourceTree = "<group>"; };
-		2435DBF81E35CD5500F1A96E /* KPFontTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KPFontTableViewCell.xib; sourceTree = "<group>"; };
 		2435F3351E5175FE00C6AAA6 /* KPWeekdayPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KPWeekdayPickerView.xib; sourceTree = "<group>"; };
 		2436F8231E2F2C3300C2984A /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		2436F8251E2F2C4B00C2984A /* TaskManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskManager.h; sourceTree = "<group>"; };
@@ -204,7 +190,6 @@
 		244EB3031E3635B100D30AE3 /* KPImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPImageViewController.h; sourceTree = "<group>"; };
 		244EB3041E3635B100D30AE3 /* KPImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPImageViewController.m; sourceTree = "<group>"; };
 		245196701E3CB82F00C18C5B /* TabBar.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TabBar.xcassets; sourceTree = "<group>"; };
-		245196751E3CE34F00C18C5B /* 方正楷体简体.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "方正楷体简体.ttf"; sourceTree = "<group>"; };
 		2462FB851E4D6295004E70A5 /* Intro_Screen_Four.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Intro_Screen_Four.jpg; sourceTree = "<group>"; };
 		2462FB861E4D6295004E70A5 /* Intro_Screen_One.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Intro_Screen_One.jpg; sourceTree = "<group>"; };
 		2462FB871E4D6295004E70A5 /* Intro_Screen_Three.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Intro_Screen_Three.jpg; sourceTree = "<group>"; };
@@ -230,8 +215,6 @@
 		247F01CF1E3DB4F8001F900C /* KPWidgetTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPWidgetTableViewCell.m; sourceTree = "<group>"; };
 		247F01D01E3DB4F8001F900C /* KPWidgetTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KPWidgetTableViewCell.xib; sourceTree = "<group>"; };
 		247F01D61E3DBC4E001F900C /* MainInterface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
-		2492A56D1E93F31B00A2AF4A /* SourceHanSansCN-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceHanSansCN-Light.otf"; sourceTree = "<group>"; };
-		2492A56E1E93F32500A2AF4A /* SourceHanSerifCN-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceHanSerifCN-Light.otf"; sourceTree = "<group>"; };
 		2493299B1E549EA300C85070 /* KPTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPTabBar.h; sourceTree = "<group>"; };
 		2493299C1E549EA300C85070 /* KPTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPTabBar.m; sourceTree = "<group>"; };
 		249700451E5607210015CC5F /* KPTypeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPTypeTableViewController.h; sourceTree = "<group>"; };
@@ -410,9 +393,6 @@
 			children = (
 				2435DBEF1E35CCC300F1A96E /* KPFontTableViewController.h */,
 				2435DBF01E35CCC300F1A96E /* KPFontTableViewController.m */,
-				2435DBF61E35CD5500F1A96E /* KPFontTableViewCell.h */,
-				2435DBF71E35CD5500F1A96E /* KPFontTableViewCell.m */,
-				2435DBF81E35CD5500F1A96E /* KPFontTableViewCell.xib */,
 			);
 			name = Font;
 			sourceTree = "<group>";
@@ -561,10 +541,6 @@
 				2462FB861E4D6295004E70A5 /* Intro_Screen_One.jpg */,
 				2462FB871E4D6295004E70A5 /* Intro_Screen_Three.jpg */,
 				2462FB881E4D6295004E70A5 /* Intro_Screen_Two.jpg */,
-				2492A56D1E93F31B00A2AF4A /* SourceHanSansCN-Light.otf */,
-				2492A56E1E93F32500A2AF4A /* SourceHanSerifCN-Light.otf */,
-				245196751E3CE34F00C18C5B /* 方正楷体简体.ttf */,
-				2429CBF71E2E571A0027DD37 /* 方正书宋简体.ttf */,
 				249AE3161E2DEE7700F704F8 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -860,12 +836,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				247F01D41E3DBB27001F900C /* 方正书宋简体.ttf in Resources */,
 				247F01D71E3DBC4E001F900C /* MainInterface.storyboard in Resources */,
-				2492A5721E93F3FD00A2AF4A /* SourceHanSerifCN-Light.otf in Resources */,
 				247F01D21E3DB4F8001F900C /* KPWidgetTableViewCell.xib in Resources */,
-				2492A5701E93F3FA00A2AF4A /* SourceHanSansCN-Light.otf in Resources */,
-				247F01D51E3DBB2B001F900C /* 方正楷体简体.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -891,7 +863,6 @@
 				24F2A0FC1E2F7B6E00F30FB1 /* round_backarrow_big.png in Resources */,
 				2462FB8C1E4D6295004E70A5 /* Intro_Screen_Two.jpg in Resources */,
 				24F2A0FF1E2F7B6E00F30FB1 /* schedule_image_moon-high@2x.png in Resources */,
-				2492A56F1E93F3F900A2AF4A /* SourceHanSansCN-Light.otf in Resources */,
 				24F2A0F61E2F7B6E00F30FB1 /* checkmark_icon_white@2x.png in Resources */,
 				245196711E3CB82F00C18C5B /* TabBar.xcassets in Resources */,
 				24F2A0F71E2F7B6E00F30FB1 /* picker_wheel@2x.png in Resources */,
@@ -900,12 +871,8 @@
 				24F2A0DC1E2F489100F30FB1 /* KPSchemeTableViewCell.xib in Resources */,
 				24699F051E2F23C60092FBED /* Navigation.xcassets in Resources */,
 				24F2A0FA1E2F7B6E00F30FB1 /* round_backarrow_big-high.png in Resources */,
-				2435DBFA1E35CD5500F1A96E /* KPFontTableViewCell.xib in Resources */,
-				245196761E3CE35200C18C5B /* 方正楷体简体.ttf in Resources */,
-				2429CBF81E2E571A0027DD37 /* 方正书宋简体.ttf in Resources */,
 				24F2A0FB1E2F7B6E00F30FB1 /* round_backarrow_big-high@2x.png in Resources */,
 				2462FB8A1E4D6295004E70A5 /* Intro_Screen_One.jpg in Resources */,
-				2492A5711E93F3FC00A2AF4A /* SourceHanSerifCN-Light.otf in Resources */,
 				24F2A0F81E2F7B6E00F30FB1 /* picker_wheel_ip4.png in Resources */,
 				2497004C1E56075B0015CC5F /* KPTypeColorTableViewCell.xib in Resources */,
 				2429CBEA1E2E49A60027DD37 /* KPSeparatorView.xib in Resources */,
@@ -921,13 +888,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Keeping-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		1DB4E3AA2BDD226DF2D68A26 /* [CP] Copy Pods Resources */ = {
@@ -936,9 +906,24 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Keeping/Pods-Keeping-resources.sh",
+				"${PODS_ROOT}/AVOSCloud/AVOS/AVOSCloud/AVOSCloud_Art.inc",
+				"${PODS_ROOT}/DateTools/DateTools/DateTools.bundle",
+				"${PODS_ROOT}/HSDatePickerViewController/HSDatePickerViewControllerDemo/HSDatePickerViewController/HSDatePickerViewController.xib",
+				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
+				"${PODS_ROOT}/LeanCloudFeedback/LeanCloudFeedback/resources/feedback_add_image@2x.png",
+				"${PODS_ROOT}/LeanCloudFeedback/LeanCloudFeedback/resources/feedback_back@2x.png",
+				"${PODS_ROOT}/LeanCloudFeedback/LeanCloudFeedback/resources/feedback_bg_1@2x.png",
+				"${PODS_ROOT}/LeanCloudFeedback/LeanCloudFeedback/resources/feedback_bg_2@2x.png",
+				"${PODS_ROOT}/LeanCloudFeedback/LeanCloudFeedback/resources/feedback_btn@2x.png",
+				"${PODS_ROOT}/LeanCloudFeedback/LeanCloudFeedback/resources/feedback_btn_new@2x.png",
+				"${PODS_ROOT}/LeanCloudFeedback/LeanCloudFeedback/resources/feedback_warning@2x.png",
+				"${PODS_ROOT}/LeanCloudFeedback/LeanCloudFeedback/resources/LeanCloudFeedback.strings",
+				"${PODS_ROOT}/PYSearch/PYSearch/PYSearch.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -964,9 +949,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-KeepingWidget/Pods-KeepingWidget-resources.sh",
+				"${PODS_ROOT}/DateTools/DateTools/DateTools.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -979,13 +967,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KeepingWidget-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C306EC120EDCB79DCB2A853B /* [CP] Embed Pods Frameworks */ = {
@@ -1057,7 +1048,6 @@
 				2429CBFB1E2E5D510027DD37 /* KPTabBarViewController.m in Sources */,
 				241FB6671E31D2F300DF4D53 /* HYCircleProgressView.m in Sources */,
 				241D3F001E7CFAD20051023F /* KPTaskDisplayTableViewController.m in Sources */,
-				2435DBF91E35CD5500F1A96E /* KPFontTableViewCell.m in Sources */,
 				2429CBF31E2E4E750027DD37 /* Utilities.m in Sources */,
 				24DCF1941E310A890097C250 /* CardsView.m in Sources */,
 				2436F82A1E2F2C5700C2984A /* Task.m in Sources */,

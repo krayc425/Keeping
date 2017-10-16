@@ -8,7 +8,6 @@
 
 #import "KPFontTableViewController.h"
 #import "Utilities.h"
-#import "KPFontTableViewCell.h"
 #import "KPNavigationViewController.h"
 #import "KPTabBarViewController.h"
 #import "KPTaskTableViewCell.h"
@@ -34,17 +33,6 @@
     
     [self.sizeControl setSelectedSegmentIndex:[[NSUserDefaults standardUserDefaults] integerForKey:@"fontSize"]];
     [self.sizeControl addTarget:self action:@selector(sliderValueChanged) forControlEvents:UIControlEventValueChanged];
-    
-//    [self loadFontNames];
-}
-
-- (void)loadFontNames{
-    NSArray *fontFamilies = [UIFont familyNames];
-    for (int i = 0; i < [fontFamilies count]; i++){
-        NSString *fontFamily = [fontFamilies objectAtIndex:i];
-        NSArray *fontNames = [UIFont fontNamesForFamilyName:[fontFamilies objectAtIndex:i]];
-        NSLog (@"%@: %@", fontFamily, fontNames);
-    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -64,7 +52,7 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -72,8 +60,6 @@
         case 0:
             return 2;
         case 1:
-            return [[Utilities getFontArr] count];
-        case 2:
             return 1;
         default:
             return 0;
@@ -81,25 +67,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(indexPath.section == 1){
-        static NSString *cellIdentifier = @"KPFontTableViewCell";
-        UINib *nib = [UINib nibWithNibName:@"KPFontTableViewCell" bundle:nil];
-        [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
-        KPFontTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-        
-        NSDictionary *fontDict = [Utilities getFontArr][indexPath.row];
-        
-        [cell.fontLabel setText:[fontDict allKeys][0]];
-        [cell.fontLabel setFont:[UIFont fontWithName:[fontDict allValues][0] size:20.0f]];
-
-        if([[[NSUserDefaults standardUserDefaults] valueForKey:@"font"] isEqualToString:[fontDict allValues][0]]){
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        }else{
-            cell.accessoryType = UITableViewCellAccessoryNone;
-        }
-        
-        return cell;
-    }else if(indexPath.section == 0){
+    if(indexPath.section == 0){
         
         //去掉分割线
         tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -184,30 +152,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if(indexPath.section == 1){
-        NSDictionary *fontDict = [Utilities getFontArr][indexPath.row];
-        
-        [[NSUserDefaults standardUserDefaults] setValue:[fontDict allValues][0] forKey:@"font"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        
-        NSUserDefaults *shared = [[NSUserDefaults alloc]initWithSuiteName:GROUP_ID];
-        [shared setValue:[fontDict allValues][0] forKey:@"fontwidget"];
-        [shared synchronize];
-        
-        KPNavigationViewController *nav = (KPNavigationViewController *)self.navigationController;
-        [nav setFont];
-        
-        KPTabBarViewController *tab = (KPTabBarViewController *)nav.viewControllers[0];
-        [tab setFont];
-        
-        [tableView reloadData];
-    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(indexPath.section == 1){
-        return 44;
-    }else if(indexPath.section == 0){
+    if(indexPath.section == 0){
         return 70;
     }else{
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];
@@ -215,11 +163,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 1) {
-        return 10;
-    }else{
-        return [super tableView:tableView indentationLevelForRowAtIndexPath:indexPath];
-    }
+    return [super tableView:tableView indentationLevelForRowAtIndexPath:indexPath];
 }
 
 @end

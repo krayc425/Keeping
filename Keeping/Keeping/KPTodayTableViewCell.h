@@ -11,6 +11,7 @@
 #import "CardsView.h"
 
 @class KPTimeView;
+@class Task;
 
 @protocol CheckTaskDelegate <NSObject>
 
@@ -22,7 +23,7 @@
 
 @interface KPTodayTableViewCell : UITableViewCell <BEMCheckBoxDelegate>
 
-@property (nonatomic, strong) id<CheckTaskDelegate> delegate;
+@property (nonatomic, weak, nullable) id<CheckTaskDelegate> delegate;
 //任务名
 @property (nonatomic, strong) IBOutlet UILabel *taskNameLabel;
 //提醒时间
@@ -60,5 +61,7 @@
 - (void)setIsFinished:(BOOL)isFinished;
 
 - (void)setFont;
+
+- (void)configureWithTask:(Task *_Nonnull)t;
 
 @end

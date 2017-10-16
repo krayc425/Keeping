@@ -10,6 +10,8 @@
 #import "Utilities.h"
 #import "CardsView.h"
 #import "KPTimeView.h"
+#import "Task.h"
+#import "DateTools.h"
 
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height
@@ -22,7 +24,6 @@
     [super awakeFromNib];
     
     [self setFont];
-//    [self setIsSelected:NO];
     
     self.myCheckBox.delegate = self;
     [self.myCheckBox setOnAnimationType:BEMAnimationTypeFill];
@@ -54,8 +55,8 @@
     [infoLabel setNumberOfLines:2];
     [infoLabel setTextAlignment:NSTextAlignmentCenter];
     [cardView addSubview:infoLabel];
-    
-    [self.contentView addSubview:deleteView];
+    NSLog(@"%f, %f", deleteView.frame.origin.x, deleteView.frame.origin.y);
+    [self.superview addSubview:deleteView];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -119,9 +120,9 @@
     NSNumber *fontSize = [Utilities getFontSizeArr][[[NSUserDefaults standardUserDefaults] integerForKey:@"fontSize"]];
     float f = [fontSize floatValue];
     
-    [self.taskNameLabel setFont:[UIFont fontWithName:[Utilities getFont] size:f]];
+    [self.taskNameLabel setFont:[UIFont systemFontOfSize:f]];
     
-    [infoLabel setFont:[UIFont fontWithName:[Utilities getFont] size:f]];
+    [infoLabel setFont:[UIFont systemFontOfSize:f]];
     
     [self.reminderTimeView setFont];
 }
@@ -130,10 +131,101 @@
     NSNumber *fontSize = [Utilities getFontSizeArr][[[NSUserDefaults standardUserDefaults] integerForKey:@"fontSize"]];
     float f = [fontSize floatValue];
     
-    [self.appButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:f]];
-    [self.linkButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:f]];
-    [self.imageButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:f]];
-    [self.memoButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:f]];
+    [self.appButton.titleLabel setFont:[UIFont systemFontOfSize:f]];
+    [self.linkButton.titleLabel setFont:[UIFont systemFontOfSize:f]];
+    [self.imageButton.titleLabel setFont:[UIFont systemFontOfSize:f]];
+    [self.memoButton.titleLabel setFont:[UIFont systemFontOfSize:f]];
+}
+
+- (void)configureWithTask:(Task *)t {
+    
+    [self.taskNameLabel setText:t.name];
+    
+    if(t.type > 0){
+        [self.typeImg setHidden:NO];
+        
+        UIImage *img = [UIImage imageNamed:@"Round_S"];
+        img = [img imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        self.typeImg.tintColor = [Utilities getTypeColorArr][t.type - 1];
+        [self.typeImg setImage:img];
+    }else{
+        [self.typeImg setImage:[UIImage new]];
+        [self.typeImg setHidden:YES];
+    }
+    
+    if(t.appScheme != NULL){
+        NSDictionary *d = t.appScheme;
+        NSString *s = d.allKeys[0];
+        [self.appButton setTitle:[NSString stringWithFormat:@"%@", s] forState:UIControlStateNormal];
+        [self.appButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
+        [self.appButton setUserInteractionEnabled:YES];
+        
+        UIImage *appImg = [UIImage imageNamed:@"TODAY_APP"];
+        appImg = [appImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        [self.appImg setImage:appImg];
+        [self.appButton setHidden:NO];
+        [self.appImg setHidden:NO];
+        [self.appImg setTintColor:[Utilities getColor]];
+    }else{
+        [self.appButton setHidden:YES];
+        [self.appImg setHidden:YES];
+    }
+    
+    if(t.link != NULL && ![t.link isEqualToString:@""]){
+        [self.linkButton setTitle:@"链接" forState:UIControlStateNormal];
+        [self.linkButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
+        [self.linkButton setUserInteractionEnabled:YES];
+        
+        UIImage *linkImg = [UIImage imageNamed:@"TODAY_LINK"];
+        linkImg = [linkImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        [self.linkImg setImage:linkImg];
+        [self.linkButton setHidden:NO];
+        [self.linkImg setHidden:NO];
+        [self.linkImg setTintColor:[Utilities getColor]];
+    }else{
+        [self.linkButton setHidden:YES];
+        [self.linkImg setHidden:YES];
+    }
+    
+    if(t.image != NULL){
+        [self.imageButton setTitle:@"图片" forState:UIControlStateNormal];
+        [self.imageButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
+        [self.imageButton setUserInteractionEnabled:YES];
+        
+        UIImage *imageImg = [UIImage imageNamed:@"TODAY_IMAGE"];
+        imageImg = [imageImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        [self.imageImg setImage:imageImg];
+        [self.imageButton setHidden:NO];
+        [self.imageImg setHidden:NO];
+        [self.imageImg setTintColor:[Utilities getColor]];
+    }else{
+        [self.imageButton setHidden:YES];
+        [self.imageImg setHidden:YES];
+    }
+    
+    if(t.memo != NULL && ![t.memo isEqualToString:@""]){
+        [self.memoButton setTitle:@"备注" forState:UIControlStateNormal];
+        [self.memoButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
+        [self.memoButton setUserInteractionEnabled:YES];
+        
+        UIImage *imageImg = [UIImage imageNamed:@"TODAY_TEXT"];
+        imageImg = [imageImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        [self.memoImg setImage:imageImg];
+        [self.memoButton setHidden:NO];
+        [self.memoImg setHidden:NO];
+        [self.memoImg setTintColor:[Utilities getColor]];
+        
+    }else{
+        [self.memoButton setHidden:YES];
+        [self.memoImg setHidden:YES];
+    }
+    
+    if(t.reminderTime != NULL){
+        [self.reminderTimeView setTime:t.reminderTime];
+        [self.reminderTimeView setHidden:NO];
+    }else{
+        [self.reminderTimeView setHidden:YES];
+    }
 }
 
 @end

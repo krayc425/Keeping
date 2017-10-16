@@ -9,6 +9,7 @@
 #import "KPNavigationViewController.h"
 #import "KPTabBarViewController.h"
 #import "Utilities.h"
+#import "KPSchemeManager.h"
 
 @interface KPNavigationViewController ()
 
@@ -29,6 +30,10 @@
         self.introView.backgroundColor = [UIColor whiteColor];
         [self.view addSubview:self.introView];
     }
+    
+    //下载 schemes
+    NSArray *r = [[KPSchemeManager shareInstance] getSchemeArr];
+    NSLog(@"%lu apps", (unsigned long)r.count);
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -52,7 +57,7 @@
 
 - (void)setFont{
     NSDictionary *dicNav = @{
-                             NSFontAttributeName:[UIFont fontWithName:[Utilities getFont] size:22.0],
+                             NSFontAttributeName:[UIFont systemFontOfSize:17.0f],
                              NSForegroundColorAttributeName: [UIColor whiteColor]
                              };
     self.navigationBar.titleTextAttributes = dicNav;

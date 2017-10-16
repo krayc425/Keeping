@@ -50,7 +50,7 @@
     
     
     //任务名
-    [self.taskNameField setFont:[UIFont fontWithName:[Utilities getFont] size:25.0f]];
+    [self.taskNameField setFont:[UIFont systemFontOfSize:25.0f]];
     self.taskNameField.layer.borderWidth = 1.0;
     self.taskNameField.layer.cornerRadius = 5.0;
     self.taskNameField.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
@@ -59,7 +59,7 @@
     
     //持续时间
     for(UILabel *label in self.durationStack.subviews){
-        [label setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
+        [label setFont:[UIFont systemFontOfSize:20.0f]];
     }
     
     
@@ -75,7 +75,7 @@
     
     
     //提醒标签
-    [self.reminderLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
+    [self.reminderLabel setFont:[UIFont systemFontOfSize:20.0f]];
     //提醒开关
     [self.reminderSwitch setTintColor:[Utilities getColor]];
     [self.reminderSwitch setOnTintColor:[Utilities getColor]];
@@ -83,19 +83,19 @@
     
     
     //APP名字标签
-    [self.appNameLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
+    [self.appNameLabel setFont:[UIFont systemFontOfSize:20.0f]];
     
     
     //图片
     self.selectedImgView.userInteractionEnabled = YES;
     for(UIButton *button in self.imgButtonStack.subviews){
         [button setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
-        [button.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
+        [button.titleLabel setFont:[UIFont systemFontOfSize:15.0f]];
     }
     
     
     //链接
-    [self.linkTextField setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
+    [self.linkTextField setFont:[UIFont systemFontOfSize:15.0f]];
     self.linkTextField.layer.borderWidth = 1.0;
     self.linkTextField.layer.cornerRadius = 5.0;
     self.linkTextField.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
@@ -112,36 +112,17 @@
     //备注
     self.memoTextView.delegate = self;
     [self.memoTextView setTextColor:[Utilities getColor]];
-    [self.memoTextView setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
+    [self.memoTextView setFont:[UIFont systemFontOfSize:15.0f]];
     self.memoTextView.layer.borderWidth = 1.0;
     self.memoTextView.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
     self.memoTextView.layer.cornerRadius = 5.0;
-    
-    UIToolbar *keyboardDoneButtonView = [[UIToolbar alloc] init];
-    keyboardDoneButtonView.barStyle = UIBarStyleBlack;
-    keyboardDoneButtonView.translucent = NO;
-    keyboardDoneButtonView.backgroundColor = [Utilities getColor];
-    keyboardDoneButtonView.tintColor = [Utilities getColor];
-    keyboardDoneButtonView.barTintColor = [Utilities getColor];
-    [keyboardDoneButtonView sizeToFit];
-    
-    UIBarButtonItem *spaceButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                                                                               target:nil
-                                                                               action:nil];
-    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"完成"
-                                                                       style:UIBarButtonItemStyleDone
-                                                                  target:self
-                                                                  action:@selector(pickerDoneClicked)];
-    doneButton.tintColor = [UIColor whiteColor];
-    [keyboardDoneButtonView setItems:@[spaceButton, doneButton]];
-    self.memoTextView.inputAccessoryView = keyboardDoneButtonView;
     
     UILabel *placeHolderLabel = [[UILabel alloc] init];
     placeHolderLabel.text = @"点击输入备注";
     placeHolderLabel.numberOfLines = 0;
     placeHolderLabel.textColor = [UIColor lightGrayColor];
     [placeHolderLabel sizeToFit];
-    [placeHolderLabel setFont:[UIFont fontWithName:[Utilities getFont] size:15.0f]];
+    [placeHolderLabel setFont:[UIFont systemFontOfSize:15.0f]];
     placeHolderLabel.textAlignment = NSTextAlignmentCenter;
     [self.memoTextView addSubview:placeHolderLabel];
     [self.memoTextView setValue:placeHolderLabel forKey:@"_placeholderLabel"];
@@ -625,7 +606,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 30.0f;
+    return 50.0f;
 }
 
 - (UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
@@ -655,7 +636,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.section == 8){
-        return self.view.frame.size.width;
+        return self.selectedImgView.image == NULL ? 40.0f : self.view.frame.size.width;
     }else{
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];
     }
@@ -663,22 +644,8 @@
 
 #pragma mark - UITextFieldDelegate & UITextViewDelegate
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [self hideKeyboard];
-    return YES;
-}
-
 - (void)pickerDoneClicked{
     [self.memoTextView resignFirstResponder];
-}
-
-- (void)hideKeyboard{
-    if([self.taskNameField isFirstResponder]){
-        [self.taskNameField resignFirstResponder];
-    }
-    if([self.linkTextField isFirstResponder]){
-        [self.linkTextField resignFirstResponder];
-    }
 }
 
 #pragma mark - Navigation

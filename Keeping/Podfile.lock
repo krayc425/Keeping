@@ -34,6 +34,7 @@ PODS:
   - FMDB/standard (2.6.2)
   - FSCalendar (2.5.1)
   - HSDatePickerViewController (1.0.4)
+  - IQKeyboardManager (5.0.3)
   - LeanCloudFeedback (0.1.1):
     - AVOSCloud
   - LeanCloudSocial (0.0.8):
@@ -58,6 +59,7 @@ DEPENDENCIES:
   - FMDB
   - FSCalendar
   - HSDatePickerViewController
+  - IQKeyboardManager
   - LeanCloudFeedback
   - LeanCloudSocial
   - MBProgressHUD
@@ -78,6 +80,7 @@ SPEC CHECKSUMS:
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   FSCalendar: 8efeb4b92240937204165c7743f4375923112fb5
   HSDatePickerViewController: 5a72b71f8c3b10e76f2c28a898f8572b551432a6
+  IQKeyboardManager: dc5b18b47e5170e4d150bb86dbee8c8a2fc48997
   LeanCloudFeedback: 686305ea196931c7eae49800c384e42d78408482
   LeanCloudSocial: f7787dfc1559dc47263bbfd37a03c870352ad98a
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
@@ -85,6 +88,6 @@ SPEC CHECKSUMS:
   PYSearch: d7d89a358545f4f8ef3700197724162d1e0e2029
   SCLAlertView-Objective-C: ca78280817e66e74366b78579350dee2ff277e23
 
-PODFILE CHECKSUM: 67a41921805683070bd4655d257c2973f67ff92b
+PODFILE CHECKSUM: 5fb1c26a18b6468cca697649d971433c8040bc27
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.3.1

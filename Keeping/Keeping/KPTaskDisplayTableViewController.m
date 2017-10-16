@@ -63,8 +63,8 @@ static AMPopTip *shareTip = NULL;
     [self.endDateButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
     [self.startDateButton.titleLabel sizeToFit];
     [self.endDateButton.titleLabel sizeToFit];
-    [self.startDateButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
-    [self.endDateButton.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0f]];
+    [self.startDateButton.titleLabel setFont:[UIFont systemFontOfSize:18.0f]];
+    [self.endDateButton.titleLabel setFont:[UIFont systemFontOfSize:18.0f]];
     self.startDateButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     self.endDateButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     self.startDateButton.titleLabel.adjustsFontSizeToFitWidth = YES;
@@ -78,7 +78,7 @@ static AMPopTip *shareTip = NULL;
     
     //Weekday
     self.weekdayView.isAllSelected = NO;
-    self.weekdayView.fontSize = 15.0;
+    self.weekdayView.fontSize = 12.0;
     self.weekdayView.isAllButtonHidden = YES;
     self.weekdayView.userInteractionEnabled = NO;
     
@@ -121,10 +121,10 @@ static AMPopTip *shareTip = NULL;
     [cardView addSubview:previousButton];
     self.previousButton = previousButton;
     
-    self.calendar.appearance.titleFont = [UIFont fontWithName:[Utilities getFont] size:12.0];
-    self.calendar.appearance.headerTitleFont = [UIFont fontWithName:[Utilities getFont] size:15.0];
-    self.calendar.appearance.weekdayFont = [UIFont fontWithName:[Utilities getFont] size:15.0];
-    self.calendar.appearance.subtitleFont = [UIFont fontWithName:[Utilities getFont] size:10.0];
+    self.calendar.appearance.titleFont = [UIFont systemFontOfSize:12.0];
+    self.calendar.appearance.headerTitleFont = [UIFont systemFontOfSize:15.0];
+    self.calendar.appearance.weekdayFont = [UIFont systemFontOfSize:15.0];
+    self.calendar.appearance.subtitleFont = [UIFont systemFontOfSize:10.0];
     
     UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
     nextButton.frame = CGRectMake(CGRectGetWidth(self.tableView.frame) - 120, 8, 95, 34);
@@ -414,9 +414,8 @@ static AMPopTip *shareTip = NULL;
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     switch (section) {
         case 0:
-            return 30.0f;
         case 1:
-            return 20.0f;
+            return 50.0f;
         default:
             return 0.00001f;
     }
@@ -628,26 +627,5 @@ static AMPopTip *shareTip = NULL;
         shareTip = NULL;
     }
 }
-
-//#pragma mark - 3D Touch Actions
-//
-//- (NSArray *)previewActionItems{
-//    UIPreviewAction *action1 = [UIPreviewAction actionWithTitle:@"编辑"
-//                                                          style:UIPreviewActionStyleDefault
-//                                                        handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {
-//                                                            NSLog(@"%@", self.task.name);
-//                                                            [self editAction:nil];
-//                                                        }];
-//    
-//    UIPreviewAction *action2 = [UIPreviewAction actionWithTitle:@"删除"
-//                                                          style:UIPreviewActionStyleDestructive
-//                                                        handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {
-//                                                            NSLog(@"Aciton2");
-//                                                        }];
-//    
-//    NSArray *actions = @[action1,action2];
-//    
-//    return actions;
-//}
 
 @end

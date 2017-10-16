@@ -189,9 +189,10 @@
 }
 
 - (void)setFont{
-    for(UILabel *lbl in self.labels) {
-        [lbl setFont:[UIFont fontWithName:[Utilities getFont] size:17.0]];
-    }
+    [self.labels enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        UILabel *lbl = (UILabel *)obj;
+        [lbl setFont:[UIFont systemFontOfSize:17.0]];
+    }];
 }
 
 #pragma mark - Login Actions

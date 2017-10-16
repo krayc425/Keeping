@@ -26,9 +26,9 @@
     
     [self.navigationItem setTitle:@"选择 APP"];
     
-    [self.noneLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0]];
-    [self.insLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0]];
-    [self.refreshLabel setFont:[UIFont fontWithName:[Utilities getFont] size:20.0]];
+    [self.noneLabel setFont:[UIFont systemFontOfSize:20.0]];
+    [self.insLabel setFont:[UIFont systemFontOfSize:20.0]];
+    [self.refreshLabel setFont:[UIFont systemFontOfSize:20.0]];
     
     //隐藏返回键
     [self.navigationItem setHidesBackButton:YES];

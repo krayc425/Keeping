@@ -52,7 +52,7 @@
 
 - (void)setFont{
     for(UILabel *lbl in self.labels) {
-        [lbl setFont:[UIFont fontWithName:[Utilities getFont] size:17.0]];
+        [lbl setFont:[UIFont systemFontOfSize:17.0]];
     }
 }
 

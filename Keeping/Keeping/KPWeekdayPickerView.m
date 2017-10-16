@@ -14,8 +14,8 @@ static BOOL _loadingXib = NO;
 
 @interface KPWeekdayPickerView ()
 
-@property (weak, nonatomic) IBOutlet UIStackView *weekDayStack;
-@property (weak, nonatomic) IBOutlet UIButton *allButton;
+@property (nonatomic) IBOutlet UIStackView *weekDayStack;
+@property (nonatomic) IBOutlet UIButton *allButton;
 
 @end
 
@@ -43,9 +43,9 @@ static BOOL _loadingXib = NO;
     }
     [self selectWeekdaysInArray:self.selectedWeekdayArr];
 
-    if(self.isAllSelected){
-        [self selectAllWeekDay];
-    }
+//    if(self.isAllSelected){
+//        [self selectAllWeekDay];
+//    }
     
     [self.allButton setHidden:self.isAllButtonHidden];
 
@@ -192,9 +192,9 @@ static BOOL _loadingXib = NO;
 - (void)setFont{
     for(UIButton *button in self.weekDayStack.subviews){
         if(button.tag != -1){
-            [button.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:self.fontSize]];
+            [button.titleLabel setFont:[UIFont systemFontOfSize:self.fontSize]];
         }else{
-            [button.titleLabel setFont:[UIFont fontWithName:[Utilities getFont] size:self.fontSize / 1.5]];
+            [button.titleLabel setFont:[UIFont systemFontOfSize:self.fontSize / 1.5]];
         }
     }
 }

@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "DBManager.h"
-#import "KPSchemeManager.h"
 #import "TaskManager.h"
 #import "KPNavigationViewController.h"
 #import "KPTabBarViewController.h"
@@ -70,10 +69,6 @@
         [shared setValue:@"STHeitiSC-Light" forKey:@"fontwidget"];
         [shared synchronize];
     }
-    
-    //下载 schemes
-    NSArray *r = [[KPSchemeManager shareInstance] getSchemeArr];
-    NSLog(@"%lu apps", (unsigned long)r.count);
     
     //启动数据库
     [DBManager shareInstance];

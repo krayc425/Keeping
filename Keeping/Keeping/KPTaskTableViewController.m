@@ -20,19 +20,22 @@
 #import "KPImageViewController.h"
 #import "TaskDataHelper.h"
 #import "SCLAlertView.h"
-#import "PYSearch.h"
 #import "KPTaskDisplayTableViewController.h"
 #import "KPNavigationTitleView.h"
 #import "AMPopTip.h"
+#import "CardsView.h"
 
 #define MENU_POPOVER_FRAME CGRectMake(10, 44 + 9, 140, 44 * [[Utilities getTaskSortArr] count])
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
 
 static AMPopTip *shareTip = NULL;
 static KPColorPickerView *colorPickerView = NULL;
 
-@interface KPTaskTableViewController () <MLKMenuPopoverDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, PYSearchViewControllerDelegate>
+@interface KPTaskTableViewController () <MLKMenuPopoverDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
 @property (nonatomic,strong) MLKMenuPopover *_Nonnull menuPopover;
+@property (strong, nonatomic) NSIndexPath* editingIndexPath;  //当前左滑cell的index，在代理方法中设置
 
 @end
 
@@ -56,9 +59,8 @@ static KPColorPickerView *colorPickerView = NULL;
     self.weekDayView.isAllButtonHidden = NO;
     self.weekDayView.fontSize = 18.0;
     
-    //类别代理
-    [KPTaskTableViewController shareColorPickerView].colorDelegate = self;
-    [[KPTaskTableViewController shareColorPickerView] setFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame) - 32, 40)];
+    self.weekDayView.selectedWeekdayArr = [NSMutableArray arrayWithArray: @[@1,@2,@3,@4,@5,@6,@7]];
+    [self loadTasksOfWeekdays: self.weekDayView.selectedWeekdayArr];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -66,36 +68,24 @@ static KPColorPickerView *colorPickerView = NULL;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    [self loadTasksOfWeekdays:self.selectedWeekdayArr];
+    [super viewWillAppear:animated];
     [self setFont];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
     [self hideTip];
+}
+
+- (void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    if (self.editingIndexPath) {
+        [self configSwipeButtons];
+    }
 }
 
 - (void)setFont{
     [self.weekDayView setFont];
-}
-
-- (void)searchAction:(id)senders{
-    // 1. 创建热门搜索
-    // 2. 创建控制器
-    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:nil searchBarPlaceholder:@"搜索任务名" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
-        // 开始搜索执行以下代码
-        // 如：跳转到指定控制器
-//        [searchViewController.navigationController pushViewController:[[PYTempViewController alloc] init] animated:YES];
-        NSLog(@"search for %@", searchText);
-        
-    }];
-    // 3. 设置风格
-    searchViewController.searchHistoryStyle = PYHotSearchStyleDefault; // 搜索历史风格为default
-    searchViewController.hotSearchStyle = PYHotSearchStyleDefault; // 热门搜索风格为默认
-    // 4. 设置代理
-    searchViewController.delegate = self;
-    // 5. 跳转到搜索控制器
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:searchViewController];
-    [self presentViewController:nav animated:YES completion:nil];
 }
 
 - (void)editAction:(id)senders{
@@ -132,7 +122,6 @@ static KPColorPickerView *colorPickerView = NULL;
 }
 
 - (void)loadTasksOfWeekdays:(NSArray *)weekDays{
-    
     NSDictionary *sortDict = [[NSUserDefaults standardUserDefaults] valueForKey:@"sort"];
     self.sortFactor = sortDict.allKeys[0];
     self.isAscend = sortDict.allValues[0];
@@ -164,6 +153,54 @@ static KPColorPickerView *colorPickerView = NULL;
     [self.tableView reloadData];
     
     [self fadeAnimation];
+}
+
+- (void)configSwipeButtons {
+    // 获取选项按钮的reference
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"11.0")) {
+        // iOS 11层级 (Xcode 9编译): UITableView -> UISwipeActionPullView
+        for (UIView *subview in self.tableView.subviews) {
+            if ([subview isKindOfClass:NSClassFromString(@"UISwipeActionPullView")] && [subview.subviews count] >= 1) {
+                // 和iOS 10的按钮顺序相反
+                UIButton *moreButton = subview.subviews[0];
+                
+                [self configMoreButton:moreButton];
+                [subview setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+            }
+        }
+    } else {
+        // iOS 8-10层级: UITableView -> UITableViewCell -> UITableViewCellDeleteConfirmationView
+        KPTaskTableViewCell *tableCell = [self.tableView cellForRowAtIndexPath:self.editingIndexPath];
+        for (UIView *subview in tableCell.subviews) {
+            if ([subview isKindOfClass:NSClassFromString(@"UITableViewCellDeleteConfirmationView")] && [subview.subviews count] >= 1) {
+                UIButton *moreButton = subview.subviews[0];
+                
+                [self configMoreButton:moreButton];
+                [subview setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+            }
+        }
+    }
+}
+
+- (void)configMoreButton:(UIButton *)moreButton {
+    if (moreButton) {
+        [moreButton setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+        
+        CardsView *cardView = [[CardsView alloc] initWithFrame:CGRectMake(0, 5, moreButton.frame.size.width - 5, moreButton.frame.size.height - 10)];
+        cardView.cornerRadius = 10.0f;
+        
+        UILabel *infoLabel = [[UILabel alloc] initWithFrame:CGRectMake(cardView.frame.size.width / 2 - 30,
+                                                              cardView.frame.size.height / 2 - 25,
+                                                              60,
+                                                              50)];
+        [infoLabel setText:@"详情"];
+        [infoLabel setTextColor:[Utilities getColor]];
+        [infoLabel setNumberOfLines:2];
+        [infoLabel setTextAlignment:NSTextAlignmentCenter];
+        [cardView addSubview:infoLabel];
+        
+        [moreButton addSubview:cardView];
+    }
 }
 
 #pragma mark - Pop Up Image
@@ -227,7 +264,7 @@ static KPColorPickerView *colorPickerView = NULL;
             if([self.taskArr count] == 0){
                 return 0.00001f;
             }else{
-                return 20.0f;
+                return 50.0f;
             }
         }
         case 2:
@@ -235,7 +272,7 @@ static KPColorPickerView *colorPickerView = NULL;
             if([self. historyTaskArr count] == 0){
                 return 0.00001f;
             }else{
-                return 20.0f;
+                return 50.0f;
             }
         }
         default:
@@ -288,6 +325,7 @@ static KPColorPickerView *colorPickerView = NULL;
         KPTaskTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
         
         [cell setFont];
+        cell.delegate = self;
         
         Task *t;
         
@@ -296,43 +334,8 @@ static KPColorPickerView *colorPickerView = NULL;
         }else if(indexPath.section == 2){
             t = self.historyTaskArr[indexPath.row];
         }
-        [cell.nameLabel setText:t.name];
         
-        if(t.type > 0){
-            UIImage *img = [UIImage imageNamed:@"Round_S"];
-            img = [img imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-            cell.typeImg.tintColor = [Utilities getTypeColorArr][t.type - 1];
-            [cell.typeImg setImage:img];
-        }else{
-            [cell.typeImg setImage:[UIImage new]];
-        }
-        
-        NSString *reminderTimeStr = @"";
-        if(t.reminderTime != NULL){
-            [cell.daysLabel setHidden:NO];
-            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            [dateFormatter setDateFormat:@"HH:mm"];
-            reminderTimeStr = [dateFormatter stringFromDate:t.reminderTime];
-        }else{
-            [cell.daysLabel setHidden:YES];
-        }
-        [cell.daysLabel setText:reminderTimeStr];
-        
-        if(t.image != NULL){
-            [cell.taskImgViewBtn setUserInteractionEnabled:YES];
-            [cell.taskImgViewBtn setBackgroundImage:[UIImage imageWithData:t.image] forState:UIControlStateNormal];
-            cell.delegate = self;
-        }else{
-            [cell.taskImgViewBtn setUserInteractionEnabled:NO];
-            [cell.taskImgViewBtn setBackgroundImage:[UIImage new] forState:UIControlStateNormal];
-        }
-        
-        //暂时 NO
-        [cell.progressView setProgress:t.progress animated:NO];
-        
-        [cell.weekdayView selectWeekdaysInArray:[NSMutableArray arrayWithArray:t.reminderDays]];
-        [cell.weekdayView setIsAllSelected:NO];
-        [cell.weekdayView setUserInteractionEnabled:NO];
+        [cell configureWithTask:t];
         
         //注册3D Touch
         if (self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {
@@ -371,6 +374,15 @@ static KPColorPickerView *colorPickerView = NULL;
     return @"               ";
 }
 
+- (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.editingIndexPath = indexPath;
+    [self.view setNeedsLayout];   // 触发-(void)viewDidLayoutSubviews
+}
+
+- (void)tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.editingIndexPath = nil;
+}
+
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -387,7 +399,6 @@ static KPColorPickerView *colorPickerView = NULL;
 #pragma mark - UIViewControllerPreviewingDelegate
 
 - (UIViewController *)previewingContext:(id <UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location{
-    
     if ([self.presentedViewController isKindOfClass:[KPTaskDisplayTableViewController class]]){
         return nil;
     }
@@ -423,7 +434,7 @@ static KPColorPickerView *colorPickerView = NULL;
     
     NSDictionary *attributes = @{
                                  NSForegroundColorAttributeName: [Utilities getColor],
-                                 NSFontAttributeName:[UIFont fontWithName:[Utilities getFont] size:20.0]
+                                 NSFontAttributeName:[UIFont systemFontOfSize:20.0]
                                  };
     
     return [[NSAttributedString alloc] initWithString:text attributes:attributes];
@@ -503,7 +514,6 @@ static KPColorPickerView *colorPickerView = NULL;
                  direction:AMPopTipDirectionDown
                     inView:self.view
                  fromFrame:CGRectMake(CGRectGetWidth(self.view.frame) / 2, -44, 0, 44)];
-//                  duration:5.0f];
         
         tp.textColor = [UIColor whiteColor];
         tp.tintColor = [Utilities getColor];
@@ -520,22 +530,6 @@ static KPColorPickerView *colorPickerView = NULL;
     }
 }
 
-#pragma mark - PYSearchViewControllerDelegate
-
-- (void)searchViewController:(PYSearchViewController *)searchViewController searchTextDidChange:(UISearchBar *)seachBar searchText:(NSString *)searchText{
-    if (searchText.length) {
-        // 与搜索条件再搜索
-        // 显示建议搜索结果
-        NSMutableArray *searchSuggestionsM = [[NSMutableArray alloc] init];
-        for(Task *task in [TaskDataHelper filtrateTasks:self.taskArr withString:searchText]){
-            [searchSuggestionsM addObject:task.name];
-        }
-        // 返回
-        searchViewController.searchSuggestions = searchSuggestionsM;
-    }
-}
-
-
 #pragma mark - AMPopTip Singleton
 
 + (AMPopTip *)shareTipInstance{
@@ -548,16 +542,6 @@ static KPColorPickerView *colorPickerView = NULL;
         [[KPTaskTableViewController shareTipInstance] hide];
         shareTip = NULL;
     }
-}
-
-#pragma mark - KPColor Singleton
-
-+ (KPColorPickerView *)shareColorPickerView{
-    if(colorPickerView == NULL){
-        NSArray *nibView = [[NSBundle mainBundle] loadNibNamed:@"KPColorPickerView" owner:nil options:nil];
-        colorPickerView = [nibView firstObject];
-    }
-    return colorPickerView;
 }
 
 @end

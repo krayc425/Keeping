@@ -17,6 +17,7 @@ target 'Keeping' do
   pod 'SCLAlertView-Objective-C'
   pod 'Fabric'
   pod 'Crashlytics'
+  pod 'IQKeyboardManager'
 
 end
 

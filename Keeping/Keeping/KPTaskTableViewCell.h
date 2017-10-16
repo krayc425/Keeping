@@ -10,6 +10,8 @@
 #import "HYCircleProgressView.h"
 #import "KPWeekdayPickerView.h"
 
+@class Task;
+
 @protocol PassImgDelegate <NSObject>
 
 - (void)passImg:(UIImage *_Nullable)img;
@@ -18,22 +20,24 @@
 
 @interface KPTaskTableViewCell : UITableViewCell
 
-@property (nonatomic, weak) id<PassImgDelegate> delegate;
+@property (nonatomic, weak, nullable) id<PassImgDelegate> delegate;
 //任务名
-@property (nonatomic, weak) IBOutlet UILabel *nameLabel;
+@property (nonatomic, weak, nullable) IBOutlet UILabel *nameLabel;
 //改成：时间 label
-@property (nonatomic, weak) IBOutlet UILabel *daysLabel;
+@property (nonatomic, weak, nullable) IBOutlet UILabel *daysLabel;
 //完成进度
-@property (nonatomic, weak) IBOutlet HYCircleProgressView *progressView;
+@property (nonatomic, weak, nullable) IBOutlet HYCircleProgressView *progressView;
 //要做的天数
-@property (weak, nonatomic) IBOutlet KPWeekdayPickerView *weekdayView;
+@property (weak, nonatomic, nullable) IBOutlet KPWeekdayPickerView *weekdayView;
 //缩略图
-@property (nonatomic, weak) IBOutlet UIButton *taskImgViewBtn;
+@property (nonatomic, weak, nullable) IBOutlet UIButton *taskImgViewBtn;
 //类别
-@property (nonatomic, weak) IBOutlet UIImageView *typeImg;
+@property (nonatomic, weak, nullable) IBOutlet UIImageView *typeImg;
 
 - (IBAction)imgAction:(_Nonnull id)sender;
 
 - (void)setFont;
+
+- (void)configureWithTask:(Task *_Nonnull)t;
 
 @end

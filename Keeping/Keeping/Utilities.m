@@ -15,26 +15,11 @@
     return [UIColor colorWithRed:59.0/255.0 green:134.0/255.0 blue:207.0/255.0 alpha:1.0];
 }
 
-+ (NSString *)getFont{
-    return [[NSUserDefaults standardUserDefaults] valueForKey:@"font"];
-}
-
 + (NSArray *)getFontSizeArr{
     return @[
              @(16),
              @(18),
              @(20)
-             ];
-}
-
-+ (NSArray *)getFontArr{
-    return @[
-             @{@"黑体" : @"STHeitiSC-Light"},
-             @{@"苹方" : @"PingFangSC-Regular"},
-             @{@"方正书宋" : @"FZSSJW--GB1-0"},
-             @{@"方正楷体" : @"FZKTJW--GB1-0"},
-             @{@"思源黑体" : @"SourceHanSansCN-Light"},
-             @{@"思源宋体" : @"SourceHanSerifCN-Light"}
              ];
 }
 
