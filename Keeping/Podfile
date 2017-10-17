@@ -8,7 +8,7 @@ target 'Keeping' do
   pod 'BEMCheckBox'
   pod 'HSDatePickerViewController'
   pod 'FDFullscreenPopGesture'
-  pod 'AMPopTip'
+  pod 'AMPopTip', '~> 1.5'
   pod 'LeanCloudFeedback'
   pod 'PYSearch'
   pod 'MMWormhole'

@@ -16,8 +16,8 @@
 
 @interface KPTabBar : UITabBar
 
-@property (nonatomic, weak) UIButton *publishButton;
+@property (nonatomic, weak, nullable) UIButton *publishButton;
 
-@property (nonatomic, weak) _Nullable id<KPTabBarDelegate> addDelegate;
+@property (nonatomic, weak, nullable) id<KPTabBarDelegate> addDelegate;
 
 @end

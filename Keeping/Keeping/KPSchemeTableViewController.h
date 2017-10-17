@@ -20,17 +20,17 @@
 
 @interface KPSchemeTableViewController : UITableViewController <UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate>
 
-@property (nonatomic, weak) id<SchemeDelegate> delegate;
+@property (nonatomic, weak, nullable) id<SchemeDelegate> delegate;
 
 @property (nonatomic, nullable) KPScheme *selectedApp;
 
-@property (nonatomic, copy) NSMutableArray *searchResults;
-@property (nonatomic, copy) NSMutableArray *schemeArr;
+@property (nonatomic, copy, nonnull) NSMutableArray *searchResults;
+@property (nonatomic, copy, nonnull) NSMutableArray *schemeArr;
 
-@property (nonatomic ,nonnull) UISearchController *searchController;
+@property (nonatomic, nonnull) UISearchController *searchController;
 
-@property (nonatomic, weak) IBOutlet UILabel *noneLabel;
-@property (nonatomic, weak) IBOutlet UILabel *refreshLabel;
-@property (nonatomic, weak) IBOutlet UILabel *insLabel;
+@property (nonatomic, weak, nullable) IBOutlet UILabel *noneLabel;
+@property (nonatomic, weak, nullable) IBOutlet UILabel *refreshLabel;
+@property (nonatomic, weak, nullable) IBOutlet UILabel *insLabel;
 
 @end

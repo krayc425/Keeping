@@ -102,6 +102,13 @@ SecCertificateRef LCGetCertificateFromBase64String(NSString *base64);
                           result:(AVCloudQueryResult *)result
                            error:error;
 
+/*!
+ Dispatch task on background thread.
+
+ @param task The task to be dispatched.
+ */
++ (void)asynchronizeTask:(void(^)())task;
+
 #pragma mark - String Util
 + (NSString *)MIMEType:(NSString *)filePathOrName;
 + (NSString *)MIMETypeFromPath:(NSString *)fullPath;
@@ -118,8 +125,6 @@ SecCertificateRef LCGetCertificateFromBase64String(NSString *base64);
 + (BOOL)networkIs3GOrBetter;
 + (BOOL)networkIsWifiOrBetter;
 #endif
-
-+ (NSString *)getIpAddres:(NSString *)hostname;
 
 #pragma mark - Something about log
 

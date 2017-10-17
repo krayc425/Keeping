@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
  A file of binary data stored on the LeanCloud servers. This can be a image, video, or anything else
  that an application needs to reference in a non-relational way.
  */
-@interface AVFile : NSObject
+@interface AVFile : NSObject <NSCoding>
 
 /** @name Creating a AVFile */
 
@@ -112,6 +112,12 @@ The name of the file.
  @return whether the save succeeded.
  */
 - (BOOL)save:(NSError **)error;
+
+/*!
+ An alias of `-[AVFile save:]` methods that supports Swift exception.
+ @seealso `-[AVFile save:]`
+ */
+- (BOOL)saveAndThrowsWithError:(NSError **)error;
 
 /*!
  Saves the file asynchronously.

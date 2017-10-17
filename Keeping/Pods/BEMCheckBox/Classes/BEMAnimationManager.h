@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Boris Emorine. All rights reserved.
 //
 
-@import UIKit;
+#import <UIKit/UIKit.h>
 
 /** Animation object used by BEMCheckBox to generate animations.
  */
@@ -43,8 +43,8 @@
 
 /** Animation engine to create a fill animation.
  * @param bounces The number of bounces for the animation.
- * @param amplitue How far does the animation bounce.
- * @param reserve Flag to track if the animation should fill or empty the layer.
+ * @param amplitude How far does the animation bounce.
+ * @param reverse Flag to track if the animation should fill or empty the layer.
  * @return Returns the CAKeyframeAnimation object.
  */
 - (CAKeyframeAnimation *)fillAnimationWithBounces:(NSUInteger)bounces amplitude:(CGFloat)amplitude reverse:(BOOL)reverse;

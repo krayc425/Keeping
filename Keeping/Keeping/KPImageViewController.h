@@ -11,6 +11,6 @@
 @interface KPImageViewController : UIViewController
 
 @property (nonatomic, nonnull) UIImage *img;
-@property (nonatomic, weak) IBOutlet UIImageView *imageView;
+@property (nonatomic, weak, nullable) IBOutlet UIImageView *imageView;
 
 @end

@@ -16,7 +16,7 @@
 
 @interface KPNavigationTitleView : UIView
 
-@property (weak, nonatomic) id<KPNavigationTitleDelegate> navigationTitleDelegate;
+@property (weak, nonatomic, nullable) id<KPNavigationTitleDelegate> navigationTitleDelegate;
 
 //1
 - (_Nonnull instancetype)initWithTitle:(NSString *_Nonnull)thisTitle andColor:(UIColor *_Nullable)thisColor;

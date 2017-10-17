@@ -241,7 +241,7 @@
 }
 
 //App通知的点击事件
-- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler{
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler{
     //收到推送的请求
     UNNotificationRequest *request = response.notification.request;
     //收到推送的内容

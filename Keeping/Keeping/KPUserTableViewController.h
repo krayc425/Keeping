@@ -13,11 +13,11 @@
 
 @property (nonatomic, nonnull) AVUser *currentUser;
 
-@property (nonatomic, weak) IBOutletCollection(UILabel) NSArray *labels;
+@property (nonatomic, weak, nullable) IBOutletCollection(UILabel) NSArray *labels;
 
-@property (nonatomic, weak) IBOutlet UILabel *downloadTimeLabel;
-@property (nonatomic, weak) IBOutlet UILabel *uploadTimeLabel;
-@property (nonatomic, weak) IBOutlet UILabel *userNameLabel;
+@property (nonatomic, weak, nullable) IBOutlet UILabel *downloadTimeLabel;
+@property (nonatomic, weak, nullable) IBOutlet UILabel *uploadTimeLabel;
+@property (nonatomic, weak, nullable) IBOutlet UILabel *userNameLabel;
 
 
 @end

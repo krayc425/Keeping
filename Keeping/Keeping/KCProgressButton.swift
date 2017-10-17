@@ -62,8 +62,6 @@ class KCProgressButton: UIButton {
     
     private func addMaskLabel(with title: String) {
         setNeedsLayout()
-        layoutIfNeeded()
-        
         self.contentMode = .redraw
         
         if maskLabel != nil {
@@ -87,8 +85,9 @@ class KCProgressButton: UIButton {
         maskLabel?.textAlignment = (titleLabel?.textAlignment)!
         maskLabel?.layer.cornerRadius = layer.cornerRadius
         maskLabel?.layer.masksToBounds = true
-        maskLabel?.translatesAutoresizingMaskIntoConstraints = false
+//        maskLabel?.translatesAutoresizingMaskIntoConstraints = false
         addSubview(maskLabel!)
+        layoutIfNeeded()
     }
     
     /// 内部作 Mask 的 Label

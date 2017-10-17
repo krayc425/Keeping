@@ -3,23 +3,21 @@
 //  FSCalendar
 //
 //  Created by dingwenchao on 30/10/2016.
-//  Copyright © 2016 wenchaoios. All rights reserved.
+//  Copyright © 2016 Wenchao Ding. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
-@class FSCalendar;
-
-typedef NS_ENUM(NSUInteger, FSCalendarMonthPosition);
+struct FSCalendarCoordinate {
+    NSInteger row;
+    NSInteger column;
+};
+typedef struct FSCalendarCoordinate FSCalendarCoordinate;
 
 @interface FSCalendarCalculator : NSObject
 
 @property (weak  , nonatomic) FSCalendar *calendar;
-
-@property (assign, nonatomic) CGFloat monthHeight;
-@property (assign, nonatomic) CGFloat titleHeight;
-@property (assign, nonatomic) CGFloat subtitleHeight;
 
 @property (readonly, nonatomic) NSInteger numberOfSections;
 
@@ -44,6 +42,7 @@ typedef NS_ENUM(NSUInteger, FSCalendarMonthPosition);
 - (NSInteger)numberOfRowsInSection:(NSInteger)section;
 
 - (FSCalendarMonthPosition)monthPositionForIndexPath:(NSIndexPath *)indexPath;
+- (FSCalendarCoordinate)coordinateForIndexPath:(NSIndexPath *)indexPath;
 
 - (void)reloadSections;
 

@@ -168,7 +168,10 @@
 
     //Title button
     toolbar.titleBarButton.title = self.shouldHideToolbarPlaceholder?nil:titleText;
-    if (IQ_IS_IOS11_OR_GREATER == NO)
+#ifdef __IPHONE_11_0
+    if (@available(iOS 11.0, *)) {}
+    else
+#endif
     {
         toolbar.titleBarButton.customView.frame = CGRectZero;
     }
@@ -237,7 +240,10 @@
 
     //Title button
     toolbar.titleBarButton.title = self.shouldHideToolbarPlaceholder?nil:titleText;
-    if (IQ_IS_IOS11_OR_GREATER == NO)
+#ifdef __IPHONE_11_0
+    if (@available(iOS 11.0, *)) {}
+    else
+#endif
     {
         toolbar.titleBarButton.customView.frame = CGRectZero;
     }
@@ -312,7 +318,10 @@
 
     //Title button
     toolbar.titleBarButton.title = self.shouldHideToolbarPlaceholder?nil:titleText;
-    if (IQ_IS_IOS11_OR_GREATER == NO)
+#ifdef __IPHONE_11_0
+    if (@available(iOS 11.0, *)) {}
+    else
+#endif
     {
         toolbar.titleBarButton.customView.frame = CGRectZero;
     }
@@ -398,7 +407,10 @@
     
     //Title button
     toolbar.titleBarButton.title = self.shouldHideToolbarPlaceholder?nil:titleText;
-    if (IQ_IS_IOS11_OR_GREATER == NO)
+#ifdef __IPHONE_11_0
+    if (@available(iOS 11.0, *)) {}
+    else
+#endif
     {
         toolbar.titleBarButton.customView.frame = CGRectZero;
     }
@@ -483,7 +495,10 @@
     
     //Title button
     toolbar.titleBarButton.title = self.shouldHideToolbarPlaceholder?nil:titleText;
-    if (IQ_IS_IOS11_OR_GREATER == NO)
+#ifdef __IPHONE_11_0
+    if (@available(iOS 11.0, *)) {}
+    else
+#endif
     {
         toolbar.titleBarButton.customView.frame = CGRectZero;
     }
@@ -557,7 +572,11 @@
     UIImage *imageLeftArrow = nil;
     UIImage *imageRightArrow = nil;
     
+#ifdef __IPHONE_11_0
+    if (@available(iOS 10.0, *))
+#else
     if (IQ_IS_IOS10_OR_GREATER)
+#endif
     {
         imageLeftArrow = [UIImage imageNamed:@"IQButtonBarArrowUp" inBundle:resourcesBundle compatibleWithTraitCollection:nil];
         imageRightArrow = [UIImage imageNamed:@"IQButtonBarArrowDown" inBundle:resourcesBundle compatibleWithTraitCollection:nil];
@@ -569,11 +588,17 @@
     }
 
     //Support for RTL languages like Arabic, Persia etc... (Bug ID: #448)
-    if ([UIImage instancesRespondToSelector:@selector(imageFlippedForRightToLeftLayoutDirection)])
-    {
-        imageLeftArrow = [imageLeftArrow imageFlippedForRightToLeftLayoutDirection];
-        imageRightArrow = [imageRightArrow imageFlippedForRightToLeftLayoutDirection];
+#ifdef __IPHONE_11_0
+    if (@available(iOS 9.0, *)) {
+#endif
+        if ([UIImage instancesRespondToSelector:@selector(imageFlippedForRightToLeftLayoutDirection)])
+        {
+            imageLeftArrow = [imageLeftArrow imageFlippedForRightToLeftLayoutDirection];
+            imageRightArrow = [imageRightArrow imageFlippedForRightToLeftLayoutDirection];
+        }
+#ifdef __IPHONE_11_0
     }
+#endif
     
     //Previous button
     IQBarButtonItem *prev = toolbar.previousBarButton;
@@ -596,9 +621,17 @@
 
     //Fixed space
     IQBarButtonItem *fixed =[[IQBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    if (IQ_IS_IOS10_OR_GREATER) {
+    
+#ifdef __IPHONE_11_0
+    if (@available(iOS 10.0, *))
+#else
+    if (IQ_IS_IOS10_OR_GREATER)
+#endif
+    {
         [fixed setWidth:6];
-    } else {
+    }
+    else
+    {
         [fixed setWidth:20];
     }
     [items addObject:fixed];
@@ -627,7 +660,10 @@
     
     //Title button
     toolbar.titleBarButton.title = self.shouldHideToolbarPlaceholder?nil:titleText;
-    if (IQ_IS_IOS11_OR_GREATER == NO)
+#ifdef __IPHONE_11_0
+    if (@available(iOS 11.0, *)) {}
+    else
+#endif
     {
         toolbar.titleBarButton.customView.frame = CGRectZero;
     }
@@ -702,20 +738,33 @@
     UIImage *imageLeftArrow = nil;
     UIImage *imageRightArrow = nil;
     
-    if (IQ_IS_IOS10_OR_GREATER) {
+#ifdef __IPHONE_11_0
+    if (@available(iOS 10.0, *))
+#else
+    if (IQ_IS_IOS10_OR_GREATER)
+#endif
+    {
         imageLeftArrow = [UIImage imageNamed:@"IQButtonBarArrowUp" inBundle:resourcesBundle compatibleWithTraitCollection:nil];
         imageRightArrow = [UIImage imageNamed:@"IQButtonBarArrowDown" inBundle:resourcesBundle compatibleWithTraitCollection:nil];
-    } else {
+    }
+    else
+    {
         imageLeftArrow = [UIImage imageNamed:@"IQButtonBarArrowLeft" inBundle:resourcesBundle compatibleWithTraitCollection:nil];
         imageRightArrow = [UIImage imageNamed:@"IQButtonBarArrowRight" inBundle:resourcesBundle compatibleWithTraitCollection:nil];
     }
     
     //Support for RTL languages like Arabic, Persia etc... (Bug ID: #448)
-    if ([UIImage instancesRespondToSelector:@selector(imageFlippedForRightToLeftLayoutDirection)])
-    {
-        imageLeftArrow = [imageLeftArrow imageFlippedForRightToLeftLayoutDirection];
-        imageRightArrow = [imageRightArrow imageFlippedForRightToLeftLayoutDirection];
+#ifdef __IPHONE_11_0
+    if (@available(iOS 9.0, *)) {
+#endif
+        if ([UIImage instancesRespondToSelector:@selector(imageFlippedForRightToLeftLayoutDirection)])
+        {
+            imageLeftArrow = [imageLeftArrow imageFlippedForRightToLeftLayoutDirection];
+            imageRightArrow = [imageRightArrow imageFlippedForRightToLeftLayoutDirection];
+        }
+#ifdef __IPHONE_11_0
     }
+#endif
 
     //Previous button
     IQBarButtonItem *prev = toolbar.previousBarButton;
@@ -738,9 +787,17 @@
     
     //Fixed space
     IQBarButtonItem *fixed =[[IQBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    if (IQ_IS_IOS10_OR_GREATER) {
+    
+#ifdef __IPHONE_11_0
+    if (@available(iOS 10.0, *))
+#else
+    if (IQ_IS_IOS10_OR_GREATER)
+#endif
+    {
         [fixed setWidth:6];
-    } else {
+    }
+    else
+    {
         [fixed setWidth:20];
     }
     [items addObject:fixed];
@@ -769,7 +826,10 @@
     
     //Title button
     toolbar.titleBarButton.title = self.shouldHideToolbarPlaceholder?nil:titleText;
-    if (IQ_IS_IOS11_OR_GREATER == NO)
+#ifdef __IPHONE_11_0
+    if (@available(iOS 11.0, *)) {}
+    else
+#endif
     {
         toolbar.titleBarButton.customView.frame = CGRectZero;
     }
@@ -846,20 +906,33 @@
     UIImage *imageLeftArrow = nil;
     UIImage *imageRightArrow = nil;
     
-    if (IQ_IS_IOS10_OR_GREATER) {
+#ifdef __IPHONE_11_0
+    if (@available(iOS 10.0, *))
+#else
+    if (IQ_IS_IOS10_OR_GREATER)
+#endif
+    {
         imageLeftArrow = [UIImage imageNamed:@"IQButtonBarArrowUp" inBundle:resourcesBundle compatibleWithTraitCollection:nil];
         imageRightArrow = [UIImage imageNamed:@"IQButtonBarArrowDown" inBundle:resourcesBundle compatibleWithTraitCollection:nil];
-    } else {
+    }
+    else
+    {
         imageLeftArrow = [UIImage imageNamed:@"IQButtonBarArrowLeft" inBundle:resourcesBundle compatibleWithTraitCollection:nil];
         imageRightArrow = [UIImage imageNamed:@"IQButtonBarArrowRight" inBundle:resourcesBundle compatibleWithTraitCollection:nil];
     }
     
     //Support for RTL languages like Arabic, Persia etc... (Bug ID: #448)
-    if ([UIImage instancesRespondToSelector:@selector(imageFlippedForRightToLeftLayoutDirection)])
-    {
-        imageLeftArrow = [imageLeftArrow imageFlippedForRightToLeftLayoutDirection];
-        imageRightArrow = [imageRightArrow imageFlippedForRightToLeftLayoutDirection];
+#ifdef __IPHONE_11_0
+    if (@available(iOS 9.0, *)) {
+#endif
+        if ([UIImage instancesRespondToSelector:@selector(imageFlippedForRightToLeftLayoutDirection)])
+        {
+            imageLeftArrow = [imageLeftArrow imageFlippedForRightToLeftLayoutDirection];
+            imageRightArrow = [imageRightArrow imageFlippedForRightToLeftLayoutDirection];
+        }
+#ifdef __IPHONE_11_0
     }
+#endif
     
     //Previous button
     IQBarButtonItem *prev = toolbar.previousBarButton;
@@ -881,9 +954,17 @@
     
     //Fixed space
     IQBarButtonItem *fixed =[[IQBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    if (IQ_IS_IOS10_OR_GREATER) {
+            
+#ifdef __IPHONE_11_0
+    if (@available(iOS 10.0, *))
+#else
+    if (IQ_IS_IOS10_OR_GREATER)
+#endif
+    {
         [fixed setWidth:6];
-    } else {
+    }
+    else
+    {
         [fixed setWidth:20];
     }
     [items addObject:fixed];
@@ -911,7 +992,10 @@
     
     //Title button
     toolbar.titleBarButton.title = self.shouldHideToolbarPlaceholder?nil:titleText;
-    if (IQ_IS_IOS11_OR_GREATER == NO)
+#ifdef __IPHONE_11_0
+    if (@available(iOS 11.0, *)) {}
+    else
+#endif
     {
         toolbar.titleBarButton.customView.frame = CGRectZero;
     }

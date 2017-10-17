@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Boris Emorine. All rights reserved.
 //
 
-@import UIKit;
+#import <UIKit/UIKit.h>
 #import "BEMCheckBox.h"
 
 /** Path object used by BEMCheckBox to generate paths.
@@ -21,6 +21,10 @@
 /** The width of the lines on the created paths.
  */
 @property (nonatomic) CGFloat lineWidth;
+
+/** The corner radius of the path when the boxType is BEMBoxTypeSquare.
+ */
+@property (nonatomic) CGFloat cornerRadius;
 
 /** The type of box.
  * Depending on the box type, paths may be created differently

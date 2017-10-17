@@ -1,19 +1,28 @@
-// 
-//  代码地址: https://github.com/iphone5solo/PYSearch
-//  代码地址: http://www.code4app.com/thread-11175-1-1.html
+//
+//  GitHub: https://github.com/iphone5solo/PYSearch
 //  Created by CoderKo1o.
-//  Copyright © 2016年 iphone5solo. All rights reserved.
-//  搜索建议控制器
+//  Copyright © 2016 iphone5solo. All rights reserved.
+//
 
 #import <UIKit/UIKit.h>
 
 typedef void(^PYSearchSuggestionDidSelectCellBlock)(UITableViewCell *selectedCell);
 
+@protocol PYSearchSuggestionViewDataSource <NSObject, UITableViewDataSource>
+
+@required
+- (UITableViewCell *)searchSuggestionView:(UITableView *)searchSuggestionView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+- (NSInteger)searchSuggestionView:(UITableView *)searchSuggestionView numberOfRowsInSection:(NSInteger)section;
+@optional
+- (NSInteger)numberOfSectionsInSearchSuggestionView:(UITableView *)searchSuggestionView;
+- (CGFloat)searchSuggestionView:(UITableView *)searchSuggestionView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
+
+@end
+
 @interface PYSearchSuggestionViewController : UITableViewController
 
-/** 搜索建议 */
+@property (nonatomic, weak) id<PYSearchSuggestionViewDataSource> dataSource;
 @property (nonatomic, copy) NSArray<NSString *> *searchSuggestions;
-/** 选中cell时调用此Block  */
 @property (nonatomic, copy) PYSearchSuggestionDidSelectCellBlock didSelectCellBlock;
 
 + (instancetype)searchSuggestionViewControllerWithDidSelectCellBlock:(PYSearchSuggestionDidSelectCellBlock)didSelectCellBlock;

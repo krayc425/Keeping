@@ -234,14 +234,20 @@ NSString *LCStringFromDistanceUnit(AVQueryDistanceUnit unit) {
     [self addWhereItem:dict forKey:key];
 }
 
+- (id)valueForEqualityTesting:(id)object {
+    if (!object) {
+        return [NSNull null];
+    } else if ([object isKindOfClass:[AVObject class]]) {
+        return [AVObjectUtils dictionaryFromAVObjectPointer:(AVObject *)object];
+    } else {
+        return object;
+    }
+}
+
 - (void)whereKey:(NSString *)key equalTo:(id)object
 {
-    if ([object isKindOfClass:[AVObject class]]) {
-        [self addWhereItem:@{@"$eq":[AVObjectUtils dictionaryFromAVObjectPointer:(AVObject *)object]}
-                    forKey:key];
-    } else {
-        [self addWhereItem:@{@"$eq":object} forKey:key];
-    }
+    NSDictionary * dict = @{@"$eq": [self valueForEqualityTesting:object]};
+    [self addWhereItem:dict forKey:key];
 }
 
 - (void)whereKey:(NSString *)key sizeEqualTo:(NSUInteger)count
@@ -276,7 +282,7 @@ NSString *LCStringFromDistanceUnit(AVQueryDistanceUnit unit) {
 
 - (void)whereKey:(NSString *)key notEqualTo:(id)object
 {
-    NSDictionary * dict = @{@"$ne": object};
+    NSDictionary * dict = @{@"$ne": [self valueForEqualityTesting:object]};
     [self addWhereItem:dict forKey:key];
 }
 
@@ -707,6 +713,10 @@ NSString *LCStringFromDistanceUnit(AVQueryDistanceUnit unit) {
     return [self findObjectsWithBlock:NULL waitUntilDone:YES error:error];
 }
 
+- (NSArray *)findObjectsAndThrowsWithError:(NSError * _Nullable __autoreleasing *)error {
+    return [self findObjects:error];
+}
+
 -(void)queryWithBlock:(NSString *)path
            parameters:(NSDictionary *)parameters
                 block:(AVArrayResultBlock)resultBlock
@@ -835,6 +845,10 @@ NSString *LCStringFromDistanceUnit(AVQueryDistanceUnit unit) {
     return [self getFirstObjectWithBlock:NULL waitUntilDone:YES error:error];
 }
 
+- (AVObject *)getFirstObjectAndThrowsWithError:(NSError * _Nullable __autoreleasing *)error {
+    return [self getFirstObject:error];
+}
+
 /*!
  Gets an object asynchronously and calls the given block with the result.
 
@@ -932,6 +946,10 @@ NSString *LCStringFromDistanceUnit(AVQueryDistanceUnit unit) {
 - (NSInteger)countObjects:(NSError **)error
 {
     return [self countObjectsWithBlock:NULL waitUntilDone:YES error:error];
+}
+
+- (NSInteger)countObjectsAndThrowsWithError:(NSError * _Nullable __autoreleasing *)error {
+    return [self countObjects:error];
 }
 
 /*!
@@ -1089,6 +1107,12 @@ NSString *LCStringFromDistanceUnit(AVQueryDistanceUnit unit) {
     NSDictionary *dic = [AVObjectUtils dictionaryFromDictionary:self.where];
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:0 error:NULL];
     return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+}
+
+- (NSDictionary *)whereJSONDictionary {
+    NSData *data = [[self whereString] dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+    return dictionary;
 }
 
 #pragma mark - Util methods

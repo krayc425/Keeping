@@ -9,6 +9,7 @@
 #import "BEMCheckBox.h"
 #import "BEMAnimationManager.h"
 #import "BEMPathManager.h"
+#import "BEMCheckBoxGroup.h"
 
 @interface BEMCheckBox ()
 
@@ -31,6 +32,18 @@
 /** The BEMPathManager object used to generate paths.
  */
 @property (strong, nonatomic) BEMPathManager *pathManager;
+
+/** The group this box is associated with.
+ */
+@property (strong, nonatomic, nullable) BEMCheckBoxGroup *group;
+
+@end
+
+/** Defines private methods that we can call to update our group's status.
+ */
+@interface BEMCheckBoxGroup ()
+
+- (void)_checkBoxSelectionChanged:(BEMCheckBox *)checkBox;
 
 @end
 
@@ -55,9 +68,11 @@
     _hideBox = NO;
     _onTintColor = [UIColor colorWithRed:0 green:122.0/255.0 blue:255/255 alpha:1];
     _onFillColor = [UIColor clearColor];
+    _offFillColor = [UIColor clearColor];
     _onCheckColor = [UIColor colorWithRed:0 green:122.0/255.0 blue:255/255 alpha:1];
     _tintColor = [UIColor lightGrayColor];
     _lineWidth = 2.0;
+    _cornerRadius = 3.0;
     _animationDuration = 0.5;
     _minimumTouchSize = CGSizeMake(44, 44);
     _onAnimationType = BEMAnimationTypeStroke;
@@ -73,6 +88,7 @@
 - (void)initPathManager {
     _pathManager = [BEMPathManager new];
     _pathManager.lineWidth = _lineWidth;
+    _pathManager.cornerRadius = _cornerRadius;
     _pathManager.boxType = _boxType;
 }
 
@@ -81,9 +97,13 @@
 }
 
 - (void)layoutSubviews {
-    self.pathManager.size = self.frame.size.height;
+    self.pathManager.size = CGRectGetHeight(self.frame);
     
     [super layoutSubviews];
+}
+
+- (CGSize)intrinsicContentSize {
+    return self.frame.size;
 }
 
 - (void)reload {
@@ -101,7 +121,7 @@
 }
 
 #pragma mark Setters
-- (void)setOn:(BOOL)on animated:(BOOL)animated {
+- (void)_setOn:(BOOL)on animated:(BOOL)animated notifyGroup:(BOOL)notifyGroup {
     _on = on;
     
     [self drawEntireCheckBox];
@@ -118,6 +138,14 @@
             [self.checkMarkLayer removeFromSuperlayer];
         }
     }
+    
+    if(notifyGroup){
+        [self.group _checkBoxSelectionChanged:self];
+    }
+}
+
+- (void)setOn:(BOOL)on animated:(BOOL)animated {
+    [self _setOn:on animated:animated notifyGroup:YES];
 }
 
 - (void)setOn:(BOOL)on {
@@ -141,6 +169,12 @@
     [self reload];
 }
 
+- (void)setCornerRadius:(CGFloat)cornerRadius {
+    _cornerRadius = cornerRadius;
+    _pathManager.cornerRadius = cornerRadius;
+    [self reload];
+}
+
 - (void)setOffAnimationType:(BEMAnimationType)offAnimationType {
     _offAnimationType = offAnimationType;
 }
@@ -160,6 +194,11 @@
     [self reload];
 }
 
+- (void)setOffFillColor:(UIColor *)offFillColor {
+    _offFillColor = offFillColor;
+    [self reload];
+}
+
 - (void)setOnCheckColor:(UIColor *)onCheckColor {
     _onCheckColor = onCheckColor;
     [self reload];
@@ -167,10 +206,16 @@
 
 #pragma mark Gesture Recognizer
 - (void)handleTapCheckBox:(UITapGestureRecognizer *)recognizer {
+    // If we have a group that requires a selection, and we're already selected, don't allow a deselection
+    if(self.group && self.group.mustHaveSelection && self.on){
+        return;
+    }
+    
     [self setOn:!self.on animated:YES];
     if ([self.delegate respondsToSelector:@selector(didTapCheckBox:)]) {
         [self.delegate didTapCheckBox:self];
     }
+    [self sendActionsForControlEvents:UIControlEventValueChanged];
 }
 
 #pragma  mark - Helper methods -
@@ -181,8 +226,8 @@
     BOOL found = [super pointInside:point withEvent:event];
     
     CGSize minimumSize = self.minimumTouchSize;
-    CGFloat width = self.bounds.size.width;
-    CGFloat height = self.bounds.size.height;
+    CGFloat width = CGRectGetWidth(self.bounds);
+    CGFloat height = CGRectGetHeight(self.bounds);
     
     if (found == NO && (width < minimumSize.width || height < minimumSize.height)) {
         CGFloat increaseWidth = minimumSize.width - width;
@@ -205,7 +250,7 @@
  */
 - (void)drawEntireCheckBox {
     if (!self.hideBox) {
-        if (!self.offBoxLayer || CGPathGetBoundingBox(self.offBoxLayer.path).size.height == 0.0) {
+        if (!self.offBoxLayer || CGRectGetHeight(CGPathGetBoundingBox(self.offBoxLayer.path)) == 0.0) {
             [self drawOffBox];
         }
         if (self.on) {
@@ -224,10 +269,9 @@
     self.offBoxLayer = [CAShapeLayer layer];
     self.offBoxLayer.frame = self.bounds;
     self.offBoxLayer.path = [self.pathManager pathForBox].CGPath;
-    self.offBoxLayer.fillColor = [UIColor clearColor].CGColor;
+    self.offBoxLayer.fillColor = self.offFillColor.CGColor;
     self.offBoxLayer.strokeColor = self.tintColor.CGColor;
     self.offBoxLayer.lineWidth = self.lineWidth;
-    
     self.offBoxLayer.rasterizationScale = 2.0 * [UIScreen mainScreen].scale;
     self.offBoxLayer.shouldRasterize = YES;
     
@@ -320,7 +364,7 @@
             return;
             
         case BEMAnimationTypeOneStroke: {
-            // Temporary set the path of the checkmarl to the long checkmarl
+            // Temporary set the path of the checkmark to the long checkmark
             self.checkMarkLayer.path = [[self.pathManager pathForLongCheckMark] bezierPathByReversingPath].CGPath;
             
             CABasicAnimation *boxStrokeAnimation = [self.animationManager strokeAnimationReverse:NO];

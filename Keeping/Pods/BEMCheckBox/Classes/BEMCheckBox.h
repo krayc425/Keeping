@@ -6,16 +6,10 @@
 //  Copyright (c) 2015 Boris Emorine. All rights reserved.
 //
 
-@import UIKit;
+#import <UIKit/UIKit.h>
+#import "BEMCheckBoxGroup.h"
 
 @protocol BEMCheckBoxDelegate;
-
-// Tell the compiler to assume that no method should have a NULL value
-NS_ASSUME_NONNULL_BEGIN
-
-/**  Tasteful Checkbox for iOS.
- */
-IB_DESIGNABLE @interface BEMCheckBox : UIView
 
 /** The different type of boxes available.
  * @see boxType
@@ -29,6 +23,17 @@ typedef NS_ENUM(NSInteger, BEMBoxType) {
      */
     BEMBoxTypeSquare
 };
+
+// Tell the compiler to assume that no method should have a NULL value
+NS_ASSUME_NONNULL_BEGIN
+
+/**  Tasteful Checkbox for iOS.
+ */
+#if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_9_3
+IB_DESIGNABLE @interface BEMCheckBox : UIControl <CAAnimationDelegate>
+#else
+IB_DESIGNABLE @interface BEMCheckBox : UIControl
+#endif
 
 /** The different type of animations available.
  * @see onAnimationType and offAnimationType.
@@ -77,6 +82,10 @@ typedef NS_ENUM(NSInteger, BEMAnimationType) {
  */
 @property (nonatomic) IBInspectable CGFloat lineWidth;
 
+/** The corner radius which is applied to the box when the boxType is BEMBoxTypeSquare. Default to 3.0.
+ */
+@property (nonatomic) IBInspectable CGFloat cornerRadius;
+
 /** The duration in seconds of the animation when the check box switches from on and off. Default to 0.5.
  */
 @property (nonatomic) IBInspectable CGFloat animationDuration;
@@ -93,6 +102,10 @@ typedef NS_ENUM(NSInteger, BEMAnimationType) {
  */
 @property (strong, nonatomic) IBInspectable UIColor *onFillColor;
 
+/** The color of the inside of the box when it is Off.
+ */
+@property (strong, nonatomic) IBInspectable UIColor *offFillColor;
+
 /** The color of the check mark when it is On.
  */
 @property (strong, nonatomic) IBInspectable UIColor *onCheckColor;
@@ -100,6 +113,10 @@ typedef NS_ENUM(NSInteger, BEMAnimationType) {
 /** The color of the box when the checkbox is Off.
  */
 @property (strong, nonatomic) IBInspectable UIColor *tintColor;
+
+/** The group this box is associated with.
+ */
+@property (strong, nonatomic, nullable, readonly) BEMCheckBoxGroup *group;
 
 /** The type of box.
  * @see BEMBoxType. 
@@ -143,7 +160,7 @@ typedef NS_ENUM(NSInteger, BEMAnimationType) {
 /** Sent to the delegate every time the check box gets tapped.
  * @discussion This method gets triggered after the properties are updated (on), but before the animations, if any, are completed.
  * @seealso animationDidStopForCheckBox:
- * @param checkBox: The BEMCheckBox instance that has been tapped.
+ * @param checkBox The BEMCheckBox instance that has been tapped.
  */
 - (void)didTapCheckBox:(BEMCheckBox*)checkBox;
 
@@ -151,7 +168,7 @@ typedef NS_ENUM(NSInteger, BEMAnimationType) {
 /** Sent to the delegate every time the check box finishes being animated.
  * @discussion This method gets triggered after the properties are updated (on), and after the animations are completed. It won't be triggered if no animations are started.
  * @seealso didTapCheckBox:
- * @param checkBox: The BEMCheckBox instance that was animated.
+ * @param checkBox The BEMCheckBox instance that was animated.
  */
 - (void)animationDidStopForCheckBox:(BEMCheckBox *)checkBox;
 

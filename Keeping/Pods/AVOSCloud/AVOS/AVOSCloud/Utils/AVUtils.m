@@ -172,6 +172,7 @@ SecKeyRef LCGetPublicKeyFromCertificate(SecCertificateRef cert) {
     result = SecTrustCopyPublicKey(trust);
 
 _out:
+    if (policy) CFRelease(policy);
     if (certArr) CFRelease(certArr);
     if (trust) CFRelease(trust);
 
@@ -514,6 +515,28 @@ if (block) { \
     safeBlock(result);
 }
 
++ (dispatch_queue_t)asynchronousTaskQueue {
+    static dispatch_queue_t queue;
+    static dispatch_once_t onceToken;
+
+    if (queue)
+        return queue;
+
+    dispatch_once(&onceToken, ^{
+        queue = dispatch_queue_create("avos.common.dispatchQueue", DISPATCH_QUEUE_CONCURRENT);
+    });
+
+    return queue;
+}
+
++ (void)asynchronize:(void (^)())task {
+    NSAssert(task != nil, @"Task cannot be nil.");
+
+    dispatch_async([self asynchronousTaskQueue], ^{
+        task();
+    });
+}
+
 #pragma mark - String Util
 + (NSString *)MIMEType:(NSString *)filePathOrName {
     CFStringRef UTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)[filePathOrName pathExtension], NULL);
@@ -707,42 +730,6 @@ if (block) { \
 }
 
 #endif
-
-+ (NSString *)getIpAddres:(NSString *)hostname {
-    const char *host = [hostname cStringUsingEncoding:NSUTF8StringEncoding];
-    char ip[100];
-    
-    if (av_hostname_to_ip(host, ip) == 0) {
-        return [NSString stringWithCString:ip encoding:NSUTF8StringEncoding];
-    }
-    
-    return nil;
-}
-
-int av_hostname_to_ip(const char * hostname , char* ip)
-{
-    struct hostent *he;
-    struct in_addr **addr_list;
-    int i;
-    
-    if ( (he = gethostbyname( hostname ) ) == NULL)
-    {
-        // get the host info
-        herror("gethostbyname");
-        return 1;
-    }
-    
-    addr_list = (struct in_addr **) he->h_addr_list;
-    
-    for(i = 0; addr_list[i] != NULL; /*i++*/)
-    {
-        //Return the first one;
-        strcpy(ip , inet_ntoa(*addr_list[i]) );
-        return 0;
-    }
-    
-    return 1;
-}
 
 @end
 

@@ -6,6 +6,7 @@
 #import "AVObject.h"
 #import "AVSubclassing.h"
 
+@class AVRole;
 @class AVQuery;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -46,11 +47,9 @@ A LeanCloud Framework User Object that is a local representation of a user persi
 @property (nonatomic, assign, readonly) BOOL isNew;
 
 /*!
- Whether the user is an authenticated object for the device. An authenticated AVUser is one that is obtained via
- a signUp or logIn method. An authenticated object is required in order to save (with altered values) or delete it.
- @return whether the user is authenticated.
+ Whether the user is an authenticated object with the given sessionToken.
  */
-- (BOOL)isAuthenticated;
+- (void)isAuthenticatedWithSessionToken:(NSString *)sessionToken callback:(AVBooleanResultBlock)callback;
 
 /** @name Creating a New User */
 
@@ -124,11 +123,39 @@ A LeanCloud Framework User Object that is a local representation of a user persi
 +(void)verifyMobilePhone:(NSString *)code withBlock:(AVBooleanResultBlock)block;
 
 /*!
+ Get roles which current user belongs to.
+
+ @param error The error of request, or nil if request did succeed.
+
+ @return An array of roles, or nil if some error occured.
+ */
+- (nullable NSArray<AVRole *> *)getRoles:(NSError **)error;
+
+/*!
+ An alias of `-[AVUser getRolesAndThrowsWithError:]` methods that supports Swift exception.
+ @seealso `-[AVUser getRolesAndThrowsWithError:]`
+ */
+- (nullable NSArray<AVRole *> *)getRolesAndThrowsWithError:(NSError **)error;
+
+/*!
+ Asynchronously get roles which current user belongs to.
+
+ @param block The callback for request.
+ */
+- (void)getRolesInBackgroundWithBlock:(void (^)(NSArray<AVRole *> * _Nullable objects, NSError * _Nullable error))block;
+
+/*!
  Signs up the user. Make sure that password and username are set. This will also enforce that the username isn't already taken.
  @param error Error object to set on error. 
  @return whether the sign up was successful.
  */
 - (BOOL)signUp:(NSError **)error;
+
+/*!
+ An alias of `-[AVUser signUp:]` methods that supports Swift exception.
+ @seealso `-[AVUser signUp:]`
+ */
+- (BOOL)signUpAndThrowsWithError:(NSError **)error;
 
 /*!
  Signs up the user asynchronously. Make sure that password and username are set. This will also enforce that the username isn't already taken.
@@ -426,6 +453,13 @@ A LeanCloud Framework User Object that is a local representation of a user persi
 + (void)requestPasswordResetForEmailInBackground:(NSString *)email
                                           target:(id)target
                                         selector:(SEL)selector AV_DEPRECATED("2.6.10");
+
+/*!
+ Whether the user is an authenticated object for the device. An authenticated AVUser is one that is obtained via
+ a signUp or logIn method. An authenticated object is required in order to save (with altered values) or delete it.
+ @return whether the user is authenticated.
+ */
+- (BOOL)isAuthenticated AV_DEPRECATED("Deprecated in AVOSCloud SDK 3.7.0. Use -[AVUser isAuthenticatedWithSessionToken:callback:] instead.");
 
 @end
 
