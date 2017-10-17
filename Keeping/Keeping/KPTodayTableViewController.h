@@ -11,7 +11,7 @@
 #import "KPTodayTableViewCell.h"
 #import "KPColorPickerView.h"
 #import "KPNavigationTitleView.h"
-#import "Keeping-Swift.h"
+#import "KCProgressButton.h"
 
 @interface KPTodayTableViewController : UITableViewController <CheckTaskDelegate, FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance, KPColorPickerDelegate, KPNavigationTitleDelegate>
 
