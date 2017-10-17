@@ -53,7 +53,11 @@ static KPColorPickerView *colorPickerView = NULL;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 10)];
     self.tableView.tableFooterView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    
+
+    //类别代理
+    [KPTaskTableViewController shareColorPickerView].colorDelegate = self;
+    [[KPTaskTableViewController shareColorPickerView] setFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame) - 32, 40)];
+
     //星期代理
     self.weekDayView.weekdayDelegate = self;
     self.weekDayView.isAllSelected = YES;
@@ -516,6 +520,16 @@ static KPColorPickerView *colorPickerView = NULL;
         [[KPTaskTableViewController shareTipInstance] hide];
         shareTip = NULL;
     }
+}
+
+#pragma mark - KPColor Singleton
+
++ (KPColorPickerView *)shareColorPickerView{
+    if(colorPickerView == NULL){
+        NSArray *nibView = [[NSBundle mainBundle] loadNibNamed:@"KPColorPickerView" owner:nil options:nil];
+        colorPickerView = [nibView firstObject];
+    }
+    return colorPickerView;
 }
 
 @end

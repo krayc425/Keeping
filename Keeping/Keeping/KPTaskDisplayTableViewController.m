@@ -200,7 +200,6 @@ static AMPopTip *shareTip = NULL;
 }
 
 - (void)loadTask{
-    
     self.task = [[TaskManager shareInstance] getTasksOfID:self.taskid];
     
     //Set Task Properties

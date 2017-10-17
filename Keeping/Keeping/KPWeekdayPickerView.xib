@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KPWeekdayPickerView"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="KPWeekdayPickerView">
+        <view contentMode="center" semanticContentAttribute="spatial" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB" customClass="KPWeekdayPickerView">
             <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -130,13 +130,15 @@
                     </constraints>
                 </stackView>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="yv6-eu-kc0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="0CB-bh-iVq"/>
                 <constraint firstAttribute="bottom" secondItem="yv6-eu-kc0" secondAttribute="bottom" id="cwa-u2-SNF"/>
                 <constraint firstAttribute="trailing" secondItem="yv6-eu-kc0" secondAttribute="trailing" constant="10" id="uQb-0z-de3"/>
                 <constraint firstItem="yv6-eu-kc0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="weT-Mb-mUQ"/>
             </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="allButton" destination="CUv-aG-cfb" id="XJd-pC-Vju"/>

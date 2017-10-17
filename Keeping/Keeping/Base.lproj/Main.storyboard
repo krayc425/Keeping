@@ -54,8 +54,8 @@
             <objects>
                 <viewController storyboardIdentifier="KPImageViewController" id="iLS-CK-3Yi" userLabel="KPImageViewController" customClass="KPImageViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="6bP-65-cEi"/>
-                        <viewControllerLayoutGuide type="bottom" id="aAS-Z3-4Ha"/>
+                        <viewControllerLayoutGuide type="top" id="KRS-h5-oMy"/>
+                        <viewControllerLayoutGuide type="bottom" id="MU4-2d-uEY"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="gku-q4-nAM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -98,37 +98,29 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="100" id="GwY-3E-zV3">
                                         <rect key="frame" x="0.0" y="35" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GwY-3E-zV3" id="bNL-kJ-Hjc">
+                                        <tableViewCellContentView key="contentView" opaque="NO" contentMode="scaleToFill" tableViewCell="GwY-3E-zV3" id="bNL-kJ-Hjc">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ha8-sc-aya" customClass="CardsView">
-                                                    <rect key="frame" x="10" y="10" width="355" height="85"/>
-                                                    <subviews>
-                                                        <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="uX8-4F-gJ8" customClass="KPWeekdayPickerView">
-                                                            <rect key="frame" x="10" y="20" width="335" height="45"/>
-                                                            <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                        </view>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uX8-4F-gJ8" customClass="KPWeekdayPickerView">
+                                                    <rect key="frame" x="10" y="10" width="355" height="80"/>
+                                                    <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstItem="uX8-4F-gJ8" firstAttribute="top" secondItem="ha8-sc-aya" secondAttribute="top" constant="20" id="8u6-3f-erE"/>
-                                                        <constraint firstAttribute="bottom" secondItem="uX8-4F-gJ8" secondAttribute="bottom" constant="20" id="FuJ-p3-EwF"/>
-                                                        <constraint firstAttribute="trailing" secondItem="uX8-4F-gJ8" secondAttribute="trailing" constant="10" id="Z4I-80-8ZY"/>
-                                                        <constraint firstItem="uX8-4F-gJ8" firstAttribute="leading" secondItem="ha8-sc-aya" secondAttribute="leading" constant="10" id="wxb-Cd-R3P"/>
+                                                        <constraint firstAttribute="height" constant="80" id="jBI-oZ-EEL"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                            <real key="value" value="10"/>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="10"/>
                                                         </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="ha8-sc-aya" firstAttribute="leading" secondItem="bNL-kJ-Hjc" secondAttribute="leading" constant="10" id="5SM-4o-Nnn"/>
-                                                <constraint firstAttribute="bottom" secondItem="ha8-sc-aya" secondAttribute="bottom" constant="5" id="dNX-mn-Ssh"/>
-                                                <constraint firstAttribute="trailing" secondItem="ha8-sc-aya" secondAttribute="trailing" constant="10" id="qNR-sD-i8m"/>
-                                                <constraint firstItem="ha8-sc-aya" firstAttribute="top" secondItem="bNL-kJ-Hjc" secondAttribute="top" constant="10" id="ylx-7D-j9o"/>
+                                                <constraint firstItem="uX8-4F-gJ8" firstAttribute="leading" secondItem="bNL-kJ-Hjc" secondAttribute="leading" constant="10" id="WVC-2C-GZD"/>
+                                                <constraint firstItem="uX8-4F-gJ8" firstAttribute="centerX" secondItem="bNL-kJ-Hjc" secondAttribute="centerX" id="jDZ-ig-WsJ"/>
+                                                <constraint firstAttribute="bottom" secondItem="uX8-4F-gJ8" secondAttribute="bottom" constant="10" id="lst-No-LIv"/>
+                                                <constraint firstItem="uX8-4F-gJ8" firstAttribute="centerY" secondItem="bNL-kJ-Hjc" secondAttribute="centerY" id="tYg-QC-crP"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="0.0" colorSpace="calibratedRGB"/>
@@ -634,8 +626,8 @@
             <objects>
                 <viewController storyboardIdentifier="KPReminderViewController" id="J9r-f3-dn1" userLabel="KPReminderViewController" customClass="KPReminderViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="jIC-ap-gXT"/>
-                        <viewControllerLayoutGuide type="bottom" id="DmP-4L-bYj"/>
+                        <viewControllerLayoutGuide type="top" id="ELW-SM-tVu"/>
+                        <viewControllerLayoutGuide type="bottom" id="iIl-T7-hf0"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="5gW-dW-fwU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>

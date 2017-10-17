@@ -29,9 +29,9 @@ static BOOL _loadingXib = NO;
 }
 
 - (void)setTime:(NSDate *)date{
+    [self.colonLabel setHidden:date == NULL];
+    [self.minuteLabel setHidden:date == NULL];
     if(date == NULL){
-        [self.colonLabel setHidden:YES];
-        [self.minuteLabel setHidden:YES];
         [self.hourLabel setText:@"全天"];
     }else{
         [self.hourLabel setText:[NSString stringWithFormat:@"%02ld", (long)date.hour]];

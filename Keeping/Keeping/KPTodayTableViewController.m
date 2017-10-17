@@ -53,7 +53,11 @@ static KPColorPickerView *colorPickerView = NULL;
     self.tableView.emptyDataSetDelegate = self;
     self.tableView.tableFooterView = [UIView new];
     self.tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    
+
+    //类别按钮
+    [KPTodayTableViewController shareColorPickerView].colorDelegate = self;
+    [[KPTodayTableViewController shareColorPickerView] setFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame) - 32, 40)];
+
     //日历插件
     self.calendar = [[FSCalendar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width - 20, 250)];
     self.calendar.dataSource = self;
@@ -702,6 +706,16 @@ static KPColorPickerView *colorPickerView = NULL;
         [[KPTodayTableViewController shareTipInstance] hide];
         shareTip = NULL;
     }
+}
+
+#pragma mark - KPColor Singleton
+
++ (KPColorPickerView *)shareColorPickerView{
+    if(colorPickerView == NULL){
+        NSArray *nibView = [[NSBundle mainBundle] loadNibNamed:@"KPColorPickerView" owner:nil options:nil];
+        colorPickerView = [nibView firstObject];
+    }
+    return colorPickerView;
 }
 
 @end

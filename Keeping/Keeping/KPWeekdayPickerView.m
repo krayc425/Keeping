@@ -22,8 +22,6 @@ static BOOL _loadingXib = NO;
 @implementation KPWeekdayPickerView
 
 - (void)drawRect:(CGRect)rect {
-    self.frame = rect;
-    
     //星期几选项按钮
     for(UIButton *button in self.weekDayStack.subviews){
         [button setTintColor:[Utilities getColor]];
@@ -61,7 +59,6 @@ static BOOL _loadingXib = NO;
                                                          options:nil] objectAtIndex:0];
         view.frame = self.frame;
         view.autoresizingMask = self.autoresizingMask;
-        view.translatesAutoresizingMaskIntoConstraints = self.translatesAutoresizingMaskIntoConstraints;
 
         // copy autolayout constraints
         NSMutableArray *constraints = [NSMutableArray array];
@@ -84,7 +81,7 @@ static BOOL _loadingXib = NO;
             [view addSubview:subview];
         }
         [view addConstraints:constraints];
-        
+        view.translatesAutoresizingMaskIntoConstraints = NO;
         _loadingXib = NO;
         return view;
     }

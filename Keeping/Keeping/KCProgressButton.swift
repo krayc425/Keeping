@@ -64,6 +64,8 @@ class KCProgressButton: UIButton {
         setNeedsLayout()
         layoutIfNeeded()
         
+        self.contentMode = .redraw
+        
         if maskLabel != nil {
             maskLabel?.removeFromSuperview()
         }
@@ -85,6 +87,7 @@ class KCProgressButton: UIButton {
         maskLabel?.textAlignment = (titleLabel?.textAlignment)!
         maskLabel?.layer.cornerRadius = layer.cornerRadius
         maskLabel?.layer.masksToBounds = true
+        maskLabel?.translatesAutoresizingMaskIntoConstraints = false
         addSubview(maskLabel!)
     }
     
