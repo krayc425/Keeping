@@ -10,6 +10,11 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Futura.ttc">
+            <string>Futura-Medium</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--KPNavigationViewController-->
         <scene sceneID="do5-em-2mj">
@@ -1342,7 +1347,7 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9fY-9r-d6N" customClass="CardsView">
                                                             <rect key="frame" x="0.0" y="0.0" width="85" height="85"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9月 星期一" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jzd-pg-18i">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jzd-pg-18i">
                                                                     <rect key="frame" x="5" y="10" width="75" height="14.5"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="15" id="dmg-EV-r4D"/>
@@ -1353,9 +1358,11 @@
                                                                 </label>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vUu-3h-ozc">
                                                                     <rect key="frame" x="10" y="30" width="65" height="45"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="35"/>
                                                                     <color key="tintColor" red="0.3194947541" green="0.52328276630000004" blue="0.78042376040000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                    <state key="normal" title="20"/>
+                                                                    <state key="normal" title="20">
+                                                                        <color key="titleColor" red="0.3194947541" green="0.52328276630000004" blue="0.78042376040000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                    </state>
                                                                     <connections>
                                                                         <action selector="chooseDateAction:" destination="6at-be-euJ" eventType="touchUpInside" id="ATP-1A-Nz9"/>
                                                                     </connections>
@@ -1382,8 +1389,8 @@
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ymX-S3-76N" customClass="KCProgressButton" customModule="Keeping" customModuleProvider="target">
                                                             <rect key="frame" x="95" y="0.0" width="260" height="85"/>
                                                             <color key="backgroundColor" red="0.99404761904761907" green="0.98809523809523814" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                                            <state key="normal" title="Button">
+                                                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="40"/>
+                                                            <state key="normal" title="0 / 0">
                                                                 <color key="titleColor" red="0.3194947541" green="0.52328276630000004" blue="0.78042376040000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             </state>
                                                             <userDefinedRuntimeAttributes>
@@ -1526,20 +1533,20 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="fFM-1X-dIp" customClass="KPWeekdayPickerView">
-                                                    <rect key="frame" x="30" y="114" width="160" height="20"/>
+                                                    <rect key="frame" x="32" y="111" width="160" height="25"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="160" id="HFV-at-DfB"/>
-                                                        <constraint firstAttribute="height" constant="20" id="fsa-i7-vsd"/>
+                                                        <constraint firstAttribute="height" constant="25" id="fsa-i7-vsd"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="uXc-oi-Sg4" firstAttribute="leading" secondItem="zHp-bD-jFq" secondAttribute="leading" constant="10" id="InG-Vg-G5l"/>
-                                                <constraint firstItem="fFM-1X-dIp" firstAttribute="leading" secondItem="zHp-bD-jFq" secondAttribute="leading" constant="30" id="Tq6-ho-Jb2"/>
+                                                <constraint firstItem="fFM-1X-dIp" firstAttribute="leading" secondItem="zHp-bD-jFq" secondAttribute="leading" constant="32" id="Tq6-ho-Jb2"/>
                                                 <constraint firstAttribute="trailing" secondItem="uXc-oi-Sg4" secondAttribute="trailing" constant="10" id="gfS-4F-0jI"/>
                                                 <constraint firstAttribute="bottom" secondItem="uXc-oi-Sg4" secondAttribute="bottom" constant="5" id="iwP-Qv-4aD"/>
-                                                <constraint firstAttribute="bottom" secondItem="fFM-1X-dIp" secondAttribute="bottom" constant="12" id="j5M-rQ-IeJ"/>
+                                                <constraint firstAttribute="bottom" secondItem="fFM-1X-dIp" secondAttribute="bottom" constant="10" id="j5M-rQ-IeJ"/>
                                                 <constraint firstItem="uXc-oi-Sg4" firstAttribute="top" secondItem="zHp-bD-jFq" secondAttribute="top" id="kbl-3a-Ial"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -1692,8 +1699,8 @@
         <image name="Weekday" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="KVR-SD-oGK"/>
+        <segue reference="ZOT-mw-fWn"/>
         <segue reference="fad-KU-zal"/>
-        <segue reference="QMM-bj-IhC"/>
+        <segue reference="9tp-5Z-bmL"/>
     </inferredMetricsTieBreakers>
 </document>

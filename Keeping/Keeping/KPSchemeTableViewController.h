@@ -24,8 +24,8 @@
 
 @property (nonatomic, nullable) KPScheme *selectedApp;
 
-@property (nonatomic, copy, nonnull) NSMutableArray *searchResults;
-@property (nonatomic, copy, nonnull) NSMutableArray *schemeArr;
+@property (nonatomic, nonnull) NSMutableArray *searchResults;
+@property (nonatomic, nonnull) NSMutableArray *schemeArr;
 
 @property (nonatomic, nonnull) UISearchController *searchController;
 

@@ -111,6 +111,10 @@ static KPColorPickerView *colorPickerView = NULL;
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     [self loadTasks];
 }
 
@@ -150,6 +154,11 @@ static KPColorPickerView *colorPickerView = NULL;
         }
     }
     
+    //设置进度
+    NSUInteger finished = self.finishedTaskArr.count;
+    NSUInteger total = self.finishedTaskArr.count + self.unfinishedTaskArr.count;
+    [self.progressButton setProgressWithFinished:finished total:total];
+    
     //排序
     self.unfinishedTaskArr = [NSMutableArray arrayWithArray:[TaskDataHelper sortTasks:self.unfinishedTaskArr withSortFactor:self.sortFactor isAscend:self.isAscend.intValue]];
     self.finishedTaskArr = [NSMutableArray arrayWithArray:[TaskDataHelper sortTasks:self.finishedTaskArr withSortFactor:self.sortFactor isAscend:self.isAscend.intValue]];
@@ -157,13 +166,6 @@ static KPColorPickerView *colorPickerView = NULL;
     //按类别
     self.unfinishedTaskArr = [NSMutableArray arrayWithArray:[TaskDataHelper filtrateTasks:self.unfinishedTaskArr withType:self.selectedColorNum]];
     self.finishedTaskArr = [NSMutableArray arrayWithArray:[TaskDataHelper filtrateTasks:self.finishedTaskArr withType:self.selectedColorNum]];
-    
-    [self.progressButton setNeedsLayout];
-    [self.progressButton layoutIfNeeded];
-    
-    //设置进度
-    [self.progressButton setProgressWithFinished:self.finishedTaskArr.count
-                                           total:self.finishedTaskArr.count + self.unfinishedTaskArr.count];
     
     [self.tableView reloadData];
     

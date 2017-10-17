@@ -33,17 +33,11 @@ class KCProgressButton: UIButton {
     
     override public init(frame: CGRect) {
         super.init(frame: frame)
-        addMaskLabel(with: (titleLabel?.text ?? ""))
+        addMaskLabel(with: titleLabel?.text ?? "", progress: 0)
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        addMaskLabel(with: (titleLabel?.text ?? ""))
-    }
-    
-    override func setTitle(_ title: String?, for state: UIControlState) {
-        super.setTitle(title, for: state)
-        addMaskLabel(with: title!)
     }
     
     //MARK: - Set Progress
@@ -53,25 +47,20 @@ class KCProgressButton: UIButton {
         if total > 0 {
             progress = Float(finished) / Float(total)
         }
-        setTitle("\(finished) / \(total)", for: .normal)
-        maskLabel?.frame = CGRect(x: 0,
-                                  y: 0,
-                                  width: CGFloat(progress) * (self.frame.width),
-                                  height: self.frame.height)
+        addMaskLabel(with: "\(finished) / \(total)", progress: progress)
     }
     
-    private func addMaskLabel(with title: String) {
-        setNeedsLayout()
-        self.contentMode = .redraw
-        
+    private func addMaskLabel(with title: String, progress: Float) {
+        print("Add Mask Label")
         if maskLabel != nil {
             maskLabel?.removeFromSuperview()
         }
         
+        setTitle(title, for: .normal)
         let titleLabelFrame = titleLabel?.frame
         maskLabel = KCEdgeInsetLabel(frame: CGRect(x: 0,
                                                    y: 0,
-                                                   width: 0,
+                                                   width: self.frame.width * CGFloat(progress),
                                                    height: self.frame.height),
                                      edgetInset: UIEdgeInsetsMake(0,
                                                                   (titleLabelFrame?.origin.x)!,
@@ -79,15 +68,13 @@ class KCProgressButton: UIButton {
                                                                   0))
         maskLabel?.text = title
         maskLabel?.font = titleLabel?.font
-        maskLabel?.backgroundColor = titleColor(for: .normal)
-        maskLabel?.textColor = backgroundColor
+        maskLabel?.backgroundColor = Utilities.getColor()
+        maskLabel?.textColor = .white
         maskLabel?.lineBreakMode = .byCharWrapping
         maskLabel?.textAlignment = (titleLabel?.textAlignment)!
         maskLabel?.layer.cornerRadius = layer.cornerRadius
         maskLabel?.layer.masksToBounds = true
-//        maskLabel?.translatesAutoresizingMaskIntoConstraints = false
         addSubview(maskLabel!)
-        layoutIfNeeded()
     }
     
     /// 内部作 Mask 的 Label

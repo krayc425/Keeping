@@ -242,7 +242,9 @@
 #pragma mark - Search Delegate
 
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController{
-    [self.searchResults removeAllObjects];
+    if (self.searchResults.count > 0) {
+        [self.searchResults removeAllObjects];
+    }
     //NSPredicate 谓词
     NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"SELF.name CONTAINS[cd] %@", searchController.searchBar.text];
     self.searchResults = [[self.schemeArr filteredArrayUsingPredicate:searchPredicate] mutableCopy];
@@ -256,13 +258,5 @@
         [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:[self.schemeArr indexOfObject:self.selectedApp] inSection:1] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
     });
 }
-
-//- (void)willPresentSearchController:(UISearchController *)searchController{
-//    self.navigationController.navigationBar.translucent = YES;
-//}
-//
-//- (void)willDismissearchController:(UISearchController *)searchController{
-//    self.navigationController.navigationBar.translucent = NO;
-//}
 
 @end

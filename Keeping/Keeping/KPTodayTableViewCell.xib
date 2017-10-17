@@ -63,34 +63,39 @@
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="KCu-23-9U8">
                         <rect key="frame" x="133" y="30.5" width="55" height="10"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TODAY_APP" translatesAutoresizingMaskIntoConstraints="NO" id="qYF-LJ-P9k">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TODAY_APP" translatesAutoresizingMaskIntoConstraints="NO" id="qYF-LJ-P9k">
                                 <rect key="frame" x="0.0" y="0.0" width="10" height="10"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="10" id="6Qj-c6-FyO"/>
+                                    <constraint firstAttribute="height" constant="10" id="j1w-9w-3qa"/>
                                     <constraint firstAttribute="width" secondItem="qYF-LJ-P9k" secondAttribute="height" multiplier="1:1" id="nWx-Hm-gyj"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TODAY_IMAGE" translatesAutoresizingMaskIntoConstraints="NO" id="OB1-fl-otB">
+                            <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TODAY_IMAGE" translatesAutoresizingMaskIntoConstraints="NO" id="OB1-fl-otB">
                                 <rect key="frame" x="15" y="0.0" width="10" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="OB1-fl-otB" secondAttribute="height" multiplier="1:1" id="RFw-yY-OCK"/>
+                                    <constraint firstAttribute="height" constant="10" id="V0J-au-fWj"/>
+                                    <constraint firstAttribute="width" constant="10" id="nZ7-XC-ZI3"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TODAY_LINK" translatesAutoresizingMaskIntoConstraints="NO" id="pWw-gS-wbu">
+                            <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TODAY_LINK" translatesAutoresizingMaskIntoConstraints="NO" id="pWw-gS-wbu">
                                 <rect key="frame" x="30" y="0.0" width="10" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="pWw-gS-wbu" secondAttribute="height" multiplier="1:1" id="Xyn-g9-TJV"/>
+                                    <constraint firstAttribute="height" constant="10" id="YTl-kJ-aSD"/>
+                                    <constraint firstAttribute="width" constant="10" id="oXT-lP-awo"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TODAY_TEXT" translatesAutoresizingMaskIntoConstraints="NO" id="T6Z-KN-C3G">
+                            <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TODAY_TEXT" translatesAutoresizingMaskIntoConstraints="NO" id="T6Z-KN-C3G">
                                 <rect key="frame" x="45" y="0.0" width="10" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="T6Z-KN-C3G" secondAttribute="height" multiplier="1:1" id="KfJ-Tw-yvt"/>
+                                    <constraint firstAttribute="height" constant="10" id="Ozs-RF-thX"/>
+                                    <constraint firstAttribute="width" constant="10" id="cf4-Tv-Nqh"/>
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="10" id="oc8-Mp-ecK"/>
-                        </constraints>
                     </stackView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="middleTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="3Uo-Cw-fbd">
                         <rect key="frame" x="18" y="10" width="42" height="50"/>
