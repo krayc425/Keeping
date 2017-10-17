@@ -10,8 +10,8 @@
 
 @interface KCEdgeInsetLabel : UILabel
 
-- (instancetype _Nonnull)initWithFrame:(CGRect)frame andEdgeInset:(UIEdgeInsets)inset;
-
 @property (nonatomic) UIEdgeInsets textEdgeInsets;
+
+- (instancetype _Nonnull)initWithFrame:(CGRect)frame andEdgeInset:(UIEdgeInsets)inset;
 
 @end

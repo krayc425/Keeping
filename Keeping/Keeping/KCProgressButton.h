@@ -14,4 +14,6 @@
 
 @property (nonatomic, nullable) KCEdgeInsetLabel *maskLabel;
 
+- (void)setProgressWithFinished:(int)finished andTotal:(int)total;
+
 @end

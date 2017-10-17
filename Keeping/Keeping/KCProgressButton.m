@@ -24,11 +24,12 @@
     return [super initWithCoder:aDecoder];
 }
 
-- (void)setProgressWithProgress:(int)finished andTotal:(int)total {
+- (void)setProgressWithFinished:(int)finished andTotal:(int)total {
     float progress = 0.0;
     if (total > 0) {
         progress = (float)finished / (float)total;
     }
+    [self addMaskLabelWithTitle:[NSString stringWithFormat:@"%d / %d", finished, total] andProgress:progress];
 }
 
 - (void)addMaskLabelWithTitle:(NSString *)title andProgress:(float)progress {
@@ -36,8 +37,11 @@
         [self.maskLabel removeFromSuperview];
     }
     [self setTitle:title forState:UIControlStateNormal];
-    CGRect frame = self.titleLabel.frame;
-    self.maskLabel = [[KCEdgeInsetLabel alloc] initWithFrame:CGRectMake(0, 0, frame.size.width * progress, self.frame.size.height)
+    
+    self.maskLabel = [[KCEdgeInsetLabel alloc] initWithFrame:CGRectMake(0,
+                                                                        0,
+                                                                        self.frame.size.width * progress,
+                                                                        self.frame.size.height)
                                                 andEdgeInset:UIEdgeInsetsMake(0, self.titleLabel.frame.origin.x, 0, 0)];
     self.maskLabel.text = title;
     self.maskLabel.font = self.titleLabel.font;

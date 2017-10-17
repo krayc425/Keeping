@@ -157,7 +157,7 @@ static KPColorPickerView *colorPickerView = NULL;
     //设置进度
     NSUInteger finished = self.finishedTaskArr.count;
     NSUInteger total = self.finishedTaskArr.count + self.unfinishedTaskArr.count;
-    [self.progressButton setProgressWithFinished:finished total:total];
+    [self.progressButton setProgressWithFinished:(int)finished andTotal:(int)total];
     
     //排序
     self.unfinishedTaskArr = [NSMutableArray arrayWithArray:[TaskDataHelper sortTasks:self.unfinishedTaskArr withSortFactor:self.sortFactor isAscend:self.isAscend.intValue]];
