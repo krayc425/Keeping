@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>en</string>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>今日打卡 - 未完成</string>
+	<string>今日打卡</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -22,15 +22,15 @@
 	<string>0</string>
 	<key>NSExtension</key>
 	<dict>
-		<key>NSExtensionMainStoryboard</key>
-		<string>MainInterface</string>
+		<key>NSExtensionAttributes</key>
+		<dict>
+			<key>WKAppBundleIdentifier</key>
+			<string>com.krayc.Keeping.watchkitapp</string>
+		</dict>
 		<key>NSExtensionPointIdentifier</key>
-		<string>com.apple.widget-extension</string>
+		<string>com.apple.watchkit</string>
 	</dict>
-	<key>UIAppFonts</key>
-	<array>
-		<string>方正书宋简体.ttf</string>
-		<string>方正楷体简体.ttf</string>
-	</array>
+	<key>WKExtensionDelegateClassName</key>
+	<string>ExtensionDelegate</string>
 </dict>
 </plist>

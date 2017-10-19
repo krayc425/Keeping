@@ -82,11 +82,11 @@ static BOOL _loadingXib = NO;
 }
 
 - (void)setFont{
-    [self.hourLabel setFont:[UIFont systemFontOfSize:13.0]];
+    [self.hourLabel setFont:[UIFont fontWithName:@"Futura" size:13.0f]];
     [self.hourLabel setTextColor:[Utilities getColor]];
-    [self.minuteLabel setFont:[UIFont systemFontOfSize:13.0]];
+    [self.minuteLabel setFont:[UIFont fontWithName:@"Futura" size:13.0f]];
     [self.minuteLabel setTextColor:[Utilities getColor]];
-    [self.colonLabel setFont:[UIFont systemFontOfSize:13.0]];
+    [self.colonLabel setFont:[UIFont fontWithName:@"Futura" size:13.0f]];
     [self.colonLabel setTextColor:[Utilities getColor]];
 }
 

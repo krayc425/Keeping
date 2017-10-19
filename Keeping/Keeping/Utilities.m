@@ -12,7 +12,7 @@
 @implementation Utilities
 
 + (UIColor *)getColor{
-    return [UIColor colorWithRed:59.0/255.0 green:134.0/255.0 blue:207.0/255.0 alpha:1.0];
+    return [UIColor colorWithRed:76.0/255.0 green:134.0/255.0 blue:201.0/255.0 alpha:1.0];
 }
 
 + (NSArray *)getFontSizeArr{
