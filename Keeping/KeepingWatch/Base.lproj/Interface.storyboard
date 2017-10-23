@@ -12,7 +12,36 @@
         <!--Interface Controller-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController"/>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController">
+                    <items>
+                        <label alignment="center" text="0 / 0" textAlignment="center" numberOfLines="2" id="tIi-Pd-rit">
+                            <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="font" type="system" pointSize="25"/>
+                        </label>
+                        <table alignment="left" id="For-TG-Mum">
+                            <items>
+                                <tableRow identifier="KPWatchTableRowController" id="PZy-Pb-1Io" customClass="KPWatchTableRowController">
+                                    <group key="rootItem" width="1" alignment="left" id="Qgf-pl-CfC">
+                                        <items>
+                                            <label alignment="left" verticalAlignment="center" textAlignment="left" numberOfLines="2" id="Pzm-Vl-Alf"/>
+                                            <imageView width="20" height="20" alignment="right" verticalAlignment="center" image="NAV_DONE" id="5Yb-hX-HMn">
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </imageView>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="taskDoneImage" destination="5Yb-hX-HMn" id="DfO-Jn-HHT"/>
+                                        <outlet property="taskNameLabel" destination="Pzm-Vl-Alf" id="20v-yF-9jx"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="taskProgressLabel" destination="tIi-Pd-rit" id="9wl-he-sb2"/>
+                        <outlet property="taskTable" destination="For-TG-Mum" id="YmM-w2-gR7"/>
+                    </connections>
+                </controller>
             </objects>
             <point key="canvasLocation" x="220" y="345"/>
         </scene>

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2486A5751E4B22D5006B29EE"
+               BlueprintIdentifier = "245A01081F98EE9100CB50E9"
                BuildableName = "KeepingWatch.app"
                BlueprintName = "KeepingWatch"
                ReferencedContainer = "container:Keeping.xcodeproj">
@@ -47,7 +47,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2486A5751E4B22D5006B29EE"
+            BlueprintIdentifier = "245A01081F98EE9100CB50E9"
             BuildableName = "KeepingWatch.app"
             BlueprintName = "KeepingWatch"
             ReferencedContainer = "container:Keeping.xcodeproj">
@@ -73,7 +73,7 @@
          RemotePath = "/Keeping">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2486A5751E4B22D5006B29EE"
+            BlueprintIdentifier = "245A01081F98EE9100CB50E9"
             BuildableName = "KeepingWatch.app"
             BlueprintName = "KeepingWatch"
             ReferencedContainer = "container:Keeping.xcodeproj">
@@ -82,7 +82,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2486A5751E4B22D5006B29EE"
+            BlueprintIdentifier = "245A01081F98EE9100CB50E9"
             BuildableName = "KeepingWatch.app"
             BlueprintName = "KeepingWatch"
             ReferencedContainer = "container:Keeping.xcodeproj">
@@ -103,7 +103,7 @@
          RemotePath = "/Keeping">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2486A5751E4B22D5006B29EE"
+            BlueprintIdentifier = "245A01081F98EE9100CB50E9"
             BuildableName = "KeepingWatch.app"
             BlueprintName = "KeepingWatch"
             ReferencedContainer = "container:Keeping.xcodeproj">
@@ -112,7 +112,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2486A5751E4B22D5006B29EE"
+            BlueprintIdentifier = "245A01081F98EE9100CB50E9"
             BuildableName = "KeepingWatch.app"
             BlueprintName = "KeepingWatch"
             ReferencedContainer = "container:Keeping.xcodeproj">

@@ -302,11 +302,6 @@ static KPColorPickerView *colorPickerView = NULL;
         }else if(indexPath.section == 2){
             t = self.historyTaskArr[indexPath.row];
         }
-        
-//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//        KPTaskDisplayTableViewController *childVC = (KPTaskDisplayTableViewController *)[storyboard instantiateViewControllerWithIdentifier:@"KPTaskDisplayTableViewController"];
-//        [childVC setTaskid:t.id];
-//        [self.navigationController pushViewController:childVC animated:true];
         [self performSegueWithIdentifier:@"detailTaskSegue" sender:t];
     }
 }

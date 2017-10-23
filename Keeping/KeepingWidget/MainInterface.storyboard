@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ETR-As-Xge">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ETR-As-Xge">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -29,7 +29,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="168-OG-eyN" id="o95-WE-BrE">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -38,14 +38,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jb5-jH-hU4">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="72B-Jm-y4T">
-                                        <rect key="frame" x="166.5" y="17.5" width="42" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i61-Ld-2Q3">
-                                        <rect key="frame" x="167" y="41.5" width="42" height="21"/>
+                                        <rect key="frame" x="167" y="22.5" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -54,10 +48,8 @@
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="i61-Ld-2Q3" firstAttribute="centerX" secondItem="jb5-jH-hU4" secondAttribute="centerX" id="3WP-RB-Jby"/>
-                                    <constraint firstAttribute="height" constant="66" id="9Av-xH-GRB"/>
-                                    <constraint firstItem="i61-Ld-2Q3" firstAttribute="top" secondItem="72B-Jm-y4T" secondAttribute="bottom" constant="3" id="G0z-vH-2IN"/>
-                                    <constraint firstItem="72B-Jm-y4T" firstAttribute="centerY" secondItem="jb5-jH-hU4" secondAttribute="centerY" constant="-5" id="dJ6-iJ-8V1"/>
-                                    <constraint firstItem="72B-Jm-y4T" firstAttribute="centerX" secondItem="jb5-jH-hU4" secondAttribute="centerX" id="qyY-eK-eZE"/>
+                                    <constraint firstItem="i61-Ld-2Q3" firstAttribute="centerY" secondItem="jb5-jH-hU4" secondAttribute="centerY" id="PYo-rD-cLk"/>
+                                    <constraint firstAttribute="height" constant="66" id="aBH-Eb-rfx"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -65,9 +57,9 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="jb5-jH-hU4" secondAttribute="trailing" id="2v9-zo-XpL"/>
                             <constraint firstAttribute="trailing" secondItem="wbm-iV-L9T" secondAttribute="trailing" id="hgv-ky-NuG"/>
-                            <constraint firstItem="wbm-iV-L9T" firstAttribute="top" secondItem="jb5-jH-hU4" secondAttribute="bottom" id="kRf-sC-Ahc"/>
                             <constraint firstItem="jb5-jH-hU4" firstAttribute="top" secondItem="IDx-op-05l" secondAttribute="top" id="lxS-94-WY4"/>
                             <constraint firstItem="wbm-iV-L9T" firstAttribute="leading" secondItem="IDx-op-05l" secondAttribute="leading" id="nGU-lP-xqW"/>
+                            <constraint firstItem="wbm-iV-L9T" firstAttribute="top" secondItem="jb5-jH-hU4" secondAttribute="bottom" id="new-RB-Bao"/>
                             <constraint firstAttribute="bottom" secondItem="wbm-iV-L9T" secondAttribute="bottom" id="xmq-NL-WYP"/>
                             <constraint firstItem="jb5-jH-hU4" firstAttribute="leading" secondItem="IDx-op-05l" secondAttribute="leading" id="zzF-tX-AaF"/>
                         </constraints>
@@ -76,7 +68,6 @@
                     <size key="freeformSize" width="375" height="150"/>
                     <connections>
                         <outlet property="countLabel" destination="i61-Ld-2Q3" id="xga-JB-5Eg"/>
-                        <outlet property="dateLabel" destination="72B-Jm-y4T" id="qAs-hk-856"/>
                         <outlet property="taskTableView" destination="wbm-iV-L9T" id="9zH-MB-GNA"/>
                     </connections>
                 </viewController>

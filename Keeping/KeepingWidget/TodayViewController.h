@@ -17,7 +17,6 @@
 
 @property (nonatomic, nonnull) NSMutableArray *taskArr;
 
-@property (nonatomic, nonnull) IBOutlet UILabel *dateLabel;
 @property (nonatomic, nonnull) IBOutlet UILabel *countLabel;
 @property (nonatomic, nonnull) IBOutlet UITableView *taskTableView;
 

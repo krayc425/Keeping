@@ -8,6 +8,7 @@
 
 #import "Task.h"
 #import "TaskManager.h"
+#import "DateUtil.h"
 
 #define GB18030_ENCODING CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000)
 
@@ -28,6 +29,10 @@
 - (BOOL)hasMoreInfo{
     return self.image != NULL || (self.memo != NULL && ![self.memo isEqualToString:@""])
     || (self.link != NULL && ![self.link isEqualToString:@""]) || self.appScheme != NULL;
+}
+
+- (BOOL)hasPunchedOnDate:(NSDate *)date {
+    return [self.punchDateArr containsObject:[DateUtil transformDate:date]];
 }
 
 @end

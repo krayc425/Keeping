@@ -13,10 +13,10 @@
 #import "KPTabBarViewController.h"
 #import <AVOSCloud/AVOSCloud.h>
 #import "UNManager.h"
-#import <Fabric/Fabric.h>
-#import <Crashlytics/Crashlytics.h>
 #import "AppKeys.h"
 #import "KPSchemeManager.h"
+#import "IQKeyboardManager.h"
+#import "Utilities.h"
 
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
 #import <UserNotifications/UserNotifications.h>
@@ -37,8 +37,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    //崩溃提交
-    [Fabric with:@[[Crashlytics class]]];
+    //键盘
+    [[IQKeyboardManager sharedManager] setToolbarTintColor:[Utilities getColor]];
+    [[IQKeyboardManager sharedManager] setToolbarDoneBarButtonItemText:@"完成"];
     
     //先删除所有通知
     [UNManager reconstructNotifications];

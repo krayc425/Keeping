@@ -27,6 +27,7 @@
 		2429CBEF1E2E4A9B0027DD37 /* KPTodayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2429CBED1E2E4A9B0027DD37 /* KPTodayTableViewCell.xib */; };
 		2429CBF31E2E4E750027DD37 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2429CBF21E2E4E750027DD37 /* Utilities.m */; };
 		2429CBFB1E2E5D510027DD37 /* KPTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2429CBFA1E2E5D510027DD37 /* KPTabBarViewController.m */; };
+		2432F07B1F9D95F200387682 /* DateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DCF1891E3094050097C250 /* DateUtil.m */; };
 		2435AF5C1E34D0D50065DC74 /* MLKMenuPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 2435AF5B1E34D0D50065DC74 /* MLKMenuPopover.m */; };
 		2435DBF11E35CCC300F1A96E /* KPFontTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2435DBF01E35CCC300F1A96E /* KPFontTableViewController.m */; };
 		2435F3361E5175FE00C6AAA6 /* KPWeekdayPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2435F3351E5175FE00C6AAA6 /* KPWeekdayPickerView.xib */; };
@@ -45,6 +46,10 @@
 		245A01221F98EE9100CB50E9 /* NotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 245A01211F98EE9100CB50E9 /* NotificationController.m */; };
 		245A01241F98EE9100CB50E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 245A01231F98EE9100CB50E9 /* Assets.xcassets */; };
 		245A01291F98EE9100CB50E9 /* KeepingWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 245A01091F98EE9100CB50E9 /* KeepingWatch.app */; };
+		245D7B771F9CD68B007DD894 /* KPWatchTableRowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 245D7B761F9CD68B007DD894 /* KPWatchTableRowController.m */; };
+		245D7B781F9CD98D007DD894 /* Navigation.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24699F041E2F23C60092FBED /* Navigation.xcassets */; };
+		245D7B791F9CD98D007DD894 /* Navigation.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24699F041E2F23C60092FBED /* Navigation.xcassets */; };
+		245D7B7C1F9CDDFA007DD894 /* KPWatchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 245D7B7B1F9CDDFA007DD894 /* KPWatchManager.m */; };
 		2467A58C1E8A3FF700C41B11 /* KPNavigationTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2467A58B1E8A3FF700C41B11 /* KPNavigationTitleView.m */; };
 		24699F031E2F213D0092FBED /* KPNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24699F021E2F213D0092FBED /* KPNavigationViewController.m */; };
 		24699F051E2F23C60092FBED /* Navigation.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24699F041E2F23C60092FBED /* Navigation.xcassets */; };
@@ -65,6 +70,7 @@
 		247F01D81E3DC5F3001F900C /* TaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2436F8261E2F2C4B00C2984A /* TaskManager.m */; };
 		247F01D91E3DC625001F900C /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F2A0D01E2F3F1800F30FB1 /* DBManager.m */; };
 		247F01DA1E3DC627001F900C /* UNManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24151C961E32388300757A69 /* UNManager.m */; };
+		24864F111F9DA32D00AA6C24 /* KPWatchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 245D7B7B1F9CDDFA007DD894 /* KPWatchManager.m */; };
 		2493299D1E549EA300C85070 /* KPTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2493299C1E549EA300C85070 /* KPTabBar.m */; };
 		249700471E5607210015CC5F /* KPTypeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 249700461E5607210015CC5F /* KPTypeTableViewController.m */; };
 		2497004B1E56075B0015CC5F /* KPTypeColorTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 249700491E56075B0015CC5F /* KPTypeColorTableViewCell.m */; };
@@ -242,6 +248,10 @@
 		245A01231F98EE9100CB50E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		245A01251F98EE9100CB50E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		245A01261F98EE9100CB50E9 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		245D7B751F9CD68B007DD894 /* KPWatchTableRowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KPWatchTableRowController.h; sourceTree = "<group>"; };
+		245D7B761F9CD68B007DD894 /* KPWatchTableRowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KPWatchTableRowController.m; sourceTree = "<group>"; };
+		245D7B7A1F9CDDFA007DD894 /* KPWatchManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KPWatchManager.h; sourceTree = "<group>"; };
+		245D7B7B1F9CDDFA007DD894 /* KPWatchManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KPWatchManager.m; sourceTree = "<group>"; };
 		2467A58A1E8A3FF700C41B11 /* KPNavigationTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPNavigationTitleView.h; sourceTree = "<group>"; };
 		2467A58B1E8A3FF700C41B11 /* KPNavigationTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPNavigationTitleView.m; sourceTree = "<group>"; };
 		24699F011E2F213D0092FBED /* KPNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPNavigationViewController.h; sourceTree = "<group>"; };
@@ -365,6 +375,13 @@
 			files = (
 				2436F8241E2F2C3300C2984A /* libsqlite3.0.tbd in Frameworks */,
 				5CB639CB421E29B47A2741DB /* libPods-Keeping.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AD48EFB2A45CABA82AF550C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,6 +513,8 @@
 				245A01231F98EE9100CB50E9 /* Assets.xcassets */,
 				245A01251F98EE9100CB50E9 /* Info.plist */,
 				245A01261F98EE9100CB50E9 /* PushNotificationPayload.apns */,
+				245D7B751F9CD68B007DD894 /* KPWatchTableRowController.h */,
+				245D7B761F9CD68B007DD894 /* KPWatchTableRowController.m */,
 			);
 			path = "KeepingWatch Extension";
 			sourceTree = "<group>";
@@ -616,6 +635,8 @@
 				2429CBF41E2E53C50027DD37 /* Settings */,
 				24DCF18C1E30A07C0097C250 /* UI */,
 				24DCF18B1E30940C0097C250 /* Utilities */,
+				245D7B7A1F9CDDFA007DD894 /* KPWatchManager.h */,
+				245D7B7B1F9CDDFA007DD894 /* KPWatchManager.m */,
 				249AE31E1E2DEE7700F704F8 /* Main.storyboard */,
 				249AE3261E2DEE7700F704F8 /* LaunchScreen.storyboard */,
 				249AE3241E2DEE7700F704F8 /* Assets.xcassets */,
@@ -836,6 +857,7 @@
 			buildPhases = (
 				245A01071F98EE9100CB50E9 /* Resources */,
 				245A012F1F98EE9100CB50E9 /* Embed App Extensions */,
+				3AD48EFB2A45CABA82AF550C /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -895,7 +917,6 @@
 				1DB4E3AA2BDD226DF2D68A26 /* [CP] Copy Pods Resources */,
 				247F01C81E3D9E1B001F900C /* Embed App Extensions */,
 				2486A5A21E4B22D6006B29EE /* Embed Watch Content */,
-				2465F95E1E6CE92E00A4A0FE /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -980,6 +1001,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				245A010F1F98EE9100CB50E9 /* Assets.xcassets in Resources */,
+				245D7B781F9CD98D007DD894 /* Navigation.xcassets in Resources */,
 				245A010D1F98EE9100CB50E9 /* Interface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -989,6 +1011,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				245A01241F98EE9100CB50E9 /* Assets.xcassets in Resources */,
+				245D7B791F9CD98D007DD894 /* Navigation.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1086,19 +1109,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Keeping/Pods-Keeping-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		2465F95E1E6CE92E00A4A0FE /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" 4bc572765eaf046f5cab858bb6b4665dd8b03794 a41e51e171d688723b9b56f2c3a23ee60a22e986c51602313bfc857d5303ee12";
-		};
 		27BD4EC4E6B5255A94352257 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1157,6 +1167,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				245D7B771F9CD68B007DD894 /* KPWatchTableRowController.m in Sources */,
+				2432F07B1F9D95F200387682 /* DateUtil.m in Sources */,
 				245A011F1F98EE9100CB50E9 /* ExtensionDelegate.m in Sources */,
 				245A011C1F98EE9100CB50E9 /* InterfaceController.m in Sources */,
 				245A01221F98EE9100CB50E9 /* NotificationController.m in Sources */,
@@ -1172,6 +1184,7 @@
 				247F01D31E3DBAB7001F900C /* DateUtil.m in Sources */,
 				247F01BD1E3D9E1B001F900C /* TodayViewController.m in Sources */,
 				247F01DA1E3DC627001F900C /* UNManager.m in Sources */,
+				24864F111F9DA32D00AA6C24 /* KPWatchManager.m in Sources */,
 				247F01D11E3DB4F8001F900C /* KPWidgetTableViewCell.m in Sources */,
 				247F01D81E3DC5F3001F900C /* TaskManager.m in Sources */,
 				247F01CD1E3DB44B001F900C /* Utilities.m in Sources */,
@@ -1229,6 +1242,7 @@
 				2435DBF11E35CCC300F1A96E /* KPFontTableViewController.m in Sources */,
 				240826DD1E570A1500EAC855 /* KPUserTableViewController.m in Sources */,
 				247C8EBD1F94FAB40098B574 /* KPTodayTableViewController+Touch.m in Sources */,
+				245D7B7C1F9CDDFA007DD894 /* KPWatchManager.m in Sources */,
 				24F2A1061E2F7CBC00F30FB1 /* KPReminderViewController.m in Sources */,
 				249AE3231E2DEE7700F704F8 /* Keeping.xcdatamodeld in Sources */,
 				2429CBE81E2E499A0027DD37 /* KPSeparatorView.m in Sources */,

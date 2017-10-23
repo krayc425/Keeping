@@ -7,7 +7,6 @@
 //
 
 #import "DBManager.h"
-#import <WatchConnectivity/WatchConnectivity.h>
 
 #define GROUP_ID @"group.com.krayc.keeping"
 
@@ -30,24 +29,13 @@ static DBManager* _instance = nil;
 - (instancetype)init{
     self = [super init];
     if (self) {
-//        [self establishWC];
         [self establishDB];
     }
     return self;
 }
 
-//- (void)establishWC{
-    //Watch 链接
-//    if ([WCSession isSupported]) {
-//        WCSession *session = [WCSession defaultSession];
-//        session.delegate = self;
-//        [session activateSession];
-//    }
-//}
-
 - (void)establishDB{
     //数据库路径
-    
     NSString *doc1 = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) lastObject];
     NSString *doc2 = [[[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:GROUP_ID] path];
     NSString *fileName1 = [doc1 stringByAppendingPathComponent:@"task.sqlite"];
@@ -158,27 +146,5 @@ static DBManager* _instance = nil;
     }
     return 0;
 }
-
-//
-//#pragma <WCSessionDelegate>
-//
-//- (void)sessionDidDeactivate:(WCSession *)session{
-//    NSLog(@"sessionDidDeactivate");
-//}
-//
-//- (void)sessionDidBecomeInactive:(WCSession *)session{
-//    NSLog(@"sessionDidBecomeInactive");
-//}
-//
-//- (void)session:(nonnull WCSession *)session didReceiveMessage:(nonnull NSDictionary *)message replyHandler:(nonnull void (^)(NSDictionary * __nonnull))replyHandler {
-//    NSString *counterValue = [message objectForKey:@"counterValue"];
-//    
-//    //Use this to update the UI instantaneously (otherwise, takes a little while)
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        
-//        NSLog(@"COUNTER %@", counterValue);
-//        
-//    });
-//}
 
 @end

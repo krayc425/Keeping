@@ -12,7 +12,6 @@
 
 @property (nonatomic) int id;
 
-
 //任务名
 @property (nonatomic, nonnull) NSString *name;
 //提醒的日子（星期 x）
@@ -48,5 +47,7 @@
 
 //有没有更多信息
 - (BOOL)hasMoreInfo;
+//在 date 上有没有打过卡
+- (BOOL)hasPunchedOnDate:(NSDate *_Nonnull)date;
 
 @end

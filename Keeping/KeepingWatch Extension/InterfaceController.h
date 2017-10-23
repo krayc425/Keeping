@@ -11,4 +11,7 @@
 
 @interface InterfaceController : WKInterfaceController
 
+@property (weak, nonatomic, nullable) IBOutlet WKInterfaceLabel *taskProgressLabel;
+@property (weak, nonatomic, nullable) IBOutlet WKInterfaceTable *taskTable;
+
 @end

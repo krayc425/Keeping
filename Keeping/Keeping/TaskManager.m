@@ -13,6 +13,7 @@
 #import "DateUtil.h"
 #import "DateTools.h"
 #import "UNManager.h"
+#import "KPWatchManager.h"
 
 @implementation TaskManager
 
@@ -115,7 +116,6 @@ static TaskManager* _instance = nil;
 }
 
 - (BOOL)updateTask:(Task *_Nonnull)task{
-    
     NSError *err = nil;
     
     NSDictionary *schemeDict = task.appScheme;
@@ -189,7 +189,6 @@ static TaskManager* _instance = nil;
 }
 
 - (BOOL)deleteTask:(Task *_Nonnull)task{
-    
     [UNManager deleteLocalizedUserNotification:task];
     
     return [[[DBManager shareInstance] getDB] executeUpdate:
@@ -203,7 +202,6 @@ static TaskManager* _instance = nil;
     [self.taskArr removeAllObjects];
     FMResultSet *resultSet = [[[DBManager shareInstance] getDB] executeQuery:@"select * from t_task;"];
     while ([resultSet next]){
-        
         Task *t = [Task new];
         t.id = [resultSet intForColumn:@"id"];
         t.name = [resultSet stringForColumn:@"name"];
@@ -257,6 +255,9 @@ static TaskManager* _instance = nil;
 
 - (NSMutableArray *)getTasks{
     [self loadTask];
+    
+    [[KPWatchManager shareInstance] transformTasksToWatchWithTasks:self.taskArr];
+    
     return self.taskArr;
 }
 

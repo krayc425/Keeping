@@ -25,6 +25,7 @@
 #import "KPTimeView.h"
 #import "KPNavigationTitleView.h"
 #import "KPTodayTableViewController+Touch.h"
+#import "KPWatchManager.h"
 
 #define MENU_POPOVER_FRAME CGRectMake(10, 44 + 9, 140, 44 * [[Utilities getTaskSortArr] count])
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
@@ -107,6 +108,12 @@ static KPColorPickerView *colorPickerView = NULL;
     self.nextButton = nextButton;
     
     [self.calendar selectDate:self.selectedDate scrollToDate:YES];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadTasks) name:@"refresh_today_task" object:nil];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"refresh_today_task" object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -147,9 +154,9 @@ static KPColorPickerView *colorPickerView = NULL;
     
     NSMutableArray *taskArr = [[TaskManager shareInstance] getTasksOfDate:self.selectedDate];
     for (Task *task in taskArr) {
-        if([task.punchDateArr containsObject:[DateUtil transformDate:self.selectedDate]]){
+        if ([task hasPunchedOnDate:self.selectedDate]) {
             [self.finishedTaskArr addObject:task];
-        }else{
+        } else {
             [self.unfinishedTaskArr addObject:task];
         }
     }

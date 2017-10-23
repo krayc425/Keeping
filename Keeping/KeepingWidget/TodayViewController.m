@@ -11,7 +11,6 @@
 #import "Task.h"
 #import "DateUtil.h"
 #import "KPWidgetTableViewCell.h"
-#import "UIScrollView+EmptyDataSet.h"
 #import "TaskManager.h"
 #import "DateTools.h"
 
@@ -19,7 +18,7 @@
 
 #define DATELABEL_HEIGHT 66
 
-@interface TodayViewController () <NCWidgetProviding, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
+@interface TodayViewController () <NCWidgetProviding>
 
 @end
 
@@ -31,21 +30,16 @@
     
     self.taskTableView.delegate = self;
     self.taskTableView.dataSource = self;
-    self.taskTableView.emptyDataSetSource = self;
-    self.taskTableView.emptyDataSetDelegate = self;
+//    self.taskTableView.emptyDataSetSource = self;
+//    self.taskTableView.emptyDataSetDelegate = self;
     self.taskTableView.backgroundColor = [UIColor clearColor];
     
-    [self.dateLabel setTextColor:[UIColor blackColor]];
-    [self.dateLabel setFont:[UIFont systemFontOfSize:25.0f]];
-    
     [self.countLabel setTextColor:[UIColor blackColor]];
-    [self.countLabel setFont:[UIFont systemFontOfSize:15.0f]];
+    [self.countLabel setFont:[UIFont systemFontOfSize:20.0f]];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
-    [self.dateLabel setText:[DateUtil getDateStringOfDate:[NSDate date]]];
     
     self.extensionContext.widgetLargestAvailableDisplayMode = NCWidgetDisplayModeExpanded;
     
@@ -132,8 +126,10 @@
     
     if(self.taskArr.count > 0){
         [self.countLabel setText:[NSString stringWithFormat:@"剩余 %lu 个未完成", (unsigned long)self.taskArr.count]];
+        [self.taskTableView setHidden:NO];
     }else{
-        [self.countLabel setText:@""];
+        [self.countLabel setText:@"今日任务已全部完成"];
+        [self.taskTableView setHidden:YES];
     }
     
     [self.taskTableView reloadData];
@@ -193,19 +189,6 @@
     }
     
     return cell;
-}
-
-#pragma mark - DZNEmpty Delegate
-
-- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView{
-    NSString *text = @"今日任务已全部完成";
-    
-    NSDictionary *attributes = @{
-                                 NSForegroundColorAttributeName: [UIColor blackColor],
-                                 NSFontAttributeName:[UIFont systemFontOfSize:18.0f]
-                                 };
-    
-    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
 }
 
 @end

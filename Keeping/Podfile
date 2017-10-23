@@ -15,8 +15,6 @@ target 'Keeping' do
   pod 'AVOSCloud'
   pod 'LeanCloudSocial'
   pod 'SCLAlertView-Objective-C'
-  pod 'Fabric'
-  pod 'Crashlytics'
   pod 'IQKeyboardManager'
 
 end
