@@ -14,7 +14,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    [self.colorText setFont:[UIFont systemFontOfSize:18.0f]];
+    [self.colorText setFont:[UIFont systemFontOfSize:17.0f]];
     
     self.colorText.placeholder = @"点击添加备注";
     

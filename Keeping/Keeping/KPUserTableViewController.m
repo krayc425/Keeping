@@ -13,6 +13,7 @@
 #import "MBProgressHUD.h"
 #import "SCLAlertView.h"
 #import "DateUtil.h"
+#import "DateTools.h"
 
 @interface KPUserTableViewController ()
 
@@ -22,7 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.navigationItem setTitle:@"用户信息"];
+    [self.navigationItem setTitle:@"备份"];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -32,22 +33,24 @@
     [query whereKey:@"userId" equalTo:[AVUser currentUser].objectId];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
+            NSInteger days = 0;
+            NSString *username = @"";
             if(query.countObjects > 0){
                 AVObject *user = objects[0];
-                [self.userNameLabel setText:[user objectForKey:@"username"]];
+                username = [user objectForKey:@"username"];
+                days = [[NSDate dateWithYear:[[NSDate date] year] month:[[NSDate date] month] day:[[NSDate date] day]] daysFrom:[NSDate dateWithYear:user.createdAt.year month:user.createdAt.month day:user.createdAt.day]];
             }else{
-                [self.userNameLabel setText:[[AVUser currentUser] valueForKey:@"username"]];
+                username = [[AVUser currentUser] valueForKey:@"username"];
+                days = [[NSDate dateWithYear:[[NSDate date] year] month:[[NSDate date] month] day:[[NSDate date] day]] daysFrom:[NSDate dateWithYear:[AVUser currentUser].createdAt.year month:[AVUser currentUser].createdAt.month day:[AVUser currentUser].createdAt.day]];
             }
+            [self.joinDaysLabel setText:[NSString stringWithFormat:@"已加入 %ld 天", (long)days]];
+            [self.userNameLabel setText:username];
         }else{
             NSLog(@"错误：%@",error.description);
         }
     }];
     
     [self setLatestLabel];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 
 - (void)setFont{
@@ -100,8 +103,8 @@
             
             succeeded = [dbBackUp save];
         }
+
         //备份类别
-        
         AVQuery *typeQuery = [AVQuery queryWithClassName:@"typeBackUp"];
         [typeQuery whereKey:@"userID" equalTo:self.currentUser.objectId];
         if(typeQuery.countObjects == 0){
@@ -276,7 +279,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [@[@(1), @(2), @(1)][section] integerValue];
+    return [@[@(2), @(2), @(1)][section] integerValue];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

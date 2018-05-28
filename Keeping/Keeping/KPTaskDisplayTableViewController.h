@@ -41,6 +41,8 @@
 @property (weak, nonatomic, nullable) IBOutlet UIButton *imageBtn;
 @property (weak, nonatomic, nullable) IBOutlet UIButton *memoBtn;
 
+@property (nonatomic, nonnull) IBOutletCollection(UIImageView) NSArray <UIImageView *>*legendImageView;
+
 @property (nonnull, nonatomic) FSCalendar *calendar;
 @property (nonnull, nonatomic) UIButton *previousButton;
 @property (nonnull, nonatomic) UIButton *nextButton;

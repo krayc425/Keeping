@@ -9,6 +9,7 @@
 #import "KPColorPickerView.h"
 #import "Utilities.h"
 #import "AMPopTip.h"
+#import "UIView+Extensions.h"
 
 static BOOL _loadingXib = NO;
 
@@ -43,7 +44,6 @@ static BOOL _loadingXib = NO;
 }
 
 - (void)commitInit{
-
     self.backgroundColor = [UIColor clearColor];
     self.layer.cornerRadius = 10.0;
     
@@ -116,6 +116,8 @@ static BOOL _loadingXib = NO;
 #pragma mark - Select Color Action
 
 - (IBAction)selectColorAction:(id)sender{
+    [self vibrateWithStyle:UIImpactFeedbackStyleLight];
+    
     UIButton *button = (UIButton *)sender;
     if(self.selectedColorNum == (int)button.tag){
         self.selectedColorNum = -1;
@@ -148,13 +150,6 @@ static BOOL _loadingXib = NO;
                   inView:self
                fromFrame:CGRectOffset(button.frame, self.selectedColorNum <= colorArr.count / 2 ? -8.0f : 8.0f, 0)
                 duration:1.0f];
-        
-//        [popTip showText:str
-//               direction:AMPopTipDirectionDown
-//                maxWidth:200
-//                  inView:self
-//               fromFrame:button.frame
-//                duration:1.0f];
     }
     
     [self.colorDelegate didChangeColors:self.selectedColorNum];

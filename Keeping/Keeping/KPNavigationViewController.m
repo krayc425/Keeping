@@ -21,14 +21,6 @@
     
     [self.navigationBar setTintColor:[UIColor whiteColor]];
     [self.navigationBar setBarTintColor:[Utilities getColor]];
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if (![defaults objectForKey:@"intro_screen_viewed"]) {
-        self.introView = [[ABCIntroView alloc] initWithFrame:self.view.frame];
-        self.introView.delegate = self;
-        self.introView.backgroundColor = [UIColor whiteColor];
-        [self.view addSubview:self.introView];
-    }
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -57,24 +49,6 @@
 
 - (UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleLightContent;
-}
-
-#pragma mark - ABCIntroViewDelegate Methods
-
-- (void)onDoneButtonPressed{
-    //    Uncomment so that the IntroView does not show after the user clicks "DONE"
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:@"YES"forKey:@"intro_screen_viewed"];
-    [defaults synchronize];
-    
-    [UIView animateWithDuration:1.0 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        self.introView.alpha = 0;
-    } completion:^(BOOL finished) {
-        [self.introView removeFromSuperview];
-        
-        KPTabBarViewController *tb = self.viewControllers[0];
-        [tb performSegueWithIdentifier:@"addTaskSegue" sender:nil];
-    }];
 }
 
 @end

@@ -34,5 +34,6 @@
 - (BOOL)modifyMemoForTask:(Task *_Nonnull)task withMemo:(NSString *_Nonnull)memo onDate:(NSDate *_Nonnull)date;
 
 - (BOOL)skipForTask:(Task *_Nonnull)task onDate:(NSDate *_Nonnull)date;
+- (BOOL)unskipForTask:(Task *_Nonnull)task onDate:(NSDate *_Nonnull)date;
 
 @end

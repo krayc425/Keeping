@@ -18,6 +18,6 @@
 @property (nonatomic, weak, nullable) IBOutlet UILabel *downloadTimeLabel;
 @property (nonatomic, weak, nullable) IBOutlet UILabel *uploadTimeLabel;
 @property (nonatomic, weak, nullable) IBOutlet UILabel *userNameLabel;
-
+@property (nonatomic, weak, nullable) IBOutlet UILabel *joinDaysLabel;
 
 @end

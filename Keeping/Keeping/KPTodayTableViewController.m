@@ -25,6 +25,7 @@
 #import "KPTodayTableViewController+Touch.h"
 #import "KPWatchManager.h"
 #import "IDMPhotoBrowser.h"
+#import "UIViewController+Extensions.h"
 
 static AMPopTip *shareTip = NULL;
 static KPColorPickerView *colorPickerView = NULL;
@@ -154,7 +155,7 @@ static KPColorPickerView *colorPickerView = NULL;
     //设置进度
     NSUInteger finished = self.finishedTaskArr.count;
     NSUInteger total = self.finishedTaskArr.count + self.unfinishedTaskArr.count;
-    [self.progressButton setProgressWithFinished:(int)finished andTotal:(int)total];
+    [self.progressLabel setText:[NSString stringWithFormat:@"%lu / %lu", (unsigned long)finished, (unsigned long)total]];
     
     //排序
     self.unfinishedTaskArr = [NSMutableArray arrayWithArray:[TaskDataHelper sortTasks:self.unfinishedTaskArr withSortFactor:self.sortFactor isAscend:self.isAscend.intValue]];
@@ -637,6 +638,8 @@ static KPColorPickerView *colorPickerView = NULL;
 #pragma mark - FSCalendarDelegate
 
 - (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
+    [self vibrateWithStyle:UIImpactFeedbackStyleLight];
+    
     NSDate *tempDate = [NSDate dateWithYear:[date year] month:[date month] day:[date day]];
     self.selectedDate = tempDate;
     [self hideTip];

@@ -50,7 +50,6 @@
 		24699F051E2F23C60092FBED /* Navigation.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24699F041E2F23C60092FBED /* Navigation.xcassets */; };
 		246AEF0A1E64214A00D78FDD /* UIImage+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 246AEF091E64214A00D78FDD /* UIImage+Extensions.m */; };
 		246BF2531EE112FE002FE39A /* AppKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 246BF2521EE112FE002FE39A /* AppKeys.m */; };
-		247A79801E38ABF1000EE623 /* ABCIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = 247A797F1E38ABF1000EE623 /* ABCIntroView.m */; };
 		247C8EBA1F94FA0D0098B574 /* KPTaskTableViewController+Touch.m in Sources */ = {isa = PBXBuildFile; fileRef = 247C8EB91F94FA0D0098B574 /* KPTaskTableViewController+Touch.m */; };
 		247C8EBD1F94FAB40098B574 /* KPTodayTableViewController+Touch.m in Sources */ = {isa = PBXBuildFile; fileRef = 247C8EBC1F94FAB40098B574 /* KPTodayTableViewController+Touch.m */; };
 		247F01B91E3D9E1B001F900C /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 247F01B81E3D9E1B001F900C /* NotificationCenter.framework */; };
@@ -90,6 +89,8 @@
 		24F2A0D71E2F482100F30FB1 /* KPSchemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F2A0D61E2F482100F30FB1 /* KPSchemeManager.m */; };
 		24F2A0DB1E2F489100F30FB1 /* KPSchemeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F2A0D91E2F489100F30FB1 /* KPSchemeTableViewCell.m */; };
 		24F2A0DC1E2F489100F30FB1 /* KPSchemeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24F2A0DA1E2F489100F30FB1 /* KPSchemeTableViewCell.xib */; };
+		24FD7FF320BC3BDF00DFA8D6 /* UIViewController+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FD7FF220BC3BDF00DFA8D6 /* UIViewController+Extensions.m */; };
+		24FD7FF620BC3CAA00DFA8D6 /* UIView+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FD7FF520BC3CAA00DFA8D6 /* UIView+Extensions.m */; };
 		5CB639CB421E29B47A2741DB /* libPods-Keeping.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC5A1BA89969620E5A37921E /* libPods-Keeping.a */; };
 		B29DF1F523DB296B043EFE77 /* libPods-KeepingWidget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7768AB7A1CE5FD0A347A4517 /* libPods-KeepingWidget.a */; };
 /* End PBXBuildFile section */
@@ -231,8 +232,6 @@
 		246AEF091E64214A00D78FDD /* UIImage+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extensions.m"; sourceTree = "<group>"; };
 		246BF2511EE112FE002FE39A /* AppKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppKeys.h; sourceTree = "<group>"; };
 		246BF2521EE112FE002FE39A /* AppKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppKeys.m; sourceTree = "<group>"; };
-		247A797E1E38ABF1000EE623 /* ABCIntroView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABCIntroView.h; sourceTree = "<group>"; };
-		247A797F1E38ABF1000EE623 /* ABCIntroView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ABCIntroView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		247C8EB81F94FA0D0098B574 /* KPTaskTableViewController+Touch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KPTaskTableViewController+Touch.h"; sourceTree = "<group>"; };
 		247C8EB91F94FA0D0098B574 /* KPTaskTableViewController+Touch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "KPTaskTableViewController+Touch.m"; sourceTree = "<group>"; };
 		247C8EBB1F94FAB40098B574 /* KPTodayTableViewController+Touch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KPTodayTableViewController+Touch.h"; sourceTree = "<group>"; };
@@ -293,6 +292,10 @@
 		24F2A0D81E2F489100F30FB1 /* KPSchemeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPSchemeTableViewCell.h; sourceTree = "<group>"; };
 		24F2A0D91E2F489100F30FB1 /* KPSchemeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPSchemeTableViewCell.m; sourceTree = "<group>"; };
 		24F2A0DA1E2F489100F30FB1 /* KPSchemeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KPSchemeTableViewCell.xib; sourceTree = "<group>"; };
+		24FD7FF120BC3BDF00DFA8D6 /* UIViewController+Extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Extensions.h"; sourceTree = "<group>"; };
+		24FD7FF220BC3BDF00DFA8D6 /* UIViewController+Extensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Extensions.m"; sourceTree = "<group>"; };
+		24FD7FF420BC3CAA00DFA8D6 /* UIView+Extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+Extensions.h"; sourceTree = "<group>"; };
+		24FD7FF520BC3CAA00DFA8D6 /* UIView+Extensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extensions.m"; sourceTree = "<group>"; };
 		3303168DFB48063C3EC132E2 /* Pods-KeepingWidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KeepingWidget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KeepingWidget/Pods-KeepingWidget.debug.xcconfig"; sourceTree = "<group>"; };
 		536AA62E968456370B920F00 /* libPods-KeepingWatch Extension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KeepingWatch Extension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7768AB7A1CE5FD0A347A4517 /* libPods-KeepingWidget.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KeepingWidget.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -618,15 +621,6 @@
 			name = HYCircleProgressView;
 			sourceTree = "<group>";
 		};
-		24BA79A81E516FCC002133B6 /* ABCIntroView */ = {
-			isa = PBXGroup;
-			children = (
-				247A797E1E38ABF1000EE623 /* ABCIntroView.h */,
-				247A797F1E38ABF1000EE623 /* ABCIntroView.m */,
-			);
-			name = ABCIntroView;
-			sourceTree = "<group>";
-		};
 		24DCF18B1E30940C0097C250 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -655,7 +649,6 @@
 				24BA79A21E516D4B002133B6 /* KPSeparatorView */,
 				2467A5891E8A3DBB00C41B11 /* KPTimeView */,
 				2467A58D1E8A45B600C41B11 /* KPNavigationTitleView */,
-				24BA79A81E516FCC002133B6 /* ABCIntroView */,
 				24BA79A61E516FC1002133B6 /* HYCircleProgressView */,
 				24BA79A41E516D5D002133B6 /* CardView */,
 				246AEF081E64214A00D78FDD /* UIImage+Extensions.h */,
@@ -664,6 +657,10 @@
 				24569A281F95E30500082EE4 /* KCProgressButton.m */,
 				24569A2A1F95E31E00082EE4 /* KCEdgeInsetLabel.h */,
 				24569A2B1F95E31E00082EE4 /* KCEdgeInsetLabel.m */,
+				24FD7FF120BC3BDF00DFA8D6 /* UIViewController+Extensions.h */,
+				24FD7FF220BC3BDF00DFA8D6 /* UIViewController+Extensions.m */,
+				24FD7FF420BC3CAA00DFA8D6 /* UIView+Extensions.h */,
+				24FD7FF520BC3CAA00DFA8D6 /* UIView+Extensions.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -1059,10 +1056,10 @@
 				246BF2531EE112FE002FE39A /* AppKeys.m in Sources */,
 				2429CBEE1E2E4A9B0027DD37 /* KPTodayTableViewCell.m in Sources */,
 				24A0CD6C1E56CED80017EE22 /* KPScheme.m in Sources */,
-				247A79801E38ABF1000EE623 /* ABCIntroView.m in Sources */,
 				2426103B1E51ACB30016DC64 /* KPColorPickerView.m in Sources */,
 				2429CBD41E2DF5E60027DD37 /* KPTodayTableViewController.m in Sources */,
 				24BA79A11E516949002133B6 /* TaskDataHelper.m in Sources */,
+				24FD7FF620BC3CAA00DFA8D6 /* UIView+Extensions.m in Sources */,
 				249700471E5607210015CC5F /* KPTypeTableViewController.m in Sources */,
 				2493299D1E549EA300C85070 /* KPTabBar.m in Sources */,
 				2429CBFB1E2E5D510027DD37 /* KPTabBarViewController.m in Sources */,
@@ -1073,6 +1070,7 @@
 				2436F82A1E2F2C5700C2984A /* Task.m in Sources */,
 				247C8EBA1F94FA0D0098B574 /* KPTaskTableViewController+Touch.m in Sources */,
 				2429CBDD1E2DF61B0027DD37 /* KPSettingsTableViewController.m in Sources */,
+				24FD7FF320BC3BDF00DFA8D6 /* UIViewController+Extensions.m in Sources */,
 				2429CBD71E2DF6080027DD37 /* KPTaskTableViewController.m in Sources */,
 				24BA79AB1E516FE0002133B6 /* KPWeekdayPickerView.m in Sources */,
 				24F2A0CE1E2F38C700F30FB1 /* KPTaskTableViewCell.m in Sources */,

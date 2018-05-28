@@ -9,6 +9,7 @@
 #import "KPTabBarViewController.h"
 #import "Utilities.h"
 #import "KPTabBar.h"
+#import "UIViewController+Extensions.h"
 #import "KPNavigationTitleView.h"
 #import "KPTaskDetailTableViewController.h"
 
@@ -111,6 +112,9 @@
 #pragma mark - UITabBarController Delegate
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
+    
+    [self vibrateWithStyle:UIImpactFeedbackStyleLight];
+    
     switch (self.selectedIndex) {
         case 0:
         {
@@ -144,6 +148,8 @@
 #pragma mark - KPTabBar Delegate
 
 - (void)tabBar:(UITabBar *_Nonnull)tabBar didTappedAddButton:(UIButton *_Nonnull)addButton{
+    [self vibrateWithStyle:UIImpactFeedbackStyleLight];
+    
     [self performSegueWithIdentifier:@"addTaskSegue" sender:nil];
 }
 

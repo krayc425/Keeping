@@ -16,8 +16,6 @@
 
 @property (nonatomic, weak, nullable) IBOutletCollection(UILabel) NSArray *labels;
 
-@property (nonatomic, weak, nullable) IBOutlet UILabel *unreadMsgLabel;
-
 @property (nonatomic, weak, nullable) IBOutlet UILabel *cacheLabel;
 
 @property (nonatomic, weak, nullable) IBOutlet UILabel *userNameLabel;

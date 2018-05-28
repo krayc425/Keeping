@@ -9,6 +9,7 @@
 #import "KPWeekdayPickerView.h"
 #import "Utilities.h"
 #import "DateUtil.h"
+#import "UIView+Extensions.h"
 
 static BOOL _loadingXib = NO;
 
@@ -90,6 +91,8 @@ static BOOL _loadingXib = NO;
 #pragma mark - Select Weekday Action
 
 - (IBAction)selectWeekdayAction:(id)sender{
+    [self vibrateWithStyle:UIImpactFeedbackStyleLight];
+    
     UIButton *btn = (UIButton *)sender;
     UIImage *buttonImg;
     NSNumber *tag = [NSNumber numberWithInteger:btn.tag];

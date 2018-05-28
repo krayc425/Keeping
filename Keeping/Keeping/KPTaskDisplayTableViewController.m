@@ -21,6 +21,7 @@
 #import "KPTimeView.h"
 #import "KPNavigationTitleView.h"
 #import "IDMPhotoBrowser.h"
+#import "UIViewController+Extensions.h"
 
 #define ENDLESS_STRING @"到 无限期"
 #define DATE_FORMAT @"yyyy/MM/dd"
@@ -93,7 +94,7 @@ static AMPopTip *shareTip = NULL;
             cardView = cv;
         }
     }
-    self.calendar = [[FSCalendar alloc] initWithFrame:CGRectMake(5, 5, CGRectGetWidth(self.tableView.frame) - 30, 240)];
+    self.calendar = [[FSCalendar alloc] initWithFrame:CGRectMake(5, 0, CGRectGetWidth(self.tableView.frame) - 30, 240)];
     self.calendar.dataSource = self;
     self.calendar.delegate = self;
     self.calendar.backgroundColor = [UIColor whiteColor];
@@ -110,11 +111,13 @@ static AMPopTip *shareTip = NULL;
     self.calendar.appearance.selectionColor =  [UIColor clearColor];
     self.calendar.appearance.titleSelectionColor = [UIColor blackColor];
     self.calendar.appearance.todaySelectionColor = [UIColor clearColor];
+    self.calendar.appearance.eventDefaultColor = [Utilities getColor];
+    self.calendar.appearance.eventSelectionColor = [Utilities getColor];
     
     [cardView addSubview:self.calendar];
     
     UIButton *previousButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    previousButton.frame = CGRectMake(5, 8, 95, 34);
+    previousButton.frame = CGRectMake(5, 3, 95, 34);
     previousButton.backgroundColor = [UIColor whiteColor];
     previousButton.titleLabel.font = [UIFont systemFontOfSize:15];
     [previousButton setTintColor:[Utilities getColor]];
@@ -131,7 +134,7 @@ static AMPopTip *shareTip = NULL;
     self.calendar.appearance.subtitleFont = [UIFont systemFontOfSize:10.0];
     
     UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    nextButton.frame = CGRectMake(CGRectGetWidth(self.tableView.frame) - 120, 8, 95, 34);
+    nextButton.frame = CGRectMake(CGRectGetWidth(self.tableView.frame) - 120, 3, 95, 34);
     nextButton.backgroundColor = [UIColor whiteColor];
     nextButton.titleLabel.font = [UIFont systemFontOfSize:15];
     [nextButton setTintColor:[Utilities getColor]];
@@ -141,6 +144,22 @@ static AMPopTip *shareTip = NULL;
     [nextButton addTarget:self action:@selector(nextClicked:) forControlEvents:UIControlEventTouchUpInside];
     [cardView addSubview:nextButton];
     self.nextButton = nextButton;
+    
+    NSArray *colorLegend = @[[UIColor redColor],
+                             [Utilities getColor],
+                             [UIColor lightGrayColor],
+                             [Utilities getColor]];
+    NSArray *legendName = @[@"CIRCLE_BORDER",
+                            @"CIRCLE_FULL",
+                            @"CIRCLE_FULL",
+                            @"CIRCLE_BORDER"];
+    for (int i = 0; i < 4; i++) {
+        UIImage *image = [UIImage imageNamed:legendName[i]];
+        image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        UIImageView *imageView = self.legendImageView[i];
+        imageView.image = image;
+        [imageView setTintColor:colorLegend[i]];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -384,6 +403,8 @@ static AMPopTip *shareTip = NULL;
 #pragma mark - FSCalendar Delegate
 
 - (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition{
+    [self vibrateWithStyle:UIImpactFeedbackStyleLight];
+    
     [calendar deselectDate:date];
     
     if(self.task == NULL){
@@ -434,6 +455,14 @@ static AMPopTip *shareTip = NULL;
         }];
     }
     
+    //取消跳过打卡
+    if([self.task.punchSkipArr containsObject:[DateUtil transformDate:date]]) {
+        [alert addButton:@"取消跳过打卡" actionBlock:^(void) {
+            [[TaskManager shareInstance] unskipForTask:self.task onDate:date];
+            [self loadTask];
+        }];
+    }
+    
     //取消打卡
     if([self.task.punchDateArr containsObject:[DateUtil transformDate:date]]){
         [alert addButton:@"取消打卡" actionBlock:^(void) {
@@ -443,6 +472,17 @@ static AMPopTip *shareTip = NULL;
     }
     
     [alert showInfo:[DateUtil getDateStringOfDate:date] subTitle:displayMemo closeButtonTitle:@"取消" duration:0.0f];
+}
+
+- (NSDate *)minimumDateForCalendar:(FSCalendar *)calendar {
+    return self.task.addDate;
+}
+
+- (NSInteger)calendar:(FSCalendar *)calendar numberOfEventsForDate:(NSDate *)date{
+    if([self.task.punchMemoArr containsObject:[DateUtil transformDate:date]]){
+        return 1;
+    }
+    return 0;
 }
 
 - (void)previousClicked:(id)sender{
@@ -542,16 +582,6 @@ static AMPopTip *shareTip = NULL;
     }
     
     return appearance.borderDefaultColor;
-}
-
-- (NSInteger)calendar:(FSCalendar *)calendar numberOfEventsForDate:(NSDate *)date{
-    if(self.task != NULL){
-        //创建日期
-        return [self.task.addDate isEqualToDate:date]
-        || (self.task.endDate != NULL && [self.task.endDate isEqualToDate:date]);
-    }else{
-        return 0;
-    }
 }
 
 #pragma mark - Navigation

@@ -11,7 +11,6 @@
 #import "KPTabBar.h"
 #import "KPUserTableViewController.h"
 #import "SCLAlertView.h"
-#import "DateTools.h"
 #import "MBProgressHUD.h"
 #import "AppKeys.h"
 #import <AVOSCloud/AVOSCloud.h>
@@ -31,8 +30,6 @@
     if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"10.3")){
         [SKStoreReviewController requestReview];
     }
-    
-    [self.unreadMsgLabel setTextColor:[UIColor redColor]];
     
     [self.animationSwitch setOnTintColor:[Utilities getColor]];
     [self.animationSwitch setOn:[[NSUserDefaults standardUserDefaults] boolForKey:@"animation"]];
@@ -74,28 +71,7 @@
     [self getCacheSize];
 
     if([AVUser currentUser]){
-        AVQuery *query = [AVQuery queryWithClassName:@"username"];
-        [query whereKey:@"userId" equalTo:[AVUser currentUser].objectId];
-        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            if (!error) {
-                NSString *username;
-                NSInteger joinDays;
-                if(query.countObjects > 0){
-                    AVObject *user = objects[0];
-                    username = [user objectForKey:@"username"];
-                    joinDays = [[NSDate dateWithYear:[[NSDate date] year] month:[[NSDate date] month] day:[[NSDate date] day]] daysFrom:[NSDate dateWithYear:user.createdAt.year month:user.createdAt.month day:user.createdAt.day]];
-                }else{
-                    username = [[AVUser currentUser] valueForKey:@"username"];
-                    joinDays = [[NSDate dateWithYear:[[NSDate date] year] month:[[NSDate date] month] day:[[NSDate date] day]] daysFrom:[NSDate dateWithYear:[AVUser currentUser].createdAt.year month:[AVUser currentUser].createdAt.month day:[AVUser currentUser].createdAt.day]];
-                }
-                [self.userNameLabel setText:[NSString stringWithFormat:@"%@ · 已加入 %ld 天", username, (long)joinDays]];
-            }else{
-                NSLog(@"错误：%@",error.description);
-                SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-                [alert showError:@"加载失败" subTitle:nil closeButtonTitle:@"好的" duration:0.0f];
-            }
-        }];
-
+        [self.userNameLabel setText:@"备份"];
         [self.appButtonStack setHidden:YES];
 
         UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
@@ -103,7 +79,7 @@
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 
     }else{
-        [self.userNameLabel setText:@"登录"];
+        [self.userNameLabel setText:@"登录以备份"];
         [self.appButtonStack setHidden:NO];
 
         UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
@@ -128,7 +104,7 @@
 - (void)clearDisk {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
     hud.label.text = @"清理中";
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         NSFileManager *fileManager = [NSFileManager defaultManager];
         NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
@@ -149,10 +125,6 @@
         });
         
     });
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 
 - (void)switchChange:(id)sender{
@@ -260,7 +232,7 @@
             // 登录失败，可能为网络问题或 authData 无效
             NSLog(@"%@", error.description);
             SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-            [alert showError:@"登录失败" subTitle:nil closeButtonTitle:@"好的" duration:0.0f];
+            [alert showError:@"登录失败" subTitle:error.description closeButtonTitle:@"好的" duration:0.0f];
         } else {
             SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
             [alert showSuccess:@"登录成功" subTitle:nil closeButtonTitle:@"好的" duration:0.0f];
@@ -289,11 +261,11 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [@[@(1), @(2), @(2), @(4)][section] integerValue];
+    return [@[@(2), @(2), @(2), @(3)][section] integerValue];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return @[@"备份", @"外观", @"偏好", @"其他"][section];
+    return @[@"数据", @"外观", @"偏好", @"其他"][section];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -303,11 +275,11 @@
         if([AVUser currentUser]){
             [self performSegueWithIdentifier:@"userSegue" sender:[AVUser currentUser]];
         }
+    }else if(indexPath.section == 0 && indexPath.row == 1){
+        [self clearDisk];
     }
     
     if(indexPath.section == 3 && indexPath.row == 0){
-        [self clearDisk];
-    }else if(indexPath.section == 3 && indexPath.row == 1){
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"联系作者" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
         UIAlertAction *iMsgAction = [UIAlertAction actionWithTitle:@"iMessage" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"sms:krayc425@gmail.com"] options:@{} completionHandler:^(BOOL success) {
@@ -335,7 +307,7 @@
                                            options:@{}
                                  completionHandler:nil];
         
-    }else if(indexPath.section == 3 && indexPath.row == 3){
+    }else if(indexPath.section == 3 && indexPath.row == 1){
         NSString *str;
         if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"10.3")){
             str = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@?action=write-review", [Utilities getAPPID]];
