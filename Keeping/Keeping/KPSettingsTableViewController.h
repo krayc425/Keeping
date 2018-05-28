@@ -8,10 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-// 静态库方式引入
-#import <LeanCloudSocial/AVOSCloudSNS.h>
-#import <LeanCloudSocial/AVUser+SNS.h>
-
 @interface KPSettingsTableViewController : UITableViewController
 
 @property (nonatomic, weak, nullable) IBOutlet UISwitch *animationSwitch;

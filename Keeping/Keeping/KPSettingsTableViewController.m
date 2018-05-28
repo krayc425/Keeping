@@ -14,6 +14,10 @@
 #import "DateTools.h"
 #import "MBProgressHUD.h"
 #import "AppKeys.h"
+#import <AVOSCloud/AVOSCloud.h>
+#import <StoreKit/StoreKit.h>
+#import <LeanCloudSocial/AVOSCloudSNS.h>
+#import <LeanCloudSocial/AVUser+SNS.h>
 
 @interface KPSettingsTableViewController ()
 
@@ -23,6 +27,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"10.3")){
+        [SKStoreReviewController requestReview];
+    }
     
     [self.unreadMsgLabel setTextColor:[UIColor redColor]];
     
@@ -45,6 +53,17 @@
     //配置登录信息
     [AVOSCloudSNS setupPlatform:AVOSCloudSNSSinaWeibo withAppKey:sinaID andAppSecret:sinaKey andRedirectURI:@"http://www.baidu.com"];
     [AVOSCloudSNS setupPlatform:AVOSCloudSNSQQ withAppKey:qqID andAppSecret:qqKey andRedirectURI:@"http://www.baidu.com"];
+    
+    //版本号
+    NSString *version = [NSString stringWithFormat:@"今日打卡 · 版本号 v%@",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
+    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
+    UILabel *versionLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 20)];
+    versionLabel.text = version;
+    versionLabel.textColor = [UIColor lightGrayColor];
+    versionLabel.textAlignment = NSTextAlignmentCenter;
+    versionLabel.font = [UIFont systemFontOfSize:12.0];
+    [footerView addSubview:versionLabel];
+    self.tableView.tableFooterView = footerView;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -54,43 +73,43 @@
     
     [self getCacheSize];
 
-//    if([AVUser currentUser]){
-//        AVQuery *query = [AVQuery queryWithClassName:@"username"];
-//        [query whereKey:@"userId" equalTo:[AVUser currentUser].objectId];
-//        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-//            if (!error) {
-//                NSString *username;
-//                NSInteger joinDays;
-//                if(query.countObjects > 0){
-//                    AVObject *user = objects[0];
-//                    username = [user objectForKey:@"username"];
-//                    joinDays = [[NSDate dateWithYear:[[NSDate date] year] month:[[NSDate date] month] day:[[NSDate date] day]] daysFrom:[NSDate dateWithYear:user.createdAt.year month:user.createdAt.month day:user.createdAt.day]];
-//                }else{
-//                    username = [[AVUser currentUser] valueForKey:@"username"];
-//                    joinDays = [[NSDate dateWithYear:[[NSDate date] year] month:[[NSDate date] month] day:[[NSDate date] day]] daysFrom:[NSDate dateWithYear:[AVUser currentUser].createdAt.year month:[AVUser currentUser].createdAt.month day:[AVUser currentUser].createdAt.day]];
-//                }
-//                [self.userNameLabel setText:[NSString stringWithFormat:@"%@ · 已加入 %ld 天", username, (long)joinDays]];
-//            }else{
-//                NSLog(@"错误：%@",error.description);
-//                SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-//                [alert showError:@"加载失败" subTitle:nil closeButtonTitle:@"好的" duration:0.0f];
-//            }
-//        }];
-//
-//        [self.appButtonStack setHidden:YES];
-//
-//        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-//        [cell setSelectionStyle:UITableViewCellSelectionStyleDefault];
-//        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-//
-//    }else{
+    if([AVUser currentUser]){
+        AVQuery *query = [AVQuery queryWithClassName:@"username"];
+        [query whereKey:@"userId" equalTo:[AVUser currentUser].objectId];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if (!error) {
+                NSString *username;
+                NSInteger joinDays;
+                if(query.countObjects > 0){
+                    AVObject *user = objects[0];
+                    username = [user objectForKey:@"username"];
+                    joinDays = [[NSDate dateWithYear:[[NSDate date] year] month:[[NSDate date] month] day:[[NSDate date] day]] daysFrom:[NSDate dateWithYear:user.createdAt.year month:user.createdAt.month day:user.createdAt.day]];
+                }else{
+                    username = [[AVUser currentUser] valueForKey:@"username"];
+                    joinDays = [[NSDate dateWithYear:[[NSDate date] year] month:[[NSDate date] month] day:[[NSDate date] day]] daysFrom:[NSDate dateWithYear:[AVUser currentUser].createdAt.year month:[AVUser currentUser].createdAt.month day:[AVUser currentUser].createdAt.day]];
+                }
+                [self.userNameLabel setText:[NSString stringWithFormat:@"%@ · 已加入 %ld 天", username, (long)joinDays]];
+            }else{
+                NSLog(@"错误：%@",error.description);
+                SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+                [alert showError:@"加载失败" subTitle:nil closeButtonTitle:@"好的" duration:0.0f];
+            }
+        }];
+
+        [self.appButtonStack setHidden:YES];
+
+        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleDefault];
+        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+
+    }else{
         [self.userNameLabel setText:@"登录"];
         [self.appButtonStack setHidden:NO];
 
         UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         [cell setAccessoryType:UITableViewCellAccessoryNone];
-//    }
+    }
 }
 
 - (void)getCacheSize {
@@ -270,33 +289,11 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    switch (section) {
-        case 0:
-            return 1;
-        case 1:
-            return 2;
-        case 2:
-            return 2;
-        case 3:
-            return 3;
-        default:
-            return 0;
-    }
+    return [@[@(1), @(2), @(2), @(4)][section] integerValue];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    switch (section) {
-        case 0:
-            return @"备份";
-        case 1:
-            return @"外观";
-        case 2:
-            return @"偏好";
-        case 3:
-            return @"其他";
-        default:
-            return @"";
-    }
+    return @[@"备份", @"外观", @"偏好", @"其他"][section];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -308,29 +305,46 @@
         }
     }
     
-    if(indexPath.section == 3 && indexPath.row == 1){
-        UIAlertController *alert = [[UIAlertController alloc] init];
+    if(indexPath.section == 3 && indexPath.row == 0){
+        [self clearDisk];
+    }else if(indexPath.section == 3 && indexPath.row == 1){
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"联系作者" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
         UIAlertAction *iMsgAction = [UIAlertAction actionWithTitle:@"iMessage" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"sms:krayc425@gmail.com"] options:@{} completionHandler:^(BOOL success) {
                 
             }];
         }];
-        UIAlertAction *emailAction = [UIAlertAction actionWithTitle:@"微博" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction *weixinAction = [UIAlertAction actionWithTitle:@"微信" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [UIPasteboard generalPasteboard].string = @"krayc425";
+            SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+            [alert showSuccess:@"已复制微信号" subTitle:nil closeButtonTitle:@"关闭" duration:0.0];
+        }];
+        UIAlertAction *weiboAction = [UIAlertAction actionWithTitle:@"微博" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"sinaweibo://userinfo?uid=1634553604"]
                                                options:@{}
                                      completionHandler:nil];
         }];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            
-        }];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
         [alert addAction:iMsgAction];
-        [alert addAction:emailAction];
+        [alert addAction:weixinAction];
+        [alert addAction:weiboAction];
         [alert addAction:cancelAction];
-        [self presentViewController:alert animated:true completion:nil];
-    }
-    
-    if(indexPath.section == 3 && indexPath.row == 0){
-        [self clearDisk];
+        [self presentViewController:alert animated:YES completion:nil];
+    }else if(indexPath.section == 3 && indexPath.row == 2){
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://songkuixi.github.io/2017/03/02/Keeping-Q-A/"]
+                                           options:@{}
+                                 completionHandler:nil];
+        
+    }else if(indexPath.section == 3 && indexPath.row == 3){
+        NSString *str;
+        if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"10.3")){
+            str = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@?action=write-review", [Utilities getAPPID]];
+        }else{
+            str = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%@", [Utilities getAPPID]];
+        }
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]
+                                           options:@{}
+                                 completionHandler:nil];
     }
 }
 

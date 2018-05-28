@@ -56,8 +56,8 @@ static KPSchemeManager* _instance = nil;
     return [schemes sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         KPScheme *s1 = (KPScheme *)obj1;
         KPScheme *s2 = (KPScheme *)obj2;
-        NSString *number1 = [s1.name stringByAddingPercentEscapesUsingEncoding:GB18030_ENCODING];
-        NSString *number2 = [s2.name stringByAddingPercentEscapesUsingEncoding:GB18030_ENCODING];;
+        NSString *number1 = [s1.name stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLQueryAllowedCharacterSet];
+        NSString *number2 = [s2.name stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLQueryAllowedCharacterSet];
         
         NSComparisonResult result = [number1 compare:number2];
         

@@ -13,7 +13,6 @@
 		241D3F001E7CFAD20051023F /* KPTaskDisplayTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 241D3EFF1E7CFAD20051023F /* KPTaskDisplayTableViewController.m */; };
 		241FB6671E31D2F300DF4D53 /* HYCircleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 241FB6661E31D2F300DF4D53 /* HYCircleProgressView.m */; };
 		2422066A1E5A6A3B00F03BA2 /* ImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 242206691E5A6A3B00F03BA2 /* ImageUtil.m */; };
-		2422066D1E5A7D1A00F03BA2 /* KPAboutTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2422066C1E5A7D1A00F03BA2 /* KPAboutTableViewController.m */; };
 		2426103B1E51ACB30016DC64 /* KPColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2426103A1E51ACB30016DC64 /* KPColorPickerView.m */; };
 		2426103D1E51ACBC0016DC64 /* KPColorPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2426103C1E51ACBC0016DC64 /* KPColorPickerView.xib */; };
 		2429CBD41E2DF5E60027DD37 /* KPTodayTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2429CBD31E2DF5E60027DD37 /* KPTodayTableViewController.m */; };
@@ -26,7 +25,6 @@
 		2429CBF31E2E4E750027DD37 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2429CBF21E2E4E750027DD37 /* Utilities.m */; };
 		2429CBFB1E2E5D510027DD37 /* KPTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2429CBFA1E2E5D510027DD37 /* KPTabBarViewController.m */; };
 		2432F07B1F9D95F200387682 /* DateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DCF1891E3094050097C250 /* DateUtil.m */; };
-		2435AF5C1E34D0D50065DC74 /* MLKMenuPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 2435AF5B1E34D0D50065DC74 /* MLKMenuPopover.m */; };
 		2435DBF11E35CCC300F1A96E /* KPFontTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2435DBF01E35CCC300F1A96E /* KPFontTableViewController.m */; };
 		2435F3361E5175FE00C6AAA6 /* KPWeekdayPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2435F3351E5175FE00C6AAA6 /* KPWeekdayPickerView.xib */; };
 		2436F8241E2F2C3300C2984A /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2436F8231E2F2C3300C2984A /* libsqlite3.0.tbd */; };
@@ -170,8 +168,6 @@
 		241FB6661E31D2F300DF4D53 /* HYCircleProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYCircleProgressView.m; sourceTree = "<group>"; };
 		242206681E5A6A3B00F03BA2 /* ImageUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUtil.h; sourceTree = "<group>"; };
 		242206691E5A6A3B00F03BA2 /* ImageUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageUtil.m; sourceTree = "<group>"; };
-		2422066B1E5A7D1A00F03BA2 /* KPAboutTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPAboutTableViewController.h; sourceTree = "<group>"; };
-		2422066C1E5A7D1A00F03BA2 /* KPAboutTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPAboutTableViewController.m; sourceTree = "<group>"; };
 		242610391E51ACB30016DC64 /* KPColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPColorPickerView.h; sourceTree = "<group>"; };
 		2426103A1E51ACB30016DC64 /* KPColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPColorPickerView.m; sourceTree = "<group>"; };
 		2426103C1E51ACBC0016DC64 /* KPColorPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KPColorPickerView.xib; sourceTree = "<group>"; };
@@ -195,8 +191,6 @@
 		2433E6C91E65184900315D5B /* libAVOSCloud.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAVOSCloud.a; path = "Pods/../build/Debug-iphoneos/AVOSCloud/libAVOSCloud.a"; sourceTree = "<group>"; };
 		2433E6CB1E65242B00315D5B /* libAVOSCloudCrashReporting.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAVOSCloudCrashReporting.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Keeping-ejqrhezpewpcwpfbtvrmhjalbbdj/Build/Products/Debug-iphoneos/AVOSCloudCrashReporting/libAVOSCloudCrashReporting.a"; sourceTree = "<group>"; };
 		2433E6CD1E65247700315D5B /* libAVOSCloud.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAVOSCloud.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Keeping-ejqrhezpewpcwpfbtvrmhjalbbdj/Build/Products/Debug-iphoneos/AVOSCloud/libAVOSCloud.a"; sourceTree = "<group>"; };
-		2435AF5A1E34D0D50065DC74 /* MLKMenuPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLKMenuPopover.h; sourceTree = "<group>"; };
-		2435AF5B1E34D0D50065DC74 /* MLKMenuPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLKMenuPopover.m; sourceTree = "<group>"; };
 		2435DBEF1E35CCC300F1A96E /* KPFontTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPFontTableViewController.h; sourceTree = "<group>"; };
 		2435DBF01E35CCC300F1A96E /* KPFontTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPFontTableViewController.m; sourceTree = "<group>"; };
 		2435F3351E5175FE00C6AAA6 /* KPWeekdayPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KPWeekdayPickerView.xib; sourceTree = "<group>"; };
@@ -393,7 +387,6 @@
 			children = (
 				2429CBDB1E2DF61B0027DD37 /* KPSettingsTableViewController.h */,
 				2429CBDC1E2DF61B0027DD37 /* KPSettingsTableViewController.m */,
-				2493AFA31E57DEF000098DB0 /* About */,
 				240826DE1E570A1C00EAC855 /* User */,
 				2435DBF51E35CCD400F1A96E /* Font */,
 				2497004D1E5607610015CC5F /* TypeText */,
@@ -508,15 +501,6 @@
 				247F01C11E3D9E1B001F900C /* Info.plist */,
 			);
 			path = KeepingWidget;
-			sourceTree = "<group>";
-		};
-		2493AFA31E57DEF000098DB0 /* About */ = {
-			isa = PBXGroup;
-			children = (
-				2422066B1E5A7D1A00F03BA2 /* KPAboutTableViewController.h */,
-				2422066C1E5A7D1A00F03BA2 /* KPAboutTableViewController.m */,
-			);
-			name = About;
 			sourceTree = "<group>";
 		};
 		2497004D1E5607610015CC5F /* TypeText */ = {
@@ -634,15 +618,6 @@
 			name = HYCircleProgressView;
 			sourceTree = "<group>";
 		};
-		24BA79A71E516FC6002133B6 /* MLKMenuPopover */ = {
-			isa = PBXGroup;
-			children = (
-				2435AF5A1E34D0D50065DC74 /* MLKMenuPopover.h */,
-				2435AF5B1E34D0D50065DC74 /* MLKMenuPopover.m */,
-			);
-			name = MLKMenuPopover;
-			sourceTree = "<group>";
-		};
 		24BA79A81E516FCC002133B6 /* ABCIntroView */ = {
 			isa = PBXGroup;
 			children = (
@@ -681,7 +656,6 @@
 				2467A5891E8A3DBB00C41B11 /* KPTimeView */,
 				2467A58D1E8A45B600C41B11 /* KPNavigationTitleView */,
 				24BA79A81E516FCC002133B6 /* ABCIntroView */,
-				24BA79A71E516FC6002133B6 /* MLKMenuPopover */,
 				24BA79A61E516FC1002133B6 /* HYCircleProgressView */,
 				24BA79A41E516D5D002133B6 /* CardView */,
 				246AEF081E64214A00D78FDD /* UIImage+Extensions.h */,
@@ -1083,14 +1057,12 @@
 				249AE3171E2DEE7700F704F8 /* main.m in Sources */,
 				24F2A0D71E2F482100F30FB1 /* KPSchemeManager.m in Sources */,
 				246BF2531EE112FE002FE39A /* AppKeys.m in Sources */,
-				2422066D1E5A7D1A00F03BA2 /* KPAboutTableViewController.m in Sources */,
 				2429CBEE1E2E4A9B0027DD37 /* KPTodayTableViewCell.m in Sources */,
 				24A0CD6C1E56CED80017EE22 /* KPScheme.m in Sources */,
 				247A79801E38ABF1000EE623 /* ABCIntroView.m in Sources */,
 				2426103B1E51ACB30016DC64 /* KPColorPickerView.m in Sources */,
 				2429CBD41E2DF5E60027DD37 /* KPTodayTableViewController.m in Sources */,
 				24BA79A11E516949002133B6 /* TaskDataHelper.m in Sources */,
-				2435AF5C1E34D0D50065DC74 /* MLKMenuPopover.m in Sources */,
 				249700471E5607210015CC5F /* KPTypeTableViewController.m in Sources */,
 				2493299D1E549EA300C85070 /* KPTabBar.m in Sources */,
 				2429CBFB1E2E5D510027DD37 /* KPTabBarViewController.m in Sources */,

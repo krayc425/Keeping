@@ -16,7 +16,6 @@
 #import "DateTools.h"
 #import "DateUtil.h"
 #import "KPTaskDetailTableViewController.h"
-#import "MLKMenuPopover.h"
 #import "TaskDataHelper.h"
 #import "SCLAlertView.h"
 #import "KPTaskDisplayTableViewController.h"
@@ -26,16 +25,11 @@
 #import "KPTaskTableViewController+Touch.h"
 #import "IDMPhotoBrowser.h"
 
-#define MENU_POPOVER_FRAME CGRectMake(10, 44 + 9, 140, 44 * [[Utilities getTaskSortArr] count])
-#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
-#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
-
 static AMPopTip *shareTip = NULL;
 static KPColorPickerView *colorPickerView = NULL;
 
-@interface KPTaskTableViewController () <MLKMenuPopoverDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
+@interface KPTaskTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
-@property (nonatomic,strong) MLKMenuPopover *_Nonnull menuPopover;
 @property (strong, nonatomic) NSIndexPath* editingIndexPath;  //当前左滑cell的index，在代理方法中设置
 
 @end
@@ -64,11 +58,9 @@ static KPColorPickerView *colorPickerView = NULL;
     self.weekDayView.isAllButtonHidden = NO;
     self.weekDayView.fontSize = 18.0;
     
-    self.weekDayView.selectedWeekdayArr = [NSMutableArray arrayWithArray: @[@1,@2,@3,@4,@5,@6,@7]];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+    self.selectedWeekdayArr = [NSMutableArray arrayWithArray: @[@1,@2,@3,@4,@5,@6,@7]];
+    
+    self.weekDayView.selectedWeekdayArr = self.selectedWeekdayArr;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -93,12 +85,44 @@ static KPColorPickerView *colorPickerView = NULL;
     [self.weekDayView setFont];
 }
 
-- (void)editAction:(id)senders{
-    [self.menuPopover dismissMenuPopover];
+- (void)editAction:(id)sender{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"选择任务排序方式" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    NSDictionary *dict = [Utilities getTaskSortArr];
     
-    self.menuPopover = [[MLKMenuPopover alloc] initWithFrame:MENU_POPOVER_FRAME menuItems:[[Utilities getTaskSortArr] allKeys]];
-    self.menuPopover.menuPopoverDelegate = self;
-    [self.menuPopover showInView:self.navigationController.view];
+    __weak typeof(self) weakSelf = self;
+    
+    for (NSString *key in dict.allKeys) {
+        
+        NSMutableString *displayKey = key.mutableCopy;
+        if([self.sortFactor isEqualToString:dict[displayKey]]){
+            if(self.isAscend.intValue == true){
+                [displayKey appendString:@" ↑"];
+            }else{
+                [displayKey appendString:@" ↓"];
+            }
+        }
+        
+        UIAlertAction *action = [UIAlertAction actionWithTitle:displayKey style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            if([weakSelf.sortFactor isEqualToString:dict[key]]){
+                if(weakSelf.isAscend.intValue == true){
+                    weakSelf.isAscend = @(0);
+                }else{
+                    weakSelf.isAscend = @(1);
+                }
+            }else{
+                weakSelf.sortFactor = dict[key];
+                weakSelf.isAscend = @(1);
+            }
+            [[NSUserDefaults standardUserDefaults] setValue: @{weakSelf.sortFactor : weakSelf.isAscend} forKey:@"sort"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            [weakSelf loadTasksOfWeekdays:weakSelf.selectedWeekdayArr];
+        }];
+        [alert addAction:action];
+    }
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction:cancelAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)deleteTaskAtIndexPath:(NSIndexPath *)indexPath{
@@ -129,15 +153,15 @@ static KPColorPickerView *colorPickerView = NULL;
     self.sortFactor = sortDict.allKeys[0];
     self.isAscend = sortDict.allValues[0];
     
-    self.taskArr = [[NSMutableArray alloc] init];
-    self.historyTaskArr = [[NSMutableArray alloc] init];
-    
     //按星期
     self.taskArr = [[TaskManager shareInstance] getTasksOfWeekdays:weekDays];
+    self.historyTaskArr = [[NSMutableArray alloc] init];
     
     //按类别
-    self.taskArr = [NSMutableArray arrayWithArray:[TaskDataHelper filtrateTasks:self.taskArr
-                                                                       withType:self.selectedColorNum]];
+    if (self.selectedColorNum > 0) {
+        self.taskArr = [NSMutableArray arrayWithArray:[TaskDataHelper filtrateTasks:self.taskArr
+                                                                           withType:self.selectedColorNum]];
+    }
     
     for(Task *t in self.taskArr){
         //（结束日加一天以后 才是到期）
@@ -276,7 +300,7 @@ static KPColorPickerView *colorPickerView = NULL;
         }
         case 2:
         {
-            if([self. historyTaskArr count] == 0){
+            if([self.historyTaskArr count] == 0){
                 return 0.00001f;
             }else{
                 return 50.0f;
@@ -419,25 +443,6 @@ static KPColorPickerView *colorPickerView = NULL;
     }else{
         return NO;
     }
-}
-
-#pragma mark - MLKMenuPopoverDelegate
-
-- (void)menuPopover:(MLKMenuPopover *)menuPopover didSelectMenuItemAtIndex:(NSInteger)selectedIndex{
-    if([self.sortFactor isEqualToString:[[Utilities getTaskSortArr] allValues][selectedIndex]]){
-        if(self.isAscend.intValue == true){
-            self.isAscend = @(0);
-        }else{
-            self.isAscend = @(1);
-        }
-    }else{
-        self.sortFactor = [[Utilities getTaskSortArr] allValues][selectedIndex];
-        self.isAscend = @(1);
-    }
-    [[NSUserDefaults standardUserDefaults] setValue: @{self.sortFactor : self.isAscend} forKey:@"sort"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    [self loadTasksOfWeekdays:self.selectedWeekdayArr];
 }
 
 #pragma mark - Fade Animation

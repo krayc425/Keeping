@@ -56,10 +56,6 @@
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"animation"];
     }
-    if([[[NSUserDefaults standardUserDefaults] valueForKey:@"font"] isEqualToString:@""]
-       || [[NSUserDefaults standardUserDefaults] valueForKey:@"font"] == NULL){
-        [[NSUserDefaults standardUserDefaults] setValue:@"STHeitiSC-Light" forKey:@"font"];
-    }
     if([[NSUserDefaults standardUserDefaults] valueForKey:@"sort"] == NULL){
         [[NSUserDefaults standardUserDefaults] setValue:@{@"sortName" : @true} forKey:@"sort"];
     }

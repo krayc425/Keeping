@@ -276,16 +276,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    switch (section) {
-        case 0:
-            return 1;
-        case 1:
-            return 2;
-        case 2:
-            return 1;
-        default:
-            return 0;
-    }
+    return [@[@(1), @(2), @(1)][section] integerValue];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

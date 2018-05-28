@@ -400,7 +400,7 @@
         NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:alert.view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:datePicker.frame.size.height + 120];
         [alert.view addConstraint:heightConstraint];
         
-        [self presentViewController:alert animated:true completion:nil];
+        [self presentViewController:alert animated:YES completion:nil];
     }
 }
 

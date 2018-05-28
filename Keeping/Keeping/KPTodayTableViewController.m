@@ -15,7 +15,6 @@
 #import "DateUtil.h"
 #import "DateTools.h"
 #import "UIScrollView+EmptyDataSet.h"
-#import "MLKMenuPopover.h"
 #import "AMPopTip.h"
 #import "CardsView.h"
 #import "TaskDataHelper.h"
@@ -27,16 +26,11 @@
 #import "KPWatchManager.h"
 #import "IDMPhotoBrowser.h"
 
-#define MENU_POPOVER_FRAME CGRectMake(10, 44 + 9, 140, 44 * [[Utilities getTaskSortArr] count])
-#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
-#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
-
 static AMPopTip *shareTip = NULL;
 static KPColorPickerView *colorPickerView = NULL;
 
-@interface KPTodayTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, MLKMenuPopoverDelegate>
+@interface KPTodayTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
-@property (nonatomic, strong) MLKMenuPopover *_Nonnull menuPopover;
 @property (strong, nonatomic) NSIndexPath* editingIndexPath;  //当前左滑cell的index，在代理方法中设置
 
 @end
@@ -116,10 +110,6 @@ static KPColorPickerView *colorPickerView = NULL;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"refresh_today_task" object:nil];
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-}
-
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self loadTasks];
@@ -194,16 +184,41 @@ static KPColorPickerView *colorPickerView = NULL;
     }
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
 - (void)editAction:(id)sender{
-    [self.menuPopover dismissMenuPopover];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"选择任务排序方式" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    NSDictionary *dict = [Utilities getTaskSortArr];
+    for (NSString *key in dict.allKeys) {
+        
+        NSMutableString *displayKey = key.mutableCopy;
+        if([self.sortFactor isEqualToString:dict[displayKey]]){
+            if(self.isAscend.intValue == true){
+                [displayKey appendString:@" ↑"];
+            }else{
+                [displayKey appendString:@" ↓"];
+            }
+        }
+        
+        UIAlertAction *action = [UIAlertAction actionWithTitle:displayKey style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            if([self.sortFactor isEqualToString:dict[key]]){
+                if(self.isAscend.intValue == true){
+                    self.isAscend = @(0);
+                }else{
+                    self.isAscend = @(1);
+                }
+            }else{
+                self.sortFactor = dict[key];
+                self.isAscend = @(1);
+            }
+            [[NSUserDefaults standardUserDefaults] setValue: @{self.sortFactor : self.isAscend} forKey:@"sort"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            [self loadTasks];
+        }];
+        [alert addAction:action];
+    }
     
-    self.menuPopover = [[MLKMenuPopover alloc] initWithFrame:MENU_POPOVER_FRAME menuItems:[[Utilities getTaskSortArr] allKeys]];
-    self.menuPopover.menuPopoverDelegate = self;
-    [self.menuPopover showInView:self.navigationController.view];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction:cancelAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - Choose Date
@@ -625,25 +640,6 @@ static KPColorPickerView *colorPickerView = NULL;
     NSDate *tempDate = [NSDate dateWithYear:[date year] month:[date month] day:[date day]];
     self.selectedDate = tempDate;
     [self hideTip];
-    [self loadTasks];
-}
-
-#pragma mark - MLKMenuPopoverDelegate
-
-- (void)menuPopover:(MLKMenuPopover *)menuPopover didSelectMenuItemAtIndex:(NSInteger)selectedIndex{
-    if([self.sortFactor isEqualToString:[[Utilities getTaskSortArr] allValues][selectedIndex]]){
-        if(self.isAscend.intValue == true){
-            self.isAscend = @(0);
-        }else{
-            self.isAscend = @(1);
-        }
-    }else{
-        self.sortFactor = [[Utilities getTaskSortArr] allValues][selectedIndex];
-        self.isAscend = @(1);
-    }
-    [[NSUserDefaults standardUserDefaults] setValue: @{self.sortFactor : self.isAscend} forKey:@"sort"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
     [self loadTasks];
 }
 
