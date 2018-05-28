@@ -399,9 +399,8 @@ static TaskManager* _instance = nil;
                 }else{
                     skipJsonStr = nil;
                 }
-                
+   
             }
-            
         }
         
         NSString *punchJsonStr = [resultSet stringForColumn:@"punchDateArr"];

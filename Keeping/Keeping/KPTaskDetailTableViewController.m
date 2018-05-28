@@ -12,12 +12,11 @@
 #import "KPSeparatorView.h"
 #import "DateUtil.h"
 #import "DateTools.h"
-#import "KPImageViewController.h"
 #import "KPSchemeTableViewController.h"
-#import "KPReminderViewController.h"
 #import "KPSchemeManager.h"
 #import "ImageUtil.h"
 #import "SCLAlertView.h"
+#import "IDMPhotoBrowser.h"
 
 #define ENDLESS_STRING @"无限期"
 #define DATE_FORMAT @"yyyy/MM/dd"
@@ -48,20 +47,17 @@
         self.navigationItem.rightBarButtonItems = @[okItem];
     }
     
-    
     //任务名
-    [self.taskNameField setFont:[UIFont systemFontOfSize:25.0f]];
+    [self.taskNameField setFont:[UIFont systemFontOfSize:20.0f]];
     self.taskNameField.layer.borderWidth = 1.0;
     self.taskNameField.layer.cornerRadius = 5.0;
     self.taskNameField.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
     self.taskNameField.delegate = self;
     
-    
     //持续时间
     for(UILabel *label in self.durationStack.subviews){
         [label setFont:[UIFont systemFontOfSize:20.0f]];
     }
-    
     
     //星期代理
     self.weekdayView.weekdayDelegate = self;
@@ -69,10 +65,8 @@
     self.weekdayView.fontSize = 18.0;
     self.weekdayView.isAllButtonHidden = NO;
     
-    
     //类别代理
     self.colorView.colorDelegate = self;
-    
     
     //提醒标签
     [self.reminderLabel setFont:[UIFont systemFontOfSize:20.0f]];
@@ -81,10 +75,8 @@
     [self.reminderSwitch setOnTintColor:[Utilities getColor]];
     [self.reminderSwitch addTarget:self action:@selector(showReminderPickerAction:) forControlEvents:UIControlEventValueChanged];
     
-    
     //APP名字标签
     [self.appNameLabel setFont:[UIFont systemFontOfSize:20.0f]];
-    
     
     //图片
     self.selectedImgView.userInteractionEnabled = YES;
@@ -93,7 +85,6 @@
         [button.titleLabel setFont:[UIFont systemFontOfSize:15.0f]];
     }
     
-    
     //链接
     [self.linkTextField setFont:[UIFont systemFontOfSize:15.0f]];
     self.linkTextField.layer.borderWidth = 1.0;
@@ -101,14 +92,12 @@
     self.linkTextField.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
     self.linkTextField.delegate = self;
     
-    
     //开始、到期日期颜色
     [self.startDateButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
     [self.endDateButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
     [self.startDateButton.titleLabel sizeToFit];
     [self.endDateButton.titleLabel sizeToFit];
     
-     
     //备注
     self.memoTextView.delegate = self;
     [self.memoTextView setTextColor:[Utilities getColor]];
@@ -123,10 +112,9 @@
     placeHolderLabel.textColor = [UIColor lightGrayColor];
     [placeHolderLabel sizeToFit];
     [placeHolderLabel setFont:[UIFont systemFontOfSize:15.0f]];
-    placeHolderLabel.textAlignment = NSTextAlignmentCenter;
+    placeHolderLabel.textAlignment = NSTextAlignmentLeft;
     [self.memoTextView addSubview:placeHolderLabel];
     [self.memoTextView setValue:placeHolderLabel forKey:@"_placeholderLabel"];
-    
     
     //加载任务
     if(self.task != NULL){
@@ -391,8 +379,28 @@
         self.reminderTime = NULL;
         [self.reminderLabel setText:@"无"];
     }else{
-        NSDate *date = (NSDate *)sender;
-        [self performSegueWithIdentifier:@"reminderSegue" sender:date];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"选择提醒时间" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        UIDatePicker *datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH - 20, 250)];
+        datePicker.tintColor = [Utilities getColor];
+        datePicker.datePickerMode = UIDatePickerModeTime;
+        [alert.view addSubview:datePicker];
+        
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"完成" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            self.reminderTime = datePicker.date;
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"HH:mm"];
+            NSString *currentDateStr = [dateFormatter stringFromDate:self.reminderTime];
+            [self.reminderLabel setText:currentDateStr];
+            [self.tableView reloadData];
+        }];
+        [alert addAction:okAction];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:cancelAction];
+
+        NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:alert.view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:datePicker.frame.size.height + 120];
+        [alert.view addConstraint:heightConstraint];
+        
+        [self presentViewController:alert animated:true completion:nil];
     }
 }
 
@@ -481,7 +489,9 @@
     if(self.selectedImgView.image == [UIImage new]){
         return;
     }else{
-        [self performSegueWithIdentifier:@"imageSegue" sender:self.selectedImgView.image];
+        IDMPhoto *photo = [IDMPhoto photoWithImage:self.selectedImgView.image];
+        IDMPhotoBrowser *browser = [[IDMPhotoBrowser alloc] initWithPhotos:@[photo]];
+        [self presentViewController:browser animated:YES completion:nil];
     }
 }
 
@@ -659,13 +669,6 @@
         }else{
             [kpstvc setSelectedApp:NULL];
         }
-    }else if([segue.identifier isEqualToString:@"reminderSegue"]){
-        KPReminderViewController *kprvc = (KPReminderViewController *)[segue destinationViewController];
-        kprvc.delegate = self;
-        [kprvc.timePicker setPickingDate:(NSDate *)sender];
-    }else if([segue.identifier isEqualToString:@"imageSegue"]){
-        KPImageViewController *imageVC = (KPImageViewController *)[segue destinationViewController];
-        [imageVC setImg:(UIImage *)sender];
     }
 }
 
@@ -678,23 +681,6 @@
     }else{
         self.selectedApp = scheme;
         [self.appNameLabel setText:scheme.name];
-    }
-    [self.tableView reloadData];
-}
-
-#pragma mark - Reminder Delegate
-
-- (void)passTime:(NSDate *)date{
-    if(date == NULL){
-        self.reminderTime = NULL;
-        [self.reminderSwitch setOn:NO animated:YES];
-        [self.reminderLabel setText:@"无"];
-    }else{
-        self.reminderTime = date;
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"HH:mm"];
-        NSString *currentDateStr = [dateFormatter stringFromDate:self.reminderTime];
-        [self.reminderLabel setText:currentDateStr];
     }
     [self.tableView reloadData];
 }

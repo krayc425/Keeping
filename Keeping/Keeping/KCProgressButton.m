@@ -12,10 +12,18 @@
 
 @implementation KCProgressButton
 
+- (void)setTitle:(NSString *)title forState:(UIControlState)state {
+    [super setTitle:title forState:state];
+    NSArray *countArr = [title componentsSeparatedByString:@" / "];
+    [self addMaskLabelWithProgress:[(countArr[0]) floatValue] / [(countArr[1]) floatValue]];
+    [self setNeedsLayout];
+    [self setNeedsDisplay];
+}
+
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        [self addMaskLabelWithTitle:self.titleLabel.text andProgress:0.0];
+
     }
     return self;
 }
@@ -29,21 +37,24 @@
     if (total > 0) {
         progress = (float)finished / (float)total;
     }
-    [self addMaskLabelWithTitle:[NSString stringWithFormat:@"%d / %d", finished, total] andProgress:progress];
+    [self setTitle:[NSString stringWithFormat:@"%d / %d", finished, total] forState:UIControlStateNormal];
+    NSLog(@"title %@", self.titleLabel.text);
+    [self addMaskLabelWithProgress:progress];
 }
 
-- (void)addMaskLabelWithTitle:(NSString *)title andProgress:(float)progress {
+- (void)addMaskLabelWithProgress:(float)progress {
+    NSLog(@"progress %f", progress);
+    
     if (self.maskLabel != nil) {
         [self.maskLabel removeFromSuperview];
     }
-    [self setTitle:title forState:UIControlStateNormal];
     
     self.maskLabel = [[KCEdgeInsetLabel alloc] initWithFrame:CGRectMake(0,
                                                                         0,
                                                                         self.frame.size.width * progress,
                                                                         self.frame.size.height)
                                                 andEdgeInset:UIEdgeInsetsMake(0, self.titleLabel.frame.origin.x, 0, 0)];
-    self.maskLabel.text = title;
+    self.maskLabel.text = self.titleLabel.text;
     self.maskLabel.font = self.titleLabel.font;
     self.maskLabel.backgroundColor = [Utilities getColor];
     self.maskLabel.textColor = [UIColor whiteColor];

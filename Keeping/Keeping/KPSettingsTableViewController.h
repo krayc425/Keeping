@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+// 静态库方式引入
+#import <LeanCloudSocial/AVOSCloudSNS.h>
+#import <LeanCloudSocial/AVUser+SNS.h>
+
 @interface KPSettingsTableViewController : UITableViewController
 
 @property (nonatomic, weak, nullable) IBOutlet UISwitch *animationSwitch;
@@ -22,7 +26,5 @@
 
 @property (nonatomic, weak, nullable) IBOutlet UILabel *userNameLabel;
 @property (nonatomic, weak, nullable) IBOutlet UIStackView *appButtonStack;
-
-- (void)checkMessage:(_Nonnull id)sender;
 
 @end

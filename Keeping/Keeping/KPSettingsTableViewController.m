@@ -8,17 +8,12 @@
 
 #import "KPSettingsTableViewController.h"
 #import "Utilities.h"
-#import <LeanCloudFeedback/LeanCloudFeedback.h>
 #import "KPTabBar.h"
 #import "KPUserTableViewController.h"
 #import "SCLAlertView.h"
 #import "DateTools.h"
 #import "MBProgressHUD.h"
 #import "AppKeys.h"
-
-// 静态库方式引入
-#import <LeanCloudSocial/AVOSCloudSNS.h>
-#import <LeanCloudSocial/AVUser+SNS.h>
 
 @interface KPSettingsTableViewController ()
 
@@ -59,43 +54,43 @@
     
     [self getCacheSize];
 
-    if([AVUser currentUser]){
-        AVQuery *query = [AVQuery queryWithClassName:@"username"];
-        [query whereKey:@"userId" equalTo:[AVUser currentUser].objectId];
-        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            if (!error) {
-                NSString *username;
-                NSInteger joinDays;
-                if(query.countObjects > 0){
-                    AVObject *user = objects[0];
-                    username = [user objectForKey:@"username"];
-                    joinDays = [[NSDate dateWithYear:[[NSDate date] year] month:[[NSDate date] month] day:[[NSDate date] day]] daysFrom:[NSDate dateWithYear:user.createdAt.year month:user.createdAt.month day:user.createdAt.day]];
-                }else{
-                    username = [[AVUser currentUser] valueForKey:@"username"];
-                    joinDays = [[NSDate dateWithYear:[[NSDate date] year] month:[[NSDate date] month] day:[[NSDate date] day]] daysFrom:[NSDate dateWithYear:[AVUser currentUser].createdAt.year month:[AVUser currentUser].createdAt.month day:[AVUser currentUser].createdAt.day]];
-                }
-                [self.userNameLabel setText:[NSString stringWithFormat:@"%@ · 已加入 %ld 天", username, (long)joinDays]];
-            }else{
-                NSLog(@"错误：%@",error.description);
-                SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-                [alert showError:@"加载失败" subTitle:nil closeButtonTitle:@"好的" duration:0.0f];
-            }
-        }];
-        
-        [self.appButtonStack setHidden:YES];
-        
-        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-        [cell setSelectionStyle:UITableViewCellSelectionStyleDefault];
-        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-        
-    }else{
+//    if([AVUser currentUser]){
+//        AVQuery *query = [AVQuery queryWithClassName:@"username"];
+//        [query whereKey:@"userId" equalTo:[AVUser currentUser].objectId];
+//        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//            if (!error) {
+//                NSString *username;
+//                NSInteger joinDays;
+//                if(query.countObjects > 0){
+//                    AVObject *user = objects[0];
+//                    username = [user objectForKey:@"username"];
+//                    joinDays = [[NSDate dateWithYear:[[NSDate date] year] month:[[NSDate date] month] day:[[NSDate date] day]] daysFrom:[NSDate dateWithYear:user.createdAt.year month:user.createdAt.month day:user.createdAt.day]];
+//                }else{
+//                    username = [[AVUser currentUser] valueForKey:@"username"];
+//                    joinDays = [[NSDate dateWithYear:[[NSDate date] year] month:[[NSDate date] month] day:[[NSDate date] day]] daysFrom:[NSDate dateWithYear:[AVUser currentUser].createdAt.year month:[AVUser currentUser].createdAt.month day:[AVUser currentUser].createdAt.day]];
+//                }
+//                [self.userNameLabel setText:[NSString stringWithFormat:@"%@ · 已加入 %ld 天", username, (long)joinDays]];
+//            }else{
+//                NSLog(@"错误：%@",error.description);
+//                SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+//                [alert showError:@"加载失败" subTitle:nil closeButtonTitle:@"好的" duration:0.0f];
+//            }
+//        }];
+//
+//        [self.appButtonStack setHidden:YES];
+//
+//        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+//        [cell setSelectionStyle:UITableViewCellSelectionStyleDefault];
+//        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+//
+//    }else{
         [self.userNameLabel setText:@"登录"];
         [self.appButtonStack setHidden:NO];
-        
+
         UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         [cell setAccessoryType:UITableViewCellAccessoryNone];
-    }
+//    }
 }
 
 - (void)getCacheSize {
@@ -109,28 +104,6 @@
         size += [attrs fileSize];
     }
     [self.cacheLabel setText:[NSString stringWithFormat:@"%.2f MB", size / 1024 / 1024.0]];
-}
-
-- (void)checkMessage:(id)sender{
-    //检查有没有未读消息
-    [[LCUserFeedbackAgent sharedInstance] countUnreadFeedbackThreadsWithBlock:^(NSInteger number, NSError *error) {
-        if (error) {
-//            KPTabBar *tabBar = (KPTabBar *)self.tabBarController.tabBar;
-            // 网络出错了，不设置红点
-            [self.unreadMsgLabel setText:@""];
-//            [tabBar hideBadgeOnItemIndex:3];
-        } else {
-//            KPTabBar *tabBar = (KPTabBar *)self.tabBarController.tabBar;
-            // 根据未读数 number，设置红点，提醒用户
-            if(number > 0){
-                [self.unreadMsgLabel setText:[NSString stringWithFormat:@"%ld 条消息", (long)number]];
-//                [tabBar showBadgeOnItemIndex:3];
-            }else{
-                [self.unreadMsgLabel setText:@""];
-//                [tabBar hideBadgeOnItemIndex:3];
-            }
-        }
-    }];
 }
 
 - (void)clearDisk {
@@ -336,8 +309,24 @@
     }
     
     if(indexPath.section == 3 && indexPath.row == 1){
-        LCUserFeedbackAgent *agent = [LCUserFeedbackAgent sharedInstance];
-        [agent showConversations:self title:nil contact:nil];
+        UIAlertController *alert = [[UIAlertController alloc] init];
+        UIAlertAction *iMsgAction = [UIAlertAction actionWithTitle:@"iMessage" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"sms:krayc425@gmail.com"] options:@{} completionHandler:^(BOOL success) {
+                
+            }];
+        }];
+        UIAlertAction *emailAction = [UIAlertAction actionWithTitle:@"微博" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"sinaweibo://userinfo?uid=1634553604"]
+                                               options:@{}
+                                     completionHandler:nil];
+        }];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            
+        }];
+        [alert addAction:iMsgAction];
+        [alert addAction:emailAction];
+        [alert addAction:cancelAction];
+        [self presentViewController:alert animated:true completion:nil];
     }
     
     if(indexPath.section == 3 && indexPath.row == 0){

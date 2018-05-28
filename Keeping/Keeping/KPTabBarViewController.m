@@ -8,7 +8,6 @@
 
 #import "KPTabBarViewController.h"
 #import "Utilities.h"
-#import <LeanCloudFeedback/LeanCloudFeedback.h>
 #import "KPTabBar.h"
 #import "KPNavigationTitleView.h"
 #import "KPTaskDetailTableViewController.h"
@@ -67,12 +66,6 @@
     
     [self setFont];
     
-    //注册通知:检查反馈新消息
-    [[NSNotificationCenter defaultCenter] addObserver:self.kpSettingsTableViewController
-                                             selector:@selector(checkMessage:)
-                                                 name:@"Notification_CheckMessage"
-                                               object:nil];
-    
     //注册通知:设置角标
     [[NSNotificationCenter defaultCenter] addObserver:self.kpTodayTableViewController
                                              selector:@selector(setBadge)
@@ -81,21 +74,13 @@
     
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"Notification_CheckMessage" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"Notification_Badge" object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification_CheckMessage"
-                                                        object:nil
-                                                      userInfo:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification_Badge"
                                                         object:nil
                                                       userInfo:nil];

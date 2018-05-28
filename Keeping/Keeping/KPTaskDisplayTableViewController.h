@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "Task.h"
 #import "KPSchemeTableViewController.h"
-#import "KPReminderViewController.h"
 #import "HSDatePickerViewController.h"
 #import "KPWeekdayPickerView.h"
 #import "KPColorPickerView.h"

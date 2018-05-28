@@ -15,7 +15,6 @@
 #import "DateUtil.h"
 #import "DateTools.h"
 #import "UIScrollView+EmptyDataSet.h"
-#import "KPImageViewController.h"
 #import "MLKMenuPopover.h"
 #import "AMPopTip.h"
 #import "CardsView.h"
@@ -26,6 +25,7 @@
 #import "KPNavigationTitleView.h"
 #import "KPTodayTableViewController+Touch.h"
 #import "KPWatchManager.h"
+#import "IDMPhotoBrowser.h"
 
 #define MENU_POPOVER_FRAME CGRectMake(10, 44 + 9, 140, 44 * [[Utilities getTaskSortArr] count])
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
@@ -68,7 +68,7 @@ static KPColorPickerView *colorPickerView = NULL;
     
     self.calendar.appearance.titleFont = [UIFont systemFontOfSize:12.0];
     self.calendar.appearance.headerTitleFont = [UIFont systemFontOfSize:15.0];
-    self.calendar.appearance.weekdayFont = [UIFont systemFontOfSize:15.0];
+    self.calendar.appearance.weekdayFont = [UIFont systemFontOfSize:12.0];
     self.calendar.appearance.subtitleFont = [UIFont systemFontOfSize:10.0];
     
     self.calendar.appearance.headerMinimumDissolvedAlpha = 0;
@@ -88,7 +88,7 @@ static KPColorPickerView *colorPickerView = NULL;
     previousButton.backgroundColor = [UIColor whiteColor];
     previousButton.titleLabel.font = [UIFont systemFontOfSize:15];
     [previousButton setTintColor:[Utilities getColor]];
-    UIImage *leftImg = [UIImage imageNamed:@"icon_prev"];
+    UIImage *leftImg = [UIImage imageNamed:@"NAV_BACK"];
     leftImg = [leftImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [previousButton setImage:leftImg forState:UIControlStateNormal];
     [previousButton addTarget:self action:@selector(previousClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -100,7 +100,7 @@ static KPColorPickerView *colorPickerView = NULL;
     nextButton.backgroundColor = [UIColor whiteColor];
     nextButton.titleLabel.font = [UIFont systemFontOfSize:15];
     [nextButton setTintColor:[Utilities getColor]];
-    UIImage *rightImg = [UIImage imageNamed:@"icon_next"];
+    UIImage *rightImg = [UIImage imageNamed:@"NAV_NEXT"];
     rightImg = [rightImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [nextButton setImage:rightImg forState:UIControlStateNormal];
     [nextButton addTarget:self action:@selector(nextClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -553,7 +553,9 @@ static KPColorPickerView *colorPickerView = NULL;
             break;
         case 2:
         {
-            [self performSegueWithIdentifier:@"imageSegue" sender:[UIImage imageWithData:t.image]];
+            IDMPhoto *photo = [IDMPhoto photoWithImage:[UIImage imageWithData:t.image]];
+            IDMPhotoBrowser *browser = [[IDMPhotoBrowser alloc] initWithPhotos:@[photo]];
+            [self presentViewController:browser animated:YES completion:nil];
         }
             break;
         case 3:
@@ -589,10 +591,7 @@ static KPColorPickerView *colorPickerView = NULL;
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if([segue.identifier isEqualToString:@"imageSegue"]){
-        KPImageViewController *imageVC = (KPImageViewController *)[segue destinationViewController];
-        [imageVC setImg:(UIImage *)sender];
-    }else if([segue.identifier isEqualToString:@"detailTaskSegue"]){
+    if([segue.identifier isEqualToString:@"detailTaskSegue"]){
         Task *t = (Task *)sender;
         KPTaskDisplayTableViewController *kptdtvc = (KPTaskDisplayTableViewController *)[segue destinationViewController];
         [kptdtvc setTaskid:t.id];
@@ -622,7 +621,7 @@ static KPColorPickerView *colorPickerView = NULL;
 
 #pragma mark - FSCalendarDelegate
 
-- (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date{
+- (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
     NSDate *tempDate = [NSDate dateWithYear:[date year] month:[date month] day:[date day]];
     self.selectedDate = tempDate;
     [self hideTip];

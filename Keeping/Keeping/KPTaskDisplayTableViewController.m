@@ -17,11 +17,10 @@
 #import "TaskManager.h"
 #import "AMPopTip.h"
 #import "KPTaskDetailTableViewController.h"
-#import "KPImageViewController.h"
-#import "KPCalInfoView.h"
 #import "KPSeparatorView.h"
 #import "KPTimeView.h"
 #import "KPNavigationTitleView.h"
+#import "IDMPhotoBrowser.h"
 
 #define ENDLESS_STRING @"到 无限期"
 #define DATE_FORMAT @"yyyy/MM/dd"
@@ -100,6 +99,8 @@ static AMPopTip *shareTip = NULL;
     self.calendar.backgroundColor = [UIColor whiteColor];
     self.calendar.appearance.headerMinimumDissolvedAlpha = 0;
     self.calendar.appearance.headerDateFormat = @"yyyy 年 MM 月";
+    self.calendar.appearance.separators = FSCalendarSeparatorNone;
+    self.calendar.clipsToBounds = YES;
     
     self.calendar.appearance.headerTitleColor = [Utilities getColor];
     self.calendar.appearance.weekdayTextColor = [Utilities getColor];
@@ -117,7 +118,7 @@ static AMPopTip *shareTip = NULL;
     previousButton.backgroundColor = [UIColor whiteColor];
     previousButton.titleLabel.font = [UIFont systemFontOfSize:15];
     [previousButton setTintColor:[Utilities getColor]];
-    UIImage *leftImg = [UIImage imageNamed:@"icon_prev"];
+    UIImage *leftImg = [UIImage imageNamed:@"NAV_BACK"];
     leftImg = [leftImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [previousButton setImage:leftImg forState:UIControlStateNormal];
     [previousButton addTarget:self action:@selector(previousClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -126,7 +127,7 @@ static AMPopTip *shareTip = NULL;
     
     self.calendar.appearance.titleFont = [UIFont systemFontOfSize:12.0];
     self.calendar.appearance.headerTitleFont = [UIFont systemFontOfSize:15.0];
-    self.calendar.appearance.weekdayFont = [UIFont systemFontOfSize:15.0];
+    self.calendar.appearance.weekdayFont = [UIFont systemFontOfSize:12.0];
     self.calendar.appearance.subtitleFont = [UIFont systemFontOfSize:10.0];
     
     UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -134,27 +135,12 @@ static AMPopTip *shareTip = NULL;
     nextButton.backgroundColor = [UIColor whiteColor];
     nextButton.titleLabel.font = [UIFont systemFontOfSize:15];
     [nextButton setTintColor:[Utilities getColor]];
-    UIImage *rightImg = [UIImage imageNamed:@"icon_next"];
+    UIImage *rightImg = [UIImage imageNamed:@"NAV_NEXT"];
     rightImg = [rightImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [nextButton setImage:rightImg forState:UIControlStateNormal];
     [nextButton addTarget:self action:@selector(nextClicked:) forControlEvents:UIControlEventTouchUpInside];
     [cardView addSubview:nextButton];
     self.nextButton = nextButton;
-    
-    UIButton *infoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    infoBtn.frame = CGRectMake(CGRectGetWidth(self.tableView.frame) - 60, 9, 32, 32);
-    infoBtn.backgroundColor = [UIColor whiteColor];
-    infoBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-    [infoBtn setTintColor:[UIColor lightGrayColor]];
-    UIImage *infoImg = [UIImage imageNamed:@"Info"];
-    infoImg = [infoImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    [infoBtn setImage:infoImg forState:UIControlStateNormal];
-    [infoBtn addTarget:self action:@selector(infoAction:) forControlEvents:UIControlEventTouchUpInside];
-    [cardView addSubview:infoBtn];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -169,34 +155,6 @@ static AMPopTip *shareTip = NULL;
 
 - (void)editAction:(id)sender{
     [self performSegueWithIdentifier:@"editSegue" sender:nil];
-}
-
-- (void)infoAction:(id)sender{
-    NSArray *nibView = [[NSBundle mainBundle] loadNibNamed:@"KPCalInfoView" owner:nil options:nil];
-    KPCalInfoView *view = [nibView firstObject];
-    [view setFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame) - 40, 200)];
-    
-    AMPopTip *tp = [KPTaskDisplayTableViewController shareTipInstance];
-    
-    if(![tp isVisible] && ![tp isAnimating]){
-        [tp showCustomView:view
-                 direction:AMPopTipDirectionNone
-                    inView:self.tableView
-                 fromFrame:self.tableView.bounds];
-        
-        tp.shouldDismissOnTap = YES;
-        
-        tp.textColor = [UIColor whiteColor];
-        tp.tintColor = [Utilities getColor];
-        tp.popoverColor = [Utilities getColor];
-        tp.borderColor = [UIColor whiteColor];
-        
-        tp.radius = 10;
-        
-        [tp setDismissHandler:^{
-            shareTip = NULL;
-        }];
-    }
 }
 
 - (void)loadTask{
@@ -335,7 +293,9 @@ static AMPopTip *shareTip = NULL;
             break;
         case 2:
         {
-            [self performSegueWithIdentifier:@"imageSegue" sender:[UIImage imageWithData:self.task.image]];
+            IDMPhoto *photo = [IDMPhoto photoWithImage:[UIImage imageWithData:self.task.image]];
+            IDMPhotoBrowser *browser = [[IDMPhotoBrowser alloc] initWithPhotos:@[photo]];
+            [self presentViewController:browser animated:YES completion:nil];
         }
             break;
         case 3:
@@ -423,7 +383,7 @@ static AMPopTip *shareTip = NULL;
 
 #pragma mark - FSCalendar Delegate
 
-- (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date{
+- (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition{
     [calendar deselectDate:date];
     
     if(self.task == NULL){
@@ -600,9 +560,6 @@ static AMPopTip *shareTip = NULL;
     if([segue.identifier isEqualToString:@"editSegue"]){
         KPTaskDetailTableViewController *kptdtvc = segue.destinationViewController;
         [kptdtvc setTask:self.task];
-    }else if([segue.identifier isEqualToString:@"imageSegue"]){
-        KPImageViewController *imageVC = (KPImageViewController *)[segue destinationViewController];
-        [imageVC setImg:(UIImage *)sender];
     }
 }
 

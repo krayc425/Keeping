@@ -17,7 +17,6 @@
 #import "DateUtil.h"
 #import "KPTaskDetailTableViewController.h"
 #import "MLKMenuPopover.h"
-#import "KPImageViewController.h"
 #import "TaskDataHelper.h"
 #import "SCLAlertView.h"
 #import "KPTaskDisplayTableViewController.h"
@@ -25,6 +24,7 @@
 #import "AMPopTip.h"
 #import "CardsView.h"
 #import "KPTaskTableViewController+Touch.h"
+#import "IDMPhotoBrowser.h"
 
 #define MENU_POPOVER_FRAME CGRectMake(10, 44 + 9, 140, 44 * [[Utilities getTaskSortArr] count])
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
@@ -211,7 +211,9 @@ static KPColorPickerView *colorPickerView = NULL;
 #pragma mark - Pop Up Image
 
 - (void)passImg:(UIImage *)img{
-    [self performSegueWithIdentifier:@"imageSegue" sender:img];
+    IDMPhoto *photo = [IDMPhoto photoWithImage:img];
+    IDMPhotoBrowser *browser = [[IDMPhotoBrowser alloc] initWithPhotos:@[photo]];
+    [self presentViewController:browser animated:YES completion:nil];
 }
 
 #pragma mark - Table view data source
@@ -391,10 +393,7 @@ static KPColorPickerView *colorPickerView = NULL;
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if([segue.identifier isEqualToString:@"imageSegue"]){
-        KPImageViewController *imageVC = (KPImageViewController *)[segue destinationViewController];
-        [imageVC setImg:(UIImage *)sender];
-    }else if([segue.identifier isEqualToString:@"detailTaskSegue"]){
+    if([segue.identifier isEqualToString:@"detailTaskSegue"]){
         Task *t = (Task *)sender;
         KPTaskDisplayTableViewController *kptdtvc = segue.destinationViewController;
         [kptdtvc setTaskid:t.id];

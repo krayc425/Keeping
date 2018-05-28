@@ -29,6 +29,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>DACircularProgress.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>DZNEmptyDataSet-iOS10.0.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -74,12 +79,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>IQKeyboardManager.xcscheme</key>
+		<key>IDMPhotoBrowser.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>LeanCloudFeedback.xcscheme</key>
+		<key>IQKeyboardManager.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -115,6 +120,16 @@
 			<false/>
 		</dict>
 		<key>SCLAlertView-Objective-C.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SDWebImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>pop.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

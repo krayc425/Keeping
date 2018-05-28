@@ -9,13 +9,13 @@ target 'Keeping' do
   pod 'HSDatePickerViewController'
   pod 'FDFullscreenPopGesture'
   pod 'AMPopTip', '~> 1.5'
-  pod 'LeanCloudFeedback'
   pod 'PYSearch'
   pod 'MMWormhole'
   pod 'AVOSCloud'
   pod 'LeanCloudSocial'
   pod 'SCLAlertView-Objective-C'
   pod 'IQKeyboardManager'
+  pod 'IDMPhotoBrowser'
 
 end
 
