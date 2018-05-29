@@ -13,6 +13,7 @@
 #import "TaskManager.h"
 #import "Task.h"
 #import "DateUtil.h"
+#import "SCLAlertView.h"
 #import "DateTools.h"
 #import "UIScrollView+EmptyDataSet.h"
 #import "AMPopTip.h"
@@ -26,13 +27,12 @@
 #import "KPWatchManager.h"
 #import "IDMPhotoBrowser.h"
 #import "UIViewController+Extensions.h"
+#import "MGSwipeTableCell.h"
 
 static AMPopTip *shareTip = NULL;
 static KPColorPickerView *colorPickerView = NULL;
 
-@interface KPTodayTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
-
-@property (strong, nonatomic) NSIndexPath* editingIndexPath;  //当前左滑cell的index，在代理方法中设置
+@interface KPTodayTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, MGSwipeTableCellDelegate>
 
 @end
 
@@ -121,13 +121,6 @@ static KPColorPickerView *colorPickerView = NULL;
     self.selectedIndexPath = NULL;
     [self.tableView reloadData];
     [self hideTip];
-}
-
-- (void)viewDidLayoutSubviews{
-    [super viewDidLayoutSubviews];
-    if (self.editingIndexPath) {
-        [self configSwipeButtons];
-    }
 }
 
 - (void)loadTasks{
@@ -259,33 +252,25 @@ static KPColorPickerView *colorPickerView = NULL;
     [self.calendar setCurrentPage:nextMonth animated:YES];
 }
 
-#pragma mark - Set Swipe Cells
-
-- (void)configSwipeButtons {
-    // 获取选项按钮的reference
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"11.0")) {
-        // iOS 11层级 (Xcode 9编译): UITableView -> UISwipeActionPullView
-        for (UIView *subview in self.tableView.subviews) {
-            if ([subview isKindOfClass:NSClassFromString(@"UISwipeActionPullView")] && [subview.subviews count] >= 1) {
-                // 和iOS 10的按钮顺序相反
-                UIButton *moreButton = subview.subviews[0];
-                
-                [self configMoreButton:moreButton];
-                [subview setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
-            }
+- (void)deleteTaskAtIndexPath:(NSIndexPath *)indexPath{
+    SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+    [alert addButton:@"删除" actionBlock:^{
+        Task *t;
+        if(indexPath.section == 1){
+            t = self.unfinishedTaskArr[indexPath.row];
+            [self.unfinishedTaskArr removeObject:t];
+        }else if(indexPath.section == 2){
+            t = self.finishedTaskArr[indexPath.row];
+            [self.finishedTaskArr removeObject:t];
         }
-    } else {
-        // iOS 8-10层级: UITableView -> UITableViewCell -> UITableViewCellDeleteConfirmationView
-        KPTodayTableViewCell *tableCell = [self.tableView cellForRowAtIndexPath:self.editingIndexPath];
-        for (UIView *subview in tableCell.subviews) {
-            if ([subview isKindOfClass:NSClassFromString(@"UITableViewCellDeleteConfirmationView")] && [subview.subviews count] >= 1) {
-                UIButton *moreButton = subview.subviews[0];
-                
-                [self configMoreButton:moreButton];
-                [subview setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
-            }
+        
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+        if(self.finishedTaskArr.count == 0 || self.unfinishedTaskArr.count == 0){
+            [self.tableView reloadData];
         }
-    }
+    }];
+    [alert showWarning:@"确认删除吗" subTitle:@"此操作不可恢复" closeButtonTitle:@"取消" duration:0.0];
 }
 
 - (void)configMoreButton:(UIButton *)moreButton {
@@ -394,6 +379,7 @@ static KPColorPickerView *colorPickerView = NULL;
             
             [cell setFont];
             
+            cell.checkDelegate = self;
             cell.delegate = self;
             
             //配置任务信息
@@ -461,6 +447,13 @@ static KPColorPickerView *colorPickerView = NULL;
     }
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0){
+        return NO;
+    }
+    return YES;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if(indexPath.section != 0){
@@ -481,47 +474,6 @@ static KPColorPickerView *colorPickerView = NULL;
         [self fadeAnimation];
         [tableView reloadData];
     }
-}
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(indexPath.section != 0){
-        return YES;
-    }else{
-        return NO;
-    }
-}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        Task *task;
-        if(indexPath.section == 1){
-            task = self.unfinishedTaskArr[indexPath.row];
-        }else{
-            task = self.finishedTaskArr[indexPath.row];
-        }
-        [self performSegueWithIdentifier:@"detailTaskSegue" sender:task];
-    }
-}
-
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(indexPath.section != 0){
-        return UITableViewCellEditingStyleDelete;
-    }else{
-        return UITableViewCellEditingStyleNone;
-    }
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return @"               ";
-}
-
-- (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath {
-    self.editingIndexPath = indexPath;
-    [self.view setNeedsLayout];   // 触发-(void)viewDidLayoutSubviews
-}
-
-- (void)tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath {
-    self.editingIndexPath = nil;
 }
 
 #pragma mark - Check Delegate
@@ -656,6 +608,26 @@ static KPColorPickerView *colorPickerView = NULL;
         animation.type = [Utilities getAnimationType];
         [self.tableView.layer addAnimation:animation forKey:@"fadeAnimation"];
     }
+}
+
+#pragma mark - MGSwipeCellDelegate
+
+- (BOOL)swipeTableCell:(MGSwipeTableCell*) cell tappedButtonAtIndex:(NSInteger) index direction:(MGSwipeDirection)direction fromExpansion:(BOOL) fromExpansion{
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    switch (index) {
+        case 1:
+        {
+            Task *task = indexPath.section == 1 ? self.unfinishedTaskArr[indexPath.row] : self.finishedTaskArr[indexPath.row];
+            [self performSegueWithIdentifier:@"detailTaskSegue" sender:task];
+        }
+            break;
+        case 0:
+            [self deleteTaskAtIndexPath:indexPath];
+            break;
+        default:
+            break;
+    }
+    return YES;
 }
 
 #pragma mark - KPNavigationTitleDelegate

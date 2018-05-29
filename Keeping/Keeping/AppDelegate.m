@@ -53,7 +53,6 @@
     
     //第一次启动
     if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]){
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"animation"];
     }
     if([[NSUserDefaults standardUserDefaults] valueForKey:@"sort"] == NULL){

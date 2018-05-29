@@ -94,7 +94,7 @@ static AMPopTip *shareTip = NULL;
             cardView = cv;
         }
     }
-    self.calendar = [[FSCalendar alloc] initWithFrame:CGRectMake(5, 0, CGRectGetWidth(self.tableView.frame) - 30, 240)];
+    self.calendar = [[FSCalendar alloc] initWithFrame:CGRectMake(5, 2, CGRectGetWidth(self.tableView.frame) - 30, 240)];
     self.calendar.dataSource = self;
     self.calendar.delegate = self;
     self.calendar.backgroundColor = [UIColor whiteColor];
@@ -114,12 +114,16 @@ static AMPopTip *shareTip = NULL;
     self.calendar.appearance.eventDefaultColor = [Utilities getColor];
     self.calendar.appearance.eventSelectionColor = [Utilities getColor];
     
+    self.calendar.appearance.titleFont = [UIFont systemFontOfSize:12.0];
+    self.calendar.appearance.headerTitleFont = [UIFont systemFontOfSize:15.0];
+    self.calendar.appearance.weekdayFont = [UIFont systemFontOfSize:12.0];
+    self.calendar.appearance.subtitleFont = [UIFont systemFontOfSize:10.0];
+    
     [cardView addSubview:self.calendar];
     
     UIButton *previousButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    previousButton.frame = CGRectMake(5, 3, 95, 34);
-    previousButton.backgroundColor = [UIColor whiteColor];
-    previousButton.titleLabel.font = [UIFont systemFontOfSize:15];
+    previousButton.frame = CGRectMake(10, 4, 90, 34);
+    [previousButton setBackgroundColor:[UIColor clearColor]];
     [previousButton setTintColor:[Utilities getColor]];
     UIImage *leftImg = [UIImage imageNamed:@"NAV_BACK"];
     leftImg = [leftImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
@@ -128,15 +132,9 @@ static AMPopTip *shareTip = NULL;
     [cardView addSubview:previousButton];
     self.previousButton = previousButton;
     
-    self.calendar.appearance.titleFont = [UIFont systemFontOfSize:12.0];
-    self.calendar.appearance.headerTitleFont = [UIFont systemFontOfSize:15.0];
-    self.calendar.appearance.weekdayFont = [UIFont systemFontOfSize:12.0];
-    self.calendar.appearance.subtitleFont = [UIFont systemFontOfSize:10.0];
-    
     UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    nextButton.frame = CGRectMake(CGRectGetWidth(self.tableView.frame) - 120, 3, 95, 34);
-    nextButton.backgroundColor = [UIColor whiteColor];
-    nextButton.titleLabel.font = [UIFont systemFontOfSize:15];
+    nextButton.frame = CGRectMake(CGRectGetWidth(self.tableView.frame) - 120, 4, 90, 34);
+    [nextButton setBackgroundColor:[UIColor clearColor]];
     [nextButton setTintColor:[Utilities getColor]];
     UIImage *rightImg = [UIImage imageNamed:@"NAV_NEXT"];
     rightImg = [rightImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];

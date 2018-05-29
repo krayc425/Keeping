@@ -16,6 +16,7 @@ target 'Keeping' do
   pod 'SCLAlertView-Objective-C'
   pod 'IQKeyboardManager'
   pod 'IDMPhotoBrowser'
+  pod 'MGSwipeTableCell'
 
 end
 

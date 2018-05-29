@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BEMCheckBox.h"
 #import "CardsView.h"
+#import "KPBaseTableViewCell.h"
 
 @class KPTimeView;
 @class Task;
@@ -21,9 +22,9 @@
 
 @end
 
-@interface KPTodayTableViewCell : UITableViewCell <BEMCheckBoxDelegate>
+@interface KPTodayTableViewCell : KPBaseTableViewCell <BEMCheckBoxDelegate>
 
-@property (nonatomic, weak, nullable) id<CheckTaskDelegate> delegate;
+@property (nonatomic, weak, nullable) id<CheckTaskDelegate> checkDelegate;
 //任务名
 @property (nonatomic, strong, nullable) IBOutlet UILabel *taskNameLabel;
 //提醒时间

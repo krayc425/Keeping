@@ -41,6 +41,7 @@ PODS:
     - AFNetworking (~> 2.0)
     - AVOSCloud (~> 3.1)
   - MBProgressHUD (1.0.0)
+  - MGSwipeTableCell (1.6.7)
   - MMWormhole (2.0.0):
     - MMWormhole/Core (= 2.0.0)
   - MMWormhole/Core (2.0.0)
@@ -65,6 +66,7 @@ DEPENDENCIES:
   - IQKeyboardManager
   - LeanCloudSocial
   - MBProgressHUD
+  - MGSwipeTableCell
   - MMWormhole
   - PYSearch
   - SCLAlertView-Objective-C
@@ -86,6 +88,7 @@ SPEC REPOS:
     - IQKeyboardManager
     - LeanCloudSocial
     - MBProgressHUD
+    - MGSwipeTableCell
     - MMWormhole
     - pop
     - PYSearch
@@ -108,12 +111,13 @@ SPEC CHECKSUMS:
   IQKeyboardManager: 1df9c0f147af1681cfb2d9977bc30309d45a7e76
   LeanCloudSocial: f7787dfc1559dc47263bbfd37a03c870352ad98a
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  MGSwipeTableCell: fb20e983988bde2b8d0df29c2d9e1d8ffd10b74a
   MMWormhole: 0cd3fd35a9118b2e2d762b499f54eeaace0be791
   pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
   PYSearch: 75f94d4a1473334898a5776bf62a6a08ebe7eec5
   SCLAlertView-Objective-C: 0e54351fa4f98a5c7c6ad3727e6dbb46784534e5
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
 
-PODFILE CHECKSUM: f72a0fd091d75ffec37f433fb81da8c097c0c356
+PODFILE CHECKSUM: f7fe280f4d2e983f9302f0f6103d345f49da48e9
 
 COCOAPODS: 1.5.2

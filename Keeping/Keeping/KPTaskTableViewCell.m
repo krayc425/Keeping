@@ -10,9 +10,7 @@
 #import "Utilities.h"
 #import "CardsView.h"
 #import "Task.h"
-
-#define ScreenWidth [UIScreen mainScreen].bounds.size.width
-#define ScreenHeight [UIScreen mainScreen].bounds.size.height
+#import "MGSwipeTableCell.h"
 
 @implementation KPTaskTableViewCell{
     UILabel *deleteLabel;
@@ -29,10 +27,6 @@
     [self.progressView setProgressStrokeColor:[Utilities getColor]];
     
     self.weekdayView.isAllButtonHidden = YES;
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
 }
 
 - (void)configureWithTask:(Task *)t {
@@ -76,7 +70,7 @@
 
 - (IBAction)imgAction:(id)sender{
     UIButton *btn = (UIButton *)sender;
-    [self.delegate passImg:btn.currentBackgroundImage];
+    [self.imgDelegate passImg:btn.currentBackgroundImage];
 }
 
 - (void)setFont{

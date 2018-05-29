@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "HYCircleProgressView.h"
 #import "KPWeekdayPickerView.h"
+#import "KPBaseTableViewCell.h"
 
 @class Task;
 
@@ -18,9 +19,9 @@
 
 @end
 
-@interface KPTaskTableViewCell : UITableViewCell
+@interface KPTaskTableViewCell : KPBaseTableViewCell
 
-@property (nonatomic, weak, nullable) id<PassImgDelegate> delegate;
+@property (nonatomic, weak, nullable) id<PassImgDelegate> imgDelegate;
 //任务名
 @property (nonatomic, weak, nullable) IBOutlet UILabel *nameLabel;
 //改成：时间 label

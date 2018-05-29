@@ -33,6 +33,7 @@
 		245196711E3CB82F00C18C5B /* TabBar.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 245196701E3CB82F00C18C5B /* TabBar.xcassets */; };
 		24569A291F95E30500082EE4 /* KCProgressButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 24569A281F95E30500082EE4 /* KCProgressButton.m */; };
 		24569A2C1F95E31E00082EE4 /* KCEdgeInsetLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24569A2B1F95E31E00082EE4 /* KCEdgeInsetLabel.m */; };
+		2457FE5420BCED9500546C6F /* KPBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2457FE5320BCED9500546C6F /* KPBaseTableViewCell.m */; };
 		245A010D1F98EE9100CB50E9 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 245A010B1F98EE9100CB50E9 /* Interface.storyboard */; };
 		245A010F1F98EE9100CB50E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 245A010E1F98EE9100CB50E9 /* Assets.xcassets */; };
 		245A01161F98EE9100CB50E9 /* KeepingWatch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 245A01151F98EE9100CB50E9 /* KeepingWatch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -91,6 +92,7 @@
 		24F2A0DC1E2F489100F30FB1 /* KPSchemeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24F2A0DA1E2F489100F30FB1 /* KPSchemeTableViewCell.xib */; };
 		24FD7FF320BC3BDF00DFA8D6 /* UIViewController+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FD7FF220BC3BDF00DFA8D6 /* UIViewController+Extensions.m */; };
 		24FD7FF620BC3CAA00DFA8D6 /* UIView+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FD7FF520BC3CAA00DFA8D6 /* UIView+Extensions.m */; };
+		24FD7FF920BC4F5700DFA8D6 /* KPGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FD7FF820BC4F5700DFA8D6 /* KPGuideView.m */; };
 		5CB639CB421E29B47A2741DB /* libPods-Keeping.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC5A1BA89969620E5A37921E /* libPods-Keeping.a */; };
 		B29DF1F523DB296B043EFE77 /* libPods-KeepingWidget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7768AB7A1CE5FD0A347A4517 /* libPods-KeepingWidget.a */; };
 /* End PBXBuildFile section */
@@ -205,6 +207,8 @@
 		24569A281F95E30500082EE4 /* KCProgressButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KCProgressButton.m; sourceTree = "<group>"; };
 		24569A2A1F95E31E00082EE4 /* KCEdgeInsetLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KCEdgeInsetLabel.h; sourceTree = "<group>"; };
 		24569A2B1F95E31E00082EE4 /* KCEdgeInsetLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KCEdgeInsetLabel.m; sourceTree = "<group>"; };
+		2457FE5220BCED9500546C6F /* KPBaseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KPBaseTableViewCell.h; sourceTree = "<group>"; };
+		2457FE5320BCED9500546C6F /* KPBaseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KPBaseTableViewCell.m; sourceTree = "<group>"; };
 		245A01091F98EE9100CB50E9 /* KeepingWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KeepingWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		245A010C1F98EE9100CB50E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		245A010E1F98EE9100CB50E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -296,6 +300,8 @@
 		24FD7FF220BC3BDF00DFA8D6 /* UIViewController+Extensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Extensions.m"; sourceTree = "<group>"; };
 		24FD7FF420BC3CAA00DFA8D6 /* UIView+Extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+Extensions.h"; sourceTree = "<group>"; };
 		24FD7FF520BC3CAA00DFA8D6 /* UIView+Extensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extensions.m"; sourceTree = "<group>"; };
+		24FD7FF720BC4F5700DFA8D6 /* KPGuideView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KPGuideView.h; sourceTree = "<group>"; };
+		24FD7FF820BC4F5700DFA8D6 /* KPGuideView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KPGuideView.m; sourceTree = "<group>"; };
 		3303168DFB48063C3EC132E2 /* Pods-KeepingWidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KeepingWidget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KeepingWidget/Pods-KeepingWidget.debug.xcconfig"; sourceTree = "<group>"; };
 		536AA62E968456370B920F00 /* libPods-KeepingWatch Extension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KeepingWatch Extension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7768AB7A1CE5FD0A347A4517 /* libPods-KeepingWidget.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KeepingWidget.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -431,6 +437,15 @@
 				24BA79A01E516949002133B6 /* TaskDataHelper.m */,
 			);
 			name = TaskData;
+			sourceTree = "<group>";
+		};
+		2457FE5520BCEEBE00546C6F /* KPBaseTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				2457FE5220BCED9500546C6F /* KPBaseTableViewCell.h */,
+				2457FE5320BCED9500546C6F /* KPBaseTableViewCell.m */,
+			);
+			name = KPBaseTableViewCell;
 			sourceTree = "<group>";
 		};
 		245A010A1F98EE9100CB50E9 /* KeepingWatch */ = {
@@ -651,12 +666,13 @@
 				2467A58D1E8A45B600C41B11 /* KPNavigationTitleView */,
 				24BA79A61E516FC1002133B6 /* HYCircleProgressView */,
 				24BA79A41E516D5D002133B6 /* CardView */,
+				24FD7FFA20BC526B00DFA8D6 /* KPGuideView */,
+				24FD7FFB20BC527A00DFA8D6 /* KCEdgeInsetLabel */,
 				246AEF081E64214A00D78FDD /* UIImage+Extensions.h */,
 				246AEF091E64214A00D78FDD /* UIImage+Extensions.m */,
+				2457FE5520BCEEBE00546C6F /* KPBaseTableViewCell */,
 				24569A271F95E30500082EE4 /* KCProgressButton.h */,
 				24569A281F95E30500082EE4 /* KCProgressButton.m */,
-				24569A2A1F95E31E00082EE4 /* KCEdgeInsetLabel.h */,
-				24569A2B1F95E31E00082EE4 /* KCEdgeInsetLabel.m */,
 				24FD7FF120BC3BDF00DFA8D6 /* UIViewController+Extensions.h */,
 				24FD7FF220BC3BDF00DFA8D6 /* UIViewController+Extensions.m */,
 				24FD7FF420BC3CAA00DFA8D6 /* UIView+Extensions.h */,
@@ -690,6 +706,24 @@
 				24F2A0DA1E2F489100F30FB1 /* KPSchemeTableViewCell.xib */,
 			);
 			name = Scheme;
+			sourceTree = "<group>";
+		};
+		24FD7FFA20BC526B00DFA8D6 /* KPGuideView */ = {
+			isa = PBXGroup;
+			children = (
+				24FD7FF720BC4F5700DFA8D6 /* KPGuideView.h */,
+				24FD7FF820BC4F5700DFA8D6 /* KPGuideView.m */,
+			);
+			name = KPGuideView;
+			sourceTree = "<group>";
+		};
+		24FD7FFB20BC527A00DFA8D6 /* KCEdgeInsetLabel */ = {
+			isa = PBXGroup;
+			children = (
+				24569A2A1F95E31E00082EE4 /* KCEdgeInsetLabel.h */,
+				24569A2B1F95E31E00082EE4 /* KCEdgeInsetLabel.m */,
+			);
+			name = KCEdgeInsetLabel;
 			sourceTree = "<group>";
 		};
 		3B36A3747ED818A6EEF990CE /* Frameworks */ = {
@@ -1049,6 +1083,7 @@
 				24DCF18A1E3094050097C250 /* DateUtil.m in Sources */,
 				24F2A0D11E2F3F1800F30FB1 /* DBManager.m in Sources */,
 				246AEF0A1E64214A00D78FDD /* UIImage+Extensions.m in Sources */,
+				24FD7FF920BC4F5700DFA8D6 /* KPGuideView.m in Sources */,
 				24D2D8001E8A2D060056D1AD /* KPTimeView.m in Sources */,
 				249AE31A1E2DEE7700F704F8 /* AppDelegate.m in Sources */,
 				249AE3171E2DEE7700F704F8 /* main.m in Sources */,
@@ -1074,6 +1109,7 @@
 				2429CBD71E2DF6080027DD37 /* KPTaskTableViewController.m in Sources */,
 				24BA79AB1E516FE0002133B6 /* KPWeekdayPickerView.m in Sources */,
 				24F2A0CE1E2F38C700F30FB1 /* KPTaskTableViewCell.m in Sources */,
+				2457FE5420BCED9500546C6F /* KPBaseTableViewCell.m in Sources */,
 				24151C971E32388300757A69 /* UNManager.m in Sources */,
 				24151C921E322D6700757A69 /* KPTaskDetailTableViewController.m in Sources */,
 				2435DBF11E35CCC300F1A96E /* KPFontTableViewController.m in Sources */,

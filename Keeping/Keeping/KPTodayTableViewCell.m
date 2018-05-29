@@ -13,15 +13,14 @@
 #import "Task.h"
 #import "DateTools.h"
 
-#define ScreenWidth [UIScreen mainScreen].bounds.size.width
-#define ScreenHeight [UIScreen mainScreen].bounds.size.height
-
 @implementation KPTodayTableViewCell{
     UILabel *infoLabel;
 }
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    
+    self.cardView2.cornerRadius = 10.0;
     
     [self setFont];
     
@@ -35,12 +34,8 @@
     [self.contentView addSubview:self.myCheckBox];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-}
-
 - (void)animationDidStopForCheckBox:(BEMCheckBox *)checkBox{
-    [self.delegate checkTask:self];
+    [self.checkDelegate checkTask:self];
 }
 
 - (void)setIsFinished:(BOOL)isFinished{
@@ -89,7 +84,7 @@
 }
 
 - (void)moreAction:(id)sender{
-    [self.delegate moreAction:self withButton:(UIButton *)sender];
+    [self.checkDelegate moreAction:self withButton:(UIButton *)sender];
 }
 
 - (void)setFont{
@@ -114,7 +109,6 @@
 }
 
 - (void)configureWithTask:(Task *)t {
-    
     [self.taskNameLabel setText:t.name];
     
     if(t.type > 0){
