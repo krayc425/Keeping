@@ -191,7 +191,7 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
         _isdraggingPhoto = NO;
         
         _doneButtonRightInset = 20.f;
-        _doneButtonTopInset = 30.f;
+        _doneButtonTopInset = 50.f;
         _doneButtonSize = CGSizeMake(55.f, 26.f);
 
 		if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
@@ -672,6 +672,7 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
                                                                   target:self
                                                                   action:@selector(actionButtonPressed:)];
     }
+    [_actionButton setTintColor:[UIColor whiteColor]];
 
     // Gesture
     _panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)];
@@ -1111,7 +1112,7 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
 }
 
 - (CGRect)frameForToolbarAtOrientation:(UIInterfaceOrientation)orientation {
-    CGFloat height = 44;
+    CGFloat height = 80;
 
     if ([self isLandscape:orientation])
         height = 32;

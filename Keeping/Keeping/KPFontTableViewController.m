@@ -15,6 +15,7 @@
 #import "HYCircleProgressView.h"
 #import "Task.h"
 #import "KPTimeView.h"
+#import "UIViewController+Extensions.h"
 
 #define GROUP_ID @"group.com.krayc.keeping"
 
@@ -35,16 +36,11 @@
     [self.sizeControl addTarget:self action:@selector(sliderValueChanged) forControlEvents:UIControlEventValueChanged];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
 - (void)sliderValueChanged{
+    [self vibrateWithStyle:UIImpactFeedbackStyleLight];
+    
     [[NSUserDefaults standardUserDefaults] setInteger:self.sizeControl.selectedSegmentIndex forKey:@"fontSize"];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    NSLog(@"select %ld", (long)self.sizeControl.selectedSegmentIndex);
-    NSLog(@"saved  %ld", [[NSUserDefaults standardUserDefaults] integerForKey:@"fontSize"]);
     
     [self.tableView reloadData];
 }

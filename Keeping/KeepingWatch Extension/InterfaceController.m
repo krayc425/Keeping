@@ -25,12 +25,7 @@
 
 @implementation InterfaceController
 
-- (void)awakeWithContext:(id)context {
-    [super awakeWithContext:context];
-}
-
 - (void)willActivate {
-    // This method is called when watch view controller is about to be visible to user
     [super willActivate];
     
     if ([WCSession isSupported]) {
@@ -40,11 +35,6 @@
         
         [self reloadTableData];
     }
-}
-
-- (void)didDeactivate {
-    // This method is called when watch view controller is no longer visible
-    [super didDeactivate];
 }
 
 - (void)changeStatusForTaskAtIndex:(NSInteger)index {
@@ -61,6 +51,9 @@
                                };
     
     NSLog(@"%@", sendDict);
+    
+    NSData *dictData = [NSKeyedArchiver archivedDataWithRootObject:self.taskDict];
+    [[NSUserDefaults standardUserDefaults] setObject:dictData forKey:@"watch_task_dict_data"];
     
     [[WCSession defaultSession] transferUserInfo:sendDict];
     
@@ -79,7 +72,6 @@
     NSDictionary *storedDict = (NSDictionary *)[NSKeyedUnarchiver unarchiveObjectWithData:dictData];
     
     self.taskDict = [NSMutableDictionary dictionaryWithDictionary:storedDict];
-//    NSLog(@"%@", self.taskDict);
     
     self.taskNameArray = [[NSMutableArray alloc] init];
     self.taskStatusArray = [[NSMutableArray alloc] init];
@@ -87,12 +79,17 @@
     self.taskReminderDaysArray = [[NSMutableArray alloc] init];
     
     self.todayTaskIndexes = [[NSMutableArray alloc] init];
+    NSArray *keys = [self.taskDict.allKeys sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        NSString *s1 = (NSString *)obj1;
+        NSString *s2 = (NSString *)obj2;
+        return [s1 compare:s2];
+    }];
     
     for (int i = 0; i < self.taskDict.count; i++) {
-        NSString *taskId = (NSString *)self.taskDict.allKeys[i];
-        NSString *taskName = (NSString *)[[self.taskDict objectForKey:taskId] objectForKey:@"name"];
-        NSString *hasFinished = (NSString *)[[self.taskDict objectForKey:taskId] objectForKey:@"hasPunched"];
-        NSArray *taskReminderDaysArr = (NSArray *)[[self.taskDict objectForKey:taskId] objectForKey:@"reminderDays"];
+        NSString *taskId = (NSString *)keys[i];
+        NSString *taskName = (NSString *)self.taskDict[taskId][@"name"];
+        NSString *hasFinished = (NSString *)self.taskDict[taskId][@"hasPunched"];
+        NSArray *taskReminderDaysArr = (NSArray *)self.taskDict[taskId][@"reminderDays"];
 
         [self.taskIdArray addObject:taskId];
         [self.taskNameArray addObject:taskName];

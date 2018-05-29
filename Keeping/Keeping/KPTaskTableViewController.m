@@ -25,6 +25,7 @@
 #import "KPTaskTableViewController+Touch.h"
 #import "IDMPhotoBrowser.h"
 #import "MGSwipeTableCell.h"
+#import "UIViewController+Extensions.h"
 
 static AMPopTip *shareTip = NULL;
 static KPColorPickerView *colorPickerView = NULL;
@@ -78,6 +79,8 @@ static KPColorPickerView *colorPickerView = NULL;
 }
 
 - (void)editAction:(id)sender{
+    [self vibrateWithStyle:UIImpactFeedbackStyleLight];
+    
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"选择任务排序方式" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     NSDictionary *dict = [Utilities getTaskSortArr];
     

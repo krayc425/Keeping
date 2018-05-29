@@ -23,7 +23,6 @@
     [self.navigationBar setTintColor:[UIColor whiteColor]];
     [self.navigationBar setBarTintColor:[Utilities getColor]];
     
-    
     if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]){
         KPGuideView *guideView = [[KPGuideView alloc] initWithFrame:UIScreen.mainScreen.bounds];
         [self.view addSubview:guideView];

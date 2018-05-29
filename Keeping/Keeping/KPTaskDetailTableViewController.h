@@ -9,12 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "Task.h"
 #import "KPSchemeTableViewController.h"
-#import "HSDatePickerViewController.h"
 #import "KPWeekdayPickerView.h"
 #import "KPColorPickerView.h"
 #import "KPScheme.h"
 
-@interface KPTaskDetailTableViewController : UITableViewController <SchemeDelegate,  UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, HSDatePickerViewControllerDelegate, UITextViewDelegate, KPWeekdayPickerDelegate, KPColorPickerDelegate>
+@interface KPTaskDetailTableViewController : UITableViewController <SchemeDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate, KPWeekdayPickerDelegate, KPColorPickerDelegate>
 
 @property (nullable, nonatomic) Task *task;
 

@@ -12,7 +12,6 @@
 @implementation KPTodayTableViewController (Touch)
 
 - (UIViewController *)previewingContext:(id <UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location{
-    
     if ([self.presentedViewController isKindOfClass:[KPTaskDisplayTableViewController class]]){
         return nil;
     }

@@ -31,7 +31,6 @@ PODS:
     - FMDB/standard (= 2.7.2)
   - FMDB/standard (2.7.2)
   - FSCalendar (2.7.9)
-  - HSDatePickerViewController (1.0.4)
   - IDMPhotoBrowser (1.11.3):
     - DACircularProgress
     - pop
@@ -61,7 +60,6 @@ DEPENDENCIES:
   - FDFullscreenPopGesture
   - FMDB
   - FSCalendar
-  - HSDatePickerViewController
   - IDMPhotoBrowser
   - IQKeyboardManager
   - LeanCloudSocial
@@ -83,7 +81,6 @@ SPEC REPOS:
     - FDFullscreenPopGesture
     - FMDB
     - FSCalendar
-    - HSDatePickerViewController
     - IDMPhotoBrowser
     - IQKeyboardManager
     - LeanCloudSocial
@@ -106,7 +103,6 @@ SPEC CHECKSUMS:
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
   FMDB: 6198a90e7b6900cfc046e6bc0ef6ebb7be9236aa
   FSCalendar: a04b09f16f811bc92e82f3cf852a15225233b9d5
-  HSDatePickerViewController: 5a72b71f8c3b10e76f2c28a898f8572b551432a6
   IDMPhotoBrowser: b96159fe4adb991a844068eb17dab9c0b7d7e51a
   IQKeyboardManager: 1df9c0f147af1681cfb2d9977bc30309d45a7e76
   LeanCloudSocial: f7787dfc1559dc47263bbfd37a03c870352ad98a
@@ -118,6 +114,6 @@ SPEC CHECKSUMS:
   SCLAlertView-Objective-C: 0e54351fa4f98a5c7c6ad3727e6dbb46784534e5
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
 
-PODFILE CHECKSUM: f7fe280f4d2e983f9302f0f6103d345f49da48e9
+PODFILE CHECKSUM: c2e7b58415020de341fd07d11b3c166e754a6631
 
 COCOAPODS: 1.5.2

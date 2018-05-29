@@ -24,6 +24,4 @@
 
 @property (nonatomic, weak, nullable) IBOutlet BEMCheckBox *checkBox;
 
-- (void)setFont;
-
 @end

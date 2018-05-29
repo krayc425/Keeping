@@ -6,7 +6,6 @@ target 'Keeping' do
   pod 'FSCalendar'
   pod 'FMDB'
   pod 'BEMCheckBox'
-  pod 'HSDatePickerViewController'
   pod 'FDFullscreenPopGesture'
   pod 'AMPopTip', '~> 1.5'
   pod 'PYSearch'

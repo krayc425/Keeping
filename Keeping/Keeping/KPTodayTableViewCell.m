@@ -12,6 +12,7 @@
 #import "KPTimeView.h"
 #import "Task.h"
 #import "DateTools.h"
+#import "UIView+Extensions.h"
 
 @implementation KPTodayTableViewCell{
     UILabel *infoLabel;
@@ -19,8 +20,6 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
-    self.cardView2.cornerRadius = 10.0;
     
     [self setFont];
     
@@ -38,6 +37,10 @@
     [self.checkDelegate checkTask:self];
 }
 
+- (void)didTapCheckBox:(BEMCheckBox *)checkBox{
+    [self vibrateWithStyle:UIImpactFeedbackStyleLight];
+}
+
 - (void)setIsFinished:(BOOL)isFinished{
     [self.myCheckBox setOn:isFinished];
 }
@@ -51,10 +54,11 @@
         
         self.buttonStackView = [[UIStackView alloc] initWithFrame:self.cardView2.frame];
         
-        self.appButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.buttonStackView.frame.size.width / 4, self.buttonStackView.frame.size.height)];
-        self.linkButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.buttonStackView.frame.size.width / 4, self.buttonStackView.frame.size.height)];
-        self.imageButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.buttonStackView.frame.size.width / 4, self.buttonStackView.frame.size.height)];
-        self.memoButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.buttonStackView.frame.size.width / 4, self.buttonStackView.frame.size.height)];
+        CGRect buttonFrame = CGRectMake(0, 0, self.buttonStackView.frame.size.width / 4, self.buttonStackView.frame.size.height);
+        self.appButton = [[UIButton alloc] initWithFrame:buttonFrame];
+        self.linkButton = [[UIButton alloc] initWithFrame:buttonFrame];
+        self.imageButton = [[UIButton alloc] initWithFrame:buttonFrame];
+        self.memoButton = [[UIButton alloc] initWithFrame:buttonFrame];
     
         self.appButton.titleLabel.adjustsFontSizeToFitWidth = YES;
         self.linkButton.titleLabel.adjustsFontSizeToFitWidth = YES;

@@ -179,6 +179,8 @@ static KPColorPickerView *colorPickerView = NULL;
 }
 
 - (void)editAction:(id)sender{
+    [self vibrateWithStyle:UIImpactFeedbackStyleLight];
+    
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"选择任务排序方式" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     NSDictionary *dict = [Utilities getTaskSortArr];
     for (NSString *key in dict.allKeys) {
@@ -221,11 +223,10 @@ static KPColorPickerView *colorPickerView = NULL;
     AMPopTip *tp = [KPTodayTableViewController shareTipInstance];
     
     if(![tp isVisible] && ![tp isAnimating]){
-        
         [tp showCustomView:self.calendar
-                 direction:AMPopTipDirectionDown
+                 direction:AMPopTipDirectionNone
                     inView:self.tableView
-                 fromFrame:CGRectOffset(self.dateButton.frame, 23, 0)]; //这个23咋回事
+                 fromFrame:self.view.bounds]; //这个23咋回事
         
         tp.textColor = [UIColor whiteColor];
         tp.tintColor = [Utilities getColor];
@@ -263,6 +264,8 @@ static KPColorPickerView *colorPickerView = NULL;
             t = self.finishedTaskArr[indexPath.row];
             [self.finishedTaskArr removeObject:t];
         }
+        
+        [[TaskManager shareInstance] deleteTask:t];
         
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
@@ -451,7 +454,7 @@ static KPColorPickerView *colorPickerView = NULL;
     if (indexPath.section == 0){
         return NO;
     }
-    return YES;
+    return self.selectedIndexPath != indexPath;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

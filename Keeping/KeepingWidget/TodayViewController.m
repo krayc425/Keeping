@@ -16,8 +16,6 @@
 
 #define GROUP_ID @"group.com.krayc.keeping"
 
-#define DATELABEL_HEIGHT 66
-
 @interface TodayViewController () <NCWidgetProviding>
 
 @end
@@ -30,12 +28,10 @@
     
     self.taskTableView.delegate = self;
     self.taskTableView.dataSource = self;
-//    self.taskTableView.emptyDataSetSource = self;
-//    self.taskTableView.emptyDataSetDelegate = self;
     self.taskTableView.backgroundColor = [UIColor clearColor];
     
-    [self.countLabel setTextColor:[UIColor blackColor]];
-    [self.countLabel setFont:[UIFont systemFontOfSize:20.0f]];
+    UINib *nib = [UINib nibWithNibName:@"KPWidgetTableViewCell" bundle:nil];
+    [self.taskTableView registerNib:nib forCellReuseIdentifier:@"KPWidgetTableViewCell"];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -46,15 +42,11 @@
     [self loadTasks];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
 - (void)widgetActiveDisplayModeDidChange:(NCWidgetDisplayMode)activeDisplayMode withMaximumSize:(CGSize)maxSize {
     if (activeDisplayMode == NCWidgetDisplayModeCompact) {
-        self.preferredContentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, DATELABEL_HEIGHT + 44);
+        self.preferredContentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, 110);
     } else {
-        self.preferredContentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, DATELABEL_HEIGHT + self.taskArr.count * 44);
+        self.preferredContentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, self.taskArr.count * 55);
     }
 }
 
@@ -115,21 +107,12 @@
         t.link = [resultSet stringForColumn:@"link"];
         t.endDate = [resultSet dateForColumn:@"endDate"];
         
-        if([t.reminderDays containsObject:[NSNumber numberWithInteger:[[NSDate date] weekday]]]
-           && ![t.punchDateArr containsObject:[DateUtil transformDate:[NSDate date]]]){
+        if([t.reminderDays containsObject:[NSNumber numberWithInteger:[[NSDate date] weekday]]]){
             if([[NSDate date] isLaterThanOrEqualTo:t.addDate] && (t.endDate == NULL || [t.endDate isLaterThanOrEqualTo:[NSDate date]])){
                 [self.taskArr addObject:t];
             }
         }
         
-    }
-    
-    if(self.taskArr.count > 0){
-        [self.countLabel setText:[NSString stringWithFormat:@"剩余 %lu 个未完成", (unsigned long)self.taskArr.count]];
-        [self.taskTableView setHidden:NO];
-    }else{
-        [self.countLabel setText:@"今日任务已全部完成"];
-        [self.taskTableView setHidden:YES];
     }
     
     [self.taskTableView reloadData];
@@ -145,8 +128,11 @@
     NSIndexPath *path = [self.taskTableView indexPathForCell:cell];
     
     Task *task = self.taskArr[path.row];
-    
-    [[TaskManager shareInstance] punchForTaskWithID:@(task.id) onDate:[NSDate date]];
+    if ([task.punchDateArr containsObject:[DateUtil transformDate:[NSDate date]]]) {
+        [[TaskManager shareInstance] unpunchForTaskWithID:@(task.id) onDate:[NSDate date]];
+    } else {
+        [[TaskManager shareInstance] punchForTaskWithID:@(task.id) onDate:[NSDate date]];
+    }
 
     [self loadTasks];
 }
@@ -162,17 +148,12 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 44.0f;
+    return 55.0f;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellIdentifier = @"KPWidgetTableViewCell";
-    UINib *nib = [UINib nibWithNibName:@"KPWidgetTableViewCell" bundle:nil];
-    [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
-    KPWidgetTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    KPWidgetTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"KPWidgetTableViewCell" forIndexPath:indexPath];
     cell.delegate = self;
-    
-    [cell.checkBox setOn:NO];
     
     Task *t = self.taskArr[indexPath.row];
     
@@ -187,6 +168,8 @@
     }else{
         [cell.timeLabel setText:@""];
     }
+    
+    [cell.checkBox setOn:[t.punchDateArr containsObject:[DateUtil transformDate:[NSDate date]]]];
     
     return cell;
 }

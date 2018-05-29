@@ -462,7 +462,7 @@
                                                            style:UIAlertActionStyleDefault
                                                          handler:^(UIAlertAction * _Nonnull action) {
                                                              imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-                                                             imagePickerController.cameraDevice = UIImagePickerControllerCameraDeviceFront;
+                                                             imagePickerController.cameraDevice = UIImagePickerControllerCameraDeviceRear;
                                                              [self presentViewController:imagePickerController animated:YES completion:nil];
                                                          }];
     
@@ -517,55 +517,50 @@
 
 - (IBAction)selectDateAction:(id)sender{
     UIButton *btn = (UIButton *)sender;
-    [self showDatePickerWithStartOrEnd:(int)btn.tag];
-}
-
-- (void)showDatePickerWithStartOrEnd:(int)type{
+    NSInteger type = btn.tag;
     //type:
     //      0 : 开始
     //      1 : 结束
-    HSDatePickerViewController *hsdpvc = [[HSDatePickerViewController alloc] init];
-    hsdpvc.delegate = self;
+    NSString *title = type == 0 ? @"选择开始日期" : @"选择结束日期";
     
-    hsdpvc.backButtonTitle = @"返回";
-    hsdpvc.confirmButtonTitle = @"确定";
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIDatePicker *datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH - 20, 250)];
+    datePicker.tintColor = [Utilities getColor];
+    datePicker.datePickerMode = UIDatePickerModeDate;
+    [alert.view addSubview:datePicker];
     
-    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
-    [fmt setDateFormat:DATE_FORMAT];
-    hsdpvc.dateFormatter = fmt;
-    
-    NSDateFormatter *myfmt = [[NSDateFormatter alloc] init];
-    [myfmt setDateFormat:@"yyyy 年 MM 月"];
-    hsdpvc.monthAndYearLabelDateFormater = myfmt;
-    
-    //设置时开始日期还是结束日期
-    hsdpvc.timeType = type;
-    
+    NSString *startDateString = self.startDateButton.titleLabel.text;
+    NSString *endDateString = self.endDateButton.titleLabel.text;
     if(type == 0){
-        
+        datePicker.date = [NSDate dateWithString:startDateString formatString:DATE_FORMAT];
     }else{
-        //让他结束日期可以是今天
-        NSDate *minDate = [NSDate dateWithString:self.startDateButton.titleLabel.text formatString:DATE_FORMAT];
-        hsdpvc.minDate = [minDate dateByAddingDays:-1];
-    }
-    
-    [self presentViewController:hsdpvc animated:YES completion:nil];
-}
-
-- (void)hsDatePickerPickedDate:(NSDictionary *)dateDict{
-    if(dateDict == NULL){
-        //无限期，只能是结束日期
-        [self.endDateButton setTitle:ENDLESS_STRING forState:UIControlStateNormal];
-    }else{
-        NSDate *date = [dateDict valueForKey:@"date"];
-        if([[dateDict valueForKey:@"type"] intValue] == 0){
-            NSDate *addDate = [NSDate dateWithYear:[date year] month:[date month] day:[date day]];
-            [self.startDateButton setTitle:[addDate formattedDateWithFormat:DATE_FORMAT] forState:UIControlStateNormal];
-        }else{
-            NSDate *endDate = [NSDate dateWithYear:[date year] month:[date month] day:[date day]];
-            [self.endDateButton setTitle:[endDate formattedDateWithFormat:DATE_FORMAT] forState:UIControlStateNormal];
+        if (![endDateString isEqualToString:ENDLESS_STRING]) {
+            datePicker.date = [NSDate dateWithString:endDateString formatString:DATE_FORMAT];
         }
+        
+        datePicker.minimumDate = [NSDate dateWithString:startDateString formatString:DATE_FORMAT];
+        
+        UIAlertAction *endlessAction = [UIAlertAction actionWithTitle:@"设为无限期" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self.endDateButton setTitle:ENDLESS_STRING forState:UIControlStateNormal];
+        }];
+        [alert addAction:endlessAction];
     }
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"完成" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSDate *date = datePicker.date;
+        if(type == 0){
+            [self.startDateButton setTitle:[date formattedDateWithFormat:DATE_FORMAT] forState:UIControlStateNormal];
+        }else{
+            [self.endDateButton setTitle:[date formattedDateWithFormat:DATE_FORMAT] forState:UIControlStateNormal];
+        }
+    }];
+    [alert addAction:okAction];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction:cancelAction];
+    
+    NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:alert.view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:datePicker.frame.size.height + (type == 1 ? 175 : 120)];
+    [alert.view addConstraint:heightConstraint];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - Table view data source

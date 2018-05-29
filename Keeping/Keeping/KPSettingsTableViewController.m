@@ -289,7 +289,12 @@
         UIAlertAction *weixinAction = [UIAlertAction actionWithTitle:@"微信" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [UIPasteboard generalPasteboard].string = @"krayc425";
             SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-            [alert showSuccess:@"已复制微信号" subTitle:nil closeButtonTitle:@"关闭" duration:0.0];
+            [alert addButton:@"跳转到微信" actionBlock:^{
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"weixin://"]
+                                                   options:@{}
+                                         completionHandler:nil];
+            }];
+            [alert showSuccess:@"微信号已复制" subTitle:nil closeButtonTitle:@"关闭" duration:0.0];
         }];
         UIAlertAction *weiboAction = [UIAlertAction actionWithTitle:@"微博" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"sinaweibo://userinfo?uid=1634553604"]

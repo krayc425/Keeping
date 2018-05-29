@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ETR-As-Xge">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ETR-As-Xge">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wbm-iV-L9T">
-                                <rect key="frame" x="0.0" y="66" width="375" height="84"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="KPWidgetTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="KPWidgetTableViewCell" id="168-OG-eyN" userLabel="KPWidgetTableViewCell" customClass="KPWidgetTableViewCell">
@@ -35,39 +35,18 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jb5-jH-hU4">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i61-Ld-2Q3">
-                                        <rect key="frame" x="167" y="22.5" width="42" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="i61-Ld-2Q3" firstAttribute="centerX" secondItem="jb5-jH-hU4" secondAttribute="centerX" id="3WP-RB-Jby"/>
-                                    <constraint firstItem="i61-Ld-2Q3" firstAttribute="centerY" secondItem="jb5-jH-hU4" secondAttribute="centerY" id="PYo-rD-cLk"/>
-                                    <constraint firstAttribute="height" constant="66" id="aBH-Eb-rfx"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="jb5-jH-hU4" secondAttribute="trailing" id="2v9-zo-XpL"/>
+                            <constraint firstItem="wbm-iV-L9T" firstAttribute="top" secondItem="K6j-EK-XDo" secondAttribute="bottom" id="fIF-Va-FDn"/>
                             <constraint firstAttribute="trailing" secondItem="wbm-iV-L9T" secondAttribute="trailing" id="hgv-ky-NuG"/>
-                            <constraint firstItem="jb5-jH-hU4" firstAttribute="top" secondItem="IDx-op-05l" secondAttribute="top" id="lxS-94-WY4"/>
                             <constraint firstItem="wbm-iV-L9T" firstAttribute="leading" secondItem="IDx-op-05l" secondAttribute="leading" id="nGU-lP-xqW"/>
-                            <constraint firstItem="wbm-iV-L9T" firstAttribute="top" secondItem="jb5-jH-hU4" secondAttribute="bottom" id="new-RB-Bao"/>
                             <constraint firstAttribute="bottom" secondItem="wbm-iV-L9T" secondAttribute="bottom" id="xmq-NL-WYP"/>
-                            <constraint firstItem="jb5-jH-hU4" firstAttribute="leading" secondItem="IDx-op-05l" secondAttribute="leading" id="zzF-tX-AaF"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="150"/>
                     <connections>
-                        <outlet property="countLabel" destination="i61-Ld-2Q3" id="xga-JB-5Eg"/>
                         <outlet property="taskTableView" destination="wbm-iV-L9T" id="9zH-MB-GNA"/>
                     </connections>
                 </viewController>

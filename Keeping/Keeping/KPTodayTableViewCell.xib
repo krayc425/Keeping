@@ -20,7 +20,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="69.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MId-YP-mlf" userLabel="CardView" customClass="CardsView">
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MId-YP-mlf" userLabel="CardView" customClass="CardsView">
                         <rect key="frame" x="10" y="5" width="300" height="60"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qcV-J5-pO2" customClass="KPTimeView">
@@ -38,6 +38,11 @@
                             <constraint firstAttribute="height" constant="60" id="sI0-ka-31c"/>
                             <constraint firstAttribute="trailing" secondItem="qcV-J5-pO2" secondAttribute="trailing" constant="60" id="z5h-1F-GJJ"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <integer key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iue-6t-6A6">
                         <rect key="frame" x="154" y="48.5" width="12" height="6"/>

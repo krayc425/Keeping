@@ -106,6 +106,7 @@
 }
 
 - (void)settingAction:(id)sender{
+    [self vibrateWithStyle:UIImpactFeedbackStyleLight];
     [self performSegueWithIdentifier:@"settingSegue" sender:nil];
 }
 

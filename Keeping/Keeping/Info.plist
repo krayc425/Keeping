@@ -55,7 +55,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>0</string>
+	<string>2</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -104,6 +104,8 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>“今日打卡”需要调用您的相机</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>“今日打卡”需要访问您的相册</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>“今日打卡”需要访问您的相册</string>
 	<key>UIApplicationShortcutItems</key>
