@@ -17,6 +17,7 @@
 #import <StoreKit/StoreKit.h>
 #import <LeanCloudSocial/AVOSCloudSNS.h>
 #import <LeanCloudSocial/AVUser+SNS.h>
+#import "VTAcknowledgementsViewController.h"
 
 @interface KPSettingsTableViewController ()
 
@@ -261,7 +262,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [@[@(2), @(2), @(2), @(3)][section] integerValue];
+    return [@[@(2), @(2), @(2), @(4)][section] integerValue];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
@@ -322,6 +323,11 @@
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]
                                            options:@{}
                                  completionHandler:nil];
+        
+        
+    }else if(indexPath.section == 3 && indexPath.row == 3){
+        VTAcknowledgementsViewController *viewController = [VTAcknowledgementsViewController acknowledgementsViewController];
+        [self.navigationController pushViewController:viewController animated:YES];
     }
 }
 

@@ -16,6 +16,7 @@ target 'Keeping' do
   pod 'IQKeyboardManager'
   pod 'IDMPhotoBrowser'
   pod 'MGSwipeTableCell'
+  pod 'VTAcknowledgementsViewController' 
 
 end
 

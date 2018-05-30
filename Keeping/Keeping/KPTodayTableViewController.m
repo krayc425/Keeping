@@ -146,9 +146,7 @@ static KPColorPickerView *colorPickerView = NULL;
     }
     
     //设置进度
-    NSUInteger finished = self.finishedTaskArr.count;
-    NSUInteger total = self.finishedTaskArr.count + self.unfinishedTaskArr.count;
-    [self.progressLabel setText:[NSString stringWithFormat:@"%lu / %lu", (unsigned long)finished, (unsigned long)total]];
+    [self refreshProgress];
     
     //排序
     self.unfinishedTaskArr = [NSMutableArray arrayWithArray:[TaskDataHelper sortTasks:self.unfinishedTaskArr withSortFactor:self.sortFactor isAscend:self.isAscend.intValue]];
@@ -176,6 +174,12 @@ static KPColorPickerView *colorPickerView = NULL;
         UIApplication *application = [UIApplication sharedApplication];
         [application setApplicationIconBadgeNumber:0];
     }
+}
+
+- (void)refreshProgress{
+    NSUInteger finished = self.finishedTaskArr.count;
+    NSUInteger total = self.finishedTaskArr.count + self.unfinishedTaskArr.count;
+    [self.progressLabel setText:[NSString stringWithFormat:@"%lu / %lu", (unsigned long)finished, (unsigned long)total]];
 }
 
 - (void)editAction:(id)sender{
@@ -272,6 +276,8 @@ static KPColorPickerView *colorPickerView = NULL;
         if(self.finishedTaskArr.count == 0 || self.unfinishedTaskArr.count == 0){
             [self.tableView reloadData];
         }
+        
+        [self refreshProgress];
     }];
     [alert showWarning:@"确认删除吗" subTitle:@"此操作不可恢复" closeButtonTitle:@"取消" duration:0.0];
 }

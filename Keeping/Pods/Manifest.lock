@@ -50,6 +50,7 @@ PODS:
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
+  - VTAcknowledgementsViewController (1.4)
 
 DEPENDENCIES:
   - AMPopTip (~> 1.5)
@@ -68,6 +69,7 @@ DEPENDENCIES:
   - MMWormhole
   - PYSearch
   - SCLAlertView-Objective-C
+  - VTAcknowledgementsViewController
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -91,6 +93,7 @@ SPEC REPOS:
     - PYSearch
     - SCLAlertView-Objective-C
     - SDWebImage
+    - VTAcknowledgementsViewController
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
@@ -113,7 +116,8 @@ SPEC CHECKSUMS:
   PYSearch: 75f94d4a1473334898a5776bf62a6a08ebe7eec5
   SCLAlertView-Objective-C: 0e54351fa4f98a5c7c6ad3727e6dbb46784534e5
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
+  VTAcknowledgementsViewController: d62bb400ca68e240680906bcfa2a2b380d39b30f
 
-PODFILE CHECKSUM: c2e7b58415020de341fd07d11b3c166e754a6631
+PODFILE CHECKSUM: 073dc52aaa4dbd04b62dd705d1ea3adbc8d9002d
 
 COCOAPODS: 1.5.2

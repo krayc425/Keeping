@@ -34,6 +34,7 @@
 		24569A291F95E30500082EE4 /* KCProgressButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 24569A281F95E30500082EE4 /* KCProgressButton.m */; };
 		24569A2C1F95E31E00082EE4 /* KCEdgeInsetLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24569A2B1F95E31E00082EE4 /* KCEdgeInsetLabel.m */; };
 		2457FE5420BCED9500546C6F /* KPBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2457FE5320BCED9500546C6F /* KPBaseTableViewCell.m */; };
+		2457FE5920BDB9CE00546C6F /* Pods-Keeping-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2457FE5820BDB9CE00546C6F /* Pods-Keeping-acknowledgements.plist */; };
 		245A010D1F98EE9100CB50E9 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 245A010B1F98EE9100CB50E9 /* Interface.storyboard */; };
 		245A010F1F98EE9100CB50E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 245A010E1F98EE9100CB50E9 /* Assets.xcassets */; };
 		245A01161F98EE9100CB50E9 /* KeepingWatch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 245A01151F98EE9100CB50E9 /* KeepingWatch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -209,6 +210,8 @@
 		24569A2B1F95E31E00082EE4 /* KCEdgeInsetLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KCEdgeInsetLabel.m; sourceTree = "<group>"; };
 		2457FE5220BCED9500546C6F /* KPBaseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KPBaseTableViewCell.h; sourceTree = "<group>"; };
 		2457FE5320BCED9500546C6F /* KPBaseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KPBaseTableViewCell.m; sourceTree = "<group>"; };
+		2457FE5820BDB9CE00546C6F /* Pods-Keeping-acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Pods-Keeping-acknowledgements.plist"; path = "Pods/Target Support Files/Pods-Keeping/Pods-Keeping-acknowledgements.plist"; sourceTree = SOURCE_ROOT; };
+		2457FE5A20BDB9F300546C6F /* Keeping-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Keeping-Bridging-Header.h"; sourceTree = "<group>"; };
 		245A01091F98EE9100CB50E9 /* KeepingWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KeepingWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		245A010C1F98EE9100CB50E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		245A010E1F98EE9100CB50E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -579,9 +582,11 @@
 				249AE3241E2DEE7700F704F8 /* Assets.xcassets */,
 				24699F041E2F23C60092FBED /* Navigation.xcassets */,
 				245196701E3CB82F00C18C5B /* TabBar.xcassets */,
+				2457FE5820BDB9CE00546C6F /* Pods-Keeping-acknowledgements.plist */,
 				249AE3291E2DEE7700F704F8 /* Info.plist */,
 				249AE3211E2DEE7700F704F8 /* Keeping.xcdatamodeld */,
 				249AE3151E2DEE7700F704F8 /* Supporting Files */,
+				2457FE5A20BDB9F300546C6F /* Keeping-Bridging-Header.h */,
 			);
 			path = Keeping;
 			sourceTree = "<group>";
@@ -866,7 +871,7 @@
 					249AE3111E2DEE7700F704F8 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = VEBQ28K9EA;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 0930;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -934,6 +939,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2426103D1E51ACBC0016DC64 /* KPColorPickerView.xib in Resources */,
+				2457FE5920BDB9CE00546C6F /* Pods-Keeping-acknowledgements.plist in Resources */,
 				2429CBEF1E2E4A9B0027DD37 /* KPTodayTableViewCell.xib in Resources */,
 				2435F3361E5175FE00C6AAA6 /* KPWeekdayPickerView.xib in Resources */,
 				24F2A0CB1E2F383A00F30FB1 /* KPTaskTableViewCell.xib in Resources */,
@@ -983,6 +989,7 @@
 				"${PODS_ROOT}/IDMPhotoBrowser/Classes/IDMPBLocalizations.bundle",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/PYSearch/PYSearch/PYSearch.bundle",
+				"${PODS_ROOT}/VTAcknowledgementsViewController/VTAcknowledgementsViewController.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -992,6 +999,7 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IDMPBLocalizations.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PYSearch.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/VTAcknowledgementsViewController.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1404,7 +1412,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.krayc.Keeping;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Keeping/Keeping-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1429,7 +1437,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.krayc.Keeping;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Keeping/Keeping-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
