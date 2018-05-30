@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BIL-fh-dCv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BIL-fh-dCv">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -68,10 +68,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uX8-4F-gJ8" customClass="KPWeekdayPickerView">
-                                                    <rect key="frame" x="10" y="10" width="355" height="80"/>
+                                                    <rect key="frame" x="10" y="10" width="355" height="85"/>
                                                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="80" id="jBI-oZ-EEL"/>
+                                                        <constraint firstAttribute="height" constant="85" id="jBI-oZ-EEL"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -82,10 +82,10 @@
                                                 </view>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="uX8-4F-gJ8" firstAttribute="top" secondItem="bNL-kJ-Hjc" secondAttribute="top" constant="10" id="Ogg-Lh-hsh"/>
                                                 <constraint firstItem="uX8-4F-gJ8" firstAttribute="leading" secondItem="bNL-kJ-Hjc" secondAttribute="leading" constant="10" id="WVC-2C-GZD"/>
                                                 <constraint firstItem="uX8-4F-gJ8" firstAttribute="centerX" secondItem="bNL-kJ-Hjc" secondAttribute="centerX" id="jDZ-ig-WsJ"/>
-                                                <constraint firstAttribute="bottom" secondItem="uX8-4F-gJ8" secondAttribute="bottom" constant="10" id="lst-No-LIv"/>
-                                                <constraint firstItem="uX8-4F-gJ8" firstAttribute="centerY" secondItem="bNL-kJ-Hjc" secondAttribute="centerY" id="tYg-QC-crP"/>
+                                                <constraint firstAttribute="bottom" secondItem="uX8-4F-gJ8" secondAttribute="bottom" constant="5" id="lst-No-LIv"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="0.0" colorSpace="calibratedRGB"/>
@@ -204,7 +204,7 @@
                             </tableViewSection>
                             <tableViewSection id="3DI-Ay-ANt">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="60" id="QKC-Ek-4Ce">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="60" id="QKC-Ek-4Ce">
                                         <rect key="frame" x="0.0" y="227" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QKC-Ek-4Ce" id="3kI-Up-ju8">
@@ -1263,12 +1263,17 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="py6-yQ-Yz5" customClass="CardsView">
                                                             <rect key="frame" x="95" y="0.0" width="260" height="85"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Psz-Gc-FYo">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Psz-Gc-FYo" customClass="KPProgressLabel">
                                                                     <rect key="frame" x="0.0" y="0.0" width="260" height="85"/>
                                                                     <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="40"/>
                                                                     <color key="textColor" red="0.29803921570000003" green="0.52549019610000003" blue="0.78823529410000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                     <nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                            <integer key="value" value="10"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
                                                                 </label>
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1678,7 +1683,7 @@
         <image name="Weekday" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ZOT-mw-fWn"/>
+        <segue reference="KVR-SD-oGK"/>
         <segue reference="fad-KU-zal"/>
     </inferredMetricsTieBreakers>
 </document>

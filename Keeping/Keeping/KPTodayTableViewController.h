@@ -12,11 +12,13 @@
 #import "KPColorPickerView.h"
 #import "KPNavigationTitleView.h"
 
+@class KPProgressLabel;
+
 @interface KPTodayTableViewController : UITableViewController <CheckTaskDelegate, FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance, KPColorPickerDelegate, KPNavigationTitleDelegate>
 
 @property (weak, nonatomic, nullable) IBOutlet UILabel *subDateLabel;
 @property (weak, nonatomic, nullable) IBOutlet UIButton *dateButton;
-@property (weak, nonatomic, nullable) IBOutlet UILabel *progressLabel;
+@property (weak, nonatomic, nullable) IBOutlet KPProgressLabel *progressLabel;
 
 @property (nonatomic, nonnull) NSMutableArray *unfinishedTaskArr;
 @property (nonatomic, nonnull) NSMutableArray *finishedTaskArr;

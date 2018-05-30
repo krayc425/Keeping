@@ -897,13 +897,13 @@
 		082C5DF34FE266ABA5765A67B8580691 /* pop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = pop.xcconfig; sourceTree = "<group>"; };
 		08FC3AD6A608337DB46D00BA3390D69D /* UIButton+WebCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIButton+WebCache.m"; path = "SDWebImage/UIButton+WebCache.m"; sourceTree = "<group>"; };
 		0923DBA6BA0780B6480226E0FA1E3DA4 /* AVRequestManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AVRequestManager.m; path = AVOS/AVOSCloud/Object/AVRequestManager.m; sourceTree = "<group>"; };
-		093D30F397FDC589477B4DECEA7D4631 /* POPAnimationExtras.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = POPAnimationExtras.mm; path = pop/POPAnimationExtras.mm; sourceTree = "<group>"; };
+		093D30F397FDC589477B4DECEA7D4631 /* POPAnimationExtras.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPAnimationExtras.mm; path = pop/POPAnimationExtras.mm; sourceTree = "<group>"; };
 		0945B59A464343D8539D77B54DFC2231 /* AVRoomCommand.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AVRoomCommand.h; path = AVOS/AVOSCloud/IM/Commands/AVRoomCommand.h; sourceTree = "<group>"; };
 		0A09CE719C19F297F1C2AA96973F94C4 /* AVSession.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AVSession.m; path = AVOS/AVOSCloud/IM/AVSession.m; sourceTree = "<group>"; };
 		0A27346EA2816CA0C1698FCF0DFBEB91 /* FSCalendarAppearance.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarAppearance.m; path = FSCalendar/FSCalendarAppearance.m; sourceTree = "<group>"; };
 		0A5ABF26C5BA48E6248F35233E74523E /* LCNetworkStatistics.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LCNetworkStatistics.m; path = AVOS/AVOSCloud/Statistics/LCNetworkStatistics.m; sourceTree = "<group>"; };
 		0A5C44F57C44EFBF083BDD558FFF87F2 /* UIButton+AFNetworking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIButton+AFNetworking.m"; path = "UIKit+AFNetworking/UIButton+AFNetworking.m"; sourceTree = "<group>"; };
-		0A7F1FB8C51E5EE16701EFE72349E865 /* POPGeometry.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = POPGeometry.mm; path = pop/POPGeometry.mm; sourceTree = "<group>"; };
+		0A7F1FB8C51E5EE16701EFE72349E865 /* POPGeometry.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPGeometry.mm; path = pop/POPGeometry.mm; sourceTree = "<group>"; };
 		0ABFB3152EE3E828E639EBECD16C76E7 /* BEMCheckBox-iOS10.0.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "BEMCheckBox-iOS10.0.xcconfig"; sourceTree = "<group>"; };
 		0AD403F71BAB89A82733BFCD7AF80565 /* SCLAlertView-Objective-C-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SCLAlertView-Objective-C-prefix.pch"; sourceTree = "<group>"; };
 		0B1CB04B7F9A8DC9B29F4173AAABD2B3 /* AMPopTip+Entrance.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "AMPopTip+Entrance.m"; path = "Source/AMPopTip+Entrance.m"; sourceTree = "<group>"; };
@@ -922,9 +922,9 @@
 		11C408581E275A8606C4AA8618F91E04 /* AVOSCloud.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AVOSCloud.m; path = AVOS/AVOSCloud/AVOSCloud.m; sourceTree = "<group>"; };
 		1209BF9A6AB9BE0AC3C34F59359F4D58 /* POPDefines.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPDefines.h; path = pop/POPDefines.h; sourceTree = "<group>"; };
 		125AAA31A059BE1B5AF46C8E1FC26FF8 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFURLResponseSerialization.m; path = AFNetworking/AFURLResponseSerialization.m; sourceTree = "<group>"; };
-		12D6B98C04C2F15E549BCAF47861A180 /* libPods-KeepingWidget.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-KeepingWidget.a"; path = "libPods-KeepingWidget.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		12D6B98C04C2F15E549BCAF47861A180 /* libPods-KeepingWidget.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KeepingWidget.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		12DF1CEAF24406DC23B1E81D5C35E12F /* UIRefreshControl+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIRefreshControl+AFNetworking.h"; path = "UIKit+AFNetworking/UIRefreshControl+AFNetworking.h"; sourceTree = "<group>"; };
-		13249921D1FC19CBB26625B6821EA680 /* libDateTools-iOS10.2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libDateTools-iOS10.2.a"; path = "libDateTools-iOS10.2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		13249921D1FC19CBB26625B6821EA680 /* libDateTools-iOS10.2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libDateTools-iOS10.2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13785A4022CAF7D0DD5FB5C73695E52D /* SCLAlertView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SCLAlertView.m; path = SCLAlertView/SCLAlertView.m; sourceTree = "<group>"; };
 		13936F8F3FFA3D4ABD8E35558525EA7F /* AVPush.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AVPush.m; path = AVOS/AVOSCloud/Push/AVPush.m; sourceTree = "<group>"; };
 		13EED8EC9C585217575E531BA083E522 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -953,12 +953,12 @@
 		1E46F660FB89CF2E44DD4D55056D2E69 /* FSCalendarCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarCell.m; path = FSCalendar/FSCalendarCell.m; sourceTree = "<group>"; };
 		1F266078E66AEE3BDD2F24ACF7B4BF72 /* FSCalendarCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarCell.h; path = FSCalendar/FSCalendarCell.h; sourceTree = "<group>"; };
 		1FEF8EC57FDE6B16366A62014652C6EA /* AVSNSLoginViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AVSNSLoginViewController.m; path = Classes/AVSNSLoginViewController.m; sourceTree = "<group>"; };
-		203449DB89751A91047D3DC2652D7F13 /* libLeanCloudSocial.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libLeanCloudSocial.a; path = libLeanCloudSocial.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		203449DB89751A91047D3DC2652D7F13 /* libLeanCloudSocial.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLeanCloudSocial.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		205ADD363887F50EEEBCFC45CF6F65B8 /* AVWebSocketWrapper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AVWebSocketWrapper.m; path = AVOS/AVOSCloud/IM/AVWebSocketWrapper.m; sourceTree = "<group>"; };
 		214D5E643DEE6B23C078798D4DA3C6DC /* SCLTimerDisplay.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SCLTimerDisplay.m; path = SCLAlertView/SCLTimerDisplay.m; sourceTree = "<group>"; };
 		2175044A858EB052530A252E94ACCE76 /* POPAnimatablePropertyTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPAnimatablePropertyTypes.h; path = pop/POPAnimatablePropertyTypes.h; sourceTree = "<group>"; };
-		230339C9070F243BD2765307985E4291 /* POPLayerExtras.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = POPLayerExtras.mm; path = pop/POPLayerExtras.mm; sourceTree = "<group>"; };
-		2303BA05B9FAD4C840B59BE3F5F78614 /* POPAnimationEvent.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = POPAnimationEvent.mm; path = pop/POPAnimationEvent.mm; sourceTree = "<group>"; };
+		230339C9070F243BD2765307985E4291 /* POPLayerExtras.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPLayerExtras.mm; path = pop/POPLayerExtras.mm; sourceTree = "<group>"; };
+		2303BA05B9FAD4C840B59BE3F5F78614 /* POPAnimationEvent.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPAnimationEvent.mm; path = pop/POPAnimationEvent.mm; sourceTree = "<group>"; };
 		236867C972124358AB936DAD2F0D7A75 /* AVCloud.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AVCloud.h; path = AVOS/AVOSCloud/CloudCode/AVCloud.h; sourceTree = "<group>"; };
 		23C5D409BDF9EFBA7920D5737E76EE9B /* AVCommand.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AVCommand.h; path = AVOS/AVOSCloud/IM/Commands/AVCommand.h; sourceTree = "<group>"; };
 		2535A086706ADA7D7629ABB63E82577A /* MMWormholeFileTransiting.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MMWormholeFileTransiting.h; path = Source/MMWormholeFileTransiting.h; sourceTree = "<group>"; };
@@ -981,7 +981,7 @@
 		296F2FD2BCD1D85FC6A1AE6686B22076 /* BEMAnimationManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BEMAnimationManager.m; path = Classes/BEMAnimationManager.m; sourceTree = "<group>"; };
 		29C0AC7FB50C446B57FA362CF47E2C16 /* SDImageCacheConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDImageCacheConfig.h; path = SDWebImage/SDImageCacheConfig.h; sourceTree = "<group>"; };
 		29E7495C16CA843748765F149222A941 /* IDMPhoto.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IDMPhoto.m; path = Classes/IDMPhoto.m; sourceTree = "<group>"; };
-		2A5F5B5D501F283F3321EF0ECF03A8EA /* libIQKeyboardManager.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libIQKeyboardManager.a; path = libIQKeyboardManager.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A5F5B5D501F283F3321EF0ECF03A8EA /* libIQKeyboardManager.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIQKeyboardManager.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2ABE0B52505FB498EE1C1269A96D9F9E /* SDWebImageDownloader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageDownloader.h; path = SDWebImage/SDWebImageDownloader.h; sourceTree = "<group>"; };
 		2B6790CB504E205F56E7FCF4BE765926 /* AVAnalyticsSession.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AVAnalyticsSession.m; path = AVOS/AVOSCloud/Analytics/AVAnalyticsSession.m; sourceTree = "<group>"; };
 		2B90FAAF4B0DF9458133173A1E686690 /* VTAcknowledgementsViewController-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "VTAcknowledgementsViewController-prefix.pch"; sourceTree = "<group>"; };
@@ -994,8 +994,8 @@
 		2F53B991417FA2E932AF179D5B9851E7 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
 		2FC5992331204F7BF830753BA5D9ACA7 /* AVOSCloud-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AVOSCloud-dummy.m"; sourceTree = "<group>"; };
 		2FC8EBA3421A40FEA1A3D0FFEC0FF0BD /* AVAnalytics.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AVAnalytics.h; path = AVOS/AVOSCloud/Analytics/AVAnalytics.h; sourceTree = "<group>"; };
-		301FB0A4245D9FA8990374D91052B3D9 /* libPYSearch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libPYSearch.a; path = libPYSearch.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		30910AC6A93B5F97A881A4D40B5FE2D9 /* AVOSCloud_Art.inc */ = {isa = PBXFileReference; includeInIndex = 1; name = AVOSCloud_Art.inc; path = AVOS/AVOSCloud/AVOSCloud_Art.inc; sourceTree = "<group>"; };
+		301FB0A4245D9FA8990374D91052B3D9 /* libPYSearch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPYSearch.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		30910AC6A93B5F97A881A4D40B5FE2D9 /* AVOSCloud_Art.inc */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.pascal; name = AVOSCloud_Art.inc; path = AVOS/AVOSCloud/AVOSCloud_Art.inc; sourceTree = "<group>"; };
 		318E56D70680FC62C30C4F0A08449BAA /* SCLButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SCLButton.m; path = SCLAlertView/SCLButton.m; sourceTree = "<group>"; };
 		319CCF996A331EE3582A864D7B5E094A /* IQUIWindow+Hierarchy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "IQUIWindow+Hierarchy.m"; path = "IQKeyboardManager/Categories/IQUIWindow+Hierarchy.m"; sourceTree = "<group>"; };
 		31E9AE4F9612990E2AC8BD0D1971BB3B /* AVCommandDictionary.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AVCommandDictionary.h; path = AVOS/AVOSCloud/IM/AVCommandDictionary.h; sourceTree = "<group>"; };
@@ -1014,7 +1014,7 @@
 		361193966CB8157927D7842BC2B3D170 /* DateTools-iOS10.2-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "DateTools-iOS10.2-dummy.m"; path = "../DateTools-iOS10.2/DateTools-iOS10.2-dummy.m"; sourceTree = "<group>"; };
 		36229EA6F018313D3A022E2EC3C11528 /* IQKeyboardManager-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "IQKeyboardManager-dummy.m"; sourceTree = "<group>"; };
 		3687044E25AD6EC329EC53A6028389D4 /* MGSwipeTableCell.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MGSwipeTableCell.xcconfig; sourceTree = "<group>"; };
-		3693DD4B75E81911FEB847630D5735C5 /* libMGSwipeTableCell.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libMGSwipeTableCell.a; path = libMGSwipeTableCell.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3693DD4B75E81911FEB847630D5735C5 /* libMGSwipeTableCell.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMGSwipeTableCell.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3828FA30BD8051E816175D1B09733ECD /* AFNetworking.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AFNetworking.xcconfig; sourceTree = "<group>"; };
 		38F598FD789816D6EE99D9A2622325C3 /* AVAnonymousUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AVAnonymousUtils.m; path = AVOS/AVOSCloud/User/AVAnonymousUtils.m; sourceTree = "<group>"; };
 		395C3314DB4A4CA9DC86700E8A3D1EAF /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFNetworkReachabilityManager.m; path = AFNetworking/AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
@@ -1025,9 +1025,9 @@
 		3ADB85727B7FCA21BDE3C0F5ECBB8FA7 /* SDWebImageDownloader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageDownloader.m; path = SDWebImage/SDWebImageDownloader.m; sourceTree = "<group>"; };
 		3B2D4595DD5C47F791BEE923BC56A5CF /* UIImage+GIF.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+GIF.m"; path = "SDWebImage/UIImage+GIF.m"; sourceTree = "<group>"; };
 		3B8A2F6068FD346EE412628B25D7BB0A /* AFNetworking-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AFNetworking-dummy.m"; sourceTree = "<group>"; };
-		3B921102C88C4596924C5CDBA9D4259B /* POPAnimator.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = POPAnimator.mm; path = pop/POPAnimator.mm; sourceTree = "<group>"; };
-		3BC64CFA8104E87D93A397A2276C0EFF /* libIDMPhotoBrowser.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libIDMPhotoBrowser.a; path = libIDMPhotoBrowser.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		3C0E5AA2E6D3F7C9671C478E1CE605CA /* libDZNEmptyDataSet-iOS10.0.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libDZNEmptyDataSet-iOS10.0.a"; path = "libDZNEmptyDataSet-iOS10.0.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B921102C88C4596924C5CDBA9D4259B /* POPAnimator.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPAnimator.mm; path = pop/POPAnimator.mm; sourceTree = "<group>"; };
+		3BC64CFA8104E87D93A397A2276C0EFF /* libIDMPhotoBrowser.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIDMPhotoBrowser.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C0E5AA2E6D3F7C9671C478E1CE605CA /* libDZNEmptyDataSet-iOS10.0.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libDZNEmptyDataSet-iOS10.0.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CC124AEC64A046DD5A3B7E0AB45A7CD /* AVSNSWebViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AVSNSWebViewController.h; path = Classes/AVSNSWebViewController.h; sourceTree = "<group>"; };
 		3CD417D4336E6E9C340CD3E18D7500D9 /* SCLAlertView-Objective-C.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "SCLAlertView-Objective-C.xcconfig"; sourceTree = "<group>"; };
 		3E3272CB3B8BED7DB8CC220F76F2DF5C /* FDFullscreenPopGesture-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FDFullscreenPopGesture-prefix.pch"; sourceTree = "<group>"; };
@@ -1037,7 +1037,7 @@
 		3F89D2DBA858BAC1A7EE130BBC2C7577 /* DateTools-iOS10.0.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "DateTools-iOS10.0.xcconfig"; sourceTree = "<group>"; };
 		3FA112F1DF14F492B7DDCFD15DB59976 /* AVHTTPRequestOperation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AVHTTPRequestOperation.m; path = AVOS/AVOSCloud/ThirdParty/AFNetworking/AVHTTPRequestOperation.m; sourceTree = "<group>"; };
 		3FC4122D8B5DAF9D488875A1F0EF761E /* POPSpringSolver.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPSpringSolver.h; path = pop/POPSpringSolver.h; sourceTree = "<group>"; };
-		4068F0C8EFC95A60BA6FC490F8B7A593 /* libpop.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libpop.a; path = libpop.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4068F0C8EFC95A60BA6FC490F8B7A593 /* libpop.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libpop.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		40882CE9491B9F54B0D4A5F4921CD80F /* Pods-Keeping-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Keeping-acknowledgements.plist"; sourceTree = "<group>"; };
 		412C0B20398E6BC2872CA9C8694D810F /* AVPresenceCommand.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AVPresenceCommand.m; path = AVOS/AVOSCloud/IM/Commands/AVPresenceCommand.m; sourceTree = "<group>"; };
 		422A616B9DC5AE088CFA1B8A0C98809F /* POPVector.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPVector.h; path = pop/POPVector.h; sourceTree = "<group>"; };
@@ -1089,7 +1089,7 @@
 		55E608B1CBD8E4FCA67273258BDFDC68 /* AMPopTip+Exit.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "AMPopTip+Exit.m"; path = "Source/AMPopTip+Exit.m"; sourceTree = "<group>"; };
 		56211F2D454FB90F69BCE4B721EE3738 /* LCObserver.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LCObserver.h; path = AVOS/AVOSCloud/ThirdParty/COSObserver/LCObserver.h; sourceTree = "<group>"; };
 		5649C17762ABC14FE82EBB7445106CBE /* FSCalendarCollectionView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarCollectionView.h; path = FSCalendar/FSCalendarCollectionView.h; sourceTree = "<group>"; };
-		56514FD1A006C813E806B8363C9F1A8A /* POPCGUtils.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = POPCGUtils.mm; path = pop/POPCGUtils.mm; sourceTree = "<group>"; };
+		56514FD1A006C813E806B8363C9F1A8A /* POPCGUtils.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPCGUtils.mm; path = pop/POPCGUtils.mm; sourceTree = "<group>"; };
 		56A01E74EE7844022F64D0FFBA41BB22 /* AFHTTPRequestOperationManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFHTTPRequestOperationManager.m; path = AFNetworking/AFHTTPRequestOperationManager.m; sourceTree = "<group>"; };
 		56D0E0788C432555C7DD476FFB4895F2 /* AVSearchSortBuilder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AVSearchSortBuilder.m; path = AVOS/AVOSCloud/Search/AVSearchSortBuilder.m; sourceTree = "<group>"; };
 		573F26E099D89CE8320C9D223DEAD1F9 /* AVRequestOperation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AVRequestOperation.m; path = AVOS/AVOSCloud/Request/AVRequestOperation.m; sourceTree = "<group>"; };
@@ -1114,7 +1114,7 @@
 		5DEF3693E9B4BAE40A9237A5558CF280 /* POPAnimator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPAnimator.h; path = pop/POPAnimator.h; sourceTree = "<group>"; };
 		5EB61561FAFD679069C5EDE56A7154D1 /* AVDirectCommand.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AVDirectCommand.h; path = AVOS/AVOSCloud/IM/Commands/AVDirectCommand.h; sourceTree = "<group>"; };
 		5F288CDBDF8E7E458E852B750635EEF6 /* IDMPBLocalizations.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = IDMPBLocalizations.bundle; path = Classes/IDMPBLocalizations.bundle; sourceTree = "<group>"; };
-		5F9B9B56FC9E81C3E8A1C5F966070EA4 /* libDACircularProgress.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libDACircularProgress.a; path = libDACircularProgress.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F9B9B56FC9E81C3E8A1C5F966070EA4 /* libDACircularProgress.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDACircularProgress.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FFB37F255DCCCF92165EFA540ECE155 /* AVAnalyticsActivity.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AVAnalyticsActivity.m; path = AVOS/AVOSCloud/Analytics/AVAnalyticsActivity.m; sourceTree = "<group>"; };
 		60082FC440A38B98485ED8FEAA87C8FE /* BEMCheckBox.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BEMCheckBox.m; path = Classes/BEMCheckBox.m; sourceTree = "<group>"; };
 		60834172AA36F85778E86E8577309182 /* IDMPhotoBrowser-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "IDMPhotoBrowser-dummy.m"; sourceTree = "<group>"; };
@@ -1174,8 +1174,8 @@
 		740AFF682F3B82EDE97349497E223CBC /* AVSearchQuery.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AVSearchQuery.m; path = AVOS/AVOSCloud/Search/AVSearchQuery.m; sourceTree = "<group>"; };
 		741216279B091B541C16D593E841C3EC /* AVKeychain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AVKeychain.h; path = AVOS/AVOSCloud/ThirdParty/JNKeychain/AVKeychain.h; sourceTree = "<group>"; };
 		74D90F9594B9638D963E7E28474826D2 /* AVScheduler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AVScheduler.m; path = AVOS/AVOSCloud/Cache/AVScheduler.m; sourceTree = "<group>"; };
-		74ED44A62C92B8058DD711E785A95294 /* libFSCalendar.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libFSCalendar.a; path = libFSCalendar.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		752ECF746F30A84EE4EB3588232569B8 /* POPMath.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = POPMath.mm; path = pop/POPMath.mm; sourceTree = "<group>"; };
+		74ED44A62C92B8058DD711E785A95294 /* libFSCalendar.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFSCalendar.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		752ECF746F30A84EE4EB3588232569B8 /* POPMath.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPMath.mm; path = pop/POPMath.mm; sourceTree = "<group>"; };
 		763BC15C86CCDFA855F727855D815EEE /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFHTTPRequestOperation.h; path = AFNetworking/AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		765631F6BD7697CBF214EDA52A8D7606 /* IQKeyboardManager.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = IQKeyboardManager.bundle; path = IQKeyboardManager/Resources/IQKeyboardManager.bundle; sourceTree = "<group>"; };
 		77ADF34C98EDC6D5BA8B8AC5E9FA2BA7 /* AVKeychain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AVKeychain.m; path = AVOS/AVOSCloud/ThirdParty/JNKeychain/AVKeychain.m; sourceTree = "<group>"; };
@@ -1190,14 +1190,14 @@
 		7A382682E577B127982D6C6B3B765524 /* FMDatabasePool.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDatabasePool.h; path = src/fmdb/FMDatabasePool.h; sourceTree = "<group>"; };
 		7A7A01AAC939942F623E027DE9DEA59C /* AVSNSHttpClient.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AVSNSHttpClient.m; path = Classes/AVSNSHttpClient.m; sourceTree = "<group>"; };
 		7A7FCA1293148B77CAFCDE12AD8ADDA6 /* AVLocationManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AVLocationManager.h; path = AVOS/AVOSCloud/Geo/AVLocationManager.h; sourceTree = "<group>"; };
-		7BD3969EB1D6B0945F5A63D88906F4FB /* libAFNetworking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libAFNetworking.a; path = libAFNetworking.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		7BD3969EB1D6B0945F5A63D88906F4FB /* libAFNetworking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAFNetworking.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C4E97A00A81BE2B9BAE95EB9D95503A /* AVSearchSortBuilder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AVSearchSortBuilder.h; path = AVOS/AVOSCloud/Search/AVSearchSortBuilder.h; sourceTree = "<group>"; };
-		7C7DB260629B4AEEB3D958DA71BDA3E2 /* libDZNEmptyDataSet-iOS10.2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libDZNEmptyDataSet-iOS10.2.a"; path = "libDZNEmptyDataSet-iOS10.2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C7DB260629B4AEEB3D958DA71BDA3E2 /* libDZNEmptyDataSet-iOS10.2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libDZNEmptyDataSet-iOS10.2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CB17C6CED791B38AAA0E105F0CC93DE /* AVSNSLoginViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AVSNSLoginViewController.h; path = Classes/AVSNSLoginViewController.h; sourceTree = "<group>"; };
 		7D46EAC2E7CE5ADD40523CC73C5E08B1 /* DTTimePeriod.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTTimePeriod.h; path = DateTools/DateTools/DTTimePeriod.h; sourceTree = "<group>"; };
 		7E54E5E327D860D50635E001898359E6 /* MBProgressHUD.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MBProgressHUD.xcconfig; sourceTree = "<group>"; };
 		7EA9F98312B019C40F95400B035B4520 /* IQUIView+IQKeyboardToolbar.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "IQUIView+IQKeyboardToolbar.h"; path = "IQKeyboardManager/IQToolbar/IQUIView+IQKeyboardToolbar.h"; sourceTree = "<group>"; };
-		7EC717E345DEDA64C20F5A235497FABC /* POPAnimationTracer.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = POPAnimationTracer.mm; path = pop/POPAnimationTracer.mm; sourceTree = "<group>"; };
+		7EC717E345DEDA64C20F5A235497FABC /* POPAnimationTracer.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPAnimationTracer.mm; path = pop/POPAnimationTracer.mm; sourceTree = "<group>"; };
 		7F326F5FDE952F42F8FC9C6CF71FEAFC /* POPAnimationExtras.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPAnimationExtras.h; path = pop/POPAnimationExtras.h; sourceTree = "<group>"; };
 		7F387E6D26B96F616E9E1E6B9F7D6AE5 /* AVExceptionHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AVExceptionHandler.h; path = AVOS/AVOSCloud/Analytics/AVExceptionHandler.h; sourceTree = "<group>"; };
 		7F5E784B4C7D6EA3C73B217B6AB9D69C /* Pods-Keeping-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Keeping-acknowledgements.markdown"; sourceTree = "<group>"; };
@@ -1214,7 +1214,7 @@
 		83E8228E77B5B9521D509A40AC33E1C1 /* AVURLConnectionOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AVURLConnectionOperation.h; path = AVOS/AVOSCloud/ThirdParty/AFNetworking/AVURLConnectionOperation.h; sourceTree = "<group>"; };
 		83F75396DEAF0124B08D6DB541250628 /* IQKeyboardManager-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "IQKeyboardManager-prefix.pch"; sourceTree = "<group>"; };
 		843FDBB537AB5006519BCE64AB6B4C08 /* POP.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POP.h; path = pop/POP.h; sourceTree = "<group>"; };
-		84CED7FEFB3D27681DDB823A8EB1C6EC /* libFMDB-iOS10.2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libFMDB-iOS10.2.a"; path = "libFMDB-iOS10.2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		84CED7FEFB3D27681DDB823A8EB1C6EC /* libFMDB-iOS10.2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFMDB-iOS10.2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E1CFF115E1D869F4F6D056556BCCF6 /* FSCalendarConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarConstants.h; path = FSCalendar/FSCalendarConstants.h; sourceTree = "<group>"; };
 		84F734638684C161AE5539AF9B53C9DE /* AVDynamicBase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AVDynamicBase.h; path = AVOS/AVOSCloud/IM/Commands/AVDynamicBase.h; sourceTree = "<group>"; };
 		856253366AEC0AEAFBC4129CBA5DE48E /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFHTTPSessionManager.m; path = AFNetworking/AFHTTPSessionManager.m; sourceTree = "<group>"; };
@@ -1254,13 +1254,13 @@
 		91A4FB3004D6CF011C3701EF567A8EAB /* AVGlobal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AVGlobal.h; path = AVOS/AVOSCloud/AVGlobal.h; sourceTree = "<group>"; };
 		920D10B3A1DB68248CDAC7B3F4E00E8F /* AVDirectOutCommand.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AVDirectOutCommand.h; path = AVOS/AVOSCloud/IM/Commands/AVDirectOutCommand.h; sourceTree = "<group>"; };
 		932CF05CBCECE7FE9E98A414102C8A87 /* DTError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTError.h; path = DateTools/DateTools/DTError.h; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		93DF9FCA86CBB6F071822AC6E825C731 /* DTConstants.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTConstants.m; path = DateTools/DateTools/DTConstants.m; sourceTree = "<group>"; };
 		95291DC2B1AA26FACDF64C2940BE8219 /* IDMZoomingScrollView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IDMZoomingScrollView.m; path = Classes/IDMZoomingScrollView.m; sourceTree = "<group>"; };
 		95D833C918E613D305DEBE364C995828 /* MMWormhole.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MMWormhole.xcconfig; sourceTree = "<group>"; };
 		96656F1F048FCCE03860EB25CBDD8379 /* IQNSArray+Sort.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "IQNSArray+Sort.h"; path = "IQKeyboardManager/Categories/IQNSArray+Sort.h"; sourceTree = "<group>"; };
 		967B6CC1D13130CC04D67C3587E9DF8A /* AVAnalyticsImpl.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AVAnalyticsImpl.m; path = AVOS/AVOSCloud/Analytics/AVAnalyticsImpl.m; sourceTree = "<group>"; };
-		96D275917D3757DED55B2882D25FAB62 /* libPods-Keeping.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-Keeping.a"; path = "libPods-Keeping.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		96D275917D3757DED55B2882D25FAB62 /* libPods-Keeping.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Keeping.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		976968517A30B4B641E472A864FE1376 /* VTAcknowledgementsViewController.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; path = VTAcknowledgementsViewController.bundle; sourceTree = "<group>"; };
 		977D570A85C1C54707DC77B510DDC4CC /* LCNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LCNetworking.h; path = AVOS/AVOSCloud/ThirdParty/LCNetworking/LCNetworking.h; sourceTree = "<group>"; };
 		9784C59B460D79296ECE4B76CEA483B0 /* FSCalendarCollectionViewLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarCollectionViewLayout.h; path = FSCalendar/FSCalendarCollectionViewLayout.h; sourceTree = "<group>"; };
@@ -1289,7 +1289,7 @@
 		9FE1511D4DDF312DC02B9EAFA6B29BD0 /* LCURLSessionManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LCURLSessionManager.m; path = AVOS/AVOSCloud/ThirdParty/LCNetworking/LCURLSessionManager.m; sourceTree = "<group>"; };
 		A004854F66688BDC87EBF54E17005F4A /* DateTools.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DateTools.h; path = DateTools/DateTools/DateTools.h; sourceTree = "<group>"; };
 		A015C9D783441B625B267A519D14F516 /* AVNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AVNetworking.h; path = AVOS/AVOSCloud/ThirdParty/AFNetworking/AVNetworking.h; sourceTree = "<group>"; };
-		A073A36BDD514DC07B8DF369BF84BF47 /* libFDFullscreenPopGesture.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libFDFullscreenPopGesture.a; path = libFDFullscreenPopGesture.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A073A36BDD514DC07B8DF369BF84BF47 /* libFDFullscreenPopGesture.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFDFullscreenPopGesture.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0AA4FAC9B976C65B09A0BB29AA95655 /* LCURLConnection.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LCURLConnection.m; path = AVOS/AVOSCloud/Utils/LCURLConnection.m; sourceTree = "<group>"; };
 		A0C0C8EA747FCF1A6097CF9B174E1CAD /* AVSession_Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AVSession_Internal.h; path = AVOS/AVOSCloud/IM/AVSession_Internal.h; sourceTree = "<group>"; };
 		A0CC8AC26FE7623773E97BBA826FE2BD /* LCRouterCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LCRouterCache.m; path = AVOS/AVOSCloud/Router/LCRouterCache.m; sourceTree = "<group>"; };
@@ -1309,16 +1309,16 @@
 		A6531E87957DF4568D76EF3CF9CF2529 /* SDWebImageCompat.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageCompat.h; path = SDWebImage/SDWebImageCompat.h; sourceTree = "<group>"; };
 		A695B01B96AEE8193C122B2D2ECF0E72 /* IQBarButtonItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IQBarButtonItem.m; path = IQKeyboardManager/IQToolbar/IQBarButtonItem.m; sourceTree = "<group>"; };
 		A6DC663298358D9437D9A499552DD742 /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFURLRequestSerialization.h; path = AFNetworking/AFURLRequestSerialization.h; sourceTree = "<group>"; };
-		A7A21ABF53497ACFE8F9A6018CA6E326 /* libDateTools-iOS10.0.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libDateTools-iOS10.0.a"; path = "libDateTools-iOS10.0.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7A21ABF53497ACFE8F9A6018CA6E326 /* libDateTools-iOS10.0.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libDateTools-iOS10.0.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7AE09CD0542F80AAFE7504938331D85 /* IQKeyboardReturnKeyHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IQKeyboardReturnKeyHandler.h; path = IQKeyboardManager/IQKeyboardReturnKeyHandler.h; sourceTree = "<group>"; };
-		A7B4CAC90C8DC60CBC29166048112754 /* libSDWebImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libSDWebImage.a; path = libSDWebImage.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7B4CAC90C8DC60CBC29166048112754 /* libSDWebImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSDWebImage.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A807CEC81AD8E4EF1F05A24C362CE2E8 /* AVOSCloud.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AVOSCloud.xcconfig; sourceTree = "<group>"; };
 		A84129F607B0D7C419565970EAECF50C /* FSCalendarConstants.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarConstants.m; path = FSCalendar/FSCalendarConstants.m; sourceTree = "<group>"; };
 		A85ADAB4CEB6CE7988AFF39576ED70D7 /* AVAnalyticsActivity.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AVAnalyticsActivity.h; path = AVOS/AVOSCloud/Analytics/AVAnalyticsActivity.h; sourceTree = "<group>"; };
 		AA7B26B4384B77E6DB86FF5BAFC2607A /* BEMCheckBoxGroup.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BEMCheckBoxGroup.h; path = Classes/BEMCheckBoxGroup.h; sourceTree = "<group>"; };
 		AAE20CA5083EDDBC40A23F951876EC90 /* VTAcknowledgementViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VTAcknowledgementViewController.h; path = Classes/VTAcknowledgementViewController.h; sourceTree = "<group>"; };
 		AAF2AFEA527767E7365CB805F0E59A7A /* SDWebImageManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageManager.m; path = SDWebImage/SDWebImageManager.m; sourceTree = "<group>"; };
-		AB289D8C7832F45A702EA49F0388E917 /* POPDecayAnimation.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = POPDecayAnimation.mm; path = pop/POPDecayAnimation.mm; sourceTree = "<group>"; };
+		AB289D8C7832F45A702EA49F0388E917 /* POPDecayAnimation.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPDecayAnimation.mm; path = pop/POPDecayAnimation.mm; sourceTree = "<group>"; };
 		ABCCB46A8907F433D7C715C2376A484E /* NSURL+AVAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSURL+AVAdditions.h"; path = "Classes/NSURL+AVAdditions.h"; sourceTree = "<group>"; };
 		ABD2AF8233AC4A6A0223951460D1C1C0 /* NSData+ImageContentType.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSData+ImageContentType.m"; path = "SDWebImage/NSData+ImageContentType.m"; sourceTree = "<group>"; };
 		AC4280EEB3346D8C86108FC541702052 /* AVInstallation_Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AVInstallation_Internal.h; path = AVOS/AVOSCloud/Push/AVInstallation_Internal.h; sourceTree = "<group>"; };
@@ -1348,10 +1348,10 @@
 		B205F02122953F3305111CC0B05F25DD /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Accelerate.framework; sourceTree = DEVELOPER_DIR; };
 		B22407E2EE533732CC2D1E6CA91E3982 /* AMPopTip.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AMPopTip.h; path = Source/AMPopTip.h; sourceTree = "<group>"; };
 		B3159672EB42AB2897C06C96E0FC69CD /* LCResultSet.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LCResultSet.m; path = AVOS/AVOSCloud/ThirdParty/LCDB/LCResultSet.m; sourceTree = "<group>"; };
-		B3319ED697DB4C959CD32E77636314DA /* libMBProgressHUD.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libMBProgressHUD.a; path = libMBProgressHUD.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3319ED697DB4C959CD32E77636314DA /* libMBProgressHUD.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMBProgressHUD.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4486EFC5F84FEAE6633A7C4D286206A /* IQTextView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IQTextView.h; path = IQKeyboardManager/IQTextView/IQTextView.h; sourceTree = "<group>"; };
 		B4D92FF3D8C9D7BFA2324F20040D9B02 /* AVPersistenceUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AVPersistenceUtils.h; path = AVOS/AVOSCloud/Cache/AVPersistenceUtils.h; sourceTree = "<group>"; };
-		B4F1B1CA989D4904126B20B699789491 /* libAVOSCloud.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libAVOSCloud.a; path = libAVOSCloud.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4F1B1CA989D4904126B20B699789491 /* libAVOSCloud.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAVOSCloud.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B50DCD7DBD31E37CD46F4E68DA098A00 /* AVRequestManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AVRequestManager.h; path = AVOS/AVOSCloud/Object/AVRequestManager.h; sourceTree = "<group>"; };
 		B572AD044C141418023DD28B49974EED /* POPAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPAnimation.h; path = pop/POPAnimation.h; sourceTree = "<group>"; };
 		B5E916D1A32BF6B9158A74F6DBE15BD1 /* AVCloudQueryResult.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AVCloudQueryResult.m; path = AVOS/AVOSCloud/Query/AVCloudQueryResult.m; sourceTree = "<group>"; };
@@ -1360,7 +1360,7 @@
 		B63122BC93494BDD1E35E98A61FA4E03 /* LCNetworkReachabilityManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LCNetworkReachabilityManager.m; path = AVOS/AVOSCloud/ThirdParty/LCNetworking/LCNetworkReachabilityManager.m; sourceTree = "<group>"; };
 		B6620674081E546B610752F013744112 /* metamacros.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = metamacros.h; path = AVOS/AVOSCloud/ThirdParty/libextobjc/metamacros.h; sourceTree = "<group>"; };
 		B68682E7F5AA862A8E7516BEB1A617BD /* BEMCheckBox-iOS10.2-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "BEMCheckBox-iOS10.2-prefix.pch"; path = "../BEMCheckBox-iOS10.2/BEMCheckBox-iOS10.2-prefix.pch"; sourceTree = "<group>"; };
-		B6E87D7D3FB04860768171D7170EAB74 /* libBEMCheckBox-iOS10.2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libBEMCheckBox-iOS10.2.a"; path = "libBEMCheckBox-iOS10.2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6E87D7D3FB04860768171D7170EAB74 /* libBEMCheckBox-iOS10.2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libBEMCheckBox-iOS10.2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B752DE0B357E1808D9CF2E6811D6129B /* FSCalendarDelegationFactory.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarDelegationFactory.h; path = FSCalendar/FSCalendarDelegationFactory.h; sourceTree = "<group>"; };
 		B7DBC7B54DD1BF79FD7D082133ED73A1 /* FSCalendarTransitionCoordinator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarTransitionCoordinator.m; path = FSCalendar/FSCalendarTransitionCoordinator.m; sourceTree = "<group>"; };
 		B849BEC67EF9EFF3CDB294921D6A35B6 /* AVOSCloud.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AVOSCloud.h; path = AVOS/AVOSCloud/AVOSCloud.h; sourceTree = "<group>"; };
@@ -1408,7 +1408,7 @@
 		C6F9B380B82FCED143F1E802628A583E /* MMWormhole.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MMWormhole.m; path = Source/MMWormhole.m; sourceTree = "<group>"; };
 		C7229C12DD417E60722EACB7A8BC1AE3 /* LCDatabaseQueue.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LCDatabaseQueue.m; path = AVOS/AVOSCloud/ThirdParty/LCDB/LCDatabaseQueue.m; sourceTree = "<group>"; };
 		C747F6FA2DD5B79987382997B1C9DAC3 /* AVPaasClient.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AVPaasClient.m; path = AVOS/AVOSCloud/Request/AVPaasClient.m; sourceTree = "<group>"; };
-		C7AA8C9C8B71DF965B70192726A4C780 /* TransformationMatrix.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = TransformationMatrix.cpp; path = pop/WebCore/TransformationMatrix.cpp; sourceTree = "<group>"; };
+		C7AA8C9C8B71DF965B70192726A4C780 /* TransformationMatrix.cpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; name = TransformationMatrix.cpp; path = pop/WebCore/TransformationMatrix.cpp; sourceTree = "<group>"; };
 		C7EB999DCDB9A4EE1740A7838F97D2CB /* IQUIViewController+Additions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "IQUIViewController+Additions.h"; path = "IQKeyboardManager/Categories/IQUIViewController+Additions.h"; sourceTree = "<group>"; };
 		C7F601877923659B3526930A335CC737 /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/WatchConnectivity.framework; sourceTree = DEVELOPER_DIR; };
 		C83752D33DC639CAA0BEAC436A45C509 /* IQTextView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IQTextView.m; path = IQKeyboardManager/IQTextView/IQTextView.m; sourceTree = "<group>"; };
@@ -1427,13 +1427,13 @@
 		CCD8CE1CF9A1CB36F168F6D477B18EB7 /* LCURLResponseSerialization.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LCURLResponseSerialization.m; path = AVOS/AVOSCloud/ThirdParty/LCNetworking/LCURLResponseSerialization.m; sourceTree = "<group>"; };
 		CCDEADD6A7E2B686102FAE6123F9EE27 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		CD84A8350C50DE66A42BB1F90B7EB8D6 /* AVUser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AVUser.m; path = AVOS/AVOSCloud/User/AVUser.m; sourceTree = "<group>"; };
-		CD917A32EA182DF0BDF19F2AAEE77052 /* libFMDB-iOS10.0.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libFMDB-iOS10.0.a"; path = "libFMDB-iOS10.0.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD917A32EA182DF0BDF19F2AAEE77052 /* libFMDB-iOS10.0.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFMDB-iOS10.0.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDC7E358328414DEE47D4BF359592C38 /* UIKit+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIKit+AFNetworking.h"; path = "UIKit+AFNetworking/UIKit+AFNetworking.h"; sourceTree = "<group>"; };
-		CDCE39CDCE770A92026896A9734BE9FD /* POPAnimation.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = POPAnimation.mm; path = pop/POPAnimation.mm; sourceTree = "<group>"; };
+		CDCE39CDCE770A92026896A9734BE9FD /* POPAnimation.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPAnimation.mm; path = pop/POPAnimation.mm; sourceTree = "<group>"; };
 		CE38DAFB697F2A6420DB6520F0339DDA /* BEMCheckBox-iOS10.2.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "BEMCheckBox-iOS10.2.xcconfig"; path = "../BEMCheckBox-iOS10.2/BEMCheckBox-iOS10.2.xcconfig"; sourceTree = "<group>"; };
 		CE684C5ED28A8A9388370F5E09C1DFC2 /* UIImage+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+AFNetworking.h"; path = "UIKit+AFNetworking/UIImage+AFNetworking.h"; sourceTree = "<group>"; };
 		CEB1204B3F523B387758FD9DB56F1AC7 /* MGSwipeTableCell-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MGSwipeTableCell-prefix.pch"; sourceTree = "<group>"; };
-		CEBE3B240C6574AFD3B1CB4C6BBD3590 /* POPPropertyAnimation.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = POPPropertyAnimation.mm; path = pop/POPPropertyAnimation.mm; sourceTree = "<group>"; };
+		CEBE3B240C6574AFD3B1CB4C6BBD3590 /* POPPropertyAnimation.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPPropertyAnimation.mm; path = pop/POPPropertyAnimation.mm; sourceTree = "<group>"; };
 		CEC2A4928CC69E743CBE177D6AEB5AA3 /* AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFNetworking.h; path = AFNetworking/AFNetworking.h; sourceTree = "<group>"; };
 		CF24B069C25F7C08A60DF524B0E37977 /* DZNEmptyDataSet-iOS10.0-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DZNEmptyDataSet-iOS10.0-dummy.m"; sourceTree = "<group>"; };
 		CF8343011C87FF89DB805689360E59B5 /* LCKeyValueStore.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LCKeyValueStore.m; path = AVOS/AVOSCloud/Utils/LCKeyValueStore.m; sourceTree = "<group>"; };
@@ -1443,7 +1443,7 @@
 		D0AFA8640D7B2FABA124C5F4E84C68BA /* AMPopTip+Exit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "AMPopTip+Exit.h"; path = "Source/AMPopTip+Exit.h"; sourceTree = "<group>"; };
 		D0CA19F248E3EAFE7246423A1A23AD2B /* AVErrorUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AVErrorUtils.m; path = AVOS/AVOSCloud/Utils/AVErrorUtils.m; sourceTree = "<group>"; };
 		D1695F4912F1946685664F68CD60AD6F /* UIActivityIndicatorView+AFNetworking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIActivityIndicatorView+AFNetworking.m"; path = "UIKit+AFNetworking/UIActivityIndicatorView+AFNetworking.m"; sourceTree = "<group>"; };
-		D1894C83261A30181508A56CEF42FCF1 /* libBEMCheckBox-iOS10.0.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libBEMCheckBox-iOS10.0.a"; path = "libBEMCheckBox-iOS10.0.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1894C83261A30181508A56CEF42FCF1 /* libBEMCheckBox-iOS10.0.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libBEMCheckBox-iOS10.0.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1F4A0433D18FAC547D01D158DD7D0C8 /* FSCalendarWeekdayView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarWeekdayView.h; path = FSCalendar/FSCalendarWeekdayView.h; sourceTree = "<group>"; };
 		D22ED1BE11048FCA640AFFD855593BCF /* AVCacheManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AVCacheManager.m; path = AVOS/AVOSCloud/Cache/AVCacheManager.m; sourceTree = "<group>"; };
 		D26B828E8FBC73B389E401E84A5B055F /* AVLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AVLogger.h; path = AVOS/AVOSCloud/Utils/AVLogger.h; sourceTree = "<group>"; };
@@ -1459,7 +1459,7 @@
 		D846A8FA7382652BC1B79F95B4A69551 /* POPBasicAnimationInternal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPBasicAnimationInternal.h; path = pop/POPBasicAnimationInternal.h; sourceTree = "<group>"; };
 		D8B3B094055E78B180DF6F7C8F8BA64D /* LCDatabaseQueue.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LCDatabaseQueue.h; path = AVOS/AVOSCloud/ThirdParty/LCDB/LCDatabaseQueue.h; sourceTree = "<group>"; };
 		D8C934CDB6D3849320F12B2D7679750B /* AVObjectUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AVObjectUtils.m; path = AVOS/AVOSCloud/Object/AVObjectUtils.m; sourceTree = "<group>"; };
-		D9FC006627D3CEFACA75FAD96724A87B /* POPAnimationRuntime.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = POPAnimationRuntime.mm; path = pop/POPAnimationRuntime.mm; sourceTree = "<group>"; };
+		D9FC006627D3CEFACA75FAD96724A87B /* POPAnimationRuntime.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPAnimationRuntime.mm; path = pop/POPAnimationRuntime.mm; sourceTree = "<group>"; };
 		DA1BB254CE85389508253902A86FBA74 /* AVACL_Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AVACL_Internal.h; path = AVOS/AVOSCloud/ACL/AVACL_Internal.h; sourceTree = "<group>"; };
 		DA341BDBCC58F4F7FCDD81818E2AB321 /* AVRequestOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AVRequestOperation.h; path = AVOS/AVOSCloud/Request/AVRequestOperation.h; sourceTree = "<group>"; };
 		DA61ECEB947336E6B73AD1A650834F9A /* NSBundle+PYSearchExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSBundle+PYSearchExtension.h"; path = "PYSearch/NSBundle+PYSearchExtension.h"; sourceTree = "<group>"; };
@@ -1478,7 +1478,7 @@
 		E07F48C561D87DED2C08335C6962D492 /* MMWormholeSessionContextTransiting.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MMWormholeSessionContextTransiting.h; path = Source/MMWormholeSessionContextTransiting.h; sourceTree = "<group>"; };
 		E171AF78FAFCAC8D6F3562BD7990AEC3 /* AMPopTip-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AMPopTip-prefix.pch"; sourceTree = "<group>"; };
 		E1C56FF4BEEE6CCD18E4C8E54D789E34 /* AVACL.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AVACL.m; path = AVOS/AVOSCloud/ACL/AVACL.m; sourceTree = "<group>"; };
-		E1F35CB6D7716878F45802855ED7B527 /* POPSpringAnimation.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = POPSpringAnimation.mm; path = pop/POPSpringAnimation.mm; sourceTree = "<group>"; };
+		E1F35CB6D7716878F45802855ED7B527 /* POPSpringAnimation.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPSpringAnimation.mm; path = pop/POPSpringAnimation.mm; sourceTree = "<group>"; };
 		E2A7EDAD6F237228AEA2908ADC21B5A1 /* MMWormholeCoordinatedFileTransiting.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MMWormholeCoordinatedFileTransiting.m; path = Source/MMWormholeCoordinatedFileTransiting.m; sourceTree = "<group>"; };
 		E2B7A309BBBA475AF86FAD41245134A2 /* AVSessionCommand.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AVSessionCommand.h; path = AVOS/AVOSCloud/IM/Commands/AVSessionCommand.h; sourceTree = "<group>"; };
 		E2CD9A356595B39FF6A17C8D77C98A87 /* AVSessionOutCommand.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AVSessionOutCommand.h; path = AVOS/AVOSCloud/IM/Commands/AVSessionOutCommand.h; sourceTree = "<group>"; };
@@ -1496,7 +1496,7 @@
 		E6FA9C5A6FC362F4CC88C125DFCE0427 /* AVFileHTTPRequestOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AVFileHTTPRequestOperation.h; path = AVOS/AVOSCloud/File/AVFileHTTPRequestOperation.h; sourceTree = "<group>"; };
 		E727D64D083E176DAE1D934704DFBB9E /* MBProgressHUD-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD-dummy.m"; sourceTree = "<group>"; };
 		E75D422F70FDC26627E0DAD9E9909034 /* DACircularProgressView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DACircularProgressView.m; path = DACircularProgress/DACircularProgressView.m; sourceTree = "<group>"; };
-		E77388087AD10BDEA77340664D66AA06 /* POPAnimatableProperty.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = POPAnimatableProperty.mm; path = pop/POPAnimatableProperty.mm; sourceTree = "<group>"; };
+		E77388087AD10BDEA77340664D66AA06 /* POPAnimatableProperty.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPAnimatableProperty.mm; path = pop/POPAnimatableProperty.mm; sourceTree = "<group>"; };
 		E77880A47D1E9B76AAA6AB123DFD1DF7 /* DTTimePeriodGroup.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTTimePeriodGroup.m; path = DateTools/DateTools/DTTimePeriodGroup.m; sourceTree = "<group>"; };
 		E7BC6927F4D1CE38D4933DFE16CF0759 /* LCURLSessionManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LCURLSessionManager.h; path = AVOS/AVOSCloud/ThirdParty/LCNetworking/LCURLSessionManager.h; sourceTree = "<group>"; };
 		E83520BD8022F778763F557488372939 /* FSCalendarCollectionView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarCollectionView.m; path = FSCalendar/FSCalendarCollectionView.m; sourceTree = "<group>"; };
@@ -1519,7 +1519,7 @@
 		EDDB5B9D959B20F995ADDB23DD51A1BF /* AVGroup_Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AVGroup_Internal.h; path = AVOS/AVOSCloud/IM/AVGroup_Internal.h; sourceTree = "<group>"; };
 		EE23160C8B23D69F41499C0B51D5AEAE /* AVUser+SNS.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "AVUser+SNS.h"; path = "Classes/AVUser+SNS.h"; sourceTree = "<group>"; };
 		EE66BFCBC9760A1D01E00565BBFD0E70 /* AVDirectOutCommand.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AVDirectOutCommand.m; path = AVOS/AVOSCloud/IM/Commands/AVDirectOutCommand.m; sourceTree = "<group>"; };
-		EEE7DEC0BFEF41821D2403E28E9C8EBF /* POPCustomAnimation.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = POPCustomAnimation.mm; path = pop/POPCustomAnimation.mm; sourceTree = "<group>"; };
+		EEE7DEC0BFEF41821D2403E28E9C8EBF /* POPCustomAnimation.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPCustomAnimation.mm; path = pop/POPCustomAnimation.mm; sourceTree = "<group>"; };
 		F0935AA0E5D614908E0982190D32740C /* SCLSwitchView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SCLSwitchView.m; path = SCLAlertView/SCLSwitchView.m; sourceTree = "<group>"; };
 		F0A691CD7D1B1DE87F155A33BCAB052B /* AVAvailability.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AVAvailability.h; path = AVOS/AVOSCloud/AVAvailability.h; sourceTree = "<group>"; };
 		F10D5AF64196F91A5A2DB86119065FFA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
@@ -1528,7 +1528,7 @@
 		F1AA82F7635D11EB2341886B0B183D38 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/ImageIO.framework; sourceTree = DEVELOPER_DIR; };
 		F1BB5979696E4465DE0216199F38A2D1 /* IQPreviousNextView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IQPreviousNextView.m; path = IQKeyboardManager/IQToolbar/IQPreviousNextView.m; sourceTree = "<group>"; };
 		F1C4E45171E8CC55A05D55BC93DBE01B /* AVHistoryMessage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AVHistoryMessage.h; path = AVOS/AVOSCloud/IM/AVHistoryMessage.h; sourceTree = "<group>"; };
-		F1F83240BF382DC6DD0127B1E0C9AC1D /* libAMPopTip.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libAMPopTip.a; path = libAMPopTip.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1F83240BF382DC6DD0127B1E0C9AC1D /* libAMPopTip.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAMPopTip.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F233FB1450A967A76E86EA07075D123B /* PYSearchConst.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PYSearchConst.m; path = PYSearch/PYSearchConst.m; sourceTree = "<group>"; };
 		F2DBC68711F1CE09CFAEEC0C56E47FA8 /* LCNetworkReachabilityManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LCNetworkReachabilityManager.h; path = AVOS/AVOSCloud/ThirdParty/LCNetworking/LCNetworkReachabilityManager.h; sourceTree = "<group>"; };
 		F3621D1A78F5DF6CECF3E51890A8E932 /* UnitBezier.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = UnitBezier.h; path = pop/WebCore/UnitBezier.h; sourceTree = "<group>"; };
@@ -1536,7 +1536,7 @@
 		F4689D3AD7D7328C29D02DFA42BC0539 /* AVRole.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AVRole.h; path = AVOS/AVOSCloud/ACL/AVRole.h; sourceTree = "<group>"; };
 		F46BE7FDA78F398B5BE9CF42F04C5E59 /* DateTools-iOS10.0-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DateTools-iOS10.0-dummy.m"; sourceTree = "<group>"; };
 		F4951675AFDECFDB46A324687018A6C4 /* FSCalendar.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendar.m; path = FSCalendar/FSCalendar.m; sourceTree = "<group>"; };
-		F4BC2DEF4241F79E2454D7BE326937ED /* libMMWormhole.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libMMWormhole.a; path = libMMWormhole.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4BC2DEF4241F79E2454D7BE326937ED /* libMMWormhole.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMMWormhole.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F53F640DC60B6D65ACA6691D8DA4F135 /* AMPopTip.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AMPopTip.xcconfig; sourceTree = "<group>"; };
 		F5CE0F20D074EF28D5409CCEB4A86793 /* AVFile_Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AVFile_Internal.h; path = AVOS/AVOSCloud/File/AVFile_Internal.h; sourceTree = "<group>"; };
 		F61914D62C8A6AA8E5901A4A152E059B /* AVHistoryMessageQuery.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AVHistoryMessageQuery.m; path = AVOS/AVOSCloud/IM/AVHistoryMessageQuery.m; sourceTree = "<group>"; };
@@ -1547,14 +1547,14 @@
 		F7ECB08E7DE6C72300250D05A524C454 /* LCResultSet.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LCResultSet.h; path = AVOS/AVOSCloud/ThirdParty/LCDB/LCResultSet.h; sourceTree = "<group>"; };
 		F7FEF20367BDFF957FF7651C2B7C6B23 /* AFURLConnectionOperation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFURLConnectionOperation.m; path = AFNetworking/AFURLConnectionOperation.m; sourceTree = "<group>"; };
 		F864625117F5F98FF650C7FBE9A3C51C /* AVSessionOutCommand.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AVSessionOutCommand.m; path = AVOS/AVOSCloud/IM/Commands/AVSessionOutCommand.m; sourceTree = "<group>"; };
-		F87C23CC84162EA4EBDA817C7B8AD68B /* POPVector.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = POPVector.mm; path = pop/POPVector.mm; sourceTree = "<group>"; };
+		F87C23CC84162EA4EBDA817C7B8AD68B /* POPVector.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPVector.mm; path = pop/POPVector.mm; sourceTree = "<group>"; };
 		F89937A7A28E78032AB6F4C1D40A6C7C /* AMPopTip+Animation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "AMPopTip+Animation.m"; path = "Source/AMPopTip+Animation.m"; sourceTree = "<group>"; };
 		F9FA417E34DD3E7BB5CD84F7585237E0 /* IDMCaptionView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IDMCaptionView.m; path = Classes/IDMCaptionView.m; sourceTree = "<group>"; };
-		FA1F0BCE0D203203AE355D87E8825942 /* libVTAcknowledgementsViewController.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libVTAcknowledgementsViewController.a; path = libVTAcknowledgementsViewController.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA1F0BCE0D203203AE355D87E8825942 /* libVTAcknowledgementsViewController.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libVTAcknowledgementsViewController.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA7AB63ECBF5A65F9D9476E2ABEF6F86 /* IQKeyboardManager.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = IQKeyboardManager.xcconfig; sourceTree = "<group>"; };
 		FABD3ACE5E35E8DCBC4D3E7FF2D0159F /* IQUIWindow+Hierarchy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "IQUIWindow+Hierarchy.h"; path = "IQKeyboardManager/Categories/IQUIWindow+Hierarchy.h"; sourceTree = "<group>"; };
 		FAF6C3F7E0FDDBFE4ACA31A26BFA3082 /* AVPartialInputStream.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AVPartialInputStream.m; path = AVOS/AVOSCloud/File/AVPartialInputStream.m; sourceTree = "<group>"; };
-		FB7AC9E87AAF5A44547B744A80C80FF7 /* POPBasicAnimation.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = POPBasicAnimation.mm; path = pop/POPBasicAnimation.mm; sourceTree = "<group>"; };
+		FB7AC9E87AAF5A44547B744A80C80FF7 /* POPBasicAnimation.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPBasicAnimation.mm; path = pop/POPBasicAnimation.mm; sourceTree = "<group>"; };
 		FBA0F70ED0F5A50B371168EF74425777 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ImageEffects.m"; path = "SCLAlertView/UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		FC5727639750A09B4C6EC5363EB86D50 /* NSDictionary+LCHash.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+LCHash.h"; path = "AVOS/AVOSCloud/Utils/NSDictionary+LCHash.h"; sourceTree = "<group>"; };
 		FC88A48236743F83925D586A9AABCF47 /* SCLAlertViewStyleKit.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SCLAlertViewStyleKit.m; path = SCLAlertView/SCLAlertViewStyleKit.m; sourceTree = "<group>"; };
@@ -1562,7 +1562,7 @@
 		FDF47E1B59065AE8FA12189F2E99F187 /* Pods-Keeping.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Keeping.release.xcconfig"; sourceTree = "<group>"; };
 		FE0A428593E640A3C0F46A8ED2A29520 /* LCDatabaseCoordinator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LCDatabaseCoordinator.m; path = AVOS/AVOSCloud/Utils/LCDatabaseCoordinator.m; sourceTree = "<group>"; };
 		FE517FF010C480AF9653707013809989 /* pop-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "pop-dummy.m"; sourceTree = "<group>"; };
-		FEEBB89A2F6E8B907DD7B1918B1E5360 /* libSCLAlertView-Objective-C.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libSCLAlertView-Objective-C.a"; path = "libSCLAlertView-Objective-C.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FEEBB89A2F6E8B907DD7B1918B1E5360 /* libSCLAlertView-Objective-C.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libSCLAlertView-Objective-C.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF3CF56C31A0C3687EC66AD8DA8DC518 /* BEMAnimationManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BEMAnimationManager.h; path = Classes/BEMAnimationManager.h; sourceTree = "<group>"; };
 		FF6CCAD85158809E4B2DFF7FF075E8FA /* DTConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTConstants.h; path = DateTools/DateTools/DTConstants.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1801,7 +1801,6 @@
 				B7BEDB8F553DE445D88DE71ACF11FC7A /* standard */,
 				F438C05423E03B655339CBF0BAF8EC0E /* Support Files */,
 			);
-			name = FMDB;
 			path = FMDB;
 			sourceTree = "<group>";
 		};
@@ -1862,7 +1861,6 @@
 				F3621D1A78F5DF6CECF3E51890A8E932 /* UnitBezier.h */,
 				BE3406DC8687D77E3997A6023955361E /* Support Files */,
 			);
-			name = pop;
 			path = pop;
 			sourceTree = "<group>";
 		};
@@ -1925,7 +1923,6 @@
 				6BE03ADD439381486636BD67E37921B8 /* Core */,
 				38FE12DC88A9EFC1FC9A77F286AB2C19 /* Support Files */,
 			);
-			name = MMWormhole;
 			path = MMWormhole;
 			sourceTree = "<group>";
 		};
@@ -1936,7 +1933,6 @@
 				C542FB57BAADCD4E37B14CA6BCB46A8F /* UINavigationController+FDFullscreenPopGesture.m */,
 				6B324BD0CEBB3F557148448223681F12 /* Support Files */,
 			);
-			name = FDFullscreenPopGesture;
 			path = FDFullscreenPopGesture;
 			sourceTree = "<group>";
 		};
@@ -1978,7 +1974,6 @@
 				53A6386CFE2547677DAC7BBD8D554B87 /* Support Files */,
 				38A5AFE69BE0E96D263291AF21326E3C /* UIKit */,
 			);
-			name = AFNetworking;
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
@@ -2001,7 +1996,6 @@
 				11140DF7E2C8B4BC11493E1832254E57 /* Resources */,
 				F009A3635D08A8BFDA005BBACE5C6D5F /* Support Files */,
 			);
-			name = PYSearch;
 			path = PYSearch;
 			sourceTree = "<group>";
 		};
@@ -2084,7 +2078,6 @@
 				F10F3F89F66819BA3AD23A8C747EB42A /* DALabeledCircularProgressView.m */,
 				DB7A55FA7F20F7271547B18F5D38FC50 /* Support Files */,
 			);
-			name = DACircularProgress;
 			path = DACircularProgress;
 			sourceTree = "<group>";
 		};
@@ -2165,7 +2158,6 @@
 				FCCF0870674D3EEE20DA5E4F03B2EC97 /* Resources */,
 				EB5087813F6F61470E4FF8AAF27C68A3 /* Support Files */,
 			);
-			name = VTAcknowledgementsViewController;
 			path = VTAcknowledgementsViewController;
 			sourceTree = "<group>";
 		};
@@ -2213,7 +2205,6 @@
 				5BC2E177C774F7B596DCA4400E5308D6 /* Resources */,
 				2AEB823129DD00E77B7A80C0A4358B77 /* Support Files */,
 			);
-			name = IQKeyboardManager;
 			path = IQKeyboardManager;
 			sourceTree = "<group>";
 		};
@@ -2304,7 +2295,6 @@
 				809DFAF00407DF1A3E2D98EEF0B22DC9 /* MBProgressHUD.m */,
 				943FD68818A2684C54AAF4D0318058F3 /* Support Files */,
 			);
-			name = MBProgressHUD;
 			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
@@ -2330,7 +2320,6 @@
 				FBA0F70ED0F5A50B371168EF74425777 /* UIImage+ImageEffects.m */,
 				D453A0E058C93E0DBFA29BB495BAE514 /* Support Files */,
 			);
-			name = "SCLAlertView-Objective-C";
 			path = "SCLAlertView-Objective-C";
 			sourceTree = "<group>";
 		};
@@ -2340,7 +2329,6 @@
 				C128F579D4F5900333E6934820A64B4B /* Core */,
 				19E95F07969B11F5A2508604ED33A59C /* Support Files */,
 			);
-			name = SDWebImage;
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
@@ -2375,7 +2363,6 @@
 				3BC8F2AC10A7FD1327865CAF12A004F3 /* Resources */,
 				DD5609B08A239A48193B9713F6ACDB0D /* Support Files */,
 			);
-			name = IDMPhotoBrowser;
 			path = IDMPhotoBrowser;
 			sourceTree = "<group>";
 		};
@@ -2392,7 +2379,6 @@
 				B0068074D3CD70D713E3CA7F8DA43A7B /* BEMPathManager.m */,
 				3B31CD92545F626FC31A55256FDD400B /* Support Files */,
 			);
-			name = BEMCheckBox;
 			path = BEMCheckBox;
 			sourceTree = "<group>";
 		};
@@ -2495,7 +2481,6 @@
 				9E72550E39144009AF656EA4F9B712A0 /* UIScrollView+EmptyDataSet.m */,
 				E009270E90B5C73ACA93D9B633E2873E /* Support Files */,
 			);
-			name = DZNEmptyDataSet;
 			path = DZNEmptyDataSet;
 			sourceTree = "<group>";
 		};
@@ -2515,7 +2500,6 @@
 				DB726C3844FD4BCA7E868AB0FF3FC6A4 /* AMPopTipDefaults.h */,
 				49C5DC2A3F84B27D3D1E453B0523CF99 /* Support Files */,
 			);
-			name = AMPopTip;
 			path = AMPopTip;
 			sourceTree = "<group>";
 		};
@@ -2561,7 +2545,6 @@
 				2D31AE6C959D5676DE54ABCEB8AD8E87 /* NSURL+AVAdditions.m */,
 				3974C9014C78DB42997C7550ABB2E8F0 /* Support Files */,
 			);
-			name = LeanCloudSocial;
 			path = LeanCloudSocial;
 			sourceTree = "<group>";
 		};
@@ -2842,7 +2825,6 @@
 				7204F150D3D65CFD099D06E9D40762B3 /* Resources */,
 				EC1C073790DE5041DC1E680D2C724C3B /* Support Files */,
 			);
-			name = AVOSCloud;
 			path = AVOSCloud;
 			sourceTree = "<group>";
 		};
@@ -2867,7 +2849,6 @@
 				4C8909194D5C32DB9931045D59765BC6 /* Resources */,
 				823FC95BD9B46EA154416FBEE02D387C /* Support Files */,
 			);
-			name = DateTools;
 			path = DateTools;
 			sourceTree = "<group>";
 		};
@@ -2880,7 +2861,6 @@
 				9D60A7052A8906FC8DEECEAFEF6554F2 /* MGSwipeTableCell.m */,
 				DB0BA6BE912AC9791FDB7CF9A5B8EA83 /* Support Files */,
 			);
-			name = MGSwipeTableCell;
 			path = MGSwipeTableCell;
 			sourceTree = "<group>";
 		};
@@ -2977,7 +2957,6 @@
 				F1883B91F46C5310DA547C92DF8EE604 /* FSCalendarWeekdayView.m */,
 				463DB8CF515B54E876C66A412DA76886 /* Support Files */,
 			);
-			name = FSCalendar;
 			path = FSCalendar;
 			sourceTree = "<group>";
 		};
@@ -4052,7 +4031,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 0940;
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -4769,7 +4748,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/AMPopTip/AMPopTip-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -4793,7 +4772,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/SDWebImage/SDWebImage-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -4818,7 +4797,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/DZNEmptyDataSet-iOS10.0/DZNEmptyDataSet-iOS10.0-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -4844,7 +4823,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/MMWormhole/MMWormhole-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -4894,7 +4873,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/BEMCheckBox-iOS10.2/BEMCheckBox-iOS10.2-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -4917,7 +4896,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/SCLAlertView-Objective-C/SCLAlertView-Objective-C-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -4942,7 +4921,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/DateTools-iOS10.2/DateTools-iOS10.2-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -4965,7 +4944,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/pop/pop-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -4990,7 +4969,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/MBProgressHUD/MBProgressHUD-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -5015,7 +4994,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/MMWormhole/MMWormhole-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -5089,7 +5068,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/DateTools-iOS10.2/DateTools-iOS10.2-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -5258,7 +5237,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/AVOSCloud/AVOSCloud-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -5282,7 +5261,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/AFNetworking/AFNetworking-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -5309,7 +5288,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/FMDB-iOS10.2/FMDB-iOS10.2-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -5333,7 +5312,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/BEMCheckBox-iOS10.0/BEMCheckBox-iOS10.0-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -5358,7 +5337,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/DateTools-iOS10.0/DateTools-iOS10.0-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -5384,7 +5363,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/FMDB-iOS10.0/FMDB-iOS10.0-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -5409,7 +5388,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/BEMCheckBox-iOS10.2/BEMCheckBox-iOS10.2-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -5433,7 +5412,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/DACircularProgress/DACircularProgress-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -5457,7 +5436,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/DateTools-iOS10.0/DateTools-iOS10.0-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -5481,7 +5460,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/FDFullscreenPopGesture/FDFullscreenPopGesture-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -5506,7 +5485,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/FMDB-iOS10.0/FMDB-iOS10.0-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -5531,7 +5510,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/AMPopTip/AMPopTip-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -5556,7 +5535,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/AFNetworking/AFNetworking-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -5580,7 +5559,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/FSCalendar/FSCalendar-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -5627,7 +5606,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/FDFullscreenPopGesture/FDFullscreenPopGesture-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -5652,7 +5631,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/DACircularProgress/DACircularProgress-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -5677,7 +5656,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/DZNEmptyDataSet-iOS10.0/DZNEmptyDataSet-iOS10.0-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -5701,7 +5680,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/pop/pop-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -5725,7 +5704,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/PYSearch/PYSearch-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -5774,7 +5753,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/SDWebImage/SDWebImage-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -5798,7 +5777,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/MGSwipeTableCell/MGSwipeTableCell-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -5823,7 +5802,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/LeanCloudSocial/LeanCloudSocial-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -5848,7 +5827,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/BEMCheckBox-iOS10.0/BEMCheckBox-iOS10.0-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -5872,7 +5851,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/PYSearch/PYSearch-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -5896,7 +5875,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/LeanCloudSocial/LeanCloudSocial-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -5920,7 +5899,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/SCLAlertView-Objective-C/SCLAlertView-Objective-C-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -5970,7 +5949,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/DZNEmptyDataSet-iOS10.2/DZNEmptyDataSet-iOS10.2-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -5994,7 +5973,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/MGSwipeTableCell/MGSwipeTableCell-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -6018,7 +5997,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/AVOSCloud/AVOSCloud-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -6043,7 +6022,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/FSCalendar/FSCalendar-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -6117,7 +6096,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/FMDB-iOS10.2/FMDB-iOS10.2-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -6140,7 +6119,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/MBProgressHUD/MBProgressHUD-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -6190,7 +6169,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/DZNEmptyDataSet-iOS10.2/DZNEmptyDataSet-iOS10.2-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";

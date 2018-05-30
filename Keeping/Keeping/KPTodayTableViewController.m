@@ -28,6 +28,7 @@
 #import "IDMPhotoBrowser.h"
 #import "UIViewController+Extensions.h"
 #import "MGSwipeTableCell.h"
+#import "KPProgressLabel.h"
 
 static AMPopTip *shareTip = NULL;
 static KPColorPickerView *colorPickerView = NULL;
@@ -156,7 +157,7 @@ static KPColorPickerView *colorPickerView = NULL;
     self.unfinishedTaskArr = [NSMutableArray arrayWithArray:[TaskDataHelper filtrateTasks:self.unfinishedTaskArr withType:self.selectedColorNum]];
     self.finishedTaskArr = [NSMutableArray arrayWithArray:[TaskDataHelper filtrateTasks:self.finishedTaskArr withType:self.selectedColorNum]];
     
-    [self.tableView reloadData];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, 2)] withRowAnimation:UITableViewRowAnimationFade];
     
     [self.tableView reloadEmptyDataSet];
     
@@ -179,7 +180,7 @@ static KPColorPickerView *colorPickerView = NULL;
 - (void)refreshProgress{
     NSUInteger finished = self.finishedTaskArr.count;
     NSUInteger total = self.finishedTaskArr.count + self.unfinishedTaskArr.count;
-    [self.progressLabel setText:[NSString stringWithFormat:@"%lu / %lu", (unsigned long)finished, (unsigned long)total]];
+    [self.progressLabel setProgressWithFinished:finished andTotal:total];
 }
 
 - (void)editAction:(id)sender{
