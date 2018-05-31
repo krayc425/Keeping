@@ -53,14 +53,21 @@
     [AVOSCloudSNS setupPlatform:AVOSCloudSNSQQ withAppKey:qqID andAppSecret:qqKey andRedirectURI:@"http://www.baidu.com"];
     
     //版本号
-    NSString *version = [NSString stringWithFormat:@"今日打卡 · 版本号 v%@",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
-    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
+    NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
+    NSString *version = [NSString stringWithFormat:@"今日打卡 · 版本号 v%@ (%@)",infoDic[@"CFBundleShortVersionString"],infoDic[@"CFBundleVersion"]];
+    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 100)];
     UILabel *versionLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 20)];
     versionLabel.text = version;
     versionLabel.textColor = [UIColor lightGrayColor];
     versionLabel.textAlignment = NSTextAlignmentCenter;
     versionLabel.font = [UIFont systemFontOfSize:12.0];
     [footerView addSubview:versionLabel];
+    UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"LOGO_1024"]];
+    [logoView setFrame:CGRectMake(0, 0, 30, 30)];
+    [logoView setCenter:CGPointMake(SCREEN_WIDTH / 2.0, 50)];
+    [logoView.layer setCornerRadius:7.5];
+    [logoView setClipsToBounds:YES];
+    [footerView addSubview:logoView];
     self.tableView.tableFooterView = footerView;
 }
 

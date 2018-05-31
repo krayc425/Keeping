@@ -33,7 +33,9 @@
 static AMPopTip *shareTip = NULL;
 static KPColorPickerView *colorPickerView = NULL;
 
-@interface KPTodayTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, MGSwipeTableCellDelegate>
+@interface KPTodayTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, MGSwipeTableCellDelegate> {
+    BOOL firstLoad;
+}
 
 @end
 
@@ -41,6 +43,8 @@ static KPColorPickerView *colorPickerView = NULL;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    firstLoad = YES;
     
     self.gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     
@@ -106,21 +110,17 @@ static KPColorPickerView *colorPickerView = NULL;
     [self.calendar selectDate:self.selectedDate scrollToDate:YES];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadTasks) name:@"refresh_today_task" object:nil];
+    
+    [self loadTasks];
 }
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"refresh_today_task" object:nil];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    [self loadTasks];
-}
-
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    self.selectedIndexPath = NULL;
-    [self.tableView reloadData];
+    
     [self hideTip];
 }
 
@@ -131,8 +131,6 @@ static KPColorPickerView *colorPickerView = NULL;
     
     [self.subDateLabel setText:[DateUtil getTodayDateStringOfDate:self.selectedDate]];
     [self.dateButton setTitle:[NSString stringWithFormat:@"%ld", (long)self.selectedDate.day] forState:UIControlStateNormal];
-    
-    self.selectedIndexPath = NULL;
     
     self.unfinishedTaskArr = [[NSMutableArray alloc] init];
     self.finishedTaskArr = [[NSMutableArray alloc] init];
@@ -157,13 +155,13 @@ static KPColorPickerView *colorPickerView = NULL;
     self.unfinishedTaskArr = [NSMutableArray arrayWithArray:[TaskDataHelper filtrateTasks:self.unfinishedTaskArr withType:self.selectedColorNum]];
     self.finishedTaskArr = [NSMutableArray arrayWithArray:[TaskDataHelper filtrateTasks:self.finishedTaskArr withType:self.selectedColorNum]];
     
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, 2)] withRowAnimation:UITableViewRowAnimationFade];
+//    [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, 2)] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView reloadData];
     
     [self.tableView reloadEmptyDataSet];
     
     [self fadeAnimation];
     
-    //设置角标
     [self setBadge];
 }
 
@@ -270,9 +268,9 @@ static KPColorPickerView *colorPickerView = NULL;
             [self.finishedTaskArr removeObject:t];
         }
         
-        [[TaskManager shareInstance] deleteTask:t];
-        
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+        [[TaskManager shareInstance] deleteTask:t];
         
         if(self.finishedTaskArr.count == 0 || self.unfinishedTaskArr.count == 0){
             [self.tableView reloadData];
@@ -281,27 +279,6 @@ static KPColorPickerView *colorPickerView = NULL;
         [self refreshProgress];
     }];
     [alert showWarning:@"确认删除吗" subTitle:@"此操作不可恢复" closeButtonTitle:@"取消" duration:0.0];
-}
-
-- (void)configMoreButton:(UIButton *)moreButton {
-    if (moreButton) {
-        [moreButton setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
-        
-        CardsView *cardView = [[CardsView alloc] initWithFrame:CGRectMake(0, 5, moreButton.frame.size.width - 5, moreButton.frame.size.height - 10)];
-        cardView.cornerRadius = 10.0f;
-        
-        UILabel *infoLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,
-                                                                       0,
-                                                                       70,
-                                                                       cardView.frame.size.height)];
-        [infoLabel setText:@"详情"];
-        [infoLabel setTextColor:[Utilities getColor]];
-        [infoLabel setNumberOfLines:2];
-        [infoLabel setTextAlignment:NSTextAlignmentCenter];
-        [cardView addSubview:infoLabel];
-        
-        [moreButton addSubview:cardView];
-    }
 }
 
 #pragma mark - Table view data source
@@ -470,19 +447,44 @@ static KPColorPickerView *colorPickerView = NULL;
         KPTodayTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         
         if(![cell.moreButton isHidden]){
-            
             if([self.selectedIndexPath isEqual:indexPath]){
                 self.selectedIndexPath = NULL;
             }else{
                 self.selectedIndexPath = indexPath;
             }
+            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
             
         }else{
             self.selectedIndexPath = NULL;
         }
+    }
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.section == 0
+       || indexPath == self.selectedIndexPath
+       || ![[NSUserDefaults standardUserDefaults] boolForKey:@"animation"]
+       || !firstLoad){
+        return;
+    }
+    
+    NSInteger order = indexPath.row + (indexPath.section == 2 ? self.unfinishedTaskArr.count : 0);
+    CGFloat time = order * 0.1;
+    
+    cell.transform = CGAffineTransformMakeTranslation(-SCREEN_WIDTH, 0);
+    [UIView animateWithDuration:0.4
+                          delay:time
+         usingSpringWithDamping:0.7
+          initialSpringVelocity:1 / 0.7
+                        options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+        cell.transform = CGAffineTransformIdentity;
+    } completion:^(BOOL finished) {
         
-        [self fadeAnimation];
-        [tableView reloadData];
+    }];
+    
+    if(order == self.unfinishedTaskArr.count + self.finishedTaskArr.count - 1){
+        firstLoad = NO;
     }
 }
 
@@ -494,12 +496,11 @@ static KPColorPickerView *colorPickerView = NULL;
     if(path.section == 1){
         Task *task = self.unfinishedTaskArr[path.row];
         [[TaskManager shareInstance] punchForTaskWithID:@(task.id) onDate:self.selectedDate];
-        [self loadTasks];
     }else if(path.section == 2){
         Task *task = self.finishedTaskArr[path.row];
         [[TaskManager shareInstance] unpunchForTaskWithID:@(task.id) onDate:self.selectedDate];
-        [self loadTasks];
     }
+    [self loadTasks];
 }
 
 - (void)moreAction:(UITableViewCell *)cell withButton:(UIButton *)button{
@@ -622,22 +623,26 @@ static KPColorPickerView *colorPickerView = NULL;
 
 #pragma mark - MGSwipeCellDelegate
 
-- (BOOL)swipeTableCell:(MGSwipeTableCell*) cell tappedButtonAtIndex:(NSInteger) index direction:(MGSwipeDirection)direction fromExpansion:(BOOL) fromExpansion{
+- (BOOL)swipeTableCell:(MGSwipeTableCell *)cell tappedButtonAtIndex:(NSInteger) index direction:(MGSwipeDirection)direction fromExpansion:(BOOL) fromExpansion{
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    switch (index) {
-        case 1:
+    switch (direction) {
+        case MGSwipeDirectionLeftToRight:
         {
             Task *task = indexPath.section == 1 ? self.unfinishedTaskArr[indexPath.row] : self.finishedTaskArr[indexPath.row];
             [self performSegueWithIdentifier:@"detailTaskSegue" sender:task];
         }
             break;
-        case 0:
+        case MGSwipeDirectionRightToLeft:
             [self deleteTaskAtIndexPath:indexPath];
             break;
         default:
             break;
     }
     return YES;
+}
+
+- (BOOL)swipeTableCell:(MGSwipeTableCell *)cell canSwipe:(MGSwipeDirection)direction fromPoint:(CGPoint)point{
+    return [self.tableView indexPathForCell:cell] != self.selectedIndexPath;
 }
 
 #pragma mark - KPNavigationTitleDelegate

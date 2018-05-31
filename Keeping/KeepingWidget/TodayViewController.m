@@ -165,8 +165,10 @@
         [dateFormatter setDateFormat:@"HH:mm"];
         reminderTimeStr = [dateFormatter stringFromDate:t.reminderTime];
         [cell.timeLabel setText:reminderTimeStr];
+        [cell.timeLabel setHidden:NO];
     }else{
         [cell.timeLabel setText:@""];
+        [cell.timeLabel setHidden:YES];
     }
     
     [cell.checkBox setOn:[t.punchDateArr containsObject:[DateUtil transformDate:[NSDate date]]]];

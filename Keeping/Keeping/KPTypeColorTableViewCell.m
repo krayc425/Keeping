@@ -22,8 +22,4 @@
     [self.colorImg setClipsToBounds:YES];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-}
-
 @end

@@ -34,10 +34,14 @@ static KPColorPickerView *colorPickerView = NULL;
 
 @end
 
-@implementation KPTaskTableViewController
+@implementation KPTaskTableViewController{
+    BOOL firstLoad;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    firstLoad = YES;
     
     self.taskArr = [[NSMutableArray alloc] init];
     self.historyTaskArr = [[NSMutableArray alloc] init];
@@ -58,15 +62,17 @@ static KPColorPickerView *colorPickerView = NULL;
     self.weekDayView.isAllButtonHidden = NO;
     self.weekDayView.fontSize = 18.0;
     
-    self.selectedWeekdayArr = [NSMutableArray arrayWithArray: @[@1,@2,@3,@4,@5,@6,@7]];
+    self.selectedWeekdayArr = [@[@1,@2,@3,@4,@5,@6,@7] mutableCopy];
     
     self.weekDayView.selectedWeekdayArr = self.selectedWeekdayArr;
+    [self loadTasksOfWeekdays:self.weekDayView.selectedWeekdayArr];
+    
+    [self setFont];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self loadTasksOfWeekdays: self.weekDayView.selectedWeekdayArr];
-    [self setFont];
+    [self loadTasksOfWeekdays:self.selectedWeekdayArr];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -175,27 +181,6 @@ static KPColorPickerView *colorPickerView = NULL;
     [self.tableView reloadData];
     
     [self fadeAnimation];
-}
-
-- (void)configMoreButton:(UIButton *)moreButton {
-    if (moreButton) {
-        [moreButton setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
-        
-        CardsView *cardView = [[CardsView alloc] initWithFrame:CGRectMake(0, 5, moreButton.frame.size.width - 5, moreButton.frame.size.height - 10)];
-        cardView.cornerRadius = 10.0f;
-        
-        UILabel *infoLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,
-                                                                       0,
-                                                                       70,
-                                                                       cardView.frame.size.height)];
-        [infoLabel setText:@"删除"];
-        [infoLabel setTextColor:[UIColor redColor]];
-        [infoLabel setNumberOfLines:2];
-        [infoLabel setTextAlignment:NSTextAlignmentCenter];
-        [cardView addSubview:infoLabel];
-        
-        [moreButton addSubview:cardView];
-    }
 }
 
 #pragma mark - Pop Up Image
@@ -353,6 +338,33 @@ static KPColorPickerView *colorPickerView = NULL;
     }
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.section == 0
+       || ![[NSUserDefaults standardUserDefaults] boolForKey:@"animation"]
+       || !firstLoad){
+        return;
+    }
+    
+    NSInteger order = indexPath.row + (indexPath.section == 2 ? self.taskArr.count : 0);
+    CGFloat time = order * 0.1;
+    
+    cell.transform = CGAffineTransformMakeTranslation(-SCREEN_WIDTH, 0);
+    [UIView animateWithDuration:0.4
+                          delay:time
+         usingSpringWithDamping:0.7
+          initialSpringVelocity:1 / 0.7
+                        options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+                         cell.transform = CGAffineTransformIdentity;
+                     } completion:^(BOOL finished) {
+                         
+                     }];
+    
+    if(order == self.historyTaskArr.count + self.taskArr.count - 1){
+        firstLoad = NO;
+    }
+}
+
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -367,14 +379,14 @@ static KPColorPickerView *colorPickerView = NULL;
 
 - (BOOL)swipeTableCell:(MGSwipeTableCell*) cell tappedButtonAtIndex:(NSInteger) index direction:(MGSwipeDirection)direction fromExpansion:(BOOL) fromExpansion{
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    switch (index) {
-        case 1:
+    switch (direction) {
+        case MGSwipeDirectionLeftToRight:
         {
             Task *task = indexPath.section == 1 ? self.taskArr[indexPath.row] : self.historyTaskArr[indexPath.row];
             [self performSegueWithIdentifier:@"detailTaskSegue" sender:task];
         }
             break;
-        case 0:
+        case MGSwipeDirectionRightToLeft:
             [self deleteTaskAtIndexPath:indexPath];
             break;
         default:

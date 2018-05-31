@@ -28,7 +28,7 @@
     [path1 stroke];
     
     [self.nameLabel setTextColor:[UIColor blackColor]];
-    [self.timeLabel setTextColor:[UIColor blackColor]];
+    [self.timeLabel setTextColor:[UIColor grayColor]];
     
     self.checkBox.delegate = self;
     [self.checkBox setOnAnimationType:BEMAnimationTypeFill];

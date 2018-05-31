@@ -16,6 +16,10 @@
 }
 
 - (void)setProgressWithFinished:(NSUInteger)finished andTotal:(NSUInteger)total{
+    if(total == 0){
+        [self setText:@"0 / 0"];
+        return;
+    }
     progress = (float)finished / (float)total;
     [self setText:[NSString stringWithFormat:@"%lu / %lu", (unsigned long)finished, (unsigned long)total]];
     [self setNeedsDisplay];

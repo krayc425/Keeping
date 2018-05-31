@@ -43,6 +43,12 @@ static TaskManager* _instance = nil;
     return [TaskManager shareInstance] ;
 }
 
+- (void)postNotification{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"refresh_today_task" object:nil];
+    });
+}
+
 #pragma mark - Add, Update, Delete Tasks
 
 - (BOOL)addTask:(Task *)task{
@@ -96,6 +102,8 @@ static TaskManager* _instance = nil;
     }else{
         punchSkipJsonStr = nil;
     }
+
+    [self postNotification];
     
     return [[[DBManager shareInstance] getDB] executeUpdate:
             @"INSERT INTO t_task (name, appScheme, reminderDays, addDate, reminderTime, punchDateArr, image, link, endDate, memo, type, punchMemoArr, punchSkipArr) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
@@ -168,6 +176,8 @@ static TaskManager* _instance = nil;
         [UNManager createLocalizedUserNotification:task];
     }
     
+    [self postNotification];
+    
     return [[[DBManager shareInstance] getDB] executeUpdate:
             @"UPDATE t_task SET name = ?, appScheme = ?, reminderDays = ?, addDate = ?, reminderTime = ?, punchDateArr = ?, image = ?, link = ?, endDate = ?, memo = ?, type = ?, punchMemoArr = ?, punchSkipArr = ? WHERE id = ?;",
             task.name,
@@ -190,6 +200,8 @@ static TaskManager* _instance = nil;
 
 - (BOOL)deleteTask:(Task *_Nonnull)task{
     [UNManager deleteLocalizedUserNotification:task];
+    
+    [self postNotification];
     
     return [[[DBManager shareInstance] getDB] executeUpdate:
             @"delete from t_task where id = ?;",
@@ -430,6 +442,9 @@ static TaskManager* _instance = nil;
             return [[[DBManager shareInstance] getDB] executeUpdate:@"update t_task set punchDateArr = ?, punchSkipArr = ? where id = ?;", punchJsonStr, skipJsonStr, taskid];
         }
     }
+    
+    [self postNotification];
+    
     return NO;
 }
 
@@ -461,6 +476,9 @@ static TaskManager* _instance = nil;
             return [[[DBManager shareInstance] getDB] executeUpdate:@"update t_task set punchDateArr = ? where id = ?;", punchJsonStr, taskid];
         }
     }
+    
+    [self postNotification];
+    
     return NO;
 }
 

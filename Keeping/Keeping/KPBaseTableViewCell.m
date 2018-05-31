@@ -18,11 +18,21 @@
     self.swipeBackgroundColor = [UIColor clearColor];
     self.backgroundColor = [UIColor clearColor];
     
-    self.rightButtons = @[[MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"CELL_DELETE"] backgroundColor:[UIColor clearColor]],
-                          [MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"CELL_INFO"] backgroundColor:[UIColor clearColor]]];
-    self.rightButtons[0].tintColor = [UIColor redColor];
-    self.rightButtons[1].tintColor = [Utilities getColor];
+    MGSwipeExpansionSettings *setting = [[MGSwipeExpansionSettings alloc] init];
+    setting.buttonIndex = 0;
+    setting.fillOnTrigger = YES;
+    setting.threshold = 2.0;
     
+    self.leftExpansion = setting;
+    self.rightExpansion = setting;
+    
+    self.leftButtons = @[[MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"CELL_INFO"] backgroundColor:[UIColor clearColor]]];
+    self.leftButtons[0].tintColor = [Utilities getColor];
+    
+    self.rightButtons = @[[MGSwipeButton buttonWithTitle:@"" icon:[UIImage imageNamed:@"CELL_DELETE"] backgroundColor:[UIColor clearColor]]];
+    self.rightButtons[0].tintColor = [UIColor redColor];
+    
+    self.leftSwipeSettings.transition = MGSwipeTransitionStatic;
     self.rightSwipeSettings.transition = MGSwipeTransitionStatic;
 }
 
