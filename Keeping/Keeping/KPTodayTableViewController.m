@@ -122,6 +122,11 @@ static KPColorPickerView *colorPickerView = NULL;
     [super viewWillDisappear:animated];
     
     [self hideTip];
+    
+    if (self.selectedIndexPath != NULL) {
+        [self.tableView reloadData];
+        self.selectedIndexPath = NULL;
+    }
 }
 
 - (void)loadTasks{
@@ -163,6 +168,11 @@ static KPColorPickerView *colorPickerView = NULL;
     [self fadeAnimation];
     
     [self setBadge];
+    
+    if(firstLoad){
+        NSLog(@"TOGGLE");
+        firstLoad = NO;
+    }
 }
 
 - (void)setBadge{
@@ -452,40 +462,36 @@ static KPColorPickerView *colorPickerView = NULL;
             }else{
                 self.selectedIndexPath = indexPath;
             }
-            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            
         }else{
             self.selectedIndexPath = NULL;
         }
+        [self fadeAnimation];
+        [tableView reloadData];
     }
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(indexPath.section == 0
-       || indexPath == self.selectedIndexPath
-       || ![[NSUserDefaults standardUserDefaults] boolForKey:@"animation"]
-       || !firstLoad){
-        return;
-    }
-    
-    NSInteger order = indexPath.row + (indexPath.section == 2 ? self.unfinishedTaskArr.count : 0);
-    CGFloat time = order * 0.1;
-    
-    cell.transform = CGAffineTransformMakeTranslation(-SCREEN_WIDTH, 0);
-    [UIView animateWithDuration:0.4
-                          delay:time
-         usingSpringWithDamping:0.7
-          initialSpringVelocity:1 / 0.7
-                        options:UIViewAnimationOptionCurveEaseIn
-                     animations:^{
-        cell.transform = CGAffineTransformIdentity;
-    } completion:^(BOOL finished) {
-        
-    }];
-    
-    if(order == self.unfinishedTaskArr.count + self.finishedTaskArr.count - 1){
-        firstLoad = NO;
-    }
+//    if(indexPath.section == 0
+//       || indexPath == self.selectedIndexPath
+//       || ![[NSUserDefaults standardUserDefaults] boolForKey:@"animation"]
+//       || !firstLoad){
+//        return;
+//    }
+//    
+//    NSInteger order = indexPath.row + (indexPath.section == 2 ? self.unfinishedTaskArr.count : 0);
+//    CGFloat time = order * 0.1;
+//    
+//    cell.transform = CGAffineTransformMakeTranslation(-SCREEN_WIDTH, 0);
+//    [UIView animateWithDuration:0.4
+//                          delay:time
+//         usingSpringWithDamping:0.7
+//          initialSpringVelocity:1 / 0.7
+//                        options:UIViewAnimationOptionCurveEaseIn
+//                     animations:^{
+//        cell.transform = CGAffineTransformIdentity;
+//    } completion:^(BOOL finished) {
+//        
+//    }];
 }
 
 #pragma mark - Check Delegate

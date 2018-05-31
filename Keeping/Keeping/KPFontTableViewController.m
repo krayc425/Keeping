@@ -52,15 +52,11 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [@[@(2), @(1)][section] integerValue];
+    return [@[@(1), @(2)][section] integerValue];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(indexPath.section == 0){
-        
-        //去掉分割线
-        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        
+    if(indexPath.section == 1){
         Task *t = [Task new];
         
         t.name = @"展示任务";
@@ -139,12 +135,8 @@
     }
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(indexPath.section == 0){
+    if(indexPath.section == 1){
         return 70;
     }else{
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];

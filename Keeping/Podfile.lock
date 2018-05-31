@@ -41,11 +41,7 @@ PODS:
     - AVOSCloud (~> 3.1)
   - MBProgressHUD (1.0.0)
   - MGSwipeTableCell (1.6.7)
-  - MMWormhole (2.0.0):
-    - MMWormhole/Core (= 2.0.0)
-  - MMWormhole/Core (2.0.0)
   - pop (1.0.10)
-  - PYSearch (0.8.4)
   - SCLAlertView-Objective-C (1.1.2)
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
@@ -66,8 +62,6 @@ DEPENDENCIES:
   - LeanCloudSocial
   - MBProgressHUD
   - MGSwipeTableCell
-  - MMWormhole
-  - PYSearch
   - SCLAlertView-Objective-C
   - VTAcknowledgementsViewController
 
@@ -88,9 +82,7 @@ SPEC REPOS:
     - LeanCloudSocial
     - MBProgressHUD
     - MGSwipeTableCell
-    - MMWormhole
     - pop
-    - PYSearch
     - SCLAlertView-Objective-C
     - SDWebImage
     - VTAcknowledgementsViewController
@@ -111,13 +103,11 @@ SPEC CHECKSUMS:
   LeanCloudSocial: f7787dfc1559dc47263bbfd37a03c870352ad98a
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   MGSwipeTableCell: fb20e983988bde2b8d0df29c2d9e1d8ffd10b74a
-  MMWormhole: 0cd3fd35a9118b2e2d762b499f54eeaace0be791
   pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
-  PYSearch: 75f94d4a1473334898a5776bf62a6a08ebe7eec5
   SCLAlertView-Objective-C: 0e54351fa4f98a5c7c6ad3727e6dbb46784534e5
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   VTAcknowledgementsViewController: d62bb400ca68e240680906bcfa2a2b380d39b30f
 
-PODFILE CHECKSUM: 073dc52aaa4dbd04b62dd705d1ea3adbc8d9002d
+PODFILE CHECKSUM: c6bdb3580b76ad22b356205a207b1d4cd60edde4
 
 COCOAPODS: 1.5.2

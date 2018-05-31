@@ -8,8 +8,6 @@ target 'Keeping' do
   pod 'BEMCheckBox'
   pod 'FDFullscreenPopGesture'
   pod 'AMPopTip', '~> 1.5'
-  pod 'PYSearch'
-  pod 'MMWormhole'
   pod 'AVOSCloud'
   pod 'LeanCloudSocial'
   pod 'SCLAlertView-Objective-C'

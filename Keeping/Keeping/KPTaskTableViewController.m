@@ -65,7 +65,6 @@ static KPColorPickerView *colorPickerView = NULL;
     self.selectedWeekdayArr = [@[@1,@2,@3,@4,@5,@6,@7] mutableCopy];
     
     self.weekDayView.selectedWeekdayArr = self.selectedWeekdayArr;
-    [self loadTasksOfWeekdays:self.weekDayView.selectedWeekdayArr];
     
     [self setFont];
 }
@@ -181,6 +180,11 @@ static KPColorPickerView *colorPickerView = NULL;
     [self.tableView reloadData];
     
     [self fadeAnimation];
+    
+    if(firstLoad){
+        NSLog(@"TOGGLE");
+        firstLoad = NO;
+    }
 }
 
 #pragma mark - Pop Up Image
@@ -339,30 +343,26 @@ static KPColorPickerView *colorPickerView = NULL;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(indexPath.section == 0
-       || ![[NSUserDefaults standardUserDefaults] boolForKey:@"animation"]
-       || !firstLoad){
-        return;
-    }
-    
-    NSInteger order = indexPath.row + (indexPath.section == 2 ? self.taskArr.count : 0);
-    CGFloat time = order * 0.1;
-    
-    cell.transform = CGAffineTransformMakeTranslation(-SCREEN_WIDTH, 0);
-    [UIView animateWithDuration:0.4
-                          delay:time
-         usingSpringWithDamping:0.7
-          initialSpringVelocity:1 / 0.7
-                        options:UIViewAnimationOptionCurveEaseIn
-                     animations:^{
-                         cell.transform = CGAffineTransformIdentity;
-                     } completion:^(BOOL finished) {
-                         
-                     }];
-    
-    if(order == self.historyTaskArr.count + self.taskArr.count - 1){
-        firstLoad = NO;
-    }
+//    if(indexPath.section == 0
+//       || ![[NSUserDefaults standardUserDefaults] boolForKey:@"animation"]
+//       || !firstLoad){
+//        return;
+//    }
+//    
+//    NSInteger order = indexPath.row + (indexPath.section == 2 ? self.taskArr.count : 0);
+//    CGFloat time = order * 0.1;
+//    
+//    cell.transform = CGAffineTransformMakeTranslation(-SCREEN_WIDTH, 0);
+//    [UIView animateWithDuration:0.4
+//                          delay:time
+//         usingSpringWithDamping:0.7
+//          initialSpringVelocity:1 / 0.7
+//                        options:UIViewAnimationOptionCurveEaseIn
+//                     animations:^{
+//                         cell.transform = CGAffineTransformIdentity;
+//                     } completion:^(BOOL finished) {
+//                         
+//                     }];
 }
 
 #pragma mark - Navigation
