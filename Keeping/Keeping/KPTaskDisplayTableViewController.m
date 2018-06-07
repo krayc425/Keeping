@@ -13,7 +13,6 @@
 #import "DateUtil.h"
 #import "DateTools.h"
 #import "TaskDataHelper.h"
-#import "SCLAlertView.h"
 #import "TaskManager.h"
 #import "AMPopTip.h"
 #import "KPTaskDetailTableViewController.h"
@@ -265,6 +264,19 @@ static AMPopTip *shareTip = NULL;
     [self.calendar reloadInputViews];
 }
 
+- (IBAction)deleteTask:(id)sender{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确认删除吗" message:@"此操作不可恢复" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"删除" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        [[TaskManager shareInstance] deleteTask:self.task];
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    [alert addAction:cancelAction];
+    [alert addAction:deleteAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 #pragma mark - Helper Methods
 
 - (BOOL)canFixPunch:(NSDate *)date{
@@ -345,6 +357,19 @@ static AMPopTip *shareTip = NULL;
     }
 }
 
+#pragma mark - 3D Touch
+
+- (NSArray<id<UIPreviewActionItem>> *)previewActionItems{
+    UIPreviewAction *deleteAction = [UIPreviewAction
+                                    actionWithTitle:@"删除任务"
+                                    style:UIPreviewActionStyleDestructive
+                                    handler:^(UIPreviewAction * _Nonnull action,
+                                              UIViewController * _Nonnull previewViewController) {
+                                        [[TaskManager shareInstance] deleteTask:self.task];
+                                    }];
+    return @[deleteAction];
+}
+
 #pragma mark - Table view data source
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -409,8 +434,6 @@ static AMPopTip *shareTip = NULL;
         return;
     }
     
-    SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-    
     NSString *memo = [[TaskManager shareInstance] getPunchMemoOfTask:self.task onDate:date];
     NSString *displayMemo;
     NSString *buttonMemoText;
@@ -422,54 +445,77 @@ static AMPopTip *shareTip = NULL;
         buttonMemoText = @"修改当日备注";
     }
     
-    [alert addButton:buttonMemoText actionBlock:^(void) {
-        SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:[DateUtil getDateStringOfDate:date] message:displayMemo preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *memoAction = [UIAlertAction actionWithTitle:buttonMemoText style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
-        UITextField *memoText = [alert addTextField:@"填写当日备注"];
-        memoText.text = memo;
-        [alert addButton:@"提交" actionBlock:^(void) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"填写当日备注" message:nil preferredStyle:UIAlertControllerStyleAlert];
+        __block UITextField *memoText = nil;
+        [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+            textField.text = memo;
+            memoText = textField;
+        }];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:cancelAction];
+        UIAlertAction *submitAction = [UIAlertAction actionWithTitle:@"提交" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
             [[TaskManager shareInstance] modifyMemoForTask:self.task withMemo:memoText.text onDate:date];
             
-            SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-            [alert showSuccess:@"修改当日备注成功" subTitle:nil closeButtonTitle:@"好的" duration:0.0];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"修改当日备注成功" message:nil
+                                                preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+            [alert addAction:okAction];
+            
+            [self presentViewController:alert animated:YES completion:nil];
         }];
-        [alert showEdit:@"当日备注" subTitle:[NSString stringWithFormat:@"%@ · %@", self.task.name, [DateUtil getDateStringOfDate:date]] closeButtonTitle:@"取消" duration:0.0];
+        [alert addAction:submitAction];
+        [self presentViewController:alert animated:YES completion:nil];
+        
     }];
+
+    [alert addAction:memoAction];
     
     //补打卡
     if([self canFixPunch:date]){
-        [alert addButton:@"补打卡" actionBlock:^(void) {
+        UIAlertAction *fixPunchAction = [UIAlertAction actionWithTitle:@"补打卡" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [[TaskManager shareInstance] punchForTaskWithID:@(self.task.id) onDate:date];
             [self loadTask];
         }];
-        
+        [alert addAction:fixPunchAction];
     }
     
     //跳过打卡
     if([self canSkipTask:date] && [self canFixPunch:date]){
-        [alert addButton:@"跳过打卡" actionBlock:^(void) {
+        UIAlertAction *skipPunchAction = [UIAlertAction actionWithTitle:@"跳过打卡" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [[TaskManager shareInstance] skipForTask:self.task onDate:date];
             [self loadTask];
         }];
+        [alert addAction:skipPunchAction];
     }
     
     //取消跳过打卡
     if([self.task.punchSkipArr containsObject:[DateUtil transformDate:date]]) {
-        [alert addButton:@"取消跳过打卡" actionBlock:^(void) {
+        UIAlertAction *unskipPunchAction = [UIAlertAction actionWithTitle:@"取消跳过打卡" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [[TaskManager shareInstance] unskipForTask:self.task onDate:date];
             [self loadTask];
         }];
+        [alert addAction:unskipPunchAction];
     }
     
     //取消打卡
     if([self.task.punchDateArr containsObject:[DateUtil transformDate:date]]){
-        [alert addButton:@"取消打卡" actionBlock:^(void) {
+        UIAlertAction *cancelPunchAction = [UIAlertAction actionWithTitle:@"取消打卡" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [[TaskManager shareInstance] unpunchForTaskWithID:@(self.task.id) onDate:date];
             [self loadTask];
+
         }];
+        [alert addAction:cancelPunchAction];
     }
     
-    [alert showInfo:[DateUtil getDateStringOfDate:date] subTitle:displayMemo closeButtonTitle:@"取消" duration:0.0f];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction:cancelAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (NSDate *)minimumDateForCalendar:(FSCalendar *)calendar {

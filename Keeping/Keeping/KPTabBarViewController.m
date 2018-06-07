@@ -32,13 +32,16 @@
     
     [self.tabBarItem setImageInsets:UIEdgeInsetsMake(10, 0, -10, 0)];
     
-    [[self.tabBar.items objectAtIndex:0] setTitle:@"今日"];
-    [[self.tabBar.items objectAtIndex:0] setImage:[UIImage imageNamed:@"TAB_TODAY"]];
-    [[self.tabBar.items objectAtIndex:1] setTitle:@"任务"];
-    [[self.tabBar.items objectAtIndex:1] setImage:[UIImage imageNamed:@"TAB_TASK"]];
+    [self.tabBar.items[0] setTitle:@"今日"];
+    [self.tabBar.items[0] setImage:[UIImage imageNamed:@"TAB_TODAY"]];
+    [self.tabBar.items[0] setSelectedImage:[UIImage imageNamed:@"TAB_TODAY_SELECTED"]];
+    [self.tabBar.items[1] setTitle:@"任务"];
+    [self.tabBar.items[1] setImage:[UIImage imageNamed:@"TAB_TASK"]];
+    [self.tabBar.items[1] setSelectedImage:[UIImage imageNamed:@"TAB_TASK_SELECTED"]];
     
     self.tabBar.barTintColor = [UIColor whiteColor];
     self.tabBar.tintColor = [Utilities getColor];
+    self.tabBar.backgroundColor = [UIColor whiteColor];
     
     self.kpTodayTableViewController = (KPTodayTableViewController *)self.viewControllers[0];
     self.kpTaskTableViewController = (KPTaskTableViewController *)self.viewControllers[1];
@@ -72,7 +75,6 @@
                                              selector:@selector(setBadge)
                                                  name:@"Notification_Badge"
                                                object:nil];
-    
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -82,9 +84,7 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification_Badge"
-                                                        object:nil
-                                                      userInfo:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification_Badge" object:nil userInfo:nil];
 }
 
 - (void)setFont{

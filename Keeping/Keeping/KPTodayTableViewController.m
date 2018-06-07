@@ -13,7 +13,6 @@
 #import "TaskManager.h"
 #import "Task.h"
 #import "DateUtil.h"
-#import "SCLAlertView.h"
 #import "DateTools.h"
 #import "UIScrollView+EmptyDataSet.h"
 #import "AMPopTip.h"
@@ -57,7 +56,7 @@ static KPColorPickerView *colorPickerView = NULL;
 
     //类别按钮
     [KPTodayTableViewController shareColorPickerView].colorDelegate = self;
-    [[KPTodayTableViewController shareColorPickerView] setFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame) - 32, 40)];
+    [[KPTodayTableViewController shareColorPickerView] setFrame:CGRectMake(0, 0, SCREEN_WIDTH - 32, 40)];
 
     //日历插件
     self.calendar = [[FSCalendar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width - 20, 250)];
@@ -76,12 +75,8 @@ static KPColorPickerView *colorPickerView = NULL;
     
     self.calendar.appearance.headerTitleColor = [Utilities getColor];
     self.calendar.appearance.weekdayTextColor = [Utilities getColor];
-    
-    //        self.calendar.appearance.todayColor = [UIColor whiteColor];
-    //        self.calendar.appearance.titleTodayColor = [UIColor whiteColor];
     self.calendar.appearance.selectionColor =  [Utilities getColor];
     self.calendar.appearance.titleSelectionColor = [UIColor whiteColor];
-    //        self.calendar.appearance.todaySelectionColor = [Utilities getColor];
     
     UIButton *previousButton = [UIButton buttonWithType:UIButtonTypeCustom];
     previousButton.frame = CGRectMake(5, 5, 95, 34);
@@ -149,6 +144,8 @@ static KPColorPickerView *colorPickerView = NULL;
         }
     }
     
+    [[KPWatchManager shareInstance] transformTasksToWatchWithTasks:taskArr];
+    
     //设置进度
     [self refreshProgress];
     
@@ -170,7 +167,6 @@ static KPColorPickerView *colorPickerView = NULL;
     [self setBadge];
     
     if(firstLoad){
-        NSLog(@"TOGGLE");
         firstLoad = NO;
     }
 }
@@ -267,8 +263,9 @@ static KPColorPickerView *colorPickerView = NULL;
 }
 
 - (void)deleteTaskAtIndexPath:(NSIndexPath *)indexPath{
-    SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-    [alert addButton:@"删除" actionBlock:^{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确认删除吗" message:@"此操作不可恢复" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"删除" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
         Task *t;
         if(indexPath.section == 1){
             t = self.unfinishedTaskArr[indexPath.row];
@@ -288,7 +285,9 @@ static KPColorPickerView *colorPickerView = NULL;
         
         [self refreshProgress];
     }];
-    [alert showWarning:@"确认删除吗" subTitle:@"此操作不可恢复" closeButtonTitle:@"取消" duration:0.0];
+    [alert addAction:cancelAction];
+    [alert addAction:deleteAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - Table view data source
@@ -335,7 +334,7 @@ static KPColorPickerView *colorPickerView = NULL;
             }
         }
         default:
-            return [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+            return [UIView new];
     }
 }
 
@@ -586,7 +585,7 @@ static KPColorPickerView *colorPickerView = NULL;
 #pragma mark - DZNEmptyTableViewDelegate
 
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView{
-    NSString *text = @"没有任务";
+    NSString *text = NSLocalizedString(@"没有任务", @"") ;
     
     NSDictionary *attributes = @{
                                  NSForegroundColorAttributeName: [Utilities getColor],
@@ -655,20 +654,20 @@ static KPColorPickerView *colorPickerView = NULL;
 
 - (void)navigationTitleViewTapped{
     AMPopTip *tp = [KPTodayTableViewController shareTipInstance];
-    
+
     if(![tp isVisible] && ![tp isAnimating]){
         [tp showCustomView:colorPickerView
                  direction:AMPopTipDirectionDown
                     inView:self.view
                  fromFrame:CGRectMake(CGRectGetWidth(self.view.frame) / 2, -44, 0, 44)];
-        
+
         tp.textColor = [UIColor whiteColor];
         tp.tintColor = [Utilities getColor];
         tp.popoverColor = [Utilities getColor];
         tp.borderColor = [UIColor whiteColor];
-        
+
         tp.radius = 10;
-        
+
         [tp setDismissHandler:^{
             shareTip = NULL;
         }];

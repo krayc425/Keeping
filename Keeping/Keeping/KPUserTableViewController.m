@@ -10,8 +10,6 @@
 #import "Utilities.h"
 #import "DBManager.h"
 #import <AVOSCloud/AVOSCloud.h>
-#import "MBProgressHUD.h"
-#import "SCLAlertView.h"
 #import "DateUtil.h"
 #import "DateTools.h"
 
@@ -62,8 +60,8 @@
 #pragma mark - DB Actions
 
 - (void)uploadDB{
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
-    hud.label.text = @"上传中";
+//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
+//    hud.label.text = @"上传中";
     
     __block BOOL succeeded;
     
@@ -123,14 +121,18 @@
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [hud hideAnimated:YES];
-            
-            SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
             if(succeeded){
-                [alert showSuccess:@"上传成功" subTitle:nil closeButtonTitle:@"好的" duration:0.0];
-                [self setLatestLabel];
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"上传成功" message:nil preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    [self setLatestLabel];
+                }];
+                [alert addAction:okAction];
+                [self presentViewController:alert animated:YES completion:nil];
             }else{
-                [alert showError:@"上传失败" subTitle:nil closeButtonTitle:@"好的" duration:0.0];
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"上传失败" message:nil preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+                [alert addAction:okAction];
+                [self presentViewController:alert animated:YES completion:nil];
             }
         });
         
@@ -152,8 +154,8 @@
 }
 
 - (void)downloadDB{
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
-    hud.label.text = @"下载中";
+//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
+//    hud.label.text = @"下载中";
     
     __block BOOL succeeded;
     
@@ -185,15 +187,10 @@
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [hud hideAnimated:YES];
-            
-            if(succeeded){
-                SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-                [alert showSuccess:@"下载成功" subTitle:nil closeButtonTitle:@"好的" duration:0.0];
-            }else{
-                SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-                [alert showError:@"下载失败" subTitle:nil closeButtonTitle:@"好的" duration:0.0];
-            }
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:succeeded ? @"下载成功" : @"下载失败" message:nil preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+            [alert addAction:okAction];
+            [self presentViewController:alert animated:YES completion:nil];
         });
         
     });
@@ -217,59 +214,73 @@
 }
 
 - (void)logout{
-    SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-    [alert addButton:@"登出" actionBlock:^{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确认登出吗" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction:cancelAction];
+    UIAlertAction *logoutAction = [UIAlertAction actionWithTitle:@"登出" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [AVUser logOut];
         [self.navigationController popViewControllerAnimated:YES];
     }];
-    [alert showWarning:@"确认登出吗" subTitle:nil closeButtonTitle:@"取消" duration:0.0f];
+    [alert addAction:logoutAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)editUsername{
-    SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-    UITextField *usernameText = [alert addTextField:@"用户名"];
-    [alert addButton:@"提交" validationBlock:^BOOL{
-        //检查是否有重复用户名
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"修改用户名" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    __block UITextField *usernameText = nil;
+    [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.placeholder = @"用户名";
+        usernameText = textField;
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction:cancelAction];
+    
+    UIAlertAction *submitAction = [UIAlertAction actionWithTitle:@"提交" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
         AVQuery *duplicateNameQuery = [AVQuery queryWithClassName:@"username"];
         [duplicateNameQuery whereKey:@"username" equalTo:usernameText.text];
         if(duplicateNameQuery.countObjects > 0){
-            SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-            [alert showError:@"错误" subTitle:@"用户名与已有用户重复，请更换" closeButtonTitle:@"好的" duration:0.0];
-        }
-        return duplicateNameQuery.countObjects == 0;
-        
-    } actionBlock:^{
-        
-        AVQuery *query = [AVQuery queryWithClassName:@"username"];
-        [query whereKey:@"userId" equalTo:self.currentUser.objectId];
-        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            if (!error) {
-                AVObject *user;
-                
-                if(query.countObjects > 0){
-                    user = objects[0];
-                }else{
-                    user = [AVObject objectWithClassName:@"username"];
-                    [user setObject:self.currentUser.objectId forKey:@"userId"];
-                }
-                [user setObject:usernameText.text forKey:@"username"];
-                
-                [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                    
-                    SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-                    [alert showSuccess:@"修改成功" subTitle:nil closeButtonTitle:@"好的" duration:0.0];
-                    [alert alertIsDismissed:^{
-                        [self.userNameLabel setText:[user objectForKey:@"username"]];
+            
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"用户名与已有用户重复，请更换" message:nil preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleCancel handler:nil];
+            [alert addAction:cancelAction];
+            [self presentViewController:alert animated:YES completion:nil];
+            
+        }else{
+            AVQuery *query = [AVQuery queryWithClassName:@"username"];
+            [query whereKey:@"userId" equalTo:self.currentUser.objectId];
+            [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                if (!error) {
+                    AVObject *user;
+    
+                    if(query.countObjects > 0){
+                        user = objects[0];
+                    }else{
+                        user = [AVObject objectWithClassName:@"username"];
+                        [user setObject:self.currentUser.objectId forKey:@"userId"];
+                    }
+                    [user setObject:usernameText.text forKey:@"username"];
+    
+                    [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"修改成功" message:nil preferredStyle:UIAlertControllerStyleAlert];
+                        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                            [self.userNameLabel setText:[user objectForKey:@"username"]];
+                        }];
+                        [alert addAction:okAction];
+                        [self presentViewController:alert animated:YES completion:nil];
                     }];
-                    
-                }];
-            }else{
-                NSLog(@"错误：%@",error.description);
-            }
-        }];
+                }else{
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"修改失败" message:error.description preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+                    [alert addAction:okAction];
+                    [self presentViewController:alert animated:YES completion:nil];
+                }
+            }];
+        }
         
     }];
-    [alert showEdit:@"修改用户名" subTitle:nil closeButtonTitle:@"取消" duration:0.0];
+    [alert addAction:submitAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - Table view data source
@@ -290,31 +301,31 @@
         
     }else if(indexPath.section == 1 && indexPath.row == 0){
         
-        SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-        [alert addButton:@"上传" actionBlock:^{
-            
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"上传后将覆盖服务器端所有数据，确定上传吗？" message:[NSString stringWithFormat:@"上传将消耗约 %.2f MB 流量，建议在 WiFi 环境下上传", [[DBManager shareInstance] dbFilesize] / 1000000.0] preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:cancelAction];
+        UIAlertAction *uploadAction = [UIAlertAction actionWithTitle:@"上传" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [self uploadDB];
-            
         }];
-        
-        NSString *subtitle = [NSString stringWithFormat:@"上传后将覆盖服务器端所有数据，确定上传吗？\n注：上传将消耗约 %.2f MB 流量，建议在 WiFi 环境下上传", [[DBManager shareInstance] dbFilesize] / 1000000.0];
-        [alert showWarning:@"注意" subTitle:subtitle closeButtonTitle:@"取消" duration:0.0];
+        [alert addAction:uploadAction];
+        [self presentViewController:alert animated:YES completion:nil];
         
     }else if(indexPath.section == 1 && indexPath.row == 1){
         
         if(![self hasDBOnline]){
-            SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-            [alert showWarning:@"您还没有上传过数据" subTitle:nil closeButtonTitle:@"好的" duration:0.0];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"您还没有上传过数据" message:nil preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+            [alert addAction:cancelAction];
+            [self presentViewController:alert animated:YES completion:nil];
         }else{
-            SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-            [alert addButton:@"下载" actionBlock:^{
-                
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"下载后将覆盖本地所有数据，确定下载吗？" message:[NSString stringWithFormat:@"\n注：下载将消耗约 %.2f MB 流量，建议在 WiFi 环境下下载", [self getDBOnlineFileSize] / 1000000.0] preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+            [alert addAction:cancelAction];
+            UIAlertAction *uploadAction = [UIAlertAction actionWithTitle:@"下载" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 [self downloadDB];
-                
             }];
-            
-            NSString *subtitle = [NSString stringWithFormat:@"下载后将覆盖本地所有数据，确定下载吗？\n注：下载将消耗约 %.2f MB 流量，建议在 WiFi 环境下下载", [self getDBOnlineFileSize] / 1000000.0];
-            [alert showWarning:@"注意" subTitle:subtitle closeButtonTitle:@"取消" duration:0.0];
+            [alert addAction:uploadAction];
+            [self presentViewController:alert animated:YES completion:nil];
         }
         
     }else if(indexPath.section == 0 && indexPath.row == 0){

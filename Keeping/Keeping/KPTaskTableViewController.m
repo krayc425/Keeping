@@ -17,7 +17,6 @@
 #import "DateUtil.h"
 #import "KPTaskDetailTableViewController.h"
 #import "TaskDataHelper.h"
-#import "SCLAlertView.h"
 #import "KPTaskDisplayTableViewController.h"
 #import "KPNavigationTitleView.h"
 #import "AMPopTip.h"
@@ -126,8 +125,9 @@ static KPColorPickerView *colorPickerView = NULL;
 }
 
 - (void)deleteTaskAtIndexPath:(NSIndexPath *)indexPath{
-    SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-    [alert addButton:@"删除" actionBlock:^{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确认删除吗" message:@"此操作不可恢复" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"删除" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
         Task *t;
         if(indexPath.section == 1){
             t = self.taskArr[indexPath.row];
@@ -145,7 +145,9 @@ static KPColorPickerView *colorPickerView = NULL;
             [self.tableView reloadData];
         }
     }];
-    [alert showWarning:@"确认删除吗" subTitle:@"此操作不可恢复" closeButtonTitle:@"取消" duration:0.0];
+    [alert addAction:cancelAction];
+    [alert addAction:deleteAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)loadTasksOfWeekdays:(NSArray *)weekDays{
@@ -455,27 +457,27 @@ static KPColorPickerView *colorPickerView = NULL;
 #pragma mark - KPNavigationTitleDelegate
 
 - (void)navigationTitleViewTapped{
-    AMPopTip *tp = [KPTaskTableViewController shareTipInstance];
-    
-    if(![tp isVisible] && ![tp isAnimating]){
-        [tp showCustomView:colorPickerView
-                 direction:AMPopTipDirectionDown
-                    inView:self.view
-                 fromFrame:CGRectMake(CGRectGetWidth(self.view.frame) / 2, -44, 0, 44)];
-        
-        tp.textColor = [UIColor whiteColor];
-        tp.tintColor = [Utilities getColor];
-        tp.popoverColor = [Utilities getColor];
-        tp.borderColor = [UIColor whiteColor];
-        
-        tp.radius = 10;
-        
-        [tp setDismissHandler:^{
-            shareTip = NULL;
-        }];
-    }else{
-        [tp hide];
-    }
+//    AMPopTip *tp = [KPTaskTableViewController shareTipInstance];
+//
+//    if(![tp isVisible] && ![tp isAnimating]){
+//        [tp showCustomView:colorPickerView
+//                 direction:AMPopTipDirectionDown
+//                    inView:self.view
+//                 fromFrame:CGRectMake(CGRectGetWidth(self.view.frame) / 2, -44, 0, 44)];
+//
+//        tp.textColor = [UIColor whiteColor];
+//        tp.tintColor = [Utilities getColor];
+//        tp.popoverColor = [Utilities getColor];
+//        tp.borderColor = [UIColor whiteColor];
+//
+//        tp.radius = 10;
+//
+//        [tp setDismissHandler:^{
+//            shareTip = NULL;
+//        }];
+//    }else{
+//        [tp hide];
+//    }
 }
 
 #pragma mark - AMPopTip Singleton

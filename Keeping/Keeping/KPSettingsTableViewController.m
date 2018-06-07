@@ -10,8 +10,6 @@
 #import "Utilities.h"
 #import "KPTabBar.h"
 #import "KPUserTableViewController.h"
-#import "SCLAlertView.h"
-#import "MBProgressHUD.h"
 #import "AppKeys.h"
 #import <AVOSCloud/AVOSCloud.h>
 #import <StoreKit/StoreKit.h>
@@ -110,8 +108,9 @@
 }
 
 - (void)clearDisk {
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
-    hud.label.text = @"清理中";
+    
+//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
+//    hud.label.text = @"清理中";
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -123,11 +122,10 @@
                                      error:NULL];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [hud hideAnimated:YES];
-            
-            SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-            [alert showSuccess:@"清理成功" subTitle: nil closeButtonTitle:@"好的" duration:0.0];
-            [alert alertIsDismissed:^{
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"清理成功" message:nil preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+            [alert addAction:okAction];
+            [self presentViewController:alert animated:YES completion:^{
                 [self getCacheSize];
             }];
         });
@@ -175,8 +173,10 @@
         [AVOSCloudSNS loginWithCallback:^(id object, NSError *error) {
             if (error) {
                 NSLog(@"failed to get authentication from weibo. error: %@", error.description);
-                SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-                [alert showError:@"登录失败" subTitle:nil closeButtonTitle:@"好的" duration:0.0f];
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"登录失败" message:error.description preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+                [alert addAction:okAction];
+                [self presentViewController:alert animated:YES completion:nil];
             } else {
                 [AVUser loginWithAuthData:object platform:AVOSCloudSNSPlatformQQ block:^(AVUser *user, NSError *error) {
                     if ([self filterError:error]) {
@@ -198,8 +198,10 @@
         [AVOSCloudSNS loginWithCallback:^(id object, NSError *error) {
             if (error) {
                 NSLog(@"failed to get authentication from weibo. error: %@", error.description);
-                SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-                [alert showError:@"登录失败" subTitle:nil closeButtonTitle:@"好的" duration:0.0f];
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"登录失败" message:error.description preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+                [alert addAction:okAction];
+                [self presentViewController:alert animated:YES completion:nil];
             } else {
                 [AVUser loginWithAuthData:object platform:AVOSCloudSNSPlatformWeiBo block:^(AVUser *user, NSError *error) {
                     if ([self filterError:error]) {
@@ -239,13 +241,16 @@
         if (error) {
             // 登录失败，可能为网络问题或 authData 无效
             NSLog(@"%@", error.description);
-            SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-            [alert showError:@"登录失败" subTitle:error.description closeButtonTitle:@"好的" duration:0.0f];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"登录失败" message:error.description preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+            [alert addAction:okAction];
+            [self presentViewController:alert animated:YES completion:nil];
         } else {
-            SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-            [alert showSuccess:@"登录成功" subTitle:nil closeButtonTitle:@"好的" duration:0.0f];
-            [alert alertIsDismissed:^{
-                [self performSegueWithIdentifier:@"userSegue" sender:user];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"登录成功" message:error.description preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+            [alert addAction:okAction];
+            [self presentViewController:alert animated:YES completion:^{
+                [self performSegueWithIdentifier:@"userSegue" sender:nil];
             }];
         }
     }];
@@ -296,13 +301,18 @@
         }];
         UIAlertAction *weixinAction = [UIAlertAction actionWithTitle:@"微信" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [UIPasteboard generalPasteboard].string = @"krayc425";
-            SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-            [alert addButton:@"跳转到微信" actionBlock:^{
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"微信号已复制" message:nil preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+            [alert addAction:cancelAction];
+            UIAlertAction *wechatAction = [UIAlertAction actionWithTitle:@"跳转到微信" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"weixin://"]
-                                                   options:@{}
-                                         completionHandler:nil];
+                                                                    options:@{}
+                                                          completionHandler:nil];
             }];
-            [alert showSuccess:@"微信号已复制" subTitle:nil closeButtonTitle:@"关闭" duration:0.0];
+            [alert addAction:wechatAction];
+            [self presentViewController:alert animated:YES completion:^{
+                [self performSegueWithIdentifier:@"userSegue" sender:nil];
+            }];
         }];
         UIAlertAction *weiboAction = [UIAlertAction actionWithTitle:@"微博" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"sinaweibo://userinfo?uid=1634553604"]

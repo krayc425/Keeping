@@ -1,0 +1,141 @@
+
+/* Class = "UITableViewSection"; headerTitle = "字号"; ObjectID = "3lh-gO-V8Z"; */
+"3lh-gO-V8Z.headerTitle" = "字号";
+
+/* Class = "UILabel"; text = "*"; ObjectID = "5kc-2h-TcL"; */
+"5kc-2h-TcL.text" = "*";
+
+/* Class = "UITableViewController"; title = "今日"; ObjectID = "6at-be-euJ"; */
+"6at-be-euJ.title" = "今日";
+
+/* Class = "UIButton"; normalTitle = "查看大图"; ObjectID = "7eo-7n-hHL"; */
+"7eo-7n-hHL.normalTitle" = "查看大图";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "7q0-qa-Igb"; */
+"7q0-qa-Igb.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "已加入"; ObjectID = "81O-HQ-i84"; */
+"81O-HQ-i84.text" = "已加入";
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "9FZ-kn-RtR"; */
+"9FZ-kn-RtR.title" = "Item";
+
+/* Class = "UILabel"; text = "类别颜色备注"; ObjectID = "BTM-tl-eHm"; */
+"BTM-tl-eHm.text" = "类别颜色备注";
+
+/* Class = "UILabel"; text = "无"; ObjectID = "BXh-pc-0Wg"; */
+"BXh-pc-0Wg.text" = "无";
+
+/* Class = "UILabel"; text = "未打卡"; ObjectID = "DM8-4Q-mHx"; */
+"DM8-4Q-mHx.text" = "未打卡";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Ew7-EW-Tsj"; */
+"Ew7-EW-Tsj.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "无"; ObjectID = "G57-UJ-nTu"; */
+"G57-UJ-nTu.text" = "无";
+
+/* Class = "UILabel"; text = "需打卡"; ObjectID = "IpD-LU-EEM"; */
+"IpD-LU-EEM.text" = "需打卡";
+
+/* Class = "UILabel"; text = "刷新 APP 列表"; ObjectID = "Msc-c3-Lf4"; */
+"Msc-c3-Lf4.text" = "刷新 APP 列表";
+
+/* Class = "UILabel"; text = "用户名"; ObjectID = "Nw3-Uc-PxY"; */
+"Nw3-Uc-PxY.text" = "用户名";
+
+/* Class = "UILabel"; text = "~"; ObjectID = "QDy-bl-ZbL"; */
+"QDy-bl-ZbL.text" = "~";
+
+/* Class = "UILabel"; text = "已打卡"; ObjectID = "UoR-Se-hxg"; */
+"UoR-Se-hxg.text" = "已打卡";
+
+/* Class = "UILabel"; text = "没找到需要的 APP？"; ObjectID = "Wpg-Kq-CgT"; */
+"Wpg-Kq-CgT.text" = "没找到需要的 APP？";
+
+/* Class = "UILabel"; text = "角标显示今日未完成任务数"; ObjectID = "XQI-gZ-KeD"; */
+"XQI-gZ-KeD.text" = "角标显示今日未完成任务数";
+
+/* Class = "UITableViewSection"; headerTitle = "请确认您的手机里已经安装了要选择的 APP"; ObjectID = "bez-qX-KXz"; */
+"bez-qX-KXz.headerTitle" = "请确认您的手机里已经安装了要选择的 APP";
+
+/* Class = "UILabel"; text = "*"; ObjectID = "bpY-Ov-16U"; */
+"bpY-Ov-16U.text" = "*";
+
+/* Class = "UITableViewSection"; headerTitle = "预览"; ObjectID = "dQZ-Z9-775"; */
+"dQZ-Z9-775.headerTitle" = "预览";
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "fdh-tp-3dv"; */
+"fdh-tp-3dv.title" = "Item";
+
+/* Class = "UILabel"; text = "无"; ObjectID = "gGD-zF-qbo"; */
+"gGD-zF-qbo.text" = "无";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "hYm-gY-e2N"; */
+"hYm-gY-e2N.text" = "Label";
+
+/* Class = "UILabel"; text = "下载备份"; ObjectID = "hvj-P3-aUp"; */
+"hvj-P3-aUp.text" = "下载备份";
+
+/* Class = "UILabel"; text = "常见问题"; ObjectID = "iTn-uX-4PE"; */
+"iTn-uX-4PE.text" = "常见问题";
+
+/* Class = "UILabel"; text = "清理缓存"; ObjectID = "iiM-Fm-wOB"; */
+"iiM-Fm-wOB.text" = "清理缓存";
+
+/* Class = "UILabel"; text = "评价我们"; ObjectID = "j31-1g-KVZ"; */
+"j31-1g-KVZ.text" = "评价我们";
+
+/* Class = "UILabel"; text = "字体"; ObjectID = "jps-k7-gzB"; */
+"jps-k7-gzB.text" = "字体";
+
+/* Class = "UILabel"; text = "上传备份"; ObjectID = "kAH-ju-cMm"; */
+"kAH-ju-cMm.text" = "上传备份";
+
+/* Class = "UILabel"; text = "跳过打卡"; ObjectID = "kZj-5f-Ls6"; */
+"kZj-5f-Ls6.text" = "跳过打卡";
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "mlU-go-l87"; */
+"mlU-go-l87.title" = "Item";
+
+/* Class = "UILabel"; text = "致谢"; ObjectID = "pcI-lc-3hu"; */
+"pcI-lc-3hu.text" = "致谢";
+
+/* Class = "UITableViewController"; title = "设置"; ObjectID = "piG-ET-YWg"; */
+"piG-ET-YWg.title" = "设置";
+
+/* Class = "UILabel"; text = "联系作者"; ObjectID = "r1k-PM-ahV"; */
+"r1k-PM-ahV.text" = "联系作者";
+
+/* Class = "UILabel"; text = "登出"; ObjectID = "s5a-7j-SWz"; */
+"s5a-7j-SWz.text" = "登出";
+
+/* Class = "UILabel"; text = "动画效果"; ObjectID = "sRw-yr-iKn"; */
+"sRw-yr-iKn.text" = "动画效果";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "uKW-o4-C4R"; */
+"uKW-o4-C4R.normalTitle" = "Button";
+
+/* Class = "UISegmentedControl"; uOk-Vw-l7i.segmentTitles[0] = "小"; ObjectID = "uOk-Vw-l7i"; */
+"uOk-Vw-l7i.segmentTitles[0]" = "小";
+
+/* Class = "UISegmentedControl"; uOk-Vw-l7i.segmentTitles[1] = "中"; ObjectID = "uOk-Vw-l7i"; */
+"uOk-Vw-l7i.segmentTitles[1]" = "中";
+
+/* Class = "UISegmentedControl"; uOk-Vw-l7i.segmentTitles[2] = "大"; ObjectID = "uOk-Vw-l7i"; */
+"uOk-Vw-l7i.segmentTitles[2]" = "大";
+
+/* Class = "UIButton"; normalTitle = "删除图片"; ObjectID = "uTp-h9-TXH"; */
+"uTp-h9-TXH.normalTitle" = "删除图片";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "uex-MV-BR6"; */
+"uex-MV-BR6.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "更改图片"; ObjectID = "wtU-Oq-EvO"; */
+"wtU-Oq-EvO.normalTitle" = "更改图片";
+
+/* Class = "UITextField"; placeholder = "请输入带有 http:// 前缀的网址"; ObjectID = "yTv-VD-Eif"; */
+"yTv-VD-Eif.placeholder" = "请输入带有 http:// 前缀的网址";
+
+/* Class = "UITableViewController"; title = "任务"; ObjectID = "ztj-1T-P03"; */
+"ztj-1T-P03.title" = "任务";

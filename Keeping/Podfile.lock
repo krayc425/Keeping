@@ -39,10 +39,8 @@ PODS:
   - LeanCloudSocial (0.0.8):
     - AFNetworking (~> 2.0)
     - AVOSCloud (~> 3.1)
-  - MBProgressHUD (1.0.0)
   - MGSwipeTableCell (1.6.7)
   - pop (1.0.10)
-  - SCLAlertView-Objective-C (1.1.2)
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
@@ -60,9 +58,7 @@ DEPENDENCIES:
   - IDMPhotoBrowser
   - IQKeyboardManager
   - LeanCloudSocial
-  - MBProgressHUD
   - MGSwipeTableCell
-  - SCLAlertView-Objective-C
   - VTAcknowledgementsViewController
 
 SPEC REPOS:
@@ -80,10 +76,8 @@ SPEC REPOS:
     - IDMPhotoBrowser
     - IQKeyboardManager
     - LeanCloudSocial
-    - MBProgressHUD
     - MGSwipeTableCell
     - pop
-    - SCLAlertView-Objective-C
     - SDWebImage
     - VTAcknowledgementsViewController
 
@@ -101,13 +95,11 @@ SPEC CHECKSUMS:
   IDMPhotoBrowser: b96159fe4adb991a844068eb17dab9c0b7d7e51a
   IQKeyboardManager: 1df9c0f147af1681cfb2d9977bc30309d45a7e76
   LeanCloudSocial: f7787dfc1559dc47263bbfd37a03c870352ad98a
-  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   MGSwipeTableCell: fb20e983988bde2b8d0df29c2d9e1d8ffd10b74a
   pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
-  SCLAlertView-Objective-C: 0e54351fa4f98a5c7c6ad3727e6dbb46784534e5
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   VTAcknowledgementsViewController: d62bb400ca68e240680906bcfa2a2b380d39b30f
 
-PODFILE CHECKSUM: c6bdb3580b76ad22b356205a207b1d4cd60edde4
+PODFILE CHECKSUM: 39a6da12e13fe121c1d6aea83b15ebf6d2124971
 
 COCOAPODS: 1.5.2

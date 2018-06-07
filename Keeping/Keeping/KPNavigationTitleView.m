@@ -80,15 +80,12 @@
     if(color == NULL){
         
         if(canTap){
-            UIImage *img = [UIImage imageNamed:@"NAV_DOWN"];
-            img = [img imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-            
+            UIImage *img = [UIImage imageNamed:@"NAV_DOWN_CIRCLE"];
             [typeView setImage:img];
             [typeView setHidden:NO];
-            [typeView setTintColor:[UIColor whiteColor]];
             [stackView setFrame:CGRectMake(0,
                                            0,
-                                           CGRectGetWidth(titleLabel.frame) + 12,
+                                           CGRectGetWidth(titleLabel.frame) + 15,
                                            44)];
         }else{
             [typeView setImage:[UIImage new]];

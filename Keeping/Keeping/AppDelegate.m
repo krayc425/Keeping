@@ -59,13 +59,6 @@
         [[NSUserDefaults standardUserDefaults] setValue:@{@"sortName" : @true} forKey:@"sort"];
     }
     [[NSUserDefaults standardUserDefaults] synchronize];
-    //widget 字体
-    NSUserDefaults *shared = [[NSUserDefaults alloc]initWithSuiteName:GROUP_ID];
-    if([shared valueForKey:@"fontwidget"] == NULL
-       || [[shared valueForKey:@"fontwidget"] isEqualToString:@""]){
-        [shared setValue:@"STHeitiSC-Light" forKey:@"fontwidget"];
-        [shared synchronize];
-    }
     
     //下载 schemes
     NSArray *r = [[KPSchemeManager shareInstance] getSchemeArr];
@@ -296,16 +289,6 @@
 
 #pragma mark - Login
 
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
-    return [AVOSCloudSNS handleOpenURL:url];
-}
-
-// When Build with IOS 9 SDK
-// For application on system below ios 9
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
-{
-    return [AVOSCloudSNS handleOpenURL:url];
-}
 // For application on system equals or larger ios 9
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options
 {

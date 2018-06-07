@@ -11,9 +11,7 @@
 #import "KPSchemeTableViewCell.h"
 #import "Utilities.h"
 #import <AVOSCloud/AVOSCloud.h>
-#import "MBProgressHUD.h"
 #import "KPScheme.h"
-#import "SCLAlertView.h"
 
 @interface KPSchemeTableViewController ()
 
@@ -83,19 +81,27 @@
 }
 
 - (void)showSubmitAlert{
-    SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-    UITextField *nameText = [alert addTextField:@"APP 名称"];
-    UITextField *schemeText = [alert addTextField:@"对应 URL Scheme（可选）"];
-    [alert addButton:@"提交" actionBlock:^(void) {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提交 APP" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    __block UITextField *nameText = nil;
+    [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.placeholder = @"APP 名称";
+        nameText = textField;
+    }];
+    __block UITextField *schemeText = nil;
+    [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.placeholder = @"对应 URL Scheme（可选）";
+        schemeText = textField;
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction:cancelAction];
+    UIAlertAction *submitAction = [UIAlertAction actionWithTitle:@"提交" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         AVObject *appNameSubmitted = [AVObject objectWithClassName:@"appNameSubmitted"];
         [appNameSubmitted setObject:[nameText text] forKey:@"appName"];
         [appNameSubmitted setObject:[schemeText text] forKey:@"appScheme"];
         [appNameSubmitted save];
-        
-        SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-        [alert showSuccess:@"提交成功" subTitle:@"感谢您的反馈！" closeButtonTitle:@"好的" duration:0.0];
     }];
-    [alert showEdit:@"提交 APP" subTitle:nil closeButtonTitle:@"取消" duration:0.0];
+    [alert addAction:submitAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - Table view data source

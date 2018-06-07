@@ -132,9 +132,9 @@ static BOOL _loadingXib = NO;
         }
     }
     
-    NSString *str = [[[[NSUserDefaults standardUserDefaults] objectForKey:@"typeTextArr"] mutableCopy] objectAtIndex:button.tag - 1];
+    NSString *str = [[[NSUserDefaults standardUserDefaults] objectForKey:@"typeTextArr"] mutableCopy][button.tag - 1];
     
-    if(![str isEqualToString:@""] && str != NULL && self.selectedColorNum != -1){
+    if(str != NULL && ![str isEqualToString:@""] && self.selectedColorNum != -1){
         popTip = [AMPopTip popTip];
         
         popTip.textColor = [UIColor whiteColor];

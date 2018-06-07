@@ -1,6 +1,5 @@
 target 'Keeping' do
 
-  pod 'MBProgressHUD'
   pod 'DateTools'
   pod 'DZNEmptyDataSet'
   pod 'FSCalendar'
@@ -10,7 +9,6 @@ target 'Keeping' do
   pod 'AMPopTip', '~> 1.5'
   pod 'AVOSCloud'
   pod 'LeanCloudSocial'
-  pod 'SCLAlertView-Objective-C'
   pod 'IQKeyboardManager'
   pod 'IDMPhotoBrowser'
   pod 'MGSwipeTableCell'

@@ -15,7 +15,6 @@
 #import "KPSchemeTableViewController.h"
 #import "KPSchemeManager.h"
 #import "ImageUtil.h"
-#import "SCLAlertView.h"
 #import "IDMPhotoBrowser.h"
 
 #define ENDLESS_STRING @"无限期"
@@ -224,33 +223,35 @@
 }
 
 - (void)doneAction:(id)sender{
-    
+
     //先检查有没有填满必填信息
     if(![self checkCompleted]){
-        SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-        [alert showError:@"信息填写不完整" subTitle:nil closeButtonTitle:@"好的" duration:0.0f];
-        [alert alertIsDismissed:^{
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"信息填写不完整" message:nil preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:^{
             [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
         }];
         return;
     }
-    
+
     NSDate *titleStartDate = [NSDate dateWithString:self.startDateButton.titleLabel.text formatString:DATE_FORMAT];
     NSDate *titleEndDate = [NSDate dateWithString:self.endDateButton.titleLabel.text formatString:DATE_FORMAT];
     //检查结束日期是否合法
     if([titleEndDate isEarlierThan:titleStartDate]){
-        SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-        [alert showError:@"持续时间设置不正确" subTitle:nil closeButtonTitle:@"好的" duration:0.0f];
-        [alert alertIsDismissed:^{
-            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:2] atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"持续时间设置不正确" message:nil preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:^{
+            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:2] atScrollPosition:UITableViewScrollPositionTop animated:YES];
         }];
         return;
     }
-    
+
     if(self.task == NULL){
         self.task = [Task new];
     }
-    
+
     //任务名
     self.task.name = self.taskNameField.text;
     //app 名
@@ -282,10 +283,10 @@
     self.task.memo = self.memoTextView.text;
     //类别
     self.task.type = self.selectedColorNum;
-    
+
     //更新
     if(self.task.id == 0){
-        
+
         self.task.punchDateArr = [[NSMutableArray alloc] init];
         self.task.punchMemoArr = [[NSMutableArray alloc] init];
 
@@ -300,15 +301,16 @@
         }];
         //赋值
         self.task.reminderDays = arr;
-        
+
         //增加
         [[TaskManager shareInstance] addTask:self.task];
         
-        SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-        [alert showSuccess:@"新增成功" subTitle:nil closeButtonTitle:@"好的" duration:0.0f];
-        [alert alertIsDismissed:^{
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"新增成功" message:nil preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [self.navigationController popViewControllerAnimated:YES];
         }];
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:nil];
     }else{
         //完成时间排序
         NSMutableArray *arr = [NSMutableArray arrayWithArray:self.selectedWeekdayArr];
@@ -319,12 +321,13 @@
             return result == NSOrderedDescending;
         }];
         self.selectedWeekdayArr = arr;
-        
+
         if(![self.task.reminderDays isEqual:arr]){
             
-            SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-            
-            [alert addButton:@"仍然更改" actionBlock:^(void) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"注意" message:@"您更改了预计完成日的选项，这会导致今天之前的打卡记录清空，新的记录将从今天开始重新计算。\n您要继续吗？" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+            [alert addAction:cancelAction];
+            UIAlertAction *changeAction = [UIAlertAction actionWithTitle:@"仍然更改" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 
                 //更新初始日期、打卡数组和提醒日期
                 self.task.reminderDays = arr;
@@ -335,29 +338,29 @@
                 
                 [[TaskManager shareInstance] updateTask:self.task];
                 
-                SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-                [alert showSuccess:@"修改成功" subTitle:nil closeButtonTitle:@"好的" duration:0.0f];
-                [alert alertIsDismissed:^{
-                    [self.navigationController popViewControllerAnimated:YES];
-                }];
-                
+                [self showChangeSuccessAlert];
+
             }];
-            
-            [alert showWarning:@"注意" subTitle:@"您更改了预计完成日的选项，这会导致今天之前的打卡记录清空，新的记录将从今天开始重新计算。\n您要继续吗？" closeButtonTitle:@"取消" duration:0.0f];
-            
+            [alert addAction:changeAction];
+            [self presentViewController:alert animated:YES completion:nil];
+
         }else{
-            
+
             [[TaskManager shareInstance] updateTask:self.task];
-            
-            SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-            [alert showSuccess:@"修改成功" subTitle:nil closeButtonTitle:@"好的" duration:0.0f];
-            [alert alertIsDismissed:^{
-                [self.navigationController popViewControllerAnimated:YES];
-            }];
-            
+
+            [self showChangeSuccessAlert];
         }
 
     }
+}
+
+- (void)showChangeSuccessAlert{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"修改成功" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    [alert addAction:okAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - Color Type Selection
@@ -421,12 +424,14 @@
     if(self.selectedImgView.image == [UIImage new]){
         return;
     }else{
-        SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-        [alert addButton:@"删除" actionBlock:^{
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确定删除这张照片？" message:nil preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:cancelAction];
+        UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"登出" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
             [self setNotHaveImage];
         }];
-        [alert showWarning:@"删除照片" subTitle:@"您确定要删除这张照片？" closeButtonTitle:@"取消" duration:0.0];
-
+        [alert addAction:deleteAction];
+        [self presentViewController:alert animated:YES completion:nil];
     }
 }
 

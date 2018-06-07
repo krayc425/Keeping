@@ -8,6 +8,7 @@
 
 #import "KPTabBar.h"
 #import "KPTaskDetailTableViewController.h"
+#import "Utilities.h"
 
 @implementation KPTabBar
 
@@ -24,7 +25,11 @@
     
     // tabBar的尺寸
     CGFloat width = self.frame.size.width;
-    CGFloat height = self.frame.size.height;
+    
+    BOOL isiPhoneX = SCREEN_WIDTH == 375 && SCREEN_HEIGHT == 812;
+    
+    CGFloat height = self.frame.size.height - (isiPhoneX ? 25.0 : 0.0);
+    CGFloat buttonWidth = 50.0;
     
     // 添加发布按钮
     UIButton *publishButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -34,20 +39,20 @@
     [publishButton addTarget:self
                       action:@selector(publishClick:)
             forControlEvents:UIControlEventTouchUpInside];
+    [publishButton setCenter:CGPointMake(width * 0.5, isiPhoneX ? buttonWidth / 4.0 : 7.5)];
+    [publishButton setBounds:CGRectMake(0, 0, buttonWidth, buttonWidth)];
     [self addSubview:publishButton];
     self.publishButton = publishButton;
-    // 设置发布按钮的位置
-    self.publishButton.center = CGPointMake(width * 0.5, height * 0.5);
     
     // 按钮索引
     int index = 0;
     
     // 按钮的尺寸
-    CGFloat tabBarButtonW = width / 2 - CGRectGetWidth(publishButton.frame) / 2;
+    CGFloat tabBarButtonW = (width - CGRectGetWidth(publishButton.frame)) / 2;
     CGFloat tabBarButtonH = height;
     CGFloat tabBarButtonY = 0;
     
-    // 设置4个TabBarButton的frame
+    // 设置TabBarButton的frame
     for (UIView *tabBarButton in self.subviews) {
         if (![NSStringFromClass(tabBarButton.class) isEqualToString:@"UITabBarButton"]){
             continue;

@@ -268,8 +268,6 @@ static TaskManager* _instance = nil;
 - (NSMutableArray *)getTasks{
     [self loadTask];
     
-    [[KPWatchManager shareInstance] transformTasksToWatchWithTasks:self.taskArr];
-    
     return self.taskArr;
 }
 
