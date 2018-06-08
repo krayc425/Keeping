@@ -8,7 +8,6 @@ target 'Keeping' do
   pod 'FDFullscreenPopGesture'
   pod 'AMPopTip', '~> 1.5'
   pod 'AVOSCloud'
-  pod 'LeanCloudSocial'
   pod 'IQKeyboardManager'
   pod 'IDMPhotoBrowser'
   pod 'MGSwipeTableCell'

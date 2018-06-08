@@ -105,12 +105,16 @@ static KPColorPickerView *colorPickerView = NULL;
     [self.calendar selectDate:self.selectedDate scrollToDate:YES];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadTasks) name:@"refresh_today_task" object:nil];
-    
-    [self loadTasks];
 }
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"refresh_today_task" object:nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [self loadTasks];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{

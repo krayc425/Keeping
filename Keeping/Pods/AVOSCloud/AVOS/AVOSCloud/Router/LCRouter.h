@@ -8,6 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
+FOUNDATION_EXPORT NSString *const LCServiceModuleAPI;
+FOUNDATION_EXPORT NSString *const LCServiceModuleEngine;
+FOUNDATION_EXPORT NSString *const LCServiceModulePush;
+FOUNDATION_EXPORT NSString *const LCServiceModuleRTM;
+FOUNDATION_EXPORT NSString *const LCServiceModuleStatistics;
+
 FOUNDATION_EXPORT NSString *const LCRouterDidUpdateNotification;
 
 @interface LCRouter : NSObject
@@ -15,58 +23,64 @@ FOUNDATION_EXPORT NSString *const LCRouterDidUpdateNotification;
 + (instancetype)sharedInstance;
 
 /**
- Get API URL string.
-
- @return API URL string.
+ Get cached App-Router server table
  */
-- (NSString *)APIURLString;
+- (NSDictionary * _Nullable)cachedAppRouterServerTable;
 
 /**
- Get versioned API URL string.
-
- @return Versioned API URL string.
+ Get cached RTM server table.
  */
-- (NSString *)versionedAPIURLString;
+- (NSDictionary * _Nullable)cachedRTMServerTable;
 
 /**
- Get versioned API URL.
+ Fetch RTM server table asynchronously.
 
- @return Versioned API URL.
+ If fetching did succeed, it will cache the RTM server table for later use.
+
+ @param block The callback of fetching result.
  */
-- (NSURL *)versionedAPIURL;
+- (void)fetchRTMServerTableInBackground:(void(^_Nullable)(NSDictionary *RTMServerTable, NSError *error))block;
 
 /**
- Get push router URL string.
+ Get URL string for storage server.
 
- @return push router URL string.
+ @param path The API endpoint.
  */
-- (NSString *)pushRouterURLString;
+- (NSString *)URLStringForPath:(NSString *)path;
 
 /**
- Cache API host for service region.
+ Get batch path for the given path.
 
- @param host          The API host to be cached.
- @param lastModified  The last modified timestamp since 1970 in seconds.
- @param TTL           The time-to-live timestamp in seconds.
+ @brief Add a version prefix to the path.
+        For example, if the path given by you is "book", this method will return "/1.1/book".
+
+ @param path The API endpoint.
  */
-- (void)cacheAPIHostWithHost:(NSString *)host
-                lastModified:(NSTimeInterval)lastModified
-                         TTL:(NSTimeInterval)TTL;
+- (NSString *)batchPathForPath:(NSString *)path;
 
 /**
- Cache push router host for service region.
+ Preset URL string for a service module.
 
- @param host          The push router host to be cached.
- @param lastModified  The last modified timestamp since 1970 in seconds.
- @param TTL           The time-to-live timestamp in seconds.
+ The preset URL has the highest priority, it will override app router's result.
+
+ @param URLString     The URL string of service module.
+ @param serviceModule The service module which you want to preset.
  */
-- (void)cachePushRouterHostWithHost:(NSString *)host
-                       lastModified:(NSTimeInterval)lastModified
-                                TTL:(NSTimeInterval)TTL;
+- (void)presetURLString:(NSString *)URLString forServiceModule:(NSString *)serviceModule;
 
 /**
  Update router asynchronously.
  */
 - (void)updateInBackground;
 
+/**
+ Clean router cache.
+
+ @param key Key for cache.
+ */
+- (void)cleanRouterCacheForKey:(NSString *)key;
+
 @end
+
+NS_ASSUME_NONNULL_END
+

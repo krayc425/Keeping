@@ -14,14 +14,20 @@
 #import "AVObjectUtils.h"
 #import "AVPaasClient.h"
 #import "AVErrorUtils.h"
-#import "AVOSCloud_Internal.h"
-
 #import "AVFriendQuery.h"
 #import "AVUtils.h"
+
+LeanCloudSocialPlatform LeanCloudSocialPlatformWeiBo  = @"weibo";
+LeanCloudSocialPlatform LeanCloudSocialPlatformQQ     = @"qq";
+LeanCloudSocialPlatform LeanCloudSocialPlatformWeiXin = @"weixin";
 
 static BOOL enableAutomatic = NO;
 
 @class AVQuery;
+
+@implementation AVUserAuthDataLoginOption
+
+@end
 
 @implementation  AVUser
 
@@ -46,8 +52,7 @@ static BOOL enableAutomatic = NO;
     return [AVUser userTag];
 }
 
-+(void)changeCurrentUser:(AVUser *)newUser
-                    save:(BOOL)save
++ (void)changeCurrentUser:(AVUser *)newUser save:(BOOL)save
 {
     if (newUser && save) {
         NSMutableDictionary * json = [newUser userDictionaryForCache];
@@ -64,45 +69,36 @@ static BOOL enableAutomatic = NO;
 
 + (instancetype)currentUser
 {
-    AVUser * u = [AVPaasClient sharedInstance].currentUser;
-    if (u) {
-        return u;
+    AVUser *user = [AVPaasClient sharedInstance].currentUser;
+    if (user) {
+        return user;
     } else if ([AVPersistenceUtils fileExist:[AVPersistenceUtils currentUserArchivePath]]) {
         NSMutableDictionary *userDict = [NSMutableDictionary dictionaryWithDictionary:[AVPersistenceUtils getJSONFromPath:[AVPersistenceUtils currentUserArchivePath]]];
         if (userDict) {
             if ([AVPersistenceUtils fileExist:[AVPersistenceUtils currentUserClassArchivePath]]) {
                 NSDictionary *classDict = [AVPersistenceUtils getJSONFromPath:[AVPersistenceUtils currentUserClassArchivePath]];
-                u = [NSClassFromString(classDict[@"class"]) user];
+                user = [NSClassFromString(classDict[@"class"]) user];
             } else {
-                u = [self userOrSubclassUser];
+                user = [self userOrSubclassUser];
             }
             
-            [AVObjectUtils copyDictionary:userDict toObject:u];
-            [AVPaasClient sharedInstance].currentUser = u;
-            return u;
+            [AVObjectUtils copyDictionary:userDict toObject:user];
+            [AVPaasClient sharedInstance].currentUser = user;
+            return user;
         }
     }
     if (!enableAutomatic) {
-        return u;
+        return user;
     }
     
-    AVUser *user = [self userOrSubclassUser];
-    [[self class] changeCurrentUser:user save:NO];
-    return user;
+    AVUser *newUser = [self userOrSubclassUser];
+    [[self class] changeCurrentUser:newUser save:NO];
+    return newUser;
 }
 
 - (void)isAuthenticatedWithSessionToken:(NSString *)sessionToken callback:(AVBooleanResultBlock)callback {
     if (sessionToken == nil) {
-        NSInteger code = 0;
-        NSString *errorReasonText = @"sessionToken is nil";
-        NSDictionary *errorInfo = @{
-                                    @"code" : @(code),
-                                    NSLocalizedDescriptionKey : errorReasonText,
-                                    };
-        NSError *error = [NSError errorWithDomain:kAVErrorDomain
-                                             code:code
-                                         userInfo:errorInfo];
-        [AVUtils callBooleanResultBlock:callback error:error];
+        [AVUtils callBooleanResultBlock:callback error:LCErrorInternal(@"sessionToken is nil")];
         return;
     }
     
@@ -111,23 +107,8 @@ static BOOL enableAutomatic = NO;
     }];
 }
 
-- (BOOL)isAuthDataExistInMemory {
-    if (self.sessionToken.length > 0 ||
-        self.sinaWeiboToken.length > 0 ||
-        [self objectForKey:authDataTag]) // for sns user
-    {
-        return YES;
-    }
-    return NO;
-}
-
 - (BOOL)isAuthenticated {
     return [self isAuthDataExistInMemory];
-}
-
-- (NSArray *)linkedServiceNames {
-    NSDictionary *dict = [self objectForKey:authDataTag];
-    return[dict allKeys];
 }
 
 - (NSArray<AVRole *> *)getRoles:(NSError * _Nullable __autoreleasing *)error {
@@ -153,23 +134,9 @@ static BOOL enableAutomatic = NO;
     return u;
 }
 
-+ (AVUser *)userOrSubclassUser {
-    return (AVUser *)[AVObjectUtils avObjectForClass:[AVUser userTag]];
-}
-
 + (void)enableAutomaticUser
 {
     enableAutomatic = YES;
-}
-
-+(BOOL)isAutomaticUserEnabled
-{
-    return enableAutomatic;
-}
-
-+(void)disableAutomaticUser
-{
-    enableAutomatic = NO;
 }
 
 -(NSError *)preSave
@@ -178,7 +145,7 @@ static BOOL enableAutomatic = NO;
     {
         return nil;
     }
-    return [AVErrorUtils errorWithCode:kAVErrorUserCannotBeAlteredWithoutSession];
+    return LCError(kAVErrorUserCannotBeAlteredWithoutSession, nil, nil);
 }
 
 -(void)postSave
@@ -234,19 +201,26 @@ static BOOL enableAutomatic = NO;
 
 -(NSMutableDictionary *)userDictionary
 {
+    NSString *username = self.username;
+    NSString *password = self.password;
+    NSString *email = self.email;
+    NSString *mobilePhoneNumber = self.mobilePhoneNumber;
+
     NSMutableDictionary * parameters = [[NSMutableDictionary alloc] init];
-    if (self.username) {
-        [parameters setObject:self.username forKey:usernameTag];
+
+    if (username) {
+        [parameters setObject:username forKey:usernameTag];
     }
-    if (self.password) {
-        [parameters setObject:self.password forKey:passwordTag];
+    if (password) {
+        [parameters setObject:password forKey:passwordTag];
     }
-    if (self.email) {
-        [parameters setObject:self.email forKey:emailTag];
+    if (email) {
+        [parameters setObject:email forKey:emailTag];
     }
-    if (self.mobilePhoneNumber) {
-        [parameters setObject:self.mobilePhoneNumber forKey:mobilePhoneNumberTag];
+    if (mobilePhoneNumber) {
+        [parameters setObject:mobilePhoneNumber forKey:mobilePhoneNumberTag];
     }
+
     return parameters;
 }
 
@@ -275,11 +249,22 @@ static BOOL enableAutomatic = NO;
     }];
 }
 
-+(void)requestMobilePhoneVerify:(NSString *)phoneNumber withBlock:(AVBooleanResultBlock)block {
++ (void)requestMobilePhoneVerify:(NSString *)phoneNumber withBlock:(AVBooleanResultBlock)block {
+    [self requestVerificationCodeForPhoneNumber:phoneNumber options:nil callback:block];
+}
+
++ (void)requestVerificationCodeForPhoneNumber:(NSString *)phoneNumber
+                                      options:(AVUserShortMessageRequestOptions *)options
+                                     callback:(AVBooleanResultBlock)callback
+{
     NSParameterAssert(phoneNumber);
-    
-    [[AVPaasClient sharedInstance] postObject:@"requestMobilePhoneVerify" withParameters:@{ @"mobilePhoneNumber" : phoneNumber } block:^(id object, NSError *error) {
-        [AVUtils callBooleanResultBlock:block error:error];
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+
+    parameters[@"mobilePhoneNumber"] = phoneNumber;
+    parameters[@"validate_token"] = options.validationToken;
+
+    [[AVPaasClient sharedInstance] postObject:@"requestMobilePhoneVerify" withParameters:parameters block:^(id object, NSError *error) {
+        [AVUtils callBooleanResultBlock:callback error:error];
     }];
 }
 
@@ -315,8 +300,7 @@ static BOOL enableAutomatic = NO;
 
 - (void)updatePassword:(NSString *)oldPassword newPassword:(NSString *)newPassword block:(AVIdResultBlock)block {
     if (self.isAuthDataExistInMemory && oldPassword && newPassword) {
-        NSString *pathComponent = [NSString stringWithFormat:@"users/%@/updatePassword", self.objectId];
-        NSString *path = [[[AVOSCloud RESTBaseURL] URLByAppendingPathComponent:pathComponent] absoluteString];
+        NSString *path = [NSString stringWithFormat:@"users/%@/updatePassword", self.objectId];
         NSDictionary *params = @{@"old_password":oldPassword,
                                  @"new_password":newPassword};
         [[AVPaasClient sharedInstance] putObject:path withParameters:params sessionToken:self.sessionToken block:^(id object, NSError *error) {
@@ -334,14 +318,61 @@ static BOOL enableAutomatic = NO;
     } else {
         NSError *error = nil;
         if (!self.isAuthDataExistInMemory) {
-            error= [AVErrorUtils errorWithCode:kAVErrorUserCannotBeAlteredWithoutSession];
+            error = LCError(kAVErrorUserCannotBeAlteredWithoutSession, nil, nil);
         }
         
         if (!(oldPassword && newPassword)) {
-            error = [AVErrorUtils errorWithCode:kAVErrorUserPasswordMissing];
+            error = LCError(kAVErrorUserPasswordMissing, nil, nil);
         }
         [AVUtils callIdResultBlock:block object:nil error:error];
     }
+}
+
+- (void)refreshSessionTokenWithBlock:(AVBooleanResultBlock)block {
+    NSString *objectId = self.objectId;
+
+    if (!objectId) {
+        NSError *error = LCError(kAVErrorUserNotFound, @"User ID not found.", nil);
+        [AVUtils callBooleanResultBlock:block error:error];
+        return;
+    }
+
+    NSString *sessionToken = self.sessionToken;
+
+    if (!sessionToken) {
+        NSError *error = LCError(kAVErrorUserCannotBeAlteredWithoutSession, @"User session token not found.", nil);
+        [AVUtils callBooleanResultBlock:block error:error];
+        return;
+    }
+
+    AVPaasClient *HTTPClient = [AVPaasClient sharedInstance];
+
+    NSDictionary *headers = @{
+        LCHeaderFieldNameSession: sessionToken
+    };
+    NSString *path = [[[[NSURL URLWithString:@"users"]
+                        URLByAppendingPathComponent:objectId]
+                        URLByAppendingPathComponent:@"refreshSessionToken"]
+                        relativePath];
+    NSMutableURLRequest *request = [HTTPClient requestWithPath:path
+                                                        method:@"PUT"
+                                                       headers:headers
+                                                    parameters:nil];
+
+    [HTTPClient performRequest:request
+                       success:^(NSHTTPURLResponse *response, id result) {
+                           self.sessionToken = result[@"sessionToken"];
+                           self.updatedAt = [AVObjectUtils dateFromString:result[@"updatedAt"]];
+
+                           if ([self isEqual:[AVUser currentUser]]) {
+                               [AVUser changeCurrentUser:self save:YES];
+                           }
+
+                           [AVUtils callBooleanResultBlock:block error:nil];
+                       }
+                       failure:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
+                           [AVUtils callBooleanResultBlock:block error:error];
+                       }];
 }
 
 +(NSDictionary *)userParameter:(NSString *)username
@@ -350,6 +381,8 @@ static BOOL enableAutomatic = NO;
     NSDictionary * parameters = @{usernameTag: username, passwordTag:password};
     return parameters;
 }
+
+// MARK: - login with username & password
 
 + (instancetype)logInWithUsername:(NSString *)username
                      password:(NSString *)password
@@ -415,9 +448,9 @@ static BOOL enableAutomatic = NO;
             user = [self userOrSubclassUser];
             user.username = username;
             user.password = password;
-            [AVObjectUtils copyDictionary:object toObject:user];
-            [user.requestManager clear];
-            [[self class] changeCurrentUser:user save:YES];
+            
+            [self configAndChangeCurrentUserWithUser:user
+                                              object:object];
         }
         
         if (wait) {
@@ -437,6 +470,8 @@ static BOOL enableAutomatic = NO;
     if (theError != NULL) *theError = blockError;
     return theResult;
 }
+
+// MARK: - login with mobile
 
 + (instancetype)logInWithMobilePhoneNumber:(NSString *)phoneNumber
                          password:(NSString *)password
@@ -499,9 +534,9 @@ static BOOL enableAutomatic = NO;
         if (error == nil)
         {
             user = [self userOrSubclassUser];
-            [AVObjectUtils copyDictionary:object toObject:user];
-            [user.requestManager clear];
-            [[self class] changeCurrentUser:user save:YES];
+            
+            [self configAndChangeCurrentUserWithUser:user
+                                              object:object];
         }
         
         if (wait) {
@@ -522,6 +557,8 @@ static BOOL enableAutomatic = NO;
     return theResult;
 }
 
+// MARK: - login with token
+
 + (void)becomeWithSessionTokenInBackground:(NSString *)sessionToken block:(AVUserResultBlock)block {
     [self internalBecomeWithSessionTokenInBackground:sessionToken block:^(AVUser *user, NSError *error) {
         [AVUtils callUserResultBlock:block user:user error:error];
@@ -530,17 +567,8 @@ static BOOL enableAutomatic = NO;
 
 + (void)internalBecomeWithSessionTokenInBackground:(NSString *)sessionToken block:(AVUserResultBlock)block {
     if (sessionToken == nil) {
-        NSInteger code = 0;
-        NSString *errorReasonText = @"sessionToken is nil";
-        NSDictionary *errorInfo = @{
-                                    @"code" : @(code),
-                                    NSLocalizedDescriptionKey : errorReasonText,
-                                    };
-        NSError *error = [NSError errorWithDomain:kAVErrorDomain
-                                             code:code
-                                         userInfo:errorInfo];
         if (block) {
-            block(nil, error);
+            block(nil, LCErrorInternal(@"sessionToken is nil"));
         }
         return;
     }
@@ -557,7 +585,7 @@ static BOOL enableAutomatic = NO;
     }];
 }
 
-+ (instancetype)becomeWithSessionToken:(NSString *)sessionToken error:(NSError **)error {
++ (instancetype)becomeWithSessionToken:(NSString *)sessionToken error:(NSError * __autoreleasing *)error {
     __block Boolean hasCallback = NO;
     __block AVUser *user;
     [self internalBecomeWithSessionTokenInBackground:sessionToken block:^(AVUser *theUser, NSError *theError) {
@@ -571,13 +599,28 @@ static BOOL enableAutomatic = NO;
     return user;
 }
 
-+(void)requestLoginSmsCode:(NSString *)phoneNumber withBlock:(AVBooleanResultBlock)block {
+// MARK: - SMS code
+
++ (void)requestLoginSmsCode:(NSString *)phoneNumber withBlock:(AVBooleanResultBlock)block {
+    [self requestLoginCodeForPhoneNumber:phoneNumber options:nil callback:block];
+}
+
++ (void)requestLoginCodeForPhoneNumber:(NSString *)phoneNumber
+                               options:(AVUserShortMessageRequestOptions *)options
+                              callback:(AVBooleanResultBlock)callback
+{
     NSParameterAssert(phoneNumber);
-    
-    [[AVPaasClient sharedInstance] postObject:@"requestLoginSmsCode" withParameters:@{ @"mobilePhoneNumber" : phoneNumber } block:^(id object, NSError *error) {
-        [AVUtils callBooleanResultBlock:block error:error];
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+
+    parameters[@"mobilePhoneNumber"] = phoneNumber;
+    parameters[@"validate_token"] = options.validationToken;
+
+    [[AVPaasClient sharedInstance] postObject:@"requestLoginSmsCode" withParameters:parameters block:^(id object, NSError *error) {
+        [AVUtils callBooleanResultBlock:callback error:error];
     }];
 }
+
+// MARK: - login with mobile
 
 + (instancetype)logInWithMobilePhoneNumber:(NSString *)phoneNumber
                                   smsCode:(NSString *)code
@@ -640,12 +683,10 @@ static BOOL enableAutomatic = NO;
         if (error == nil)
         {
             user = [self userOrSubclassUser];
-            //            user.username = username;
-            //            user.password = password;
             user.mobilePhoneVerified = YES;
-            [AVObjectUtils copyDictionary:object toObject:user];
-            [user.requestManager clear];
-            [[self class] changeCurrentUser:user save:YES];
+
+            [self configAndChangeCurrentUserWithUser:user
+                                              object:object];
         }
         
         if (wait) {
@@ -721,11 +762,9 @@ static BOOL enableAutomatic = NO;
         if (error == nil)
         {
             user = [self userOrSubclassUser];
-            //            user.username = username;
-            //            user.password = password;
-            [AVObjectUtils copyDictionary:object toObject:user];
-            [user.requestManager clear];
-            [[self class] changeCurrentUser:user save:YES];
+            
+            [self configAndChangeCurrentUserWithUser:user
+                                              object:object];
         }
         
         if (wait) {
@@ -746,22 +785,14 @@ static BOOL enableAutomatic = NO;
     return theResult;
 }
 
-+(void)removeCookies {
-    // delete cookies
-    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-    for (NSHTTPCookie *cookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies]) {
-        if ([[AVPaasClient sharedInstance].baseURL rangeOfString:cookie.domain].location != NSNotFound) {
-            [storage deleteCookie:cookie];
-        }
-    }
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
+// MARK: - logout
 
 + (void)logOut {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:AnonymousIdKey];
-    [AVUser removeCookies];
     [[self class] changeCurrentUser:nil save:YES];
 }
+
+// MARK: - password reset
 
 + (BOOL)requestPasswordResetForEmail:(NSString *)email
 {
@@ -829,11 +860,22 @@ static BOOL enableAutomatic = NO;
     }];
 }
 
-+(void)requestPasswordResetWithPhoneNumber:(NSString *)phoneNumber block:(AVBooleanResultBlock)block {
++ (void)requestPasswordResetWithPhoneNumber:(NSString *)phoneNumber block:(AVBooleanResultBlock)block {
+    [self requestPasswordResetCodeForPhoneNumber:phoneNumber options:nil callback:block];
+}
+
++ (void)requestPasswordResetCodeForPhoneNumber:(NSString *)phoneNumber
+                                       options:(AVUserShortMessageRequestOptions *)options
+                                      callback:(AVBooleanResultBlock)callback
+{
     NSParameterAssert(phoneNumber);
-    
-    [[AVPaasClient sharedInstance] postObject:@"requestPasswordResetBySmsCode" withParameters:@{ @"mobilePhoneNumber" : phoneNumber } block:^(id object, NSError *error) {
-        [AVUtils callBooleanResultBlock:block error:error];
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+
+    parameters[@"mobilePhoneNumber"] = phoneNumber;
+    parameters[@"validate_token"] = options.validationToken;
+
+    [[AVPaasClient sharedInstance] postObject:@"requestPasswordResetBySmsCode" withParameters:parameters block:^(id object, NSError *error) {
+        [AVUtils callBooleanResultBlock:callback error:error];
     }];
 }
 
@@ -848,30 +890,307 @@ static BOOL enableAutomatic = NO;
     }];
 }
 
+// MARK: - query
+
 + (AVQuery *)query
 {
     AVQuery *query = [[AVQuery alloc] initWithClassName:[[self class] userTag]];
     return query;
 }
 
-+(NSString *)userTag
+// MARK: - Auth Data
+
+- (void)loginWithAuthData:(NSDictionary *)authData
+               platformId:(NSString *)platformId
+                  options:(AVUserAuthDataLoginOption * _Nullable)options
+                 callback:(void (^)(BOOL, NSError * _Nullable))callback
 {
-    return @"_User";
+    NSMutableDictionary *parameters = [self initialBodyData];
+    
+    if (options) {
+        
+        parameters[authDataTag] =  @{ platformId : ({
+            NSMutableDictionary *mutableAuthData = authData.mutableCopy;
+            if (options.platform) {
+                mutableAuthData[@"platform"] = options.platform;
+            }
+            if (options.unionId) {
+                mutableAuthData[@"unionid"] = options.unionId;
+            }
+            if (options.isMainAccount) {
+                mutableAuthData[@"main_account"] = @(options.isMainAccount);
+            }
+            mutableAuthData;
+        }) };
+        
+    } else {
+        
+        parameters[authDataTag] = @{ platformId : authData };
+    }
+    
+    NSString *path = ({
+        NSString *path = nil;
+        if (options && options.failOnNotExist) {
+            path = [NSString stringWithFormat:@"users?%@=%@", @"failOnNotExist", @"true"];
+        } else {
+            path = @"users";
+        }
+        path;
+    });
+    
+    [AVPaasClient.sharedInstance postObject:path withParameters:parameters block:^(id object, NSError *error) {
+        
+        if (error) {
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                callback(false, error);
+            });
+            
+            return;
+        }
+        
+        NSDictionary *dic = (NSDictionary *)object;
+        
+        if (![NSDictionary lc__checkingType:dic]) {
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                callback(false, ({
+                    NSString *reason = @"response invalid.";
+                    LCErrorInternal(reason);
+                }));
+            });
+            
+            return;
+        }
+        
+        [self setNewFlag:true];
+        [AVObjectUtils copyDictionary:dic toObject:self];
+        [self.requestManager clear];
+        [AVUser changeCurrentUser:self save:YES];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            callback(true, nil);
+        });
+    }];
 }
 
-+(NSString *)endPoint
+- (void)associateWithAuthData:(NSDictionary *)authData
+                   platformId:(NSString *)platformId
+                      options:(AVUserAuthDataLoginOption * _Nullable)options
+                     callback:(void (^)(BOOL, NSError * _Nullable))callback
 {
-    return @"users";
+    NSString *objectId = self.objectId;
+    
+    if (!objectId) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            NSError *aError = ({
+                NSString *reason = @"objectId invalid.";
+                LCErrorInternal(reason);
+            });
+            
+            callback(false, aError);
+        });
+        
+        return;
+    }
+    
+    NSDictionary *parameters = nil;
+    
+    if (options) {
+        
+        NSMutableDictionary *mutableAuthData = ({
+            NSMutableDictionary *mutableAuthData = authData.mutableCopy;
+            if (options.platform) {
+                mutableAuthData[@"platform"] = options.platform;
+            }
+            if (options.unionId) {
+                mutableAuthData[@"unionid"] = options.unionId;
+            }
+            if (options.isMainAccount) {
+                mutableAuthData[@"main_account"] = @(options.isMainAccount);
+            }
+            mutableAuthData;
+        });
+        
+        parameters =  @{ authDataTag :
+                            @{ platformId : mutableAuthData } };
+        
+    } else {
+        
+        parameters =  @{ authDataTag :
+                            @{ platformId : authData } };
+    }
+    
+    NSString *path = [NSString stringWithFormat:@"users/%@", objectId];
+    NSString *sessionToken = self.sessionToken;
+    
+    [AVPaasClient.sharedInstance putObject:path withParameters:parameters sessionToken:sessionToken block:^(id object, NSError *error) {
+        
+        if (error) {
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                callback(false, error);
+            });
+            
+            return;
+        }
+        
+        NSDictionary *dic = (NSDictionary *)object;
+        
+        if (![NSDictionary lc__checkingType:dic]) {
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                callback(false, ({
+                    NSString *reason = @"response invalid.";
+                    LCErrorInternal(reason);
+                }));
+            });
+            
+            return;
+        }
+        
+        [AVObjectUtils copyDictionary:dic toObject:self];
+        
+        NSDictionary *oldAuthData = [self objectForKey:authDataTag];
+        NSDictionary *newAuthData = parameters[authDataTag];
+        
+        if ([NSDictionary lc__checkingType:oldAuthData]) {
+            
+            NSMutableDictionary *mutableCopy = oldAuthData.mutableCopy;
+            [mutableCopy addEntriesFromDictionary:newAuthData];
+            [self setObject:mutableCopy forKey:authDataTag];
+            
+        } else {
+            
+            [self setObject:newAuthData forKey:authDataTag];
+        }
+        
+        [AVUser changeCurrentUser:self save:YES];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            callback(true, nil);
+        });
+    }];
 }
 
--(NSString *)internalClassName
+- (void)disassociateWithPlatformId:(NSString *)platformId
+                    callback:(void (^)(BOOL, NSError * _Nullable))callback
 {
-    return @"_User";
+    NSString *objectId = self.objectId;
+    
+    if (!objectId) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            NSError *aError = ({
+                NSString *reason = @"objectId invalid.";
+                LCErrorInternal(reason);
+            });
+            
+            callback(nil, aError);
+        });
+        
+        return;
+    }
+    
+    NSDictionary *parameters = @{ [NSString stringWithFormat:@"%@.%@", authDataTag, platformId] :
+                                      @{ @"__op" : @"Delete" } };
+    
+    NSString *path = [NSString stringWithFormat:@"users/%@", self.objectId];
+    NSString *sessionToken = self.sessionToken;
+    
+    [AVPaasClient.sharedInstance putObject:path withParameters:parameters sessionToken:sessionToken block:^(id object, NSError *error) {
+        
+        if (error) {
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                callback(nil, error);
+            });
+            
+            return;
+        }
+        
+        NSDictionary *dic = (NSDictionary *)object;
+        
+        if (![NSDictionary lc__checkingType:dic]) {
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                callback(nil, ({
+                    NSString *reason = @"response invalid.";
+                    LCErrorInternal(reason);
+                }));
+            });
+            
+            return;
+        }
+        
+        [AVObjectUtils copyDictionary:dic toObject:self];
+        
+        NSDictionary *oldAuthData = [self objectForKey:authDataTag];
+        
+        if ([NSDictionary lc__checkingType:oldAuthData]) {
+            
+            NSMutableDictionary *mutableCopy = oldAuthData.mutableCopy;
+            [mutableCopy removeObjectForKey:platformId];
+            [self setObject:mutableCopy forKey:authDataTag];
+        }
+        
+        [AVUser changeCurrentUser:self save:YES];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            callback(self, nil);
+        });
+    }];
 }
 
--(void)setNewFlag:(BOOL)isNew
++ (void)loginOrSignUpWithAuthData:(NSDictionary *)authData
+                         platform:(NSString *)platform
+                            block:(AVUserResultBlock)block
 {
-    self.isNew = isNew;
+    AVUser *user = [self user];
+    [user loginWithAuthData:authData[authDataTag][platform] platformId:platform options:nil callback:^(BOOL succeeded, NSError * _Nullable error) {
+        if (error) {
+            block(nil, error);
+        } else {
+            block(user, nil);
+        }
+    }];
+}
+
+- (void)associateWithAuthData:(NSDictionary *)authData
+                     platform:(NSString *)platform
+                        block:(AVUserResultBlock)block
+{
+    [self associateWithAuthData:authData[authDataTag][platform] platformId:platform options:nil callback:^(BOOL succeeded, NSError * _Nullable error) {
+        if (error) {
+            block(nil, error);
+        } else {
+            block(self, nil);
+        }
+    }];
+}
+
+- (void)disassociateWithPlatform:(NSString *)platform
+                           block:(AVUserResultBlock)block
+{
+    [self disassociateWithPlatformId:platform callback:^(BOOL succeeded, NSError * _Nullable error) {
+        if (error) {
+            block(nil, error);
+        } else {
+            block(self, nil);
+        }
+    }];
 }
 
 #pragma mark - Override from AVObject
@@ -880,12 +1199,18 @@ static BOOL enableAutomatic = NO;
  Avoid session token to be removed after fetching or refreshing.
  */
 - (void)removeLocalData {
-    NSString *sessionToken = self.localData[@"sessionToken"];
+    __block NSString *sessionToken = nil;
+    [self internalSyncLock:^{
+        sessionToken = self.localData[@"sessionToken"];
+    }];
 
     [super removeLocalData];
 
-    if (sessionToken)
-        self.localData[@"sessionToken"] = sessionToken;
+    if (sessionToken) {
+        [self internalSyncLock:^{
+            self.localData[@"sessionToken"] = sessionToken;
+        }];
+    }
 }
 
 -(NSMutableDictionary *)postData
@@ -902,8 +1227,64 @@ static BOOL enableAutomatic = NO;
     return snapshot;
 }
 
-@end
+#pragma mark - internal method
 
++(NSString *)userTag
+{
+    return @"_User";
+}
+
++(NSString *)endPoint
+{
+    return @"users";
+}
+
++ (AVUser *)userOrSubclassUser {
+    return (AVUser *)[AVObjectUtils avObjectForClass:[AVUser userTag]];
+}
+
++ (void)configAndChangeCurrentUserWithUser:(AVUser *)user
+                                    object:(id)object
+{
+    if (!object || [object isKindOfClass:[NSDictionary class]] == false) {
+        return;
+    }
+    
+    NSDictionary *dic = (NSDictionary *)object;
+    
+    [AVObjectUtils copyDictionary:dic toObject:user];
+    
+    [user.requestManager clear];
+    
+    [self changeCurrentUser:user save:YES];
+}
+
+-(NSString *)internalClassName
+{
+    return @"_User";
+}
+
+-(void)setNewFlag:(BOOL)isNew
+{
+    self.isNew = isNew;
+}
+
+- (BOOL)isAuthDataExistInMemory {
+    if (self.sessionToken.length > 0 ||
+        self.sinaWeiboToken.length > 0 ||
+        [self objectForKey:authDataTag]) // for sns user
+    {
+        return YES;
+    }
+    return NO;
+}
+
+- (NSArray *)linkedServiceNames {
+    NSDictionary *dict = [self objectForKey:authDataTag];
+    return[dict allKeys];
+}
+
+@end
 
 @implementation AVUser (Friendship)
 
@@ -949,8 +1330,7 @@ static BOOL enableAutomatic = NO;
 
 -(void)follow:(NSString*)userId userDictionary:(NSDictionary *)dictionary andCallback:(AVBooleanResultBlock)callback{
     if (![self isAuthDataExistInMemory]) {
-        NSError *error= [AVErrorUtils errorWithCode:kAVErrorUserCannotBeAlteredWithoutSession];
-        callback(NO,error);
+        callback(NO, LCError(kAVErrorUserCannotBeAlteredWithoutSession, nil, nil));
         return;
     }
     NSDictionary *dict = [AVObjectUtils dictionaryFromObject:dictionary];
@@ -963,8 +1343,7 @@ static BOOL enableAutomatic = NO;
 
 -(void)unfollow:(NSString *)userId andCallback:(AVBooleanResultBlock)callback{
     if (![self isAuthDataExistInMemory]) {
-        NSError *error= [AVErrorUtils errorWithCode:kAVErrorUserCannotBeAlteredWithoutSession];
-        callback(NO,error);
+        callback(NO, LCError(kAVErrorUserCannotBeAlteredWithoutSession, nil, nil));
         return;
     }
     
@@ -1010,20 +1389,22 @@ static BOOL enableAutomatic = NO;
                 
             }
             @catch (NSException *exception) {
-                error=[AVErrorUtils errorWithCode:kAVErrorInternalServer errorText:@"wrong format return"];
+                error = LCErrorInternal(@"wrong format return");
             }
             @finally {
                 [AVUtils callIdResultBlock:callback object:dict error:error];
             }
-            
         } else {
             [AVUtils callIdResultBlock:callback object:object error:error];
         }
-        
     }];
 }
 
-
-
 @end
 
+
+@implementation AVUserShortMessageRequestOptions
+
+@dynamic validationToken;
+
+@end

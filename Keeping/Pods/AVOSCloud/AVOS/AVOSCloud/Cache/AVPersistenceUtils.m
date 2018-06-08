@@ -38,73 +38,67 @@
 
 #pragma mark - ~/Documents
 
-// ~/Documents
-+ (NSString *)appDocumentPath {
-    static NSString *path = nil;
-    
-    if (!path) {
-        path = [[self homeDirectoryPath] stringByAppendingPathComponent:@"Documents"];
-    }
-    
-    return path;
+// ~/Library/Caches/LeanCloud/{applicationId}
++ (NSString *)cacheSandboxPath {
+    NSString *applicationId = [AVOSCloud getApplicationId];
+
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *sandboxPath = [paths firstObject];
+
+    sandboxPath = [sandboxPath stringByAppendingPathComponent:LCRootDirName];
+    sandboxPath = [sandboxPath stringByAppendingPathComponent:applicationId];
+
+    [self createDirectoryIfNeeded:sandboxPath];
+
+    return sandboxPath;
 }
 
-// ~/Documents/LeanCloud
-+ (NSString *)leanDocumentPath {
-    NSString *path = [self appDocumentPath];
-    
-    path = [path stringByAppendingPathComponent:LCRootDirName];
-    
-    [self createDirectoryIfNeeded:path];
-    
-    return path;
-}
-
-// ~/Documents/LeanCloud/keyvalue
+// ~/Library/Caches/LeanCloud/{applicationId}/KeyValue
 + (NSString *)keyValueDatabasePath {
-    return [[self leanDocumentPath] stringByAppendingPathComponent:@"keyvalue"];
+    return [[self cacheSandboxPath] stringByAppendingPathComponent:@"KeyValue"];
 }
 
-// ~/Documents/LeanCloud/CommandCache
-+ (NSString *)commandCacheDatabasePath {
-    return [[self leanDocumentPath] stringByAppendingPathComponent:@"CommandCache"];
-}
-
+// ~/Library/Caches/LeanCloud/{applicationId}/ClientSessionToken
 + (NSString *)clientSessionTokenCacheDatabasePath {
-    return [[self leanDocumentPath] stringByAppendingPathComponent:@"ClientSessionToken"];
+    return [[self cacheSandboxPath] stringByAppendingPathComponent:@"ClientSessionToken"];
+}
+
+// ~/Library/Caches/LeanCloud/{applicationId}/UserDefaults
++ (NSString *)userDefaultsPath {
+    NSString *path = [self cacheSandboxPath];
+
+    path = [path stringByAppendingPathComponent:@"UserDefaults"];
+
+    return path;
 }
 
 #pragma mark - ~/Library/Caches
 
-// ~/Library/Caches
-+ (NSString *)appCachePath {
-    static NSString *path = nil;
-    
-    if (!path) {
-        path = [[self homeDirectoryPath] stringByAppendingPathComponent:@"Library"];
-        path = [path stringByAppendingPathComponent:@"Caches"];
-    }
-    
-    return path;
++ (NSString *)RD_Library_Caches
+{
+    return [[self homeDirectoryPath] stringByAppendingPathComponent:@"Library/Caches"];
+}
+
++ (NSString *)RD_Library_Caches_LeanCloud
+{
+    return [[self homeDirectoryPath] stringByAppendingPathComponent:@"Library/Caches/com.leancloud.caches"];
+}
+
++ (NSString *)RD_Library_Caches_LeanCloud_Files
+{
+    return [[self homeDirectoryPath] stringByAppendingPathComponent:@"Library/Caches/com.leancloud.caches/Files"];
 }
 
 // ~/Library/Caches/AVPaasCache, for AVCacheManager
 + (NSString *)avCacheDirectory {
-    NSString *ret = [[AVPersistenceUtils appCachePath] stringByAppendingPathComponent:@"AVPaasCache"];
-    [self createDirectoryIfNeeded:ret];
-    return ret;
-}
-
-// ~/Library/Caches/AVPaasFiles
-+ (NSString *)avFileDirectory {
-    NSString *ret = [[AVPersistenceUtils appCachePath] stringByAppendingPathComponent:@"AVPaasFiles"];
+    NSString *ret = [[AVPersistenceUtils RD_Library_Caches] stringByAppendingPathComponent:@"AVPaasCache"];
     [self createDirectoryIfNeeded:ret];
     return ret;
 }
 
 // ~/Library/Caches/LeanCloud/MessageCache
 + (NSString *)messageCachePath {
-    NSString *path = [self appCachePath];
+    NSString *path = [self RD_Library_Caches];
     
     path = [path stringByAppendingPathComponent:LCRootDirName];
     path = [path stringByAppendingPathComponent:LCMessageCacheDirName];

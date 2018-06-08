@@ -10,8 +10,9 @@
 
 @interface AVPersistenceUtils : NSObject
 
++ (NSString *)RD_Library_Caches_LeanCloud_Files;
+
 + (NSString *)avCacheDirectory;
-+ (NSString *)avFileDirectory;
 
 + (NSString *)currentUserArchivePath;
 + (NSString *)currentUserClassArchivePath;
@@ -23,8 +24,9 @@
 + (NSString *)messageCacheDatabasePathWithName:(NSString *)name;
 
 + (NSString *)keyValueDatabasePath;
-+ (NSString *)commandCacheDatabasePath;
 + (NSString *)clientSessionTokenCacheDatabasePath;
+
++ (NSString *)userDefaultsPath;
 
 + (BOOL)saveJSON:(id)JSON toPath:(NSString *)path;
 + (id)getJSONFromPath:(NSString *)path;

@@ -9,13 +9,14 @@
 #import "KPSettingsTableViewController.h"
 #import "Utilities.h"
 #import "KPTabBar.h"
-#import "KPUserTableViewController.h"
 #import "AppKeys.h"
 #import <AVOSCloud/AVOSCloud.h>
 #import <StoreKit/StoreKit.h>
-#import <LeanCloudSocial/AVOSCloudSNS.h>
-#import <LeanCloudSocial/AVUser+SNS.h>
 #import "VTAcknowledgementsViewController.h"
+#import <CloudKit/CloudKit.h>
+#import "DBManager.h"
+
+#define GROUP_ID @"group.com.krayc.keeping"
 
 @interface KPSettingsTableViewController ()
 
@@ -39,16 +40,6 @@
     //动画开关
     [self.animationSwitch addTarget:self action:@selector(switchChange:) forControlEvents:UIControlEventValueChanged];
     [self.badgeSwitch addTarget:self action:@selector(switchChange:) forControlEvents:UIControlEventValueChanged];
-    
-    //APP 登录图标按钮
-    for(UIButton *btn in self.appButtonStack.subviews){
-        [btn.layer setCornerRadius:btn.layer.frame.size.width / 2];
-        [btn.layer setMasksToBounds:YES];
-    }
-    
-    //配置登录信息
-    [AVOSCloudSNS setupPlatform:AVOSCloudSNSSinaWeibo withAppKey:sinaID andAppSecret:sinaKey andRedirectURI:@"http://www.baidu.com"];
-    [AVOSCloudSNS setupPlatform:AVOSCloudSNSQQ withAppKey:qqID andAppSecret:qqKey andRedirectURI:@"http://www.baidu.com"];
     
     //版本号
     NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
@@ -75,23 +66,6 @@
     [self setFont];
     
     [self getCacheSize];
-
-    if([AVUser currentUser]){
-        [self.userNameLabel setText:@"备份"];
-        [self.appButtonStack setHidden:YES];
-
-        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-        [cell setSelectionStyle:UITableViewCellSelectionStyleDefault];
-        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-
-    }else{
-        [self.userNameLabel setText:@"登录以备份"];
-        [self.appButtonStack setHidden:NO];
-
-        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-        [cell setAccessoryType:UITableViewCellAccessoryNone];
-    }
 }
 
 - (void)getCacheSize {
@@ -166,56 +140,6 @@
 
 #pragma mark - Login Actions
 
-- (IBAction)qqLoginAction:(id)sender{
-    [self.appButtonStack setUserInteractionEnabled:NO];
-    if(![AVUser currentUser]){
-        // 如果安装了，则跳转至应用，否则跳转至网页
-        [AVOSCloudSNS loginWithCallback:^(id object, NSError *error) {
-            if (error) {
-                NSLog(@"failed to get authentication from weibo. error: %@", error.description);
-                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"登录失败" message:error.description preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
-                [alert addAction:okAction];
-                [self presentViewController:alert animated:YES completion:nil];
-            } else {
-                [AVUser loginWithAuthData:object platform:AVOSCloudSNSPlatformQQ block:^(AVUser *user, NSError *error) {
-                    if ([self filterError:error]) {
-                        [self.appButtonStack setUserInteractionEnabled:YES];
-                        [self loginSucceedWithUser:user authData:object onPlatform:AVOSCloudSNSPlatformQQ];
-                    }
-                }];
-            }
-        } toPlatform:AVOSCloudSNSQQ];
-    }else{
-        [self performSegueWithIdentifier:@"userSegue" sender:[AVUser currentUser]];
-    }
-}
-
-- (IBAction)weiboLoginAction:(id)sender{
-    [self.appButtonStack setUserInteractionEnabled:NO];
-    if(![AVUser currentUser]){
-        // 如果安装了，则跳转至应用，否则跳转至网页
-        [AVOSCloudSNS loginWithCallback:^(id object, NSError *error) {
-            if (error) {
-                NSLog(@"failed to get authentication from weibo. error: %@", error.description);
-                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"登录失败" message:error.description preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
-                [alert addAction:okAction];
-                [self presentViewController:alert animated:YES completion:nil];
-            } else {
-                [AVUser loginWithAuthData:object platform:AVOSCloudSNSPlatformWeiBo block:^(AVUser *user, NSError *error) {
-                    if ([self filterError:error]) {
-                        [self.appButtonStack setUserInteractionEnabled:YES];
-                        [self loginSucceedWithUser:user authData:object onPlatform:AVOSCloudSNSPlatformWeiBo];
-                    }
-                }];
-            }
-        } toPlatform:AVOSCloudSNSSinaWeibo];
-    }else{
-        [self performSegueWithIdentifier:@"userSegue" sender:[AVUser currentUser]];
-    }
-}
-
 - (void)alert:(NSString *)message {
     UIAlertController *alertController =
     [UIAlertController alertControllerWithTitle:message
@@ -236,37 +160,6 @@
     return YES;
 }
 
-- (void)loginSucceedWithUser:(AVUser *)user authData:(NSDictionary *)authData onPlatform:(NSString *)platform{
-    [AVUser loginWithAuthData:authData platform:platform block:^(AVUser *user, NSError *error) {
-        if (error) {
-            // 登录失败，可能为网络问题或 authData 无效
-            NSLog(@"%@", error.description);
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"登录失败" message:error.description preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
-            [alert addAction:okAction];
-            [self presentViewController:alert animated:YES completion:nil];
-        } else {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"登录成功" message:error.description preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
-            [alert addAction:okAction];
-            [self presentViewController:alert animated:YES completion:^{
-                [self performSegueWithIdentifier:@"userSegue" sender:nil];
-            }];
-        }
-    }];
-}
-
-#pragma mark - Navigation
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if([segue.identifier isEqualToString:@"userSegue"]) {
-        AVUser *u = (AVUser *)sender;
-        KPUserTableViewController *kputvc = (KPUserTableViewController *)segue.destinationViewController;
-        [kputvc setCurrentUser:u];
-        [self.appButtonStack setUserInteractionEnabled:YES];
-    }
-}
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -285,9 +178,54 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if(indexPath.section == 0 && indexPath.row == 0){
-        if([AVUser currentUser]){
-            [self performSegueWithIdentifier:@"userSegue" sender:[AVUser currentUser]];
-        }
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"备份" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        
+        UIAlertAction *uploadAction = [UIAlertAction actionWithTitle:@"上传备份" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+            CKRecordID *recordID = [[CKRecordID alloc] initWithRecordName:@"IDname"];
+            [[CKContainer defaultContainer].privateCloudDatabase fetchRecordWithID:recordID completionHandler:^(CKRecord *record, NSError *error) {
+                if(error){
+                    [self alert:@"上传备份失败"];
+                }
+                
+                NSURL *url = [NSURL fileURLWithPath:[[DBManager shareInstance] getDBPath]];
+                CKAsset *asset = [[CKAsset alloc] initWithFileURL:url];
+                record[@"db"] = asset;
+                
+                [[CKContainer defaultContainer].privateCloudDatabase saveRecord:record completionHandler:^(CKRecord *record, NSError *error) {
+                    if(!error){
+                        [self alert:@"上传备份成功"];
+                    }else{
+                        [self alert:@"上传备份失败"];
+                    }
+                }];
+            }];
+        }];
+        [alert addAction:uploadAction];
+        
+        UIAlertAction *downloadAction = [UIAlertAction actionWithTitle:@"下载备份" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            NSPredicate *predicate = [NSPredicate predicateWithValue:YES];
+            CKQuery *query = [[CKQuery alloc] initWithRecordType:@"KeepingDB" predicate:predicate];
+            [[CKContainer defaultContainer].privateCloudDatabase performQuery:query inZoneWithID:nil completionHandler:^(NSArray *results, NSError *error) {
+                if(!error){
+                    [self alert:@"下载备份成功"];
+                    CKRecord *record = (CKRecord *)[results firstObject];
+                    
+                    [[[DBManager shareInstance] getDB] close];
+                    
+                    CKAsset *asset = (CKAsset *)record[@"db"];
+                    
+                    [[DBManager shareInstance] establishDBWithPreviousPath:asset.fileURL];
+                }else{
+                    [self alert:@"下载备份失败"];
+                }
+            }];
+        }];
+        [alert addAction:downloadAction];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:cancelAction];
+        
+        [self presentViewController:alert animated:YES completion:nil];
     }else if(indexPath.section == 0 && indexPath.row == 1){
         [self clearDisk];
     }

@@ -184,7 +184,6 @@ static KPColorPickerView *colorPickerView = NULL;
     [self fadeAnimation];
     
     if(firstLoad){
-        NSLog(@"TOGGLE");
         firstLoad = NO;
     }
 }
@@ -457,27 +456,27 @@ static KPColorPickerView *colorPickerView = NULL;
 #pragma mark - KPNavigationTitleDelegate
 
 - (void)navigationTitleViewTapped{
-//    AMPopTip *tp = [KPTaskTableViewController shareTipInstance];
-//
-//    if(![tp isVisible] && ![tp isAnimating]){
-//        [tp showCustomView:colorPickerView
-//                 direction:AMPopTipDirectionDown
-//                    inView:self.view
-//                 fromFrame:CGRectMake(CGRectGetWidth(self.view.frame) / 2, -44, 0, 44)];
-//
-//        tp.textColor = [UIColor whiteColor];
-//        tp.tintColor = [Utilities getColor];
-//        tp.popoverColor = [Utilities getColor];
-//        tp.borderColor = [UIColor whiteColor];
-//
-//        tp.radius = 10;
-//
-//        [tp setDismissHandler:^{
-//            shareTip = NULL;
-//        }];
-//    }else{
-//        [tp hide];
-//    }
+    AMPopTip *tp = [KPTaskTableViewController shareTipInstance];
+
+    if(![tp isVisible] && ![tp isAnimating]){
+        [tp showCustomView:colorPickerView
+                 direction:AMPopTipDirectionDown
+                    inView:self.view
+                 fromFrame:CGRectMake(CGRectGetWidth(self.view.frame) / 2, -44, 0, 44)];
+
+        tp.textColor = [UIColor whiteColor];
+        tp.tintColor = [Utilities getColor];
+        tp.popoverColor = [Utilities getColor];
+        tp.borderColor = [UIColor whiteColor];
+
+        tp.radius = 10;
+
+        [tp setDismissHandler:^{
+            shareTip = NULL;
+        }];
+    }else{
+        [tp hide];
+    }
 }
 
 #pragma mark - AMPopTip Singleton

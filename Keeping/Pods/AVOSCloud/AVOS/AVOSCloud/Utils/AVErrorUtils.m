@@ -8,9 +8,10 @@
 
 #import "AVErrorUtils.h"
 #import "AVUtils.h"
-NSString * const kAVErrorDomain = @"AVOS Cloud Error Domain";
-NSString * const kAVErrorUnknownText = @"Error Infomation Unknown";
-NSInteger const kAVErrorUnknownErrorCode = NSIntegerMax;
+
+NSString * const kLeanCloudErrorDomain = @"com.LeanCloud.ErrorDomain";
+NSString * const kLeanCloudRESTAPIResponseError = @"com.leancloud.restapi.response.error";
+
 NSInteger const kAVErrorInternalServer = 1;
 NSInteger const kAVErrorConnectionFailed = 100;
 NSInteger const kAVErrorObjectNotFound = 101;
@@ -105,6 +106,8 @@ NSInteger const kAVErrorUserWithMobilePhoneNotFound = 213;
 NSInteger const kAVErrorUserMobilePhoneNumberTaken = 214;
 /*! @abstract 215: Mobile phone number isn't verified. */
 NSInteger const kAVErrorUserMobilePhoneNotVerified = 215;
+/*! @abstract 216: SNS Auth Data's format is invalid. */
+NSInteger const kAVErrorUserSNSAuthDataInvalid = 216;
 
 /*! @abstract 250: Linked id missing from request */
 NSInteger const kAVErrorLinkedIdMissing = 250;
@@ -117,142 +120,26 @@ NSInteger const kAVErrorFileNotFound = 400;
 /*! File Data not available */
 NSInteger const kAVErrorFileDataNotAvailable = 401;
 
-@implementation AVErrorUtils
-
-+(NSError *)errorWithCode:(NSInteger)code
+NSError * LCErrorInternal(NSString *failureReason)
 {
-    return [NSError errorWithDomain:kAVErrorDomain code:code userInfo:nil];
+    return LCError(kAVErrorInternalServer, failureReason, nil);
 }
 
-+ (NSError *)errorWithText:(NSString *)text {
-    return [self errorWithCode:0 errorText:text];
-}
-
-+(NSError *)errorWithCode:(NSInteger)code errorText:(NSString *)text {
-    if (!code) { code = 0; }
-    NSDictionary *errorInfo=@{
-                                @"code":@(code),
-                                @"error":text, //???: should we remove this key
-                                NSLocalizedDescriptionKey:NSLocalizedString(text, nil), //TODO: add localized error descriptions
-                            };
-    
-    NSError *err= [NSError errorWithDomain:kAVErrorDomain
-                               code:code
-                           userInfo:errorInfo];
-    
-    
-    return err;
-}
-
-+(NSError *)internalServerError
+NSError * LCError(NSInteger code, NSString *failureReason, NSDictionary *userInfo)
 {
-    return [NSError errorWithDomain:kAVErrorDomain code:kAVErrorInternalServer userInfo:nil];
-}
-
-+(NSError *)fileNotFoundError
-{
-    NSError *error = [AVErrorUtils errorWithCode:kAVErrorFileNotFound errorText:@"File not found."];
-    return error;
-}
-
-+(NSError *)dataNotAvailableError
-{
-    NSError * error = [AVErrorUtils errorWithCode:kAVErrorFileDataNotAvailable errorText:@"File data not available."];
-    return error;
-}
-
-/**
- {
- "code": 105,
- "error": "invalid field name: bl!ng"
- }
- 
- 递归找到一个 error 为止
- */
-+ (NSError *)errorFromJSON:(id)JSON {
-    if (!JSON) {
-        return nil;
-    }
-
-    NSError *returnError = nil;
-
-    if ([JSON isKindOfClass:[NSDictionary class]]) {
-        if ([AVErrorUtils _isDictionaryError:JSON]) {
-            returnError = [AVErrorUtils _errorFromDictionary:JSON];
+    NSError *error = ({
+        NSMutableDictionary *mutableDictionary = nil;
+        if (userInfo) {
+            mutableDictionary = [NSMutableDictionary dictionaryWithDictionary:userInfo];
         } else {
-            for (NSString *key in [JSON allKeys]) {
-                id child = [JSON objectForKey:key];
-                
-                if ([child isKindOfClass:[NSDictionary class]] && [AVErrorUtils _isDictionaryError:child]) {
-                    returnError = [AVErrorUtils _errorFromDictionary:child];
-                    break;
-                }
-            }
+            mutableDictionary = [NSMutableDictionary dictionary];
         }
-    } else if ([JSON isKindOfClass:[NSArray class]]) {
-        for (id JSON1 in [JSON copy]) {
-            returnError = [[self class] errorFromJSON:JSON1];
-            if (returnError) {
-                break;
-            }
+        if (failureReason) {
+            mutableDictionary[NSLocalizedFailureReasonErrorKey] = failureReason;
         }
-    }
-    
-    if (returnError) AVLoggerE(@"error: %@", returnError);
-
-    return returnError;
+        [NSError errorWithDomain:kLeanCloudErrorDomain
+                            code:code
+                        userInfo:mutableDictionary];
+    });
+    return error;
 }
-
-+ (NSString *)errorTextFromError:(NSError *)error {
-    NSString *JSONString = [error.userInfo objectForKey:NSLocalizedRecoverySuggestionErrorKey];
-    NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:[JSONString dataUsingEncoding:NSUTF8StringEncoding] options:0 error:NULL];
-    
-    return [JSON objectForKey:@"error"];
-}
-
-+ (NSError *)errorFromAVError:(NSError *)error
-{
-    NSString *JSONString = [error.userInfo objectForKey:NSLocalizedRecoverySuggestionErrorKey];
-    if (JSONString == nil) {
-        return error;
-    }
-    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:[JSONString dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:NULL];
-    if ([dict objectForKey:@"code"] == nil) {
-        return error;
-    }
-    return [AVErrorUtils errorFromJSON:dict];
-}
-
-#pragma mark - Internal Methods
-+ (NSError *)_errorFromDictionary:(NSDictionary *)dic {
-    if (![AVErrorUtils _isDictionaryError:dic]) return nil;
-    
-    NSString *errorString = [dic objectForKey:@"error"];
-    NSNumber *code = [dic objectForKey:@"code"];
-    if (!code || ((id)code == [NSNull null])) {
-        code = @(kAVErrorUnknownErrorCode);
-    }
-    if (!errorString || ((id)errorString == [NSNull null])) {
-        errorString = kAVErrorUnknownText;
-    }
-    return [AVErrorUtils errorWithCode:code.integerValue errorText:errorString];
-}
-
-+ (BOOL)_isDictionaryError:(NSDictionary *)dic {
-    NSString *errorString = [dic objectForKey:@"error"];
-    NSNumber *code = [dic objectForKey:@"code"];
-    if (((id)code == [NSNull null]) && ((id)errorString == [NSNull null])) {
-        return NO;
-    }
-    if (code) {
-        return YES;
-    }
-    
-    if (errorString) {
-        return YES;
-    }
-    
-    return NO;
-}
-
-@end

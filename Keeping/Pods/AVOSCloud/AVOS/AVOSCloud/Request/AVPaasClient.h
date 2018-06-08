@@ -19,24 +19,18 @@
 #define USER_AGENT [NSString stringWithFormat:@"AVOS Cloud OSX-%@ SDK", SDK_VERSION]
 #endif
 
-FOUNDATION_EXPORT NSString *const API_VERSION;
-
 FOUNDATION_EXPORT NSString *const LCHeaderFieldNameId;
 FOUNDATION_EXPORT NSString *const LCHeaderFieldNameKey;
 FOUNDATION_EXPORT NSString *const LCHeaderFieldNameSign;
 FOUNDATION_EXPORT NSString *const LCHeaderFieldNameSession;
 FOUNDATION_EXPORT NSString *const LCHeaderFieldNameProduction;
 
-@class AVHTTPClient;
-
 @interface AVPaasClient : NSObject
 
 +(AVPaasClient *)sharedInstance;
-@property (nonatomic, readonly, strong) AVHTTPClient * clientImpl;
 
 @property (nonatomic, readwrite, copy) NSString * applicationId;
 @property (nonatomic, readwrite, copy) NSString * clientKey;
-@property (nonatomic, readonly, copy) NSString * baseURL;
 @property (nonatomic, readonly, copy) NSString * apiVersion;
 @property (nonatomic, readwrite, copy) NSString * applicationIdField;
 @property (nonatomic, readwrite, copy) NSString * applicationKeyField;
@@ -45,7 +39,6 @@ FOUNDATION_EXPORT NSString *const LCHeaderFieldNameProduction;
 @property (nonatomic, readwrite, strong) AVACL * defaultACL;
 @property (nonatomic, readwrite) BOOL currentUserAccessForDefaultACL;
 
-@property (nonatomic, readwrite, strong) AVInstallation * currentInstallation;
 @property (nonatomic, readwrite, assign) NSTimeInterval timeoutInterval;
 
 @property (nonatomic, readwrite, strong) NSMutableDictionary * subclassTable;
@@ -131,5 +124,10 @@ FOUNDATION_EXPORT NSString *const LCHeaderFieldNameProduction;
 - (void)performRequest:(NSURLRequest *)request
                success:(void (^)(NSHTTPURLResponse *response, id responseObject))successBlock
                failure:(void (^)(NSHTTPURLResponse *response, id responseObject, NSError *error))failureBlock;
+
+- (void)performRequest:(NSURLRequest *)request
+               success:(void (^)(NSHTTPURLResponse *response, id responseObject))successBlock
+               failure:(void (^)(NSHTTPURLResponse *response, id responseObject, NSError *error))failureBlock
+                  wait:(BOOL)wait;
 
 @end

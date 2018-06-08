@@ -18,8 +18,4 @@
     [self.appIconImg.layer setMasksToBounds:YES];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-}
-
 @end

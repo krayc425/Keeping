@@ -23,15 +23,15 @@
 
 + (AVUser *)userOrSubclassUser;
 
-+(NSString *)userTag;
-+(BOOL)isAutomaticUserEnabled;
-+(void)disableAutomaticUser;
++ (NSString *)userTag;
 
-+(NSString *)endPoint;
--(NSString *)internalClassName;
--(void)setNewFlag:(BOOL)isNew;
-
-+(void)removeCookies;
++ (NSString *)endPoint;
+- (NSString *)internalClassName;
+- (void)setNewFlag:(BOOL)isNew;
 
 - (NSArray *)linkedServiceNames;
+
++ (void)configAndChangeCurrentUserWithUser:(AVUser *)user
+                                    object:(id)object;
+
 @end

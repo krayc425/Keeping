@@ -73,6 +73,9 @@
 }
 
 - (void)tapAction:(id)sender{
+//    [UIView animateWithDuration:0.1 animations:^{
+//        self->typeView.transform = CGAffineTransformMakeRotation(M_PI);
+//    }];
     [self.navigationTitleDelegate navigationTitleViewTapped];
 }
 

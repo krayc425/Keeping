@@ -4,11 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>AFNetworking.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>AMPopTip.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -19,12 +14,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>BEMCheckBox-iOS10.0.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>BEMCheckBox-iOS10.2.xcscheme</key>
+		<key>BEMCheckBox.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -34,22 +24,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>DZNEmptyDataSet-iOS10.0.xcscheme</key>
+		<key>DZNEmptyDataSet.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>DZNEmptyDataSet-iOS10.2.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>DateTools-iOS10.0.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>DateTools-iOS10.2.xcscheme</key>
+		<key>DateTools.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -59,12 +39,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>FMDB-iOS10.0.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>FMDB-iOS10.2.xcscheme</key>
+		<key>FMDB.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -80,11 +55,6 @@
 			<false/>
 		</dict>
 		<key>IQKeyboardManager.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>LeanCloudSocial.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

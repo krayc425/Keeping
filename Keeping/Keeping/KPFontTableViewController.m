@@ -16,10 +16,11 @@
 #import "Task.h"
 #import "KPTimeView.h"
 #import "UIViewController+Extensions.h"
+#import "MGSwipeTableCell.h"
 
 #define GROUP_ID @"group.com.krayc.keeping"
 
-@interface KPFontTableViewController ()
+@interface KPFontTableViewController()<MGSwipeTableCellDelegate>
 
 @end
 
@@ -71,7 +72,6 @@
         switch (indexPath.row) {
             case 0:
             {
-                
                 static NSString *cellIdentifier = @"KPTodayTableViewCell";
                 UINib *nib = [UINib nibWithNibName:@"KPTodayTableViewCell" bundle:nil];
                 [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
@@ -80,6 +80,8 @@
                 [cell setIsSelected:NO];
                 
                 [cell setFont];
+                
+                cell.delegate = self;
                 
                 [cell.taskNameLabel setText:t.name];
                 
@@ -109,6 +111,8 @@
                 KPTaskTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
                 
                 [cell setFont];
+                
+                cell.delegate = self;
                 
                 [cell.nameLabel setText:t.name];
                 
@@ -145,6 +149,10 @@
 
 - (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath{
     return [super tableView:tableView indentationLevelForRowAtIndexPath:indexPath];
+}
+
+- (BOOL)swipeTableCell:(MGSwipeTableCell *)cell canSwipe:(MGSwipeDirection)direction fromPoint:(CGPoint)point{
+    return NO;
 }
 
 @end

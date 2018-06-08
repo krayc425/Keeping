@@ -13,9 +13,8 @@
 #import "AVAnalyticsUtils.h"
 #import "AVGlobal.h"
 #import "AVUtils.h"
-
-#import "AVOSCloud_Internal.h"
 #import "AVErrorUtils.h"
+#import "LCRouter.h"
 
 static NSString *const kAVOnlineConfig = @"AVOS_ONLINE_CONFIG";
 
@@ -384,7 +383,7 @@ static NSString *const kAVOnlineConfig = @"AVOS_ONLINE_CONFIG";
 
 +(NSString *)myObjectPath
 {
-    return [[[AVOSCloud RESTBaseURL] URLByAppendingPathComponent:@"stats"] absoluteString];
+    return [[LCRouter sharedInstance] URLStringForPath:@"stats"];
 }
 
 -(void)sendSessions {
@@ -449,17 +448,6 @@ static NSString *const kAVOnlineConfig = @"AVOS_ONLINE_CONFIG";
 -(void)setReportPolicy:(AVReportPolicy)reportPolicy {
     _reportPolicy = reportPolicy;
     [self postRecording];
-}
-
--(AVReportPolicy)reportPolicy {
-    BOOL debug = [AVAnalyticsUtils inDebug];
-    if (_reportPolicy == AV_REALTIME && !debug) {
-        return AV_BATCH;
-    }
-    if (_reportPolicy == AV_SENDWIFIONLY && !debug) {
-        return AV_BATCH;
-    }
-    return _reportPolicy;
 }
 
 /**

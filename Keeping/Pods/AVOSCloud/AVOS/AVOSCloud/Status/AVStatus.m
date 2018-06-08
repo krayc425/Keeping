@@ -167,8 +167,7 @@ NSString * const kAVStatusTypePrivateMessage=@"private";
 
 +(NSError*)permissionCheck{
     if (![[AVUser currentUser] isAuthDataExistInMemory]) {
-        NSError *error= [AVErrorUtils errorWithCode:kAVErrorUserCannotBeAlteredWithoutSession];
-        return error;
+        return LCError(kAVErrorUserCannotBeAlteredWithoutSession, nil, nil);
     }
     
     return nil;
@@ -253,10 +252,9 @@ NSString * const kAVStatusTypePrivateMessage=@"private";
     NSString *owner=[AVStatus stringOfStatusOwner:[AVUser currentUser].objectId];
     [[AVPaasClient sharedInstance] getObject:[NSString stringWithFormat:@"statuses/%@",objectId] withParameters:@{@"owner":owner,@"include":@"source"} block:^(id object, NSError *error) {
         
-        if (error) {
-            error=[AVErrorUtils errorFromAVError:error];
-        } else {
-            object=[self statusFromCloudData:object];
+        if (!error) {
+            
+            object = [self statusFromCloudData:object];
         }
         
         [AVUtils callIdResultBlock:callback object:object error:error];
@@ -273,21 +271,18 @@ NSString * const kAVStatusTypePrivateMessage=@"private";
     NSString *owner=[AVStatus stringOfStatusOwner:[AVUser currentUser].objectId];
     [[AVPaasClient sharedInstance] deleteObject:[NSString stringWithFormat:@"statuses/%@",objectId] withParameters:@{@"owner":owner} block:^(id object, NSError *error) {
         
-        if (error) {
-            error=[AVErrorUtils errorFromAVError:error];
-        }
         [AVUtils callBooleanResultBlock:callback error:error];
     }];
 }
 
 + (BOOL)deleteInboxStatusForMessageId:(NSUInteger)messageId inboxType:(NSString *)inboxType receiver:(NSString *)receiver error:(NSError *__autoreleasing *)error {
     if (!receiver) {
-        if (error) *error = [AVErrorUtils errorWithCode:AVLocalErrorCodeInvalidArgument errorText:@"Receiver of status can not be nil."];
+        if (error) *error = LCErrorInternal(@"Receiver of status can not be nil.");
         return NO;
     }
 
     if (!inboxType) {
-        if (error) *error = [AVErrorUtils errorWithCode:AVLocalErrorCodeInvalidArgument errorText:@"Inbox type of status can not be nil."];
+        if (error) *error = LCErrorInternal(@"Inbox type of status can not be nil.");
         return NO;
     }
 
@@ -324,8 +319,9 @@ NSString * const kAVStatusTypePrivateMessage=@"private";
 
 +(void)getUnreadStatusesCountWithType:(AVStatusType*)type andCallback:(AVIntegerResultBlock)callback{
     NSError *error=[self permissionCheck];
+
     if (error) {
-        callback(0,error);
+        [AVUtils callIntegerResultBlock:callback number:0 error:error];
         return;
     }
     
@@ -333,10 +329,22 @@ NSString * const kAVStatusTypePrivateMessage=@"private";
     
     [[AVPaasClient sharedInstance] getObject:@"subscribe/statuses/count" withParameters:@{@"owner":owner,@"inboxType":type} block:^(id object, NSError *error) {
         NSUInteger count=[object[@"unread"] integerValue];
-        if (error) {
-            error=[AVErrorUtils errorFromAVError:error];
-        }
         [AVUtils callIntegerResultBlock:callback number:count error:error];
+    }];
+}
+
++ (void)resetUnreadStatusesCountWithType:(AVStatusType *)type andCallback:(AVBooleanResultBlock)callback {
+    NSError *error = [self permissionCheck];
+
+    if (error) {
+        [AVUtils callBooleanResultBlock:callback error:error];
+        return;
+    }
+
+    NSString *owner = [AVStatus stringOfStatusOwner:[AVUser currentUser].objectId];
+
+    [[AVPaasClient sharedInstance] postObject:@"subscribe/statuses/resetUnreadCount" withParameters:@{@"owner": owner, @"inboxType": type} block:^(id object, NSError *error) {
+        [AVUtils callBooleanResultBlock:callback error:error];
     }];
 }
 
@@ -376,11 +384,11 @@ NSString * const kAVStatusTypePrivateMessage=@"private";
     NSParameterAssert(self.data);
     
     if ([self objectId]) {
-        return [AVErrorUtils errorWithCode:kAVErrorOperationForbidden errorText:@"status can't be update"];
+        return LCError(kAVErrorOperationForbidden, @"status can't be update", nil);
     }
     
     if ([AVUser currentUser]==nil) {
-        return [AVErrorUtils errorWithCode:kAVErrorOperationForbidden errorText:@"do NOT have an current user, please login first"];
+        return LCError(kAVErrorOperationForbidden, @"do NOT have an current user, please login first", nil);
     }
     
     if (self.source==nil) {
@@ -439,10 +447,10 @@ NSString * const kAVStatusTypePrivateMessage=@"private";
              }
          }
 
-         [AVUtils callBooleanResultBlock:block error:[AVErrorUtils errorWithCode:kAVErrorInvalidJSON errorText:@"unexpected result return"]];
+         [AVUtils callBooleanResultBlock:block error:LCError(kAVErrorInvalidJSON, @"unexpected result return", nil)];
      }
      failure:^(NSHTTPURLResponse *response, id responseObject, NSError *error) {
-         [AVUtils callBooleanResultBlock:block error:[AVErrorUtils errorFromJSON:responseObject] ?: error];
+         [AVUtils callBooleanResultBlock:block error:error];
      }];
 }
 

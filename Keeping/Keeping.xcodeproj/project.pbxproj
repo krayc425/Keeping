@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		240826DD1E570A1500EAC855 /* KPUserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 240826DC1E570A1500EAC855 /* KPUserTableViewController.m */; };
 		24151C921E322D6700757A69 /* KPTaskDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24151C911E322D6700757A69 /* KPTaskDetailTableViewController.m */; };
 		24151C971E32388300757A69 /* UNManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24151C961E32388300757A69 /* UNManager.m */; };
 		241D3F001E7CFAD20051023F /* KPTaskDisplayTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 241D3EFF1E7CFAD20051023F /* KPTaskDisplayTableViewController.m */; };
@@ -79,6 +78,7 @@
 		249AE3251E2DEE7700F704F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 249AE3241E2DEE7700F704F8 /* Assets.xcassets */; };
 		249AE3281E2DEE7700F704F8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 249AE3261E2DEE7700F704F8 /* LaunchScreen.storyboard */; };
 		24A0CD6C1E56CED80017EE22 /* KPScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 24A0CD6B1E56CED80017EE22 /* KPScheme.m */; };
+		24B16E0C20CA64790002CFBB /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24B16E0B20CA64790002CFBB /* CloudKit.framework */; };
 		24BA79A11E516949002133B6 /* TaskDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 24BA79A01E516949002133B6 /* TaskDataHelper.m */; };
 		24BA79AB1E516FE0002133B6 /* KPWeekdayPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24BA79AA1E516FE0002133B6 /* KPWeekdayPickerView.m */; };
 		24D064E420C8826700FD78F2 /* Intro.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24D064E320C8826700FD78F2 /* Intro.xcassets */; };
@@ -161,8 +161,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		240826DB1E570A1500EAC855 /* KPUserTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPUserTableViewController.h; sourceTree = "<group>"; };
-		240826DC1E570A1500EAC855 /* KPUserTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPUserTableViewController.m; sourceTree = "<group>"; };
 		24151C901E322D6700757A69 /* KPTaskDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPTaskDetailTableViewController.h; sourceTree = "<group>"; };
 		24151C911E322D6700757A69 /* KPTaskDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPTaskDetailTableViewController.m; sourceTree = "<group>"; };
 		24151C941E32378600757A69 /* Keeping.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Keeping.entitlements; sourceTree = "<group>"; };
@@ -275,6 +273,7 @@
 		249AE3291E2DEE7700F704F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24A0CD6A1E56CED80017EE22 /* KPScheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPScheme.h; sourceTree = "<group>"; };
 		24A0CD6B1E56CED80017EE22 /* KPScheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPScheme.m; sourceTree = "<group>"; };
+		24B16E0B20CA64790002CFBB /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		24BA799F1E516949002133B6 /* TaskDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskDataHelper.h; sourceTree = "<group>"; };
 		24BA79A01E516949002133B6 /* TaskDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDataHelper.m; sourceTree = "<group>"; };
 		24BA79A91E516FE0002133B6 /* KPWeekdayPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPWeekdayPickerView.h; sourceTree = "<group>"; };
@@ -344,6 +343,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24B16E0C20CA64790002CFBB /* CloudKit.framework in Frameworks */,
 				2436F8241E2F2C3300C2984A /* libsqlite3.0.tbd in Frameworks */,
 				5CB639CB421E29B47A2741DB /* libPods-Keeping.a in Frameworks */,
 			);
@@ -359,15 +359,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		240826DE1E570A1C00EAC855 /* User */ = {
-			isa = PBXGroup;
-			children = (
-				240826DB1E570A1500EAC855 /* KPUserTableViewController.h */,
-				240826DC1E570A1500EAC855 /* KPUserTableViewController.m */,
-			);
-			name = User;
-			sourceTree = "<group>";
-		};
 		242610381E519C500016DC64 /* KPWeekdayPickerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -407,7 +398,6 @@
 			children = (
 				2429CBDB1E2DF61B0027DD37 /* KPSettingsTableViewController.h */,
 				2429CBDC1E2DF61B0027DD37 /* KPSettingsTableViewController.m */,
-				240826DE1E570A1C00EAC855 /* User */,
 				2435DBF51E35CCD400F1A96E /* Font */,
 				2497004D1E5607610015CC5F /* TypeText */,
 				243B45DE20BF0D8C001AABD4 /* KPSettingTableViewCell.h */,
@@ -753,6 +743,7 @@
 		3B36A3747ED818A6EEF990CE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				24B16E0B20CA64790002CFBB /* CloudKit.framework */,
 				2433E6CD1E65247700315D5B /* libAVOSCloud.a */,
 				2433E6CB1E65242B00315D5B /* libAVOSCloudCrashReporting.a */,
 				2433E6C91E65184900315D5B /* libAVOSCloud.a */,
@@ -885,18 +876,30 @@
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
 							};
+							com.apple.HealthKit = {
+								enabled = 0;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 0;
+							};
 						};
 					};
 					249AE3111E2DEE7700F704F8 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = VEBQ28K9EA;
 						LastSwiftMigration = 0930;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
 							};
 							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
 								enabled = 1;
 							};
 						};
@@ -1138,7 +1141,6 @@
 				24151C971E32388300757A69 /* UNManager.m in Sources */,
 				24151C921E322D6700757A69 /* KPTaskDetailTableViewController.m in Sources */,
 				2435DBF11E35CCC300F1A96E /* KPFontTableViewController.m in Sources */,
-				240826DD1E570A1500EAC855 /* KPUserTableViewController.m in Sources */,
 				247C8EBD1F94FAB40098B574 /* KPTodayTableViewController+Touch.m in Sources */,
 				245D7B7C1F9CDDFA007DD894 /* KPWatchManager.m in Sources */,
 				249AE3231E2DEE7700F704F8 /* Keeping.xcdatamodeld in Sources */,
@@ -1425,6 +1427,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Keeping/Keeping.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = VEBQ28K9EA;
 				INFOPLIST_FILE = Keeping/Info.plist;
@@ -1436,6 +1439,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.krayc.Keeping;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "de1c94b2-ba33-425e-8c03-c106053cce6d";
+				PROVISIONING_PROFILE_SPECIFIER = Keeping;
 				SWIFT_OBJC_BRIDGING_HEADER = "Keeping/Keeping-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1451,6 +1456,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Keeping/Keeping.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = VEBQ28K9EA;
 				INFOPLIST_FILE = Keeping/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1461,6 +1467,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.krayc.Keeping;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "de1c94b2-ba33-425e-8c03-c106053cce6d";
+				PROVISIONING_PROFILE_SPECIFIER = Keeping;
 				SWIFT_OBJC_BRIDGING_HEADER = "Keeping/Keeping-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;

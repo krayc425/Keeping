@@ -31,7 +31,6 @@
 #include <net/if_dl.h>
 
 #import "AVAnalyticsUtils.h"
-#import "AVNetworking.h"
 #import "UserAgent.h"
 #import "LCNetworkReachabilityManager.h"
 #import "AVUtils.h"
@@ -83,14 +82,18 @@ static NSString * identifierForVendorTag = @"identifierForVendor";
 
 + (BOOL) isJailbroken
 {
-    BOOL isJailbroken = NO;
-    BOOL cydiaInstalled = [[NSFileManager defaultManager] fileExistsAtPath:@"/Applications/Cydia.app"];
-    FILE *f = fopen("/bin/bash", "r");
-    if (!(errno == ENOENT) && cydiaInstalled) {
-        isJailbroken = YES;
+#if TARGET_OS_SIMULATOR
+    return NO;
+#else
+    FILE *bash = fopen("/bin/bash", "r");
+
+    if (bash) {
+        fclose(bash);
+        return YES;
     }
-    fclose(f);
-    return isJailbroken;
+
+    return NO;
+#endif
 }
 
 +(NSString *)screenResolution
@@ -247,65 +250,88 @@ static NSString *const WWANType = @"WWAN";
  */
 +(NSMutableDictionary *)deviceInfo
 {
+    static NSMutableDictionary *staticDic;
     
-    static NSMutableDictionary *staticDict=nil;
-    if (staticDict==nil) {
-	    staticDict = [@{@"sdk_version": SDK_VERSION,
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        
+        staticDic = [NSMutableDictionary dictionaryWithCapacity:16];
+        
+        staticDic[@"sdk_version"] = SDK_VERSION;
+
 #if !TARGET_OS_WATCH
 #if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
-		           @"device_id": [AVAnalyticsUtils deviceId],
+        NSString *deviceId = [AVAnalyticsUtils deviceId];
+        if (deviceId) { staticDic[@"device_id"] = deviceId; }
 #endif
 #endif
-		           @"is_jailbroken": @([AVAnalyticsUtils isJailbroken]),
-		           @"device_model": [AVAnalyticsUtils deviceModel],
-		           @"resolution": [AVAnalyticsUtils screenResolution],
-		           @"os_version": [AVAnalyticsUtils systemVersion],
-		           @"language": [AVAnalyticsUtils language],
-		           @"timezone": [AVAnalyticsUtils timezone]} mutableCopy];
-        // 单元测试的时候，下面属性可能为 nil
-        if ([AVAnalyticsUtils buildVersion]) {
-            staticDict[@"sv"] = [AVAnalyticsUtils buildVersion];
-        }
-        if ([AVAnalyticsUtils appVersion]) {
-            staticDict[@"app_version"] = [AVAnalyticsUtils appVersion];
-        } else {
-            // need for unit test
-            staticDict[@"app_version"] = @"";
-        }
-        if ([AVAnalyticsUtils packageName]) {
-            staticDict[@"package_name"] = [AVAnalyticsUtils packageName];
-        }
-        if ([AVAnalyticsUtils displayName]) {
-            staticDict[@"display_name"] = [AVAnalyticsUtils displayName];
-        }
-    }
+        
+        staticDic[@"is_jailbroken"] = @([AVAnalyticsUtils isJailbroken]);
+        
+        NSString *deviceModel = [AVAnalyticsUtils deviceModel];
+        if (deviceModel) { staticDic[@"device_model"] = deviceModel; }
+        
+        NSString *resolution = [AVAnalyticsUtils screenResolution];
+        if (resolution) { staticDic[@"resolution"] = resolution; }
+        
+        NSString *osVersion = [AVAnalyticsUtils systemVersion];
+        if (osVersion) { staticDic[@"os_version"] = osVersion; }
+        
+        NSString *language = [AVAnalyticsUtils language];
+        if (language) { staticDic[@"language"] = language; }
+        
+        NSString *timezone = [AVAnalyticsUtils timezone];
+        if (timezone) { staticDic[@"timezone"] = timezone; }
+        
+        NSString *buildVersion = [AVAnalyticsUtils buildVersion];
+        if (buildVersion) { staticDic[@"sv"] = buildVersion; }
+
+        NSString *appVersion = [AVAnalyticsUtils appVersion];
+        if (appVersion) { staticDic[@"app_version"] = appVersion; }
+        
+        NSString *packageName = [AVAnalyticsUtils packageName];
+        if (packageName) { staticDic[@"package_name"] = packageName; }
+        
+        NSString *displayName = [AVAnalyticsUtils displayName];
+        if (displayName) { staticDic[@"display_name"] = displayName; }
+    });
     
-    //只有这几个数据是变动的
-    NSDictionary *dynamicDict=@{
-        @"os": [self sdkType],
+    NSMutableDictionary *dynamicDic = [NSMutableDictionary dictionaryWithCapacity:4];
+    
+    NSString *sdkType = [self sdkType];
+    if (sdkType) { dynamicDic[@"os"] = sdkType; }
+
 #if !TARGET_OS_WATCH
-        @"access": [AVAnalyticsUtils connectionType],
-        @"carrier": [AVAnalyticsUtils carrier],
+    NSString *connectionType = [AVAnalyticsUtils connectionType];
+    if (connectionType) { dynamicDic[@"access"] = connectionType; }
+    
+    NSString *carrier = [AVAnalyticsUtils carrier];
+    if (carrier) { dynamicDic[@"carrier"] = carrier; }
 #endif
-    };
     
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithDictionary:staticDict];
-    [dict addEntriesFromDictionary:dynamicDict];
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] initWithDictionary:staticDic];
     
-    //currentUser and currentInstallation
+    [dic addEntriesFromDictionary:dynamicDic];
+    
     AVUser *currentUser = [AVUser currentUser];
-    AVInstallation *currentInstallation = [AVInstallation currentInstallation];
+    
     if (currentUser && currentUser.objectId) {
-        NSDictionary *currentUserDict = @{@"uid" : currentUser.objectId};
-        [dict addEntriesFromDictionary:currentUserDict];
+        
+        NSDictionary *currentUserDic = @{ @"uid" : currentUser.objectId };
+        
+        [dic addEntriesFromDictionary:currentUserDic];
     }
+    
+    AVInstallation *currentInstallation = [AVInstallation defaultInstallation];
     
     if (currentInstallation && currentInstallation.objectId) {
-        NSDictionary *currentInstallationDict = @{@"iid": currentInstallation.objectId};
-        [dict addEntriesFromDictionary:currentInstallationDict];
+        
+        NSDictionary *currentInstallationDic = @{ @"iid": currentInstallation.objectId };
+        
+        [dic addEntriesFromDictionary:currentInstallationDic];
     }
     
-    return dict;
+    return dic;
 }
 
 +(BOOL)inSimulator
@@ -330,7 +356,7 @@ static NSString *const WWANType = @"WWAN";
 }
 
 +(NSString *)safeString:(NSString *)string {
-    if (string.length > 0) {
+    if (string && string.length > 0) {
         return string;
     }
     return @"";

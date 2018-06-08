@@ -18,7 +18,4 @@
 
 @property (nonatomic, weak, nullable) IBOutlet UILabel *cacheLabel;
 
-@property (nonatomic, weak, nullable) IBOutlet UILabel *userNameLabel;
-@property (nonatomic, weak, nullable) IBOutlet UIStackView *appButtonStack;
-
 @end

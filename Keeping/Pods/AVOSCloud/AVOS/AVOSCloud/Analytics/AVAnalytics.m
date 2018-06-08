@@ -46,16 +46,6 @@ static NSString * currentSessionId;
     [AVAnalytics event:appOpenWithPush];
 }
 
-+ (void)start
-{
-    [AVAnalytics startWithReportPolicy:AV_BATCH channelId:@""];
-}
-
-+ (void)startWithReportPolicy:(AVReportPolicy)rp channelId:(NSString *)cid
-{
-    AVLoggerError(AVLoggerDomainDefault, @"The method is not supported anymore, please visit application web console to config.");
-}
-
 + (void)startInternallyWithChannel:(NSString *)cid
 {
     if (cid.length > 0) {
@@ -211,10 +201,9 @@ static NSString * currentSessionId;
 }
 
 + (void)updateOnlineConfigWithBlock:(AVDictionaryResultBlock)block {
-    NSString *pathComponent = [NSString stringWithFormat:@"statistics/apps/%@/sendPolicy", [AVOSCloud getApplicationId]];
-    NSString *endpoint = [[[AVOSCloud RESTBaseURL] URLByAppendingPathComponent:pathComponent] absoluteString];
+    NSString *path = [NSString stringWithFormat:@"statistics/apps/%@/sendPolicy", [AVOSCloud getApplicationId]];
     
-    [[AVPaasClient sharedInstance] getObject:endpoint withParameters:nil block:^(id object, NSError *error) {
+    [[AVPaasClient sharedInstance] getObject:path withParameters:nil block:^(id object, NSError *error) {
         if (error == nil) {
             // make sure we call the onlineConfigChanged in main thread
             // otherwise timer may not work correctly.

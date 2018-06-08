@@ -292,7 +292,8 @@
 // For application on system equals or larger ios 9
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options
 {
-    return [AVOSCloudSNS handleOpenURL:url];
+    return NO;
+//    return [AVOSCloudSNS handleOpenURL:url];
 }
 
 #pragma mark - Core Data stack

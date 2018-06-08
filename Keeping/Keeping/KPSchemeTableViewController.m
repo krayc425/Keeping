@@ -24,10 +24,6 @@
     
     [self.navigationItem setTitle:@"选择 APP"];
     
-    [self.noneLabel setFont:[UIFont systemFontOfSize:20.0]];
-    [self.insLabel setFont:[UIFont systemFontOfSize:20.0]];
-    [self.refreshLabel setFont:[UIFont systemFontOfSize:20.0]];
-    
     //隐藏返回键
     [self.navigationItem setHidesBackButton:YES];
     //导航栏左上角
@@ -44,10 +40,6 @@
     [self setSearchControllerView];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
 - (void)loadApps{
     self.schemeArr = [NSMutableArray arrayWithArray:[[KPSchemeManager shareInstance] getSchemeArr]];
     
@@ -60,13 +52,14 @@
     self.searchController.searchBar.delegate = self;
     self.searchController.searchBar.frame = CGRectMake(0, 100, self.view.frame.size.width, 44);
     self.searchController.searchBar.placeholder = @"APP 名称";
-    self.searchController.searchBar.tintColor = [Utilities getColor];
     [self.searchController.searchBar setValue:@"完成" forKey:@"_cancelButtonText"];
+    // 设置SearchBar的颜色主题为白色
+    self.searchController.searchBar.barTintColor = [UIColor whiteColor];
+    self.searchController.searchBar.backgroundImage = [[UIImage alloc] init];
     //搜索栏表头视图
     self.tableView.tableHeaderView = self.searchController.searchBar;
     [self.searchController.searchBar sizeToFit];
     //背景颜色
-    self.searchController.searchBar.backgroundColor = [Utilities getColor];
     self.searchController.searchResultsUpdater = self;
 }
 
@@ -99,6 +92,11 @@
         [appNameSubmitted setObject:[nameText text] forKey:@"appName"];
         [appNameSubmitted setObject:[schemeText text] forKey:@"appScheme"];
         [appNameSubmitted save];
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提交成功" message:nil preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:nil];
     }];
     [alert addAction:submitAction];
     [self presentViewController:alert animated:YES completion:nil];

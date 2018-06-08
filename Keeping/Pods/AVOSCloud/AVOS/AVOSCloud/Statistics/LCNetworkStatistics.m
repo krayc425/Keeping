@@ -59,6 +59,7 @@ static NSInteger LCNetworkStatisticsCacheSize     = 20;
 
     if (self) {
         _cachedStatisticDictLock = [[NSRecursiveLock alloc] init];
+        _ignoreAlwaysCollectIfCustomedService = false;
     }
 
     return self;
@@ -136,24 +137,36 @@ static NSInteger LCNetworkStatisticsCacheSize     = 20;
     [self saveStatisticsDict:statisticsInfo];
 }
 
-- (void)uploadStatisticsInfo:(NSDictionary *)statisticsInfo {
+- (void)uploadStatisticsInfo:(NSDictionary *)statisticsInfo
+{
+    NSMutableDictionary *payloadDic = [NSMutableDictionary dictionaryWithCapacity:2];
+    
+    if (statisticsInfo) { payloadDic[@"attributes"] = statisticsInfo; }
+    
+    NSMutableDictionary *clientDic = [NSMutableDictionary dictionaryWithCapacity:4];
+    
     NSDictionary *deviceInfo = [AVAnalyticsUtils deviceInfo];
-    NSDictionary *payload = @{
-        @"attributes": statisticsInfo,
-        @"client": @{
+    
 #if !TARGET_OS_WATCH
 #if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
-            @"id": deviceInfo[@"device_id"],
+    id deviceId = deviceInfo[@"device_id"];
+    if (deviceId) { clientDic[@"id"] = deviceId; }
 #endif
 #endif
-            @"platform": deviceInfo[@"os"],
-            @"app_version": deviceInfo[@"app_version"],
-            @"sdk_version": deviceInfo[@"sdk_version"]
-        }
-    };
+    
+    id platform = deviceInfo[@"os"];
+    if (platform) { clientDic[@"platform"] = platform; }
+    
+    id appVersion = deviceInfo[@"app_version"];
+    if (appVersion) { clientDic[@"app_version"] = appVersion; }
+    
+    id sdkVersion = deviceInfo[@"sdk_version"];
+    if (sdkVersion) { clientDic[@"sdk_version"] = sdkVersion; }
+    
+    payloadDic[@"client"] = clientDic;
 
     AVPaasClient *client = [AVPaasClient sharedInstance];
-    NSURLRequest *request = [client requestWithPath:@"always_collect" method:@"POST" headers:nil parameters:payload];
+    NSURLRequest *request = [client requestWithPath:@"always_collect" method:@"POST" headers:nil parameters:payloadDic];
 
     [client
      performRequest:request
@@ -226,7 +239,13 @@ static NSInteger LCNetworkStatisticsCacheSize     = 20;
     }
 }
 
-- (void)startInBackground {
+- (void)startInBackground
+{
+    if (self.ignoreAlwaysCollectIfCustomedService) {
+        
+        return;
+    }
+    
     NSAssert(![NSThread isMainThread], @"This method must run in background.");
 
     AV_WAIT_WITH_ROUTINE_TIL_TRUE(!self.enable, LCNetworkStatisticsCheckInterval, ({
