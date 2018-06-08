@@ -637,12 +637,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2cf-7u-XNd">
-                                                    <rect key="frame" x="349" y="22" width="0.0" height="0.0"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hYm-gY-e2N">
                                                     <rect key="frame" x="317" y="11.5" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -666,12 +660,10 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="iiM-Fm-wOB" firstAttribute="centerY" secondItem="DHi-6l-sop" secondAttribute="centerY" id="C9y-vG-Zeu"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="2cf-7u-XNd" secondAttribute="trailing" constant="10" id="HuY-he-UkN"/>
                                                 <constraint firstItem="kbs-pQ-TVr" firstAttribute="leading" secondItem="DHi-6l-sop" secondAttribute="leadingMargin" id="Iyw-Ix-TGd"/>
                                                 <constraint firstItem="hYm-gY-e2N" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iiM-Fm-wOB" secondAttribute="trailing" constant="10" id="Min-eg-Vmw"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="hYm-gY-e2N" secondAttribute="trailing" id="TQP-3H-4R6"/>
                                                 <constraint firstItem="hYm-gY-e2N" firstAttribute="centerY" secondItem="DHi-6l-sop" secondAttribute="centerY" id="aie-ju-q7Y"/>
-                                                <constraint firstItem="2cf-7u-XNd" firstAttribute="centerY" secondItem="DHi-6l-sop" secondAttribute="centerY" id="bcL-ck-bhG"/>
                                                 <constraint firstItem="kbs-pQ-TVr" firstAttribute="centerY" secondItem="DHi-6l-sop" secondAttribute="centerY" id="fLb-PB-KHS"/>
                                                 <constraint firstItem="iiM-Fm-wOB" firstAttribute="leading" secondItem="DHi-6l-sop" secondAttribute="leadingMargin" constant="25" id="yAY-0V-JFx"/>
                                                 <constraint firstItem="kbs-pQ-TVr" firstAttribute="width" secondItem="kbs-pQ-TVr" secondAttribute="height" multiplier="1:1" id="zzt-5o-aZ0"/>
@@ -1604,6 +1596,7 @@
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kzv-rI-2BU">
                                                             <rect key="frame" x="0.0" y="0.0" width="355" height="50"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <state key="normal" title="删除任务">
                                                                 <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </state>

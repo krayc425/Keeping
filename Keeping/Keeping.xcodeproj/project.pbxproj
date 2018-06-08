@@ -533,6 +533,15 @@
 			path = KeepingWidget;
 			sourceTree = "<group>";
 		};
+		248BFD4120CAE51F0089F85E /* Watch */ = {
+			isa = PBXGroup;
+			children = (
+				245D7B7A1F9CDDFA007DD894 /* KPWatchManager.h */,
+				245D7B7B1F9CDDFA007DD894 /* KPWatchManager.m */,
+			);
+			name = Watch;
+			sourceTree = "<group>";
+		};
 		2497004D1E5607610015CC5F /* TypeText */ = {
 			isa = PBXGroup;
 			children = (
@@ -584,8 +593,6 @@
 				2429CBF41E2E53C50027DD37 /* Settings */,
 				24DCF18C1E30A07C0097C250 /* UI */,
 				24DCF18B1E30940C0097C250 /* Utilities */,
-				245D7B7A1F9CDDFA007DD894 /* KPWatchManager.h */,
-				245D7B7B1F9CDDFA007DD894 /* KPWatchManager.m */,
 				249AE31E1E2DEE7700F704F8 /* Main.storyboard */,
 				249AE3261E2DEE7700F704F8 /* LaunchScreen.storyboard */,
 				249AE3241E2DEE7700F704F8 /* Assets.xcassets */,
@@ -654,6 +661,7 @@
 		24DCF18B1E30940C0097C250 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				248BFD4120CAE51F0089F85E /* Watch */,
 				246BF2511EE112FE002FE39A /* AppKeys.h */,
 				246BF2521EE112FE002FE39A /* AppKeys.m */,
 				24151C951E32388300757A69 /* UNManager.h */,
@@ -891,7 +899,7 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = VEBQ28K9EA;
 						LastSwiftMigration = 0930;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -1011,6 +1019,7 @@
 				"${PODS_ROOT}/IDMPhotoBrowser/Classes/IDMPhotoBrowser.bundle",
 				"${PODS_ROOT}/IDMPhotoBrowser/Classes/IDMPBLocalizations.bundle",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
+				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
 				"${PODS_ROOT}/VTAcknowledgementsViewController/VTAcknowledgementsViewController.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -1020,6 +1029,7 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IDMPhotoBrowser.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IDMPBLocalizations.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/VTAcknowledgementsViewController.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1426,8 +1436,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Keeping/Keeping.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = VEBQ28K9EA;
 				INFOPLIST_FILE = Keeping/Info.plist;
@@ -1439,8 +1450,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.krayc.Keeping;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "de1c94b2-ba33-425e-8c03-c106053cce6d";
-				PROVISIONING_PROFILE_SPECIFIER = Keeping;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Keeping/Keeping-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1455,8 +1466,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Keeping/Keeping.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VEBQ28K9EA;
 				INFOPLIST_FILE = Keeping/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1467,8 +1479,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.krayc.Keeping;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "de1c94b2-ba33-425e-8c03-c106053cce6d";
-				PROVISIONING_PROFILE_SPECIFIER = Keeping;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Keeping/Keeping-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;

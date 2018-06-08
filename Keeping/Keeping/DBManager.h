@@ -17,7 +17,7 @@
 
 + (_Nonnull instancetype)shareInstance;
 - (void)establishDB;
-- (void)establishDBWithPreviousPath:(NSURL *)path;
+- (void)establishDBWithPreviousPath:(NSURL *_Nonnull)path;
 - (FMDatabase *_Nonnull)getDB;
 - (void)closeDB;
 - (NSString *_Nonnull)getDBPath;

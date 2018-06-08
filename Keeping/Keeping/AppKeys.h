@@ -12,9 +12,5 @@
 
 extern NSString *const avCloudID;
 extern NSString *const avCloudKey;
-extern NSString *const sinaID;
-extern NSString *const sinaKey;
-extern NSString *const qqID;
-extern NSString *const qqKey;
 
 @end

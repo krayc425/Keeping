@@ -10,6 +10,4 @@
 
 @interface KPSettingTableViewCell : UITableViewCell
 
-@property (nonatomic, weak) IBOutlet UIImageView *imageView;
-
 @end

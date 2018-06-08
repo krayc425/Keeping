@@ -15,8 +15,7 @@
 #import "VTAcknowledgementsViewController.h"
 #import <CloudKit/CloudKit.h>
 #import "DBManager.h"
-
-#define GROUP_ID @"group.com.krayc.keeping"
+#import "SVProgressHUD.h"
 
 @interface KPSettingsTableViewController ()
 
@@ -82,9 +81,7 @@
 }
 
 - (void)clearDisk {
-    
-//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
-//    hud.label.text = @"清理中";
+    [SVProgressHUD showWithStatus:@"清理中"];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -96,6 +93,7 @@
                                      error:NULL];
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            [SVProgressHUD dismiss];
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"清理成功" message:nil preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
             [alert addAction:okAction];
@@ -138,6 +136,99 @@
     }];
 }
 
+- (void)goBackup{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"备份" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *uploadAction = [UIAlertAction actionWithTitle:@"上传备份" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        [SVProgressHUD showWithStatus:@"上传中"];
+        
+        CKRecordID *recordID = [[CKRecordID alloc] initWithRecordName:@"IDname"];
+        [[CKContainer defaultContainer].privateCloudDatabase fetchRecordWithID:recordID completionHandler:^(CKRecord *record, NSError *error) {
+            if(error){
+                [self alert:@"上传备份失败"];
+            }
+            
+            NSURL *url = [NSURL fileURLWithPath:[[DBManager shareInstance] getDBPath]];
+            CKAsset *asset = [[CKAsset alloc] initWithFileURL:url];
+            record[@"db"] = asset;
+            
+            [[CKContainer defaultContainer].privateCloudDatabase saveRecord:record completionHandler:^(CKRecord *record, NSError *error) {
+                if(!error){
+                    [self alert:@"上传备份成功"];
+                }else{
+                    [self alert:@"上传备份失败"];
+                }
+                [SVProgressHUD dismiss];
+            }];
+        }];
+    }];
+    [alert addAction:uploadAction];
+    
+    UIAlertAction *downloadAction = [UIAlertAction actionWithTitle:@"下载备份" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        [SVProgressHUD showWithStatus:@"下载中"];
+        
+        NSPredicate *predicate = [NSPredicate predicateWithValue:YES];
+        CKQuery *query = [[CKQuery alloc] initWithRecordType:@"KeepingDB" predicate:predicate];
+        [[CKContainer defaultContainer].privateCloudDatabase performQuery:query inZoneWithID:nil completionHandler:^(NSArray *results, NSError *error) {
+            if(!error){
+                [self alert:@"下载备份成功"];
+                CKRecord *record = (CKRecord *)[results firstObject];
+                
+                [[[DBManager shareInstance] getDB] close];
+                
+                CKAsset *asset = (CKAsset *)record[@"db"];
+                
+                [[DBManager shareInstance] establishDBWithPreviousPath:asset.fileURL];
+            }else{
+                [self alert:@"下载备份失败"];
+            }
+            [SVProgressHUD dismiss];
+        }];
+    }];
+    [alert addAction:downloadAction];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction:cancelAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)contactMe{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"联系作者" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *iMsgAction = [UIAlertAction actionWithTitle:@"iMessage" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"sms:krayc425@gmail.com"] options:@{} completionHandler:^(BOOL success) {
+            
+        }];
+    }];
+    UIAlertAction *weixinAction = [UIAlertAction actionWithTitle:@"微信" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [UIPasteboard generalPasteboard].string = @"krayc425";
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"微信号已复制" message:nil preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:cancelAction];
+        UIAlertAction *wechatAction = [UIAlertAction actionWithTitle:@"跳转到微信" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"weixin://"]
+                                               options:@{}
+                                     completionHandler:nil];
+        }];
+        [alert addAction:wechatAction];
+        [self presentViewController:alert animated:YES completion:^{
+            [self performSegueWithIdentifier:@"userSegue" sender:nil];
+        }];
+    }];
+    UIAlertAction *weiboAction = [UIAlertAction actionWithTitle:@"微博" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"sinaweibo://userinfo?uid=1634553604"]
+                                           options:@{}
+                                 completionHandler:nil];
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction:iMsgAction];
+    [alert addAction:weixinAction];
+    [alert addAction:weiboAction];
+    [alert addAction:cancelAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 #pragma mark - Login Actions
 
 - (void)alert:(NSString *)message {
@@ -178,91 +269,13 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if(indexPath.section == 0 && indexPath.row == 0){
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"备份" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-        
-        UIAlertAction *uploadAction = [UIAlertAction actionWithTitle:@"上传备份" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            
-            CKRecordID *recordID = [[CKRecordID alloc] initWithRecordName:@"IDname"];
-            [[CKContainer defaultContainer].privateCloudDatabase fetchRecordWithID:recordID completionHandler:^(CKRecord *record, NSError *error) {
-                if(error){
-                    [self alert:@"上传备份失败"];
-                }
-                
-                NSURL *url = [NSURL fileURLWithPath:[[DBManager shareInstance] getDBPath]];
-                CKAsset *asset = [[CKAsset alloc] initWithFileURL:url];
-                record[@"db"] = asset;
-                
-                [[CKContainer defaultContainer].privateCloudDatabase saveRecord:record completionHandler:^(CKRecord *record, NSError *error) {
-                    if(!error){
-                        [self alert:@"上传备份成功"];
-                    }else{
-                        [self alert:@"上传备份失败"];
-                    }
-                }];
-            }];
-        }];
-        [alert addAction:uploadAction];
-        
-        UIAlertAction *downloadAction = [UIAlertAction actionWithTitle:@"下载备份" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            NSPredicate *predicate = [NSPredicate predicateWithValue:YES];
-            CKQuery *query = [[CKQuery alloc] initWithRecordType:@"KeepingDB" predicate:predicate];
-            [[CKContainer defaultContainer].privateCloudDatabase performQuery:query inZoneWithID:nil completionHandler:^(NSArray *results, NSError *error) {
-                if(!error){
-                    [self alert:@"下载备份成功"];
-                    CKRecord *record = (CKRecord *)[results firstObject];
-                    
-                    [[[DBManager shareInstance] getDB] close];
-                    
-                    CKAsset *asset = (CKAsset *)record[@"db"];
-                    
-                    [[DBManager shareInstance] establishDBWithPreviousPath:asset.fileURL];
-                }else{
-                    [self alert:@"下载备份失败"];
-                }
-            }];
-        }];
-        [alert addAction:downloadAction];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-        [alert addAction:cancelAction];
-        
-        [self presentViewController:alert animated:YES completion:nil];
+        [self goBackup];
     }else if(indexPath.section == 0 && indexPath.row == 1){
         [self clearDisk];
     }
     
     if(indexPath.section == 3 && indexPath.row == 0){
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"联系作者" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-        UIAlertAction *iMsgAction = [UIAlertAction actionWithTitle:@"iMessage" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"sms:krayc425@gmail.com"] options:@{} completionHandler:^(BOOL success) {
-                
-            }];
-        }];
-        UIAlertAction *weixinAction = [UIAlertAction actionWithTitle:@"微信" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [UIPasteboard generalPasteboard].string = @"krayc425";
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"微信号已复制" message:nil preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-            [alert addAction:cancelAction];
-            UIAlertAction *wechatAction = [UIAlertAction actionWithTitle:@"跳转到微信" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"weixin://"]
-                                                                    options:@{}
-                                                          completionHandler:nil];
-            }];
-            [alert addAction:wechatAction];
-            [self presentViewController:alert animated:YES completion:^{
-                [self performSegueWithIdentifier:@"userSegue" sender:nil];
-            }];
-        }];
-        UIAlertAction *weiboAction = [UIAlertAction actionWithTitle:@"微博" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"sinaweibo://userinfo?uid=1634553604"]
-                                               options:@{}
-                                     completionHandler:nil];
-        }];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-        [alert addAction:iMsgAction];
-        [alert addAction:weixinAction];
-        [alert addAction:weiboAction];
-        [alert addAction:cancelAction];
-        [self presentViewController:alert animated:YES completion:nil];
+        [self contactMe];
     }else if(indexPath.section == 3 && indexPath.row == 2){
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://songkuixi.github.io/2017/03/02/Keeping-Q-A/"]
                                            options:@{}

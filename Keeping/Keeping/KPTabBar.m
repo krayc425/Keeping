@@ -48,7 +48,7 @@
     int index = 0;
     
     // 按钮的尺寸
-    CGFloat tabBarButtonW = (width - CGRectGetWidth(publishButton.frame)) / 2;
+    CGFloat tabBarButtonW = (width - buttonWidth) / 2;
     CGFloat tabBarButtonH = height;
     CGFloat tabBarButtonY = 0;
     

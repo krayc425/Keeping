@@ -20,6 +20,7 @@ PODS:
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
+  - SVProgressHUD (2.2.5)
   - VTAcknowledgementsViewController (1.4)
 
 DEPENDENCIES:
@@ -34,6 +35,7 @@ DEPENDENCIES:
   - IDMPhotoBrowser
   - IQKeyboardManager
   - MGSwipeTableCell
+  - SVProgressHUD
   - VTAcknowledgementsViewController
 
 SPEC REPOS:
@@ -52,6 +54,7 @@ SPEC REPOS:
     - MGSwipeTableCell
     - pop
     - SDWebImage
+    - SVProgressHUD
     - VTAcknowledgementsViewController
 
 SPEC CHECKSUMS:
@@ -69,8 +72,9 @@ SPEC CHECKSUMS:
   MGSwipeTableCell: fb20e983988bde2b8d0df29c2d9e1d8ffd10b74a
   pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   VTAcknowledgementsViewController: d62bb400ca68e240680906bcfa2a2b380d39b30f
 
-PODFILE CHECKSUM: 7fa62d7aa80052490e06d26c415d13b254d51d14
+PODFILE CHECKSUM: 72d21702762ce6c356843740fe4fec00c265e949
 
 COCOAPODS: 1.5.2
