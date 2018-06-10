@@ -283,9 +283,6 @@
 		24BB39751F95DAA800D0BAE0 /* Intro_Screen_One.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Intro_Screen_One.png; path = ../../Tutorial/Intro_Screen_One.png; sourceTree = "<group>"; };
 		24BB39761F95DAA800D0BAE0 /* Intro_Screen_Two.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Intro_Screen_Two.png; path = ../../Tutorial/Intro_Screen_Two.png; sourceTree = "<group>"; };
 		24BB39771F95DCC600D0BAE0 /* Intro_Screen_Five.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Intro_Screen_Five.png; path = ../../Tutorial/Intro_Screen_Five.png; sourceTree = "<group>"; };
-		24D064E020C8685500FD78F2 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
-		24D064E120C8685600FD78F2 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
-		24D064E220C8685600FD78F2 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Interface.strings"; sourceTree = "<group>"; };
 		24D064E320C8826700FD78F2 /* Intro.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Intro.xcassets; sourceTree = "<group>"; };
 		24D2D7FE1E8A2D060056D1AD /* KPTimeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPTimeView.h; sourceTree = "<group>"; };
 		24D2D7FF1E8A2D060056D1AD /* KPTimeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPTimeView.m; sourceTree = "<group>"; };
@@ -1183,7 +1180,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				245A010C1F98EE9100CB50E9 /* Base */,
-				24D064E220C8685600FD78F2 /* zh-Hans */,
 			);
 			name = Interface.storyboard;
 			sourceTree = "<group>";
@@ -1192,7 +1188,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				249AE31F1E2DEE7700F704F8 /* Base */,
-				24D064E020C8685500FD78F2 /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1201,7 +1196,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				249AE3271E2DEE7700F704F8 /* Base */,
-				24D064E120C8685600FD78F2 /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

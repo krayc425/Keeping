@@ -424,10 +424,10 @@
     if(self.selectedImgView.image == [UIImage new]){
         return;
     }else{
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确定删除这张照片？" message:nil preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确定删除这张图片？" message:nil preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
         [alert addAction:cancelAction];
-        UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"登出" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"删除" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
             [self setNotHaveImage];
         }];
         [alert addAction:deleteAction];
@@ -439,7 +439,7 @@
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
     imagePickerController.delegate = self;
     imagePickerController.allowsEditing = YES;
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"选择一张照片" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"选择一张图片" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
     if(self.selectedApp != NULL && ![self.appNameLabel.text isEqualToString:@"无"]){
         UIAlertAction *appAction = [UIAlertAction actionWithTitle:@"选择 APP 图标"
