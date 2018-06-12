@@ -17,6 +17,7 @@
 #import "KPSchemeManager.h"
 #import "IQKeyboardManager.h"
 #import "Utilities.h"
+#import <Bugly/Bugly.h>
 
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
 #import <UserNotifications/UserNotifications.h>
@@ -40,6 +41,9 @@
     //键盘
     [[IQKeyboardManager sharedManager] setToolbarTintColor:[Utilities getColor]];
     [[IQKeyboardManager sharedManager] setToolbarDoneBarButtonItemText:@"完成"];
+    
+    // Bugly
+    [Bugly startWithAppId:buglyKey];
     
     //先删除所有通知
     [UNManager reconstructNotifications];
@@ -125,12 +129,6 @@
         [center getNotificationSettingsWithCompletionHandler:^(UNNotificationSettings * _Nonnull settings) {
 //            NSLog(@"========%@",settings);
         }];
-    }else if (IOS8_OR_LATER){
-      //iOS 8 - iOS 10系统
-        UIUserNotificationType types = (UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound);
-        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
-        [application registerUserNotificationSettings:settings];
-        
     }
 }
 
@@ -282,7 +280,7 @@
 - (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void(^)(BOOL succeeded))completionHandler{
     if([shortcutItem.type isEqualToString:@"newTask"]){
         KPNavigationViewController *naviVC = (KPNavigationViewController *)self.window.rootViewController;
-        KPTabBarViewController *tabBarC = (KPTabBarViewController *)[naviVC.viewControllers objectAtIndex:0];
+        KPTabBarViewController *tabBarC = (KPTabBarViewController *)naviVC.viewControllers[0];
         [tabBarC performSegueWithIdentifier:@"addTaskSegue" sender:nil];
     }
 }

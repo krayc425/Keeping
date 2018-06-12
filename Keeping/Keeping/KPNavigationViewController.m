@@ -47,7 +47,7 @@
 
 - (void)setFont{
     NSDictionary *dicNav = @{
-                             NSFontAttributeName:[UIFont systemFontOfSize:17.0f],
+                             NSFontAttributeName:[UIFont systemFontOfSize:17.0f weight:UIFontWeightBold],
                              NSForegroundColorAttributeName: [UIColor whiteColor]
                              };
     self.navigationBar.titleTextAttributes = dicNav;

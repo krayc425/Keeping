@@ -15,6 +15,7 @@
 #import "VTAcknowledgementsViewController.h"
 #import <CloudKit/CloudKit.h>
 #import "DBManager.h"
+#import "DateUtil.h"
 #import "SVProgressHUD.h"
 
 @interface KPSettingsTableViewController ()
@@ -137,27 +138,41 @@
 }
 
 - (void)goBackup{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"备份" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    NSString *backUpDateString = [[NSUserDefaults standardUserDefaults] valueForKey:@"Backup_date_string"];
+    NSString *showBackupDateString = [NSString stringWithFormat:@"上次备份：%@", backUpDateString == nil ? @"无" : backUpDateString];
+                                  
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"备份" message:showBackupDateString preferredStyle:UIAlertControllerStyleActionSheet];
     
     UIAlertAction *uploadAction = [UIAlertAction actionWithTitle:@"上传备份" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
         [SVProgressHUD showWithStatus:@"上传中"];
         
         CKRecordID *recordID = [[CKRecordID alloc] initWithRecordName:@"IDname"];
+        
+        __weak __typeof__(self) weakSelf = self;
+        
         [[CKContainer defaultContainer].privateCloudDatabase fetchRecordWithID:recordID completionHandler:^(CKRecord *record, NSError *error) {
-            if(error){
-                [self alert:@"上传备份失败"];
+            KPSettingsTableViewController *strongSelf = weakSelf;
+            
+            if (record != nil) {
+                NSLog(@"获取备份信息成功");
             }
             
             NSURL *url = [NSURL fileURLWithPath:[[DBManager shareInstance] getDBPath]];
             CKAsset *asset = [[CKAsset alloc] initWithFileURL:url];
+            if (record == nil) {
+                // 没找到记录，新建一个
+                record = [[CKRecord alloc] initWithRecordType:@"KeepingDB" recordID:recordID];
+            }
             record[@"db"] = asset;
             
             [[CKContainer defaultContainer].privateCloudDatabase saveRecord:record completionHandler:^(CKRecord *record, NSError *error) {
                 if(!error){
-                    [self alert:@"上传备份成功"];
+                    [strongSelf alert:@"上传备份成功"];
+                    
+                    [[NSUserDefaults standardUserDefaults] setValue:[DateUtil getBackupDateStringOfDate:record.modificationDate] forKey:@"Backup_date_string"];
                 }else{
-                    [self alert:@"上传备份失败"];
+                    [strongSelf alert:@"上传备份失败" subMessage:error.description];
                 }
                 [SVProgressHUD dismiss];
             }];
@@ -182,7 +197,7 @@
                 
                 [[DBManager shareInstance] establishDBWithPreviousPath:asset.fileURL];
             }else{
-                [self alert:@"下载备份失败"];
+                [self alert:@"下载备份失败" subMessage:error.description];
             }
             [SVProgressHUD dismiss];
         }];
@@ -232,9 +247,13 @@
 #pragma mark - Login Actions
 
 - (void)alert:(NSString *)message {
+    [self alert:message subMessage:nil];
+}
+
+- (void)alert:(NSString *)message subMessage:(NSString *_Nullable)subMessage {
     UIAlertController *alertController =
     [UIAlertController alertControllerWithTitle:message
-                                        message:nil
+                                        message:subMessage
                                  preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
                                                        style:UIAlertActionStyleDefault

@@ -13,6 +13,7 @@ target 'Keeping' do
   pod 'MGSwipeTableCell'
   pod 'SVProgressHUD'
   pod 'VTAcknowledgementsViewController' 
+  pod 'Bugly'
 
 end
 

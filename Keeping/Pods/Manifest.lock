@@ -2,6 +2,7 @@ PODS:
   - AMPopTip (1.5.2)
   - AVOSCloud (11.0.0)
   - BEMCheckBox (1.4.1)
+  - Bugly (2.5.0)
   - DACircularProgress (2.3.1)
   - DateTools (2.0.0)
   - DZNEmptyDataSet (1.8.1)
@@ -27,6 +28,7 @@ DEPENDENCIES:
   - AMPopTip (~> 1.5)
   - AVOSCloud
   - BEMCheckBox
+  - Bugly
   - DateTools
   - DZNEmptyDataSet
   - FDFullscreenPopGesture
@@ -43,6 +45,7 @@ SPEC REPOS:
     - AMPopTip
     - AVOSCloud
     - BEMCheckBox
+    - Bugly
     - DACircularProgress
     - DateTools
     - DZNEmptyDataSet
@@ -61,6 +64,7 @@ SPEC CHECKSUMS:
   AMPopTip: ec46d7d2ce329328a5e7bfd533da029a9e0f6557
   AVOSCloud: 8ffa848f5f7391fc7594d3671a29cd6f8a14cc2a
   BEMCheckBox: 5ba6e37ade3d3657b36caecc35c8b75c6c2b1a4e
+  Bugly: 3ca9f255c01025582df26f9222893b383c7e4b4e
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   DateTools: 933ac9c490f21f92127cf690ccd8c397e0126caf
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
@@ -75,6 +79,6 @@ SPEC CHECKSUMS:
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   VTAcknowledgementsViewController: d62bb400ca68e240680906bcfa2a2b380d39b30f
 
-PODFILE CHECKSUM: 72d21702762ce6c356843740fe4fec00c265e949
+PODFILE CHECKSUM: 703b6deaecb8ef14573f9d5325d381554153a4b8
 
 COCOAPODS: 1.5.2

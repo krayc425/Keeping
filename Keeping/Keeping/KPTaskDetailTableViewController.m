@@ -414,8 +414,9 @@
         return;
     }
     AVFile *file = self.selectedApp.iconFile;
-    [file getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
-        [self.selectedImgView setImage:[ImageUtil normalizedImage:[UIImage imageWithData:data]]];
+    [file downloadWithCompletionHandler:^(NSURL * _Nullable filePath, NSError * _Nullable error) {
+        NSData *imgData = [NSData dataWithContentsOfURL:filePath];
+        [self.selectedImgView setImage:[ImageUtil normalizedImage:[UIImage imageWithData:imgData]]];
     }];
     [self setHasImage];
 }

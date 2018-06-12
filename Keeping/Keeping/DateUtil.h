@@ -18,4 +18,6 @@
 
 + (NSString *)getTodayDateStringOfDate:(NSDate *)date;
 
++ (NSString *)getBackupDateStringOfDate:(NSDate *)date;
+
 @end

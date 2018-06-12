@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "DateUtil.h"
 
+static NSDateFormatter *dateFormatter;
+
 @implementation DateUtil
 
 + (NSString *)getWeekdayStr:(int)i{
@@ -49,6 +51,13 @@
 + (NSString *)getDateStringOfDate:(NSDate *)date{
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd EEEE"];
+    NSString *todayDateStr = [dateFormatter stringFromDate:date];
+    return todayDateStr;
+}
+
++ (NSString *)getBackupDateStringOfDate:(NSDate *)date{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSString *todayDateStr = [dateFormatter stringFromDate:date];
     return todayDateStr;
 }

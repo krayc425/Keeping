@@ -122,7 +122,7 @@
 }
 
 - (void)setFont{
-    [titleLabel setFont:[UIFont systemFontOfSize:18.0f]];
+    [titleLabel setFont:[UIFont systemFontOfSize:18.0f weight:UIFontWeightBold]];
     [self setNeedsLayout];
     [self layoutIfNeeded];
 }

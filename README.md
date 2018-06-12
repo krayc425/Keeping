@@ -24,6 +24,7 @@
     
 NSString *const avCloudID = @"";
 NSString *const avCloudKey = @"";
+NSString *const buglyKey = @"";
     
 @end
 ```
