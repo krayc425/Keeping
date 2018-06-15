@@ -22,7 +22,7 @@ static BOOL _loadingXib = NO;
 
 @implementation KPWeekdayPickerView
 
-- (void)drawRect:(CGRect)rect {
+- (void)drawRect:(CGRect)rect{
     //星期几选项按钮
     for(UIButton *button in self.weekDayStack.subviews){
         [button setTintColor:[Utilities getColor]];
@@ -51,8 +51,7 @@ static BOOL _loadingXib = NO;
     if(_loadingXib) {
         // xib
         return self;
-    }
-    else {
+    } else {
         // storyboard
         _loadingXib = YES;
         typeof(self) view = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class])
@@ -76,7 +75,7 @@ static BOOL _loadingXib = NO;
                                                                multiplier:constraint.multiplier
                                                                  constant:constraint.constant]];
         }
-        
+
         // move subviews
         for(UIView *subview in self.subviews) {
             [view addSubview:subview];

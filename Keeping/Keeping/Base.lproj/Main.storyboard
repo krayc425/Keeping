@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BIL-fh-dCv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14269.12" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BIL-fh-dCv">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14252.5"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -58,44 +56,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
-                            <tableViewSection id="O6w-NG-1Gb">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="100" id="GwY-3E-zV3">
-                                        <rect key="frame" x="0.0" y="35" width="375" height="100"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" contentMode="scaleToFill" tableViewCell="GwY-3E-zV3" id="bNL-kJ-Hjc">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uX8-4F-gJ8" customClass="KPWeekdayPickerView">
-                                                    <rect key="frame" x="10" y="10" width="355" height="85"/>
-                                                    <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="85" id="jBI-oZ-EEL"/>
-                                                    </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                            <integer key="value" value="10"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </view>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="uX8-4F-gJ8" firstAttribute="top" secondItem="bNL-kJ-Hjc" secondAttribute="top" constant="10" id="Ogg-Lh-hsh"/>
-                                                <constraint firstItem="uX8-4F-gJ8" firstAttribute="leading" secondItem="bNL-kJ-Hjc" secondAttribute="leading" constant="10" id="WVC-2C-GZD"/>
-                                                <constraint firstItem="uX8-4F-gJ8" firstAttribute="centerX" secondItem="bNL-kJ-Hjc" secondAttribute="centerX" id="jDZ-ig-WsJ"/>
-                                                <constraint firstAttribute="bottom" secondItem="uX8-4F-gJ8" secondAttribute="bottom" constant="5" id="lst-No-LIv"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="0.0" colorSpace="calibratedRGB"/>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                             <tableViewSection id="QWQ-jQ-wBQ">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="KPTaskTableViewCell" id="kSE-i4-LAv">
-                                        <rect key="frame" x="0.0" y="171" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="35" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kSE-i4-LAv" id="CXG-Vy-PCU">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -113,7 +77,6 @@
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <tabBarItem key="tabBarItem" title="Item" id="fdh-tp-3dv"/>
                     <connections>
-                        <outlet property="weekDayView" destination="uX8-4F-gJ8" id="Fra-fH-fBL"/>
                         <segue destination="Mhh-ns-eOa" kind="show" identifier="detailTaskSegue" id="KVR-SD-oGK"/>
                     </connections>
                 </tableViewController>
@@ -1679,7 +1642,7 @@
         <image name="Weekday" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ZOT-mw-fWn"/>
+        <segue reference="KVR-SD-oGK"/>
         <segue reference="fad-KU-zal"/>
     </inferredMetricsTieBreakers>
 </document>

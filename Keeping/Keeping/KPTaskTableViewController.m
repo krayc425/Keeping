@@ -25,6 +25,8 @@
 #import "IDMPhotoBrowser.h"
 #import "MGSwipeTableCell.h"
 #import "UIViewController+Extensions.h"
+#import "KPHoverView.h"
+#import "KPWeekdayPickerHeaderView.h"
 
 static AMPopTip *shareTip = NULL;
 static KPColorPickerView *colorPickerView = NULL;
@@ -34,13 +36,11 @@ static KPColorPickerView *colorPickerView = NULL;
 @end
 
 @implementation KPTaskTableViewController{
-    BOOL firstLoad;
+    KPHoverView *hoverView;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    firstLoad = YES;
     
     self.taskArr = [[NSMutableArray alloc] init];
     self.historyTaskArr = [[NSMutableArray alloc] init];
@@ -51,35 +51,44 @@ static KPColorPickerView *colorPickerView = NULL;
     self.tableView.tableFooterView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
 
-    //类别代理
-    [KPTaskTableViewController shareColorPickerView].colorDelegate = self;
-    [[KPTaskTableViewController shareColorPickerView] setFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame) - 32, 40)];
-
+    NSArray *nibView = [[NSBundle mainBundle] loadNibNamed:@"KPWeekdayPickerHeaderView" owner:nil options:nil];
+    KPWeekdayPickerHeaderView *weekdayView = (KPWeekdayPickerHeaderView *)[nibView firstObject];
+    [weekdayView setFrame:CGRectMake(10, 10, SCREEN_WIDTH - 40, 50)];
     //星期代理
-    self.weekDayView.weekdayDelegate = self;
-    self.weekDayView.isAllSelected = YES;
-    self.weekDayView.isAllButtonHidden = NO;
-    self.weekDayView.fontSize = 18.0;
-    
+    weekdayView.weekdayDelegate =  self;
+    weekdayView.isAllSelected = YES;
+    weekdayView.isAllButtonHidden = NO;
+    weekdayView.fontSize = 18.0;
+
     self.selectedWeekdayArr = [@[@1,@2,@3,@4,@5,@6,@7] mutableCopy];
+    weekdayView.selectedWeekdayArr = self.selectedWeekdayArr;
+    [weekdayView setFont];
     
-    self.weekDayView.selectedWeekdayArr = self.selectedWeekdayArr;
+    //类别代理
     
-    [self setFont];
+    [KPTaskTableViewController shareColorPickerView].colorDelegate = self;
+    [[KPTaskTableViewController shareColorPickerView] setFrame:CGRectMake(10, 70, SCREEN_WIDTH - 40, 40)];
+    
+    hoverView = [[KPHoverView alloc] initWithFrame:CGRectMake(10.0, -120.0, SCREEN_WIDTH - 20, 120.0)];
+    hoverView.top = 50.0;
+    hoverView.headerScrollView = self.tableView;
+    
+    [hoverView addSubview:colorPickerView];
+    [hoverView addSubview:weekdayView];
+    
+    [self.view addSubview:hoverView];
+    [self.view bringSubviewToFront:hoverView];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
     [self loadTasksOfWeekdays:self.selectedWeekdayArr];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [self hideTip];
-}
-
-- (void)setFont{
-    [self.weekDayView setFont];
 }
 
 - (void)editAction:(id)sender{
@@ -161,8 +170,7 @@ static KPColorPickerView *colorPickerView = NULL;
     
     //按类别
     if (self.selectedColorNum > 0) {
-        self.taskArr = [NSMutableArray arrayWithArray:[TaskDataHelper filtrateTasks:self.taskArr
-                                                                           withType:self.selectedColorNum]];
+        self.taskArr = [NSMutableArray arrayWithArray:[TaskDataHelper filtrateTasks:self.taskArr withType:self.selectedColorNum]];
     }
     
     for(Task *t in self.taskArr){
@@ -182,10 +190,6 @@ static KPColorPickerView *colorPickerView = NULL;
     [self.tableView reloadData];
     
     [self fadeAnimation];
-    
-    if(firstLoad){
-        firstLoad = NO;
-    }
 }
 
 #pragma mark - Pop Up Image
@@ -199,26 +203,26 @@ static KPColorPickerView *colorPickerView = NULL;
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch (section) {
         default:
-            return 1;
-        case 1:
+            return 0;
+        case 0:
             return [self.taskArr count];
-        case 2:
+        case 1:
             return [self.historyTaskArr count];
     }
 }
 
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     switch (section) {
-        case 1:
+        case 0:
         {
             if([self.taskArr count] == 0){
-                return [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+                return [[UIView alloc] initWithFrame:CGRectZero];
             }else{
                 KPSeparatorView *view = [[[NSBundle mainBundle] loadNibNamed:@"KPSeparatorView" owner:nil options:nil] lastObject];
                 view.backgroundColor = [UIColor clearColor];
@@ -227,10 +231,10 @@ static KPColorPickerView *colorPickerView = NULL;
             }
         }
             break;
-        case 2:
+        case 1:
         {
             if([self.historyTaskArr count] == 0){
-                return [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+                return [[UIView alloc] initWithFrame:CGRectZero];
             }else{
                 KPSeparatorView *view = [[[NSBundle mainBundle] loadNibNamed:@"KPSeparatorView" owner:nil options:nil] lastObject];
                 view.backgroundColor = [UIColor clearColor];
@@ -240,13 +244,13 @@ static KPColorPickerView *colorPickerView = NULL;
         }
             break;
         default:
-            return [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+            return [UIView new];
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     switch (section) {
-        case 1:
+        case 0:
         {
             if([self.taskArr count] == 0){
                 return 0.00001f;
@@ -254,7 +258,7 @@ static KPColorPickerView *colorPickerView = NULL;
                 return 50.0f;
             }
         }
-        case 2:
+        case 1:
         {
             if([self.historyTaskArr count] == 0){
                 return 0.00001f;
@@ -277,93 +281,53 @@ static KPColorPickerView *colorPickerView = NULL;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if(indexPath.section != 0){
-        Task *t;
-        if(indexPath.section == 1){
-            t = self.taskArr[indexPath.row];
-        }else if(indexPath.section == 2){
-            t = self.historyTaskArr[indexPath.row];
-        }
-        [self performSegueWithIdentifier:@"detailTaskSegue" sender:t];
+    Task *t;
+    if(indexPath.section == 0){
+        t = self.taskArr[indexPath.row];
+    }else if(indexPath.section == 1){
+        t = self.historyTaskArr[indexPath.row];
     }
+    [self performSegueWithIdentifier:@"detailTaskSegue" sender:t];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(indexPath.section == 0){
-        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
-    }else{
-        return 70;
-    }
+    return 70;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 0){
-        return NO;
-    }
     return YES;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 0) {
-        return [super tableView:tableView indentationLevelForRowAtIndexPath:indexPath];
-    }else{
-        return 10;
-    }
+    return 10.0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(indexPath.section != 0){
-        static NSString *cellIdentifier = @"KPTaskTableViewCell";
-        UINib *nib = [UINib nibWithNibName:@"KPTaskTableViewCell" bundle:nil];
-        [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
-        KPTaskTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-        
-        [cell setFont];
-        cell.delegate = self;
-        cell.imgDelegate = self;
-        
-        Task *t;
-        
-        if(indexPath.section == 1){
-            t = self.taskArr[indexPath.row];
-        }else if(indexPath.section == 2){
-            t = self.historyTaskArr[indexPath.row];
-        }
-        
-        [cell configureWithTask:t];
-        
-        //注册3D Touch
-        if (self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {
-            [self registerForPreviewingWithDelegate:self sourceView:cell];
-        }
-        
-        return cell;
-    }else{
-        return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    static NSString *cellIdentifier = @"KPTaskTableViewCell";
+    UINib *nib = [UINib nibWithNibName:@"KPTaskTableViewCell" bundle:nil];
+    [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
+    KPTaskTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    
+    [cell setFont];
+    cell.delegate = self;
+    cell.imgDelegate = self;
+    
+    Task *t;
+    
+    if(indexPath.section == 0){
+        t = self.taskArr[indexPath.row];
+    }else if(indexPath.section == 1){
+        t = self.historyTaskArr[indexPath.row];
     }
-}
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-//    if(indexPath.section == 0
-//       || ![[NSUserDefaults standardUserDefaults] boolForKey:@"animation"]
-//       || !firstLoad){
-//        return;
-//    }
-//    
-//    NSInteger order = indexPath.row + (indexPath.section == 2 ? self.taskArr.count : 0);
-//    CGFloat time = order * 0.1;
-//    
-//    cell.transform = CGAffineTransformMakeTranslation(-SCREEN_WIDTH, 0);
-//    [UIView animateWithDuration:0.4
-//                          delay:time
-//         usingSpringWithDamping:0.7
-//          initialSpringVelocity:1 / 0.7
-//                        options:UIViewAnimationOptionCurveEaseIn
-//                     animations:^{
-//                         cell.transform = CGAffineTransformIdentity;
-//                     } completion:^(BOOL finished) {
-//                         
-//                     }];
+    
+    [cell configureWithTask:t];
+    
+    //注册3D Touch
+    if (self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {
+        [self registerForPreviewingWithDelegate:self sourceView:cell];
+    }
+    
+    return cell;
 }
 
 #pragma mark - Navigation
@@ -383,7 +347,7 @@ static KPColorPickerView *colorPickerView = NULL;
     switch (direction) {
         case MGSwipeDirectionLeftToRight:
         {
-            Task *task = indexPath.section == 1 ? self.taskArr[indexPath.row] : self.historyTaskArr[indexPath.row];
+            Task *task = indexPath.section == 0 ? self.taskArr[indexPath.row] : self.historyTaskArr[indexPath.row];
             [self performSegueWithIdentifier:@"detailTaskSegue" sender:task];
         }
             break;
@@ -456,26 +420,10 @@ static KPColorPickerView *colorPickerView = NULL;
 #pragma mark - KPNavigationTitleDelegate
 
 - (void)navigationTitleViewTapped{
-    AMPopTip *tp = [KPTaskTableViewController shareTipInstance];
-
-    if(![tp isVisible] && ![tp isAnimating]){
-        [tp showCustomView:colorPickerView
-                 direction:AMPopTipDirectionDown
-                    inView:self.view
-                 fromFrame:CGRectMake(CGRectGetWidth(self.view.frame) / 2, -44, 0, 44)];
-
-        tp.textColor = [UIColor whiteColor];
-        tp.tintColor = [Utilities getColor];
-        tp.popoverColor = [Utilities getColor];
-        tp.borderColor = [UIColor whiteColor];
-
-        tp.radius = 10;
-
-        [tp setDismissHandler:^{
-            shareTip = NULL;
-        }];
+    if(hoverView.isShow){
+        [hoverView hide];
     }else{
-        [tp hide];
+        [hoverView show];
     }
 }
 
@@ -493,7 +441,7 @@ static KPColorPickerView *colorPickerView = NULL;
     }
 }
 
-#pragma mark - KPColor Singleton
+#pragma mark - Header Singleton
 
 + (KPColorPickerView *)shareColorPickerView{
     if(colorPickerView == NULL){

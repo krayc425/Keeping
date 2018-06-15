@@ -277,11 +277,31 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [@[@(2), @(2), @(2), @(4)][section] integerValue];
+    switch (section) {
+        case 0:
+        case 1:
+        case 2:
+            return 2;
+        case 3:
+            return 4;
+        default:
+            return 0;
+    }
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return @[@"数据", @"外观", @"偏好", @"其他"][section];
+    switch (section) {
+        case 0:
+            return @"数据";
+        case 1:
+            return @"外观";
+        case 2:
+            return @"偏好";
+        case 3:
+            return @"其他";
+        default:
+            return @"";
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

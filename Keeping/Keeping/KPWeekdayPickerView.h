@@ -32,7 +32,6 @@
 @property (nonatomic, nonnull) NSMutableArray *selectedWeekdayArr;
 
 @property (nonatomic) float fontSize;
-
 @property (nonatomic) BOOL isAllButtonHidden;
 
 @property (weak, nonatomic, nullable) id<KPWeekdayPickerDelegate> weekdayDelegate;

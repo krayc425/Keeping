@@ -28,12 +28,13 @@
 #import "UIViewController+Extensions.h"
 #import "MGSwipeTableCell.h"
 #import "KPProgressLabel.h"
+#import "KPHoverView.h"
 
 static AMPopTip *shareTip = NULL;
 static KPColorPickerView *colorPickerView = NULL;
 
 @interface KPTodayTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, MGSwipeTableCellDelegate> {
-    BOOL firstLoad;
+    KPHoverView *hoverView;
 }
 
 @end
@@ -42,8 +43,6 @@ static KPColorPickerView *colorPickerView = NULL;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    firstLoad = YES;
     
     self.gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     
@@ -56,10 +55,10 @@ static KPColorPickerView *colorPickerView = NULL;
 
     //类别按钮
     [KPTodayTableViewController shareColorPickerView].colorDelegate = self;
-    [[KPTodayTableViewController shareColorPickerView] setFrame:CGRectMake(0, 0, SCREEN_WIDTH - 32, 40)];
+    [[KPTodayTableViewController shareColorPickerView] setFrame:CGRectMake(10, 270, SCREEN_WIDTH - 40, 40)];
 
     //日历插件
-    self.calendar = [[FSCalendar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width - 20, 250)];
+    self.calendar = [[FSCalendar alloc] initWithFrame:CGRectMake(10, 10, SCREEN_WIDTH - 40, 250)];
     self.calendar.dataSource = self;
     self.calendar.delegate = self;
     self.calendar.backgroundColor = [UIColor whiteColor];
@@ -105,6 +104,16 @@ static KPColorPickerView *colorPickerView = NULL;
     [self.calendar selectDate:self.selectedDate scrollToDate:YES];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadTasks) name:@"refresh_today_task" object:nil];
+    
+    hoverView = [[KPHoverView alloc] initWithFrame:CGRectMake(10.0, -320.0, SCREEN_WIDTH - 20, 320.0)];
+    hoverView.top = 50.0;
+    hoverView.headerScrollView = self.tableView;
+    
+    [hoverView addSubview:self.calendar];
+    [hoverView addSubview:colorPickerView];
+    
+    [self.view addSubview:hoverView];
+    [self.view bringSubviewToFront:hoverView];
 }
 
 - (void)dealloc {
@@ -161,7 +170,6 @@ static KPColorPickerView *colorPickerView = NULL;
     self.unfinishedTaskArr = [NSMutableArray arrayWithArray:[TaskDataHelper filtrateTasks:self.unfinishedTaskArr withType:self.selectedColorNum]];
     self.finishedTaskArr = [NSMutableArray arrayWithArray:[TaskDataHelper filtrateTasks:self.finishedTaskArr withType:self.selectedColorNum]];
     
-//    [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, 2)] withRowAnimation:UITableViewRowAnimationFade];
     [self.tableView reloadData];
     
     [self.tableView reloadEmptyDataSet];
@@ -169,10 +177,6 @@ static KPColorPickerView *colorPickerView = NULL;
     [self fadeAnimation];
     
     [self setBadge];
-    
-    if(firstLoad){
-        firstLoad = NO;
-    }
 }
 
 - (void)setBadge{
@@ -231,28 +235,6 @@ static KPColorPickerView *colorPickerView = NULL;
 }
 
 #pragma mark - Choose Date
-
-- (IBAction)chooseDateAction:(id)sender{
-    AMPopTip *tp = [KPTodayTableViewController shareTipInstance];
-    
-    if(![tp isVisible] && ![tp isAnimating]){
-        [tp showCustomView:self.calendar
-                 direction:AMPopTipDirectionNone
-                    inView:self.tableView
-                 fromFrame:self.view.bounds]; //这个23咋回事
-        
-        tp.textColor = [UIColor whiteColor];
-        tp.tintColor = [Utilities getColor];
-        tp.popoverColor = [Utilities getColor];
-        tp.borderColor = [UIColor whiteColor];
-        
-        tp.radius = 15;
-        
-        [tp setDismissHandler:^{
-            shareTip = NULL;
-        }];
-    }
-}
 
 - (void)previousClicked:(id)sender{
     NSDate *currentMonth = self.calendar.currentPage;
@@ -473,30 +455,6 @@ static KPColorPickerView *colorPickerView = NULL;
     }
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-//    if(indexPath.section == 0
-//       || indexPath == self.selectedIndexPath
-//       || ![[NSUserDefaults standardUserDefaults] boolForKey:@"animation"]
-//       || !firstLoad){
-//        return;
-//    }
-//    
-//    NSInteger order = indexPath.row + (indexPath.section == 2 ? self.unfinishedTaskArr.count : 0);
-//    CGFloat time = order * 0.1;
-//    
-//    cell.transform = CGAffineTransformMakeTranslation(-SCREEN_WIDTH, 0);
-//    [UIView animateWithDuration:0.4
-//                          delay:time
-//         usingSpringWithDamping:0.7
-//          initialSpringVelocity:1 / 0.7
-//                        options:UIViewAnimationOptionCurveEaseIn
-//                     animations:^{
-//        cell.transform = CGAffineTransformIdentity;
-//    } completion:^(BOOL finished) {
-//        
-//    }];
-}
-
 #pragma mark - Check Delegate
 
 - (void)checkTask:(UITableViewCell *)cell{
@@ -607,6 +565,10 @@ static KPColorPickerView *colorPickerView = NULL;
     }
 }
 
+- (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView{
+    return YES;
+}
+
 #pragma mark - FSCalendarDelegate
 
 - (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
@@ -657,26 +619,10 @@ static KPColorPickerView *colorPickerView = NULL;
 #pragma mark - KPNavigationTitleDelegate
 
 - (void)navigationTitleViewTapped{
-    AMPopTip *tp = [KPTodayTableViewController shareTipInstance];
-
-    if(![tp isVisible] && ![tp isAnimating]){
-        [tp showCustomView:colorPickerView
-                 direction:AMPopTipDirectionDown
-                    inView:self.view
-                 fromFrame:CGRectMake(CGRectGetWidth(self.view.frame) / 2, -44, 0, 44)];
-
-        tp.textColor = [UIColor whiteColor];
-        tp.tintColor = [Utilities getColor];
-        tp.popoverColor = [Utilities getColor];
-        tp.borderColor = [UIColor whiteColor];
-
-        tp.radius = 10;
-
-        [tp setDismissHandler:^{
-            shareTip = NULL;
-        }];
-    }else{
-        [tp hide];
+    if (hoverView.isShow) {
+        [hoverView hide];
+    } else {
+        [hoverView show];
     }
 }
 
@@ -693,7 +639,7 @@ static KPColorPickerView *colorPickerView = NULL;
     }else{
         [titleView changeColor:NULL];
     }
-
+    
     [self loadTasks];
 }
 
