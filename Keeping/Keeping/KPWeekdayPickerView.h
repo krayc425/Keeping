@@ -35,6 +35,7 @@
 @property (nonatomic) BOOL isAllButtonHidden;
 
 @property (weak, nonatomic, nullable) id<KPWeekdayPickerDelegate> weekdayDelegate;
+@property (nonatomic, weak) IBOutlet UIStackView *weekDayStack;
 
 - (void)selectWeekdaysInArray:(NSArray *_Nonnull)weekdayArr;
 

@@ -54,8 +54,11 @@ static KPColorPickerView *colorPickerView = NULL;
     self.tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
 
     //类别按钮
+    CardsView *cardView = [[CardsView alloc] initWithFrame:CGRectMake(10, 270, SCREEN_WIDTH - 40, 50)];
+    cardView.cornerRadius = 10.0;
+    
     [KPTodayTableViewController shareColorPickerView].colorDelegate = self;
-    [[KPTodayTableViewController shareColorPickerView] setFrame:CGRectMake(10, 270, SCREEN_WIDTH - 40, 40)];
+    [[KPTodayTableViewController shareColorPickerView] setFrame:CGRectMake(10, 5, SCREEN_WIDTH - 60, 40)];
 
     //日历插件
     self.calendar = [[FSCalendar alloc] initWithFrame:CGRectMake(10, 10, SCREEN_WIDTH - 40, 250)];
@@ -90,7 +93,7 @@ static KPColorPickerView *colorPickerView = NULL;
     self.previousButton = previousButton;
     
     UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    nextButton.frame = CGRectMake(CGRectGetWidth(self.calendar.frame)-100, 5, 95, 34);
+    nextButton.frame = CGRectMake(CGRectGetWidth(self.calendar.frame) - 100, 5, 95, 34);
     nextButton.backgroundColor = [UIColor whiteColor];
     nextButton.titleLabel.font = [UIFont systemFontOfSize:15];
     [nextButton setTintColor:[Utilities getColor]];
@@ -105,12 +108,15 @@ static KPColorPickerView *colorPickerView = NULL;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadTasks) name:@"refresh_today_task" object:nil];
     
-    hoverView = [[KPHoverView alloc] initWithFrame:CGRectMake(10.0, -320.0, SCREEN_WIDTH - 20, 320.0)];
-    hoverView.top = 50.0;
+    hoverView = [[KPHoverView alloc] initWithFrame:CGRectMake(10.0, -330.0, SCREEN_WIDTH - 20, 330.0)];
     hoverView.headerScrollView = self.tableView;
     
+    [cardView addSubview:colorPickerView];
+    
     [hoverView addSubview:self.calendar];
-    [hoverView addSubview:colorPickerView];
+    [hoverView addSubview:cardView];
+    
+    [self.tableView addObserver:hoverView forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
     
     [self.view addSubview:hoverView];
     [self.view bringSubviewToFront:hoverView];

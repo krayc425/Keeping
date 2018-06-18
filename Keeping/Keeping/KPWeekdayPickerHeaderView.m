@@ -18,6 +18,7 @@
     
     self.layer.cornerRadius = 10.0;
     self.layer.masksToBounds = YES;
+    self.weekDayStack.spacing = 10.0;
 }
 
 - (id)awakeAfterUsingCoder:(NSCoder *)aDecoder {

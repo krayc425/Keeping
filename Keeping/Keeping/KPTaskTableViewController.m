@@ -65,16 +65,22 @@ static KPColorPickerView *colorPickerView = NULL;
     [weekdayView setFont];
     
     //类别代理
+    CardsView *cardView = [[CardsView alloc] initWithFrame:CGRectMake(10, 70, SCREEN_WIDTH - 40, 50)];
+    cardView.cornerRadius = 10.0;
     
     [KPTaskTableViewController shareColorPickerView].colorDelegate = self;
-    [[KPTaskTableViewController shareColorPickerView] setFrame:CGRectMake(10, 70, SCREEN_WIDTH - 40, 40)];
+    [[KPTaskTableViewController shareColorPickerView] setFrame:CGRectMake(10, 5, SCREEN_WIDTH - 60, 40)];
     
-    hoverView = [[KPHoverView alloc] initWithFrame:CGRectMake(10.0, -120.0, SCREEN_WIDTH - 20, 120.0)];
+    [cardView addSubview:colorPickerView];
+    
+    hoverView = [[KPHoverView alloc] initWithFrame:CGRectMake(10.0, -130.0, SCREEN_WIDTH - 20, 130.0)];
     hoverView.top = 50.0;
     hoverView.headerScrollView = self.tableView;
     
-    [hoverView addSubview:colorPickerView];
+    [hoverView addSubview:cardView];
     [hoverView addSubview:weekdayView];
+    
+    [self.tableView addObserver:hoverView forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
     
     [self.view addSubview:hoverView];
     [self.view bringSubviewToFront:hoverView];
