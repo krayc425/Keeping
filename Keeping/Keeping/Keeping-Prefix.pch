@@ -1,0 +1,28 @@
+//
+//  Keeping-Prefix.pch
+//  Keeping
+//
+//  Created by 宋 奎熹 on 2018/6/19.
+//  Copyright © 2018 宋 奎熹. All rights reserved.
+//
+
+#ifndef Keeping_Prefix_pch
+#define Keeping_Prefix_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#define GROUP_ID @"group.com.krayc.keeping"
+
+#define ENDLESS_STRING @"到 无限期"
+#define DATE_FORMAT @"yyyy/MM/dd"
+
+#define GB18030_ENCODING (CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000))
+
+#define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
+#define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
+
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
+
+#endif /* Keeping_Prefix_pch */

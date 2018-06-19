@@ -1145,7 +1145,7 @@
                                                                         <color key="titleColor" red="0.29803921570000003" green="0.52549019610000003" blue="0.78823529410000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                     </state>
                                                                     <connections>
-                                                                        <action selector="chooseDateAction:" destination="6at-be-euJ" eventType="touchUpInside" id="ATP-1A-Nz9"/>
+                                                                        <action selector="chooseDateAction:" destination="6at-be-euJ" eventType="touchUpInside" id="Tep-60-U9G"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
@@ -1642,7 +1642,7 @@
         <image name="Weekday" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="KVR-SD-oGK"/>
+        <segue reference="ZOT-mw-fWn"/>
         <segue reference="fad-KU-zal"/>
     </inferredMetricsTieBreakers>
 </document>

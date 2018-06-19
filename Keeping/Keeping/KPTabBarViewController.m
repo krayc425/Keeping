@@ -13,10 +13,6 @@
 #import "KPNavigationTitleView.h"
 #import "KPTaskDetailTableViewController.h"
 
-@interface KPTabBarViewController ()
-
-@end
-
 @implementation KPTabBarViewController{
     KPNavigationTitleView *titleView1;
     KPNavigationTitleView *titleView2;

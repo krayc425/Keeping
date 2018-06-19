@@ -74,7 +74,6 @@ static KPColorPickerView *colorPickerView = NULL;
     [cardView addSubview:colorPickerView];
     
     hoverView = [[KPHoverView alloc] initWithFrame:CGRectMake(10.0, -130.0, SCREEN_WIDTH - 20, 130.0)];
-    hoverView.top = 50.0;
     hoverView.headerScrollView = self.tableView;
     
     [hoverView addSubview:cardView];
@@ -387,13 +386,17 @@ static KPColorPickerView *colorPickerView = NULL;
     }
 }
 
+- (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView{
+    return YES;
+}
+
 #pragma mark - Fade Animation
 
 - (void)fadeAnimation{
     if([[NSUserDefaults standardUserDefaults] boolForKey:@"animation"]){
         CATransition *animation = [CATransition animation];
         animation.duration = 0.3f;
-        animation.timingFunction = UIViewAnimationCurveEaseInOut;
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
         animation.type = [Utilities getAnimationType];
         [self.tableView.layer addAnimation:animation forKey:@"fadeAnimation"];
     }

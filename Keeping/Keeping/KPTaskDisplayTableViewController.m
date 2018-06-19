@@ -22,9 +22,6 @@
 #import "IDMPhotoBrowser.h"
 #import "UIViewController+Extensions.h"
 
-#define ENDLESS_STRING @"到 无限期"
-#define DATE_FORMAT @"yyyy/MM/dd"
-
 static AMPopTip *shareTip = NULL;
 
 @interface KPTaskDisplayTableViewController (){

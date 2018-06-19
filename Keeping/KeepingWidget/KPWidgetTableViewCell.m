@@ -9,8 +9,6 @@
 #import "KPWidgetTableViewCell.h"
 #import "Utilities.h"
 
-#define GROUP_ID @"group.com.krayc.keeping"
-
 @implementation KPWidgetTableViewCell
 
 - (void)awakeFromNib {

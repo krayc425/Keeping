@@ -14,8 +14,6 @@
 #import "TaskManager.h"
 #import "DateTools.h"
 
-#define GROUP_ID @"group.com.krayc.keeping"
-
 @interface TodayViewController () <NCWidgetProviding>
 
 @end
@@ -51,10 +49,10 @@
 }
 
 - (void)loadDB{
-    NSString *doc2 = [[[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:GROUP_ID] path];
-    NSString *fileName2 = [doc2 stringByAppendingPathComponent:@"task.sqlite"];
+    NSString *doc = [[[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:GROUP_ID] path];
+    NSString *fileName = [doc stringByAppendingPathComponent:@"task.sqlite"];
     
-    self.db = [FMDatabase databaseWithPath:fileName2];
+    self.db = [FMDatabase databaseWithPath:fileName];
     
     if ([self.db open]){
         NSLog(@"db open");

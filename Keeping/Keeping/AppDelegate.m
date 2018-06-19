@@ -18,17 +18,12 @@
 #import "IQKeyboardManager.h"
 #import "Utilities.h"
 #import <Bugly/Bugly.h>
+#import <CoreSpotlight/CoreSpotlight.h>
+#import "CoreSpotlightHelper.h"
 
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
 #import <UserNotifications/UserNotifications.h>
 #endif
-
-#define IOS10_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 10.0)
-#define IOS9_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0)
-#define IOS8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
-#define IOS7_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
-
-#define GROUP_ID @"group.com.krayc.keeping"
 
 @interface AppDelegate () <UNUserNotificationCenterDelegate>
 
@@ -70,6 +65,7 @@
     
     //启动数据库
     [DBManager shareInstance];
+    [[CoreSpotlightHelper shareInstance] createCoreSpotlightIndexes];
     
     return YES;
 }
@@ -101,15 +97,28 @@
     
     //关闭数据库
     [[DBManager shareInstance] closeDB];
+}
+
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray * _Nullable))restorationHandler{
     
-    [self saveContext];
+    NSString *wordID = userActivity.userInfo[CSSearchableItemActivityIdentifier];
+    Task *task = [[TaskManager shareInstance] getTasksOfID:[wordID intValue]];
+    
+    UINavigationController *naviVC = (UINavigationController *)self.window.rootViewController;
+    UITabBarController *tabVC = (UITabBarController *)naviVC.viewControllers[0];
+    [tabVC setSelectedIndex:1];
+
+    KPTaskTableViewController *taskVC = (KPTaskTableViewController *)tabVC.selectedViewController;
+    [taskVC performSegueWithIdentifier:@"detailTaskSegue" sender:task];
+    
+    return YES;
 }
 
 #pragma mark - 申请通知权限
 // 申请通知权限
 - (void)replyPushNotificationAuthorization:(UIApplication *)application{
     
-    if (IOS10_OR_LATER) {
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"10.0")) {
         //iOS 10 later
         UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
         //必须写代理，不然无法监听通知的接收与点击事件
@@ -292,51 +301,6 @@
 {
     return NO;
 //    return [AVOSCloudSNS handleOpenURL:url];
-}
-
-#pragma mark - Core Data stack
-
-@synthesize persistentContainer = _persistentContainer;
-
-- (NSPersistentContainer *)persistentContainer {
-    // The persistent container for the application. This implementation creates and returns a container, having loaded the store for the application to it.
-    @synchronized (self) {
-        if (_persistentContainer == nil) {
-            _persistentContainer = [[NSPersistentContainer alloc] initWithName:@"Keeping"];
-            [_persistentContainer loadPersistentStoresWithCompletionHandler:^(NSPersistentStoreDescription *storeDescription, NSError *error) {
-                if (error != nil) {
-                    // Replace this implementation with code to handle the error appropriately.
-                    // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                    
-                    /*
-                     Typical reasons for an error here include:
-                     * The parent directory does not exist, cannot be created, or disallows writing.
-                     * The persistent store is not accessible, due to permissions or data protection when the device is locked.
-                     * The device is out of space.
-                     * The store could not be migrated to the current model version.
-                     Check the error message to determine what the actual problem was.
-                    */
-                    NSLog(@"Unresolved error %@, %@", error, error.userInfo);
-                    abort();
-                }
-            }];
-        }
-    }
-    
-    return _persistentContainer;
-}
-
-#pragma mark - Core Data Saving support
-
-- (void)saveContext {
-    NSManagedObjectContext *context = self.persistentContainer.viewContext;
-    NSError *error = nil;
-    if ([context hasChanges] && ![context save:&error]) {
-        // Replace this implementation with code to handle the error appropriately.
-        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-        NSLog(@"Unresolved error %@, %@", error, error.userInfo);
-        abort();
-    }
 }
 
 @end

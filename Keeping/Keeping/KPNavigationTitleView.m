@@ -73,9 +73,6 @@
 }
 
 - (void)tapAction:(id)sender{
-//    [UIView animateWithDuration:0.1 animations:^{
-//        self->typeView.transform = CGAffineTransformMakeRotation(M_PI);
-//    }];
     [self.navigationTitleDelegate navigationTitleViewTapped];
 }
 
@@ -83,7 +80,7 @@
     if(color == NULL){
         
         if(canTap){
-            UIImage *img = [UIImage imageNamed:@"NAV_DOWN_CIRCLE"];
+            UIImage *img = [UIImage imageNamed:@"NAV_DONE_CANCEL"];
             [typeView setImage:img];
             [typeView setHidden:NO];
             [stackView setFrame:CGRectMake(0,

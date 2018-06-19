@@ -10,8 +10,6 @@
 #import <AVOSCloud/AVOSCloud.h>
 #import "KPScheme.h"
 
-#define GB18030_ENCODING CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000)
-
 static NSMutableArray *_Nullable schemes = nil;
 
 @implementation KPSchemeManager

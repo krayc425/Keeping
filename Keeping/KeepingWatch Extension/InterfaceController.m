@@ -136,7 +136,7 @@
     }
 }
 
-- (void)sessionWatchStateDidChange:(nonnull WCSession *)session{
+- (void)sessionReachabilityDidChange:(WCSession *)session{
     if ([WCSession isSupported]) {
         WCSession *session = [WCSession defaultSession];
         session.delegate = self;

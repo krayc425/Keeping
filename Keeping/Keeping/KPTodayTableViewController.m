@@ -108,11 +108,10 @@ static KPColorPickerView *colorPickerView = NULL;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadTasks) name:@"refresh_today_task" object:nil];
     
-    hoverView = [[KPHoverView alloc] initWithFrame:CGRectMake(10.0, -330.0, SCREEN_WIDTH - 20, 330.0)];
-    hoverView.headerScrollView = self.tableView;
-    
     [cardView addSubview:colorPickerView];
     
+    hoverView = [[KPHoverView alloc] initWithFrame:CGRectMake(10.0, -330.0, SCREEN_WIDTH - 20, 330.0)];
+    hoverView.headerScrollView = self.tableView;
     [hoverView addSubview:self.calendar];
     [hoverView addSubview:cardView];
     
@@ -199,6 +198,10 @@ static KPColorPickerView *colorPickerView = NULL;
     NSUInteger finished = self.finishedTaskArr.count;
     NSUInteger total = self.finishedTaskArr.count + self.unfinishedTaskArr.count;
     [self.progressLabel setProgressWithFinished:finished andTotal:total];
+}
+
+- (IBAction)chooseDateAction:(id)sender{
+    [self navigationTitleViewTapped];
 }
 
 - (void)editAction:(id)sender{
@@ -592,7 +595,7 @@ static KPColorPickerView *colorPickerView = NULL;
     if([[NSUserDefaults standardUserDefaults] boolForKey:@"animation"]){
         CATransition *animation = [CATransition animation];
         animation.duration = 0.3f;
-        animation.timingFunction = UIViewAnimationCurveEaseInOut;
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
         animation.type = [Utilities getAnimationType];
         [self.tableView.layer addAnimation:animation forKey:@"fadeAnimation"];
     }

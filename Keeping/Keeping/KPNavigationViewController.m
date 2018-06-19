@@ -11,10 +11,6 @@
 #import "Utilities.h"
 #import "KPGuideView.h"
 
-@interface KPNavigationViewController ()
-
-@end
-
 @implementation KPNavigationViewController
 
 - (void)viewDidLoad {

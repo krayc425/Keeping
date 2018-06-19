@@ -12,6 +12,7 @@
 		240A817620D29F87008BE03C /* KPHoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 240A817520D29F87008BE03C /* KPHoverView.m */; };
 		24151C921E322D6700757A69 /* KPTaskDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24151C911E322D6700757A69 /* KPTaskDetailTableViewController.m */; };
 		24151C971E32388300757A69 /* UNManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24151C961E32388300757A69 /* UNManager.m */; };
+		2419F12720D7F3F700F5C200 /* CoreSpotlightHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2419F12620D7F3F700F5C200 /* CoreSpotlightHelper.m */; };
 		241D3F001E7CFAD20051023F /* KPTaskDisplayTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 241D3EFF1E7CFAD20051023F /* KPTaskDisplayTableViewController.m */; };
 		241FB6671E31D2F300DF4D53 /* HYCircleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 241FB6661E31D2F300DF4D53 /* HYCircleProgressView.m */; };
 		2422066A1E5A6A3B00F03BA2 /* ImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 242206691E5A6A3B00F03BA2 /* ImageUtil.m */; };
@@ -174,6 +175,8 @@
 		24151C941E32378600757A69 /* Keeping.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Keeping.entitlements; sourceTree = "<group>"; };
 		24151C951E32388300757A69 /* UNManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UNManager.h; sourceTree = "<group>"; };
 		24151C961E32388300757A69 /* UNManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNManager.m; sourceTree = "<group>"; };
+		2419F12520D7F3F700F5C200 /* CoreSpotlightHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreSpotlightHelper.h; sourceTree = "<group>"; };
+		2419F12620D7F3F700F5C200 /* CoreSpotlightHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreSpotlightHelper.m; sourceTree = "<group>"; };
 		241D3EFE1E7CFAD20051023F /* KPTaskDisplayTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPTaskDisplayTableViewController.h; sourceTree = "<group>"; };
 		241D3EFF1E7CFAD20051023F /* KPTaskDisplayTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPTaskDisplayTableViewController.m; sourceTree = "<group>"; };
 		241FB6651E31D2F300DF4D53 /* HYCircleProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYCircleProgressView.h; sourceTree = "<group>"; };
@@ -215,6 +218,7 @@
 		243B45D820BE97BF001AABD4 /* KPProgressLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KPProgressLabel.m; sourceTree = "<group>"; };
 		243B45DE20BF0D8C001AABD4 /* KPSettingTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KPSettingTableViewCell.h; sourceTree = "<group>"; };
 		243B45DF20BF0D8C001AABD4 /* KPSettingTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KPSettingTableViewCell.m; sourceTree = "<group>"; };
+		244547F320D91C7F00805F5E /* Keeping-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Keeping-Prefix.pch"; sourceTree = "<group>"; };
 		245196701E3CB82F00C18C5B /* TabBar.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TabBar.xcassets; sourceTree = "<group>"; };
 		24569A2A1F95E31E00082EE4 /* KCEdgeInsetLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KCEdgeInsetLabel.h; sourceTree = "<group>"; };
 		24569A2B1F95E31E00082EE4 /* KCEdgeInsetLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KCEdgeInsetLabel.m; sourceTree = "<group>"; };
@@ -611,7 +615,6 @@
 				249AE3291E2DEE7700F704F8 /* Info.plist */,
 				249AE3211E2DEE7700F704F8 /* Keeping.xcdatamodeld */,
 				249AE3151E2DEE7700F704F8 /* Supporting Files */,
-				2457FE5A20BDB9F300546C6F /* Keeping-Bridging-Header.h */,
 			);
 			path = Keeping;
 			sourceTree = "<group>";
@@ -619,6 +622,8 @@
 		249AE3151E2DEE7700F704F8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2457FE5A20BDB9F300546C6F /* Keeping-Bridging-Header.h */,
+				244547F320D91C7F00805F5E /* Keeping-Prefix.pch */,
 				24BB39731F95DAA800D0BAE0 /* Intro_Screen_Four.png */,
 				24BB39771F95DCC600D0BAE0 /* Intro_Screen_Five.png */,
 				24BB39751F95DAA800D0BAE0 /* Intro_Screen_One.png */,
@@ -691,6 +696,8 @@
 				2429CBF21E2E4E750027DD37 /* Utilities.m */,
 				242206681E5A6A3B00F03BA2 /* ImageUtil.h */,
 				242206691E5A6A3B00F03BA2 /* ImageUtil.m */,
+				2419F12520D7F3F700F5C200 /* CoreSpotlightHelper.h */,
+				2419F12620D7F3F700F5C200 /* CoreSpotlightHelper.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -1150,6 +1157,7 @@
 				240A817620D29F87008BE03C /* KPHoverView.m in Sources */,
 				243B45E020BF0D8C001AABD4 /* KPSettingTableViewCell.m in Sources */,
 				24003CE920D3EDA00065CB6C /* KPWeekdayPickerHeaderView.m in Sources */,
+				2419F12720D7F3F700F5C200 /* CoreSpotlightHelper.m in Sources */,
 				24F2A0DB1E2F489100F30FB1 /* KPSchemeTableViewCell.m in Sources */,
 				2422066A1E5A6A3B00F03BA2 /* ImageUtil.m in Sources */,
 				24699F031E2F213D0092FBED /* KPNavigationViewController.m in Sources */,
@@ -1334,6 +1342,8 @@
 			baseConfigurationReference = 3303168DFB48063C3EC132E2 /* Pods-KeepingWidget.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = KeepingWidget/KeepingWidget.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = VEBQ28K9EA;
 				INFOPLIST_FILE = KeepingWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1350,6 +1360,7 @@
 			baseConfigurationReference = F23AC8433168973E490B2488 /* Pods-KeepingWidget.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = KeepingWidget/KeepingWidget.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = VEBQ28K9EA;
 				INFOPLIST_FILE = KeepingWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1400,6 +1411,8 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/Keeping/Keeping-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -1454,6 +1467,8 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/Keeping/Keeping-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -1479,6 +1494,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = VEBQ28K9EA;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/Keeping/Keeping-Prefix.pch";
 				INFOPLIST_FILE = Keeping/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1508,6 +1525,8 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VEBQ28K9EA;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/Keeping/Keeping-Prefix.pch";
 				INFOPLIST_FILE = Keeping/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

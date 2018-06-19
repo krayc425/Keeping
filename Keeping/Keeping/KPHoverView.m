@@ -17,24 +17,14 @@ typedef NS_ENUM(NSUInteger, KPHoverHeaderState){
 };
 
 @implementation KPHoverView{
-    CGFloat lastOffsetY;
-    CGFloat bottom;
-    BOOL shouldStop;
-    BOOL isDown;
-    
-    CGFloat _edgeInsetsTop;
     KPHoverHeaderState _headerState;
+    CGFloat lastOffsetY;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if(self){
-        _isShow = NO;
-        self.backgroundColor = [Utilities getColor];
-        self.layer.cornerRadius = 10.0;
-        self.layer.masksToBounds = YES;
-        bottom = frame.size.height;
-        _headerState = KPHoverHeaderStateIdle;
+        [self commonInit];
     }
     return self;
 }
@@ -42,17 +32,21 @@ typedef NS_ENUM(NSUInteger, KPHoverHeaderState){
 - (instancetype)initWithCoder:(NSCoder *)aDecoder{
     self = [super initWithCoder:aDecoder];
     if(self){
-        _isShow = NO;
-        self.backgroundColor = [Utilities getColor];
-        self.layer.cornerRadius = 10.0;
-        self.layer.masksToBounds = YES;
-        bottom = self.frame.size.height;
-        _headerState = KPHoverHeaderStateIdle;
+        [self commonInit];
     }
     return self;
 }
 
+- (void)commonInit{
+    self.isShow = NO;
+    self.backgroundColor = [Utilities getColor];
+    self.layer.cornerRadius = 10.0;
+    self.layer.masksToBounds = YES;
+    _headerState = KPHoverHeaderStateIdle;
+}
+
 - (void)show{
+    self.isShow = YES;
     [_headerScrollView setUserInteractionEnabled:NO];
     [UIView animateWithDuration:0.5 animations:^{
         self.headerScrollView.contentInset = UIEdgeInsetsMake(self.frame.size.height + 10.0, 0, 0, 0);
@@ -62,12 +56,11 @@ typedef NS_ENUM(NSUInteger, KPHoverHeaderState){
                                 self.frame.size.height);
         [self->_headerScrollView setUserInteractionEnabled:YES];
     }];
-    _isShow = YES;
-    shouldStop = NO;
     [self vibrateWithStyle:UIImpactFeedbackStyleMedium];
 }
 
 - (void)hide{
+    self.isShow = NO;
     [_headerScrollView setUserInteractionEnabled:NO];
     [UIView animateWithDuration:0.5 animations:^{
         self.headerScrollView.contentInset = UIEdgeInsetsZero;
@@ -77,55 +70,39 @@ typedef NS_ENUM(NSUInteger, KPHoverHeaderState){
                                 self.frame.size.height);
         [self->_headerScrollView setUserInteractionEnabled:YES];
     }];
-    _isShow = NO;
-    _headerState = KPHoverHeaderStateIdle;
     [self vibrateWithStyle:UIImpactFeedbackStyleMedium];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
     if(change[NSKeyValueChangeNewKey] != nil){
-        [self adjustStateWithContentOffset];
+        NSValue *value = (NSValue *)change[NSKeyValueChangeNewKey];
+        CGPoint point = value.CGPointValue;
+        [self adjustStateWithContentOffset:point.y];
     }
 }
 
-- (void)adjustStateWithContentOffset{
-    //记录 scrollView原始的上边距.  方便刷新之后,把 scrollView 的contentInset改回这个位置.
-    _edgeInsetsTop = self.headerScrollView.contentInset.top;
+- (void)adjustStateWithContentOffset:(CGFloat)offsety{
+    lastOffsetY = offsety;
     
     //当前的偏移量
     CGFloat contentOffsetY = self.headerScrollView.contentOffset.y;
-    //scrollView左上角 原始偏移量(默认是0),在有导航栏的情况下可能会被调整为64.
-    CGFloat happenOffsetY = -self.headerScrollView.contentInset.top;
-    
-    //如果往上滑动,直接 return
-    if (contentOffsetY > happenOffsetY) {
-        if(_headerState == KPHoverHeaderStateRefreshing){
-            [self hide];
-        }
-        return;
-    }
-    
-    if (_headerState == KPHoverHeaderStateRefreshing) {
-        return;
-    }
     
     //header 完全出现时的contentOffset.y
     CGFloat headerCompleteDisplayContentOffsetY = -self.frame.size.height / 4.0;
-//        NSLog(@"%f  %f  %f",contentOffsetY,happenOffsetY,headerCompleteDisplayContentOffsetY);
-    if (self.headerScrollView.isDragging == YES) {//如果正在拖拽
+    if(self.headerScrollView.isDragging == YES){//如果正在拖拽
         //如果当前状态是 KPHoverStateIdle(闲置状态或者叫正常状态) && header 已经全部显示
-        if (_headerState == KPHoverHeaderStateIdle && contentOffsetY < headerCompleteDisplayContentOffsetY) {
-            //将状态设置为  松开就可以进行刷新的状态
+        if(_headerState == KPHoverHeaderStateIdle && contentOffsetY < headerCompleteDisplayContentOffsetY){
+            //将状态设置为松开就可以进行刷新的状态
             _headerState = KPHoverHeaderStatePulling;
-//                        NSLog(@"下拉状态");
-        }else if (_headerState == KPHoverHeaderStatePulling && contentOffsetY > headerCompleteDisplayContentOffsetY){//如果当前状态是 KPHoverStatePulling(松开就可以进行刷新的状态) && header只显示了一部分(用户往上滑动了)
+        }else if(_headerState == KPHoverHeaderStatePulling && contentOffsetY > headerCompleteDisplayContentOffsetY){//如果当前状态是 KPHoverStatePulling(松开就可以进行刷新的状态) && header只显示了一部分(用户往上滑动了)
             _headerState = KPHoverHeaderStateIdle;
-//                        NSLog(@"常态");
+        }else if(_headerState == KPHoverHeaderStateRefreshing && contentOffsetY > headerCompleteDisplayContentOffsetY * 4.0){
+            _headerState = KPHoverHeaderStateIdle;
+            [self hide];
         }
     }else{//如果松开了手
-        if (_headerState == KPHoverHeaderStatePulling) {//如果状态是1,下拉状态.让它进入刷新状态
+        if(_headerState == KPHoverHeaderStatePulling){//如果是下拉状态.让它进入刷新状态
             _headerState = KPHoverHeaderStateRefreshing;
-//                        NSLog(@"刷新中");
             [self show];
         }
     }

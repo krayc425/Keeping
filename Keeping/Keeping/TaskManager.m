@@ -49,6 +49,10 @@ static TaskManager* _instance = nil;
     });
 }
 
+- (void)postCoreSpotlightNotification{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"refresh_corespotlight" object:nil];
+}
+
 #pragma mark - Add, Update, Delete Tasks
 
 - (BOOL)addTask:(Task *)task{
@@ -105,7 +109,7 @@ static TaskManager* _instance = nil;
 
     [self postNotification];
     
-    return [[[DBManager shareInstance] getDB] executeUpdate:
+    if([[[DBManager shareInstance] getDB] executeUpdate:
             @"INSERT INTO t_task (name, appScheme, reminderDays, addDate, reminderTime, punchDateArr, image, link, endDate, memo, type, punchMemoArr, punchSkipArr) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
             task.name,
             schemeJsonStr,
@@ -120,7 +124,12 @@ static TaskManager* _instance = nil;
             @(task.type),
             punchMemoJsonStr,
             punchSkipJsonStr
-            ];
+        ]){
+        [self postCoreSpotlightNotification];
+        return YES;
+    }else{
+        return NO;
+    }
 }
 
 - (BOOL)updateTask:(Task *_Nonnull)task{
@@ -178,7 +187,7 @@ static TaskManager* _instance = nil;
     
     [self postNotification];
     
-    return [[[DBManager shareInstance] getDB] executeUpdate:
+    if([[[DBManager shareInstance] getDB] executeUpdate:
             @"UPDATE t_task SET name = ?, appScheme = ?, reminderDays = ?, addDate = ?, reminderTime = ?, punchDateArr = ?, image = ?, link = ?, endDate = ?, memo = ?, type = ?, punchMemoArr = ?, punchSkipArr = ? WHERE id = ?;",
             task.name,
             schemeJsonStr,
@@ -194,8 +203,12 @@ static TaskManager* _instance = nil;
             punchMemoJsonStr,
             punchSkipJsonStr,
             @(task.id)
-            ];
-    return YES;
+        ]){
+        [self postCoreSpotlightNotification];
+        return YES;
+    }else{
+        return NO;
+    }
 }
 
 - (BOOL)deleteTask:(Task *_Nonnull)task{
@@ -203,9 +216,14 @@ static TaskManager* _instance = nil;
     
     [self postNotification];
     
-    return [[[DBManager shareInstance] getDB] executeUpdate:
-            @"delete from t_task where id = ?;",
-            @(task.id)];
+    if([[[DBManager shareInstance] getDB] executeUpdate:
+        @"delete from t_task where id = ?;",
+        @(task.id)]){
+        [self postCoreSpotlightNotification];
+        return YES;
+    }else{
+        return NO;
+    }
 }
 
 #pragma mark - Load/Get Tasks
@@ -267,7 +285,6 @@ static TaskManager* _instance = nil;
 
 - (NSMutableArray *)getTasks{
     [self loadTask];
-    
     return self.taskArr;
 }
 

@@ -18,8 +18,6 @@
 #import "UIViewController+Extensions.h"
 #import "MGSwipeTableCell.h"
 
-#define GROUP_ID @"group.com.krayc.keeping"
-
 @interface KPFontTableViewController()<MGSwipeTableCellDelegate>
 
 @end

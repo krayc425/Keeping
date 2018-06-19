@@ -10,8 +10,6 @@
 #import "TaskManager.h"
 #import "DateUtil.h"
 
-#define GB18030_ENCODING CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000)
-
 @implementation Task
 
 - (float)progress{

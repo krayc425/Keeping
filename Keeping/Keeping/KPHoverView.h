@@ -13,7 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface KPHoverView : UIView
 
 @property (nonatomic, nonnull) UIScrollView *headerScrollView;
-@property (nonatomic, assign) CGFloat top;
 @property (nonatomic, assign) BOOL isShow;
 
 - (void)show;

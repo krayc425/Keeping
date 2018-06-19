@@ -8,9 +8,9 @@
 
 #import "DBManager.h"
 
-#define GROUP_ID @"group.com.krayc.keeping"
-
 @implementation DBManager 
+
+static NSString *kGroupID = @"group.com.krayc.keeping";
 
 static DBManager* _instance = nil;
 
@@ -19,11 +19,11 @@ static DBManager* _instance = nil;
     dispatch_once(&onceToken, ^{
         _instance = [[super allocWithZone:NULL] init];
     });
-    return _instance ;
+    return _instance;
 }
 
 + (id)allocWithZone:(struct _NSZone *)zone{
-    return [DBManager shareInstance] ;
+    return [DBManager shareInstance];
 }
 
 - (instancetype)init{
@@ -35,7 +35,7 @@ static DBManager* _instance = nil;
 }
 
 - (void)establishDBWithPreviousPath:(NSURL *)path{
-    NSString *doc2 = [[[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:GROUP_ID] path];
+    NSString *doc2 = [[[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:kGroupID] path];
     NSString *fileName1 = [path.absoluteString stringByReplacingOccurrencesOfString:@"file://" withString:@""];
     NSString *fileName2 = [doc2 stringByAppendingPathComponent:@"task.sqlite"];
     
@@ -55,7 +55,7 @@ static DBManager* _instance = nil;
 
 - (void)establishDB{
     //数据库路径
-    NSString *doc2 = [[[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:GROUP_ID] path];
+    NSString *doc2 = [[[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:kGroupID] path];
     NSString *fileName2 = [doc2 stringByAppendingPathComponent:@"task.sqlite"];
     [self establishDBAtPath:fileName2];
 }
@@ -136,7 +136,7 @@ static DBManager* _instance = nil;
 }
 
 - (NSString *)getDBPath{
-    NSString *doc2 = [[[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:GROUP_ID] path];
+    NSString *doc2 = [[[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:kGroupID] path];
     NSString *fileName2 = [doc2 stringByAppendingPathComponent:@"task.sqlite"];
     return fileName2;
 }

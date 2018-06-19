@@ -17,13 +17,6 @@
 #import "ImageUtil.h"
 #import "IDMPhotoBrowser.h"
 
-#define ENDLESS_STRING @"无限期"
-#define DATE_FORMAT @"yyyy/MM/dd"
-
-@interface KPTaskDetailTableViewController ()
-
-@end
-
 @implementation KPTaskDetailTableViewController
 
 - (void)viewDidLoad {
