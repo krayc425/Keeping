@@ -39,6 +39,12 @@
         self.navigationItem.rightBarButtonItems = @[okItem];
     }
     
+    //CardViews
+    for(CardsView *cardView in self.cardsViews){
+        [cardView setCornerRadius:10.0];
+        [cardView setBackgroundColor:[UIColor whiteColor]];
+    }
+    
     //任务名
     [self.taskNameField setFont:[UIFont systemFontOfSize:20.0f]];
     self.taskNameField.layer.borderWidth = 1.0;
@@ -46,29 +52,25 @@
     self.taskNameField.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
     self.taskNameField.delegate = self;
     
-    //持续时间
-    for(UILabel *label in self.durationStack.subviews){
-        [label setFont:[UIFont systemFontOfSize:20.0f]];
-    }
-    
     //星期代理
     self.weekdayView.weekdayDelegate = self;
     self.weekdayView.isAllSelected = NO;
-    self.weekdayView.fontSize = 18.0;
-    self.weekdayView.isAllButtonHidden = NO;
+    self.weekdayView.fontSize = 15.0;
+    self.weekdayView.isAllButtonHidden = YES;
     
     //类别代理
+    self.colorView.colorStack.spacing = 6;
     self.colorView.colorDelegate = self;
     
-    //提醒标签
-    [self.reminderLabel setFont:[UIFont systemFontOfSize:20.0f]];
     //提醒开关
     [self.reminderSwitch setTintColor:[Utilities getColor]];
     [self.reminderSwitch setOnTintColor:[Utilities getColor]];
     [self.reminderSwitch addTarget:self action:@selector(showReminderPickerAction:) forControlEvents:UIControlEventValueChanged];
     
-    //APP名字标签
-    [self.appNameLabel setFont:[UIFont systemFontOfSize:20.0f]];
+    //app 开关
+    [self.appSwitch setTintColor:[Utilities getColor]];
+    [self.appSwitch setOnTintColor:[Utilities getColor]];
+    [self.appSwitch addTarget:self action:@selector(appSelectAction:) forControlEvents:UIControlEventValueChanged];
     
     //图片
     self.selectedImgView.userInteractionEnabled = YES;
@@ -162,8 +164,10 @@
         }
         if(self.selectedApp != NULL){
             [self.appNameLabel setText:self.selectedApp.name];
+            [self.appSwitch setOn:YES];
         }else{
             [self.appNameLabel setText:@"无"];
+            [self.appSwitch setOn:NO];
         }
         
         if(self.task.image != NULL){
@@ -195,10 +199,6 @@
         [self.taskNameField becomeFirstResponder];
     }
     
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 
 - (BOOL)checkCompleted{
@@ -356,21 +356,28 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-#pragma mark - Color Type Selection
+#pragma mark - App Action
 
-- (IBAction)selectColorAction:(id)sender{
-    UIButton *button = (UIButton *)sender;
-    if(self.selectedColorNum == (int)button.tag){
-        self.selectedColorNum = -1;
-    }else{
-        self.selectedColorNum = (int)button.tag;
+- (void)appSelectAction:(UISwitch *)sender {
+    UISwitch *senderSwitch = (UISwitch *)sender;
+    if (senderSwitch != self.appSwitch) {
+        return;
     }
-    self.colorView.selectedColorNum = self.selectedColorNum;
+    if (self.selectedApp == NULL) {
+        [self performSegueWithIdentifier:@"appSegue" sender:nil];
+    } else {
+        self.selectedApp = NULL;
+        [self.appNameLabel setText:@"无"];
+    }
 }
 
 #pragma mark - Reminder Actions
 
 - (void)showReminderPickerAction:(id)sender{
+    UISwitch *senderSwitch = (UISwitch *)sender;
+    if (senderSwitch != self.reminderSwitch) {
+        return;
+    }
     if(![self.reminderSwitch isOn]){
         self.reminderTime = NULL;
         [self.reminderLabel setText:@"无"];
@@ -390,7 +397,11 @@
             [self.tableView reloadData];
         }];
         [alert addAction:okAction];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            if(self.reminderSwitch.isOn){
+                [self.reminderSwitch setOn:NO animated:YES];
+            }
+        }];
         [alert addAction:cancelAction];
 
         NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:alert.view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:datePicker.frame.size.height + 120];
@@ -401,18 +412,6 @@
 }
 
 #pragma mark - Pic Actions
-
-- (IBAction)appSetIconAction:(id)sender{
-    if(self.selectedApp == NULL){
-        return;
-    }
-    AVFile *file = self.selectedApp.iconFile;
-    [file downloadWithCompletionHandler:^(NSURL * _Nullable filePath, NSError * _Nullable error) {
-        NSData *imgData = [NSData dataWithContentsOfURL:filePath];
-        [self.selectedImgView setImage:[ImageUtil normalizedImage:[UIImage imageWithData:imgData]]];
-    }];
-    [self setHasImage];
-}
 
 - (IBAction)deletePicAction:(id)sender{
     if(self.selectedImgView.image == [UIImage new]){
@@ -436,12 +435,12 @@
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"选择一张图片" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
     if(self.selectedApp != NULL && ![self.appNameLabel.text isEqualToString:@"无"]){
-        UIAlertAction *appAction = [UIAlertAction actionWithTitle:@"选择 APP 图标"
+        UIAlertAction *appAction = [UIAlertAction actionWithTitle:@"选择 App 图标"
                                                            style:UIAlertActionStyleDefault
                                                          handler:^(UIAlertAction * _Nonnull action) {
                                                              AVFile *file = self.selectedApp.iconFile;
                                                              
-                                                             [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:8] atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+                                                             [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:1] atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
                                                              
                                                              [file getThumbnail:YES
                                                                           width:self.view.frame.size.width
@@ -495,20 +494,30 @@
 }
 
 - (void)setHasImage{
-    [self.addImgButton setTitle:@"更改图片" forState: UIControlStateNormal];
+    [self.selectedImgView setHidden:NO];
+    [self.addImgButton setTitle:@"更改图片" forState:UIControlStateNormal];
+    
+    [self.addImgButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
+    
     [self.viewImgButton setHidden:NO];
     [self.deleteImgButton setHidden:NO];
     [self.deleteImgButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    
     [self.tableView reloadData];
 }
 
 - (void)setNotHaveImage{
     self.task.image = NULL;
     [self.selectedImgView setImage:NULL];
+    [self.selectedImgView setHidden:YES];
     
-    [self.addImgButton setTitle:@"添加图片" forState: UIControlStateNormal];
+    [self.addImgButton setTitle:@"添加图片" forState:UIControlStateNormal];
+    
+    [self.addImgButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+    
     [self.viewImgButton setHidden:YES];
     [self.deleteImgButton setHidden:YES];
+    
     [self.tableView reloadData];
 }
 
@@ -565,52 +574,45 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 9;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    switch (section) {
+        case 0:
+            return 1;
+        case 1:
+            return 3;
+        default:
+            return 0;
+    }
 }
 
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     KPSeparatorView *view = [[[NSBundle mainBundle] loadNibNamed:@"KPSeparatorView" owner:nil options:nil] lastObject];
     switch (section) {
         case 0:
-            [view setText:@"任务名"];
+            [view setText:@"必填信息"];
             break;
         case 1:
-            [view setText:@"完成时间"];
-            break;
-        case 2:
-            [view setText:@"持续时间"];
-            break;
-        case 3:
-            [view setText:@"类别"];
-            break;
-        case 4:
-            [view setText:@"提醒时间"];
-            break;
-        case 5:
-            [view setText:@"备注"];
-            break;
-        case 6:
-            [view setText:@"打开 APP"];
-            break;
-        case 7:
-            [view setText:@"链接"];
-            break;
-        case 8:
-            [view setText:@"图片"];
+            [view setText:@"选填信息"];
             break;
         default:
             [view setText:@""];
             break;
     }
+    view.backgroundColor = [UIColor clearColor];
     return view;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 50.0f;
+    if (section == 0) {
+        return 60.0f;
+    } else if (section == 1) {
+        return 50.0f;
+    } else {
+        return 0.00001f;
+    }
 }
 
 - (UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
@@ -621,26 +623,9 @@
     return 0.00001f;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    switch (indexPath.section) {
-        case 4:
-            [self showReminderPickerAction:[NSDate date] ];
-            break;
-        case 6:
-            [self performSegueWithIdentifier:@"appSegue" sender:nil];
-            break;
-        case 8:
-            [self modifyPicAction:nil];
-            break;
-        default:
-            break;
-    }
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(indexPath.section == 8){
-        return self.selectedImgView.image == NULL ? 40.0f : self.view.frame.size.width;
+    if(indexPath.section == 1 && indexPath.row == 2){
+        return 280.f + (self.selectedImgView.image == NULL ? 0.0f : CGRectGetWidth(self.selectedImgView.frame) + 20.0f);
     }else{
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];
     }
@@ -672,9 +657,11 @@
     if(scheme == NULL){
         self.selectedApp = NULL;
         [self.appNameLabel setText:@"无"];
+        [self.appSwitch setOn:NO];
     }else{
         self.selectedApp = scheme;
         [self.appNameLabel setText:scheme.name];
+        [self.appSwitch setOn:YES];
     }
     [self.tableView reloadData];
 }

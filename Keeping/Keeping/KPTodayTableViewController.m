@@ -185,12 +185,18 @@ static KPColorPickerView *colorPickerView = NULL;
 }
 
 - (void)setBadge{
+    UIApplication *application = [UIApplication sharedApplication];
     if([[NSUserDefaults standardUserDefaults] boolForKey:@"badgeCount"]){
-        UIApplication *application = [UIApplication sharedApplication];
-        [application setApplicationIconBadgeNumber:self.unfinishedTaskArr.count];
+        NSUInteger count = self.unfinishedTaskArr.count;
+        [application setApplicationIconBadgeNumber:count];
+        if(count > 0){
+            self.tabBarController.tabBar.items[0].badgeValue = [NSString stringWithFormat:@"%lu", (unsigned long)self.unfinishedTaskArr.count];
+        }else{
+            self.tabBarController.tabBar.items[0].badgeValue = NULL;
+        }
     }else{
-        UIApplication *application = [UIApplication sharedApplication];
         [application setApplicationIconBadgeNumber:0];
+        self.tabBarController.tabBar.items[0].badgeValue = NULL;
     }
 }
 
@@ -449,7 +455,9 @@ static KPColorPickerView *colorPickerView = NULL;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if(indexPath.section != 0){
         KPTodayTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        
+//        
+//        NSIndexPath *oldSelectedIndexPath = [self.selectedIndexPath copy];
+//        
         if(![cell.moreButton isHidden]){
             if([self.selectedIndexPath isEqual:indexPath]){
                 self.selectedIndexPath = NULL;
@@ -461,6 +469,18 @@ static KPColorPickerView *colorPickerView = NULL;
         }
         [self fadeAnimation];
         [tableView reloadData];
+        
+//        NSMutableArray *indexes = [NSMutableArray array];
+//        if (oldSelectedIndexPath != NULL) {
+//            [indexes addObject:oldSelectedIndexPath];
+//        }
+//        if (self.selectedIndexPath != NULL) {
+//            [indexes addObject:self.selectedIndexPath];
+//        }
+//        if (indexes.count > 0) {
+//            [tableView reloadRowsAtIndexPaths:indexes withRowAnimation:UITableViewRowAnimationFade];
+//        }
+        
     }
 }
 

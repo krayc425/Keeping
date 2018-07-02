@@ -13,16 +13,12 @@
 #import <AVOSCloud/AVOSCloud.h>
 #import "KPScheme.h"
 
-@interface KPSchemeTableViewController ()
-
-@end
-
 @implementation KPSchemeTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.navigationItem setTitle:@"选择 APP"];
+    [self.navigationItem setTitle:@"选择 App"];
     
     //隐藏返回键
     [self.navigationItem setHidesBackButton:YES];
@@ -30,8 +26,8 @@
     UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_BACK"] style:UIBarButtonItemStylePlain target:self action:@selector(backAction:)];
     self.navigationItem.leftBarButtonItems = @[cancelItem];
     //导航栏右上角
-    UIBarButtonItem *okItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_DONE"] style:UIBarButtonItemStylePlain target:self action:@selector(doneAction:)];
-    self.navigationItem.rightBarButtonItems = @[okItem];
+//    UIBarButtonItem *okItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_DONE"] style:UIBarButtonItemStylePlain target:self action:@selector(doneAction:)];
+//    self.navigationItem.rightBarButtonItems = @[okItem];
     
     self.searchResults = [[NSMutableArray alloc] init];
     
@@ -51,7 +47,7 @@
     self.searchController.dimsBackgroundDuringPresentation = false;
     self.searchController.searchBar.delegate = self;
     self.searchController.searchBar.frame = CGRectMake(0, 100, self.view.frame.size.width, 44);
-    self.searchController.searchBar.placeholder = @"APP 名称";
+    self.searchController.searchBar.placeholder = @"App 名称";
     [self.searchController.searchBar setValue:@"完成" forKey:@"_cancelButtonText"];
     // 设置SearchBar的颜色主题为白色
     self.searchController.searchBar.barTintColor = [UIColor whiteColor];
@@ -63,21 +59,25 @@
     self.searchController.searchResultsUpdater = self;
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [self.delegate passScheme:self.selectedApp];
+}
+
 - (void)backAction:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)doneAction:(id)sender{
-    [self.delegate passScheme:self.selectedApp];
-    
-    [self.navigationController popViewControllerAnimated:YES];
-}
+//- (void)doneAction:(id)sender{
+//    [self.navigationController popViewControllerAnimated:YES];
+//}
 
 - (void)showSubmitAlert{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提交 APP" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提交 App" message:nil preferredStyle:UIAlertControllerStyleAlert];
     __block UITextField *nameText = nil;
     [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-        textField.placeholder = @"APP 名称";
+        textField.placeholder = @"App 名称";
         nameText = textField;
     }];
     __block UITextField *schemeText = nil;

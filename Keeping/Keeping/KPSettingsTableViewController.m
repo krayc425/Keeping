@@ -227,9 +227,7 @@
                                      completionHandler:nil];
         }];
         [alert addAction:wechatAction];
-        [self presentViewController:alert animated:YES completion:^{
-            [self performSegueWithIdentifier:@"userSegue" sender:nil];
-        }];
+        [self presentViewController:alert animated:YES completion:nil];
     }];
     UIAlertAction *weiboAction = [UIAlertAction actionWithTitle:@"微博" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"sinaweibo://userinfo?uid=1634553604"]
@@ -320,6 +318,7 @@
                                            options:@{}
                                  completionHandler:nil];
         
+        
     }else if(indexPath.section == 3 && indexPath.row == 1){
         NSString *str;
         if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"10.3")){
@@ -330,7 +329,6 @@
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]
                                            options:@{}
                                  completionHandler:nil];
-        
         
     }else if(indexPath.section == 3 && indexPath.row == 3){
         VTAcknowledgementsViewController *viewController = [VTAcknowledgementsViewController acknowledgementsViewController];

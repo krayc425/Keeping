@@ -82,6 +82,7 @@
 		249AE3251E2DEE7700F704F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 249AE3241E2DEE7700F704F8 /* Assets.xcassets */; };
 		249AE3281E2DEE7700F704F8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 249AE3261E2DEE7700F704F8 /* LaunchScreen.storyboard */; };
 		24A0CD6C1E56CED80017EE22 /* KPScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 24A0CD6B1E56CED80017EE22 /* KPScheme.m */; };
+		24AD6FDA20EA778E009F504F /* Empty.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24AD6FD920EA778E009F504F /* Empty.storyboard */; };
 		24B16E0C20CA64790002CFBB /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24B16E0B20CA64790002CFBB /* CloudKit.framework */; };
 		24BA79A11E516949002133B6 /* TaskDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 24BA79A01E516949002133B6 /* TaskDataHelper.m */; };
 		24BA79AB1E516FE0002133B6 /* KPWeekdayPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24BA79AA1E516FE0002133B6 /* KPWeekdayPickerView.m */; };
@@ -285,6 +286,7 @@
 		249AE3291E2DEE7700F704F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24A0CD6A1E56CED80017EE22 /* KPScheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPScheme.h; sourceTree = "<group>"; };
 		24A0CD6B1E56CED80017EE22 /* KPScheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPScheme.m; sourceTree = "<group>"; };
+		24AD6FD920EA778E009F504F /* Empty.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Empty.storyboard; sourceTree = "<group>"; };
 		24B16E0B20CA64790002CFBB /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		24BA799F1E516949002133B6 /* TaskDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskDataHelper.h; sourceTree = "<group>"; };
 		24BA79A01E516949002133B6 /* TaskDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDataHelper.m; sourceTree = "<group>"; };
@@ -615,6 +617,7 @@
 				249AE3291E2DEE7700F704F8 /* Info.plist */,
 				249AE3211E2DEE7700F704F8 /* Keeping.xcdatamodeld */,
 				249AE3151E2DEE7700F704F8 /* Supporting Files */,
+				24AD6FD920EA778E009F504F /* Empty.storyboard */,
 			);
 			path = Keeping;
 			sourceTree = "<group>";
@@ -996,6 +999,7 @@
 			files = (
 				2426103D1E51ACBC0016DC64 /* KPColorPickerView.xib in Resources */,
 				2457FE5920BDB9CE00546C6F /* Pods-Keeping-acknowledgements.plist in Resources */,
+				24AD6FDA20EA778E009F504F /* Empty.storyboard in Resources */,
 				2429CBEF1E2E4A9B0027DD37 /* KPTodayTableViewCell.xib in Resources */,
 				2435F3361E5175FE00C6AAA6 /* KPWeekdayPickerView.xib in Resources */,
 				24F2A0CB1E2F383A00F30FB1 /* KPTaskTableViewCell.xib in Resources */,

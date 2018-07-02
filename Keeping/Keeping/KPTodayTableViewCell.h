@@ -46,7 +46,7 @@
 @property (nonatomic, nullable) IBOutlet CardsView *cardView2;
 //按钮 stackview
 @property (nonatomic, nullable) IBOutlet UIStackView *buttonStackView;
-//APP 按钮
+//App 按钮
 @property (nonatomic, nullable) IBOutlet UIButton *appButton;    //tag = 0
 //链接 按钮
 @property (nonatomic, nullable) IBOutlet UIButton *linkButton;   //tag = 1

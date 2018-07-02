@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14269.12" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14252.5"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,7 +19,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                     <subviews>
                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qsy-oE-wgt">
-                            <rect key="frame" x="0.0" y="10" width="40" height="40.5"/>
+                            <rect key="frame" x="0.0" y="10" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="Qsy-oE-wgt" secondAttribute="height" multiplier="1:1" id="L9W-pn-ySz"/>
                                 <constraint firstAttribute="width" constant="40" id="oGL-dL-69d"/>
@@ -30,7 +29,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SHv-R8-GF4">
-                            <rect key="frame" x="55.5" y="10" width="40.5" height="40.5"/>
+                            <rect key="frame" x="56" y="10" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="SHv-R8-GF4" secondAttribute="height" multiplier="1:1" id="4gm-VM-cLW"/>
                                 <constraint firstAttribute="width" constant="40" id="6sT-SQ-B7g"/>
@@ -40,7 +39,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tcN-eb-CPI">
-                            <rect key="frame" x="111.5" y="10" width="40" height="40.5"/>
+                            <rect key="frame" x="111.5" y="10" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="tcN-eb-CPI" secondAttribute="height" multiplier="1:1" id="EgV-rj-1Gw"/>
                                 <constraint firstAttribute="width" constant="40" id="bIk-gP-a20"/>
@@ -50,7 +49,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jhp-tc-4Xl">
-                            <rect key="frame" x="167.5" y="10" width="40.5" height="40.5"/>
+                            <rect key="frame" x="167.5" y="10" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="40" id="OKS-cr-aeD"/>
                                 <constraint firstAttribute="width" secondItem="Jhp-tc-4Xl" secondAttribute="height" multiplier="1:1" id="ynr-ro-ZP8"/>
@@ -60,7 +59,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7SI-Pl-5N6">
-                            <rect key="frame" x="223.5" y="10" width="40" height="40.5"/>
+                            <rect key="frame" x="223.5" y="10" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="7SI-Pl-5N6" secondAttribute="height" multiplier="1:1" id="yPD-t3-e0I"/>
                                 <constraint firstAttribute="width" constant="40" id="zoB-zX-N29"/>
@@ -70,7 +69,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8K4-f9-xJM">
-                            <rect key="frame" x="279" y="10" width="40.5" height="40.5"/>
+                            <rect key="frame" x="279" y="10" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="8K4-f9-xJM" secondAttribute="height" multiplier="1:1" id="HCa-B5-qa1"/>
                                 <constraint firstAttribute="width" constant="40" id="KPZ-ra-LgE"/>
@@ -80,7 +79,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5uF-4S-FfS">
-                            <rect key="frame" x="335" y="10" width="40" height="40.5"/>
+                            <rect key="frame" x="335" y="10" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="40" id="6eP-2g-MfK"/>
                                 <constraint firstAttribute="width" secondItem="5uF-4S-FfS" secondAttribute="height" multiplier="1:1" id="u8w-1m-CuC"/>

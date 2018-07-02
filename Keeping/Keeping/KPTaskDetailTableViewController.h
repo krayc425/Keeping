@@ -12,6 +12,7 @@
 #import "KPWeekdayPickerView.h"
 #import "KPColorPickerView.h"
 #import "KPScheme.h"
+#import "CardsView.h"
 
 @interface KPTaskDetailTableViewController : UITableViewController <SchemeDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate, KPWeekdayPickerDelegate, KPColorPickerDelegate>
 
@@ -22,7 +23,6 @@
 @property (weak, nonatomic, nullable) IBOutlet KPWeekdayPickerView *weekdayView;
 @property (copy, nonatomic, nonnull) NSMutableArray *selectedWeekdayArr;
 
-@property (weak, nonatomic, nullable) IBOutlet UIStackView *durationStack;
 @property (weak, nonatomic, nullable) IBOutlet UIButton *startDateButton;
 @property (weak, nonatomic, nullable) IBOutlet UIButton *endDateButton;
 
@@ -34,6 +34,7 @@
 @property (nonatomic, nullable) NSDate *reminderTime;
 
 @property (weak, nonatomic, nullable) IBOutlet UILabel *appNameLabel;
+@property (weak, nonatomic, nullable) IBOutlet UISwitch *appSwitch;
 @property (nullable, nonatomic) KPScheme *selectedApp;
 
 @property (weak, nonatomic, nullable) IBOutlet UIImageView *selectedImgView;
@@ -46,5 +47,7 @@
 @property (weak, nonatomic, nullable) IBOutlet UITextField *linkTextField;
 
 @property (weak, nonatomic, nullable) IBOutlet UITextView *memoTextView;
+
+@property (nonnull, nonatomic) IBOutletCollection(CardsView) NSArray *cardsViews;
 
 @end

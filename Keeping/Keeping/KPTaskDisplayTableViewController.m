@@ -55,8 +55,8 @@ static AMPopTip *shareTip = NULL;
     [self.progressView setFontWithSize:25.0f];
     
     //Duration
-    [self.startDateButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
-    [self.endDateButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
+    [self.startDateButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.endDateButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.startDateButton.titleLabel sizeToFit];
     [self.endDateButton.titleLabel sizeToFit];
     [self.startDateButton.titleLabel setFont:[UIFont systemFontOfSize:18.0f]];
