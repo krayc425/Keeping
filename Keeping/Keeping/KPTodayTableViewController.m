@@ -246,6 +246,14 @@ static KPColorPickerView *colorPickerView = NULL;
     
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
     [alert addAction:cancelAction];
+    
+    if (alert.popoverPresentationController != NULL) {
+        alert.popoverPresentationController.barButtonItem = self.navigationItem.leftBarButtonItem;
+        alert.popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionUp;
+        alert.popoverPresentationController.sourceView = self.view;
+        alert.popoverPresentationController.sourceRect = CGRectZero;
+    }
+    
     [self presentViewController:alert animated:YES completion:nil];
 }
 
@@ -264,7 +272,7 @@ static KPColorPickerView *colorPickerView = NULL;
 }
 
 - (void)deleteTaskAtIndexPath:(NSIndexPath *)indexPath{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确认删除吗" message:@"此操作不可恢复" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确定删除吗？" message:@"此操作不可恢复" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
     UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"删除" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
         Task *t;
@@ -288,6 +296,7 @@ static KPColorPickerView *colorPickerView = NULL;
     }];
     [alert addAction:cancelAction];
     [alert addAction:deleteAction];
+    
     [self presentViewController:alert animated:YES completion:nil];
 }
 
@@ -455,9 +464,7 @@ static KPColorPickerView *colorPickerView = NULL;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if(indexPath.section != 0){
         KPTodayTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-//        
-//        NSIndexPath *oldSelectedIndexPath = [self.selectedIndexPath copy];
-//        
+        
         if(![cell.moreButton isHidden]){
             if([self.selectedIndexPath isEqual:indexPath]){
                 self.selectedIndexPath = NULL;
@@ -467,20 +474,9 @@ static KPColorPickerView *colorPickerView = NULL;
         }else{
             self.selectedIndexPath = NULL;
         }
+        
         [self fadeAnimation];
         [tableView reloadData];
-        
-//        NSMutableArray *indexes = [NSMutableArray array];
-//        if (oldSelectedIndexPath != NULL) {
-//            [indexes addObject:oldSelectedIndexPath];
-//        }
-//        if (self.selectedIndexPath != NULL) {
-//            [indexes addObject:self.selectedIndexPath];
-//        }
-//        if (indexes.count > 0) {
-//            [tableView reloadRowsAtIndexPaths:indexes withRowAnimation:UITableViewRowAnimationFade];
-//        }
-        
     }
 }
 

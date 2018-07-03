@@ -262,7 +262,7 @@ static AMPopTip *shareTip = NULL;
 }
 
 - (IBAction)deleteTask:(id)sender{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确认删除吗" message:@"此操作不可恢复" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确定删除吗？" message:@"此操作不可恢复" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
     UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"删除" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
         [[TaskManager shareInstance] deleteTask:self.task];
@@ -442,7 +442,7 @@ static AMPopTip *shareTip = NULL;
         buttonMemoText = @"修改当日备注";
     }
     
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:[DateUtil getDateStringOfDate:date] message:displayMemo preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:[DateUtil getDateStringOfDate:date] message:displayMemo preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *memoAction = [UIAlertAction actionWithTitle:buttonMemoText style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         

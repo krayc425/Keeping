@@ -94,7 +94,7 @@
     
     //备注
     self.memoTextView.delegate = self;
-    [self.memoTextView setTextColor:[Utilities getColor]];
+    [self.memoTextView setTextColor:[UIColor blackColor]];
     [self.memoTextView setFont:[UIFont systemFontOfSize:15.0f]];
     self.memoTextView.layer.borderWidth = 1.0;
     self.memoTextView.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
@@ -103,7 +103,7 @@
     UILabel *placeHolderLabel = [[UILabel alloc] init];
     placeHolderLabel.text = @"点击输入备注";
     placeHolderLabel.numberOfLines = 0;
-    placeHolderLabel.textColor = [UIColor lightGrayColor];
+    placeHolderLabel.textColor = [UIColor lightTextColor];
     [placeHolderLabel sizeToFit];
     [placeHolderLabel setFont:[UIFont systemFontOfSize:15.0f]];
     placeHolderLabel.textAlignment = NSTextAlignmentLeft;
@@ -122,14 +122,6 @@
         [self.startDateButton setTitle:[self.task.addDate formattedDateWithFormat:DATE_FORMAT] forState:UIControlStateNormal];
         if(self.task.endDate != NULL){
             [self.endDateButton setTitle:[self.task.endDate formattedDateWithFormat:DATE_FORMAT] forState:UIControlStateNormal];
-            
-            //如果已经超期，不能编辑
-            //            if([self.task.endDate isEarlierThan:[NSDate date]]){
-            //                [self.tableView setUserInteractionEnabled:NO];
-            //            }else{
-            //                [self.tableView setUserInteractionEnabled:YES];
-            //            }
-            
         }else{
             [self.endDateButton setTitle:ENDLESS_STRING forState:UIControlStateNormal];
         }
@@ -201,25 +193,21 @@
     
 }
 
-- (BOOL)checkCompleted{
-    if([self.taskNameField.text isEqualToString:@""]){
-        return NO;
-    }
-    if([self.selectedWeekdayArr count] <= 0){
-        return NO;
-    }
-    return YES;
-}
-
 - (void)backAction:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)doneAction:(id)sender{
-
     //先检查有没有填满必填信息
-    if(![self checkCompleted]){
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"信息填写不完整" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    NSString *title = @"";
+    if([self.taskNameField.text isEqualToString:@""]){
+        title = @"请填写任务名称";
+    }else if([self.selectedWeekdayArr count] <= 0){
+        title = @"请选择完成时间";
+    }
+    
+    if(![title isEqualToString:@""]){
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:nil preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:okAction];
         [self presentViewController:alert animated:YES completion:^{
@@ -260,10 +248,9 @@
         self.task.image = NULL;
     }else{
         self.task.image = UIImageJPEGRepresentation([ImageUtil normalizedImage:self.selectedImgView.image], 1.0);
-        NSLog(@"img size : %lu", self.task.image.length);
     }
     //链接
-    self.task.link = self.linkTextField.text;       //有：文字，无：@“”
+    self.task.link = self.linkTextField.text;       //有：文字，无：@""
     //开始日期
     self.task.addDate = titleStartDate;
     //结束日期
@@ -279,7 +266,6 @@
 
     //更新
     if(self.task.id == 0){
-
         self.task.punchDateArr = [[NSMutableArray alloc] init];
         self.task.punchMemoArr = [[NSMutableArray alloc] init];
 
@@ -338,12 +324,10 @@
             [self presentViewController:alert animated:YES completion:nil];
 
         }else{
-
             [[TaskManager shareInstance] updateTask:self.task];
 
             [self showChangeSuccessAlert];
         }
-
     }
 }
 
@@ -383,7 +367,7 @@
         [self.reminderLabel setText:@"无"];
     }else{
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"选择提醒时间" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-        UIDatePicker *datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH - 20, 250)];
+        UIDatePicker *datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 20, IS_IPAD ? 300 : SCREEN_WIDTH - 20, 250)];
         datePicker.tintColor = [Utilities getColor];
         datePicker.datePickerMode = UIDatePickerModeTime;
         [alert.view addSubview:datePicker];
@@ -404,8 +388,14 @@
         }];
         [alert addAction:cancelAction];
 
-        NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:alert.view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:datePicker.frame.size.height + 120];
+        NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:alert.view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:datePicker.frame.size.height + (IS_IPAD ? 70.0 : 120.0)];
         [alert.view addConstraint:heightConstraint];
+        
+        if (alert.popoverPresentationController != NULL) {
+            alert.popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionAny;
+            alert.popoverPresentationController.sourceView = senderSwitch;
+            alert.popoverPresentationController.sourceRect = CGRectZero;
+        }
         
         [self presentViewController:alert animated:YES completion:nil];
     }
@@ -432,7 +422,7 @@
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
     imagePickerController.delegate = self;
     imagePickerController.allowsEditing = YES;
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"选择一张图片" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"选择一张图片" message:nil preferredStyle:UIAlertControllerStyleAlert];
     
     if(self.selectedApp != NULL && ![self.appNameLabel.text isEqualToString:@"无"]){
         UIAlertAction *appAction = [UIAlertAction actionWithTitle:@"选择 App 图标"
@@ -480,6 +470,7 @@
     }
     [alert addAction:photosAction];
     [alert addAction:cancelAction];
+    
     [self presentViewController:alert animated:YES completion:nil];
 }
 
@@ -497,8 +488,6 @@
     [self.selectedImgView setHidden:NO];
     [self.addImgButton setTitle:@"更改图片" forState:UIControlStateNormal];
     
-    [self.addImgButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
-    
     [self.viewImgButton setHidden:NO];
     [self.deleteImgButton setHidden:NO];
     [self.deleteImgButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
@@ -512,8 +501,6 @@
     [self.selectedImgView setHidden:YES];
     
     [self.addImgButton setTitle:@"添加图片" forState:UIControlStateNormal];
-    
-    [self.addImgButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     
     [self.viewImgButton setHidden:YES];
     [self.deleteImgButton setHidden:YES];
@@ -532,7 +519,7 @@
     NSString *title = type == 0 ? @"选择开始日期" : @"选择结束日期";
     
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    UIDatePicker *datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH - 20, 250)];
+    UIDatePicker *datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 20, IS_IPAD ? 300 : SCREEN_WIDTH - 20, 250)];
     datePicker.tintColor = [Utilities getColor];
     datePicker.datePickerMode = UIDatePickerModeDate;
     [alert.view addSubview:datePicker];
@@ -565,8 +552,14 @@
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
     [alert addAction:cancelAction];
     
-    NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:alert.view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:datePicker.frame.size.height + (type == 1 ? 175 : 120)];
+    NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:alert.view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:datePicker.frame.size.height + (type == 1 ? 175 : 120) + (IS_IPAD ? -50.0 : 0.0)];
     [alert.view addConstraint:heightConstraint];
+    
+    if (alert.popoverPresentationController != NULL) {
+        alert.popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionAny;
+        alert.popoverPresentationController.sourceView = btn;
+        alert.popoverPresentationController.sourceRect = CGRectZero;
+    }
     
     [self presentViewController:alert animated:YES completion:nil];
 }
@@ -625,16 +618,10 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.section == 1 && indexPath.row == 2){
-        return 280.f + (self.selectedImgView.image == NULL ? 0.0f : CGRectGetWidth(self.selectedImgView.frame) + 20.0f);
+        return 280.f + (self.selectedImgView.image == NULL ? 0.0f : (CGRectGetWidth(self.view.frame) - 120.0f));
     }else{
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];
     }
-}
-
-#pragma mark - UITextFieldDelegate & UITextViewDelegate
-
-- (void)pickerDoneClicked{
-    [self.memoTextView resignFirstResponder];
 }
 
 #pragma mark - Navigation

@@ -32,17 +32,19 @@
     CGFloat buttonWidth = 50.0;
     
     // 添加发布按钮
-    UIButton *publishButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [publishButton setBackgroundImage:[UIImage imageNamed:@"TAB_ADD"] forState:UIControlStateNormal];
-    [publishButton setBackgroundImage:[UIImage imageNamed:@"TAB_ADD_SELECTED"] forState:UIControlStateHighlighted];
-    [publishButton sizeToFit];
-    [publishButton addTarget:self
-                      action:@selector(publishClick:)
-            forControlEvents:UIControlEventTouchUpInside];
-    [publishButton setCenter:CGPointMake(width * 0.5, isiPhoneX ? buttonWidth / 4.0 : 7.5)];
-    [publishButton setBounds:CGRectMake(0, 0, buttonWidth, buttonWidth)];
-    [self addSubview:publishButton];
-    self.publishButton = publishButton;
+    if (self.publishButton == NULL) {
+        UIButton *publishButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [publishButton setBackgroundImage:[UIImage imageNamed:@"TAB_ADD"] forState:UIControlStateNormal];
+        [publishButton setBackgroundImage:[UIImage imageNamed:@"TAB_ADD_SELECTED"] forState:UIControlStateHighlighted];
+        [publishButton sizeToFit];
+        [publishButton addTarget:self
+                          action:@selector(publishClick:)
+                forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:publishButton];
+        self.publishButton = publishButton;
+    }
+    [self.publishButton setCenter:CGPointMake(width * 0.5, isiPhoneX ? buttonWidth / 4.0 : 7.5)];
+    [self.publishButton setBounds:CGRectMake(0, 0, buttonWidth, buttonWidth)];
     
     // 按钮索引
     int index = 0;
@@ -61,7 +63,7 @@
         // 计算按钮的X值
         CGFloat tabBarButtonX = index * tabBarButtonW;
         if (index == 1) { // 给后面1个button增加一个宽度的X值
-            tabBarButtonX += CGRectGetWidth(publishButton.frame);
+            tabBarButtonX += CGRectGetWidth(self.publishButton.frame);
         }
         
         // 设置按钮的frame

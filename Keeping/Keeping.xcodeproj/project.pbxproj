@@ -78,11 +78,9 @@
 		249AE3171E2DEE7700F704F8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 249AE3161E2DEE7700F704F8 /* main.m */; };
 		249AE31A1E2DEE7700F704F8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 249AE3191E2DEE7700F704F8 /* AppDelegate.m */; };
 		249AE3201E2DEE7700F704F8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 249AE31E1E2DEE7700F704F8 /* Main.storyboard */; };
-		249AE3231E2DEE7700F704F8 /* Keeping.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 249AE3211E2DEE7700F704F8 /* Keeping.xcdatamodeld */; };
 		249AE3251E2DEE7700F704F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 249AE3241E2DEE7700F704F8 /* Assets.xcassets */; };
 		249AE3281E2DEE7700F704F8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 249AE3261E2DEE7700F704F8 /* LaunchScreen.storyboard */; };
 		24A0CD6C1E56CED80017EE22 /* KPScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 24A0CD6B1E56CED80017EE22 /* KPScheme.m */; };
-		24AD6FDA20EA778E009F504F /* Empty.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24AD6FD920EA778E009F504F /* Empty.storyboard */; };
 		24B16E0C20CA64790002CFBB /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24B16E0B20CA64790002CFBB /* CloudKit.framework */; };
 		24BA79A11E516949002133B6 /* TaskDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 24BA79A01E516949002133B6 /* TaskDataHelper.m */; };
 		24BA79AB1E516FE0002133B6 /* KPWeekdayPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24BA79AA1E516FE0002133B6 /* KPWeekdayPickerView.m */; };
@@ -203,9 +201,6 @@
 		2429CBF21E2E4E750027DD37 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		2429CBF91E2E5D510027DD37 /* KPTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPTabBarViewController.h; sourceTree = "<group>"; };
 		2429CBFA1E2E5D510027DD37 /* KPTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPTabBarViewController.m; sourceTree = "<group>"; };
-		2433E6C41E65034600315D5B /* libAVOSCloudCrashReporting.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAVOSCloudCrashReporting.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Keeping-ejqrhezpewpcwpfbtvrmhjalbbdj/Build/Products/Debug-iphonesimulator/AVOSCloudCrashReporting/libAVOSCloudCrashReporting.a"; sourceTree = "<group>"; };
-		2433E6C91E65184900315D5B /* libAVOSCloud.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAVOSCloud.a; path = "Pods/../build/Debug-iphoneos/AVOSCloud/libAVOSCloud.a"; sourceTree = "<group>"; };
-		2433E6CB1E65242B00315D5B /* libAVOSCloudCrashReporting.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAVOSCloudCrashReporting.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Keeping-ejqrhezpewpcwpfbtvrmhjalbbdj/Build/Products/Debug-iphoneos/AVOSCloudCrashReporting/libAVOSCloudCrashReporting.a"; sourceTree = "<group>"; };
 		2433E6CD1E65247700315D5B /* libAVOSCloud.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAVOSCloud.a; path = "../../../../../Library/Developer/Xcode/DerivedData/Keeping-ejqrhezpewpcwpfbtvrmhjalbbdj/Build/Products/Debug-iphoneos/AVOSCloud/libAVOSCloud.a"; sourceTree = "<group>"; };
 		2435DBEF1E35CCC300F1A96E /* KPFontTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPFontTableViewController.h; sourceTree = "<group>"; };
 		2435DBF01E35CCC300F1A96E /* KPFontTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPFontTableViewController.m; sourceTree = "<group>"; };
@@ -225,7 +220,7 @@
 		24569A2B1F95E31E00082EE4 /* KCEdgeInsetLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KCEdgeInsetLabel.m; sourceTree = "<group>"; };
 		2457FE5220BCED9500546C6F /* KPBaseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KPBaseTableViewCell.h; sourceTree = "<group>"; };
 		2457FE5320BCED9500546C6F /* KPBaseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KPBaseTableViewCell.m; sourceTree = "<group>"; };
-		2457FE5820BDB9CE00546C6F /* Pods-Keeping-acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Pods-Keeping-acknowledgements.plist"; path = "Pods/Target Support Files/Pods-Keeping/Pods-Keeping-acknowledgements.plist"; sourceTree = SOURCE_ROOT; };
+		2457FE5820BDB9CE00546C6F /* Pods-Keeping-acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Pods-Keeping-acknowledgements.plist"; path = "Keeping/Pods-Keeping-acknowledgements.plist"; sourceTree = SOURCE_ROOT; };
 		2457FE5A20BDB9F300546C6F /* Keeping-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Keeping-Bridging-Header.h"; sourceTree = "<group>"; };
 		245A01091F98EE9100CB50E9 /* KeepingWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KeepingWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		245A010C1F98EE9100CB50E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
@@ -280,13 +275,11 @@
 		249AE3181E2DEE7700F704F8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		249AE3191E2DEE7700F704F8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		249AE31F1E2DEE7700F704F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		249AE3221E2DEE7700F704F8 /* Keeping.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Keeping.xcdatamodel; sourceTree = "<group>"; };
 		249AE3241E2DEE7700F704F8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		249AE3271E2DEE7700F704F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		249AE3291E2DEE7700F704F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24A0CD6A1E56CED80017EE22 /* KPScheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPScheme.h; sourceTree = "<group>"; };
 		24A0CD6B1E56CED80017EE22 /* KPScheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPScheme.m; sourceTree = "<group>"; };
-		24AD6FD920EA778E009F504F /* Empty.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Empty.storyboard; sourceTree = "<group>"; };
 		24B16E0B20CA64790002CFBB /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		24BA799F1E516949002133B6 /* TaskDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskDataHelper.h; sourceTree = "<group>"; };
 		24BA79A01E516949002133B6 /* TaskDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDataHelper.m; sourceTree = "<group>"; };
@@ -324,10 +317,8 @@
 		24FD7FF720BC4F5700DFA8D6 /* KPGuideView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KPGuideView.h; sourceTree = "<group>"; };
 		24FD7FF820BC4F5700DFA8D6 /* KPGuideView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KPGuideView.m; sourceTree = "<group>"; };
 		3303168DFB48063C3EC132E2 /* Pods-KeepingWidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KeepingWidget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KeepingWidget/Pods-KeepingWidget.debug.xcconfig"; sourceTree = "<group>"; };
-		536AA62E968456370B920F00 /* libPods-KeepingWatch Extension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KeepingWatch Extension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7768AB7A1CE5FD0A347A4517 /* libPods-KeepingWidget.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KeepingWidget.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		90B7675F597B76B950B77B8B /* Pods-Keeping.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keeping.release.xcconfig"; path = "Pods/Target Support Files/Pods-Keeping/Pods-Keeping.release.xcconfig"; sourceTree = "<group>"; };
-		A82AAE1686C2E350CED30CF7 /* libPods-KeepingWatch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KeepingWatch.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC5A1BA89969620E5A37921E /* libPods-Keeping.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Keeping.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D878305BCC1A269899CF1ACC /* Pods-Keeping.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keeping.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Keeping/Pods-Keeping.debug.xcconfig"; sourceTree = "<group>"; };
 		F23AC8433168973E490B2488 /* Pods-KeepingWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KeepingWidget.release.xcconfig"; path = "Pods/Target Support Files/Pods-KeepingWidget/Pods-KeepingWidget.release.xcconfig"; sourceTree = "<group>"; };
@@ -609,15 +600,15 @@
 				24DCF18B1E30940C0097C250 /* Utilities */,
 				249AE31E1E2DEE7700F704F8 /* Main.storyboard */,
 				249AE3261E2DEE7700F704F8 /* LaunchScreen.storyboard */,
+				2457FE5820BDB9CE00546C6F /* Pods-Keeping-acknowledgements.plist */,
+				2457FE5A20BDB9F300546C6F /* Keeping-Bridging-Header.h */,
+				244547F320D91C7F00805F5E /* Keeping-Prefix.pch */,
+				249AE3291E2DEE7700F704F8 /* Info.plist */,
 				249AE3241E2DEE7700F704F8 /* Assets.xcassets */,
 				24D064E320C8826700FD78F2 /* Intro.xcassets */,
 				24699F041E2F23C60092FBED /* Navigation.xcassets */,
 				245196701E3CB82F00C18C5B /* TabBar.xcassets */,
-				2457FE5820BDB9CE00546C6F /* Pods-Keeping-acknowledgements.plist */,
-				249AE3291E2DEE7700F704F8 /* Info.plist */,
-				249AE3211E2DEE7700F704F8 /* Keeping.xcdatamodeld */,
 				249AE3151E2DEE7700F704F8 /* Supporting Files */,
-				24AD6FD920EA778E009F504F /* Empty.storyboard */,
 			);
 			path = Keeping;
 			sourceTree = "<group>";
@@ -625,8 +616,6 @@
 		249AE3151E2DEE7700F704F8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				2457FE5A20BDB9F300546C6F /* Keeping-Bridging-Header.h */,
-				244547F320D91C7F00805F5E /* Keeping-Prefix.pch */,
 				24BB39731F95DAA800D0BAE0 /* Intro_Screen_Four.png */,
 				24BB39771F95DCC600D0BAE0 /* Intro_Screen_Five.png */,
 				24BB39751F95DAA800D0BAE0 /* Intro_Screen_One.png */,
@@ -781,14 +770,9 @@
 			children = (
 				24B16E0B20CA64790002CFBB /* CloudKit.framework */,
 				2433E6CD1E65247700315D5B /* libAVOSCloud.a */,
-				2433E6CB1E65242B00315D5B /* libAVOSCloudCrashReporting.a */,
-				2433E6C91E65184900315D5B /* libAVOSCloud.a */,
-				2433E6C41E65034600315D5B /* libAVOSCloudCrashReporting.a */,
 				2436F8231E2F2C3300C2984A /* libsqlite3.0.tbd */,
 				247F01B81E3D9E1B001F900C /* NotificationCenter.framework */,
 				7768AB7A1CE5FD0A347A4517 /* libPods-KeepingWidget.a */,
-				A82AAE1686C2E350CED30CF7 /* libPods-KeepingWatch.a */,
-				536AA62E968456370B920F00 /* libPods-KeepingWatch Extension.a */,
 				AC5A1BA89969620E5A37921E /* libPods-Keeping.a */,
 			);
 			name = Frameworks;
@@ -999,7 +983,6 @@
 			files = (
 				2426103D1E51ACBC0016DC64 /* KPColorPickerView.xib in Resources */,
 				2457FE5920BDB9CE00546C6F /* Pods-Keeping-acknowledgements.plist in Resources */,
-				24AD6FDA20EA778E009F504F /* Empty.storyboard in Resources */,
 				2429CBEF1E2E4A9B0027DD37 /* KPTodayTableViewCell.xib in Resources */,
 				2435F3361E5175FE00C6AAA6 /* KPWeekdayPickerView.xib in Resources */,
 				24F2A0CB1E2F383A00F30FB1 /* KPTaskTableViewCell.xib in Resources */,
@@ -1073,11 +1056,7 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
-			);
-			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
@@ -1204,7 +1183,6 @@
 				2435DBF11E35CCC300F1A96E /* KPFontTableViewController.m in Sources */,
 				247C8EBD1F94FAB40098B574 /* KPTodayTableViewController+Touch.m in Sources */,
 				245D7B7C1F9CDDFA007DD894 /* KPWatchManager.m in Sources */,
-				249AE3231E2DEE7700F704F8 /* Keeping.xcdatamodeld in Sources */,
 				2429CBE81E2E499A0027DD37 /* KPSeparatorView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1503,10 +1481,7 @@
 				INFOPLIST_FILE = Keeping/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/AVOSCloud",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.krayc.Keeping;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1514,7 +1489,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "Keeping/Keeping-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1534,17 +1509,14 @@
 				INFOPLIST_FILE = Keeping/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/AVOSCloud",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.krayc.Keeping;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Keeping/Keeping-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -1597,19 +1569,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		249AE3211E2DEE7700F704F8 /* Keeping.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				249AE3221E2DEE7700F704F8 /* Keeping.xcdatamodel */,
-			);
-			currentVersion = 249AE3221E2DEE7700F704F8 /* Keeping.xcdatamodel */;
-			path = Keeping.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 249AE30A1E2DEE7700F704F8 /* Project object */;
 }

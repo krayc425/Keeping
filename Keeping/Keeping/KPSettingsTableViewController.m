@@ -141,7 +141,7 @@
     NSString *backUpDateString = [[NSUserDefaults standardUserDefaults] valueForKey:@"Backup_date_string"];
     NSString *showBackupDateString = [NSString stringWithFormat:@"上次备份：%@", backUpDateString == nil ? @"无" : backUpDateString];
                                   
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"备份" message:showBackupDateString preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"iCloud 备份" message:showBackupDateString preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *uploadAction = [UIAlertAction actionWithTitle:@"上传备份" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
@@ -205,12 +205,12 @@
     [alert addAction:downloadAction];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
     [alert addAction:cancelAction];
-    
+
     [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)contactMe{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"联系作者" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"联系作者" message:nil preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *iMsgAction = [UIAlertAction actionWithTitle:@"iMessage" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"sms:krayc425@gmail.com"] options:@{} completionHandler:^(BOOL success) {
             

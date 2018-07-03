@@ -99,7 +99,7 @@
     [[DBManager shareInstance] closeDB];
 }
 
-- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray * _Nullable))restorationHandler{
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray<id<UIUserActivityRestoring>> * _Nullable))restorationHandler {
     
     NSString *wordID = userActivity.userInfo[CSSearchableItemActivityIdentifier];
     Task *task = [[TaskManager shareInstance] getTasksOfID:[wordID intValue]];

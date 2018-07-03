@@ -56,8 +56,8 @@ static BOOL _loadingXib = NO;
         [btn setBackgroundImage:img forState:UIControlStateNormal];
         [btn setTintColor:[Utilities getTypeColorArr][i]];
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [btn.titleLabel setFont:[UIFont systemFontOfSize:20.0f]];
-        [btn setTag:i+1];
+        [btn.titleLabel setFont:[UIFont systemFontOfSize:CGRectGetWidth(btn.frame) / 2.0]];
+        [btn setTag:i + 1];
     }
     
     if(self.selectedColorNum > 0){

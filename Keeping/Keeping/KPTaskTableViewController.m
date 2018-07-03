@@ -135,18 +135,26 @@ static KPColorPickerView *colorPickerView = NULL;
     
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
     [alert addAction:cancelAction];
+    
+    if (alert.popoverPresentationController != NULL) {
+        alert.popoverPresentationController.barButtonItem = self.navigationItem.leftBarButtonItem;
+        alert.popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionUp;
+        alert.popoverPresentationController.sourceView = self.view;
+        alert.popoverPresentationController.sourceRect = CGRectZero;
+    }
+    
     [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)deleteTaskAtIndexPath:(NSIndexPath *)indexPath{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确认删除吗" message:@"此操作不可恢复" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确定删除吗？" message:@"此操作不可恢复" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
     UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"删除" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
         Task *t;
-        if(indexPath.section == 1){
+        if(indexPath.section == 0){
             t = self.taskArr[indexPath.row];
             [self.taskArr removeObject:t];
-        }else if(indexPath.section == 2){
+        }else if(indexPath.section == 1){
             t = self.historyTaskArr[indexPath.row];
             [self.historyTaskArr removeObject:t];
         }

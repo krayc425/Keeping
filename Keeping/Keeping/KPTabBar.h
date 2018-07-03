@@ -14,7 +14,7 @@
 
 @end
 
-@interface KPTabBar : UITabBar
+@interface KPTabBar: UITabBar
 
 @property (nonatomic, weak, nullable) UIButton *publishButton;
 
