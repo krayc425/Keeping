@@ -46,7 +46,6 @@
     }
     
     //任务名
-    [self.taskNameField setFont:[UIFont systemFontOfSize:20.0f]];
     self.taskNameField.layer.borderWidth = 1.0;
     self.taskNameField.layer.cornerRadius = 5.0;
     self.taskNameField.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
@@ -76,7 +75,6 @@
     self.selectedImgView.userInteractionEnabled = YES;
     for(UIButton *button in self.imgButtonStack.subviews){
         [button setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
-        [button.titleLabel setFont:[UIFont systemFontOfSize:15.0f]];
     }
     
     //链接

@@ -83,7 +83,7 @@ static KPColorPickerView *colorPickerView = NULL;
     self.previousButton = previousButton;
     
     [self.previousButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.calendar.mas_top).with.offset(5);
+        make.top.mas_equalTo(self.calendar.mas_top).with.offset(3);
         make.left.mas_equalTo(self.calendar.mas_left).with.offset(5);
         make.width.mas_equalTo(100);
         make.height.mas_equalTo(34);
@@ -100,15 +100,13 @@ static KPColorPickerView *colorPickerView = NULL;
     self.nextButton = nextButton;
     
     [self.nextButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.calendar.mas_top).with.offset(5);
+        make.top.mas_equalTo(self.calendar.mas_top).with.offset(3);
         make.right.mas_equalTo(self.calendar.mas_right).with.offset(-5);
         make.width.mas_equalTo(100);
         make.height.mas_equalTo(34);
     }];
     
     [self.calendar selectDate:self.selectedDate scrollToDate:YES];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadTasks) name:@"refresh_today_task" object:nil];
     
     [cardView addSubview:colorPickerView];
     
@@ -133,6 +131,8 @@ static KPColorPickerView *colorPickerView = NULL;
     
     [self.view addSubview:self.hoverView];
     [self.view bringSubviewToFront:self.hoverView];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadTasks) name:@"refresh_today_task" object:nil];
 }
 
 - (void)dealloc {

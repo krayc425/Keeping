@@ -14,6 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, nonnull) UIScrollView *headerScrollView;
 @property (nonatomic, assign) BOOL isShow;
+@property (nonatomic, assign) float baseInsetTop;
+
+- (instancetype)initWithFrame:(CGRect)frame andBaseTop:(CGFloat)baseTop;
 
 - (void)show;
 - (void)hide;

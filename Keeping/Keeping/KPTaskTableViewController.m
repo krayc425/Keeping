@@ -43,20 +43,15 @@ static KPColorPickerView *colorPickerView = NULL;
     self.taskArr = [[NSMutableArray alloc] init];
     self.historyTaskArr = [[NSMutableArray alloc] init];
     
-    self.tableView.emptyDataSetSource = self;
-    self.tableView.emptyDataSetDelegate = self;
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 10)];
-    self.tableView.tableFooterView.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    self.tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
-
-    NSArray *nibView = [[NSBundle mainBundle] loadNibNamed:@"KPWeekdayPickerHeaderView" owner:nil options:nil];
-    KPWeekdayPickerHeaderView *weekdayView = (KPWeekdayPickerHeaderView *)[nibView firstObject];
+    self.tableView.contentInset = UIEdgeInsetsMake(5, 0, 0, 0);
+    
+    KPWeekdayPickerHeaderView *weekdayView = (KPWeekdayPickerHeaderView *)[[[NSBundle mainBundle] loadNibNamed:@"KPWeekdayPickerHeaderView" owner:nil options:nil] firstObject];
     [weekdayView setFrame:CGRectMake(10, 10, SCREEN_WIDTH - 40, 50)];
     //星期代理
     weekdayView.weekdayDelegate =  self;
     weekdayView.isAllSelected = YES;
     weekdayView.isAllButtonHidden = NO;
-    weekdayView.fontSize = 18.0;
+    weekdayView.fontSize = 17.0;
 
     self.selectedWeekdayArr = [@[@1,@2,@3,@4,@5,@6,@7] mutableCopy];
     weekdayView.selectedWeekdayArr = self.selectedWeekdayArr;
@@ -71,7 +66,7 @@ static KPColorPickerView *colorPickerView = NULL;
     
     [cardView addSubview:colorPickerView];
     
-    self.hoverView = [[KPHoverView alloc] initWithFrame:CGRectMake(10.0, -130.0, SCREEN_WIDTH - 20, 130.0)];
+    self.hoverView = [[KPHoverView alloc] initWithFrame:CGRectMake(10.0, -140.0, SCREEN_WIDTH - 20, 130.0) andBaseTop:5.0];
     self.hoverView.headerScrollView = self.tableView;
     
     [self.hoverView addSubview:cardView];

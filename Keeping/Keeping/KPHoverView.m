@@ -21,6 +21,14 @@ typedef NS_ENUM(NSUInteger, KPHoverHeaderState){
     CGFloat lastOffsetY;
 }
 
+- (instancetype)initWithFrame:(CGRect)frame andBaseTop:(CGFloat)baseTop{
+    self.baseInsetTop = baseTop;
+    return [self initWithFrame:CGRectMake(frame.origin.x,
+                                          frame.origin.y + baseTop,
+                                          frame.size.width,
+                                          frame.size.height)];
+}
+
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if(self){
@@ -56,9 +64,9 @@ typedef NS_ENUM(NSUInteger, KPHoverHeaderState){
     self.isShow = YES;
     [_headerScrollView setUserInteractionEnabled:NO];
     [UIView animateWithDuration:0.5 animations:^{
-        self.headerScrollView.contentInset = UIEdgeInsetsMake(self.frame.size.height + 10.0, 0, 0, 0);
+        self.headerScrollView.contentInset = UIEdgeInsetsMake(self.frame.size.height + 10.0 + self.baseInsetTop, 0, 0, 0);
         self.frame = CGRectMake(self.frame.origin.x,
-                                -self.frame.size.height,
+                                -self.frame.size.height - self.baseInsetTop,
                                 UIScreen.mainScreen.bounds.size.width - 20.0,
                                 self.frame.size.height);
         [self->_headerScrollView setUserInteractionEnabled:YES];
@@ -69,10 +77,10 @@ typedef NS_ENUM(NSUInteger, KPHoverHeaderState){
 - (void)hide{
     self.isShow = NO;
     [_headerScrollView setUserInteractionEnabled:NO];
-    [UIView animateWithDuration:0.5 animations:^{
-        self.headerScrollView.contentInset = UIEdgeInsetsZero;
+    [UIView animateWithDuration:0.5 animations:^{    
+        self.headerScrollView.contentInset = UIEdgeInsetsMake(self.baseInsetTop, 0, 0, 0);
         self.frame = CGRectMake(self.frame.origin.x,
-                                - self.frame.size.height,
+                                -self.frame.size.height - self.baseInsetTop,
                                 UIScreen.mainScreen.bounds.size.width - 20.0,
                                 self.frame.size.height);
         [self->_headerScrollView setUserInteractionEnabled:YES];

@@ -21,6 +21,7 @@
 #import "KPNavigationTitleView.h"
 #import "IDMPhotoBrowser.h"
 #import "UIViewController+Extensions.h"
+#import "Masonry.h"
 
 static AMPopTip *shareTip = NULL;
 
@@ -59,8 +60,6 @@ static AMPopTip *shareTip = NULL;
     [self.endDateButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.startDateButton.titleLabel sizeToFit];
     [self.endDateButton.titleLabel sizeToFit];
-    [self.startDateButton.titleLabel setFont:[UIFont systemFontOfSize:18.0f]];
-    [self.endDateButton.titleLabel setFont:[UIFont systemFontOfSize:18.0f]];
     self.startDateButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     self.endDateButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     self.startDateButton.titleLabel.adjustsFontSizeToFitWidth = YES;
@@ -118,7 +117,6 @@ static AMPopTip *shareTip = NULL;
     [cardView addSubview:self.calendar];
     
     UIButton *previousButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    previousButton.frame = CGRectMake(10, 4, 90, 34);
     [previousButton setBackgroundColor:[UIColor clearColor]];
     [previousButton setTintColor:[Utilities getColor]];
     UIImage *leftImg = [UIImage imageNamed:@"NAV_BACK"];
@@ -128,8 +126,14 @@ static AMPopTip *shareTip = NULL;
     [cardView addSubview:previousButton];
     self.previousButton = previousButton;
     
+    [self.previousButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.calendar.mas_top).with.offset(3);
+        make.left.mas_equalTo(self.calendar.mas_left).with.offset(5);
+        make.width.mas_equalTo(100);
+        make.height.mas_equalTo(34);
+    }];
+    
     UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    nextButton.frame = CGRectMake(CGRectGetWidth(self.tableView.frame) - 120, 4, 90, 34);
     [nextButton setBackgroundColor:[UIColor clearColor]];
     [nextButton setTintColor:[Utilities getColor]];
     UIImage *rightImg = [UIImage imageNamed:@"NAV_NEXT"];
@@ -138,6 +142,13 @@ static AMPopTip *shareTip = NULL;
     [nextButton addTarget:self action:@selector(nextClicked:) forControlEvents:UIControlEventTouchUpInside];
     [cardView addSubview:nextButton];
     self.nextButton = nextButton;
+    
+    [self.nextButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.calendar.mas_top).with.offset(3);
+        make.right.mas_equalTo(self.calendar.mas_right).with.offset(-5);
+        make.width.mas_equalTo(100);
+        make.height.mas_equalTo(34);
+    }];
     
     NSArray *colorLegend = @[[UIColor redColor],
                              [Utilities getColor],
@@ -154,6 +165,13 @@ static AMPopTip *shareTip = NULL;
         imageView.image = image;
         [imageView setTintColor:colorLegend[i]];
     }
+    
+    [self.calendar mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(cardView.mas_top).with.offset(2);
+        make.left.mas_equalTo(cardView.mas_left).with.offset(5);
+        make.right.mas_equalTo(cardView.mas_right).with.offset(-5);
+        make.bottom.mas_equalTo(cardView.mas_bottom).with.offset(-25);
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
