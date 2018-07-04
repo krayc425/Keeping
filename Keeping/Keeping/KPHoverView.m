@@ -45,6 +45,13 @@ typedef NS_ENUM(NSUInteger, KPHoverHeaderState){
     _headerState = KPHoverHeaderStateIdle;
 }
 
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    if (self.isShow) {
+        [self show];
+    }
+}
+
 - (void)show{
     self.isShow = YES;
     [_headerScrollView setUserInteractionEnabled:NO];
@@ -52,7 +59,7 @@ typedef NS_ENUM(NSUInteger, KPHoverHeaderState){
         self.headerScrollView.contentInset = UIEdgeInsetsMake(self.frame.size.height + 10.0, 0, 0, 0);
         self.frame = CGRectMake(self.frame.origin.x,
                                 -self.frame.size.height,
-                                self.frame.size.width,
+                                UIScreen.mainScreen.bounds.size.width - 20.0,
                                 self.frame.size.height);
         [self->_headerScrollView setUserInteractionEnabled:YES];
     }];
@@ -66,7 +73,7 @@ typedef NS_ENUM(NSUInteger, KPHoverHeaderState){
         self.headerScrollView.contentInset = UIEdgeInsetsZero;
         self.frame = CGRectMake(self.frame.origin.x,
                                 - self.frame.size.height,
-                                self.frame.size.width,
+                                UIScreen.mainScreen.bounds.size.width - 20.0,
                                 self.frame.size.height);
         [self->_headerScrollView setUserInteractionEnabled:YES];
     }];

@@ -14,6 +14,7 @@ target 'Keeping' do
   pod 'SVProgressHUD'
   pod 'VTAcknowledgementsViewController' 
   pod 'Bugly'
+  pod 'Masonry'
 
 end
 

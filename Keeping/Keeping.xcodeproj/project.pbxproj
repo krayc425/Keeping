@@ -96,6 +96,7 @@
 		24F2A0D71E2F482100F30FB1 /* KPSchemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F2A0D61E2F482100F30FB1 /* KPSchemeManager.m */; };
 		24F2A0DB1E2F489100F30FB1 /* KPSchemeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F2A0D91E2F489100F30FB1 /* KPSchemeTableViewCell.m */; };
 		24F2A0DC1E2F489100F30FB1 /* KPSchemeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24F2A0DA1E2F489100F30FB1 /* KPSchemeTableViewCell.xib */; };
+		24FA003A20ECCDD2000EF528 /* KPBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FA003920ECCDD2000EF528 /* KPBaseTableViewController.m */; };
 		24FD7FF320BC3BDF00DFA8D6 /* UIViewController+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FD7FF220BC3BDF00DFA8D6 /* UIViewController+Extensions.m */; };
 		24FD7FF620BC3CAA00DFA8D6 /* UIView+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FD7FF520BC3CAA00DFA8D6 /* UIView+Extensions.m */; };
 		24FD7FF920BC4F5700DFA8D6 /* KPGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FD7FF820BC4F5700DFA8D6 /* KPGuideView.m */; };
@@ -310,6 +311,8 @@
 		24F2A0D81E2F489100F30FB1 /* KPSchemeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPSchemeTableViewCell.h; sourceTree = "<group>"; };
 		24F2A0D91E2F489100F30FB1 /* KPSchemeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPSchemeTableViewCell.m; sourceTree = "<group>"; };
 		24F2A0DA1E2F489100F30FB1 /* KPSchemeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KPSchemeTableViewCell.xib; sourceTree = "<group>"; };
+		24FA003820ECCDD2000EF528 /* KPBaseTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KPBaseTableViewController.h; sourceTree = "<group>"; };
+		24FA003920ECCDD2000EF528 /* KPBaseTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KPBaseTableViewController.m; sourceTree = "<group>"; };
 		24FD7FF120BC3BDF00DFA8D6 /* UIViewController+Extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Extensions.h"; sourceTree = "<group>"; };
 		24FD7FF220BC3BDF00DFA8D6 /* UIViewController+Extensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Extensions.m"; sourceTree = "<group>"; };
 		24FD7FF420BC3CAA00DFA8D6 /* UIView+Extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+Extensions.h"; sourceTree = "<group>"; };
@@ -519,6 +522,8 @@
 				24699F021E2F213D0092FBED /* KPNavigationViewController.m */,
 				2429CBF91E2E5D510027DD37 /* KPTabBarViewController.h */,
 				2429CBFA1E2E5D510027DD37 /* KPTabBarViewController.m */,
+				24FA003820ECCDD2000EF528 /* KPBaseTableViewController.h */,
+				24FA003920ECCDD2000EF528 /* KPBaseTableViewController.m */,
 			);
 			name = AssistVCs;
 			sourceTree = "<group>";
@@ -1150,6 +1155,7 @@
 				24DCF18A1E3094050097C250 /* DateUtil.m in Sources */,
 				24F2A0D11E2F3F1800F30FB1 /* DBManager.m in Sources */,
 				246AEF0A1E64214A00D78FDD /* UIImage+Extensions.m in Sources */,
+				24FA003A20ECCDD2000EF528 /* KPBaseTableViewController.m in Sources */,
 				243B45D920BE97BF001AABD4 /* KPProgressLabel.m in Sources */,
 				24FD7FF920BC4F5700DFA8D6 /* KPGuideView.m in Sources */,
 				24D2D8001E8A2D060056D1AD /* KPTimeView.m in Sources */,

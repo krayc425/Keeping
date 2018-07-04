@@ -14,7 +14,6 @@
 #import "Task.h"
 #import "DateUtil.h"
 #import "DateTools.h"
-#import "UIScrollView+EmptyDataSet.h"
 #import "AMPopTip.h"
 #import "CardsView.h"
 #import "TaskDataHelper.h"
@@ -28,14 +27,12 @@
 #import "UIViewController+Extensions.h"
 #import "MGSwipeTableCell.h"
 #import "KPProgressLabel.h"
-#import "KPHoverView.h"
+#import "Masonry.h"
 
 static AMPopTip *shareTip = NULL;
 static KPColorPickerView *colorPickerView = NULL;
 
-@interface KPTodayTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, MGSwipeTableCellDelegate> {
-    KPHoverView *hoverView;
-}
+@interface KPTodayTableViewController () <MGSwipeTableCellDelegate> 
 
 @end
 
@@ -47,11 +44,6 @@ static KPColorPickerView *colorPickerView = NULL;
     self.gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     
     self.selectedDate = [NSDate dateWithYear:[[NSDate date] year] month:[[NSDate date] month] day:[[NSDate date] day]];
-    
-    self.tableView.emptyDataSetSource = self;
-    self.tableView.emptyDataSetDelegate = self;
-    self.tableView.tableFooterView = [UIView new];
-    self.tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
 
     //类别按钮
     CardsView *cardView = [[CardsView alloc] initWithFrame:CGRectMake(10, 270, SCREEN_WIDTH - 40, 50)];
@@ -81,9 +73,7 @@ static KPColorPickerView *colorPickerView = NULL;
     self.calendar.appearance.titleSelectionColor = [UIColor whiteColor];
     
     UIButton *previousButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    previousButton.frame = CGRectMake(5, 5, 95, 34);
     previousButton.backgroundColor = [UIColor whiteColor];
-    previousButton.titleLabel.font = [UIFont systemFontOfSize:15];
     [previousButton setTintColor:[Utilities getColor]];
     UIImage *leftImg = [UIImage imageNamed:@"NAV_BACK"];
     leftImg = [leftImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
@@ -92,10 +82,15 @@ static KPColorPickerView *colorPickerView = NULL;
     [self.calendar addSubview:previousButton];
     self.previousButton = previousButton;
     
+    [self.previousButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.calendar.mas_top).with.offset(5);
+        make.left.mas_equalTo(self.calendar.mas_left).with.offset(5);
+        make.width.mas_equalTo(100);
+        make.height.mas_equalTo(34);
+    }];
+    
     UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    nextButton.frame = CGRectMake(CGRectGetWidth(self.calendar.frame) - 100, 5, 95, 34);
     nextButton.backgroundColor = [UIColor whiteColor];
-    nextButton.titleLabel.font = [UIFont systemFontOfSize:15];
     [nextButton setTintColor:[Utilities getColor]];
     UIImage *rightImg = [UIImage imageNamed:@"NAV_NEXT"];
     rightImg = [rightImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
@@ -104,31 +99,44 @@ static KPColorPickerView *colorPickerView = NULL;
     [self.calendar addSubview:nextButton];
     self.nextButton = nextButton;
     
+    [self.nextButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.calendar.mas_top).with.offset(5);
+        make.right.mas_equalTo(self.calendar.mas_right).with.offset(-5);
+        make.width.mas_equalTo(100);
+        make.height.mas_equalTo(34);
+    }];
+    
     [self.calendar selectDate:self.selectedDate scrollToDate:YES];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadTasks) name:@"refresh_today_task" object:nil];
     
     [cardView addSubview:colorPickerView];
     
-    hoverView = [[KPHoverView alloc] initWithFrame:CGRectMake(10.0, -330.0, SCREEN_WIDTH - 20, 330.0)];
-    hoverView.headerScrollView = self.tableView;
-    [hoverView addSubview:self.calendar];
-    [hoverView addSubview:cardView];
+    self.hoverView = [[KPHoverView alloc] initWithFrame:CGRectMake(10.0, -330.0, SCREEN_WIDTH - 20, 330.0)];
+    self.hoverView.headerScrollView = self.tableView;
+    [self.hoverView addSubview:self.calendar];
+    [self.hoverView addSubview:cardView];
+    [self.calendar mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.hoverView.mas_top).with.offset(10);
+        make.left.mas_equalTo(self.hoverView.mas_left).with.offset(10);
+        make.right.mas_equalTo(self.hoverView.mas_right).with.offset(-10);
+        make.height.mas_equalTo(250);
+    }];
+    [cardView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(self.hoverView.mas_bottom).with.offset(-10);
+        make.left.mas_equalTo(self.hoverView.mas_left).with.offset(10);
+        make.right.mas_equalTo(self.hoverView.mas_right).with.offset(-10);
+        make.height.mas_equalTo(50);
+    }];
     
-    [self.tableView addObserver:hoverView forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
+    [self.tableView addObserver:self.hoverView forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
     
-    [self.view addSubview:hoverView];
-    [self.view bringSubviewToFront:hoverView];
+    [self.view addSubview:self.hoverView];
+    [self.view bringSubviewToFront:self.hoverView];
 }
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"refresh_today_task" object:nil];
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    
-    [self loadTasks];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -164,9 +172,6 @@ static KPColorPickerView *colorPickerView = NULL;
     
     [[KPWatchManager shareInstance] transformTasksToWatchWithTasks:taskArr];
     
-    //设置进度
-    [self refreshProgress];
-    
     //排序
     self.unfinishedTaskArr = [NSMutableArray arrayWithArray:[TaskDataHelper sortTasks:self.unfinishedTaskArr withSortFactor:self.sortFactor isAscend:self.isAscend.intValue]];
     self.finishedTaskArr = [NSMutableArray arrayWithArray:[TaskDataHelper sortTasks:self.finishedTaskArr withSortFactor:self.sortFactor isAscend:self.isAscend.intValue]];
@@ -174,6 +179,9 @@ static KPColorPickerView *colorPickerView = NULL;
     //按类别
     self.unfinishedTaskArr = [NSMutableArray arrayWithArray:[TaskDataHelper filtrateTasks:self.unfinishedTaskArr withType:self.selectedColorNum]];
     self.finishedTaskArr = [NSMutableArray arrayWithArray:[TaskDataHelper filtrateTasks:self.finishedTaskArr withType:self.selectedColorNum]];
+    
+    //设置进度
+    [self refreshProgress];
     
     [self.tableView reloadData];
     
@@ -208,53 +216,6 @@ static KPColorPickerView *colorPickerView = NULL;
 
 - (IBAction)chooseDateAction:(id)sender{
     [self navigationTitleViewTapped];
-}
-
-- (void)editAction:(id)sender{
-    [self vibrateWithStyle:UIImpactFeedbackStyleLight];
-    
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"选择任务排序方式" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    NSDictionary *dict = [Utilities getTaskSortArr];
-    for (NSString *key in dict.allKeys) {
-        
-        NSMutableString *displayKey = key.mutableCopy;
-        if([self.sortFactor isEqualToString:dict[displayKey]]){
-            if(self.isAscend.intValue == true){
-                [displayKey appendString:@" ↑"];
-            }else{
-                [displayKey appendString:@" ↓"];
-            }
-        }
-        
-        UIAlertAction *action = [UIAlertAction actionWithTitle:displayKey style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            if([self.sortFactor isEqualToString:dict[key]]){
-                if(self.isAscend.intValue == true){
-                    self.isAscend = @(0);
-                }else{
-                    self.isAscend = @(1);
-                }
-            }else{
-                self.sortFactor = dict[key];
-                self.isAscend = @(1);
-            }
-            [[NSUserDefaults standardUserDefaults] setValue: @{self.sortFactor : self.isAscend} forKey:@"sort"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-            [self loadTasks];
-        }];
-        [alert addAction:action];
-    }
-    
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-    [alert addAction:cancelAction];
-    
-    if (alert.popoverPresentationController != NULL) {
-        alert.popoverPresentationController.barButtonItem = self.navigationItem.leftBarButtonItem;
-        alert.popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionUp;
-        alert.popoverPresentationController.sourceView = self.view;
-        alert.popoverPresentationController.sourceRect = CGRectZero;
-    }
-    
-    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - Choose Date
@@ -365,14 +326,6 @@ static KPColorPickerView *colorPickerView = NULL;
     }
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    return [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 100)];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 0.00001f;
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
         case 1:
@@ -480,6 +433,16 @@ static KPColorPickerView *colorPickerView = NULL;
     }
 }
 
+#pragma mark - DZNEmptyDelegate
+
+- (BOOL)emptyDataSetShouldBeForcedToDisplay:(UIScrollView *)scrollView{
+    if(self.finishedTaskArr.count + self.unfinishedTaskArr.count == 0){
+        return YES;
+    }else{
+        return NO;
+    }
+}
+
 #pragma mark - Check Delegate
 
 - (void)checkTask:(UITableViewCell *)cell{
@@ -569,31 +532,6 @@ static KPColorPickerView *colorPickerView = NULL;
     }
 }
 
-#pragma mark - DZNEmptyTableViewDelegate
-
-- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView{
-    NSString *text = NSLocalizedString(@"没有任务", @"") ;
-    
-    NSDictionary *attributes = @{
-                                 NSForegroundColorAttributeName: [Utilities getColor],
-                                 NSFontAttributeName:[UIFont systemFontOfSize:20.0]
-                                 };
-    
-    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
-}
-
-- (BOOL)emptyDataSetShouldBeForcedToDisplay:(UIScrollView *)scrollView{
-    if(self.finishedTaskArr.count + self.unfinishedTaskArr.count == 0){
-        return YES;
-    }else{
-        return NO;
-    }
-}
-
-- (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView{
-    return YES;
-}
-
 #pragma mark - FSCalendarDelegate
 
 - (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
@@ -603,18 +541,6 @@ static KPColorPickerView *colorPickerView = NULL;
     self.selectedDate = tempDate;
     [self hideTip];
     [self loadTasks];
-}
-
-#pragma mark - Fade Animation
-
-- (void)fadeAnimation{
-    if([[NSUserDefaults standardUserDefaults] boolForKey:@"animation"]){
-        CATransition *animation = [CATransition animation];
-        animation.duration = 0.3f;
-        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-        animation.type = [Utilities getAnimationType];
-        [self.tableView.layer addAnimation:animation forKey:@"fadeAnimation"];
-    }
 }
 
 #pragma mark - MGSwipeCellDelegate
@@ -644,10 +570,10 @@ static KPColorPickerView *colorPickerView = NULL;
 #pragma mark - KPNavigationTitleDelegate
 
 - (void)navigationTitleViewTapped{
-    if (hoverView.isShow) {
-        [hoverView hide];
+    if (self.hoverView.isShow) {
+        [self.hoverView hide];
     } else {
-        [hoverView show];
+        [self.hoverView show];
     }
 }
 

@@ -11,10 +11,11 @@
 #import "KPTodayTableViewCell.h"
 #import "KPColorPickerView.h"
 #import "KPNavigationTitleView.h"
+#import "KPBaseTableViewController.h"
 
 @class KPProgressLabel;
 
-@interface KPTodayTableViewController : UITableViewController <CheckTaskDelegate, FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance, KPColorPickerDelegate, KPNavigationTitleDelegate>
+@interface KPTodayTableViewController : KPBaseTableViewController <CheckTaskDelegate, FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance, KPColorPickerDelegate, KPNavigationTitleDelegate>
 
 @property (weak, nonatomic, nullable) IBOutlet UILabel *subDateLabel;
 @property (weak, nonatomic, nullable) IBOutlet UIButton *dateButton;
@@ -25,14 +26,9 @@
 
 @property (nonnull, nonatomic) NSDate *selectedDate;
 
-@property (nullable, nonatomic) NSIndexPath *selectedIndexPath;
-
-@property (copy, nonatomic, nonnull) NSString *sortFactor;
-@property (nonnull, nonatomic) NSNumber *isAscend;
+@property (nullable, nonatomic) NSIndexPath *selectedIndexPath;;
 
 @property (nonatomic) int selectedColorNum;
-
-- (void)editAction:(_Nonnull id)sender;
 
 - (void)setBadge;
 

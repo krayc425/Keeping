@@ -48,6 +48,7 @@
 
     [AVOSCloud setApplicationId:avCloudID clientKey:avCloudKey];
     [AVOSCloud setAllLogsEnabled:NO];
+    [AVOSCloud setLogLevel:AVLogLevelWarning | AVLogLevelError];
     [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     //第一次启动
@@ -99,8 +100,11 @@
     [[DBManager shareInstance] closeDB];
 }
 
-- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray<id<UIUserActivityRestoring>> * _Nullable))restorationHandler {
-    
+// iOS 12 API
+//- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray<id<UIUserActivityRestoring>> * _Nullable))restorationHandler {
+
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray * _Nullable))restorationHandler {
+
     NSString *wordID = userActivity.userInfo[CSSearchableItemActivityIdentifier];
     Task *task = [[TaskManager shareInstance] getTasksOfID:[wordID intValue]];
     
@@ -264,7 +268,7 @@
     
     NSInteger notibadge = [UIApplication sharedApplication].applicationIconBadgeNumber;
     notibadge--;//读了一个，所以减1
-    notibadge = notibadge >= 0 ? notibadge : 0;
+    notibadge = notibadge >= 0 ? : 0;
     [UIApplication sharedApplication].applicationIconBadgeNumber = notibadge;
     
     NSString *categoryIdentifier = response.notification.request.content.categoryIdentifier;

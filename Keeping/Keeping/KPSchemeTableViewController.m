@@ -26,8 +26,8 @@
     UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_BACK"] style:UIBarButtonItemStylePlain target:self action:@selector(backAction:)];
     self.navigationItem.leftBarButtonItems = @[cancelItem];
     //导航栏右上角
-//    UIBarButtonItem *okItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_DONE"] style:UIBarButtonItemStylePlain target:self action:@selector(doneAction:)];
-//    self.navigationItem.rightBarButtonItems = @[okItem];
+    UIBarButtonItem *okItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_DONE"] style:UIBarButtonItemStylePlain target:self action:@selector(backAction:)];
+    self.navigationItem.rightBarButtonItems = @[okItem];
     
     self.searchResults = [[NSMutableArray alloc] init];
     
@@ -68,10 +68,6 @@
 - (void)backAction:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
-
-//- (void)doneAction:(id)sender{
-//    [self.navigationController popViewControllerAnimated:YES];
-//}
 
 - (void)showSubmitAlert{
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提交 App" message:nil preferredStyle:UIAlertControllerStyleAlert];

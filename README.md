@@ -17,7 +17,7 @@
 * **今日打卡** 使用了 `CocoaPods` 管理第三方库，所以当你 clone 仓库到本地后，需要 `cd` 进项目目录，并打开终端，运行 `pod install`。
 * **今日打卡** 发布时用了第三方统计功能，有一些比较敏感的 App ID 和 App Key，为了安全起见没有上传他们。在启动工程后，你需要在 `Utilities` 中新建一个 `AppKeys.m` 文件，并将以下内容复制进去即可。  
 
-```C
+```objective-c
 #import "AppKeys.h"
     
 @implementation AppKeys

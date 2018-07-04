@@ -79,7 +79,7 @@
         
         [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
             if (!error) {
-                NSLog(@"推送已添加成功 %@ %@", requestIdentifier, task.reminderTime.description);
+//                 NSLog(@"推送已添加成功 %@ %@", requestIdentifier, task.reminderTime.description);
             }
         }];
     }

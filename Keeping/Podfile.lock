@@ -16,6 +16,7 @@ PODS:
     - pop
     - SDWebImage (= 4.0.0)
   - IQKeyboardManager (5.0.4)
+  - Masonry (1.1.0)
   - MGSwipeTableCell (1.6.7)
   - pop (1.0.10)
   - SDWebImage (4.0.0):
@@ -36,6 +37,7 @@ DEPENDENCIES:
   - FSCalendar
   - IDMPhotoBrowser
   - IQKeyboardManager
+  - Masonry
   - MGSwipeTableCell
   - SVProgressHUD
   - VTAcknowledgementsViewController
@@ -54,6 +56,7 @@ SPEC REPOS:
     - FSCalendar
     - IDMPhotoBrowser
     - IQKeyboardManager
+    - Masonry
     - MGSwipeTableCell
     - pop
     - SDWebImage
@@ -73,12 +76,13 @@ SPEC CHECKSUMS:
   FSCalendar: a04b09f16f811bc92e82f3cf852a15225233b9d5
   IDMPhotoBrowser: b96159fe4adb991a844068eb17dab9c0b7d7e51a
   IQKeyboardManager: 1df9c0f147af1681cfb2d9977bc30309d45a7e76
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MGSwipeTableCell: fb20e983988bde2b8d0df29c2d9e1d8ffd10b74a
   pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   VTAcknowledgementsViewController: d62bb400ca68e240680906bcfa2a2b380d39b30f
 
-PODFILE CHECKSUM: 703b6deaecb8ef14573f9d5325d381554153a4b8
+PODFILE CHECKSUM: 51bfd84b76c5029f6fd86913874dc3af83691d34
 
 COCOAPODS: 1.5.3

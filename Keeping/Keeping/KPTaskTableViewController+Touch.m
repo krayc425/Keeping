@@ -16,12 +16,12 @@
         return nil;
     }
     
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:(KPTaskTableViewCell* )[previewingContext sourceView]];
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:(KPTaskTableViewCell *)[previewingContext sourceView]];
     
     Task *task;
-    if(indexPath.section == 1){
+    if(indexPath.section == 0){
         task = self.taskArr[indexPath.row];
-    }else if(indexPath.section == 2){
+    }else if(indexPath.section == 1){
         task = self.historyTaskArr[indexPath.row];
     }
     
