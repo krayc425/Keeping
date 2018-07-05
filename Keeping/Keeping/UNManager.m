@@ -10,6 +10,7 @@
 #import "DateTools.h"
 #import "DateUtil.h"
 #import "TaskManager.h"
+#import <UIKit/UIKit.h>
 
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
 #import <UserNotifications/UserNotifications.h>
@@ -30,7 +31,6 @@
         //FOR TEST
 //        components.hour = [[NSDate date] hour];
 //        components.minute = [[[NSDate date] dateByAddingMinutes:1] minute];
-        
 //        NSLog(@"通知时间 %ld %ld", (long)components.hour, (long)components.minute);
         
         UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components repeats:YES];
@@ -52,11 +52,27 @@
         
         content.sound = [UNNotificationSound defaultSound];
         
-        content.userInfo = @{
-                             @"taskid" : @(task.id),
-                             @"taskapp" : task.appScheme == NULL ? @{} : task.appScheme,
-//                             @"taskimage" : task.image == NULL ? [NSData new] : task.image
-                             };
+        NSMutableDictionary *tempDict = [NSMutableDictionary dictionaryWithObject:@(task.id) forKey:@"taskid"];
+        if (task.appScheme != NULL) {
+            tempDict[@"taskapp"] = task.appScheme.allValues[0];
+        }
+        content.userInfo = tempDict;
+        
+        if (task.image != NULL) {
+            NSString *imageId = [NSString stringWithFormat:@"image%d_%d.png", task.id, weekday.intValue];
+            
+            NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+            path = [path stringByAppendingPathComponent:imageId];
+            
+            [task.image writeToFile:path atomically:YES];
+            
+            NSURL *url = [NSURL fileURLWithPath:path];
+            
+            NSError *err;
+            UNNotificationAttachment *attachment = [UNNotificationAttachment attachmentWithIdentifier:@"img" URL:url options:@{} error:&err];
+            
+            content.attachments = @[attachment];
+        }
         
         UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
         
@@ -79,7 +95,9 @@
         
         [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
             if (!error) {
-//                 NSLog(@"推送已添加成功 %@ %@", requestIdentifier, task.reminderTime.description);
+                NSLog(@"推送添加成功 %@ %@", requestIdentifier, task.reminderTime.description);
+            } else {
+                NSLog(@"推送添加失败 %@", error.description);
             }
         }];
     }

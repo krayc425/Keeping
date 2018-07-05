@@ -18,7 +18,7 @@
 #import "UIViewController+Extensions.h"
 #import "MGSwipeTableCell.h"
 
-@interface KPFontTableViewController()<MGSwipeTableCellDelegate>
+@interface KPFontTableViewController() <MGSwipeTableCellDelegate>
 
 @end
 
