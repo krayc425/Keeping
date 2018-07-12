@@ -50,8 +50,6 @@
                                @"hasPunched": [self.taskStatusArray[[self.todayTaskIndexes[index] integerValue]] isEqualToString:@"1"] ? @"0" : @"1"
                                };
     
-    NSLog(@"%@", sendDict);
-    
     NSData *dictData = [NSKeyedArchiver archivedDataWithRootObject:self.taskDict];
     [[NSUserDefaults standardUserDefaults] setObject:dictData forKey:@"watch_task_dict_data"];
     

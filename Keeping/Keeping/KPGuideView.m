@@ -44,7 +44,7 @@ static const NSInteger NumberOfGuide = 5; //引导页数
             imgView.contentMode = UIViewContentModeScaleAspectFit;
             imgView.userInteractionEnabled = YES;
             
-            imgView.image = [UIImage imageNamed:[NSString stringWithFormat:@"Intro_Screen_%d",i + 1]];
+            imgView.image = [UIImage imageNamed:[NSString stringWithFormat:@"Intro_Screen_%d", i + 1]];
             [scrollView addSubview:imgView];
         }
         

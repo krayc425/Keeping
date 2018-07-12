@@ -48,6 +48,7 @@ typedef NS_ENUM(NSUInteger, KPHoverHeaderState){
 - (void)commonInit{
     self.isShow = NO;
     self.backgroundColor = [Utilities getColor];
+//    self.backgroundColor = [UIColor clearColor];
     self.layer.cornerRadius = 10.0;
     self.layer.masksToBounds = YES;
     _headerState = KPHoverHeaderStateIdle;

@@ -17,8 +17,9 @@
 #import "DBManager.h"
 #import "DateUtil.h"
 #import "SVProgressHUD.h"
+@import SafariServices;
 
-@interface KPSettingsTableViewController ()
+@interface KPSettingsTableViewController () <SFSafariViewControllerDelegate>
 
 @end
 
@@ -314,11 +315,9 @@
     if(indexPath.section == 3 && indexPath.row == 0){
         [self contactMe];
     }else if(indexPath.section == 3 && indexPath.row == 2){
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://songkuixi.github.io/2017/03/02/Keeping-Q-A/"]
-                                           options:@{}
-                                 completionHandler:nil];
-        
-        
+        SFSafariViewController *safariVC = [[SFSafariViewController alloc]initWithURL:[NSURL URLWithString:@"https://songkuixi.github.io/2017/03/02/Keeping-Q-A/"] entersReaderIfAvailable:NO];
+        safariVC.delegate = self;
+        [self presentViewController:safariVC animated:YES completion:nil];
     }else if(indexPath.section == 3 && indexPath.row == 1){
         NSString *str;
         if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"10.3")){

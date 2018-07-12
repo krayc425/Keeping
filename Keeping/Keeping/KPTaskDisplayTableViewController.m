@@ -199,8 +199,7 @@ static AMPopTip *shareTip = NULL;
     }else{
         color = NULL;
     }
-    KPNavigationTitleView *titleView = [[KPNavigationTitleView alloc] initWithTitle:self.task.name
-                                                                           andColor:color];
+    KPNavigationTitleView *titleView = [[KPNavigationTitleView alloc] initWithTitle:self.task.name andColor:color];
     [titleView setCanTap:NO];
     self.navigationItem.titleView = titleView;
     

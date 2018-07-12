@@ -58,6 +58,8 @@ static KPColorPickerView *colorPickerView = NULL;
     self.calendar.delegate = self;
     self.calendar.backgroundColor = [UIColor whiteColor];
     self.calendar.layer.cornerRadius = 10;
+    self.calendar.appearance.separators = FSCalendarSeparatorNone;
+    self.calendar.clipsToBounds = YES;
     
     self.calendar.appearance.titleFont = [UIFont systemFontOfSize:12.0];
     self.calendar.appearance.headerTitleFont = [UIFont systemFontOfSize:15.0];

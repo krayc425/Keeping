@@ -174,6 +174,8 @@
         self.selectedColorNum = self.task.type;
         [self.colorView setSelectedColorNum:self.selectedColorNum];
         
+        [self didChangeColors:self.selectedColorNum];
+        
         [self.tableView reloadData];
     }else{
         [self.navigationItem setTitle:@"新增任务"];

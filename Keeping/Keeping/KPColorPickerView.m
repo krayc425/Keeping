@@ -113,6 +113,18 @@ static BOOL _loadingXib = NO;
     }
 }
 
+- (void)setSelectedColorNum:(int)selectedColorNum{
+    _selectedColorNum = selectedColorNum;
+    
+    for(UIButton *btn in self.colorStack.subviews){
+        if(btn.tag == self.selectedColorNum){
+            [btn setTitle:@"●" forState:UIControlStateNormal];
+        }else{
+            [btn setTitle:@"" forState:UIControlStateNormal];
+        }
+    }
+}
+
 #pragma mark - Select Color Action
 
 - (IBAction)selectColorAction:(id)sender{
@@ -123,13 +135,6 @@ static BOOL _loadingXib = NO;
         self.selectedColorNum = -1;
     }else{
         self.selectedColorNum = (int)button.tag;
-    }
-    for(UIButton *btn in self.colorStack.subviews){
-        if(btn.tag == self.selectedColorNum){
-            [btn setTitle:@"●" forState:UIControlStateNormal];
-        }else{
-            [btn setTitle:@"" forState:UIControlStateNormal];
-        }
     }
     
     NSString *str = [[[NSUserDefaults standardUserDefaults] objectForKey:@"typeTextArr"] mutableCopy][button.tag - 1];

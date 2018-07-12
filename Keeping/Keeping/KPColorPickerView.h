@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KPHoverView.h"
 
 @class KPColorPickerView;
 
@@ -20,7 +19,7 @@
 
 @end
 
-@interface KPColorPickerView : KPHoverView
+@interface KPColorPickerView : UIView
 
 //button tag : 1 ~ 7
 @property (nonatomic, weak) IBOutlet UIStackView *colorStack;

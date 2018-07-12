@@ -29,6 +29,8 @@
 - (void)drawRect:(CGRect)rect {
     [super drawRect:rect];
     
+    self.clipsToBounds = YES;
+    
     CGSize size = [self.text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:self.font, NSFontAttributeName, nil]];
     CGFloat maskWidth = CGRectGetWidth(self.frame) * progress;
     CGFloat startX = (CGRectGetWidth(self.frame) - size.width) / 2.0;
@@ -45,8 +47,8 @@
     maskLabel.textColor = [UIColor whiteColor];
     maskLabel.lineBreakMode = NSLineBreakByCharWrapping;
     maskLabel.textAlignment = NSTextAlignmentLeft;
-    maskLabel.layer.cornerRadius = self.layer.cornerRadius;
-    maskLabel.layer.masksToBounds = YES;
+    maskLabel.layer.cornerRadius = 0.0;
+    maskLabel.clipsToBounds = YES;
     [self addSubview:maskLabel];
 }
 

@@ -12,6 +12,11 @@
 
 [🍎App Store](https://itunes.apple.com/us/app/keeping/id1197272196)
 
+## 人机交互课设视频
+
+[📺Youtube](https://www.youtube.com/watch?v=q3BOUv43X4o)
+[📺Youku](https://v.youku.com/v_show/id_XMzcxODQ5NjcwMA==)
+
 ## 注意事项
 
 * **今日打卡** 使用了 `CocoaPods` 管理第三方库，所以当你 clone 仓库到本地后，需要 `cd` 进项目目录，并打开终端，运行 `pod install`。

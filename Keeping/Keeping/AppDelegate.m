@@ -17,9 +17,9 @@
 #import "KPSchemeManager.h"
 #import "IQKeyboardManager.h"
 #import "Utilities.h"
-#import <Bugly/Bugly.h>
-#import <CoreSpotlight/CoreSpotlight.h>
+@import CoreSpotlight;
 #import "CoreSpotlightHelper.h"
+@import Bugly;
 
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
 #import <UserNotifications/UserNotifications.h>
@@ -63,6 +63,7 @@
     
     //下载 schemes
     NSArray *r = [[KPSchemeManager shareInstance] getSchemeArr];
+    
     NSLog(@"%lu apps", (unsigned long)r.count);
     
     //启动数据库

@@ -39,6 +39,9 @@
         UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
         content.title = task.name;
         content.subtitle = @"";
+//        if (task.memo != NULL && ![task.memo isEqualToString:@""]) {
+//            content.subtitle = task.memo;
+//        }
         
         if(task.appScheme != NULL){
             content.body = [NSString stringWithFormat:@"前往→%@", task.appScheme.allKeys[0]];
@@ -95,7 +98,7 @@
         
         [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
             if (!error) {
-                NSLog(@"推送添加成功 %@ %@", requestIdentifier, task.reminderTime.description);
+//                NSLog(@"推送添加成功 %@ %@", requestIdentifier, task.reminderTime.description);
             } else {
                 NSLog(@"推送添加失败 %@", error.description);
             }
@@ -109,7 +112,7 @@
         NSString *requestIdentifier = [NSString stringWithFormat:@"unid%@%@",task.addDate.description,weekday];
         UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
         [center removePendingNotificationRequestsWithIdentifiers:@[requestIdentifier]];
-        NSLog(@"删除通知");
+//        NSLog(@"删除通知");
     }
 }
 
@@ -129,10 +132,9 @@
 + (void)printNumberOfNotifications{
     UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
     [center getPendingNotificationRequestsWithCompletionHandler:^(NSArray<UNNotificationRequest *> * _Nonnull requests) {
-        NSLog(@"NUMBER: %lu", (unsigned long)requests.count);
-        for(UNNotificationRequest *request in requests){
-            NSLog(@"%@", [request.content.userInfo valueForKey:@"taskid"]);
-        }
+//        for(UNNotificationRequest *request in requests){
+//            NSLog(@"%@", [request.content.userInfo valueForKey:@"taskid"]);
+//        }
     }];
 }
 

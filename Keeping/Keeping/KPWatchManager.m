@@ -56,7 +56,7 @@ static KPWatchManager* _instance = nil;
                  forKey:@(t.id)];
     }
     
-    NSLog(@"%@", dict);
+//    NSLog(@"%@", dict);
     
     [session transferUserInfo:dict];
 }
