@@ -50,4 +50,7 @@
 //在 date 上有没有打过卡
 - (BOOL)hasPunchedOnDate:(NSDate *_Nonnull)date;
 
+@property (nonatomic) NSUInteger totalDays;
+@property (nonatomic) NSUInteger punchDays;
+
 @end

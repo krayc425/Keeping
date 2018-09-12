@@ -1342,32 +1342,32 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uXc-oi-Sg4" customClass="CardsView">
-                                                    <rect key="frame" x="10" y="0.0" width="355" height="141"/>
+                                                    <rect key="frame" x="10" y="0.0" width="355" height="147"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="OVU-jt-PnV">
-                                                            <rect key="frame" x="10" y="10" width="10" height="121"/>
+                                                            <rect key="frame" x="10" y="10" width="12" height="127"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Start" translatesAutoresizingMaskIntoConstraints="NO" id="sun-dL-OUD">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="10" height="10"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="12" height="12"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="10" id="sbr-Rr-d95"/>
+                                                                        <constraint firstAttribute="height" constant="12" id="sbr-Rr-d95"/>
                                                                         <constraint firstAttribute="width" secondItem="sun-dL-OUD" secondAttribute="height" multiplier="1:1" id="vR3-tw-1YR"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Stop" translatesAutoresizingMaskIntoConstraints="NO" id="umZ-WT-D5g">
-                                                                    <rect key="frame" x="0.0" y="35" width="10" height="10"/>
+                                                                    <rect key="frame" x="0.0" y="37" width="12" height="12"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" secondItem="umZ-WT-D5g" secondAttribute="height" multiplier="1:1" id="V3i-Gw-vaZ"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Clock" translatesAutoresizingMaskIntoConstraints="NO" id="QYr-XA-hRW">
-                                                                    <rect key="frame" x="0.0" y="70" width="10" height="10"/>
+                                                                    <rect key="frame" x="0.0" y="74" width="12" height="12"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" secondItem="QYr-XA-hRW" secondAttribute="height" multiplier="1:1" id="Zf9-dl-PVq"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Weekday" translatesAutoresizingMaskIntoConstraints="NO" id="PbI-rl-VtH">
-                                                                    <rect key="frame" x="0.0" y="105" width="10" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="111" width="12" height="16"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" secondItem="PbI-rl-VtH" secondAttribute="height" multiplier="1:1" id="QgB-3z-dK7"/>
                                                                     </constraints>
@@ -1375,17 +1375,17 @@
                                                             </subviews>
                                                         </stackView>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ew7-EW-Tsj">
-                                                            <rect key="frame" x="30" y="-1" width="49" height="32"/>
+                                                            <rect key="frame" x="32" y="0.0" width="49" height="32"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <state key="normal" title="Button"/>
                                                         </button>
                                                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7q0-qa-Igb">
-                                                            <rect key="frame" x="30" y="34" width="49" height="32"/>
+                                                            <rect key="frame" x="32" y="37" width="49" height="32"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <state key="normal" title="Button"/>
                                                         </button>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wmp-fT-nHm" customClass="HYCircleProgressView">
-                                                            <rect key="frame" x="245" y="20.5" width="100" height="100"/>
+                                                            <rect key="frame" x="245" y="23.5" width="100" height="100"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="Wmp-fT-nHm" secondAttribute="height" multiplier="1:1" id="DHF-gV-3lW"/>
@@ -1393,7 +1393,7 @@
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vom-SZ-8n3" customClass="KPTimeView">
-                                                            <rect key="frame" x="30" y="72.5" width="65" height="25"/>
+                                                            <rect key="frame" x="32" y="77.5" width="65" height="25"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="65" id="J0s-67-BVS"/>
@@ -1417,7 +1417,7 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="fFM-1X-dIp" customClass="KPWeekdayPickerView">
-                                                    <rect key="frame" x="32" y="111" width="160" height="25"/>
+                                                    <rect key="frame" x="32" y="117" width="160" height="25"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="160" id="HFV-at-DfB"/>
@@ -1521,8 +1521,54 @@
                             </tableViewSection>
                             <tableViewSection id="8z3-0y-vTJ">
                                 <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="60" id="uMg-MZ-Sdg">
+                                        <rect key="frame" x="0.0" y="281" width="375" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uMg-MZ-Sdg" id="9sU-Q4-Bt2">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kn9-kk-mrd" customClass="CardsView">
+                                                    <rect key="frame" x="10" y="5" width="355" height="50"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4tO-QQ-SWb" customClass="KPProgressLabel">
+                                                            <rect key="frame" x="0.0" y="0.0" width="355" height="50"/>
+                                                            <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                                                            <color key="textColor" red="0.29803921570000003" green="0.52549019610000003" blue="0.78823529410000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                    <integer key="value" value="10"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstItem="4tO-QQ-SWb" firstAttribute="leading" secondItem="Kn9-kk-mrd" secondAttribute="leading" id="W9j-aP-NI9"/>
+                                                        <constraint firstItem="4tO-QQ-SWb" firstAttribute="top" secondItem="Kn9-kk-mrd" secondAttribute="top" id="Zgd-t6-Liu"/>
+                                                        <constraint firstAttribute="bottom" secondItem="4tO-QQ-SWb" secondAttribute="bottom" id="bUI-9F-qqg"/>
+                                                        <constraint firstAttribute="trailing" secondItem="4tO-QQ-SWb" secondAttribute="trailing" id="mR4-XM-rPd"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="Kn9-kk-mrd" secondAttribute="bottom" constant="5" id="EVC-tL-OEX"/>
+                                                <constraint firstItem="Kn9-kk-mrd" firstAttribute="top" secondItem="9sU-Q4-Bt2" secondAttribute="top" constant="5" id="MEf-4J-6a8"/>
+                                                <constraint firstAttribute="trailing" secondItem="Kn9-kk-mrd" secondAttribute="trailing" constant="10" id="VPX-M7-VjI"/>
+                                                <constraint firstItem="Kn9-kk-mrd" firstAttribute="leading" secondItem="9sU-Q4-Bt2" secondAttribute="leading" constant="10" id="pYZ-qk-tmZ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="280" id="4Rw-iU-fja">
-                                        <rect key="frame" x="0.0" y="281" width="375" height="280"/>
+                                        <rect key="frame" x="0.0" y="341" width="375" height="280"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4Rw-iU-fja" id="5OV-oR-k6R">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="280"/>
@@ -1638,10 +1684,10 @@
                             <tableViewSection id="J7G-AC-TTZ">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="60" id="U4R-NL-hD6">
-                                        <rect key="frame" x="0.0" y="597" width="375" height="60"/>
+                                        <rect key="frame" x="0.0" y="657" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="U4R-NL-hD6" id="Rwc-yp-373">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A1U-Hf-5Nx" customClass="CardsView">
@@ -1691,6 +1737,7 @@
                         <outlet property="imgStackView" destination="Hvr-km-QCc" id="5Dr-kV-9mH"/>
                         <outlet property="linkBtn" destination="1wI-XH-leX" id="0YA-bg-Nis"/>
                         <outlet property="memoBtn" destination="hXH-bc-Vih" id="50t-2s-Rrm"/>
+                        <outlet property="progressLabel" destination="4tO-QQ-SWb" id="khq-m7-Fch"/>
                         <outlet property="progressView" destination="Wmp-fT-nHm" id="RmK-UU-SCJ"/>
                         <outlet property="reminderTimeView" destination="vom-SZ-8n3" id="bhc-Ut-eiF"/>
                         <outlet property="startDateButton" destination="Ew7-EW-Tsj" id="fxq-t6-pdk"/>

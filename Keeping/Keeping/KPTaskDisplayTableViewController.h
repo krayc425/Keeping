@@ -17,6 +17,7 @@
 @class CardsView;
 @class HYCircleProgressView;
 @class KPTimeView;
+@class KPProgressLabel;
 
 @interface KPTaskDisplayTableViewController : UITableViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance>
 
@@ -39,6 +40,8 @@
 @property (weak, nonatomic, nullable) IBOutlet UIButton *linkBtn;
 @property (weak, nonatomic, nullable) IBOutlet UIButton *imageBtn;
 @property (weak, nonatomic, nullable) IBOutlet UIButton *memoBtn;
+
+@property (weak, nonatomic, nullable) IBOutlet KPProgressLabel *progressLabel;
 
 @property (nonatomic, nonnull) IBOutletCollection(UIImageView) NSArray <UIImageView *>*legendImageView;
 

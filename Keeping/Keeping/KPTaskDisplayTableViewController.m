@@ -22,6 +22,7 @@
 #import "IDMPhotoBrowser.h"
 #import "UIViewController+Extensions.h"
 #import "Masonry.h"
+#import "KPProgressLabel.h"
 
 static AMPopTip *shareTip = NULL;
 
@@ -205,6 +206,7 @@ static AMPopTip *shareTip = NULL;
     
     //progress
     [self.progressView setProgress:self.task.progress animated:NO];
+    [self.progressLabel setProgressWithFinished:self.task.punchDays andTotal:self.task.totalDays];
     
     //duration
     [self.startDateButton setTitle:[NSString stringWithFormat:@"从 %@", [self.task.addDate formattedDateWithFormat:DATE_FORMAT]] forState:UIControlStateNormal];

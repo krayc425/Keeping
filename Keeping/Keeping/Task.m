@@ -13,9 +13,17 @@
 @implementation Task
 
 - (float)progress{
-    float totaldays = ([[TaskManager shareInstance] totalPunchNumberOfTask:self] - [[TaskManager shareInstance] punchSkipNumberOfTask:self]);
-    float progress = (float)[[TaskManager shareInstance] punchNumberOfTask:self] / totaldays;
+    float totaldays = (float)[self totalDays];
+    float progress = (float)[self punchDays] / totaldays;
     return totaldays == 0.0 ? 0.0 : progress;
+}
+
+- (NSUInteger)totalDays{
+    return [[TaskManager shareInstance] totalPunchNumberOfTask:self] - [[TaskManager shareInstance] punchSkipNumberOfTask:self];
+}
+
+- (NSUInteger)punchDays{
+    return [[TaskManager shareInstance] punchNumberOfTask:self];
 }
 
 - (NSString *)sortName{
