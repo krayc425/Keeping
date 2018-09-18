@@ -9,20 +9,30 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>KeepingIntentExtension.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>24</integer>
+		</dict>
+		<key>KeepingIntentExtensionUI.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>25</integer>
+		</dict>
 		<key>KeepingWatch (Complication).xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>23</integer>
+			<integer>4</integer>
 		</dict>
 		<key>KeepingWatch (Notification).xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>22</integer>
+			<integer>3</integer>
 		</dict>
 		<key>KeepingWatch.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>21</integer>
+			<integer>2</integer>
 		</dict>
 		<key>KeepingWidget.xcscheme</key>
 		<dict>
@@ -32,6 +42,16 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>2479BC3121515D4D007B659E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2479BC3B21515D4D007B659E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>247F01B61E3D9E1B001F900C</key>
 		<dict>
 			<key>primary</key>

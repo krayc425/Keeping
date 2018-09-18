@@ -56,6 +56,12 @@
 		24699F051E2F23C60092FBED /* Navigation.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24699F041E2F23C60092FBED /* Navigation.xcassets */; };
 		246AEF0A1E64214A00D78FDD /* UIImage+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 246AEF091E64214A00D78FDD /* UIImage+Extensions.m */; };
 		246BF2531EE112FE002FE39A /* AppKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 246BF2521EE112FE002FE39A /* AppKeys.m */; };
+		2479BC3621515D4D007B659E /* IntentHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2479BC3521515D4D007B659E /* IntentHandler.m */; };
+		2479BC3E21515D4D007B659E /* IntentsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2479BC3D21515D4D007B659E /* IntentsUI.framework */; };
+		2479BC4221515D4D007B659E /* IntentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2479BC4121515D4D007B659E /* IntentViewController.m */; };
+		2479BC4521515D4D007B659E /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2479BC4321515D4D007B659E /* MainInterface.storyboard */; };
+		2479BC4921515D4D007B659E /* KeepingIntentExtensionUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2479BC3C21515D4D007B659E /* KeepingIntentExtensionUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2479BC4C21515D4D007B659E /* KeepingIntentExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2479BC3221515D4D007B659E /* KeepingIntentExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		247C8EBA1F94FA0D0098B574 /* KPTaskTableViewController+Touch.m in Sources */ = {isa = PBXBuildFile; fileRef = 247C8EB91F94FA0D0098B574 /* KPTaskTableViewController+Touch.m */; };
 		247C8EBD1F94FAB40098B574 /* KPTodayTableViewController+Touch.m in Sources */ = {isa = PBXBuildFile; fileRef = 247C8EBC1F94FAB40098B574 /* KPTodayTableViewController+Touch.m */; };
 		247F01B91E3D9E1B001F900C /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 247F01B81E3D9E1B001F900C /* NotificationCenter.framework */; };
@@ -119,6 +125,20 @@
 			remoteGlobalIDString = 245A01081F98EE9100CB50E9;
 			remoteInfo = KeepingWatch;
 		};
+		2479BC4721515D4D007B659E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 249AE30A1E2DEE7700F704F8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2479BC3B21515D4D007B659E;
+			remoteInfo = KeepingIntentExtensionUI;
+		};
+		2479BC4A21515D4D007B659E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 249AE30A1E2DEE7700F704F8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2479BC3121515D4D007B659E;
+			remoteInfo = KeepingIntentExtension;
+		};
 		247F01C21E3D9E1B001F900C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 249AE30A1E2DEE7700F704F8 /* Project object */;
@@ -146,6 +166,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				2479BC4C21515D4D007B659E /* KeepingIntentExtension.appex in Embed App Extensions */,
+				2479BC4921515D4D007B659E /* KeepingIntentExtensionUI.appex in Embed App Extensions */,
 				247F01C41E3D9E1B001F900C /* KeepingWidget.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
@@ -250,6 +272,16 @@
 		246AEF091E64214A00D78FDD /* UIImage+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extensions.m"; sourceTree = "<group>"; };
 		246BF2511EE112FE002FE39A /* AppKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppKeys.h; sourceTree = "<group>"; };
 		246BF2521EE112FE002FE39A /* AppKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppKeys.m; sourceTree = "<group>"; };
+		2479BC3221515D4D007B659E /* KeepingIntentExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = KeepingIntentExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		2479BC3421515D4D007B659E /* IntentHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntentHandler.h; sourceTree = "<group>"; };
+		2479BC3521515D4D007B659E /* IntentHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntentHandler.m; sourceTree = "<group>"; };
+		2479BC3721515D4D007B659E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2479BC3C21515D4D007B659E /* KeepingIntentExtensionUI.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = KeepingIntentExtensionUI.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		2479BC3D21515D4D007B659E /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
+		2479BC4021515D4D007B659E /* IntentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntentViewController.h; sourceTree = "<group>"; };
+		2479BC4121515D4D007B659E /* IntentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntentViewController.m; sourceTree = "<group>"; };
+		2479BC4421515D4D007B659E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		2479BC4621515D4D007B659E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		247C8EB81F94FA0D0098B574 /* KPTaskTableViewController+Touch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KPTaskTableViewController+Touch.h"; sourceTree = "<group>"; };
 		247C8EB91F94FA0D0098B574 /* KPTaskTableViewController+Touch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "KPTaskTableViewController+Touch.m"; sourceTree = "<group>"; };
 		247C8EBB1F94FAB40098B574 /* KPTodayTableViewController+Touch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KPTodayTableViewController+Touch.h"; sourceTree = "<group>"; };
@@ -332,6 +364,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2479BC2F21515D4D007B659E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2479BC3921515D4D007B659E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2479BC3E21515D4D007B659E /* IntentsUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -528,6 +575,27 @@
 			name = AssistVCs;
 			sourceTree = "<group>";
 		};
+		2479BC3321515D4D007B659E /* KeepingIntentExtension */ = {
+			isa = PBXGroup;
+			children = (
+				2479BC3421515D4D007B659E /* IntentHandler.h */,
+				2479BC3521515D4D007B659E /* IntentHandler.m */,
+				2479BC3721515D4D007B659E /* Info.plist */,
+			);
+			path = KeepingIntentExtension;
+			sourceTree = "<group>";
+		};
+		2479BC3F21515D4D007B659E /* KeepingIntentExtensionUI */ = {
+			isa = PBXGroup;
+			children = (
+				2479BC4021515D4D007B659E /* IntentViewController.h */,
+				2479BC4121515D4D007B659E /* IntentViewController.m */,
+				2479BC4321515D4D007B659E /* MainInterface.storyboard */,
+				2479BC4621515D4D007B659E /* Info.plist */,
+			);
+			path = KeepingIntentExtensionUI;
+			sourceTree = "<group>";
+		};
 		247F01BA1E3D9E1B001F900C /* KeepingWidget */ = {
 			isa = PBXGroup;
 			children = (
@@ -571,6 +639,8 @@
 				247F01BA1E3D9E1B001F900C /* KeepingWidget */,
 				245A010A1F98EE9100CB50E9 /* KeepingWatch */,
 				245A01191F98EE9100CB50E9 /* KeepingWatch Extension */,
+				2479BC3321515D4D007B659E /* KeepingIntentExtension */,
+				2479BC3F21515D4D007B659E /* KeepingIntentExtensionUI */,
 				249AE3131E2DEE7700F704F8 /* Products */,
 				DC76C55BD0DF229BAC78AECF /* Pods */,
 				3B36A3747ED818A6EEF990CE /* Frameworks */,
@@ -584,6 +654,8 @@
 				247F01B71E3D9E1B001F900C /* KeepingWidget.appex */,
 				245A01091F98EE9100CB50E9 /* KeepingWatch.app */,
 				245A01151F98EE9100CB50E9 /* KeepingWatch Extension.appex */,
+				2479BC3221515D4D007B659E /* KeepingIntentExtension.appex */,
+				2479BC3C21515D4D007B659E /* KeepingIntentExtensionUI.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -779,6 +851,7 @@
 				247F01B81E3D9E1B001F900C /* NotificationCenter.framework */,
 				7768AB7A1CE5FD0A347A4517 /* libPods-KeepingWidget.a */,
 				AC5A1BA89969620E5A37921E /* libPods-Keeping.a */,
+				2479BC3D21515D4D007B659E /* IntentsUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -832,6 +905,40 @@
 			productReference = 245A01151F98EE9100CB50E9 /* KeepingWatch Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
+		2479BC3121515D4D007B659E /* KeepingIntentExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2479BC5221515D4D007B659E /* Build configuration list for PBXNativeTarget "KeepingIntentExtension" */;
+			buildPhases = (
+				2479BC2E21515D4D007B659E /* Sources */,
+				2479BC2F21515D4D007B659E /* Frameworks */,
+				2479BC3021515D4D007B659E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KeepingIntentExtension;
+			productName = KeepingIntentExtension;
+			productReference = 2479BC3221515D4D007B659E /* KeepingIntentExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		2479BC3B21515D4D007B659E /* KeepingIntentExtensionUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2479BC5121515D4D007B659E /* Build configuration list for PBXNativeTarget "KeepingIntentExtensionUI" */;
+			buildPhases = (
+				2479BC3821515D4D007B659E /* Sources */,
+				2479BC3921515D4D007B659E /* Frameworks */,
+				2479BC3A21515D4D007B659E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KeepingIntentExtensionUI;
+			productName = KeepingIntentExtensionUI;
+			productReference = 2479BC3C21515D4D007B659E /* KeepingIntentExtensionUI.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		247F01B61E3D9E1B001F900C /* KeepingWidget */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 247F01C71E3D9E1B001F900C /* Build configuration list for PBXNativeTarget "KeepingWidget" */;
@@ -869,6 +976,8 @@
 			dependencies = (
 				247F01C31E3D9E1B001F900C /* PBXTargetDependency */,
 				245A01281F98EE9100CB50E9 /* PBXTargetDependency */,
+				2479BC4821515D4D007B659E /* PBXTargetDependency */,
+				2479BC4B21515D4D007B659E /* PBXTargetDependency */,
 			);
 			name = Keeping;
 			productName = Keeping;
@@ -891,6 +1000,16 @@
 					};
 					245A01141F98EE9100CB50E9 = {
 						CreatedOnToolsVersion = 9.0;
+						DevelopmentTeam = VEBQ28K9EA;
+						ProvisioningStyle = Automatic;
+					};
+					2479BC3121515D4D007B659E = {
+						CreatedOnToolsVersion = 10.0;
+						DevelopmentTeam = VEBQ28K9EA;
+						ProvisioningStyle = Automatic;
+					};
+					2479BC3B21515D4D007B659E = {
+						CreatedOnToolsVersion = 10.0;
 						DevelopmentTeam = VEBQ28K9EA;
 						ProvisioningStyle = Automatic;
 					};
@@ -925,6 +1044,9 @@
 							com.apple.Push = {
 								enabled = 1;
 							};
+							com.apple.Siri = {
+								enabled = 1;
+							};
 							com.apple.iCloud = {
 								enabled = 1;
 							};
@@ -949,6 +1071,8 @@
 				247F01B61E3D9E1B001F900C /* KeepingWidget */,
 				245A01081F98EE9100CB50E9 /* KeepingWatch */,
 				245A01141F98EE9100CB50E9 /* KeepingWatch Extension */,
+				2479BC3121515D4D007B659E /* KeepingIntentExtension */,
+				2479BC3B21515D4D007B659E /* KeepingIntentExtensionUI */,
 			);
 		};
 /* End PBXProject section */
@@ -970,6 +1094,21 @@
 			files = (
 				245A01241F98EE9100CB50E9 /* Assets.xcassets in Resources */,
 				245D7B791F9CD98D007DD894 /* Navigation.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2479BC3021515D4D007B659E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2479BC3A21515D4D007B659E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2479BC4521515D4D007B659E /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1120,6 +1259,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2479BC2E21515D4D007B659E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2479BC3621515D4D007B659E /* IntentHandler.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2479BC3821515D4D007B659E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2479BC4221515D4D007B659E /* IntentViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		247F01B31E3D9E1B001F900C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1206,6 +1361,16 @@
 			target = 245A01081F98EE9100CB50E9 /* KeepingWatch */;
 			targetProxy = 245A01271F98EE9100CB50E9 /* PBXContainerItemProxy */;
 		};
+		2479BC4821515D4D007B659E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2479BC3B21515D4D007B659E /* KeepingIntentExtensionUI */;
+			targetProxy = 2479BC4721515D4D007B659E /* PBXContainerItemProxy */;
+		};
+		2479BC4B21515D4D007B659E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2479BC3121515D4D007B659E /* KeepingIntentExtension */;
+			targetProxy = 2479BC4A21515D4D007B659E /* PBXContainerItemProxy */;
+		};
 		247F01C31E3D9E1B001F900C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 247F01B61E3D9E1B001F900C /* KeepingWidget */;
@@ -1220,6 +1385,14 @@
 				245A010C1F98EE9100CB50E9 /* Base */,
 			);
 			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
+		2479BC4321515D4D007B659E /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2479BC4421515D4D007B659E /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 		249AE31E1E2DEE7700F704F8 /* Main.storyboard */ = {
@@ -1322,6 +1495,100 @@
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+			};
+			name = Release;
+		};
+		2479BC4D21515D4D007B659E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VEBQ28K9EA;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = KeepingIntentExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.krayc.Keeping.KeepingIntentExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2479BC4E21515D4D007B659E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VEBQ28K9EA;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = KeepingIntentExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.krayc.Keeping.KeepingIntentExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		2479BC4F21515D4D007B659E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VEBQ28K9EA;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = KeepingIntentExtensionUI/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.krayc.Keeping.KeepingIntentExtensionUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2479BC5021515D4D007B659E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VEBQ28K9EA;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = KeepingIntentExtensionUI/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.krayc.Keeping.KeepingIntentExtensionUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -1543,6 +1810,24 @@
 			buildConfigurations = (
 				245A012A1F98EE9100CB50E9 /* Debug */,
 				245A012B1F98EE9100CB50E9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2479BC5121515D4D007B659E /* Build configuration list for PBXNativeTarget "KeepingIntentExtensionUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2479BC4F21515D4D007B659E /* Debug */,
+				2479BC5021515D4D007B659E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2479BC5221515D4D007B659E /* Build configuration list for PBXNativeTarget "KeepingIntentExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2479BC4D21515D4D007B659E /* Debug */,
+				2479BC4E21515D4D007B659E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
