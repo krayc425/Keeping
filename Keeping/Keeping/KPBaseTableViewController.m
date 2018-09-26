@@ -36,7 +36,7 @@
 - (void)editAction:(id)sender{
     [self vibrateWithStyle:UIImpactFeedbackStyleLight];
     
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"选择任务排序方式" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"How to sort tasks", nil) message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     NSDictionary *dict = [Utilities getTaskSortArr];
     
     __weak typeof(self) weakSelf = self;
@@ -102,7 +102,7 @@
 #pragma mark - DZNEmptyTableViewDelegate
 
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView{
-    NSString *text = NSLocalizedString(@"没有任务", @"") ;
+    NSString *text = NSLocalizedString(@"No task", nil) ;
     
     NSDictionary *attributes = @{
                                  NSForegroundColorAttributeName: [Utilities getColor],

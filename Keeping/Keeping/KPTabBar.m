@@ -26,7 +26,9 @@
     // tabBar的尺寸
     CGFloat width = self.frame.size.width;
     
-    BOOL isiPhoneX = SCREEN_WIDTH == 375 && SCREEN_HEIGHT == 812;
+    float maxLength = SCREEN_WIDTH > SCREEN_HEIGHT ? SCREEN_WIDTH : SCREEN_HEIGHT;
+    
+    BOOL isiPhoneX = maxLength == 812 || maxLength == 896;
     
     CGFloat height = self.frame.size.height - (isiPhoneX ? 25.0 : 0.0);
     CGFloat buttonWidth = 50.0;

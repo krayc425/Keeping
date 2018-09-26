@@ -89,7 +89,7 @@
         [appNameSubmitted setObject:[schemeText text] forKey:@"appScheme"];
         [appNameSubmitted save];
         
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提交成功" message:nil preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Submit success", nil) message:nil preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:okAction];
         [self presentViewController:alert animated:YES completion:nil];

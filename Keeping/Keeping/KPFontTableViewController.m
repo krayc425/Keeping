@@ -58,7 +58,7 @@
     if(indexPath.section == 1){
         Task *t = [Task new];
         
-        t.name = @"展示任务";
+        t.name = NSLocalizedString(@"Showcase task", nil);
         t.reminderDays = @[@(1),@(3),@(5),@(7)];
         t.image = NULL;
         t.link = NULL;

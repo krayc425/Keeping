@@ -201,9 +201,9 @@
     //先检查有没有填满必填信息
     NSString *title = @"";
     if([self.taskNameField.text isEqualToString:@""]){
-        title = @"请填写任务名称";
+        title = NSLocalizedString(@"Fill in the task name", nil);
     }else if([self.selectedWeekdayArr count] <= 0){
-        title = @"请选择完成时间";
+        title = NSLocalizedString(@"Select weekdays", nil);
     }
     
     if(![title isEqualToString:@""]){
@@ -284,7 +284,7 @@
         //增加
         [[TaskManager shareInstance] addTask:self.task];
         
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"新增成功" message:nil preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Add success", nil) message:nil preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [self.navigationController popViewControllerAnimated:YES];
         }];
@@ -332,7 +332,7 @@
 }
 
 - (void)showChangeSuccessAlert{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"修改成功" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Change success", nil) message:nil preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self.navigationController popViewControllerAnimated:YES];
     }];
@@ -516,7 +516,7 @@
     //type:
     //      0 : 开始
     //      1 : 结束
-    NSString *title = type == 0 ? @"选择开始日期" : @"选择结束日期";
+    NSString *title = type == 0 ? NSLocalizedString(@"Choose start date", nil) : NSLocalizedString(@"Choose end date", nil);
     
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     UIDatePicker *datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 20, IS_IPAD ? 300 : SCREEN_WIDTH - 20, 250)];

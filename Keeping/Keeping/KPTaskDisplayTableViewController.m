@@ -209,9 +209,9 @@ static AMPopTip *shareTip = NULL;
     [self.progressLabel setProgressWithFinished:self.task.punchDays andTotal:self.task.totalDays];
     
     //duration
-    [self.startDateButton setTitle:[NSString stringWithFormat:@"从 %@", [self.task.addDate formattedDateWithFormat:DATE_FORMAT]] forState:UIControlStateNormal];
+    [self.startDateButton setTitle:[NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"From", nil), [self.task.addDate formattedDateWithFormat:DATE_FORMAT]] forState:UIControlStateNormal];
     if(self.task.endDate != NULL){
-        [self.endDateButton setTitle:[NSString stringWithFormat:@"到 %@", [self.task.endDate formattedDateWithFormat:DATE_FORMAT]] forState:UIControlStateNormal];
+        [self.endDateButton setTitle:[NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"To", nil), [self.task.endDate formattedDateWithFormat:DATE_FORMAT]] forState:UIControlStateNormal];
     }else{
         [self.endDateButton setTitle:ENDLESS_STRING forState:UIControlStateNormal];
     }
@@ -403,7 +403,7 @@ static AMPopTip *shareTip = NULL;
         {
             KPSeparatorView *view = [[[NSBundle mainBundle] loadNibNamed:@"KPSeparatorView" owner:nil options:nil] lastObject];
             view.backgroundColor = [UIColor clearColor];
-            [view setText:@"基本信息"];
+            [view setText:NSLocalizedString(@"Info", nil)];
             return view;
         }
             break;
@@ -411,7 +411,7 @@ static AMPopTip *shareTip = NULL;
         {
             KPSeparatorView *view = [[[NSBundle mainBundle] loadNibNamed:@"KPSeparatorView" owner:nil options:nil] lastObject];
             view.backgroundColor = [UIColor clearColor];
-            [view setText:@"完成情况"];
+            [view setText:NSLocalizedString(@"Progress", nil)];
             return view;
         }
             break;
@@ -454,18 +454,18 @@ static AMPopTip *shareTip = NULL;
     NSString *displayMemo;
     NSString *buttonMemoText;
     if([memo isEqualToString:@""]){
-        displayMemo = @"无当日备注";
-        buttonMemoText = @"增加当日备注";
+        displayMemo = NSLocalizedString(@"No daily memo", nil);
+        buttonMemoText = NSLocalizedString(@"Add daily memo", nil);
     }else{
-        displayMemo = [NSString stringWithFormat:@"当日备注：%@", memo];
-        buttonMemoText = @"修改当日备注";
+        displayMemo = [NSString stringWithFormat:@"%@：%@", NSLocalizedString(@"Daily memo", nil), memo];
+        buttonMemoText = NSLocalizedString(@"Change daily memo", nil);
     }
     
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:[DateUtil getDateStringOfDate:date] message:displayMemo preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *memoAction = [UIAlertAction actionWithTitle:buttonMemoText style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"填写当日备注" message:nil preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Fill in daily memo", nil) message:nil preferredStyle:UIAlertControllerStyleAlert];
         __block UITextField *memoText = nil;
         [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
             textField.text = memo;
@@ -477,7 +477,7 @@ static AMPopTip *shareTip = NULL;
             
             [[TaskManager shareInstance] modifyMemoForTask:self.task withMemo:memoText.text onDate:date];
             
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"修改当日备注成功" message:nil
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Change success", nil) message:nil
                                                 preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:nil];
             [alert addAction:okAction];
@@ -493,7 +493,7 @@ static AMPopTip *shareTip = NULL;
     
     //补打卡
     if([self canFixPunch:date]){
-        UIAlertAction *fixPunchAction = [UIAlertAction actionWithTitle:@"补打卡" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction *fixPunchAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Mark as finished", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [[TaskManager shareInstance] punchForTaskWithID:@(self.task.id) onDate:date];
             [self loadTask];
         }];
@@ -502,7 +502,7 @@ static AMPopTip *shareTip = NULL;
     
     //跳过打卡
     if([self canSkipTask:date] && [self canFixPunch:date]){
-        UIAlertAction *skipPunchAction = [UIAlertAction actionWithTitle:@"跳过打卡" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction *skipPunchAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Mark as skipped", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [[TaskManager shareInstance] skipForTask:self.task onDate:date];
             [self loadTask];
         }];
@@ -511,7 +511,7 @@ static AMPopTip *shareTip = NULL;
     
     //取消跳过打卡
     if([self.task.punchSkipArr containsObject:[DateUtil transformDate:date]]) {
-        UIAlertAction *unskipPunchAction = [UIAlertAction actionWithTitle:@"取消跳过打卡" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction *unskipPunchAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Unmark as skipped", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [[TaskManager shareInstance] unskipForTask:self.task onDate:date];
             [self loadTask];
         }];
@@ -520,7 +520,7 @@ static AMPopTip *shareTip = NULL;
     
     //取消打卡
     if([self.task.punchDateArr containsObject:[DateUtil transformDate:date]]){
-        UIAlertAction *cancelPunchAction = [UIAlertAction actionWithTitle:@"取消打卡" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction *cancelPunchAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Mark as unfinished", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [[TaskManager shareInstance] unpunchForTaskWithID:@(self.task.id) onDate:date];
             [self loadTask];
 
@@ -559,7 +559,7 @@ static AMPopTip *shareTip = NULL;
 
 - (NSString *)calendar:(FSCalendar *)calendar titleForDate:(NSDate *)date{
     if ([self.gregorian isDateInToday:date]) {
-        return @"今";
+        return NSLocalizedString(@"Today Calendar", nil);
     }
     return nil;
 }

@@ -96,7 +96,7 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [SVProgressHUD dismiss];
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"清理成功" message:nil preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Clear success", nil) message:nil preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:nil];
             [alert addAction:okAction];
             [self presentViewController:alert animated:YES completion:^{
@@ -140,9 +140,9 @@
 
 - (void)goBackup{
     NSString *backUpDateString = [[NSUserDefaults standardUserDefaults] valueForKey:@"Backup_date_string"];
-    NSString *showBackupDateString = [NSString stringWithFormat:@"上次备份：%@", backUpDateString == nil ? NSLocalizedString(@"None", nil) : backUpDateString];
+    NSString *showBackupDateString = [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"Last backup", nil), backUpDateString == nil ? NSLocalizedString(@"None", nil) : backUpDateString];
                                   
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"iCloud 备份" message:showBackupDateString preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"iCloud backup", nil) message:showBackupDateString preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *uploadAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Upload backup", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
@@ -154,10 +154,6 @@
         
         [[CKContainer defaultContainer].privateCloudDatabase fetchRecordWithID:recordID completionHandler:^(CKRecord *record, NSError *error) {
             KPSettingsTableViewController *strongSelf = weakSelf;
-            
-            if (record != nil) {
-                NSLog(@"获取备份信息成功");
-            }
             
             NSURL *url = [NSURL fileURLWithPath:[[DBManager shareInstance] getDBPath]];
             CKAsset *asset = [[CKAsset alloc] initWithFileURL:url];

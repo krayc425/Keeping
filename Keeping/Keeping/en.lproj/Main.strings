@@ -27,7 +27,7 @@
 "BXh-pc-0Wg.text" = "None";
 
 /* Class = "UILabel"; text = "未打卡"; ObjectID = "DM8-4Q-mHx"; */
-"DM8-4Q-mHx.text" = "未打卡";
+"DM8-4Q-mHx.text" = "Unfinished";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Ew7-EW-Tsj"; */
 "Ew7-EW-Tsj.normalTitle" = "Button";
@@ -39,7 +39,7 @@
 "I8w-Db-LGr.text" = "iCloud backup";
 
 /* Class = "UILabel"; text = "需打卡"; ObjectID = "IpD-LU-EEM"; */
-"IpD-LU-EEM.text" = "需打卡";
+"IpD-LU-EEM.text" = "Todo";
 
 /* Class = "UILabel"; text = "任务类别"; ObjectID = "Kh1-OL-fTx"; */
 "Kh1-OL-fTx.text" = "Type";
@@ -51,22 +51,22 @@
 "Mfx-oX-6vW.text" = "Memo";
 
 /* Class = "UILabel"; text = "刷新 App 列表"; ObjectID = "Msc-c3-Lf4"; */
-"Msc-c3-Lf4.text" = "刷新 App 列表";
+"Msc-c3-Lf4.text" = "Refresh app list";
 
 /* Class = "UILabel"; text = "任务链接"; ObjectID = "Obu-VX-XAb"; */
 "Obu-VX-XAb.text" = "Link";
 
 /* Class = "UILabel"; text = "已打卡"; ObjectID = "UoR-Se-hxg"; */
-"UoR-Se-hxg.text" = "已打卡";
+"UoR-Se-hxg.text" = "Finished";
 
 /* Class = "UILabel"; text = "没找到需要的 App？"; ObjectID = "Wpg-Kq-CgT"; */
-"Wpg-Kq-CgT.text" = "没找到需要的 App？";
+"Wpg-Kq-CgT.text" = "Didn't find app you want?";
 
 /* Class = "UILabel"; text = "角标显示今日未完成任务数"; ObjectID = "XQI-gZ-KeD"; */
-"XQI-gZ-KeD.text" = "角标显示今日未完成任务数";
+"XQI-gZ-KeD.text" = "Show unfinished task count on badge";
 
 /* Class = "UITableViewSection"; headerTitle = "请确认您的手机里已经安装了要选择的 App"; ObjectID = "bez-qX-KXz"; */
-"bez-qX-KXz.headerTitle" = "请确认您的手机里已经安装了要选择的 App";
+"bez-qX-KXz.headerTitle" = "Make sure that you have the app installed on your phone";
 
 /* Class = "UILabel"; text = "提醒时间"; ObjectID = "cJb-61-FYh"; */
 "cJb-61-FYh.text" = "Reminder";
@@ -81,7 +81,7 @@
 "fdh-tp-3dv.title" = "Item";
 
 /* Class = "UITextField"; placeholder = "输入 http:// 前缀的网址"; ObjectID = "hRs-aW-cDA"; */
-"hRs-aW-cDA.placeholder" = "输入 http:// 前缀的网址";
+"hRs-aW-cDA.placeholder" = "Enter URL with prefix http://";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "hYm-gY-e2N"; */
 "hYm-gY-e2N.text" = "Label";
@@ -102,7 +102,7 @@
 "jps-k7-gzB.text" = "Font";
 
 /* Class = "UILabel"; text = "跳过打卡"; ObjectID = "kZj-5f-Ls6"; */
-"kZj-5f-Ls6.text" = "跳过打卡";
+"kZj-5f-Ls6.text" = "Skipped";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "kbU-cv-Rux"; */
 "kbU-cv-Rux.normalTitle" = "Button";

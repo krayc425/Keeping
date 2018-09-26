@@ -193,7 +193,7 @@ static KPColorPickerView *colorPickerView = NULL;
             }else{
                 KPSeparatorView *view = [[[NSBundle mainBundle] loadNibNamed:@"KPSeparatorView" owner:nil options:nil] lastObject];
                 view.backgroundColor = [UIColor clearColor];
-                [view setText:@"进行中"];
+                [view setText:NSLocalizedString(@"In progress", nil)];
                 return view;
             }
         }
@@ -205,7 +205,7 @@ static KPColorPickerView *colorPickerView = NULL;
             }else{
                 KPSeparatorView *view = [[[NSBundle mainBundle] loadNibNamed:@"KPSeparatorView" owner:nil options:nil] lastObject];
                 view.backgroundColor = [UIColor clearColor];
-                [view setText:@"已结束"];
+                [view setText:NSLocalizedString(@"Archived", nil)];
                 return view;
             }
         }

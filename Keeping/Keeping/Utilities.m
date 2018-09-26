@@ -30,11 +30,11 @@
 //多个排序条件用|分割，到那边再 split
 + (NSDictionary *)getTaskSortArr{
     return @{
-             @"名称" : @"sortName",
-             @"开始日期" : @"addDate",
-             @"提醒时间" : @"reminderTime.hour|reminderTime.minute",
-             @"结束日期" : @"endDate",
-             @"完成率" : @"progress"
+             NSLocalizedString(@"Task name", nil) : @"sortName",
+             NSLocalizedString(@"Start date", nil) : @"addDate",
+             NSLocalizedString(@"Reminder time", nil) : @"reminderTime.hour|reminderTime.minute",
+             NSLocalizedString(@"End date", nil) : @"endDate",
+             NSLocalizedString(@"Progress", nil) : @"progress"
              };
 }
 

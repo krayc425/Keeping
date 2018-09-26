@@ -42,11 +42,11 @@
     self.kpTodayTableViewController = (KPTodayTableViewController *)self.viewControllers[0];
     self.kpTaskTableViewController = (KPTaskTableViewController *)self.viewControllers[1];
     
-    titleView1 = [[KPNavigationTitleView alloc] initWithTitle:@"今日" andColor:NULL];
+    titleView1 = [[KPNavigationTitleView alloc] initWithTitle:NSLocalizedString(@"Today", nil) andColor:NULL];
     titleView1.navigationTitleDelegate = self.kpTodayTableViewController;
     [titleView1 setCanTap:YES];
     
-    titleView2 = [[KPNavigationTitleView alloc] initWithTitle:@"任务" andColor:NULL];
+    titleView2 = [[KPNavigationTitleView alloc] initWithTitle:NSLocalizedString(@"Task", nil) andColor:NULL];
     titleView2.navigationTitleDelegate = self.kpTaskTableViewController;
     [titleView2 setCanTap:YES];
     
