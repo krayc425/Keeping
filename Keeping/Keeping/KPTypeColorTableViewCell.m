@@ -16,7 +16,7 @@
     
     [self.colorText setFont:[UIFont systemFontOfSize:17.0f]];
     
-    self.colorText.placeholder = @"点击添加备注";
+    self.colorText.placeholder = NSLocalizedString(@"ClickToAddMemo", nil);
     
     self.colorImg.contentMode = UIViewContentModeScaleAspectFill;
     [self.colorImg setClipsToBounds:YES];

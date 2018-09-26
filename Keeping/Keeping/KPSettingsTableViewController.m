@@ -97,7 +97,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [SVProgressHUD dismiss];
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"清理成功" message:nil preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:nil];
             [alert addAction:okAction];
             [self presentViewController:alert animated:YES completion:^{
                 [self getCacheSize];
@@ -140,13 +140,13 @@
 
 - (void)goBackup{
     NSString *backUpDateString = [[NSUserDefaults standardUserDefaults] valueForKey:@"Backup_date_string"];
-    NSString *showBackupDateString = [NSString stringWithFormat:@"上次备份：%@", backUpDateString == nil ? @"无" : backUpDateString];
+    NSString *showBackupDateString = [NSString stringWithFormat:@"上次备份：%@", backUpDateString == nil ? NSLocalizedString(@"None", nil) : backUpDateString];
                                   
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"iCloud 备份" message:showBackupDateString preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction *uploadAction = [UIAlertAction actionWithTitle:@"上传备份" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *uploadAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Upload backup", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
-        [SVProgressHUD showWithStatus:@"上传中"];
+        [SVProgressHUD showWithStatus:NSLocalizedString(@"Uploading", nil)];
         
         CKRecordID *recordID = [[CKRecordID alloc] initWithRecordName:@"IDname"];
         
@@ -169,11 +169,11 @@
             
             [[CKContainer defaultContainer].privateCloudDatabase saveRecord:record completionHandler:^(CKRecord *record, NSError *error) {
                 if(!error){
-                    [strongSelf alert:@"上传备份成功"];
+                    [strongSelf alert:NSLocalizedString(@"Upload success", nil)];
                     
                     [[NSUserDefaults standardUserDefaults] setValue:[DateUtil getBackupDateStringOfDate:record.modificationDate] forKey:@"Backup_date_string"];
                 }else{
-                    [strongSelf alert:@"上传备份失败" subMessage:error.description];
+                    [strongSelf alert:NSLocalizedString(@"Upload failed", nil) subMessage:error.description];
                 }
                 [SVProgressHUD dismiss];
             }];
@@ -181,15 +181,15 @@
     }];
     [alert addAction:uploadAction];
     
-    UIAlertAction *downloadAction = [UIAlertAction actionWithTitle:@"下载备份" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *downloadAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Download backup", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
-        [SVProgressHUD showWithStatus:@"下载中"];
+        [SVProgressHUD showWithStatus:NSLocalizedString(@"Downloading", nil)];
         
         NSPredicate *predicate = [NSPredicate predicateWithValue:YES];
         CKQuery *query = [[CKQuery alloc] initWithRecordType:@"KeepingDB" predicate:predicate];
         [[CKContainer defaultContainer].privateCloudDatabase performQuery:query inZoneWithID:nil completionHandler:^(NSArray *results, NSError *error) {
             if(!error){
-                [self alert:@"下载备份成功"];
+                [self alert:NSLocalizedString(@"Download success", nil)];
                 CKRecord *record = (CKRecord *)[results firstObject];
                 
                 [[[DBManager shareInstance] getDB] close];
@@ -198,31 +198,31 @@
                 
                 [[DBManager shareInstance] establishDBWithPreviousPath:asset.fileURL];
             }else{
-                [self alert:@"下载备份失败" subMessage:error.description];
+                [self alert:NSLocalizedString(@"Download failed", nil) subMessage:error.description];
             }
             [SVProgressHUD dismiss];
         }];
     }];
     [alert addAction:downloadAction];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
     [alert addAction:cancelAction];
 
     [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)contactMe{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"联系作者" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Contact me", nil) message:nil preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *iMsgAction = [UIAlertAction actionWithTitle:@"iMessage" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"sms:krayc425@gmail.com"] options:@{} completionHandler:^(BOOL success) {
             
         }];
     }];
-    UIAlertAction *weixinAction = [UIAlertAction actionWithTitle:@"微信" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *weixinAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"WeChat", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [UIPasteboard generalPasteboard].string = @"krayc425";
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"微信号已复制" message:nil preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"WeChat account copied", nil) message:nil preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
         [alert addAction:cancelAction];
-        UIAlertAction *wechatAction = [UIAlertAction actionWithTitle:@"跳转到微信" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction *wechatAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Jump to WeChat", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"weixin://"]
                                                options:@{}
                                      completionHandler:nil];
@@ -230,12 +230,12 @@
         [alert addAction:wechatAction];
         [self presentViewController:alert animated:YES completion:nil];
     }];
-    UIAlertAction *weiboAction = [UIAlertAction actionWithTitle:@"微博" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *weiboAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Weibo", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"sinaweibo://userinfo?uid=1634553604"]
                                            options:@{}
                                  completionHandler:nil];
     }];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
     [alert addAction:iMsgAction];
     [alert addAction:weixinAction];
     [alert addAction:weiboAction];
@@ -254,7 +254,7 @@
     [UIAlertController alertControllerWithTitle:message
                                         message:subMessage
                                  preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil)
                                                        style:UIAlertActionStyleDefault
                                                      handler:nil];
     [alertController addAction:okAction];

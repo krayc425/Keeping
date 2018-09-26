@@ -1,0 +1,57 @@
+/* 
+  Localizable.strings
+  Keeping
+
+  Created by 宋 奎熹 on 2018/9/26.
+  Copyright © 2018 宋 奎熹. All rights reserved.
+*/
+"TypeMemo" = "类别颜色备注";
+"ClickToAddMemo" = "点击添加备注";
+"SureToDelete" = "确定删除吗？";
+"This operation cannot be reverted" = "此操作不可恢复";
+"Cancel" = "取消";
+"Delete" = "删除";
+"Link" = "链接";
+"Image" = "图片";
+"Memo" = "备注";
+"Today" = "今日";
+"Task" = "任务";
+"All day" = "全天";
+"OK" = "好的";
+"None" = "无";
+"Done" = "完成";
+"Set to forever" = "设为无限期";
+"Add an image" = "添加图片";
+"Change an image" = "更改图片";
+"Download backup" = "下载备份";
+"Downloading" = "下载中";
+"Download success" = "下载备份成功";
+"Download failed" = "下载备份失败";
+"Contact me" = "联系作者";
+"WeChat" = "微信";
+"WeChat account copied" = "微信号已复制";
+"Jump to WeChat" = "跳转到微信";
+"Weibo" = "微博";
+"Choose an app" = "选择 App";
+"Click to add memo" = "点击输入备注";
+"Task detail" = "任务详情";
+"Select from album" = "从相册选取";
+"Choose app icon" = "选择 App 图标";
+"Choose an image" = "选择一张图片";
+"Add new task" = "新增任务";
+"Clear" = "清空";
+"Select all" = "全选";
+"App name" = "App 名称";
+"Create the first task!" = "去创建第一个任务吧！";
+"Font" = "字体";
+"To forever" = "到 无限期";
+"Upload backup" = "上传备份";
+"Uploading" = "上传中";
+"Upload success" = "上传备份成功";
+"Upload failed" = "上传备份失败";
+"Take a photo" = "拍照";
+"Submit" = "提交";
+"Required" = "必填信息";
+"Optional" = "选填信息";
+"Unfinished" = "未完成";
+"Finished" = "已完成";

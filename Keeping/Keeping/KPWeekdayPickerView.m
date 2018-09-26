@@ -110,9 +110,9 @@ static BOOL _loadingXib = NO;
     [btn setBackgroundImage:buttonImg forState:UIControlStateNormal];
     
     if([self.selectedWeekdayArr count] > 0){
-        [self.allButton setTitle:@"清空" forState: UIControlStateNormal];
+        [self.allButton setTitle:NSLocalizedString(@"Clear", nil) forState: UIControlStateNormal];
     }else{
-        [self.allButton setTitle:@"全选" forState: UIControlStateNormal];
+        [self.allButton setTitle:NSLocalizedString(@"Select all", nil) forState: UIControlStateNormal];
     }
     
     [self.weekdayDelegate didChangeWeekdays:self.selectedWeekdayArr];
@@ -120,15 +120,15 @@ static BOOL _loadingXib = NO;
 
 - (IBAction)selectAllWeekdayAction:(id)sender{
     UIButton *btn = (UIButton *)sender;
-    if([btn.titleLabel.text isEqualToString:@"全选"]){
+    if([btn.titleLabel.text isEqualToString:NSLocalizedString(@"Select all", nil)]){
         [self selectAllWeekDay];
-    }else if([btn.titleLabel.text isEqualToString:@"清空"]){
+    }else if([btn.titleLabel.text isEqualToString:NSLocalizedString(@"Clear", nil)]){
         [self deselectAllWeekDay];
     }
 }
 
 - (void)selectAllWeekDay{
-    [self.allButton setTitle:@"清空" forState: UIControlStateNormal];
+    [self.allButton setTitle:NSLocalizedString(@"Clear", nil) forState: UIControlStateNormal];
     for(UIButton *button in self.weekDayStack.subviews){
         if(button.tag != -1){
             NSNumber *tag = [NSNumber numberWithInteger:button.tag];
@@ -140,7 +140,7 @@ static BOOL _loadingXib = NO;
 }
 
 - (void)deselectAllWeekDay{
-    [self.allButton setTitle:@"全选" forState: UIControlStateNormal];
+    [self.allButton setTitle:NSLocalizedString(@"Select all", nil) forState: UIControlStateNormal];
     for(UIButton *button in self.weekDayStack.subviews){
         if(button.tag != -1){
             NSNumber *tag = [NSNumber numberWithInteger:button.tag];
@@ -154,9 +154,9 @@ static BOOL _loadingXib = NO;
 - (void)selectWeekdaysInArray:(NSArray *)weekdayArr{
     self.selectedWeekdayArr = [NSMutableArray arrayWithArray:weekdayArr];
     if([self.selectedWeekdayArr count] > 0){
-        [self.allButton setTitle:@"清空" forState: UIControlStateNormal];
+        [self.allButton setTitle:NSLocalizedString(@"Clear", nil) forState: UIControlStateNormal];
     }else{
-        [self.allButton setTitle:@"全选" forState: UIControlStateNormal];
+        [self.allButton setTitle:NSLocalizedString(@"Select all", nil) forState: UIControlStateNormal];
     }
     for(int num = 1; num <= 7; num++){
         if([self.selectedWeekdayArr containsObject:@(num)]){

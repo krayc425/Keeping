@@ -146,7 +146,7 @@
     }
     
     if(t.link != NULL && ![t.link isEqualToString:@""]){
-        [self.linkButton setTitle:@"链接" forState:UIControlStateNormal];
+        [self.linkButton setTitle:NSLocalizedString(@"Link", nil) forState:UIControlStateNormal];
         [self.linkButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
         [self.linkButton setUserInteractionEnabled:YES];
         
@@ -162,7 +162,7 @@
     }
     
     if(t.image != NULL){
-        [self.imageButton setTitle:@"图片" forState:UIControlStateNormal];
+        [self.imageButton setTitle:NSLocalizedString(@"Image", nil) forState:UIControlStateNormal];
         [self.imageButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
         [self.imageButton setUserInteractionEnabled:YES];
         
@@ -178,7 +178,7 @@
     }
     
     if(t.memo != NULL && ![t.memo isEqualToString:@""]){
-        [self.memoButton setTitle:@"备注" forState:UIControlStateNormal];
+        [self.memoButton setTitle:NSLocalizedString(@"Memo", nil) forState:UIControlStateNormal];
         [self.memoButton setTitleColor:[Utilities getColor] forState:UIControlStateNormal];
         [self.memoButton setUserInteractionEnabled:YES];
         

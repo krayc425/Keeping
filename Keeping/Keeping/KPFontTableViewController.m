@@ -27,7 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.navigationItem setTitle:@"字体"];
+    [self.navigationItem setTitle:NSLocalizedString(@"Font", nil)];
     
     [self.sizeControl setTintColor:[Utilities getColor]];
     

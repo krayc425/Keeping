@@ -281,9 +281,9 @@ static AMPopTip *shareTip = NULL;
 }
 
 - (IBAction)deleteTask:(id)sender{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确定删除吗？" message:@"此操作不可恢复" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-    UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"删除" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"SureToDelete", nil) message:NSLocalizedString(@"This operation cannot be reverted", nil) preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Delete", nil) style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
         [[TaskManager shareInstance] deleteTask:self.task];
         
         [self.navigationController popViewControllerAnimated:YES];
@@ -471,15 +471,15 @@ static AMPopTip *shareTip = NULL;
             textField.text = memo;
             memoText = textField;
         }];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
         [alert addAction:cancelAction];
-        UIAlertAction *submitAction = [UIAlertAction actionWithTitle:@"提交" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction *submitAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Submit", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             
             [[TaskManager shareInstance] modifyMemoForTask:self.task withMemo:memoText.text onDate:date];
             
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"修改当日备注成功" message:nil
                                                 preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:nil];
             [alert addAction:okAction];
             
             [self presentViewController:alert animated:YES completion:nil];
@@ -528,7 +528,7 @@ static AMPopTip *shareTip = NULL;
         [alert addAction:cancelPunchAction];
     }
     
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
     [alert addAction:cancelAction];
     
     [self presentViewController:alert animated:YES completion:nil];

@@ -82,7 +82,7 @@
         //当日未完成
 //        if(![task.punchDateArr containsObject:[DateUtil transformDate:[NSDate date]]]){
             UNNotificationAction *doneAction = [UNNotificationAction actionWithIdentifier:@"action.done" title:@"标记为已完成" options:UNNotificationActionOptionAuthenticationRequired];
-            UNNotificationAction *cancelAction = [UNNotificationAction actionWithIdentifier:@"action.cancel" title:@"取消" options:UNNotificationActionOptionDestructive];
+            UNNotificationAction *cancelAction = [UNNotificationAction actionWithIdentifier:@"action.cancel" title:NSLocalizedString(@"Cancel", nil) options:UNNotificationActionOptionDestructive];
             // 注册 category
             UNNotificationCategory *notificationCategory = [UNNotificationCategory categoryWithIdentifier:@"taskLocalCategory" actions:@[doneAction, cancelAction] intentIdentifiers:@[] options:UNNotificationCategoryOptionCustomDismissAction];
             content.categoryIdentifier = @"taskLocalCategory";

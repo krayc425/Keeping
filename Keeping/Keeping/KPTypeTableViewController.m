@@ -24,7 +24,7 @@
     
     self.texts = [[NSMutableArray alloc] init];
     
-    [self.navigationItem setTitle:@"类别颜色备注"];
+    [self.navigationItem setTitle:NSLocalizedString(@"TypeMemo", nil)];
     
     colorArr = [NSMutableArray arrayWithArray:[Utilities getTypeColorArr]];
     NSMutableArray *tmpColorTextArr = [[[NSUserDefaults standardUserDefaults] objectForKey:@"typeTextArr"] mutableCopy];

@@ -70,7 +70,7 @@
         [alert addAction:action];
     }
     
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
     [alert addAction:cancelAction];
     
     if (alert.popoverPresentationController != NULL) {

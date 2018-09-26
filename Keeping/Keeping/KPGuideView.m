@@ -34,7 +34,7 @@ static const NSInteger NumberOfGuide = 5; //引导页数
         UIButton *startBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 80, SCREEN_WIDTH, 80)];
         startBtn.titleLabel.font = [UIFont systemFontOfSize:20.0 weight:UIFontWeightBold];
         startBtn.backgroundColor = [Utilities getColor];
-        [startBtn setTitle:@"去创建第一个任务吧！" forState:UIControlStateNormal];
+        [startBtn setTitle:NSLocalizedString(@"Create the first task!", nil) forState:UIControlStateNormal];
         [startBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [startBtn addTarget:self action:@selector(onFinishedButtonPressed) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:startBtn];

@@ -235,9 +235,9 @@ static KPColorPickerView *colorPickerView = NULL;
 }
 
 - (void)deleteTaskAtIndexPath:(NSIndexPath *)indexPath{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确定删除吗？" message:@"此操作不可恢复" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-    UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"删除" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"SureToDelete", nil) message:NSLocalizedString(@"This operation cannot be reverted", nil) preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Delete", nil) style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
         Task *t;
         if(indexPath.section == 1){
             t = self.unfinishedTaskArr[indexPath.row];
@@ -291,7 +291,7 @@ static KPColorPickerView *colorPickerView = NULL;
             }else{
                 KPSeparatorView *view = [[[NSBundle mainBundle] loadNibNamed:@"KPSeparatorView" owner:nil options:nil] lastObject];
                 view.backgroundColor = [UIColor clearColor];
-                [view setText:@"未完成"];
+                [view setText:NSLocalizedString(@"Unfinished", nil)];
                 return view;
             }
         }
@@ -302,7 +302,7 @@ static KPColorPickerView *colorPickerView = NULL;
             }else{
                 KPSeparatorView *view = [[[NSBundle mainBundle] loadNibNamed:@"KPSeparatorView" owner:nil options:nil] lastObject];
                 view.backgroundColor = [UIColor clearColor];
-                [view setText:@"已完成"];
+                [view setText:NSLocalizedString(@"Finished", nil)];
                 return view;
             }
         }

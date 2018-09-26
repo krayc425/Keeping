@@ -99,7 +99,7 @@
     self.memoTextView.layer.cornerRadius = 5.0;
     
     UILabel *placeHolderLabel = [[UILabel alloc] init];
-    placeHolderLabel.text = @"点击输入备注";
+    placeHolderLabel.text = NSLocalizedString(@"Click to add memo", nil);
     placeHolderLabel.numberOfLines = 0;
     placeHolderLabel.textColor = [UIColor lightTextColor];
     [placeHolderLabel sizeToFit];
@@ -110,7 +110,7 @@
     
     //加载任务
     if(self.task != NULL){
-        [self.navigationItem setTitle:@"任务详情"];
+        [self.navigationItem setTitle:NSLocalizedString(@"Task detail", nil)];
         
         [self.taskNameField setText:[self.task name]];
         
@@ -142,7 +142,7 @@
             [self.reminderLabel setText:currentDateStr];
             [self.reminderSwitch setOn:YES];
         }else{
-            [self.reminderLabel setText:@"无"];
+            [self.reminderLabel setText:NSLocalizedString(@"None", nil)];
             [self.reminderSwitch setOn:NO];
         }
         
@@ -156,7 +156,7 @@
             [self.appNameLabel setText:self.selectedApp.name];
             [self.appSwitch setOn:YES];
         }else{
-            [self.appNameLabel setText:@"无"];
+            [self.appNameLabel setText:NSLocalizedString(@"None", nil)];
             [self.appSwitch setOn:NO];
         }
         
@@ -178,7 +178,7 @@
         
         [self.tableView reloadData];
     }else{
-        [self.navigationItem setTitle:@"新增任务"];
+        [self.navigationItem setTitle:NSLocalizedString(@"Add new task", nil)];
         
         [self.startDateButton setTitle:[[NSDate date] formattedDateWithFormat:DATE_FORMAT] forState:UIControlStateNormal];
         [self.endDateButton setTitle:ENDLESS_STRING forState:UIControlStateNormal];
@@ -208,7 +208,7 @@
     
     if(![title isEqualToString:@""]){
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:nil preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:okAction];
         [self presentViewController:alert animated:YES completion:^{
             [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
@@ -221,7 +221,7 @@
     //检查结束日期是否合法
     if([titleEndDate isEarlierThan:titleStartDate]){
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"持续时间设置不正确" message:nil preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:okAction];
         [self presentViewController:alert animated:YES completion:^{
             [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:2] atScrollPosition:UITableViewScrollPositionTop animated:YES];
@@ -285,7 +285,7 @@
         [[TaskManager shareInstance] addTask:self.task];
         
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"新增成功" message:nil preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [self.navigationController popViewControllerAnimated:YES];
         }];
         [alert addAction:okAction];
@@ -304,7 +304,7 @@
         if(![self.task.reminderDays isEqual:arr]){
             
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"注意" message:@"您更改了预计完成日的选项，这会导致今天之前的打卡记录清空，新的记录将从今天开始重新计算。\n您要继续吗？" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
             [alert addAction:cancelAction];
             UIAlertAction *changeAction = [UIAlertAction actionWithTitle:@"仍然更改" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 
@@ -333,7 +333,7 @@
 
 - (void)showChangeSuccessAlert{
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"修改成功" message:nil preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self.navigationController popViewControllerAnimated:YES];
     }];
     [alert addAction:okAction];
@@ -351,7 +351,7 @@
         [self performSegueWithIdentifier:@"appSegue" sender:nil];
     } else {
         self.selectedApp = NULL;
-        [self.appNameLabel setText:@"无"];
+        [self.appNameLabel setText:NSLocalizedString(@"None", nil)];
     }
 }
 
@@ -364,7 +364,7 @@
     }
     if(![self.reminderSwitch isOn]){
         self.reminderTime = NULL;
-        [self.reminderLabel setText:@"无"];
+        [self.reminderLabel setText:NSLocalizedString(@"None", nil)];
     }else{
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"选择提醒时间" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
         UIDatePicker *datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 20, IS_IPAD ? 300 : SCREEN_WIDTH - 20, 250)];
@@ -372,7 +372,7 @@
         datePicker.datePickerMode = UIDatePickerModeTime;
         [alert.view addSubview:datePicker];
         
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"完成" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Done", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             self.reminderTime = datePicker.date;
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             [dateFormatter setDateFormat:@"HH:mm"];
@@ -381,7 +381,7 @@
             [self.tableView reloadData];
         }];
         [alert addAction:okAction];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
             if(self.reminderSwitch.isOn){
                 [self.reminderSwitch setOn:NO animated:YES];
             }
@@ -408,9 +408,9 @@
         return;
     }else{
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确定删除这张图片？" message:nil preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
         [alert addAction:cancelAction];
-        UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"删除" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Delete", nil) style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
             [self setNotHaveImage];
         }];
         [alert addAction:deleteAction];
@@ -422,10 +422,10 @@
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
     imagePickerController.delegate = self;
     imagePickerController.allowsEditing = YES;
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"选择一张图片" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Choose an image", nil) message:nil preferredStyle:UIAlertControllerStyleAlert];
     
-    if(self.selectedApp != NULL && ![self.appNameLabel.text isEqualToString:@"无"]){
-        UIAlertAction *appAction = [UIAlertAction actionWithTitle:@"选择 App 图标"
+    if(self.selectedApp != NULL && ![self.appNameLabel.text isEqualToString:NSLocalizedString(@"None", nil)]){
+        UIAlertAction *appAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Choose app icon", nil)
                                                            style:UIAlertActionStyleDefault
                                                          handler:^(UIAlertAction * _Nonnull action) {
                                                              AVFile *file = self.selectedApp.iconFile;
@@ -446,7 +446,7 @@
         [alert addAction:appAction];
     }
     
-    UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"拍照"
+    UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Take a photo", nil)
                                                            style:UIAlertActionStyleDefault
                                                          handler:^(UIAlertAction * _Nonnull action) {
                                                              imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
@@ -454,14 +454,14 @@
                                                              [self presentViewController:imagePickerController animated:YES completion:nil];
                                                          }];
     
-    UIAlertAction *photosAction = [UIAlertAction actionWithTitle:@"从相册选取"
+    UIAlertAction *photosAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Select from album", nil)
                                                            style:UIAlertActionStyleDefault
                                                          handler:^(UIAlertAction * _Nonnull action) {
                                                              imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
                                                              [self presentViewController:imagePickerController animated:YES completion:nil];
                                                          }];
     
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil)
                                                            style:UIAlertActionStyleCancel
                                                          handler:nil];
     
@@ -486,7 +486,7 @@
 
 - (void)setHasImage{
     [self.selectedImgView setHidden:NO];
-    [self.addImgButton setTitle:@"更改图片" forState:UIControlStateNormal];
+    [self.addImgButton setTitle:NSLocalizedString(@"Change an image", nil) forState:UIControlStateNormal];
     
     [self.viewImgButton setHidden:NO];
     [self.deleteImgButton setHidden:NO];
@@ -500,7 +500,7 @@
     [self.selectedImgView setImage:NULL];
     [self.selectedImgView setHidden:YES];
     
-    [self.addImgButton setTitle:@"添加图片" forState:UIControlStateNormal];
+    [self.addImgButton setTitle:NSLocalizedString(@"Add an image", nil) forState:UIControlStateNormal];
     
     [self.viewImgButton setHidden:YES];
     [self.deleteImgButton setHidden:YES];
@@ -535,12 +535,12 @@
         
         datePicker.minimumDate = [NSDate dateWithString:startDateString formatString:DATE_FORMAT];
         
-        UIAlertAction *endlessAction = [UIAlertAction actionWithTitle:@"设为无限期" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction *endlessAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Set to forever", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [self.endDateButton setTitle:ENDLESS_STRING forState:UIControlStateNormal];
         }];
         [alert addAction:endlessAction];
     }
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"完成" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Done", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         NSDate *date = datePicker.date;
         if(type == 0){
             [self.startDateButton setTitle:[date formattedDateWithFormat:DATE_FORMAT] forState:UIControlStateNormal];
@@ -549,7 +549,7 @@
         }
     }];
     [alert addAction:okAction];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
     [alert addAction:cancelAction];
     
     NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:alert.view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:datePicker.frame.size.height + (type == 1 ? 175 : 120) + (IS_IPAD ? -50.0 : 0.0)];
@@ -585,10 +585,10 @@
     KPSeparatorView *view = [[[NSBundle mainBundle] loadNibNamed:@"KPSeparatorView" owner:nil options:nil] lastObject];
     switch (section) {
         case 0:
-            [view setText:@"必填信息"];
+            [view setText:NSLocalizedString(@"Required", nil)];
             break;
         case 1:
-            [view setText:@"选填信息"];
+            [view setText:NSLocalizedString(@"Optional", nil)];
             break;
         default:
             [view setText:@""];
@@ -643,7 +643,7 @@
 - (void)passScheme:(KPScheme *)scheme{
     if(scheme == NULL){
         self.selectedApp = NULL;
-        [self.appNameLabel setText:@"无"];
+        [self.appNameLabel setText:NSLocalizedString(@"None", nil)];
         [self.appSwitch setOn:NO];
     }else{
         self.selectedApp = scheme;

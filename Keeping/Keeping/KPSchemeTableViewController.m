@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.navigationItem setTitle:@"选择 App"];
+    [self.navigationItem setTitle:NSLocalizedString(@"Choose an app", nil)];
     
     //隐藏返回键
     [self.navigationItem setHidesBackButton:YES];
@@ -47,8 +47,8 @@
     self.searchController.dimsBackgroundDuringPresentation = false;
     self.searchController.searchBar.delegate = self;
     self.searchController.searchBar.frame = CGRectMake(0, 100, self.view.frame.size.width, 44);
-    self.searchController.searchBar.placeholder = @"App 名称";
-    [self.searchController.searchBar setValue:@"完成" forKey:@"_cancelButtonText"];
+    self.searchController.searchBar.placeholder = NSLocalizedString(@"App name", nil);
+    [self.searchController.searchBar setValue:NSLocalizedString(@"Done", nil) forKey:@"_cancelButtonText"];
     // 设置SearchBar的颜色主题为白色
     self.searchController.searchBar.barTintColor = [UIColor whiteColor];
     self.searchController.searchBar.backgroundImage = [[UIImage alloc] init];
@@ -73,7 +73,7 @@
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提交 App" message:nil preferredStyle:UIAlertControllerStyleAlert];
     __block UITextField *nameText = nil;
     [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-        textField.placeholder = @"App 名称";
+        textField.placeholder = NSLocalizedString(@"App name", nil);
         nameText = textField;
     }];
     __block UITextField *schemeText = nil;
@@ -81,16 +81,16 @@
         textField.placeholder = @"对应 URL Scheme（可选）";
         schemeText = textField;
     }];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
     [alert addAction:cancelAction];
-    UIAlertAction *submitAction = [UIAlertAction actionWithTitle:@"提交" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *submitAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Submit", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         AVObject *appNameSubmitted = [AVObject objectWithClassName:@"appNameSubmitted"];
         [appNameSubmitted setObject:[nameText text] forKey:@"appName"];
         [appNameSubmitted setObject:[schemeText text] forKey:@"appScheme"];
         [appNameSubmitted save];
         
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提交成功" message:nil preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:okAction];
         [self presentViewController:alert animated:YES completion:nil];
     }];
@@ -153,7 +153,7 @@
             KPSchemeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
             
             if(indexPath.section == 0){
-                cell.appNameLabel.text = @"无";
+                cell.appNameLabel.text = NSLocalizedString(@"None", nil);
                 
                 [cell.appIconImg setImage:[UIImage new]];
                 

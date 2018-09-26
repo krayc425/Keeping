@@ -1,30 +1,30 @@
 
 /* Class = "UITableViewSection"; headerTitle = "字号"; ObjectID = "3lh-gO-V8Z"; */
-"3lh-gO-V8Z.headerTitle" = "Font size";
+"3lh-gO-V8Z.headerTitle" = "字号";
 
 /* Class = "UIButton"; normalTitle = "删除图片"; ObjectID = "6CL-PM-H7X"; */
-"6CL-PM-H7X.normalTitle" = "Delete";
+"6CL-PM-H7X.normalTitle" = "删除图片";
 
 /* Class = "UITableViewController"; title = "今日"; ObjectID = "6at-be-euJ"; */
-"6at-be-euJ.title" = "Today";
+"6at-be-euJ.title" = "今日";
 
 /* Class = "UILabel"; text = "无"; ObjectID = "6dC-rt-K0M"; */
-"6dC-rt-K0M.text" = "None";
+"6dC-rt-K0M.text" = "无";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "7q0-qa-Igb"; */
 "7q0-qa-Igb.normalTitle" = "Button";
 
 /* Class = "UILabel"; text = "无"; ObjectID = "7rI-Ea-7Nk"; */
-"7rI-Ea-7Nk.text" = "None";
+"7rI-Ea-7Nk.text" = "无";
 
 /* Class = "UITabBarItem"; title = "Item"; ObjectID = "9FZ-kn-RtR"; */
 "9FZ-kn-RtR.title" = "Item";
 
 /* Class = "UILabel"; text = "类别颜色备注"; ObjectID = "BTM-tl-eHm"; */
-"BTM-tl-eHm.text" = "Memo Color";
+"BTM-tl-eHm.text" = "类别颜色备注";
 
 /* Class = "UILabel"; text = "无"; ObjectID = "BXh-pc-0Wg"; */
-"BXh-pc-0Wg.text" = "None";
+"BXh-pc-0Wg.text" = "无";
 
 /* Class = "UILabel"; text = "未打卡"; ObjectID = "DM8-4Q-mHx"; */
 "DM8-4Q-mHx.text" = "未打卡";
@@ -36,25 +36,25 @@
 "Hic-hX-DL3.normalTitle" = "Button";
 
 /* Class = "UILabel"; text = "iCloud 备份"; ObjectID = "I8w-Db-LGr"; */
-"I8w-Db-LGr.text" = "iCloud backup";
+"I8w-Db-LGr.text" = "iCloud 备份";
 
 /* Class = "UILabel"; text = "需打卡"; ObjectID = "IpD-LU-EEM"; */
 "IpD-LU-EEM.text" = "需打卡";
 
 /* Class = "UILabel"; text = "任务类别"; ObjectID = "Kh1-OL-fTx"; */
-"Kh1-OL-fTx.text" = "Type";
+"Kh1-OL-fTx.text" = "任务类别";
 
 /* Class = "UIButton"; normalTitle = "删除任务"; ObjectID = "Kzv-rI-2BU"; */
-"Kzv-rI-2BU.normalTitle" = "Delete task";
+"Kzv-rI-2BU.normalTitle" = "删除任务";
 
 /* Class = "UILabel"; text = "任务备注"; ObjectID = "Mfx-oX-6vW"; */
-"Mfx-oX-6vW.text" = "Memo";
+"Mfx-oX-6vW.text" = "任务备注";
 
 /* Class = "UILabel"; text = "刷新 App 列表"; ObjectID = "Msc-c3-Lf4"; */
 "Msc-c3-Lf4.text" = "刷新 App 列表";
 
 /* Class = "UILabel"; text = "任务链接"; ObjectID = "Obu-VX-XAb"; */
-"Obu-VX-XAb.text" = "Link";
+"Obu-VX-XAb.text" = "任务链接";
 
 /* Class = "UILabel"; text = "已打卡"; ObjectID = "UoR-Se-hxg"; */
 "UoR-Se-hxg.text" = "已打卡";
@@ -69,13 +69,13 @@
 "bez-qX-KXz.headerTitle" = "请确认您的手机里已经安装了要选择的 App";
 
 /* Class = "UILabel"; text = "提醒时间"; ObjectID = "cJb-61-FYh"; */
-"cJb-61-FYh.text" = "Reminder";
+"cJb-61-FYh.text" = "提醒时间";
 
 /* Class = "UILabel"; text = "结束时间"; ObjectID = "ciY-6i-Nbm"; */
-"ciY-6i-Nbm.text" = "To";
+"ciY-6i-Nbm.text" = "结束时间";
 
 /* Class = "UITableViewSection"; headerTitle = "预览"; ObjectID = "dQZ-Z9-775"; */
-"dQZ-Z9-775.headerTitle" = "Preview";
+"dQZ-Z9-775.headerTitle" = "预览";
 
 /* Class = "UITabBarItem"; title = "Item"; ObjectID = "fdh-tp-3dv"; */
 "fdh-tp-3dv.title" = "Item";
@@ -87,19 +87,19 @@
 "hYm-gY-e2N.text" = "Label";
 
 /* Class = "UILabel"; text = "完成时间"; ObjectID = "iQa-XB-1tF"; */
-"iQa-XB-1tF.text" = "Weekdays";
+"iQa-XB-1tF.text" = "完成时间";
 
 /* Class = "UILabel"; text = "常见问题"; ObjectID = "iTn-uX-4PE"; */
-"iTn-uX-4PE.text" = "FAQ";
+"iTn-uX-4PE.text" = "常见问题";
 
 /* Class = "UILabel"; text = "清理缓存"; ObjectID = "iiM-Fm-wOB"; */
-"iiM-Fm-wOB.text" = "Clear cache";
+"iiM-Fm-wOB.text" = "清理缓存";
 
 /* Class = "UILabel"; text = "评价我们"; ObjectID = "j31-1g-KVZ"; */
-"j31-1g-KVZ.text" = "Rate me";
+"j31-1g-KVZ.text" = "评价我们";
 
 /* Class = "UILabel"; text = "字体"; ObjectID = "jps-k7-gzB"; */
-"jps-k7-gzB.text" = "Font";
+"jps-k7-gzB.text" = "字体";
 
 /* Class = "UILabel"; text = "跳过打卡"; ObjectID = "kZj-5f-Ls6"; */
 "kZj-5f-Ls6.text" = "跳过打卡";
@@ -111,46 +111,46 @@
 "mlU-go-l87.title" = "Item";
 
 /* Class = "UILabel"; text = "相关图片"; ObjectID = "n0B-br-ua7"; */
-"n0B-br-ua7.text" = "Image";
+"n0B-br-ua7.text" = "相关图片";
 
 /* Class = "UILabel"; text = "打开 App"; ObjectID = "nAu-ho-Tys"; */
-"nAu-ho-Tys.text" = "App";
+"nAu-ho-Tys.text" = "打开 App";
 
 /* Class = "UIButton"; normalTitle = "查看大图"; ObjectID = "oqx-k7-BPv"; */
-"oqx-k7-BPv.normalTitle" = "See full";
+"oqx-k7-BPv.normalTitle" = "查看大图";
 
 /* Class = "UILabel"; text = "任务名称"; ObjectID = "pb1-2D-ppu"; */
-"pb1-2D-ppu.text" = "Name";
+"pb1-2D-ppu.text" = "任务名称";
 
 /* Class = "UILabel"; text = "致谢"; ObjectID = "pcI-lc-3hu"; */
-"pcI-lc-3hu.text" = "Acknowledgement";
+"pcI-lc-3hu.text" = "致谢";
 
 /* Class = "UITableViewController"; title = "设置"; ObjectID = "piG-ET-YWg"; */
-"piG-ET-YWg.title" = "Settings";
+"piG-ET-YWg.title" = "设置";
 
 /* Class = "UILabel"; text = "联系作者"; ObjectID = "r1k-PM-ahV"; */
-"r1k-PM-ahV.text" = "Contact me";
+"r1k-PM-ahV.text" = "联系作者";
 
 /* Class = "UILabel"; text = "动画效果"; ObjectID = "sRw-yr-iKn"; */
-"sRw-yr-iKn.text" = "Animation";
+"sRw-yr-iKn.text" = "动画效果";
 
 /* Class = "UILabel"; text = "开始时间"; ObjectID = "sfp-zb-qDE"; */
-"sfp-zb-qDE.text" = "From";
+"sfp-zb-qDE.text" = "开始时间";
 
 /* Class = "UISegmentedControl"; uOk-Vw-l7i.segmentTitles[0] = "小"; ObjectID = "uOk-Vw-l7i"; */
-"uOk-Vw-l7i.segmentTitles[0]" = "S";
+"uOk-Vw-l7i.segmentTitles[0]" = "小";
 
 /* Class = "UISegmentedControl"; uOk-Vw-l7i.segmentTitles[1] = "中"; ObjectID = "uOk-Vw-l7i"; */
-"uOk-Vw-l7i.segmentTitles[1]" = "M";
+"uOk-Vw-l7i.segmentTitles[1]" = "中";
 
 /* Class = "UISegmentedControl"; uOk-Vw-l7i.segmentTitles[2] = "大"; ObjectID = "uOk-Vw-l7i"; */
-"uOk-Vw-l7i.segmentTitles[2]" = "L";
+"uOk-Vw-l7i.segmentTitles[2]" = "大";
 
 /* Class = "UITableViewController"; title = "KPTaskDetailTableViewController"; ObjectID = "wJH-wx-eAs"; */
 "wJH-wx-eAs.title" = "KPTaskDetailTableViewController";
 
 /* Class = "UIButton"; normalTitle = "更改图片"; ObjectID = "zd0-ot-zzG"; */
-"zd0-ot-zzG.normalTitle" = "Change";
+"zd0-ot-zzG.normalTitle" = "更改图片";
 
 /* Class = "UITableViewController"; title = "任务"; ObjectID = "ztj-1T-P03"; */
-"ztj-1T-P03.title" = "Task";
+"ztj-1T-P03.title" = "任务";

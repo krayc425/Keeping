@@ -32,7 +32,7 @@ static BOOL _loadingXib = NO;
     [self.colonLabel setHidden:date == NULL];
     [self.minuteLabel setHidden:date == NULL];
     if(date == NULL){
-        [self.hourLabel setText:@"全天"];
+        [self.hourLabel setText:NSLocalizedString(@"All day", nil)];
     }else{
         [self.hourLabel setText:[NSString stringWithFormat:@"%02ld", (long)date.hour]];
         [self.minuteLabel setText:[NSString stringWithFormat:@"%02ld", (long)date.minute]];

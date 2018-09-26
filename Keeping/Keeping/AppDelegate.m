@@ -35,7 +35,7 @@
     
     //键盘
     [[IQKeyboardManager sharedManager] setToolbarTintColor:[Utilities getColor]];
-    [[IQKeyboardManager sharedManager] setToolbarDoneBarButtonItemText:@"完成"];
+    [[IQKeyboardManager sharedManager] setToolbarDoneBarButtonItemText:NSLocalizedString(@"Done", nil)];
     
     // Bugly
     [Bugly startWithAppId:buglyKey];

@@ -28,10 +28,10 @@
     
     [self.tabBarItem setImageInsets:UIEdgeInsetsMake(10, 0, -10, 0)];
     
-    [self.tabBar.items[0] setTitle:@"今日"];
+    [self.tabBar.items[0] setTitle:NSLocalizedString(@"Today", nil)];
     [self.tabBar.items[0] setImage:[UIImage imageNamed:@"TAB_TODAY"]];
     [self.tabBar.items[0] setSelectedImage:[UIImage imageNamed:@"TAB_TODAY_SELECTED"]];
-    [self.tabBar.items[1] setTitle:@"任务"];
+    [self.tabBar.items[1] setTitle:NSLocalizedString(@"Task", nil)];
     [self.tabBar.items[1] setImage:[UIImage imageNamed:@"TAB_TASK"]];
     [self.tabBar.items[1] setSelectedImage:[UIImage imageNamed:@"TAB_TASK_SELECTED"]];
     
@@ -126,7 +126,7 @@
             break;
         case 1:
         {
-            [self.navigationItem setTitle:@"任务"];
+            [self.navigationItem setTitle:NSLocalizedString(@"Task", nil)];
             
             UIBarButtonItem *editItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NAV_SORT"]
                                                                          style:UIBarButtonItemStylePlain

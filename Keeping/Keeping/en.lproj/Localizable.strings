@@ -1,0 +1,57 @@
+/* 
+  Localizable.strings
+  Keeping
+
+  Created by 宋 奎熹 on 2018/9/26.
+  Copyright © 2018 宋 奎熹. All rights reserved.
+*/
+"TypeMemo" = "Memo Color";
+"ClickToAddMemo" = "Click to add memo";
+"SureToDelete" = "Sure To Delete?";
+"This operation cannot be reverted" = "This operation cannot be undone";
+"Cancel" = "Cancel";
+"Delete" = "Delete";
+"Link" = "Link";
+"Image" = "Image";
+"Memo" = "Memo";
+"Today" = "Today";
+"Task" = "Task";
+"All day" = "All day";
+"OK" = "OK";
+"None" = "None";
+"Done" = "Done";
+"Set to forever" = "Set to forever";
+"Add an image" = "Add an image";
+"Change an image" = "Change";
+"Download backup" = "Download backup";
+"Downloading" = "Downloading";
+"Download success" = "Download success";
+"Download failed" = "Download failed";
+"Contact me" = "Contact me";
+"WeChat" = "WeChat";
+"WeChat account copied" = "WeChat account copied";
+"Jump to WeChat" = "Jump to WeChat";
+"Weibo" = "Weibo";
+"Choose an app" = "Choose an app";
+"Click to add memo" = "Click to add memo";
+"Task detail" = "Task detail";
+"Select from album" = "Select from album";
+"Choose app icon" = "Choose app icon";
+"Choose an image" = "Choose an image";
+"Add new task" = "Add a new task";
+"Clear" = "Clear";
+"Select all" = "Select all";
+"App name" = "App name";
+"Create the first task!" = "Create the first task!";
+"Font" = "Font";
+"To forever" = "To forever";
+"Upload backup" = "Upload backup";
+"Uploading" = "Uploading";
+"Upload success" = "Upload success";
+"Upload failed" = "Upload failed";
+"Take a photo" = "Take a photo";
+"Submit" = "Submit";
+"Required" = "Required";
+"Optional" = "Optional";
+"Unfinished" = "Unfinished";
+"Finished" = "Finished";
