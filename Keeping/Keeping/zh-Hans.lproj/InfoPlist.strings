@@ -6,3 +6,9 @@
   Copyright © 2018 宋 奎熹. All rights reserved.
 */
 CFBundleDisplayName = "今日打卡";
+NSCameraUsageDescription = "“今日打卡”需要调用您的相机，来为任务添加图片。";
+NSMicrophoneUsageDescription = "“今日打卡”需要调用您的麦克风，来为任务添加图片。";
+NSPhotoLibraryUsageDescription = "“今日打卡”需要访问您的相册，来为任务添加图片。";
+NSPhotoLibraryAddUsageDescription = "“今日打卡”需要访问您的相册，以保存任务图片到本地。";
+UIApplicationShortcutItemTitle = "新增任务";
+

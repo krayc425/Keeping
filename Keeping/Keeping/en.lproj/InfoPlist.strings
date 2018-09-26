@@ -6,3 +6,8 @@
   Copyright © 2018 宋 奎熹. All rights reserved.
 */
 CFBundleDisplayName = "Keeping";
+NSCameraUsageDescription = "“Keeping” needs access to your camera to add image to tasks.";
+NSMicrophoneUsageDescription = "“Keeping” needs access to your microphone to add image to tasks.";
+NSPhotoLibraryUsageDescription = "“Keeping” needs access to your album to add image to tasks.";
+NSPhotoLibraryAddUsageDescription = "“Keeping” needs access to your album to save task image to your phone.";
+UIApplicationShortcutItemTitle = "Add new task";
