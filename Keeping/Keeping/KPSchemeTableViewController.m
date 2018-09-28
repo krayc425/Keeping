@@ -70,7 +70,7 @@
 }
 
 - (void)showSubmitAlert{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提交 App" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Submit a new app", nil) message:nil preferredStyle:UIAlertControllerStyleAlert];
     __block UITextField *nameText = nil;
     [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         textField.placeholder = NSLocalizedString(@"App name", nil);

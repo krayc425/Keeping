@@ -18,13 +18,12 @@
     
     [self.navigationBar setTintColor:[UIColor whiteColor]];
     [self.navigationBar setBarTintColor:[Utilities getColor]];
-    
     [self.navigationBar setValue:@YES forKey:@"hidesShadow"];
     
-    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]){
-        KPGuideView *guideView = [[KPGuideView alloc] initWithFrame:UIScreen.mainScreen.bounds];
-        [self.view addSubview:guideView];
-    }
+//    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]){
+//        KPGuideView *guideView = [[KPGuideView alloc] initWithFrame:UIScreen.mainScreen.bounds];
+//        [self.view addSubview:guideView];
+//    }
 }
 
 - (void)viewWillAppear:(BOOL)animated{

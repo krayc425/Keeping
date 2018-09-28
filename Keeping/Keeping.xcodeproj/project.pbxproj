@@ -86,11 +86,13 @@
 		24B16E0C20CA64790002CFBB /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24B16E0B20CA64790002CFBB /* CloudKit.framework */; };
 		24BA79A11E516949002133B6 /* TaskDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 24BA79A01E516949002133B6 /* TaskDataHelper.m */; };
 		24BA79AB1E516FE0002133B6 /* KPWeekdayPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24BA79AA1E516FE0002133B6 /* KPWeekdayPickerView.m */; };
-		24D064E420C8826700FD78F2 /* Intro.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24D064E320C8826700FD78F2 /* Intro.xcassets */; };
 		24D2D8001E8A2D060056D1AD /* KPTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D2D7FF1E8A2D060056D1AD /* KPTimeView.m */; };
 		24D2D8021E8A2D130056D1AD /* KPTimeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24D2D8011E8A2D130056D1AD /* KPTimeView.xib */; };
 		24DCF18A1E3094050097C250 /* DateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DCF1891E3094050097C250 /* DateUtil.m */; };
 		24DCF1941E310A890097C250 /* CardsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DCF1931E310A890097C250 /* CardsView.m */; };
+		24F21422215DC98500611C8D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 24F21424215DC98500611C8D /* InfoPlist.strings */; };
+		24F21428215DC9D600611C8D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 24F2142A215DC9D600611C8D /* InfoPlist.strings */; };
+		24F2142E215DCA0000611C8D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 24F21430215DCA0000611C8D /* InfoPlist.strings */; };
 		24F2A0CB1E2F383A00F30FB1 /* KPTaskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24F2A0C91E2F383A00F30FB1 /* KPTaskTableViewCell.xib */; };
 		24F2A0CE1E2F38C700F30FB1 /* KPTaskTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F2A0CD1E2F38C700F30FB1 /* KPTaskTableViewCell.m */; };
 		24F2A0D11E2F3F1800F30FB1 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F2A0D01E2F3F1800F30FB1 /* DBManager.m */; };
@@ -307,7 +309,6 @@
 		24BB39751F95DAA800D0BAE0 /* Intro_Screen_One.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Intro_Screen_One.png; path = ../../Tutorial/Intro_Screen_One.png; sourceTree = "<group>"; };
 		24BB39761F95DAA800D0BAE0 /* Intro_Screen_Two.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Intro_Screen_Two.png; path = ../../Tutorial/Intro_Screen_Two.png; sourceTree = "<group>"; };
 		24BB39771F95DCC600D0BAE0 /* Intro_Screen_Five.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Intro_Screen_Five.png; path = ../../Tutorial/Intro_Screen_Five.png; sourceTree = "<group>"; };
-		24D064E320C8826700FD78F2 /* Intro.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Intro.xcassets; sourceTree = "<group>"; };
 		24D2D7FE1E8A2D060056D1AD /* KPTimeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPTimeView.h; sourceTree = "<group>"; };
 		24D2D7FF1E8A2D060056D1AD /* KPTimeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPTimeView.m; sourceTree = "<group>"; };
 		24D2D8011E8A2D130056D1AD /* KPTimeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KPTimeView.xib; sourceTree = "<group>"; };
@@ -315,6 +316,12 @@
 		24DCF1891E3094050097C250 /* DateUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateUtil.m; sourceTree = "<group>"; };
 		24DCF1921E310A890097C250 /* CardsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardsView.h; sourceTree = "<group>"; };
 		24DCF1931E310A890097C250 /* CardsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardsView.m; sourceTree = "<group>"; };
+		24F21423215DC98500611C8D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		24F21425215DC98600611C8D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		24F21429215DC9D600611C8D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		24F2142B215DC9D700611C8D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		24F2142F215DCA0000611C8D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		24F21431215DCA0100611C8D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		24F2A0C91E2F383A00F30FB1 /* KPTaskTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KPTaskTableViewCell.xib; sourceTree = "<group>"; };
 		24F2A0CC1E2F38C700F30FB1 /* KPTaskTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPTaskTableViewCell.h; sourceTree = "<group>"; };
 		24F2A0CD1E2F38C700F30FB1 /* KPTaskTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPTaskTableViewCell.m; sourceTree = "<group>"; };
@@ -491,6 +498,7 @@
 				245A010B1F98EE9100CB50E9 /* Interface.storyboard */,
 				245A010E1F98EE9100CB50E9 /* Assets.xcassets */,
 				245A01101F98EE9100CB50E9 /* Info.plist */,
+				24F2142A215DC9D600611C8D /* InfoPlist.strings */,
 			);
 			path = KeepingWatch;
 			sourceTree = "<group>";
@@ -509,6 +517,7 @@
 				245A01261F98EE9100CB50E9 /* PushNotificationPayload.apns */,
 				245D7B751F9CD68B007DD894 /* KPWatchTableRowController.h */,
 				245D7B761F9CD68B007DD894 /* KPWatchTableRowController.m */,
+				24F21430215DCA0000611C8D /* InfoPlist.strings */,
 			);
 			path = "KeepingWatch Extension";
 			sourceTree = "<group>";
@@ -556,6 +565,7 @@
 				247F01CF1E3DB4F8001F900C /* KPWidgetTableViewCell.m */,
 				247F01D01E3DB4F8001F900C /* KPWidgetTableViewCell.xib */,
 				247F01C11E3D9E1B001F900C /* Info.plist */,
+				24F21424215DC98500611C8D /* InfoPlist.strings */,
 			);
 			path = KeepingWidget;
 			sourceTree = "<group>";
@@ -629,7 +639,6 @@
 				249AE3291E2DEE7700F704F8 /* Info.plist */,
 				243A8D11215B63DB00F12A29 /* InfoPlist.strings */,
 				249AE3241E2DEE7700F704F8 /* Assets.xcassets */,
-				24D064E320C8826700FD78F2 /* Intro.xcassets */,
 				24699F041E2F23C60092FBED /* Navigation.xcassets */,
 				245196701E3CB82F00C18C5B /* TabBar.xcassets */,
 				249AE3151E2DEE7700F704F8 /* Supporting Files */,
@@ -984,6 +993,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				245A010F1F98EE9100CB50E9 /* Assets.xcassets in Resources */,
+				24F21428215DC9D600611C8D /* InfoPlist.strings in Resources */,
 				245D7B781F9CD98D007DD894 /* Navigation.xcassets in Resources */,
 				245A010D1F98EE9100CB50E9 /* Interface.storyboard in Resources */,
 			);
@@ -994,6 +1004,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				245A01241F98EE9100CB50E9 /* Assets.xcassets in Resources */,
+				24F2142E215DCA0000611C8D /* InfoPlist.strings in Resources */,
 				245D7B791F9CD98D007DD894 /* Navigation.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1003,6 +1014,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				247F01D71E3DBC4E001F900C /* MainInterface.storyboard in Resources */,
+				24F21422215DC98500611C8D /* InfoPlist.strings in Resources */,
 				247F01D21E3DB4F8001F900C /* KPWidgetTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1025,7 +1037,6 @@
 				249AE3201E2DEE7700F704F8 /* Main.storyboard in Resources */,
 				24F2A0DC1E2F489100F30FB1 /* KPSchemeTableViewCell.xib in Resources */,
 				243A8D15215B665B00F12A29 /* Localizable.strings in Resources */,
-				24D064E420C8826700FD78F2 /* Intro.xcassets in Resources */,
 				24699F051E2F23C60092FBED /* Navigation.xcassets in Resources */,
 				2497004C1E56075B0015CC5F /* KPTypeColorTableViewCell.xib in Resources */,
 				2429CBEA1E2E49A60027DD37 /* KPSeparatorView.xib in Resources */,
@@ -1306,6 +1317,33 @@
 				243A8D1C215B70C500F12A29 /* en */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		24F21424215DC98500611C8D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				24F21423215DC98500611C8D /* en */,
+				24F21425215DC98600611C8D /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		24F2142A215DC9D600611C8D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				24F21429215DC9D600611C8D /* en */,
+				24F2142B215DC9D700611C8D /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		24F21430215DCA0000611C8D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				24F2142F215DCA0000611C8D /* en */,
+				24F21431215DCA0100611C8D /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

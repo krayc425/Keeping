@@ -67,7 +67,7 @@ static KPColorPickerView *colorPickerView = NULL;
     self.calendar.appearance.subtitleFont = [UIFont systemFontOfSize:10.0];
     
     self.calendar.appearance.headerMinimumDissolvedAlpha = 0;
-    self.calendar.appearance.headerDateFormat = @"yyyy 年 MM 月";
+    self.calendar.appearance.headerDateFormat = @"yyyy / MM";
     
     self.calendar.appearance.headerTitleColor = [Utilities getColor];
     self.calendar.appearance.weekdayTextColor = [Utilities getColor];

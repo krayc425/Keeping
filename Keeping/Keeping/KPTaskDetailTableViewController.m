@@ -366,7 +366,7 @@
         self.reminderTime = NULL;
         [self.reminderLabel setText:NSLocalizedString(@"None", nil)];
     }else{
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"选择提醒时间" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Set a reminder", nil)  message:nil preferredStyle:UIAlertControllerStyleActionSheet];
         UIDatePicker *datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 20, IS_IPAD ? 300 : SCREEN_WIDTH - 20, 250)];
         datePicker.tintColor = [Utilities getColor];
         datePicker.datePickerMode = UIDatePickerModeTime;

@@ -44,7 +44,7 @@
     
     //版本号
     NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
-    NSString *version = [NSString stringWithFormat:@"今日打卡 · 版本号 v%@ (%@)",infoDic[@"CFBundleShortVersionString"],infoDic[@"CFBundleVersion"]];
+    NSString *version = [NSString stringWithFormat:@"%@ · %@ v%@ (%@)", NSLocalizedString(@"Keeping", nil), NSLocalizedString(@"Version", nil),  infoDic[@"CFBundleShortVersionString"], infoDic[@"CFBundleVersion"]];
     UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 100)];
     UILabel *versionLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 20)];
     versionLabel.text = version;
