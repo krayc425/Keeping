@@ -191,6 +191,20 @@ typedef NS_ENUM(NSInteger, AMPopTipActionAnimation) {
  * @param text The new text
  */
 - (void)updateText:(nonnull NSString *)text;
+  
+/** Update the attributed text
+ *
+ * Set the new attributed text shown in the poptip
+ * @param text The new text
+ */
+- (void)updateAttributedText:(nonnull NSAttributedString *)text;
+
+/** Update the custom view
+ *
+ * Set the new custom view in the poptip
+ * @param view The new view
+ */
+- (void)updateCustomView:(nonnull UIView *)view;
 
 /** Makes the popover perform the action animation
  *
@@ -439,19 +453,19 @@ NS_ASSUME_NONNULL_END
  *
  * A block that will be fired when the user taps the popover.
  */
-@property (nonatomic, copy) void (^_Nullable tapHandler)();
+@property (nonatomic, copy) void (^_Nullable tapHandler)(void);
 
 /** Dismiss handler
  *
  * A block that will be fired when the popover appears.
  */
-@property (nonatomic, copy) void (^_Nullable appearHandler)();
+@property (nonatomic, copy) void (^_Nullable appearHandler)(void);
 
 /** Dismiss handler
  *
  * A block that will be fired when the popover is dismissed.
  */
-@property (nonatomic, copy) void (^_Nullable dismissHandler)();
+@property (nonatomic, copy) void (^_Nullable dismissHandler)(void);
 
 /** Entrance animation
  *

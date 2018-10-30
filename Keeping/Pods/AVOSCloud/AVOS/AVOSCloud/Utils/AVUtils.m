@@ -34,6 +34,19 @@
 #include<netdb.h>
 #include<arpa/inet.h>
 
+NSInteger LCTimeZoneForSecondsFromGMT = 0;
+NSDate * LCDateFromString(NSString *string)
+{
+    if (!string || string.length == 0) {
+        return nil;
+    }
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:AV_DATE_FORMAT];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:LCTimeZoneForSecondsFromGMT]];
+    NSDate *date = [dateFormatter dateFromString:string];
+    return date;
+}
+
 static dispatch_queue_t AVUtilsDefaultSerialQueue = NULL;
 
 #pragma clang diagnostic push
@@ -1011,15 +1024,21 @@ static Byte ivBuff[]   = {0xA,1,0xB,5,4,0xF,7,9,0x17,3,1,6,8,0xC,0xD,91};
 
 + (instancetype)lc__decodingDictionary:(NSDictionary *)dictionary key:(NSString *)key
 {
-    return [self lc__decodingWithKey:key fromDic:dictionary];
+    if (!dictionary || !key) {
+        return nil;
+    }
+    id value = dictionary[key];
+    if (value && [value isKindOfClass:self]) {
+        return value;
+    } else {
+        return nil;
+    }
 }
 
 + (instancetype)lc__decodingWithKey:(NSString *)key fromDic:(NSDictionary *)dic
 {
     if (!key || !dic) { return nil; }
-    
     id value = dic[key];
-    
     return (value && [value isKindOfClass:self]) ? value : nil;
 }
 

@@ -785,6 +785,23 @@ static BOOL enableAutomatic = NO;
     return theResult;
 }
 
++ (void)signUpOrLoginWithMobilePhoneNumberInBackground:(NSString *)phoneNumber
+                                               smsCode:(NSString *)smsCode
+                                              password:(NSString *)password
+                                                 block:(AVUserResultBlock)block
+{    
+    NSDictionary *parameters = @{ mobilePhoneNumberTag: phoneNumber, smsCodeTag: smsCode, passwordTag: password };
+    [[AVPaasClient sharedInstance] postObject:@"usersByMobilePhone" withParameters:parameters block:^(id object, NSError *error) {
+        if (error) {
+            [AVUtils callUserResultBlock:block user:nil error:error];
+            return;
+        }
+        AVUser *user = [self userOrSubclassUser];
+        [self configAndChangeCurrentUserWithUser:user object:object];
+        [AVUtils callUserResultBlock:block user:user error:nil];
+    }];
+}
+
 // MARK: - logout
 
 + (void)logOut {
@@ -1191,6 +1208,40 @@ static BOOL enableAutomatic = NO;
             block(self, nil);
         }
     }];
+}
+
+// MARK: - Anonymous
+
++ (void)loginAnonymouslyWithCallback:(void (^)(AVUser * _Nullable user, NSError * _Nullable error))callback
+{
+    NSDictionary *parameters = ({
+        NSString *anonymousId = [[NSUserDefaults standardUserDefaults] objectForKey:AnonymousIdKey];
+        if (!anonymousId) {
+            anonymousId = [AVUtils generateCompactUUID];
+            [[NSUserDefaults standardUserDefaults] setObject:anonymousId forKey:AnonymousIdKey];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
+        @{ authDataTag: @{ anonymousTag: @{ @"id": anonymousId } } };
+    });
+    [AVPaasClient.sharedInstance postObject:@"users" withParameters:parameters block:^(id object, NSError *error) {
+        if (error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                callback(nil, error);
+            });
+            return;
+        }
+        AVUser *user = [AVUser userOrSubclassUser];
+        [AVObjectUtils copyDictionary:object toObject:user];
+        [AVUser changeCurrentUser:user save:YES];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            callback(user, nil);
+        });
+    }];
+}
+
+- (BOOL)isAnonymous
+{
+    return [[self linkedServiceNames] containsObject:anonymousTag];
 }
 
 #pragma mark - Override from AVObject

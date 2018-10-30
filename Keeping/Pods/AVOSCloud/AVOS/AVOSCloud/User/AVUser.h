@@ -331,6 +331,19 @@ A LeanCloud Framework User Object that is a local representation of a user persi
                                                smsCode:(NSString *)code
                                                  block:(AVUserResultBlock)block;
 
+/**
+ Use mobile phone number & SMS code & password to sign up or login.
+
+ @param phoneNumber Phone number.
+ @param smsCode SMS code.
+ @param password Password.
+ @param block Result callback.
+ */
++ (void)signUpOrLoginWithMobilePhoneNumberInBackground:(NSString *)phoneNumber
+                                               smsCode:(NSString *)smsCode
+                                              password:(NSString *)password
+                                                 block:(AVUserResultBlock)block;
+
 
 /** @name Logging Out */
 
@@ -450,6 +463,22 @@ A LeanCloud Framework User Object that is a local representation of a user persi
  */
 - (void)disassociateWithPlatformId:(NSString *)platformId
                           callback:(void (^)(BOOL succeeded, NSError * _Nullable error))callback;
+
+// MARK: - Anonymous
+
+/**
+ Login anonymously.
+
+ @param callback Result callback.
+ */
++ (void)loginAnonymouslyWithCallback:(void (^)(AVUser * _Nullable user, NSError * _Nullable error))callback;
+
+/**
+ Check whether the instance of AVUser is anonymous.
+
+ @return Result.
+ */
+- (BOOL)isAnonymous;
 
 @end
 

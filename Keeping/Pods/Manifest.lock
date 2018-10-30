@@ -1,29 +1,29 @@
 PODS:
-  - AMPopTip (1.5.2)
-  - AVOSCloud (11.0.0)
+  - AMPopTip (1.5.3)
+  - AVOSCloud (11.4.6)
   - BEMCheckBox (1.4.1)
   - Bugly (2.5.0)
   - DACircularProgress (2.3.1)
   - DateTools (2.0.0)
   - DZNEmptyDataSet (1.8.1)
   - FDFullscreenPopGesture (1.1)
-  - FMDB (2.7.2):
-    - FMDB/standard (= 2.7.2)
-  - FMDB/standard (2.7.2)
-  - FSCalendar (2.7.9)
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
+  - FSCalendar (2.8.0)
   - IDMPhotoBrowser (1.11.3):
     - DACircularProgress
     - pop
     - SDWebImage (= 4.0.0)
-  - IQKeyboardManager (5.0.4)
+  - IQKeyboardManager (6.2.0)
   - Masonry (1.1.0)
   - MGSwipeTableCell (1.6.7)
-  - pop (1.0.10)
+  - pop (1.0.12)
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
   - SVProgressHUD (2.2.5)
-  - VTAcknowledgementsViewController (1.4)
+  - VTAcknowledgementsViewController (1.5)
 
 DEPENDENCIES:
   - AMPopTip (~> 1.5)
@@ -64,24 +64,24 @@ SPEC REPOS:
     - VTAcknowledgementsViewController
 
 SPEC CHECKSUMS:
-  AMPopTip: ec46d7d2ce329328a5e7bfd533da029a9e0f6557
-  AVOSCloud: 8ffa848f5f7391fc7594d3671a29cd6f8a14cc2a
+  AMPopTip: 32101701b68b811999b8ce39a778f452a9956aa1
+  AVOSCloud: 95a83bb3447a2f57eae797abdf97072a8ad22b82
   BEMCheckBox: 5ba6e37ade3d3657b36caecc35c8b75c6c2b1a4e
   Bugly: 3ca9f255c01025582df26f9222893b383c7e4b4e
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   DateTools: 933ac9c490f21f92127cf690ccd8c397e0126caf
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
-  FMDB: 6198a90e7b6900cfc046e6bc0ef6ebb7be9236aa
-  FSCalendar: a04b09f16f811bc92e82f3cf852a15225233b9d5
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  FSCalendar: 3a5ed3636e2ba1b83ebebfcf0c2603105a6f5efe
   IDMPhotoBrowser: b96159fe4adb991a844068eb17dab9c0b7d7e51a
-  IQKeyboardManager: 1df9c0f147af1681cfb2d9977bc30309d45a7e76
+  IQKeyboardManager: 6194101620b73af5e67900b8f89707a99de0b804
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MGSwipeTableCell: fb20e983988bde2b8d0df29c2d9e1d8ffd10b74a
-  pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
+  pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
-  VTAcknowledgementsViewController: d62bb400ca68e240680906bcfa2a2b380d39b30f
+  VTAcknowledgementsViewController: 9bc9f81aa09bc574b22e10f01fd84f73918280c7
 
 PODFILE CHECKSUM: 51bfd84b76c5029f6fd86913874dc3af83691d34
 
