@@ -63,7 +63,7 @@
 "Wpg-Kq-CgT.text" = "Didn't find app you want?";
 
 /* Class = "UILabel"; text = "角标显示今日未完成任务数"; ObjectID = "XQI-gZ-KeD"; */
-"XQI-gZ-KeD.text" = "Show unfinished task count on badge";
+"XQI-gZ-KeD.text" = "Unfinished task count on badge";
 
 /* Class = "UITableViewSection"; headerTitle = "请确认您的手机里已经安装了要选择的 App"; ObjectID = "bez-qX-KXz"; */
 "bez-qX-KXz.headerTitle" = "Make sure that you have the app installed on your phone";

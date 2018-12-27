@@ -38,7 +38,9 @@
     [[IQKeyboardManager sharedManager] setToolbarDoneBarButtonItemText:NSLocalizedString(@"Done", nil)];
     
     // Bugly
-    [Bugly startWithAppId:buglyKey];
+    BuglyConfig *config = [[BuglyConfig alloc] init];
+    config.applicationGroupIdentifier = GROUP_ID;
+    [Bugly startWithAppId:buglyKey config:config];
     
     //先删除所有通知
     [UNManager reconstructNotifications];

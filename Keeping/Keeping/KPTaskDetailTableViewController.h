@@ -29,7 +29,7 @@
 @property (weak, nonatomic, nullable) IBOutlet KPColorPickerView *colorView;    //button tag : 1 ~ 7
 @property (nonatomic) int selectedColorNum;
 
-@property (weak, nonatomic, nullable) IBOutlet UILabel *reminderLabel;
+@property (weak, nonatomic, nullable) IBOutlet UIButton *reminderButton;
 @property (weak, nonatomic, nullable) IBOutlet UISwitch *reminderSwitch;
 @property (nonatomic, nullable) NSDate *reminderTime;
 

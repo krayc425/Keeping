@@ -65,6 +65,8 @@
     [self.reminderSwitch setTintColor:[Utilities getColor]];
     [self.reminderSwitch setOnTintColor:[Utilities getColor]];
     [self.reminderSwitch addTarget:self action:@selector(showReminderPickerAction:) forControlEvents:UIControlEventValueChanged];
+    [self.reminderButton addTarget:self action:@selector(showReminderPickerAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.reminderButton setTitle:NSLocalizedString(@"None", nil) forState:UIControlStateNormal];
     
     //app 开关
     [self.appSwitch setTintColor:[Utilities getColor]];
@@ -139,10 +141,10 @@
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             [dateFormatter setDateFormat:@"HH:mm"];
             NSString *currentDateStr = [dateFormatter stringFromDate:self.reminderTime];
-            [self.reminderLabel setText:currentDateStr];
+            [self.reminderButton setTitle:currentDateStr forState:UIControlStateNormal];
             [self.reminderSwitch setOn:YES];
         }else{
-            [self.reminderLabel setText:NSLocalizedString(@"None", nil)];
+            [self.reminderButton setTitle:NSLocalizedString(@"None", nil) forState:UIControlStateNormal];
             [self.reminderSwitch setOn:NO];
         }
         
@@ -357,19 +359,22 @@
 
 #pragma mark - Reminder Actions
 
-- (void)showReminderPickerAction:(id)sender{
-    UISwitch *senderSwitch = (UISwitch *)sender;
-    if (senderSwitch != self.reminderSwitch) {
-        return;
-    }
-    if(![self.reminderSwitch isOn]){
+- (void)showReminderPickerAction:(id)sender {
+    if (sender == self.reminderSwitch && ![self.reminderSwitch isOn]) {
         self.reminderTime = NULL;
-        [self.reminderLabel setText:NSLocalizedString(@"None", nil)];
-    }else{
+        [self.reminderButton setTitle:NSLocalizedString(@"None", nil) forState:UIControlStateNormal];
+    } else {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Set a reminder", nil)  message:nil preferredStyle:UIAlertControllerStyleActionSheet];
         UIDatePicker *datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 20, IS_IPAD ? 300 : SCREEN_WIDTH - 20, 250)];
         datePicker.tintColor = [Utilities getColor];
         datePicker.datePickerMode = UIDatePickerModeTime;
+        
+        if (sender == self.reminderButton && ![[self.reminderButton titleForState:UIControlStateNormal]  isEqualToString:NSLocalizedString(@"None", nil)]) {
+            if (self.reminderTime != NULL) {
+                datePicker.date = self.reminderTime;
+            }
+        }
+        
         [alert.view addSubview:datePicker];
         
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Done", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -377,23 +382,25 @@
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             [dateFormatter setDateFormat:@"HH:mm"];
             NSString *currentDateStr = [dateFormatter stringFromDate:self.reminderTime];
-            [self.reminderLabel setText:currentDateStr];
+            [self.reminderButton setTitle:currentDateStr forState:UIControlStateNormal];
+            [self.reminderSwitch setOn:YES animated:YES];
             [self.tableView reloadData];
         }];
         [alert addAction:okAction];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            if(self.reminderSwitch.isOn){
+            if (self.reminderTime == NULL) {
                 [self.reminderSwitch setOn:NO animated:YES];
+                [self.reminderButton setTitle:NSLocalizedString(@"None", nil) forState:UIControlStateNormal];
             }
         }];
         [alert addAction:cancelAction];
-
+        
         NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:alert.view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:datePicker.frame.size.height + (IS_IPAD ? 70.0 : 120.0)];
         [alert.view addConstraint:heightConstraint];
         
         if (alert.popoverPresentationController != NULL) {
             alert.popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionAny;
-            alert.popoverPresentationController.sourceView = senderSwitch;
+            alert.popoverPresentationController.sourceView = (UIView *)sender;
             alert.popoverPresentationController.sourceRect = CGRectZero;
         }
         
@@ -404,9 +411,9 @@
 #pragma mark - Pic Actions
 
 - (IBAction)deletePicAction:(id)sender{
-    if(self.selectedImgView.image == [UIImage new]){
+    if (self.selectedImgView.image == [UIImage new]) {
         return;
-    }else{
+    } else {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确定删除这张图片？" message:nil preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
         [alert addAction:cancelAction];

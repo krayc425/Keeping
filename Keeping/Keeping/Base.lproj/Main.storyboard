@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BIL-fh-dCv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BIL-fh-dCv">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -294,20 +294,21 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="KKn-Fe-0LY">
                                                     <rect key="frame" x="110" y="58.5" width="239" height="50"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="无" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7rI-Ea-7Nk">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lih-F8-KZn">
                                                             <rect key="frame" x="0.0" y="0.0" width="190" height="50"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                            <state key="normal" title="无">
+                                                                <color key="titleColor" red="0.45098039220000002" green="0.59999999999999998" blue="0.77647058820000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            </state>
+                                                        </button>
                                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="TBU-Y6-nz5">
                                                             <rect key="frame" x="190" y="9.5" width="51" height="31"/>
                                                         </switch>
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="Czy-1n-toa"/>
-                                                        <constraint firstAttribute="bottom" secondItem="7rI-Ea-7Nk" secondAttribute="bottom" id="HZO-y0-W5J"/>
-                                                        <constraint firstItem="7rI-Ea-7Nk" firstAttribute="top" secondItem="KKn-Fe-0LY" secondAttribute="top" id="eFo-hy-Bl7"/>
+                                                        <constraint firstAttribute="bottom" secondItem="Lih-F8-KZn" secondAttribute="bottom" id="cQm-ZB-7gd"/>
+                                                        <constraint firstItem="Lih-F8-KZn" firstAttribute="top" secondItem="KKn-Fe-0LY" secondAttribute="top" id="zWa-gT-oxU"/>
                                                     </constraints>
                                                 </stackView>
                                             </subviews>
@@ -506,7 +507,7 @@
                         <outlet property="imgButtonStack" destination="BZ6-Jp-ftB" id="voj-ZO-ID9"/>
                         <outlet property="linkTextField" destination="hRs-aW-cDA" id="z6A-9a-5Q9"/>
                         <outlet property="memoTextView" destination="abj-r5-uSW" id="7MP-R8-tSD"/>
-                        <outlet property="reminderLabel" destination="7rI-Ea-7Nk" id="tNs-tv-AtY"/>
+                        <outlet property="reminderButton" destination="Lih-F8-KZn" id="PQC-nK-sD3"/>
                         <outlet property="reminderSwitch" destination="TBU-Y6-nz5" id="Gvz-IP-7iB"/>
                         <outlet property="selectedImgView" destination="DOr-Zi-afg" id="CmP-vC-Eyq"/>
                         <outlet property="startDateButton" destination="Hic-hX-DL3" id="O4p-l0-Dsh"/>
