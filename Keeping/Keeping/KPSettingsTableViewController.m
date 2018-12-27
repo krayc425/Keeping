@@ -311,7 +311,9 @@
     if(indexPath.section == 3 && indexPath.row == 0){
         [self contactMe];
     }else if(indexPath.section == 3 && indexPath.row == 2){
-        SFSafariViewController *safariVC = [[SFSafariViewController alloc]initWithURL:[NSURL URLWithString:@"https://songkuixi.github.io/2017/03/02/Keeping-Q-A/"] entersReaderIfAvailable:NO];
+        SFSafariViewControllerConfiguration *config = [[SFSafariViewControllerConfiguration alloc] init];
+        config.entersReaderIfAvailable = YES;
+        SFSafariViewController *safariVC = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:@"https://songkuixi.github.io/2017/03/02/Keeping-Q-A/"] configuration:config];
         safariVC.delegate = self;
         [self presentViewController:safariVC animated:YES completion:nil];
     }else if(indexPath.section == 3 && indexPath.row == 1){
