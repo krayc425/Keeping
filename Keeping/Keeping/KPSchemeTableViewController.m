@@ -70,32 +70,9 @@
 }
 
 - (void)showSubmitAlert{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Submit a new app", nil) message:nil preferredStyle:UIAlertControllerStyleAlert];
-    __block UITextField *nameText = nil;
-    [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-        textField.placeholder = NSLocalizedString(@"App name", nil);
-        nameText = textField;
-    }];
-    __block UITextField *schemeText = nil;
-    [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-        textField.placeholder = @"对应 URL Scheme（可选）";
-        schemeText = textField;
-    }];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
-    [alert addAction:cancelAction];
-    UIAlertAction *submitAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Submit", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        AVObject *appNameSubmitted = [AVObject objectWithClassName:@"appNameSubmitted"];
-        [appNameSubmitted setObject:[nameText text] forKey:@"appName"];
-        [appNameSubmitted setObject:[schemeText text] forKey:@"appScheme"];
-        [appNameSubmitted save];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"sms:krayc425@gmail.com"] options:@{} completionHandler:^(BOOL success) {
         
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Submit success", nil) message:nil preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:nil];
-        [alert addAction:okAction];
-        [self presentViewController:alert animated:YES completion:nil];
     }];
-    [alert addAction:submitAction];
-    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - Table view data source

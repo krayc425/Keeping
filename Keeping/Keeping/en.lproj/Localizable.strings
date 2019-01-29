@@ -5,7 +5,7 @@
   Created by 宋 奎熹 on 2018/9/26.
   Copyright © 2018 宋 奎熹. All rights reserved.
 */
-"TypeMemo" = "Memo Color";
+"TypeMemo" = "Memo color";
 "ClickToAddMemo" = "Click to add memo";
 "SureToDelete" = "Sure to delete?";
 "This operation cannot be reverted" = "This operation cannot be undone";
@@ -28,9 +28,6 @@
 "Download success" = "Download success";
 "Download failed" = "Download failed";
 "Contact me" = "Contact me";
-"WeChat" = "WeChat";
-"WeChat account copied" = "WeChat account copied";
-"Jump to WeChat" = "Jump to WeChat";
 "Weibo" = "Weibo";
 "Choose an app" = "Choose an app";
 "Click to add memo" = "Click to add memo";

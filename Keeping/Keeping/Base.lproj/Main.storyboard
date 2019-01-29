@@ -895,12 +895,53 @@
                                             <outlet property="imageView" destination="gaE-hT-qYy" id="yi4-7d-AhV"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="MD4-TE-FHa" customClass="KPSettingTableViewCell">
+                                        <rect key="frame" x="0.0" y="371" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MD4-TE-FHa" id="7kj-ax-hh2">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="自动更新为当日日期" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="4C0-nE-aqD">
+                                                    <rect key="frame" x="41" y="11.5" width="156" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="P4b-cj-q6e">
+                                                    <rect key="frame" x="310" y="6.5" width="51" height="31"/>
+                                                </switch>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SETTINGS_TODAY" translatesAutoresizingMaskIntoConstraints="NO" id="G4d-Mr-txo">
+                                                    <rect key="frame" x="16" y="14" width="16" height="16"/>
+                                                    <color key="tintColor" red="0.30980392159999998" green="0.51764705879999995" blue="0.78823529410000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="G4d-Mr-txo" secondAttribute="height" multiplier="1:1" id="ACA-mi-2cG"/>
+                                                        <constraint firstAttribute="height" constant="16" id="h8b-m6-Z0X"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="G4d-Mr-txo" firstAttribute="width" secondItem="G4d-Mr-txo" secondAttribute="height" multiplier="1:1" id="0nn-Z0-iI5"/>
+                                                <constraint firstItem="G4d-Mr-txo" firstAttribute="width" secondItem="G4d-Mr-txo" secondAttribute="height" multiplier="1:1" id="3g7-Gj-Un1"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="P4b-cj-q6e" secondAttribute="trailing" id="3gU-zi-MiR"/>
+                                                <constraint firstItem="P4b-cj-q6e" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4C0-nE-aqD" secondAttribute="trailing" id="JdF-Pk-Bnk"/>
+                                                <constraint firstItem="G4d-Mr-txo" firstAttribute="leading" secondItem="7kj-ax-hh2" secondAttribute="leadingMargin" id="Kbi-if-WKh"/>
+                                                <constraint firstItem="G4d-Mr-txo" firstAttribute="centerY" secondItem="7kj-ax-hh2" secondAttribute="centerY" id="ZgF-WS-D3W"/>
+                                                <constraint firstItem="4C0-nE-aqD" firstAttribute="centerY" secondItem="7kj-ax-hh2" secondAttribute="centerY" id="gC8-38-fD1"/>
+                                                <constraint firstItem="4C0-nE-aqD" firstAttribute="leading" secondItem="7kj-ax-hh2" secondAttribute="leadingMargin" constant="25" id="qbf-M2-FUq"/>
+                                                <constraint firstItem="P4b-cj-q6e" firstAttribute="centerY" secondItem="7kj-ax-hh2" secondAttribute="centerY" id="vzC-wv-nOr"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="imageView" destination="G4d-Mr-txo" id="Arp-RF-Hne"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection id="xhO-bg-RUU">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="J7t-ho-gR7" customClass="KPSettingTableViewCell">
-                                        <rect key="frame" x="0.0" y="407" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="451" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="J7t-ho-gR7" id="vyM-Wt-tIy">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
@@ -944,7 +985,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="5fe-KT-FAs" customClass="KPSettingTableViewCell">
-                                        <rect key="frame" x="0.0" y="451" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="495" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5fe-KT-FAs" id="D0Z-ig-xsJ">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
@@ -980,7 +1021,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="xlC-Fa-pCO" customClass="KPSettingTableViewCell">
-                                        <rect key="frame" x="0.0" y="495" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="539" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xlC-Fa-pCO" id="Uou-Ht-dWM">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
@@ -1024,7 +1065,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="vgJ-S2-7pR" customClass="KPSettingTableViewCell">
-                                        <rect key="frame" x="0.0" y="539" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="583" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vgJ-S2-7pR" id="VAF-as-opk">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
@@ -1081,6 +1122,7 @@
                         <outlet property="animationSwitch" destination="BXU-0R-oVM" id="FCT-f6-9QZ"/>
                         <outlet property="badgeSwitch" destination="Zq7-vP-Lc6" id="8Xh-AO-BQe"/>
                         <outlet property="cacheLabel" destination="hYm-gY-e2N" id="FNm-4e-Wlu"/>
+                        <outlet property="todaySwitch" destination="P4b-cj-q6e" id="APm-7w-9Ma"/>
                         <outletCollection property="labels" destination="jps-k7-gzB" id="fea-Qr-dtn"/>
                         <outletCollection property="labels" destination="sRw-yr-iKn" id="XUE-un-c7n"/>
                         <outletCollection property="labels" destination="BTM-tl-eHm" id="eFZ-Lg-eE5"/>
@@ -1773,6 +1815,7 @@
         <image name="SETTINGS_QUESTION" width="16" height="16"/>
         <image name="SETTINGS_RATE" width="16" height="16"/>
         <image name="SETTINGS_THANKS" width="16" height="16"/>
+        <image name="SETTINGS_TODAY" width="16" height="16"/>
         <image name="Start" width="16" height="16"/>
         <image name="Stop" width="16" height="16"/>
         <image name="Weekday" width="16" height="16"/>

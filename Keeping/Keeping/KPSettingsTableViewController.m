@@ -38,9 +38,13 @@
     [self.badgeSwitch setOnTintColor:[Utilities getColor]];
     [self.badgeSwitch setOn:[[NSUserDefaults standardUserDefaults] boolForKey:@"badgeCount"]];
     
+    [self.todaySwitch setOnTintColor:[Utilities getColor]];
+    [self.todaySwitch setOn:[[NSUserDefaults standardUserDefaults] boolForKey:@"refreshToday"]];
+    
     //动画开关
     [self.animationSwitch addTarget:self action:@selector(switchChange:) forControlEvents:UIControlEventValueChanged];
     [self.badgeSwitch addTarget:self action:@selector(switchChange:) forControlEvents:UIControlEventValueChanged];
+    [self.todaySwitch addTarget:self action:@selector(switchChange:) forControlEvents:UIControlEventValueChanged];
     
     //版本号
     NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
@@ -124,6 +128,13 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification_Badge"
                                                                 object:nil
                                                               userInfo:nil];
+        }
+            break;
+            //tag == 2: 刷新为今日开关
+        case 2:
+        {
+            [[NSUserDefaults standardUserDefaults] setBool:self.todaySwitch.isOn forKey:@"refreshToday"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
         }
             break;
         default:
@@ -213,19 +224,6 @@
             
         }];
     }];
-    UIAlertAction *weixinAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"WeChat", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [UIPasteboard generalPasteboard].string = @"krayc425";
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"WeChat account copied", nil) message:nil preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
-        [alert addAction:cancelAction];
-        UIAlertAction *wechatAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Jump to WeChat", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"weixin://"]
-                                               options:@{}
-                                     completionHandler:nil];
-        }];
-        [alert addAction:wechatAction];
-        [self presentViewController:alert animated:YES completion:nil];
-    }];
     UIAlertAction *weiboAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Weibo", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"sinaweibo://userinfo?uid=1634553604"]
                                            options:@{}
@@ -233,7 +231,6 @@
     }];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
     [alert addAction:iMsgAction];
-    [alert addAction:weixinAction];
     [alert addAction:weiboAction];
     [alert addAction:cancelAction];
     [self presentViewController:alert animated:YES completion:nil];
@@ -275,8 +272,9 @@
     switch (section) {
         case 0:
         case 1:
-        case 2:
             return 2;
+        case 2:
+            return 3;
         case 3:
             return 4;
         default:

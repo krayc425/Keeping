@@ -13,6 +13,7 @@
 @property (nonatomic, weak, nullable) IBOutlet UISwitch *animationSwitch;
 
 @property (nonatomic, weak, nullable) IBOutlet UISwitch *badgeSwitch;
+@property (nonatomic, weak, nullable) IBOutlet UISwitch *todaySwitch;
 
 @property (nonatomic, weak, nullable) IBOutletCollection(UILabel) NSArray *labels;
 

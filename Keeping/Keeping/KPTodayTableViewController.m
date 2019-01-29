@@ -135,10 +135,12 @@ static KPColorPickerView *colorPickerView = NULL;
     [self.view bringSubviewToFront:self.hoverView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadTasks) name:@"refresh_today_task" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshDateAndLoadTasks) name:@"refresh_today_task_and_date" object:nil];
 }
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"refresh_today_task" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"refresh_today_task_and_date" object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -150,6 +152,13 @@ static KPColorPickerView *colorPickerView = NULL;
         [self.tableView reloadData];
         self.selectedIndexPath = NULL;
     }
+}
+
+- (void)refreshDateAndLoadTasks {
+    self.selectedDate = [NSDate dateWithYear:[[NSDate date] year] month:[[NSDate date] month] day:[[NSDate date] day]];
+    [self.calendar selectDate:self.selectedDate];
+    [self.calendar setToday:self.selectedDate];
+    [self loadTasks];
 }
 
 - (void)loadTasks{

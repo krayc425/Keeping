@@ -21,7 +21,7 @@
 "9FZ-kn-RtR.title" = "Item";
 
 /* Class = "UILabel"; text = "类别颜色备注"; ObjectID = "BTM-tl-eHm"; */
-"BTM-tl-eHm.text" = "Memo Color";
+"BTM-tl-eHm.text" = "Memo color";
 
 /* Class = "UILabel"; text = "无"; ObjectID = "BXh-pc-0Wg"; */
 "BXh-pc-0Wg.text" = "None";
@@ -154,3 +154,5 @@
 
 /* Class = "UITableViewController"; title = "任务"; ObjectID = "ztj-1T-P03"; */
 "ztj-1T-P03.title" = "Task";
+
+"4C0-nE-aqD.text" = "Always today's date on homepage";
