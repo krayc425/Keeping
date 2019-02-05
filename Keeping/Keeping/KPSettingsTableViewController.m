@@ -135,6 +135,9 @@
         {
             [[NSUserDefaults standardUserDefaults] setBool:self.todaySwitch.isOn forKey:@"refreshToday"];
             [[NSUserDefaults standardUserDefaults] synchronize];
+            if (self.todaySwitch.isOn) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"refresh_today_task_and_date" object:nil];
+            }
         }
             break;
         default:

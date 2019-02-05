@@ -35,8 +35,9 @@ static DBManager* _instance = nil;
 }
 
 - (void)establishDBWithPreviousPath:(NSURL *)path{
-    NSString *doc2 = [[[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:kGroupID] path];
     NSString *fileName1 = [path.absoluteString stringByReplacingOccurrencesOfString:@"file://" withString:@""];
+    
+    NSString *doc2 = [[[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:kGroupID] path];
     NSString *fileName2 = [doc2 stringByAppendingPathComponent:@"task.sqlite"];
     
     //原来如果有，先挪到第二个地方去（针对1.0版本）
