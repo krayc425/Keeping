@@ -85,9 +85,7 @@ static TaskManager* _instance = nil;
         punchJsonStr = nil;
     }
     
-    if(task.reminderTime != nil){
-        [UNManager createLocalizedUserNotification:task];
-    }
+    [UNManager createLocalizedUserNotification:task];
     
     NSArray *punchMemoArr = task.punchMemoArr;
     NSString *punchMemoJsonStr;

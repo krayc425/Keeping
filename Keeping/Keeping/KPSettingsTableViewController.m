@@ -318,12 +318,7 @@
         safariVC.delegate = self;
         [self presentViewController:safariVC animated:YES completion:nil];
     }else if(indexPath.section == 3 && indexPath.row == 1){
-        NSString *str;
-        if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"10.3")){
-            str = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@?action=write-review", [Utilities getAPPID]];
-        }else{
-            str = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%@", [Utilities getAPPID]];
-        }
+        NSString *str = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@?action=write-review", [Utilities getAPPID]];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]
                                            options:@{}
                                  completionHandler:nil];
