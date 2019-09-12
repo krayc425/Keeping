@@ -6,7 +6,7 @@
   Copyright © 2018 宋 奎熹. All rights reserved.
 */
 "TypeMemo" = "Memo color";
-"ClickToAddMemo" = "Click to add memo";
+"ClickToAddMemo" = "Tap to add memo";
 "SureToDelete" = "Sure to delete?";
 "This operation cannot be reverted" = "This operation cannot be undone";
 "Cancel" = "Cancel";
@@ -25,7 +25,7 @@
 "Change an image" = "Change";
 "Download backup" = "Download backup";
 "Downloading" = "Downloading";
-"Download success" = "Download success";
+"Download success" = "Download successfully";
 "Download failed" = "Download failed";
 "Contact me" = "Contact me";
 "Weibo" = "Weibo";
@@ -44,7 +44,7 @@
 "To forever" = "Forever";
 "Upload backup" = "Upload backup";
 "Uploading" = "Uploading";
-"Upload success" = "Upload success";
+"Upload success" = "Upload successfully";
 "Upload failed" = "Upload failed";
 "Take a photo" = "Take a photo";
 "Submit" = "Submit";
@@ -63,10 +63,10 @@
 "How to sort tasks" = "How to sort tasks";
 "No task" = "No task";
 "Showcase task" = "Showcase task";
-"Add success" = "Add success";
-"Change success" = "Change success";
-"Clear success" = "Clear success";
-"Submit success" = "Submit success";
+"Add success" = "Add successfully";
+"Change success" = "Change successfully";
+"Clear success" = "Clear successfully";
+"Submit success" = "Submit successfully";
 "Today Calendar" = "T";
 "Task name" = "Task name";
 "Start date" = "Start date";
@@ -90,3 +90,7 @@
 "Submit a new app" = "Submit a new app";
 "Keeping" = "Keeping";
 "Version" = "Version";
+"Data" = "Data";
+"Appearance" = "Appearance";
+"Others" = "Others";
+"Preference" = "Preference";

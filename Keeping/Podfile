@@ -7,7 +7,6 @@ target 'Keeping' do
   pod 'BEMCheckBox'
   pod 'FDFullscreenPopGesture'
   pod 'AMPopTip', '~> 1.5'
-  pod 'AVOSCloud'
   pod 'IQKeyboardManager'
   pod 'IDMPhotoBrowser'
   pod 'MGSwipeTableCell'

@@ -11,7 +11,6 @@
 #import "TaskManager.h"
 #import "KPNavigationViewController.h"
 #import "KPTabBarViewController.h"
-#import <AVOSCloud/AVOSCloud.h>
 #import "UNManager.h"
 #import "AppKeys.h"
 #import "KPSchemeManager.h"
@@ -43,11 +42,6 @@
     
     [self replyPushNotificationAuthorization:application];
     [self registerForRemoteNotification];
-
-    [AVOSCloud setApplicationId:avCloudID clientKey:avCloudKey];
-    [AVOSCloud setAllLogsEnabled:NO];
-    [AVOSCloud setLogLevel:AVLogLevelWarning | AVLogLevelError];
-    [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     //第一次启动
     if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]){
@@ -142,9 +136,6 @@
     }];
 }
 
-/**
- * 初始化UNUserNotificationCenter
- */
 - (void)registerForRemoteNotification {
     // 使用 UNUserNotificationCenter 来管理通知
     UNUserNotificationCenter *uncenter = [UNUserNotificationCenter currentNotificationCenter];
@@ -170,10 +161,6 @@
             NSLog(@"已授权");
         }
     }];
-}
-
-- (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    [AVOSCloud handleRemoteNotificationsWithDeviceToken:deviceToken];
 }
 
 #pragma mark - iOS10 收到通知（本地和远端） UNUserNotificationCenterDelegate
@@ -226,11 +213,8 @@
 
 #pragma mark - Login
 
-// For application on system equals or larger ios 9
-- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options
-{
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options {
     return NO;
-//    return [AVOSCloudSNS handleOpenURL:url];
 }
 
 @end

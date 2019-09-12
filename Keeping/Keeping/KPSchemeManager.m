@@ -7,7 +7,6 @@
 //
 
 #import "KPSchemeManager.h"
-#import <AVOSCloud/AVOSCloud.h>
 #import "KPScheme.h"
 
 static NSMutableArray *_Nullable schemes = nil;
@@ -40,14 +39,7 @@ static KPSchemeManager* _instance = nil;
 
 - (void)getSchemes{
     schemes = [[NSMutableArray alloc] init];
-    AVQuery *query = [AVQuery queryWithClassName:@"AppScheme"];
-    for(AVObject *object in [query findObjects]){
-        KPScheme *scheme = [KPScheme new];
-        [scheme setName:object[@"name"]];
-        [scheme setScheme:object[@"scheme"]];
-        [scheme setIconFile:object[@"Icon"]];
-        [schemes addObject:scheme];
-    }
+    //TODO
 }
 
 - (NSArray *)getSchemeArr{

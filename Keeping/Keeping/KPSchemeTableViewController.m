@@ -10,7 +10,6 @@
 #import "KPSchemeManager.h"
 #import "KPSchemeTableViewCell.h"
 #import "Utilities.h"
-#import <AVOSCloud/AVOSCloud.h>
 #import "KPScheme.h"
 
 @implementation KPSchemeTableViewController
@@ -81,7 +80,7 @@
     if([self.searchController isActive]){
         return 1;
     }else{
-        return 4;
+        return 3;
     }
 }
 
@@ -98,7 +97,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(self.searchController.isActive){
+    if (self.searchController.isActive) {
         
         static NSString *cellIdentifier = @"KPSchemeTableViewCell";
         UINib *nib = [UINib nibWithNibName:@"KPSchemeTableViewCell" bundle:nil];
@@ -108,11 +107,6 @@
         KPScheme *s = self.searchResults[indexPath.row];
         [cell.appNameLabel setText:s.name];
         
-        AVFile *file = s.iconFile;
-        [file getThumbnail:YES width:100 height:100 withBlock:^(UIImage *image, NSError *error) {
-            [cell.appIconImg setImage:image];
-        }];
-        
         if(self.selectedApp == self.searchResults[indexPath.row]){
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         }else{
@@ -120,10 +114,8 @@
         }
         
         return cell;
-        
-    }else{
-        
-        if(indexPath.section <= 1){
+    } else {
+        if (indexPath.section <= 1) {
             static NSString *cellIdentifier = @"KPSchemeTableViewCell";
             UINib *nib = [UINib nibWithNibName:@"KPSchemeTableViewCell" bundle:nil];
             [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
@@ -143,23 +135,16 @@
                 KPScheme *s = self.schemeArr[indexPath.row];
                 [cell.appNameLabel setText:s.name];
                 
-                AVFile *file = s.iconFile;
-                [file getThumbnail:YES width:100 height:100 withBlock:^(UIImage *image, NSError *error) {
-                    [cell.appIconImg setImage:image];
-                }];
-                
                 if(self.selectedApp == self.schemeArr[indexPath.row]){
                     cell.accessoryType = UITableViewCellAccessoryCheckmark;
                 }else{
                     cell.accessoryType = UITableViewCellAccessoryNone;
                 }
             }
-            
             return cell;
-        }else{
+        } else {
             return [super tableView:tableView cellForRowAtIndexPath:indexPath];
         }
-        
     }
 }
 
@@ -196,11 +181,8 @@
             self.selectedApp = NULL;
         }
     }else{
-        if(indexPath.section == 3){
+        if(indexPath.section == 2){
             [self showSubmitAlert];
-        }else if(indexPath.section == 2){
-            [[KPSchemeManager shareInstance] getSchemes];
-            [self loadApps];
         }else{
             if(indexPath.section == 1){
                 if(self.selectedApp != self.schemeArr[indexPath.row]){

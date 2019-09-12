@@ -10,7 +10,6 @@
 #import "Utilities.h"
 #import "KPTabBar.h"
 #import "AppKeys.h"
-#import <AVOSCloud/AVOSCloud.h>
 #import <StoreKit/StoreKit.h>
 #import "VTAcknowledgementsViewController.h"
 #import <CloudKit/CloudKit.h>
@@ -28,9 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"10.3")){
-        [SKStoreReviewController requestReview];
-    }
+    [SKStoreReviewController requestReview];
     
     [self.animationSwitch setOnTintColor:[Utilities getColor]];
     [self.animationSwitch setOn:[[NSUserDefaults standardUserDefaults] boolForKey:@"animation"]];
@@ -257,14 +254,6 @@
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
-- (BOOL)filterError:(NSError *)error {
-    if (error) {
-        [self alert:[error localizedDescription]];
-        return NO;
-    }
-    return YES;
-}
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -288,13 +277,13 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     switch (section) {
         case 0:
-            return @"数据";
+            return NSLocalizedString(@"Data", @"");
         case 1:
-            return @"外观";
+            return NSLocalizedString(@"Appearance", @"");
         case 2:
-            return @"偏好";
+            return NSLocalizedString(@"Preference", @"");
         case 3:
-            return @"其他";
+            return NSLocalizedString(@"Others", @"");
         default:
             return @"";
     }

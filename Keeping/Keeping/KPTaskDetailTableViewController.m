@@ -431,28 +431,6 @@
     imagePickerController.allowsEditing = YES;
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Choose an image", nil) message:nil preferredStyle:UIAlertControllerStyleAlert];
     
-    if(self.selectedApp != NULL && ![self.appNameLabel.text isEqualToString:NSLocalizedString(@"None", nil)]){
-        UIAlertAction *appAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Choose app icon", nil)
-                                                           style:UIAlertActionStyleDefault
-                                                         handler:^(UIAlertAction * _Nonnull action) {
-                                                             AVFile *file = self.selectedApp.iconFile;
-                                                             
-                                                             [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:1] atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
-                                                             
-                                                             [file getThumbnail:YES
-                                                                          width:self.view.frame.size.width
-                                                                         height:self.view.frame.size.width
-                                                                      withBlock:^(UIImage * _Nullable image, NSError * _Nullable error) {
-                                                                          
-                                                                          [self setHasImage];
-                                                                          [self.selectedImgView setImage:[ImageUtil normalizedImage:image]];
-                                                                                                                            
-                                                             }];
-
-                                                         }];
-        [alert addAction:appAction];
-    }
-    
     UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Take a photo", nil)
                                                            style:UIAlertActionStyleDefault
                                                          handler:^(UIAlertAction * _Nonnull action) {

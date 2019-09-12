@@ -7,12 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <AVOSCloud/AVOSCloud.h>
 
 @interface KPScheme : NSObject
 
 @property (nonnull, nonatomic) NSString *name;
 @property (nonnull, nonatomic) NSString *scheme;
-@property (nonnull, nonatomic) AVFile *iconFile;
 
 @end

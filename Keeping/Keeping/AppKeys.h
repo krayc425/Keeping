@@ -10,8 +10,6 @@
 
 @interface AppKeys : NSObject
 
-extern NSString *const avCloudID;
-extern NSString *const avCloudKey;
 extern NSString *const buglyKey;
 
 @end

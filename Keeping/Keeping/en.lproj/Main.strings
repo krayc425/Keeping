@@ -60,7 +60,7 @@
 "UoR-Se-hxg.text" = "Finished";
 
 /* Class = "UILabel"; text = "没找到需要的 App？"; ObjectID = "Wpg-Kq-CgT"; */
-"Wpg-Kq-CgT.text" = "Didn't find app you want?";
+"Wpg-Kq-CgT.text" = "Couldn't find an app you want?";
 
 /* Class = "UILabel"; text = "角标显示今日未完成任务数"; ObjectID = "XQI-gZ-KeD"; */
 "XQI-gZ-KeD.text" = "Unfinished task count on badge";
@@ -87,7 +87,7 @@
 "hYm-gY-e2N.text" = "Label";
 
 /* Class = "UILabel"; text = "完成时间"; ObjectID = "iQa-XB-1tF"; */
-"iQa-XB-1tF.text" = "Weekdays";
+"iQa-XB-1tF.text" = "Days";
 
 /* Class = "UILabel"; text = "常见问题"; ObjectID = "iTn-uX-4PE"; */
 "iTn-uX-4PE.text" = "FAQ";
@@ -123,7 +123,7 @@
 "pb1-2D-ppu.text" = "Name";
 
 /* Class = "UILabel"; text = "致谢"; ObjectID = "pcI-lc-3hu"; */
-"pcI-lc-3hu.text" = "Acknowledgement";
+"pcI-lc-3hu.text" = "Acknowledgements";
 
 /* Class = "UITableViewController"; title = "设置"; ObjectID = "piG-ET-YWg"; */
 "piG-ET-YWg.title" = "Settings";
