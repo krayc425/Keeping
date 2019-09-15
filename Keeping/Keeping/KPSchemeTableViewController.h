@@ -11,9 +11,6 @@
 
 @protocol SchemeDelegate <NSObject>
 
-/**
- 此方为必须实现的协议方法，用来传值
- */
 - (void)passScheme:(KPScheme *_Nullable)scheme;
 
 @end

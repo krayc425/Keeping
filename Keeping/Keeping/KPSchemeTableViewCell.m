@@ -11,11 +11,4 @@
 
 @implementation KPSchemeTableViewCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    
-    [self.appIconImg.layer setCornerRadius:8.0];
-    [self.appIconImg.layer setMasksToBounds:YES];
-}
-
 @end

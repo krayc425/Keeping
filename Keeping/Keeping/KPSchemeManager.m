@@ -13,8 +13,6 @@ static NSMutableArray *_Nullable schemes = nil;
 
 @implementation KPSchemeManager
 
-//添加完别忘了去 info.plist 也加一个
-
 static KPSchemeManager* _instance = nil;
 
 + (instancetype)shareInstance{
@@ -39,7 +37,15 @@ static KPSchemeManager* _instance = nil;
 
 - (void)getSchemes{
     schemes = [[NSMutableArray alloc] init];
-    //TODO
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"URLSchemes" ofType:@"plist"];
+    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:plistPath];
+    for (NSString *key in dict) {
+        KPScheme *scheme = [[KPScheme alloc] init];
+        scheme.name = key;
+        scheme.scheme = (NSString *)[dict valueForKey:key];
+        NSLog(@"%@", scheme.name);
+        [schemes addObject:scheme];
+    }
 }
 
 - (NSArray *)getSchemeArr{

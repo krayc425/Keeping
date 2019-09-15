@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ICBC</key>
+	<string>com.icbc.iphoneclient://</string>
+	<key>QQ Music</key>
+	<string>qqmusic://</string>
+	<key>Dianping</key>
+	<string>dianping://</string>
+	<key>iQiyi</key>
+	<string>qiyi-iphone://</string>
+	<key>Didi</key>
+	<string>diditaxi://</string>
+	<key>JD</key>
+	<string>openapp.jdmobile://﻿</string>
+	<key>Taobao</key>
+	<string>taobao://﻿</string>
+	<key>IMDb</key>
+	<string>imdb://</string>
+	<key>VSCO</key>
+	<string>vsco://</string>
+	<key>Youtube</key>
+	<string>youtube://</string>
+	<key>Whatsapp</key>
+	<string>whatsapp://</string>
+	<key>Twitter</key>
+	<string>twitter://</string>
+	<key>Spotify</key>
+	<string>spotify://</string>
+	<key>Spark</key>
+	<string>readdle-spark://</string>
+	<key>Snapchat</key>
+	<string>snapchat://</string>
+	<key>Pinterest</key>
+	<string>pinterest://</string>
+	<key>Paypal</key>
+	<string>paypal://</string>
+	<key>Netflix</key>
+	<string>nflx://</string>
+	<key>Messenger</key>
+	<string>fb-messenger://</string>
+	<key>Instagram</key>
+	<string>instagram://</string>
+	<key>Chrome</key>
+	<string>googlechrome://</string>
+	<key>Google</key>
+	<string>google://</string>
+	<key>Gmail</key>
+	<string>googlegmail://</string>
+	<key>Flickr</key>
+	<string>flickr://</string>
+	<key>Facebook</key>
+	<string>fb://</string>
+	<key>Duolingo</key>
+	<string>duolingo://</string>
+	<key>DropBox</key>
+	<string>dbapi-1://</string>
+	<key>DoorDash</key>
+	<string>doordash://</string>
+	<key>AMC Theatres</key>
+	<string>amc://</string>
+	<key>Zhihu</key>
+	<string>zhihu://</string>
+	<key>Alipay</key>
+	<string>alipay://</string>
+	<key>Weibo</key>
+	<string>sinaweibo://</string>
+	<key>Bilibili</key>
+	<string>bilibili://</string>
+	<key>BBC News</key>
+	<string>bbcnewsapp://</string>
+	<key>WeChat</key>
+	<string>weixin://</string>
+	<key>QQ</key>
+	<string>mqq://</string>
+	<key>Youku</key>
+	<string>youku://</string>
+	<key>Kindle</key>
+	<string>kindle://</string>
+	<key>Keep</key>
+	<string>keep://</string>
+	<key>NetEase Music</key>
+	<string>orpheus://</string>
+	<key>Airbnb</key>
+	<string>Airbnb://</string>
+	<key>Voice Memos</key>
+	<string>voicememos://</string>
+	<key>Settings</key>
+	<string>App-prefs://</string>
+	<key>Safari</key>
+	<string>x-web-search://</string>
+	<key>Photos</key>
+	<string>photos-redirect://</string>
+	<key>Notes</key>
+	<string>mobilenotes://</string>
+	<key>Messages</key>
+	<string>sms://</string>
+	<key>Maps</key>
+	<string>map://</string>
+	<key>iMovie</key>
+	<string>imovie://</string>
+	<key>GarageBand</key>
+	<string>garageband://</string>
+	<key>Apple TV</key>
+	<string>videos://</string>
+	<key>Calendar</key>
+	<string>calshow://</string>
+	<key>App Store</key>
+	<string>itms-apps://itunes.apple.com</string>
+	<key>Apple Music</key>
+	<string>music://</string>
+	<key>Wallet</key>
+	<string>shoebox://</string>
+</dict>
+</plist>

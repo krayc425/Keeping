@@ -9,7 +9,6 @@
 #import "KPNavigationViewController.h"
 #import "KPTabBarViewController.h"
 #import "Utilities.h"
-#import "KPGuideView.h"
 
 @implementation KPNavigationViewController
 

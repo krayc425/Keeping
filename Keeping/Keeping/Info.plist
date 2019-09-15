@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIUserInterfaceStyle</key>
+	<string>Light</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>zh_CN</string>
 	<key>CFBundleDisplayName</key>
@@ -31,26 +33,6 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>keepingapp</string>
-			</array>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLName</key>
-			<string>weibo</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>sinaweibosso.2794847636</string>
-			</array>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLName</key>
-			<string>qq</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>tencent1105994496</string>
 			</array>
 		</dict>
 	</array>

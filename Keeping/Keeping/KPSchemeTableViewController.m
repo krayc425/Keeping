@@ -47,7 +47,6 @@
     self.searchController.searchBar.delegate = self;
     self.searchController.searchBar.frame = CGRectMake(0, 100, self.view.frame.size.width, 44);
     self.searchController.searchBar.placeholder = NSLocalizedString(@"App name", nil);
-    [self.searchController.searchBar setValue:NSLocalizedString(@"Done", nil) forKey:@"_cancelButtonText"];
     // 设置SearchBar的颜色主题为白色
     self.searchController.searchBar.barTintColor = [UIColor whiteColor];
     self.searchController.searchBar.backgroundImage = [[UIImage alloc] init];
@@ -97,13 +96,12 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *cellIdentifier = @"KPSchemeTableViewCell";
+    UINib *nib = [UINib nibWithNibName:@"KPSchemeTableViewCell" bundle:nil];
+    [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
+    KPSchemeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    
     if (self.searchController.isActive) {
-        
-        static NSString *cellIdentifier = @"KPSchemeTableViewCell";
-        UINib *nib = [UINib nibWithNibName:@"KPSchemeTableViewCell" bundle:nil];
-        [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
-        KPSchemeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-        
         KPScheme *s = self.searchResults[indexPath.row];
         [cell.appNameLabel setText:s.name];
         
@@ -116,28 +114,19 @@
         return cell;
     } else {
         if (indexPath.section <= 1) {
-            static NSString *cellIdentifier = @"KPSchemeTableViewCell";
-            UINib *nib = [UINib nibWithNibName:@"KPSchemeTableViewCell" bundle:nil];
-            [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
-            KPSchemeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-            
-            if(indexPath.section == 0){
+            if (indexPath.section == 0) {
                 cell.appNameLabel.text = NSLocalizedString(@"None", nil);
-                
-                [cell.appIconImg setImage:[UIImage new]];
-                
                 if(self.selectedApp == NULL){
                     cell.accessoryType = UITableViewCellAccessoryCheckmark;
                 }else{
                     cell.accessoryType = UITableViewCellAccessoryNone;
                 }
-            }else{
+            } else {
                 KPScheme *s = self.schemeArr[indexPath.row];
                 [cell.appNameLabel setText:s.name];
-                
-                if(self.selectedApp == self.schemeArr[indexPath.row]){
+                if (self.selectedApp == self.schemeArr[indexPath.row]) {
                     cell.accessoryType = UITableViewCellAccessoryCheckmark;
-                }else{
+                } else {
                     cell.accessoryType = UITableViewCellAccessoryNone;
                 }
             }
@@ -149,12 +138,12 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(self.searchController.isActive){
+    if (self.searchController.isActive) {
         return 44;
-    }else{
-        if(indexPath.section != 1){
+    } else {
+        if (indexPath.section != 1) {
             return [super tableView:tableView heightForRowAtIndexPath:indexPath];
-        }else{
+        } else {
             return 44;
         }
     }
@@ -166,7 +155,7 @@
     }else{
         if (indexPath.section == 1) {
             return 10;
-        }else{
+        } else {
             return [super tableView:tableView indentationLevelForRowAtIndexPath:indexPath];
         }
     }

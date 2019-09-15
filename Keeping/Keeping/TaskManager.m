@@ -135,10 +135,10 @@ static TaskManager* _instance = nil;
     
     NSDictionary *schemeDict = task.appScheme;
     NSString *schemeJsonStr;
-    if(schemeDict != NULL){
+    if (schemeDict != NULL) {
         NSData *schemeJsonData = [NSJSONSerialization dataWithJSONObject:schemeDict options:NSJSONWritingPrettyPrinted error:&err];
         schemeJsonStr = [[NSString alloc] initWithData:schemeJsonData encoding:NSUTF8StringEncoding];
-    }else{
+    } else {
         schemeJsonStr = NULL;
     }
     

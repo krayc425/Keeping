@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <WatchKit/WatchKit.h>
 #import <WatchConnectivity/WatchConnectivity.h>
 
 @class Task;

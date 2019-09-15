@@ -16,10 +16,10 @@
 #import "KPSchemeManager.h"
 #import "IQKeyboardManager.h"
 #import "Utilities.h"
-@import CoreSpotlight;
 #import "CoreSpotlightHelper.h"
+@import CoreSpotlight;
 @import Bugly;
-#import <UserNotifications/UserNotifications.h>
+@import UserNotifications;
 
 @interface AppDelegate () <UNUserNotificationCenterDelegate>
 
@@ -52,11 +52,6 @@
         [[NSUserDefaults standardUserDefaults] setValue:@{@"sortName" : @true} forKey:@"sort"];
     }
     [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    //下载 schemes
-    NSArray *r = [[KPSchemeManager shareInstance] getSchemeArr];
-    
-    NSLog(@"%lu apps", (unsigned long)r.count);
     
     //启动数据库
     [DBManager shareInstance];
